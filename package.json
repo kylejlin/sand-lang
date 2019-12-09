@@ -1,0 +1,44 @@
+{
+  "name": "sand-lang",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A language that compiles to Java (not JVM bytecode).",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "start": "nodemon",
+    "prepublishOnly": "npm run build && npm test",
+    "build": "tsc",
+    "test": "jest",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "doc": "typedoc --out docs src && cd docs && echo \"\" > .nojekyll",
+    "jison": "jison grammar/sand.jison --outfile src/parser.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kylejlin/sand-lang.git"
+  },
+  "keywords": [
+    "sand",
+    "compiler",
+    "java"
+  ],
+  "author": "Kyle Lin",
+  "license": "MIT",
+  "homepage": "https://github.com/kylejlin/sand-lang#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.22",
+    "@types/node": "^12.12.7",
+    "coveralls": "^3.0.7",
+    "jest": "^24.9.0",
+    "jison": "^0.4.18",
+    "nodemon": "^2.0.1",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.1.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.2"
+  }
+}
