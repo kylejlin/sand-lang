@@ -123,6 +123,10 @@ type
         { $$ = { name: $1, args: $3 }; }
     | IDENTIFIER
         { $$ = { name: $1, args: [] }; }
+    | type "[" "]"
+        { $$ = { name: "array", args: [$1] }; }
+    | type "[" ":" "]"
+        { $$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)] }; }
     ;
 
 typeArgs

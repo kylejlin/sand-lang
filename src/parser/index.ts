@@ -7,6 +7,7 @@ import {
   IfAlternativeType,
   ConstraintType,
 } from "../ast";
+import { wrapPrimitiveIfNeeded } from "../sandTypes";
 import parser from "./parser.generated";
 
 const { yy } = parser.parser;
@@ -29,5 +30,7 @@ yy.unaryExpr = function unaryExpr(
 ): UnaryExpr {
   return { type: NodeType.UnaryExpr, operation, right };
 };
+
+yy.wrapPrimitiveIfNeeded = wrapPrimitiveIfNeeded;
 
 export default parser;
