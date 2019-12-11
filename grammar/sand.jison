@@ -183,6 +183,8 @@ optExpressions
 
 expressions
     : expressionsNotEndingWithBrace
+    | expressionsNotEndingWithBrace ";"
+        { $$ = $1.concat([{ type: yy.NodeType.ImpliedNullExpr }]); }
     | expressionsEndingWithBrace
     ;
 

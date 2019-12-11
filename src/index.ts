@@ -19,7 +19,7 @@ import parser from "./parser";
 const src = `
 pub class HelloWorld {
     pub main(args: String) {
-        System.out.println("Hello world!")
+        System.out.println("Hello world!");
     }
 
     factorial(n: int): int {

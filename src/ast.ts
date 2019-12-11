@@ -13,6 +13,8 @@ export enum NodeType {
 
   File = "File",
   Class = "Class",
+
+  ImpliedNullExpr = "ImpliedNullExpr",
 }
 
 export type Expr =
@@ -144,3 +146,7 @@ export interface ArgDef {
 }
 
 export type OptAccessModifier = null | "pub" | "prot";
+
+export interface ImpliedNullExpr {
+  type: NodeType.ImpliedNullExpr;
+}
