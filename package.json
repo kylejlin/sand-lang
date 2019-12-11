@@ -15,7 +15,7 @@
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "doc": "typedoc --out docs src && cd docs && echo \"\" > .nojekyll",
-    "jison": "jison grammar/sand.jison --outfile src/parser.js"
+    "jison": "jison grammar/sand.jison --outfile src/parser/parser.generated.js"
   },
   "repository": {
     "type": "git",
