@@ -175,38 +175,46 @@ argDefs
     ;
 
 compoundExpression
-    : "{" optExpressions "}"
+    : "{" "}"
+        { $$ = []; }
+    | "{" expressionNotEndingWithBrace "}"
+        { $$ = [$2]; }
+    | "{" expressionNotEndingWithBrace ";" "}"
+        { $$ = [$2]; }
+    | "{" expressionEndingWithBrace "}"
+        { $$ = [$2]; }
+    | "{" twoOrMoreExpressionsNotEndingWithBrace "}"
+        { $$ = $2; }
+    | "{" twoOrMoreExpressionsNotEndingWithBrace ";" "}"
+        { $$ = $2; }
+    | "{" twoOrMoreExpressionsEndingWithBrace "}"
         { $$ = $2; }
     ;
 
-optExpressions
-    : /* empty */
-        { $$ = []; }
-    | expressions
-    ;
-
-expressions
-    : expressionsNotEndingWithBrace
-    | expressionsNotEndingWithBrace ";"
-        { $$ = $1.concat([{ type: yy.NodeType.ImpliedNullExpr }]); }
-    | expressionsEndingWithBrace
-    ;
-
-expressionsNotEndingWithBrace
-    : expressionNotEndingWithBrace
-        { $$ = [$1]; }
-    | expressionsNotEndingWithBrace ";" expressionNotEndingWithBrace
+// The last expression does not end with a brace
+//   but the others may.
+// The sequence does not end with a semicolon.
+twoOrMoreExpressionsNotEndingWithBrace
+    : expressionNotEndingWithBrace ";" expressionNotEndingWithBrace
+        { $$ = [$1, $3]; }
+    | expressionEndingWithBrace ";" expressionNotEndingWithBrace
+        { $$ = [$1, $3]; }
+    | twoOrMoreExpressionsNotEndingWithBrace ";" expressionNotEndingWithBrace
         { $$ = $1.concat([$3]); }
-    | expressionsEndingWithBrace expressionNotEndingWithBrace
+    | twoOrMoreExpressionsEndingWithBrace expressionNotEndingWithBrace
         { $$ = $1.concat([$2]); }
     ;
 
-expressionsEndingWithBrace
-    : expressionEndingWithBrace
-        { $$ = [$1]; }
-    | expressionsEndingWithBrace expressionEndingWithBrace
-        { $$ = $1.concat([$2]); }
-    | expressionsNotEndingWithBrace expressionEndingWithBrace
+// The last expression ends with a brace
+//   but the others may not.
+twoOrMoreExpressionsEndingWithBrace
+    : expressionNotEndingWithBrace ";" expressionEndingWithBrace
+        { $$ = [$1, $3]; }
+    | expressionEndingWithBrace expressionEndingWithBrace
+        { $$ = [$1, $2]; }
+    | twoOrMoreExpressionsNotEndingWithBrace ";" expressionEndingWithBrace
+        { $$ = $1.concat([$3]); }
+    | twoOrMoreExpressionsEndingWithBrace expressionEndingWithBrace
         { $$ = $1.concat([$2]); }
     ;
 

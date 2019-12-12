@@ -7,11 +7,16 @@ pub class HelloWorld {
     }
 
     factorial(n: int): int {
-        x
+        if n == 0 {
+            1
+        } else {
+            n * factorial(n - 1)
+        }
     }
 
     pop(stack: int[:]): int {
-
+        stack.remove(stack.size() - 1);
+        item
     }
 }
 `;
