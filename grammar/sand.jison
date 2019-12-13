@@ -178,48 +178,44 @@ argDefs
 compoundExpression
     : "{" "}"
         { $$ = []; }
-    | "{" expressionNotEndingWithBrace "}"
+    | "{" expressionLackingRightDelimiter "}"
         { $$ = [$2]; }
-    | "{" expressionNotEndingWithBrace ";" "}"
+    | "{" expressionLackingRightDelimiter ";" "}"
         { $$ = [$2]; }
-    | "{" expressionEndingWithBrace "}"
+    | "{" expressionIncludingRightDelimiter "}"
         { $$ = [$2]; }
-    | "{" twoOrMoreExpressionsNotEndingWithBrace "}"
+    | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter "}"
         { $$ = $2; }
-    | "{" twoOrMoreExpressionsNotEndingWithBrace ";" "}"
+    | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" "}"
         { $$ = $2; }
-    | "{" twoOrMoreExpressionsEndingWithBrace "}"
+    | "{" twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter "}"
         { $$ = $2; }
     ;
 
-// The last expression does not end with a brace
-//   but the others may.
 // The sequence does not end with a semicolon.
-twoOrMoreExpressionsNotEndingWithBrace
-    : expressionNotEndingWithBrace ";" expressionNotEndingWithBrace
+twoOrMoreExpressionsWhereTheLastLacksRightDelimiter
+    : expressionLackingRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = [$1, $3]; }
-    | expressionEndingWithBrace expressionNotEndingWithBrace
+    | expressionIncludingRightDelimiter expressionLackingRightDelimiter
         { $$ = [$1, $2]; }
-    | twoOrMoreExpressionsNotEndingWithBrace ";" expressionNotEndingWithBrace
+    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = $1.concat([$3]); }
-    | twoOrMoreExpressionsEndingWithBrace expressionNotEndingWithBrace
+    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionLackingRightDelimiter
         { $$ = $1.concat([$2]); }
     ;
 
-// The last expression ends with a brace
-//   but the others may not.
-twoOrMoreExpressionsEndingWithBrace
-    : expressionNotEndingWithBrace ";" expressionEndingWithBrace
+twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
+    : expressionLackingRightDelimiter ";" expressionIncludingRightDelimiter
         { $$ = [$1, $3]; }
-    | expressionEndingWithBrace expressionEndingWithBrace
+    | expressionIncludingRightDelimiter expressionIncludingRightDelimiter
         { $$ = [$1, $2]; }
-    | twoOrMoreExpressionsNotEndingWithBrace ";" expressionEndingWithBrace
+    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionIncludingRightDelimiter
         { $$ = $1.concat([$3]); }
-    | twoOrMoreExpressionsEndingWithBrace expressionEndingWithBrace
+    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionIncludingRightDelimiter
         { $$ = $1.concat([$2]); }
     ;
 
-expressionEndingWithBrace
+expressionIncludingRightDelimiter
     : "if" expression compoundExpression optElseExpression
         { $$ = { type: yy.NodeType.If, condition: $2, body: $3, alternatives: $4, location: yy.camelCase(@$) }; }
     ;
@@ -237,7 +233,7 @@ optElseIfExpression
         { $$ = $1.concat([{ type: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.camelCase(yy.merge(@2, @5)) }]); }
     ;
 
-expressionNotEndingWithBrace
+expressionLackingRightDelimiter
     : expression "||" expression
         { $$ = yy.binaryExpr("||", $1, $3, @$); }
     | expression "&&" expression
@@ -306,8 +302,8 @@ assignableExpression
     ;
 
 expression
-    : expressionEndingWithBrace
-    | expressionNotEndingWithBrace
+    : expressionIncludingRightDelimiter
+    | expressionLackingRightDelimiter
     ;
 
 optArgs
