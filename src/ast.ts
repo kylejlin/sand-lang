@@ -123,7 +123,7 @@ export interface Type {
   location: NodeLocation;
 }
 
-export interface TypeArg {
+export interface TypeArgDef {
   name: string;
   constraint: TypeConstraint;
   location: NodeLocation;
@@ -150,7 +150,7 @@ export interface Class {
   type: NodeType.Class;
   isPub: boolean;
   name: string;
-  typeArgs: TypeArg;
+  typeArgDefs: TypeArgDef[];
   superClass: Type | null;
   items: ClassItem[];
   location: NodeLocation;

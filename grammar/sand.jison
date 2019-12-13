@@ -83,33 +83,33 @@ classes
     ;
 
 pubClass
-    : "pub" "class" IDENTIFIER optTypeArgs optExtension "{" classBody "}"
-        { $$ = { type: yy.NodeType.Class, isPub: true, name: $3, typeArgs: $4, superClass: $5, items: $7, location: yy.camelCase(@$) }; }
+    : "pub" "class" IDENTIFIER optTypeArgDefs optExtension "{" classBody "}"
+        { $$ = { type: yy.NodeType.Class, isPub: true, name: $3, typeArgDefs: $4, superClass: $5, items: $7, location: yy.camelCase(@$) }; }
     ;
 
-optTypeArgs
+optTypeArgDefs
     : /* empty */
         { $$ = []; }
-    | "<" typeArgs ">"
+    | "<" typeArgDefs ">"
         { $$ = $2; }
     ;
 
-typeArgs
+typeArgDefs
     : IDENTIFIER
         { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@$) }]; }
     | IDENTIFIER "extends" type
         { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 }, location: yy.camelCase(@$) }]; }
-    | typeArgs "," IDENTIFIER
+    | typeArgDefs "," IDENTIFIER
         { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@3) }]); }
-    | typeArgs "," IDENTIFIER "extends" type
+    | typeArgDefs "," IDENTIFIER "extends" type
         { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.camelCase(yy.merge(@3, @5)) }]); }
     ;
 
 optPrivClasses
     : /* empty */
         { $$ = []; }
-    | optPrivClasses "class" IDENTIFIER optTypeArgs optExtension "{" classBody "}"
-        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgs: $4, superClass: $5, items: $7, location: yy.camelCase(yy.merge(@2, @8)) }]); }
+    | optPrivClasses "class" IDENTIFIER optTypeArgDefs optExtension "{" classBody "}"
+        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgDefs: $4, superClass: $5, items: $7, location: yy.camelCase(yy.merge(@2, @8)) }]); }
     ;
 
 optExtension

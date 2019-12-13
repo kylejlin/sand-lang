@@ -95,7 +95,7 @@ Object {
     "name": "Args",
     "superClass": null,
     "type": "Class",
-    "typeArgs": Array [
+    "typeArgDefs": Array [
       Object {
         "constraint": Object {
           "constraintType": "None",
@@ -910,7 +910,7 @@ Object {
     "name": "CompoundExpression",
     "superClass": null,
     "type": "Class",
-    "typeArgs": Array [],
+    "typeArgDefs": Array [],
   },
   "type": "File",
 }
@@ -1117,7 +1117,7 @@ Object {
     "name": "Factorial",
     "superClass": null,
     "type": "Class",
-    "typeArgs": Array [],
+    "typeArgDefs": Array [],
   },
   "type": "File",
 }
@@ -1244,7 +1244,7 @@ Object {
     "name": "HelloWorld",
     "superClass": null,
     "type": "Class",
-    "typeArgs": Array [],
+    "typeArgDefs": Array [],
   },
   "type": "File",
 }
