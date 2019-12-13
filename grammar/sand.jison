@@ -79,36 +79,37 @@
 
 classes
     : pubClass optPrivClasses EOF
-        { return { type: yy.NodeType.File, pubClass: $1, privClasses: $2 }; }
+        { return { type: yy.NodeType.File, pubClass: $1, privClasses: $2, location: yy.camelCase(@$) }; }
     ;
 
 pubClass
     : "pub" "class" IDENTIFIER optTypeArgs optExtension "{" classBody "}"
-        { $$ = { type: yy.NodeType.Class, isPub: true, name: $3, typeArgs: $4, superClass: $5, items: $7 }; }
+        { $$ = { type: yy.NodeType.Class, isPub: true, name: $3, typeArgs: $4, superClass: $5, items: $7, location: yy.camelCase(@$) }; }
     ;
 
 optTypeArgs
     : /* empty */
         { $$ = []; }
-    | typeArgs
+    | "<" typeArgs ">"
+        { $$ = $2; }
     ;
 
 typeArgs
     : IDENTIFIER
-        { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.None } }]; }
+        { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@$) }]; }
     | IDENTIFIER "extends" type
-        { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 } }]; }
+        { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 }, location: yy.camelCase(@$) }]; }
     | typeArgs "," IDENTIFIER
-        { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.None } }]); }
+        { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@3) }]); }
     | typeArgs "," IDENTIFIER "extends" type
-        { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 } }]); }
+        { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.camelCase(yy.merge(@3, @5)) }]); }
     ;
 
 optPrivClasses
     : /* empty */
         { $$ = []; }
     | optPrivClasses "class" IDENTIFIER optTypeArgs optExtension "{" classBody "}"
-        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgs: $4, superClass: $5, items: $7 }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgs: $4, superClass: $5, items: $7, location: yy.camelCase(yy.merge(@2, @8)) }]); }
     ;
 
 optExtension
@@ -120,13 +121,13 @@ optExtension
 
 type
     : IDENTIFIER "<" typeArgs ">"
-        { $$ = { name: $1, args: $3 }; }
+        { $$ = { name: $1, args: $3, location: yy.camelCase(@$) }; }
     | IDENTIFIER
-        { $$ = { name: $1, args: [] }; }
+        { $$ = { name: $1, args: [], location: yy.camelCase(@$) }; }
     | type "[" "]"
-        { $$ = { name: "array", args: [$1] }; }
+        { $$ = { name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" ":" "]"
-        { $$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)] }; }
+        { $$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
     ;
 
 typeArgs
@@ -145,11 +146,11 @@ classBody
 
 classItem
     : optAccessModifier IDENTIFIER ":" type ";"
-        { $$ = { type: yy.NodeType.PropertyDeclaration, accessModifier: $1, name: $2, valueType: $4 }; }
+        { $$ = { type: yy.NodeType.PropertyDeclaration, accessModifier: $1, name: $2, valueType: $4, location: yy.camelCase(@$) }; }
     | optAccessModifier IDENTIFIER "(" optArgDefs ")" ":" type compoundExpression
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, args: $4, returnType: $7, body: $8 }; }
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, args: $4, returnType: $7, body: $8, location: yy.camelCase(@$) }; }
     | optAccessModifier IDENTIFIER "(" optArgDefs ")" compoundExpression
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, args: $4, returnType: "void", body: $6 }; }
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, args: $4, returnType: "void", body: $6, location: yy.camelCase(@$) }; }
     ;
 
 optAccessModifier
@@ -169,9 +170,9 @@ optArgDefs
 
 argDefs
     : IDENTIFIER ":" type
-        { $$ = [{ name: $1, valueType: $3 }]; }
+        { $$ = [{ name: $1, valueType: $3, location: yy.camelCase(@$) }]; }
     | argDefs "," IDENTIFIER ":" type
-        { $$ = $1.concat([{ name: $3, valueType: $5 }]); }
+        { $$ = $1.concat([{ name: $3, valueType: $5, location: yy.camelCase(yy.merge(@3, @5)) }]); }
     ;
 
 compoundExpression
@@ -197,8 +198,8 @@ compoundExpression
 twoOrMoreExpressionsNotEndingWithBrace
     : expressionNotEndingWithBrace ";" expressionNotEndingWithBrace
         { $$ = [$1, $3]; }
-    | expressionEndingWithBrace ";" expressionNotEndingWithBrace
-        { $$ = [$1, $3]; }
+    | expressionEndingWithBrace expressionNotEndingWithBrace
+        { $$ = [$1, $2]; }
     | twoOrMoreExpressionsNotEndingWithBrace ";" expressionNotEndingWithBrace
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsEndingWithBrace expressionNotEndingWithBrace
@@ -220,88 +221,88 @@ twoOrMoreExpressionsEndingWithBrace
 
 expressionEndingWithBrace
     : "if" expression compoundExpression optElseExpression
-        { $$ = { type: yy.NodeType.If, condition: $2, body: $3, alternatives: $4 }; }
+        { $$ = { type: yy.NodeType.If, condition: $2, body: $3, alternatives: $4, location: yy.camelCase(@$) }; }
     ;
 
 optElseExpression
     : optElseIfExpression
     | optElseIfExpression "else" compoundExpression
-        { $$ = $1.concat([{ type: yy.IfAlternativeType.Else, body: $3 }]); }
+        { $$ = $1.concat([{ type: yy.IfAlternativeType.Else, body: $3, location: yy.camelCase(yy.merge(@2, @3)) }]); }
     ;
 
 optElseIfExpression
     : /* empty */
         { $$ = []; }
     | optElseIfExpression "else" "if" expression compoundExpression
-        { $$ = $1.concat([{ type: yy.IfAlternativeType.ElseIf, condition: $4, body: $5 }]); }
+        { $$ = $1.concat([{ type: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.camelCase(yy.merge(@2, @5)) }]); }
     ;
 
 expressionNotEndingWithBrace
     : expression "||" expression
-        { $$ = yy.binaryExpr("||", $1, $3); }
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
     | expression "&&" expression
-        { $$ = yy.binaryExpr("&&", $1, $3); }
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
 
     | expression "==" expression
-        { $$ = yy.binaryExpr("==", $1, $3); }
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
     | expression "!=" expression
-        { $$ = yy.binaryExpr("!=", $1, $3); }
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
 
     | expression "<" expression
-        { $$ = yy.binaryExpr("<", $1, $3); }
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
     | expression "<=" expression
-        { $$ = yy.binaryExpr("<=", $1, $3); }
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
     | expression ">" expression
-        { $$ = yy.binaryExpr(">", $1, $3); }
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
     | expression ">=" expression
-        { $$ = yy.binaryExpr(">=", $1, $3); }
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
 
     | expression "+" expression
-        { $$ = yy.binaryExpr("+", $1, $3); }
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
     | expression "-" expression
-        { $$ = yy.binaryExpr("-", $1, $3); }
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
 
     | expression "*" expression
-        { $$ = yy.binaryExpr("*", $1, $3); }
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
     | expression "/" expression
-        { $$ = yy.binaryExpr("/", $1, $3); }
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
     | expression "%" expression
-        { $$ = yy.binaryExpr("%", $1, $3); }
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
 
     | expression "**" expression
-        { $$ = yy.binaryExpr("**", $1, $3); }
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
 
     | "!" expression
-        { $$ = yy.unaryExpr("!", $2); }
+        { $$ = yy.unaryExpr("!", $2, @$); }
 
     | "-" expression %prec UMINUS
-        { $$ = yy.unaryExpr("-", $2); }
+        { $$ = yy.unaryExpr("-", $2, @$); }
 
     | functionCall
 
     | NUMBER
-        { $$ = { type: yy.NodeType.NumberLiteral, value: yytext }; }
+        { $$ = { type: yy.NodeType.NumberLiteral, value: yytext, location: yy.camelCase(@$) }; }
     | STRING
-        { $$ = { type: yy.NodeType.String, value: yytext }; }
+        { $$ = { type: yy.NodeType.StringLiteral, value: yytext, location: yy.camelCase(@$) }; }
     | assignableExpression
     ;
 
 functionCall
     : assignableExpression "(" optArgs ")"
-        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, args: $3 }; }
+        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, args: $3, location: yy.camelCase(@$) }; }
     ;
 
 assignableExpression
     : IDENTIFIER
-        { $$ = { type: yy.NodeType.Identifier, value: yytext }; }
+        { $$ = { type: yy.NodeType.Identifier, value: yytext, location: yy.camelCase(@$) }; }
     | assignableExpression "." IDENTIFIER
-        { $$ = yy.binaryExpr(".", $1, $3); }
+        { $$ = yy.binaryExpr(".", $1, $3, @$); }
     | functionCall "." IDENTIFIER
-        { $$ = yy.binaryExpr(".", $1, $3); }
+        { $$ = yy.binaryExpr(".", $1, $3, @$); }
     | assignableExpression "[" expression "]"
-        { $$ = yy.binaryExpr("[", $1, $3); }
+        { $$ = yy.binaryExpr("[", $1, $3, @$); }
     | functionCall "[" expression "]"
-        { $$ = yy.binaryExpr("[", $1, $3); }
+        { $$ = yy.binaryExpr("[", $1, $3, @$); }
     ;
 
 expression

@@ -17,6 +17,41 @@ export enum NodeType {
   ImpliedNullExpr = "ImpliedNullExpr",
 }
 
+export interface NodeLocation {
+  firstLine: number;
+  lastLine: number;
+  firstColumn: number;
+  lastColumn: number;
+}
+
+export interface JisonNodeLocation {
+  first_line: number;
+  last_line: number;
+  first_column: number;
+  last_column: number;
+}
+
+export function merge(
+  start: JisonNodeLocation,
+  end: JisonNodeLocation,
+): JisonNodeLocation {
+  return {
+    first_line: start.first_line,
+    first_column: start.first_column,
+    last_line: end.last_line,
+    last_column: end.last_column,
+  };
+}
+
+export function camelCase(location: JisonNodeLocation): NodeLocation {
+  return {
+    firstLine: location.first_line,
+    lastLine: location.last_line,
+    firstColumn: location.first_column,
+    lastColumn: location.last_column,
+  };
+}
+
 export type Expr =
   | NumberLiteral
   | StringLiteral
@@ -27,16 +62,19 @@ export type Expr =
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
   value: string;
+  location: NodeLocation;
 }
 
 export interface StringLiteral {
   type: NodeType.StringLiteral;
   value: string;
+  location: NodeLocation;
 }
 
 export interface Identifier {
   type: NodeType.Identifier;
   value: string;
+  location: NodeLocation;
 }
 
 export interface BinaryExpr {
@@ -44,6 +82,7 @@ export interface BinaryExpr {
   operation: BinaryOperation;
   left: Expr;
   right: Expr;
+  location: NodeLocation;
 }
 
 export type BinaryOperation =
@@ -68,6 +107,7 @@ export interface UnaryExpr {
   type: NodeType.UnaryExpr;
   operation: UnaryOperation;
   right: Expr;
+  location: NodeLocation;
 }
 
 export type UnaryOperation = "-" | "!";
@@ -80,11 +120,13 @@ export enum IfAlternativeType {
 export interface Type {
   name: string;
   args: Type[];
+  location: NodeLocation;
 }
 
 export interface TypeArg {
   name: string;
   constraint: TypeConstraint;
+  location: NodeLocation;
 }
 
 export type TypeConstraint = NoConstraint | ExtendsConstraint;
@@ -101,6 +143,7 @@ export interface ExtendsConstraint {
 export interface File {
   type: NodeType.File;
   pubClass: Class;
+  location: NodeLocation;
 }
 
 export interface Class {
@@ -110,6 +153,7 @@ export interface Class {
   typeArgs: TypeArg;
   superClass: Type | null;
   items: ClassItem[];
+  location: NodeLocation;
 }
 
 export interface PubClass extends Class {
@@ -129,6 +173,7 @@ export interface PropertyDeclaration {
   accessModifier: OptAccessModifier;
   name: string;
   valueType: Type;
+  location: NodeLocation;
 }
 
 export interface MethodDeclaration {
@@ -138,11 +183,13 @@ export interface MethodDeclaration {
   args: ArgDef[];
   returnType: Type;
   body: Expr[];
+  location: NodeLocation;
 }
 
 export interface ArgDef {
   name: string;
   valueType: Type;
+  location: NodeLocation;
 }
 
 export type OptAccessModifier = null | "pub" | "prot";

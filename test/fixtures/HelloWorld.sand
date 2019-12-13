@@ -1,0 +1,5 @@
+pub class HelloWorld {
+    pub main(args: String[]) {
+        System.out.println("Hello world!");
+    }
+}
