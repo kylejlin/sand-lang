@@ -196,11 +196,11 @@ compoundExpression
 twoOrMoreExpressionsWhereTheLastLacksRightDelimiter
     : expressionLackingRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = [$1, $3]; }
-    | expressionIncludingRightDelimiter expressionLackingRightDelimiter
+    | expressionIncludingRightDelimiter expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = [$1, $2]; }
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = $1.concat([$3]); }
-    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionLackingRightDelimiter
+    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = $1.concat([$2]); }
     ;
 
@@ -234,45 +234,86 @@ optElseIfExpression
     ;
 
 expressionLackingRightDelimiter
-    : expression "||" expression
+    : expressionLackingRightDelimiterStartingWithInfixToken
+    | expressionLackingRightDelimiterNotStartingWithInfixToken
+    ;
+
+expressionLackingRightDelimiterStartingWithInfixToken
+    : "-" expression %prec UMINUS
+        { $$ = yy.unaryExpr("-", $2, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "||" expression
         { $$ = yy.binaryExpr("||", $1, $3, @$); }
-    | expression "&&" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "&&" expression
         { $$ = yy.binaryExpr("&&", $1, $3, @$); }
 
-    | expression "==" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "==" expression
         { $$ = yy.binaryExpr("==", $1, $3, @$); }
-    | expression "!=" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "!=" expression
         { $$ = yy.binaryExpr("!=", $1, $3, @$); }
 
-    | expression "<" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "<" expression
         { $$ = yy.binaryExpr("<", $1, $3, @$); }
-    | expression "<=" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "<=" expression
         { $$ = yy.binaryExpr("<=", $1, $3, @$); }
-    | expression ">" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken ">" expression
         { $$ = yy.binaryExpr(">", $1, $3, @$); }
-    | expression ">=" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken ">=" expression
         { $$ = yy.binaryExpr(">=", $1, $3, @$); }
 
-    | expression "+" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "+" expression
         { $$ = yy.binaryExpr("+", $1, $3, @$); }
-    | expression "-" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "-" expression
         { $$ = yy.binaryExpr("-", $1, $3, @$); }
 
-    | expression "*" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "*" expression
         { $$ = yy.binaryExpr("*", $1, $3, @$); }
-    | expression "/" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "/" expression
         { $$ = yy.binaryExpr("/", $1, $3, @$); }
-    | expression "%" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "%" expression
         { $$ = yy.binaryExpr("%", $1, $3, @$); }
 
-    | expression "**" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "**" expression
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+    ;
+
+expressionLackingRightDelimiterNotStartingWithInfixToken
+    : expressionLackingRightDelimiterNotStartingWithInfixToken "||" expression
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "&&" expression
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "==" expression
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "!=" expression
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<" expression
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<=" expression
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">" expression
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">=" expression
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "+" expression
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "-" expression
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "*" expression
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "/" expression
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "%" expression
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "**" expression
         { $$ = yy.binaryExpr("**", $1, $3, @$); }
 
     | "!" expression
         { $$ = yy.unaryExpr("!", $2, @$); }
-
-    | "-" expression %prec UMINUS
-        { $$ = yy.unaryExpr("-", $2, @$); }
 
     | functionCall
 
