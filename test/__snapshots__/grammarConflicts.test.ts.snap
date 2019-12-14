@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sand.jison does not have new conflicts 1`] = `
+"Conflict in grammar: multiple actions possible when lookahead token is - in state 66
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- shift token (then go to state 71)
+Conflict in grammar: multiple actions possible when lookahead token is - in state 84
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- reduce by rule: twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> expressionIncludingRightDelimiter expressionIncludingRightDelimiter
+Conflict in grammar: multiple actions possible when lookahead token is - in state 89
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- reduce by rule: twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionIncludingRightDelimiter
+Conflict in grammar: multiple actions possible when lookahead token is - in state 117
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- reduce by rule: twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> expressionLackingRightDelimiter ; expressionIncludingRightDelimiter
+Conflict in grammar: multiple actions possible when lookahead token is - in state 120
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- reduce by rule: twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ; expressionIncludingRightDelimiter
+
+States with conflicts:
+State 66
+  compoundExpression -> { expressionIncludingRightDelimiter .} #lookaheads= } IDENTIFIER pub prot else if ! - NUMBER STRING ; { ] ) , || && == != < <= > >= + * / % **
+  twoOrMoreExpressionsWhereTheLastLacksRightDelimiter -> expressionIncludingRightDelimiter .expressionLackingRightDelimiter #lookaheads= } ;
+  twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> expressionIncludingRightDelimiter .expressionIncludingRightDelimiter #lookaheads= } if ! - NUMBER STRING IDENTIFIER
+  expression -> expressionIncludingRightDelimiter . #lookaheads= || && == != < <= > >= + - * / % **
+  expressionLackingRightDelimiter -> .expression || expression
+  expressionLackingRightDelimiter -> .expression && expression
+  expressionLackingRightDelimiter -> .expression == expression
+  expressionLackingRightDelimiter -> .expression != expression
+  expressionLackingRightDelimiter -> .expression < expression
+  expressionLackingRightDelimiter -> .expression <= expression
+  expressionLackingRightDelimiter -> .expression > expression
+  expressionLackingRightDelimiter -> .expression >= expression
+  expressionLackingRightDelimiter -> .expression + expression
+  expressionLackingRightDelimiter -> .expression - expression
+  expressionLackingRightDelimiter -> .expression * expression
+  expressionLackingRightDelimiter -> .expression / expression
+  expressionLackingRightDelimiter -> .expression % expression
+  expressionLackingRightDelimiter -> .expression ** expression
+  expressionLackingRightDelimiter -> .! expression
+  expressionLackingRightDelimiter -> .- expression
+  expressionLackingRightDelimiter -> .functionCall
+  expressionLackingRightDelimiter -> .NUMBER
+  expressionLackingRightDelimiter -> .STRING
+  expressionLackingRightDelimiter -> .assignableExpression
+  expressionIncludingRightDelimiter -> .if expression compoundExpression optElseExpression
+  expression -> .expressionIncludingRightDelimiter #lookaheads= || && == != < <= > >= + - * / % **
+  expression -> .expressionLackingRightDelimiter #lookaheads= || && == != < <= > >= + - * / % **
+  functionCall -> .assignableExpression ( optArgs )
+  assignableExpression -> .IDENTIFIER
+  assignableExpression -> .assignableExpression . IDENTIFIER
+  assignableExpression -> .functionCall . IDENTIFIER
+  assignableExpression -> .assignableExpression [ expression ]
+  assignableExpression -> .functionCall [ expression ]
+State 84
+  twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> expressionIncludingRightDelimiter expressionIncludingRightDelimiter . #lookaheads= } if ! - NUMBER STRING IDENTIFIER
+  expression -> expressionIncludingRightDelimiter . #lookaheads= || && == != < <= > >= + - * / % **
+State 89
+  twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionIncludingRightDelimiter . #lookaheads= } if ! - NUMBER STRING IDENTIFIER
+  expression -> expressionIncludingRightDelimiter . #lookaheads= || && == != < <= > >= + - * / % **
+State 117
+  twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> expressionLackingRightDelimiter ; expressionIncludingRightDelimiter . #lookaheads= } if ! - NUMBER STRING IDENTIFIER
+  expression -> expressionIncludingRightDelimiter . #lookaheads= || && == != < <= > >= + - * / % **
+State 120
+  twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter -> twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ; expressionIncludingRightDelimiter . #lookaheads= } if ! - NUMBER STRING IDENTIFIER
+  expression -> expressionIncludingRightDelimiter . #lookaheads= || && == != < <= > >= + - * / % **
+"
+`;
+
+exports[`sand.jison does not have new conflicts 2`] = `5`;
