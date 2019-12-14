@@ -1,6 +1,6 @@
 import addApi from "./addApi";
-import parser from "./parser.generated";
+import parserModule from "./parser.generated";
 
-addApi(parser.parser);
+addApi(parserModule.parser);
 
-export default parser.parser;
+export default parserModule.parser;
