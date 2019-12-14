@@ -126,7 +126,7 @@ type
         { $$ = { name: $1, args: [], location: yy.camelCase(@$) }; }
     | type "[" "]"
         { $$ = { name: "array", args: [$1], location: yy.camelCase(@$) }; }
-    | type "[" ":" "]"
+    | type "[" "*" "]"
         { $$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
     ;
 
