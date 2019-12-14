@@ -9,6 +9,8 @@ const SAND_FILE_PATHS = [
   "Factorial.sand",
   "CompoundExpressions.sand",
   "Args.sand",
+  "IfMinus.sand",
+  "InfixPrefix.sand",
 ];
 
 SAND_FILE_PATHS.forEach(sandFilePath => {

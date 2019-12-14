@@ -4,7 +4,7 @@ pub class IfMinus {
     }
 
     foo2() {
-        -if x {} x
+        -if x {}; x
     }
 
     foo3() {
@@ -12,11 +12,11 @@ pub class IfMinus {
     }
 
     foo4() {
-        -if x {} if x {} x
+        -if x {}; if x {} x
     }
 
     foo5() {
-        -if x {} if x {} x
+        -if x {}; if x {} x
     }
 
     foo6() {

@@ -1249,3 +1249,1168 @@ Object {
   "type": "File",
 }
 `;
+
+exports[`it parses IfMinus.sand consistently 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 41,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 16,
+              "lastLine": 3,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 3,
+                  "lastColumn": 13,
+                  "lastLine": 3,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 9,
+                "firstLine": 3,
+                "lastColumn": 16,
+                "lastLine": 3,
+              },
+              "type": "If",
+            },
+            "type": "UnaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 16,
+              "lastLine": 7,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 7,
+                  "lastColumn": 13,
+                  "lastLine": 7,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 9,
+                "firstLine": 7,
+                "lastColumn": 16,
+                "lastLine": 7,
+              },
+              "type": "If",
+            },
+            "type": "UnaryExpr",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 18,
+              "firstLine": 7,
+              "lastColumn": 19,
+              "lastLine": 7,
+            },
+            "type": "Identifier",
+            "value": "x",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "foo2",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 16,
+                "lastLine": 11,
+              },
+              "operation": "-",
+              "right": Object {
+                "alternatives": Array [],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 11,
+                    "lastColumn": 13,
+                    "lastLine": 11,
+                  },
+                  "type": "Identifier",
+                  "value": "x",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 11,
+                  "lastColumn": 16,
+                  "lastLine": 11,
+                },
+                "type": "If",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 20,
+              "lastLine": 11,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "foo3",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 16,
+              "lastLine": 15,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 15,
+                  "lastColumn": 13,
+                  "lastLine": 15,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 9,
+                "firstLine": 15,
+                "lastColumn": 16,
+                "lastLine": 15,
+              },
+              "type": "If",
+            },
+            "type": "UnaryExpr",
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 21,
+                "firstLine": 15,
+                "lastColumn": 22,
+                "lastLine": 15,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 18,
+              "firstLine": 15,
+              "lastColumn": 25,
+              "lastLine": 15,
+            },
+            "type": "If",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 26,
+              "firstLine": 15,
+              "lastColumn": 27,
+              "lastLine": 15,
+            },
+            "type": "Identifier",
+            "value": "x",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "foo4",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 16,
+              "lastLine": 19,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 19,
+                  "lastColumn": 13,
+                  "lastLine": 19,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 9,
+                "firstLine": 19,
+                "lastColumn": 16,
+                "lastLine": 19,
+              },
+              "type": "If",
+            },
+            "type": "UnaryExpr",
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 21,
+                "firstLine": 19,
+                "lastColumn": 22,
+                "lastLine": 19,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 18,
+              "firstLine": 19,
+              "lastColumn": 25,
+              "lastLine": 19,
+            },
+            "type": "If",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 26,
+              "firstLine": 19,
+              "lastColumn": 27,
+              "lastLine": 19,
+            },
+            "type": "Identifier",
+            "value": "x",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "foo5",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 16,
+                "lastLine": 23,
+              },
+              "operation": "-",
+              "right": Object {
+                "alternatives": Array [],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 23,
+                    "lastColumn": 13,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "x",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 23,
+                  "lastColumn": 16,
+                  "lastLine": 23,
+                },
+                "type": "If",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 26,
+              "lastLine": 23,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 22,
+                  "firstLine": 23,
+                  "lastColumn": 23,
+                  "lastLine": 23,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 23,
+                "lastColumn": 26,
+                "lastLine": 23,
+              },
+              "type": "If",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "foo6",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 27,
+                "lastColumn": 16,
+                "lastLine": 27,
+              },
+              "operation": "-",
+              "right": Object {
+                "alternatives": Array [],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 27,
+                    "lastColumn": 13,
+                    "lastLine": 27,
+                  },
+                  "type": "Identifier",
+                  "value": "x",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 27,
+                  "lastColumn": 16,
+                  "lastLine": 27,
+                },
+                "type": "If",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 26,
+              "lastLine": 27,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 22,
+                  "firstLine": 27,
+                  "lastColumn": 23,
+                  "lastLine": 27,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 27,
+                "lastColumn": 26,
+                "lastLine": 27,
+              },
+              "type": "If",
+            },
+            "type": "BinaryExpr",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 28,
+              "firstLine": 27,
+              "lastColumn": 29,
+              "lastLine": 27,
+            },
+            "type": "Identifier",
+            "value": "x",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "foo7",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 31,
+                "lastColumn": 16,
+                "lastLine": 31,
+              },
+              "operation": "-",
+              "right": Object {
+                "alternatives": Array [],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 31,
+                    "lastColumn": 13,
+                    "lastLine": 31,
+                  },
+                  "type": "Identifier",
+                  "value": "x",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 31,
+                  "lastColumn": 16,
+                  "lastLine": 31,
+                },
+                "type": "If",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 30,
+              "lastLine": 31,
+            },
+            "operation": "-",
+            "right": Object {
+              "left": Object {
+                "alternatives": Array [],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 22,
+                    "firstLine": 31,
+                    "lastColumn": 23,
+                    "lastLine": 31,
+                  },
+                  "type": "Identifier",
+                  "value": "x",
+                },
+                "location": Object {
+                  "firstColumn": 19,
+                  "firstLine": 31,
+                  "lastColumn": 26,
+                  "lastLine": 31,
+                },
+                "type": "If",
+              },
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 31,
+                "lastColumn": 30,
+                "lastLine": 31,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 29,
+                  "firstLine": 31,
+                  "lastColumn": 30,
+                  "lastLine": 31,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "type": "BinaryExpr",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 32,
+        },
+        "name": "foo8",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 11,
+                  "firstLine": 35,
+                  "lastColumn": 12,
+                  "lastLine": 35,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 35,
+                "lastColumn": 15,
+                "lastLine": 35,
+              },
+              "type": "If",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 35,
+              "lastColumn": 25,
+              "lastLine": 35,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 21,
+                  "firstLine": 35,
+                  "lastColumn": 22,
+                  "lastLine": 35,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 35,
+                "lastColumn": 25,
+                "lastLine": 35,
+              },
+              "type": "If",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 36,
+        },
+        "name": "foo9",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 39,
+                "lastColumn": 10,
+                "lastLine": 39,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 39,
+                  "lastColumn": 10,
+                  "lastLine": 39,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 39,
+              "lastColumn": 20,
+              "lastLine": 39,
+            },
+            "operation": "-",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 39,
+                  "lastColumn": 17,
+                  "lastLine": 39,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 39,
+                "lastColumn": 20,
+                "lastLine": 39,
+              },
+              "type": "If",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 40,
+        },
+        "name": "foo10",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 41,
+    },
+    "name": "IfMinus",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
+exports[`it parses InfixPrefix.sand consistently 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 25,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 10,
+                "lastLine": 3,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 3,
+                  "lastColumn": 10,
+                  "lastLine": 3,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 3,
+                "lastColumn": 14,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 16,
+                "lastLine": 7,
+              },
+              "operation": "-",
+              "right": Object {
+                "alternatives": Array [],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 7,
+                    "lastColumn": 13,
+                    "lastLine": 7,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 7,
+                  "lastColumn": 16,
+                  "lastLine": 7,
+                },
+                "type": "If",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 20,
+              "lastLine": 7,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 7,
+                "lastColumn": 20,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "foo2",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 10,
+                "lastLine": 11,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 11,
+                  "lastColumn": 10,
+                  "lastLine": 11,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 20,
+              "lastLine": 11,
+            },
+            "operation": "*",
+            "right": Object {
+              "alternatives": Array [],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 11,
+                  "lastColumn": 17,
+                  "lastLine": 11,
+                },
+                "type": "Identifier",
+                "value": "b",
+              },
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "type": "If",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "foo3",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 12,
+                "lastLine": 15,
+              },
+              "operation": "-",
+              "right": Object {
+                "args": Array [],
+                "callee": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 15,
+                    "lastColumn": 10,
+                    "lastLine": 15,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 15,
+                  "lastColumn": 12,
+                  "lastLine": 15,
+                },
+                "type": undefined,
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 16,
+              "lastLine": 15,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 15,
+                "lastColumn": 16,
+                "lastLine": 15,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "foo4",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 12,
+                "lastLine": 19,
+              },
+              "operation": "-",
+              "right": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 19,
+                    "lastColumn": 10,
+                    "lastLine": 19,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 19,
+                  "lastColumn": 12,
+                  "lastLine": 19,
+                },
+                "operation": ".",
+                "right": "b",
+                "type": "BinaryExpr",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 16,
+              "lastLine": 19,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 19,
+                "lastColumn": 16,
+                "lastLine": 19,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "foo5",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 13,
+                "lastLine": 23,
+              },
+              "operation": "-",
+              "right": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 23,
+                    "lastColumn": 10,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 23,
+                  "lastColumn": 13,
+                  "lastLine": 23,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 23,
+                    "lastColumn": 12,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
+              },
+              "type": "UnaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 17,
+              "lastLine": 23,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 23,
+                "lastColumn": 17,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+            "type": "BinaryExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "foo6",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 25,
+    },
+    "name": "InfixPrefix",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;

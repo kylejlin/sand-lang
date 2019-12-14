@@ -1,0 +1,25 @@
+pub class InfixPrefix {
+    foo() {
+        -a * b
+    }
+
+    foo2() {
+        -if a {} * b
+    }
+
+    foo3() {
+        -a * if b {}
+    }
+
+    foo4() {
+        -a() * b
+    }
+
+    foo5() {
+        -a.b * c
+    }
+
+    foo6() {
+        -a[b] * c
+    }
+}

@@ -239,7 +239,11 @@ expressionLackingRightDelimiter
     ;
 
 expressionLackingRightDelimiterStartingWithInfixToken
-    : "-" expression %prec UMINUS
+    : "-" assignableExpression %prec UMINUS
+        { $$ = yy.unaryExpr("-", $2, @$); }
+    | "-" functionCall %prec UMINUS
+        { $$ = yy.unaryExpr("-", $2, @$); }
+    | "-" expressionIncludingRightDelimiter %prec UMINUS
         { $$ = yy.unaryExpr("-", $2, @$); }
 
     | expressionLackingRightDelimiterStartingWithInfixToken "||" expression
