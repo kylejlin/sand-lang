@@ -312,6 +312,40 @@ expressionLackingRightDelimiterNotStartingWithInfixToken
     | expressionLackingRightDelimiterNotStartingWithInfixToken "**" expression
         { $$ = yy.binaryExpr("**", $1, $3, @$); }
 
+    | expressionIncludingRightDelimiter "||" expression
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "&&" expression
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "==" expression
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "!=" expression
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "<" expression
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "<=" expression
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">" expression
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">=" expression
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "+" expression
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "-" expression
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "*" expression
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "/" expression
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "%" expression
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "**" expression
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+
     | "!" expression
         { $$ = yy.unaryExpr("!", $2, @$); }
 
