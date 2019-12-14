@@ -5,7 +5,7 @@ import getLatestParser from "../src/parser/getLatestParser";
 
 const PATH_TO_REGRESSION_TEST_SAND_FILE_DIR = path.join(
   __dirname,
-  "/fixtures/",
+  "/fixtures/astRegression/",
 );
 
 const sandFileContents = getSandFileContents();

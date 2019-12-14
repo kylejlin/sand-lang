@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/Args.sand consistently 1`] = `
+exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/Args.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -136,7 +136,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/CompoundExpressions.sand consistently 1`] = `
+exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/CompoundExpressions.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -916,7 +916,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/Factorial.sand consistently 1`] = `
+exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/Factorial.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -1123,7 +1123,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/HelloWorld.sand consistently 1`] = `
+exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/HelloWorld.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -1250,7 +1250,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/IfMinus.sand consistently 1`] = `
+exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/IfMinus.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -1994,7 +1994,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/InfixPrefix.sand consistently 1`] = `
+exports[`the latest parser latest parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/InfixPrefix.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -2415,7 +2415,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/Args.sand consistently 1`] = `
+exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/Args.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -2551,7 +2551,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/CompoundExpressions.sand consistently 1`] = `
+exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/CompoundExpressions.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -3331,7 +3331,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/Factorial.sand consistently 1`] = `
+exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/Factorial.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -3538,7 +3538,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/HelloWorld.sand consistently 1`] = `
+exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/HelloWorld.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -3665,7 +3665,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/IfMinus.sand consistently 1`] = `
+exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/IfMinus.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -4409,7 +4409,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/InfixPrefix.sand consistently 1`] = `
+exports[`the prebuilt parser prebuilt parser parses /Users/kyle/sand-lang/test/fixtures/astRegression/InfixPrefix.sand consistently 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
