@@ -122,4 +122,10 @@ State 70
 "
 `;
 
-exports[`sand.jison does not have new conflicts 2`] = `28`;
+exports[`sand.jison does not have new conflicts 2`] = `
+Object {
+  "reduceReduce": 0,
+  "reduceShift": 28,
+  "total": 28,
+}
+`;
