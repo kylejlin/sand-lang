@@ -1,10 +1,10 @@
 import { File } from "../ast";
+import { Parser } from "../jison";
 
 export default parser;
 
-declare const parser: Parser;
+declare const parser: SandParser;
 
-export interface Parser {
-  parser: { yy: any };
+export interface SandParser extends Parser {
   parse(src: string): File;
 }

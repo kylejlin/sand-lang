@@ -11,9 +11,9 @@ import {
   UnaryOperation,
 } from "../ast";
 import { wrapPrimitiveIfNeeded } from "../sandTypes";
-import { Parser } from "./parser.generated";
+import { SandParser } from "./parser.generated";
 
-export default function addApi(parser: Parser) {
+export default function addApi(parser: SandParser) {
   const { yy } = parser.parser;
 
   yy.NodeType = NodeType;

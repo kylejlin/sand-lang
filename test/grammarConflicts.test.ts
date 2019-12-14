@@ -1,4 +1,4 @@
-import jison from "./jison";
+import jison from "../src/jison";
 import fs from "fs";
 import path from "path";
 
