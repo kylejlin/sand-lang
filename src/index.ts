@@ -1,4 +1,4 @@
-import parser from "./parser";
+import parser from "./parser/prebuilt";
 
 const src = `
 pub class HelloWorld {

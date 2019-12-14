@@ -14,7 +14,7 @@ import { wrapPrimitiveIfNeeded } from "../sandTypes";
 import { SandParser } from "./parser.generated";
 
 export default function addApi(parser: SandParser) {
-  const { yy } = parser.parser;
+  const { yy } = parser;
 
   yy.NodeType = NodeType;
   yy.IfAlternativeType = IfAlternativeType;

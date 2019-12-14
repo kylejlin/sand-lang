@@ -1,8 +1,6 @@
 import jison from "../src/jison";
 import fs from "fs";
-import path from "path";
-
-const GRAMMAR_PATH = path.join(__dirname, "../grammar/sand.jison");
+import { GRAMMAR_PATH } from "../src/parser/consts";
 
 test("sand.jison does not have new conflicts", () => {
   let out = "";
