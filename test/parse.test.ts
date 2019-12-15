@@ -1,50 +1,108 @@
-import parser from "../src/parser/prebuilt";
+import prebuiltParser from "../src/parser/prebuilt";
 import fs from "fs";
 import path from "path";
 import getLatestParser from "../src/parser/getLatestParser";
 
-const PATH_TO_REGRESSION_TEST_SAND_FILE_DIR = path.join(
+const SUCCESS_CASES_DIR = path.join(
   __dirname,
-  "/fixtures/astRegression/",
+  "/fixtures/astRegression/shouldSucceed/",
+);
+const FAILURE_CASES_DIR = path.join(
+  __dirname,
+  "/fixtures/astRegression/shouldFail/",
 );
 
-const sandFileContents = getSandFileContents();
+testSuccessCases(SUCCESS_CASES_DIR);
+testFailureCases(FAILURE_CASES_DIR);
 
-describe("the prebuilt parser", () => {
-  sandFileContents.forEach((content, path) => {
-    test("prebuilt parser parses " + path + " consistently", () => {
-      expect(parser.parse(content)).toMatchSnapshot();
+function testSuccessCases(successDirPath: string) {
+  const sandFileContents = getSandFileContents(successDirPath);
+
+  describe("the prebuilt parser", () => {
+    sandFileContents.forEach((content, fileName) => {
+      test("prebuilt parser parses " + fileName + " consistently", () => {
+        expect(prebuiltParser.parse(content)).toMatchSnapshot();
+      });
     });
   });
-});
 
-describe("the latest parser", () => {
-  const latestParser = getLatestParser();
+  describe("the latest parser", () => {
+    const latestParser = getLatestParser();
 
-  sandFileContents.forEach((content, path) => {
-    test("latest parser parses " + path + " consistently", () => {
-      expect(latestParser.parse(content)).toMatchSnapshot();
+    sandFileContents.forEach((content, fileName) => {
+      test("latest parser parses " + fileName + " consistently", () => {
+        expect(latestParser.parse(content)).toMatchSnapshot();
+      });
     });
   });
-});
+}
+
+function testFailureCases(failureDirPath: string) {
+  const sandFileContents = getSandFileContents(failureDirPath);
+
+  describe("the prebuilt parser", () => {
+    sandFileContents.forEach((content, fileName) => {
+      test(
+        "prebuilt parser throws an error complaining about the same line (as snapshot) when parsing " +
+          fileName,
+        () => {
+          try {
+            prebuiltParser.parse(content);
+            fail("Parser did not throw error.");
+          } catch (err) {
+            const lineNum = getParseErrorLineNumber(err);
+            expect(lineNum).toMatchSnapshot();
+          }
+        },
+      );
+    });
+  });
+
+  describe("the latest parser", () => {
+    const latestParser = getLatestParser();
+
+    sandFileContents.forEach((content, fileName) => {
+      test(
+        "latest parser throws an error complaining about the same line (as snapshot) when parsing " +
+          fileName,
+        () => {
+          try {
+            latestParser.parse(content);
+            fail("Parser did not throw error.");
+          } catch (err) {
+            const lineNum = getParseErrorLineNumber(err);
+            expect(lineNum).toMatchSnapshot();
+          }
+        },
+      );
+    });
+  });
+}
 
 /** Returns a Map of file names to file content. */
-function getSandFileContents(): Map<string, string> {
-  const sandFileNames = getSandFileNames();
+function getSandFileContents(dirPath: string): Map<string, string> {
+  const sandFileNames = getSandFileNames(dirPath);
   return new Map(
     sandFileNames.map(fileName => {
-      const filePath = path.join(
-        PATH_TO_REGRESSION_TEST_SAND_FILE_DIR,
-        fileName,
-      );
+      const filePath = path.join(dirPath, fileName);
       const content = fs.readFileSync(filePath, "utf8");
       return [fileName, content];
     }),
   );
 }
 
-function getSandFileNames(): string[] {
+function getSandFileNames(dirPath: string): string[] {
   return fs
-    .readdirSync(PATH_TO_REGRESSION_TEST_SAND_FILE_DIR, "utf8")
+    .readdirSync(dirPath, "utf8")
     .filter(fileName => fileName.endsWith(".sand"));
+}
+
+function getParseErrorLineNumber(err: Error): number {
+  const match = err.message.match(/Parse error on line (\d+):/);
+
+  if (match === null) {
+    throw new Error("Error does not have a line number.");
+  }
+
+  return parseInt(match[1], 10);
 }

@@ -1,6 +1,8 @@
 import addApi from "./addApi";
 import parserModule from "./parser.generated";
 
-addApi(parserModule.parser);
+const preBuiltParser = parserModule.parser;
 
-export default parserModule.parser;
+addApi(preBuiltParser);
+
+export default preBuiltParser;

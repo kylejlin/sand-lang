@@ -2897,6 +2897,8 @@ Object {
 }
 `;
 
+exports[`the latest parser latest parser throws an error complaining about the same line (as snapshot) when parsing Nullable.sand 1`] = `2`;
+
 exports[`the prebuilt parser prebuilt parser parses Args.sand consistently 1`] = `
 Object {
   "location": Object {
@@ -5793,3 +5795,5 @@ Object {
   "type": "File",
 }
 `;
+
+exports[`the prebuilt parser prebuilt parser throws an error complaining about the same line (as snapshot) when parsing Nullable.sand 1`] = `2`;
