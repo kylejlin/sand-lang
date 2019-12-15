@@ -1123,6 +1123,158 @@ Object {
 }
 `;
 
+exports[`the latest parser latest parser parses FullyQualifiedTypes.sand consistently 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 13,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 31,
+                "firstLine": 2,
+                "lastColumn": 37,
+                "lastLine": 2,
+              },
+              "name": "String",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 2,
+            "lastColumn": 38,
+            "lastLine": 2,
+          },
+          "name": "java....",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "bar",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 31,
+                        "firstLine": 6,
+                        "lastColumn": 37,
+                        "lastLine": 6,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 31,
+                    "firstLine": 6,
+                    "lastColumn": 38,
+                    "lastLine": 6,
+                  },
+                  "name": "nullable",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 6,
+                "lastColumn": 39,
+                "lastLine": 6,
+              },
+              "name": "java....",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 6,
+            "lastColumn": 40,
+            "lastLine": 6,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "baz",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 10,
+                "lastColumn": 30,
+                "lastLine": 10,
+              },
+              "name": "java....",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 10,
+            "lastColumn": 31,
+            "lastLine": 10,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 13,
+    },
+    "name": "FullyQualifiedTypes",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
 exports[`the latest parser latest parser parses HelloWorld.sand consistently 1`] = `
 Object {
   "location": Object {
@@ -2897,6 +3049,8 @@ Object {
 }
 `;
 
+exports[`the latest parser latest parser throws an error complaining about the same line (as snapshot) when parsing FullyQualifiedTypes.sand 1`] = `2`;
+
 exports[`the latest parser latest parser throws an error complaining about the same line (as snapshot) when parsing Nullable.sand 1`] = `2`;
 
 exports[`the prebuilt parser prebuilt parser parses Args.sand consistently 1`] = `
@@ -4014,6 +4168,158 @@ Object {
       "lastLine": 9,
     },
     "name": "Factorial",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
+exports[`the prebuilt parser prebuilt parser parses FullyQualifiedTypes.sand consistently 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 13,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 31,
+                "firstLine": 2,
+                "lastColumn": 37,
+                "lastLine": 2,
+              },
+              "name": "String",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 2,
+            "lastColumn": 38,
+            "lastLine": 2,
+          },
+          "name": "java....",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "bar",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 31,
+                        "firstLine": 6,
+                        "lastColumn": 37,
+                        "lastLine": 6,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 31,
+                    "firstLine": 6,
+                    "lastColumn": 38,
+                    "lastLine": 6,
+                  },
+                  "name": "nullable",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 6,
+                "lastColumn": 39,
+                "lastLine": 6,
+              },
+              "name": "java....",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 6,
+            "lastColumn": 40,
+            "lastLine": 6,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "baz",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 10,
+                "lastColumn": 30,
+                "lastLine": 10,
+              },
+              "name": "java....",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 10,
+            "lastColumn": 31,
+            "lastLine": 10,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 13,
+    },
+    "name": "FullyQualifiedTypes",
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
@@ -5795,5 +6101,7 @@ Object {
   "type": "File",
 }
 `;
+
+exports[`the prebuilt parser prebuilt parser throws an error complaining about the same line (as snapshot) when parsing FullyQualifiedTypes.sand 1`] = `2`;
 
 exports[`the prebuilt parser prebuilt parser throws an error complaining about the same line (as snapshot) when parsing Nullable.sand 1`] = `2`;

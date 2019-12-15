@@ -1,0 +1,5 @@
+pub class FullyQualifiedTypes {
+    foo(): java.util?.ArrayList {
+
+    }
+}

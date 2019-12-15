@@ -1,0 +1,13 @@
+pub class FullyQualifiedTypes {
+    foo(): java.util.ArrayList<String> {
+
+    }
+
+    bar(): java.util.ArrayList<String?>? {
+        
+    }
+
+    baz(): java.util.ArrayList? {
+
+    }
+}

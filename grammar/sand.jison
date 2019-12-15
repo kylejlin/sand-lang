@@ -132,14 +132,20 @@ nullableType
     ;
 
 nonNullableType
-    : IDENTIFIER "<" typeArgs ">"
+    : typeIdentifierWithPossibleDotChain "<" typeArgs ">"
         { $$ = { name: $1, args: $3, location: yy.camelCase(@$) }; }
-    | IDENTIFIER
+    | typeIdentifierWithPossibleDotChain
         { $$ = { name: $1, args: [], location: yy.camelCase(@$) }; }
     | type "[" "]"
         { $$ = { name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" "*" "]"
         { $$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
+    ;
+
+typeIdentifierWithPossibleDotChain
+    : IDENTIFIER
+    | typeIdentifierWithPossibleDotChain "." IDENTIFIER
+        { $$ = $1 + "." + $2; }
     ;
 
 typeArgs
