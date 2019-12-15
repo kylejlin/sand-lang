@@ -28,21 +28,23 @@ describe("the latest parser", () => {
   });
 });
 
+/** Returns a Map of file names to file content. */
 function getSandFileContents(): Map<string, string> {
-  const sandFilePaths = getSandFilePaths();
+  const sandFileNames = getSandFileNames();
   return new Map(
-    sandFilePaths.map(filePath => {
+    sandFileNames.map(fileName => {
+      const filePath = path.join(
+        PATH_TO_REGRESSION_TEST_SAND_FILE_DIR,
+        fileName,
+      );
       const content = fs.readFileSync(filePath, "utf8");
-      return [filePath, content];
+      return [fileName, content];
     }),
   );
 }
 
-function getSandFilePaths(): string[] {
+function getSandFileNames(): string[] {
   return fs
     .readdirSync(PATH_TO_REGRESSION_TEST_SAND_FILE_DIR, "utf8")
-    .filter(fileName => fileName.endsWith(".sand"))
-    .map(fileName =>
-      path.join(PATH_TO_REGRESSION_TEST_SAND_FILE_DIR, fileName),
-    );
+    .filter(fileName => fileName.endsWith(".sand"));
 }
