@@ -37,6 +37,8 @@
 "&&" return "&&"
 "||" return "||"
 
+"?" return "?"
+
 "." return "."
 "[" return "["
 "]" return "]"
@@ -120,6 +122,16 @@ optExtension
     ;
 
 type
+    : nullableType
+    | nonNullableType
+    ;
+
+nullableType
+    : nonNullableType "?"
+        { $$ = { name: "nullable", args: [$1], location: yy.camelCase(@$) }; }
+    ;
+
+nonNullableType
     : IDENTIFIER "<" typeArgs ">"
         { $$ = { name: $1, args: $3, location: yy.camelCase(@$) }; }
     | IDENTIFIER

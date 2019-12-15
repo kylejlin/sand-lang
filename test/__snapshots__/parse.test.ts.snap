@@ -2415,6 +2415,488 @@ Object {
 }
 `;
 
+exports[`the latest parser latest parser parses Nullable.sand consistently 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 17,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 12,
+              "lastLine": 3,
+            },
+            "type": "Identifier",
+            "value": "null",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 2,
+                "lastColumn": 14,
+                "lastLine": 2,
+              },
+              "name": "int",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 2,
+            "lastColumn": 15,
+            "lastLine": 2,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 12,
+              "lastLine": 7,
+            },
+            "type": "StringLiteral",
+            "value": "\\"hi\\"",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "bar",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 6,
+                "lastColumn": 17,
+                "lastLine": 6,
+              },
+              "name": "String",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 6,
+            "lastColumn": 18,
+            "lastLine": 6,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 10,
+              "lastColumn": 20,
+              "lastLine": 10,
+            },
+            "name": "x",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 11,
+                        "firstLine": 10,
+                        "lastColumn": 17,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 10,
+                    "lastColumn": 18,
+                    "lastLine": 10,
+                  },
+                  "name": "nullable",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 10,
+                "lastColumn": 20,
+                "lastLine": 10,
+              },
+              "name": "array",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 22,
+              "firstLine": 10,
+              "lastColumn": 34,
+              "lastLine": 10,
+            },
+            "name": "y",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 25,
+                        "firstLine": 10,
+                        "lastColumn": 31,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 25,
+                    "firstLine": 10,
+                    "lastColumn": 33,
+                    "lastLine": 10,
+                  },
+                  "name": "array",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 25,
+                "firstLine": 10,
+                "lastColumn": 34,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 36,
+              "firstLine": 10,
+              "lastColumn": 49,
+              "lastLine": 10,
+            },
+            "name": "z",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 39,
+                            "firstLine": 10,
+                            "lastColumn": 45,
+                            "lastLine": 10,
+                          },
+                          "name": "String",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 39,
+                        "firstLine": 10,
+                        "lastColumn": 46,
+                        "lastLine": 10,
+                      },
+                      "name": "nullable",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 39,
+                    "firstLine": 10,
+                    "lastColumn": 48,
+                    "lastLine": 10,
+                  },
+                  "name": "array",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 39,
+                "firstLine": 10,
+                "lastColumn": 49,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 51,
+              "firstLine": 10,
+              "lastColumn": 62,
+              "lastLine": 10,
+            },
+            "name": "a",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 54,
+                            "firstLine": 10,
+                            "lastColumn": 57,
+                            "lastLine": 10,
+                          },
+                          "name": "int",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 54,
+                        "firstLine": 10,
+                        "lastColumn": 58,
+                        "lastLine": 10,
+                      },
+                      "name": "nullable",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 54,
+                    "firstLine": 10,
+                    "lastColumn": 61,
+                    "lastLine": 10,
+                  },
+                  "name": "java.util.ArrayList",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 54,
+                "firstLine": 10,
+                "lastColumn": 62,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+            },
+          },
+        ],
+        "body": Array [
+          Object {
+            "alternatives": Array [
+              Object {
+                "body": Array [
+                  Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 14,
+                      "lastColumn": 13,
+                      "lastLine": 14,
+                    },
+                    "type": "Identifier",
+                    "value": "x",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 13,
+                  "lastColumn": 9,
+                  "lastLine": 15,
+                },
+                "type": "Else",
+              },
+            ],
+            "body": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 12,
+                  "lastColumn": 16,
+                  "lastLine": 12,
+                },
+                "type": "Identifier",
+                "value": "null",
+              },
+            ],
+            "condition": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 11,
+                  "firstLine": 11,
+                  "lastColumn": 12,
+                  "lastLine": 11,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "operation": "==",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 11,
+                  "lastColumn": 20,
+                  "lastLine": 11,
+                },
+                "type": "Identifier",
+                "value": "null",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 9,
+              "lastLine": 15,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "baz",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 75,
+                        "firstLine": 10,
+                        "lastColumn": 81,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 75,
+                    "firstLine": 10,
+                    "lastColumn": 82,
+                    "lastLine": 10,
+                  },
+                  "name": "nullable",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 65,
+                "firstLine": 10,
+                "lastColumn": 83,
+                "lastLine": 10,
+              },
+              "name": "ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 65,
+            "firstLine": 10,
+            "lastColumn": 84,
+            "lastLine": 10,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 17,
+    },
+    "name": "Nullable",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [
+      Object {
+        "constraint": Object {
+          "constraintType": "None",
+        },
+        "location": Object {
+          "firstColumn": 19,
+          "firstLine": 1,
+          "lastColumn": 20,
+          "lastLine": 1,
+        },
+        "name": "T",
+      },
+      Object {
+        "constraint": Object {
+          "constraintType": "Extends",
+          "superClass": Object {
+            "args": Array [
+              Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 32,
+                  "firstLine": 1,
+                  "lastColumn": 33,
+                  "lastLine": 1,
+                },
+                "name": "T",
+              },
+            ],
+            "location": Object {
+              "firstColumn": 32,
+              "firstLine": 1,
+              "lastColumn": 34,
+              "lastLine": 1,
+            },
+            "name": "nullable",
+          },
+        },
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 34,
+          "lastLine": 1,
+        },
+        "name": "U",
+      },
+    ],
+  },
+  "type": "File",
+}
+`;
+
 exports[`the prebuilt parser prebuilt parser parses Args.sand consistently 1`] = `
 Object {
   "location": Object {
@@ -4825,6 +5307,488 @@ Object {
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
+exports[`the prebuilt parser prebuilt parser parses Nullable.sand consistently 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 17,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 12,
+              "lastLine": 3,
+            },
+            "type": "Identifier",
+            "value": "null",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 2,
+                "lastColumn": 14,
+                "lastLine": 2,
+              },
+              "name": "int",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 2,
+            "lastColumn": 15,
+            "lastLine": 2,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 12,
+              "lastLine": 7,
+            },
+            "type": "StringLiteral",
+            "value": "\\"hi\\"",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "bar",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 6,
+                "lastColumn": 17,
+                "lastLine": 6,
+              },
+              "name": "String",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 6,
+            "lastColumn": 18,
+            "lastLine": 6,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 10,
+              "lastColumn": 20,
+              "lastLine": 10,
+            },
+            "name": "x",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 11,
+                        "firstLine": 10,
+                        "lastColumn": 17,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 10,
+                    "lastColumn": 18,
+                    "lastLine": 10,
+                  },
+                  "name": "nullable",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 10,
+                "lastColumn": 20,
+                "lastLine": 10,
+              },
+              "name": "array",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 22,
+              "firstLine": 10,
+              "lastColumn": 34,
+              "lastLine": 10,
+            },
+            "name": "y",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 25,
+                        "firstLine": 10,
+                        "lastColumn": 31,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 25,
+                    "firstLine": 10,
+                    "lastColumn": 33,
+                    "lastLine": 10,
+                  },
+                  "name": "array",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 25,
+                "firstLine": 10,
+                "lastColumn": 34,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 36,
+              "firstLine": 10,
+              "lastColumn": 49,
+              "lastLine": 10,
+            },
+            "name": "z",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 39,
+                            "firstLine": 10,
+                            "lastColumn": 45,
+                            "lastLine": 10,
+                          },
+                          "name": "String",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 39,
+                        "firstLine": 10,
+                        "lastColumn": 46,
+                        "lastLine": 10,
+                      },
+                      "name": "nullable",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 39,
+                    "firstLine": 10,
+                    "lastColumn": 48,
+                    "lastLine": 10,
+                  },
+                  "name": "array",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 39,
+                "firstLine": 10,
+                "lastColumn": 49,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 51,
+              "firstLine": 10,
+              "lastColumn": 62,
+              "lastLine": 10,
+            },
+            "name": "a",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 54,
+                            "firstLine": 10,
+                            "lastColumn": 57,
+                            "lastLine": 10,
+                          },
+                          "name": "int",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 54,
+                        "firstLine": 10,
+                        "lastColumn": 58,
+                        "lastLine": 10,
+                      },
+                      "name": "nullable",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 54,
+                    "firstLine": 10,
+                    "lastColumn": 61,
+                    "lastLine": 10,
+                  },
+                  "name": "java.util.ArrayList",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 54,
+                "firstLine": 10,
+                "lastColumn": 62,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+            },
+          },
+        ],
+        "body": Array [
+          Object {
+            "alternatives": Array [
+              Object {
+                "body": Array [
+                  Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 14,
+                      "lastColumn": 13,
+                      "lastLine": 14,
+                    },
+                    "type": "Identifier",
+                    "value": "x",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 13,
+                  "lastColumn": 9,
+                  "lastLine": 15,
+                },
+                "type": "Else",
+              },
+            ],
+            "body": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 12,
+                  "lastColumn": 16,
+                  "lastLine": 12,
+                },
+                "type": "Identifier",
+                "value": "null",
+              },
+            ],
+            "condition": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 11,
+                  "firstLine": 11,
+                  "lastColumn": 12,
+                  "lastLine": 11,
+                },
+                "type": "Identifier",
+                "value": "x",
+              },
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "operation": "==",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 11,
+                  "lastColumn": 20,
+                  "lastLine": 11,
+                },
+                "type": "Identifier",
+                "value": "null",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 9,
+              "lastLine": 15,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "baz",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 75,
+                        "firstLine": 10,
+                        "lastColumn": 81,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 75,
+                    "firstLine": 10,
+                    "lastColumn": 82,
+                    "lastLine": 10,
+                  },
+                  "name": "nullable",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 65,
+                "firstLine": 10,
+                "lastColumn": 83,
+                "lastLine": 10,
+              },
+              "name": "ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 65,
+            "firstLine": 10,
+            "lastColumn": 84,
+            "lastLine": 10,
+          },
+          "name": "nullable",
+        },
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 17,
+    },
+    "name": "Nullable",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [
+      Object {
+        "constraint": Object {
+          "constraintType": "None",
+        },
+        "location": Object {
+          "firstColumn": 19,
+          "firstLine": 1,
+          "lastColumn": 20,
+          "lastLine": 1,
+        },
+        "name": "T",
+      },
+      Object {
+        "constraint": Object {
+          "constraintType": "Extends",
+          "superClass": Object {
+            "args": Array [
+              Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 32,
+                  "firstLine": 1,
+                  "lastColumn": 33,
+                  "lastLine": 1,
+                },
+                "name": "T",
+              },
+            ],
+            "location": Object {
+              "firstColumn": 32,
+              "firstLine": 1,
+              "lastColumn": 34,
+              "lastLine": 1,
+            },
+            "name": "nullable",
+          },
+        },
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 34,
+          "lastLine": 1,
+        },
+        "name": "U",
+      },
+    ],
   },
   "type": "File",
 }
