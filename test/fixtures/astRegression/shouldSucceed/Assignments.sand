@@ -1,4 +1,4 @@
-pub class LocalAssignments {
+pub class Assignments {
     ass() {
         a = b;
     }
@@ -36,5 +36,23 @@ pub class LocalAssignments {
     assAss() {
         a = b;
         a = b;
+    }
+}
+
+class ComplexAssignments {
+    dot() {
+        a.b = c;
+    }
+
+    callDot() {
+        a().b = c;
+    }
+
+    index() {
+        a[b] = c;
+    }
+
+    callIndex() {
+        a()[b] = c;
     }
 }
