@@ -210,6 +210,8 @@ compoundExpression
         { $$ = [$2]; }
     | "{" localVariableDeclaration "}"
         { $$ = [$2]; }
+    | "{" assignment "}"
+        { $$ = [$2]; }
     | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter "}"
         { $$ = $2; }
     | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" "}"
@@ -226,6 +228,8 @@ twoOrMoreExpressionsWhereTheLastLacksRightDelimiter
         { $$ = [$1, $2]; }
     | localVariableDeclaration expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = [$1, $2]; }
+    | assignment expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = [$1, $2]; }
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionLackingRightDelimiterNotStartingWithInfixToken
@@ -239,6 +243,8 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
         { $$ = [$1, $2]; }
     | localVariableDeclaration expressionIncludingRightDelimiter
         { $$ = [$1, $2]; }
+    | assignment expressionIncludingRightDelimiter
+        { $$ = [$1, $2]; }
         
     | expressionLackingRightDelimiter ";" localVariableDeclaration
         { $$ = [$1, $3]; }
@@ -246,14 +252,32 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
         { $$ = [$1, $2]; }
     | localVariableDeclaration localVariableDeclaration
         { $$ = [$1, $2]; }
+    | assignment localVariableDeclaration
+        { $$ = [$1, $2]; }
+
+    | expressionLackingRightDelimiter ";" assignment
+        { $$ = [$1, $3]; }
+    | expressionIncludingRightDelimiter assignment
+        { $$ = [$1, $2]; }
+    | localVariableDeclaration assignment
+        { $$ = [$1, $2]; }
+    | assignment assignment
+        { $$ = [$1, $2]; }
+    
 
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionIncludingRightDelimiter
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionIncludingRightDelimiter
         { $$ = $1.concat([$2]); }
+
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" localVariableDeclaration
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter localVariableDeclaration
+        { $$ = $1.concat([$2]); }
+    
+    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" assignment
+        { $$ = $1.concat([$3]); }
+    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter assignment
         { $$ = $1.concat([$2]); }
     ;
 
@@ -275,6 +299,11 @@ localVariableDeclaration
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
     | "re!" IDENTIFIER ":" type "=" expression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
+    ;
+
+assignment
+    : assignableExpression "=" expression ";"
+        { $$ = { type: yy.NodeType.Assignment, assignee: $1, value: $3, location: yy.camelCase(@$) }; }
     ;
 
 expressionIncludingRightDelimiter

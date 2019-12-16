@@ -1,0 +1,40 @@
+pub class LocalAssignments {
+    ass() {
+        a = b;
+    }
+
+    assElrd() {
+        a = b;
+        9
+    }
+
+    assEird() {
+        a = b;
+        if x {}
+    }
+
+    assDecl() {
+        a = b;
+        let a = b;
+    }
+
+    elrdAss() {
+        9;
+        a = b;
+    }
+
+    eirdAss() {
+        if x {}
+        a = b;
+    }
+
+    declAss() {
+        let a = 2;
+        a = b;
+    }
+
+    assAss() {
+        a = b;
+        a = b;
+    }
+}

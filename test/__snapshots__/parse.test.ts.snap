@@ -2623,6 +2623,523 @@ Object {
 }
 `;
 
+exports[`the latest parser parses files consistently: LocalAssignments.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 40,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 9,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 3,
+                "lastColumn": 13,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "ass",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 9,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 14,
+              "lastLine": 7,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 7,
+                "lastColumn": 13,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 8,
+              "lastColumn": 9,
+              "lastLine": 8,
+            },
+            "type": "NumberLiteral",
+            "value": "9",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 9,
+        },
+        "name": "assElrd",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 12,
+                "lastColumn": 9,
+                "lastLine": 12,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 12,
+              "lastColumn": 14,
+              "lastLine": 12,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 12,
+                "lastColumn": 13,
+                "lastLine": 12,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 13,
+                "lastColumn": 12,
+                "lastLine": 13,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 13,
+              "lastColumn": 15,
+              "lastLine": 13,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 14,
+        },
+        "name": "assEird",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 17,
+                "lastColumn": 9,
+                "lastLine": 17,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 17,
+              "lastColumn": 14,
+              "lastLine": 17,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 17,
+                "lastColumn": 13,
+                "lastLine": 17,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 18,
+                "lastColumn": 17,
+                "lastLine": 18,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 18,
+              "lastColumn": 18,
+              "lastLine": 18,
+            },
+            "name": "a",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 19,
+        },
+        "name": "assDecl",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 22,
+              "lastColumn": 9,
+              "lastLine": 22,
+            },
+            "type": "NumberLiteral",
+            "value": "9",
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 9,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 14,
+              "lastLine": 23,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 23,
+                "lastColumn": 13,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "elrdAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 27,
+                "lastColumn": 12,
+                "lastLine": 27,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 15,
+              "lastLine": 27,
+            },
+            "type": "If",
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 28,
+                "lastColumn": 9,
+                "lastLine": 28,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 28,
+              "lastColumn": 14,
+              "lastLine": 28,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 28,
+                "lastColumn": 13,
+                "lastLine": 28,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 29,
+        },
+        "name": "eirdAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 32,
+                "lastColumn": 17,
+                "lastLine": 32,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 32,
+              "lastColumn": 18,
+              "lastLine": 32,
+            },
+            "name": "a",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 33,
+                "lastColumn": 9,
+                "lastLine": 33,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 33,
+              "lastColumn": 14,
+              "lastLine": 33,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 33,
+                "lastColumn": 13,
+                "lastLine": 33,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 34,
+        },
+        "name": "declAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 37,
+                "lastColumn": 9,
+                "lastLine": 37,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 37,
+              "lastColumn": 14,
+              "lastLine": 37,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 37,
+                "lastColumn": 13,
+                "lastLine": 37,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 38,
+                "lastColumn": 9,
+                "lastLine": 38,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 38,
+              "lastColumn": 14,
+              "lastLine": 38,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 38,
+                "lastColumn": 13,
+                "lastLine": 38,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 39,
+        },
+        "name": "assAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 40,
+    },
+    "name": "LocalAssignments",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
 exports[`the latest parser parses files consistently: LocalVariables.sand 1`] = `
 Object {
   "location": Object {
@@ -6552,6 +7069,523 @@ Object {
       "lastLine": 25,
     },
     "name": "InfixPrefix",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: LocalAssignments.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 40,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 9,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 3,
+                "lastColumn": 13,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "ass",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 9,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 14,
+              "lastLine": 7,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 7,
+                "lastColumn": 13,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 8,
+              "lastColumn": 9,
+              "lastLine": 8,
+            },
+            "type": "NumberLiteral",
+            "value": "9",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 9,
+        },
+        "name": "assElrd",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 12,
+                "lastColumn": 9,
+                "lastLine": 12,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 12,
+              "lastColumn": 14,
+              "lastLine": 12,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 12,
+                "lastColumn": 13,
+                "lastLine": 12,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 13,
+                "lastColumn": 12,
+                "lastLine": 13,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 13,
+              "lastColumn": 15,
+              "lastLine": 13,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 14,
+        },
+        "name": "assEird",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 17,
+                "lastColumn": 9,
+                "lastLine": 17,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 17,
+              "lastColumn": 14,
+              "lastLine": 17,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 17,
+                "lastColumn": 13,
+                "lastLine": 17,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 18,
+                "lastColumn": 17,
+                "lastLine": 18,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 18,
+              "lastColumn": 18,
+              "lastLine": 18,
+            },
+            "name": "a",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 19,
+        },
+        "name": "assDecl",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 22,
+              "lastColumn": 9,
+              "lastLine": 22,
+            },
+            "type": "NumberLiteral",
+            "value": "9",
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 9,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 14,
+              "lastLine": 23,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 23,
+                "lastColumn": 13,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "elrdAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 27,
+                "lastColumn": 12,
+                "lastLine": 27,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 15,
+              "lastLine": 27,
+            },
+            "type": "If",
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 28,
+                "lastColumn": 9,
+                "lastLine": 28,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 28,
+              "lastColumn": 14,
+              "lastLine": 28,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 28,
+                "lastColumn": 13,
+                "lastLine": 28,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 29,
+        },
+        "name": "eirdAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 32,
+                "lastColumn": 17,
+                "lastLine": 32,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 32,
+              "lastColumn": 18,
+              "lastLine": 32,
+            },
+            "name": "a",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 33,
+                "lastColumn": 9,
+                "lastLine": 33,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 33,
+              "lastColumn": 14,
+              "lastLine": 33,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 33,
+                "lastColumn": 13,
+                "lastLine": 33,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 34,
+        },
+        "name": "declAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 37,
+                "lastColumn": 9,
+                "lastLine": 37,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 37,
+              "lastColumn": 14,
+              "lastLine": 37,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 37,
+                "lastColumn": 13,
+                "lastLine": 37,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 38,
+                "lastColumn": 9,
+                "lastLine": 38,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 38,
+              "lastColumn": 14,
+              "lastLine": 38,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 38,
+                "lastColumn": 13,
+                "lastLine": 38,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 27,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 39,
+        },
+        "name": "assAss",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 40,
+    },
+    "name": "LocalAssignments",
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
