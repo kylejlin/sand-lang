@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`sand.jison does not have new conflicts 1`] = `
+exports[`sand.jison sand.jison has the same conflicts 1`] = `
 "Conflict in grammar: multiple actions possible when lookahead token is || in state 77
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
 - shift token (then go to state 127)
@@ -180,7 +180,7 @@ State 156
 "
 `;
 
-exports[`sand.jison does not have new conflicts 2`] = `
+exports[`sand.jison sand.jison has the same number of each type of conflict 1`] = `
 Object {
   "reduceReduce": 0,
   "reduceShift": 42,

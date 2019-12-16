@@ -2,7 +2,20 @@ import jison from "../src/jison";
 import fs from "fs";
 import { GRAMMAR_PATH } from "../src/parser/consts";
 
-test("sand.jison does not have new conflicts", () => {
+describe("sand.jison", () => {
+  const jisonLogs = getJisonLogs();
+  const conflictCount = getConflictCount(jisonLogs);
+
+  test("sand.jison has the same conflicts", () => {
+    expect(jisonLogs).toMatchSnapshot();
+  });
+
+  test("sand.jison has the same number of each type of conflict", () => {
+    expect(conflictCount).toMatchSnapshot();
+  });
+});
+
+function getJisonLogs(): string {
   let out = "";
   function print(line: string) {
     out += line;
@@ -14,12 +27,8 @@ test("sand.jison does not have new conflicts", () => {
   const src = fs.readFileSync(GRAMMAR_PATH, "utf8");
   const _parser = new jison.Parser(src);
 
-  expect(out).toMatchSnapshot();
-
-  const conflictCount = getConflictCount(out);
-
-  expect(conflictCount).toMatchSnapshot();
-});
+  return out;
+}
 
 function getConflictCount(logs: string): ConflictCount {
   const matches = logs.match(
