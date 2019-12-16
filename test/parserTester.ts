@@ -17,22 +17,24 @@ export class Tester {
   }
 
   private constructor(successCaseDir: string, failureCaseDir: string) {
-    this.successFileContent = Tester.getFileContentMap(successCaseDir);
-    this.failureFileContent = Tester.getFileContentMap(failureCaseDir);
+    this.successFileContent = Tester.getSandFileContentMap(successCaseDir);
+    this.failureFileContent = Tester.getSandFileContentMap(failureCaseDir);
   }
 
-  private static getFileContentMap(
+  private static getSandFileContentMap(
     dirPath: string,
   ): Promise<Map<string, Promise<string>>> {
-    return recursiveReadDir(dirPath).then(absoluteFilePaths => {
-      return new Map(
-        absoluteFilePaths.map(absolutePath => {
-          const relativePath = path.relative(dirPath, absolutePath);
-          const content = readFile(absolutePath);
-          return [relativePath, content];
-        }),
-      );
-    });
+    return recursiveReadDir(dirPath)
+      .then(paths => paths.filter(path => path.endsWith(".sand")))
+      .then(absoluteFilePaths => {
+        return new Map(
+          absoluteFilePaths.map(absolutePath => {
+            const relativePath = path.relative(dirPath, absolutePath);
+            const content = readFile(absolutePath);
+            return [relativePath, content];
+          }),
+        );
+      });
   }
 
   public test(parser: SandParser, parserDescription: string): void {
