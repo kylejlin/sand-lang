@@ -3051,7 +3051,11 @@ Object {
 
 exports[`the latest parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
-exports[`the latest parser throws an error complaining about the same line number: Nullable.sand 1`] = `2`;
+exports[`the latest parser throws an error complaining about the same line number: nullable/DoubleNullable.sand 1`] = `2`;
+
+exports[`the latest parser throws an error complaining about the same line number: nullable/NullableClass.sand 1`] = `1`;
+
+exports[`the latest parser throws an error complaining about the same line number: nullable/NullableGeneric.sand 1`] = `1`;
 
 exports[`the prebuilt parser parses files consistently: Args.sand 1`] = `
 Object {
@@ -6104,4 +6108,8 @@ Object {
 
 exports[`the prebuilt parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
-exports[`the prebuilt parser throws an error complaining about the same line number: Nullable.sand 1`] = `2`;
+exports[`the prebuilt parser throws an error complaining about the same line number: nullable/DoubleNullable.sand 1`] = `2`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: nullable/NullableClass.sand 1`] = `1`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: nullable/NullableGeneric.sand 1`] = `1`;

@@ -1,4 +1,4 @@
-pub class Nullable {
+pub class DoubleNullable {
     foo(): String?? {
         
     }
