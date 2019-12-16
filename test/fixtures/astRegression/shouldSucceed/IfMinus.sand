@@ -38,4 +38,8 @@ pub class IfMinus {
     foo10() {
         -x - if x {}
     }
+
+    foo11() {
+        if x {} - x
+    }
 }
