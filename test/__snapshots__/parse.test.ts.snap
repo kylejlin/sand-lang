@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`the latest parser latest parser parses Args.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: Args.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -136,7 +136,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses CompoundExpressions.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: CompoundExpressions.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -916,7 +916,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses Factorial.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: Factorial.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -1123,7 +1123,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses FullyQualifiedTypes.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: FullyQualifiedTypes.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -1275,7 +1275,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses HelloWorld.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: HelloWorld.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -1402,7 +1402,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses IfMinus.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: IfMinus.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -2146,7 +2146,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses InfixPrefix.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: InfixPrefix.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -2567,7 +2567,7 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser parses Nullable.sand consistently 1`] = `
+exports[`the latest parser parses files consistently: Nullable.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -3049,11 +3049,11 @@ Object {
 }
 `;
 
-exports[`the latest parser latest parser throws an error complaining about the same line (as snapshot) when parsing FullyQualifiedTypes.sand 1`] = `2`;
+exports[`the latest parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
-exports[`the latest parser latest parser throws an error complaining about the same line (as snapshot) when parsing Nullable.sand 1`] = `2`;
+exports[`the latest parser throws an error complaining about the same line number: Nullable.sand 1`] = `2`;
 
-exports[`the prebuilt parser prebuilt parser parses Args.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: Args.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -3189,7 +3189,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses CompoundExpressions.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: CompoundExpressions.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -3969,7 +3969,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses Factorial.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: Factorial.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -4176,7 +4176,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses FullyQualifiedTypes.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: FullyQualifiedTypes.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -4328,7 +4328,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses HelloWorld.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: HelloWorld.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -4455,7 +4455,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses IfMinus.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: IfMinus.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -5199,7 +5199,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses InfixPrefix.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: InfixPrefix.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -5620,7 +5620,7 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser parses Nullable.sand consistently 1`] = `
+exports[`the prebuilt parser parses files consistently: Nullable.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
@@ -6102,6 +6102,6 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser prebuilt parser throws an error complaining about the same line (as snapshot) when parsing FullyQualifiedTypes.sand 1`] = `2`;
+exports[`the prebuilt parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
-exports[`the prebuilt parser prebuilt parser throws an error complaining about the same line (as snapshot) when parsing Nullable.sand 1`] = `2`;
+exports[`the prebuilt parser throws an error complaining about the same line number: Nullable.sand 1`] = `2`;
