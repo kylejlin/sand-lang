@@ -1,0 +1,5 @@
+pub class Unassignable {
+    unassignable() {
+        x() = 8;
+    }
+}

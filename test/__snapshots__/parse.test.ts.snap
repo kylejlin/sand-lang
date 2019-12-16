@@ -4444,6 +4444,12 @@ Object {
 
 exports[`the latest parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
+exports[`the latest parser throws an error complaining about the same line number: assignments/AssignmentExpression.sand 1`] = `3`;
+
+exports[`the latest parser throws an error complaining about the same line number: assignments/MissingSemicolon.sand 1`] = `3`;
+
+exports[`the latest parser throws an error complaining about the same line number: assignments/Unassignable.sand 1`] = `3`;
+
 exports[`the latest parser throws an error complaining about the same line number: localVariables/DeclarationExpression.sand 1`] = `3`;
 
 exports[`the latest parser throws an error complaining about the same line number: localVariables/MissingSemicolon.sand 1`] = `3`;
@@ -8897,6 +8903,12 @@ Object {
 `;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: assignments/AssignmentExpression.sand 1`] = `3`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: assignments/MissingSemicolon.sand 1`] = `3`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: assignments/Unassignable.sand 1`] = `3`;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: localVariables/DeclarationExpression.sand 1`] = `3`;
 
