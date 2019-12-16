@@ -10,6 +10,7 @@ export enum NodeType {
   MethodDeclaration = "MethodDeclaration",
 
   If = "If",
+  FunctionCall = "FunctionCall",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
@@ -61,7 +62,9 @@ export type Expr =
   | StringLiteral
   | Identifier
   | BinaryExpr
-  | UnaryExpr;
+  | UnaryExpr
+  | If
+  | FunctionCall;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
@@ -116,9 +119,39 @@ export interface UnaryExpr {
 
 export type UnaryOperation = "-" | "!";
 
+export interface If {
+  type: NodeType.If;
+  condition: Expr;
+  body: CompoundExpression;
+  alternatives: IfAlternative[];
+  location: NodeLocation;
+}
+
+export type IfAlternative = ElseIf | Else;
+
 export enum IfAlternativeType {
   ElseIf = "ElseIf",
   Else = "Else",
+}
+
+export interface ElseIf {
+  type: IfAlternativeType.ElseIf;
+  condition: Expr;
+  body: CompoundExpression;
+  location: NodeLocation;
+}
+
+export interface Else {
+  type: IfAlternativeType.Else;
+  body: CompoundExpression;
+  location: NodeLocation;
+}
+
+export interface FunctionCall {
+  type: NodeType.FunctionCall;
+  callee: Expr;
+  args: Expr[];
+  location: NodeLocation;
 }
 
 export interface Type {

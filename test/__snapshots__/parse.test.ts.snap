@@ -229,7 +229,7 @@ Object {
                     "lastColumn": 11,
                     "lastLine": 48,
                   },
-                  "type": undefined,
+                  "type": "FunctionCall",
                 },
                 "location": Object {
                   "firstColumn": 8,
@@ -360,7 +360,7 @@ Object {
                     "lastColumn": 11,
                     "lastLine": 56,
                   },
-                  "type": undefined,
+                  "type": "FunctionCall",
                 },
                 "location": Object {
                   "firstColumn": 8,
@@ -974,7 +974,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 3,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -994,7 +994,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 4,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -1014,7 +1014,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 5,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -1050,7 +1050,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 9,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -1070,7 +1070,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 10,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -1090,7 +1090,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 11,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -1129,7 +1129,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 16,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -1150,7 +1150,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 15,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1178,7 +1178,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 18,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -1217,7 +1217,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 23,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -1238,7 +1238,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 22,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1266,7 +1266,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 25,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -1305,7 +1305,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 30,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -1326,7 +1326,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 29,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1354,7 +1354,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 32,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -1374,7 +1374,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 33,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -1413,7 +1413,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 38,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -1434,7 +1434,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 37,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1462,7 +1462,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 40,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -1482,7 +1482,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 41,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -1518,7 +1518,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 45,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -1541,7 +1541,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 46,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1572,7 +1572,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 49,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1616,7 +1616,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 55,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -1639,7 +1639,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 56,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1667,7 +1667,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 59,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -1690,7 +1690,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 60,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -1835,7 +1835,7 @@ Object {
                         "lastColumn": 41,
                         "lastLine": 6,
                       },
-                      "type": undefined,
+                      "type": "FunctionCall",
                     },
                     "type": "BinaryExpr",
                   },
@@ -2391,7 +2391,7 @@ Object {
               "lastColumn": 42,
               "lastLine": 3,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -3465,7 +3465,7 @@ Object {
                   "lastColumn": 12,
                   "lastLine": 15,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
               "type": "UnaryExpr",
             },
@@ -4064,7 +4064,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 36,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -4160,7 +4160,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 45,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "doesShadow": false,
@@ -4341,7 +4341,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 62,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -4361,7 +4361,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 63,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "doesShadow": false,
@@ -4420,7 +4420,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 68,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -5093,7 +5093,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 12,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -5712,7 +5712,7 @@ Object {
                     "lastColumn": 11,
                     "lastLine": 48,
                   },
-                  "type": undefined,
+                  "type": "FunctionCall",
                 },
                 "location": Object {
                   "firstColumn": 8,
@@ -5843,7 +5843,7 @@ Object {
                     "lastColumn": 11,
                     "lastLine": 56,
                   },
-                  "type": undefined,
+                  "type": "FunctionCall",
                 },
                 "location": Object {
                   "firstColumn": 8,
@@ -6457,7 +6457,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 3,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -6477,7 +6477,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 4,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -6497,7 +6497,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 5,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -6533,7 +6533,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 9,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -6553,7 +6553,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 10,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -6573,7 +6573,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 11,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -6612,7 +6612,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 16,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -6633,7 +6633,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 15,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -6661,7 +6661,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 18,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -6700,7 +6700,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 23,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -6721,7 +6721,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 22,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -6749,7 +6749,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 25,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -6788,7 +6788,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 30,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -6809,7 +6809,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 29,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -6837,7 +6837,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 32,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -6857,7 +6857,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 33,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -6896,7 +6896,7 @@ Object {
                   "lastColumn": 18,
                   "lastLine": 38,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
             ],
             "condition": Object {
@@ -6917,7 +6917,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 37,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -6945,7 +6945,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 40,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -6965,7 +6965,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 41,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -7001,7 +7001,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 45,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -7024,7 +7024,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 46,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -7055,7 +7055,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 49,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -7099,7 +7099,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 55,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -7122,7 +7122,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 56,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -7150,7 +7150,7 @@ Object {
               "lastColumn": 13,
               "lastLine": 59,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -7173,7 +7173,7 @@ Object {
                 "lastColumn": 16,
                 "lastLine": 60,
               },
-              "type": undefined,
+              "type": "FunctionCall",
             },
             "location": Object {
               "firstColumn": 8,
@@ -7318,7 +7318,7 @@ Object {
                         "lastColumn": 41,
                         "lastLine": 6,
                       },
-                      "type": undefined,
+                      "type": "FunctionCall",
                     },
                     "type": "BinaryExpr",
                   },
@@ -7874,7 +7874,7 @@ Object {
               "lastColumn": 42,
               "lastLine": 3,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -8948,7 +8948,7 @@ Object {
                   "lastColumn": 12,
                   "lastLine": 15,
                 },
-                "type": undefined,
+                "type": "FunctionCall",
               },
               "type": "UnaryExpr",
             },
@@ -9547,7 +9547,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 36,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
@@ -9643,7 +9643,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 45,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "doesShadow": false,
@@ -9824,7 +9824,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 62,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "args": Array [],
@@ -9844,7 +9844,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 63,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "doesShadow": false,
@@ -9903,7 +9903,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 68,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
           Object {
             "alternatives": Array [],
@@ -10576,7 +10576,7 @@ Object {
               "lastColumn": 11,
               "lastLine": 12,
             },
-            "type": undefined,
+            "type": "FunctionCall",
           },
         ],
         "location": Object {
