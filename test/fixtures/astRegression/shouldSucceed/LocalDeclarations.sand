@@ -1,70 +1,72 @@
-pub class LocalVariables {
-    foo() {
+pub class LocalDeclarations {
+    decl() {
         let bar = 2;
     }
 
-    foo2() {
+    annotated() {
         let bar: int = 2;
     }
 
-    foo3() {
+    shadow() {
         let! bar = 2;
     }
 
-    foo4() {
+    shadowExplicitType() {
         let! bar: int = 2;
     }
 
-    foo5() {
+    reassignable() {
         re bar = 2;
     }
 
-    foo6() {
+    reassignableExplicitType() {
         re bar: int = 2;
     }
 
-    foo7() {
+    reassignableShadow() {
         re! bar = 2;
     }
 
-    foo8() {
+    reassignableShadowExplicitType() {
         re! bar: int = 2;
     }
 
-    bar() {
+    declElrd() {
         let bar = 2;
-        x();
+        x()
     }
 
-    bar2() {
+    declEird() {
+        let bar = 2;
+        if x {}
+    }
+
+    elrdDecl() {
         x();
         let bar = 2;
     }
 
-    bar3() {
+    eirdDecl() {
         if x {}
         let bar = 2;
     }
 
-    bar4() {
+    declDecl() {
+        let bar = 2;
+        let bar = 2;
+    }
+
+
+
+    whereLastIsElrdDecl() {
         x();
         x();
         let bar = 2;
     }
 
-    bar5() {
+    whereLastIsEirdDecl() {
         x();
         if x {}
         let bar = 2;
-    }
-
-    bar6() {
-        let bar = 2;
-        let bar = 2;
-    }
-
-    bar7() {
-        let bar = 2;
-        if x {}
     }
 }

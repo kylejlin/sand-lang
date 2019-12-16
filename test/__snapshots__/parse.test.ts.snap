@@ -3414,13 +3414,13 @@ Object {
 }
 `;
 
-exports[`the latest parser parses files consistently: LocalVariables.sand 1`] = `
+exports[`the latest parser parses files consistently: LocalDeclarations.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 70,
+    "lastLine": 72,
   },
   "privClasses": Array [],
   "pubClass": Object {
@@ -3455,12 +3455,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 4,
         },
-        "name": "foo",
+        "name": "decl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3502,12 +3502,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 8,
         },
-        "name": "foo2",
+        "name": "annotated",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3540,12 +3540,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 12,
         },
-        "name": "foo3",
+        "name": "shadow",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3587,12 +3587,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 16,
         },
-        "name": "foo4",
+        "name": "shadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3625,12 +3625,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 20,
         },
-        "name": "foo5",
+        "name": "reassignable",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3672,12 +3672,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 24,
         },
-        "name": "foo6",
+        "name": "reassignableExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3710,12 +3710,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 28,
         },
-        "name": "foo7",
+        "name": "reassignableShadow",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3757,12 +3757,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 32,
         },
-        "name": "foo8",
+        "name": "reassignableShadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3815,12 +3815,71 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 37,
         },
-        "name": "bar",
+        "name": "declElrd",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 40,
+                "lastColumn": 19,
+                "lastLine": 40,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 40,
+              "lastColumn": 20,
+              "lastLine": 40,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 41,
+                "lastColumn": 12,
+                "lastLine": 41,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 41,
+              "lastColumn": 15,
+              "lastLine": 41,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 42,
+        },
+        "name": "declEird",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3833,67 +3892,8 @@ Object {
             "callee": Object {
               "location": Object {
                 "firstColumn": 8,
-                "firstLine": 40,
-                "lastColumn": 9,
-                "lastLine": 40,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 40,
-              "lastColumn": 11,
-              "lastLine": 40,
-            },
-            "type": undefined,
-          },
-          Object {
-            "doesShadow": false,
-            "initialValue": Object {
-              "location": Object {
-                "firstColumn": 18,
-                "firstLine": 41,
-                "lastColumn": 19,
-                "lastLine": 41,
-              },
-              "type": "NumberLiteral",
-              "value": "2",
-            },
-            "isReassignable": false,
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 41,
-              "lastColumn": 20,
-              "lastLine": 41,
-            },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
-          },
-        ],
-        "location": Object {
-          "firstColumn": 25,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 42,
-        },
-        "name": "bar2",
-        "returnType": "void",
-        "type": "MethodDeclaration",
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Array [
-          Object {
-            "alternatives": Array [],
-            "body": Array [],
-            "condition": Object {
-              "location": Object {
-                "firstColumn": 11,
                 "firstLine": 45,
-                "lastColumn": 12,
+                "lastColumn": 9,
                 "lastLine": 45,
               },
               "type": "Identifier",
@@ -3902,10 +3902,10 @@ Object {
             "location": Object {
               "firstColumn": 8,
               "firstLine": 45,
-              "lastColumn": 15,
+              "lastColumn": 11,
               "lastLine": 45,
             },
-            "type": "If",
+            "type": undefined,
           },
           Object {
             "doesShadow": false,
@@ -3932,12 +3932,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 47,
         },
-        "name": "bar3",
+        "name": "elrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -3946,12 +3946,13 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
-            "args": Array [],
-            "callee": Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
               "location": Object {
-                "firstColumn": 8,
+                "firstColumn": 11,
                 "firstLine": 50,
-                "lastColumn": 9,
+                "lastColumn": 12,
                 "lastLine": 50,
               },
               "type": "Identifier",
@@ -3960,107 +3961,8 @@ Object {
             "location": Object {
               "firstColumn": 8,
               "firstLine": 50,
-              "lastColumn": 11,
-              "lastLine": 50,
-            },
-            "type": undefined,
-          },
-          Object {
-            "args": Array [],
-            "callee": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 51,
-                "lastColumn": 9,
-                "lastLine": 51,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 51,
-              "lastColumn": 11,
-              "lastLine": 51,
-            },
-            "type": undefined,
-          },
-          Object {
-            "doesShadow": false,
-            "initialValue": Object {
-              "location": Object {
-                "firstColumn": 18,
-                "firstLine": 52,
-                "lastColumn": 19,
-                "lastLine": 52,
-              },
-              "type": "NumberLiteral",
-              "value": "2",
-            },
-            "isReassignable": false,
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 52,
-              "lastColumn": 20,
-              "lastLine": 52,
-            },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
-          },
-        ],
-        "location": Object {
-          "firstColumn": 25,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 53,
-        },
-        "name": "bar4",
-        "returnType": "void",
-        "type": "MethodDeclaration",
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Array [
-          Object {
-            "args": Array [],
-            "callee": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 56,
-                "lastColumn": 9,
-                "lastLine": 56,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 56,
-              "lastColumn": 11,
-              "lastLine": 56,
-            },
-            "type": undefined,
-          },
-          Object {
-            "alternatives": Array [],
-            "body": Array [],
-            "condition": Object {
-              "location": Object {
-                "firstColumn": 11,
-                "firstLine": 57,
-                "lastColumn": 12,
-                "lastLine": 57,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 57,
               "lastColumn": 15,
-              "lastLine": 57,
+              "lastLine": 50,
             },
             "type": "If",
           },
@@ -4069,9 +3971,9 @@ Object {
             "initialValue": Object {
               "location": Object {
                 "firstColumn": 18,
-                "firstLine": 58,
+                "firstLine": 51,
                 "lastColumn": 19,
-                "lastLine": 58,
+                "lastLine": 51,
               },
               "type": "NumberLiteral",
               "value": "2",
@@ -4079,9 +3981,9 @@ Object {
             "isReassignable": false,
             "location": Object {
               "firstColumn": 8,
-              "firstLine": 58,
+              "firstLine": 51,
               "lastColumn": 20,
-              "lastLine": 58,
+              "lastLine": 51,
             },
             "name": "bar",
             "type": "LocalVariableDeclaration",
@@ -4089,12 +3991,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 59,
+          "lastLine": 52,
         },
-        "name": "bar5",
+        "name": "eirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -4107,32 +4009,110 @@ Object {
             "initialValue": Object {
               "location": Object {
                 "firstColumn": 18,
-                "firstLine": 62,
+                "firstLine": 55,
                 "lastColumn": 19,
-                "lastLine": 62,
+                "lastLine": 55,
               },
               "type": "NumberLiteral",
               "value": "2",
             },
             "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 55,
+              "lastColumn": 20,
+              "lastLine": 55,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 56,
+                "lastColumn": 19,
+                "lastLine": 56,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 56,
+              "lastColumn": 20,
+              "lastLine": 56,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 57,
+        },
+        "name": "declDecl",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 62,
+                "lastColumn": 9,
+                "lastLine": 62,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
             "location": Object {
               "firstColumn": 8,
               "firstLine": 62,
-              "lastColumn": 20,
+              "lastColumn": 11,
               "lastLine": 62,
             },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
+            "type": undefined,
+          },
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 63,
+                "lastColumn": 9,
+                "lastLine": 63,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 63,
+              "lastColumn": 11,
+              "lastLine": 63,
+            },
+            "type": undefined,
           },
           Object {
             "doesShadow": false,
             "initialValue": Object {
               "location": Object {
                 "firstColumn": 18,
-                "firstLine": 63,
+                "firstLine": 64,
                 "lastColumn": 19,
-                "lastLine": 63,
+                "lastLine": 64,
               },
               "type": "NumberLiteral",
               "value": "2",
@@ -4140,9 +4120,9 @@ Object {
             "isReassignable": false,
             "location": Object {
               "firstColumn": 8,
-              "firstLine": 63,
+              "firstLine": 64,
               "lastColumn": 20,
-              "lastLine": 63,
+              "lastLine": 64,
             },
             "name": "bar",
             "type": "LocalVariableDeclaration",
@@ -4150,12 +4130,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 64,
+          "lastLine": 65,
         },
-        "name": "bar6",
+        "name": "whereLastIsElrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -4164,36 +4144,12 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
-            "doesShadow": false,
-            "initialValue": Object {
+            "args": Array [],
+            "callee": Object {
               "location": Object {
-                "firstColumn": 18,
-                "firstLine": 67,
-                "lastColumn": 19,
-                "lastLine": 67,
-              },
-              "type": "NumberLiteral",
-              "value": "2",
-            },
-            "isReassignable": false,
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 67,
-              "lastColumn": 20,
-              "lastLine": 67,
-            },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
-          },
-          Object {
-            "alternatives": Array [],
-            "body": Array [],
-            "condition": Object {
-              "location": Object {
-                "firstColumn": 11,
+                "firstColumn": 8,
                 "firstLine": 68,
-                "lastColumn": 12,
+                "lastColumn": 9,
                 "lastLine": 68,
               },
               "type": "Identifier",
@@ -4202,19 +4158,63 @@ Object {
             "location": Object {
               "firstColumn": 8,
               "firstLine": 68,
-              "lastColumn": 15,
+              "lastColumn": 11,
               "lastLine": 68,
+            },
+            "type": undefined,
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 69,
+                "lastColumn": 12,
+                "lastLine": 69,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 69,
+              "lastColumn": 15,
+              "lastLine": 69,
             },
             "type": "If",
           },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 70,
+                "lastColumn": 19,
+                "lastLine": 70,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 70,
+              "lastColumn": 20,
+              "lastLine": 70,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 69,
+          "lastLine": 71,
         },
-        "name": "bar7",
+        "name": "whereLastIsEirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -4223,9 +4223,9 @@ Object {
       "firstColumn": 0,
       "firstLine": 1,
       "lastColumn": 1,
-      "lastLine": 70,
+      "lastLine": 72,
     },
-    "name": "LocalVariables",
+    "name": "LocalDeclarations",
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
@@ -4724,9 +4724,9 @@ exports[`the latest parser throws an error complaining about the same line numbe
 
 exports[`the latest parser throws an error complaining about the same line number: assignments/Unassignable.sand 1`] = `3`;
 
-exports[`the latest parser throws an error complaining about the same line number: localVariables/DeclarationExpression.sand 1`] = `3`;
+exports[`the latest parser throws an error complaining about the same line number: localVariableDeclarations/DeclarationExpression.sand 1`] = `3`;
 
-exports[`the latest parser throws an error complaining about the same line number: localVariables/MissingSemicolon.sand 1`] = `3`;
+exports[`the latest parser throws an error complaining about the same line number: localVariableDeclarations/MissingSemicolon.sand 1`] = `3`;
 
 exports[`the latest parser throws an error complaining about the same line number: nullable/DoubleNullable.sand 1`] = `2`;
 
@@ -8148,13 +8148,13 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser parses files consistently: LocalVariables.sand 1`] = `
+exports[`the prebuilt parser parses files consistently: LocalDeclarations.sand 1`] = `
 Object {
   "location": Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 70,
+    "lastLine": 72,
   },
   "privClasses": Array [],
   "pubClass": Object {
@@ -8189,12 +8189,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 4,
         },
-        "name": "foo",
+        "name": "decl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8236,12 +8236,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 8,
         },
-        "name": "foo2",
+        "name": "annotated",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8274,12 +8274,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 12,
         },
-        "name": "foo3",
+        "name": "shadow",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8321,12 +8321,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 16,
         },
-        "name": "foo4",
+        "name": "shadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8359,12 +8359,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 20,
         },
-        "name": "foo5",
+        "name": "reassignable",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8406,12 +8406,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 24,
         },
-        "name": "foo6",
+        "name": "reassignableExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8444,12 +8444,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 28,
         },
-        "name": "foo7",
+        "name": "reassignableShadow",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8491,12 +8491,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 32,
         },
-        "name": "foo8",
+        "name": "reassignableShadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8549,12 +8549,71 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 37,
         },
-        "name": "bar",
+        "name": "declElrd",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 40,
+                "lastColumn": 19,
+                "lastLine": 40,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 40,
+              "lastColumn": 20,
+              "lastLine": 40,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 41,
+                "lastColumn": 12,
+                "lastLine": 41,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 41,
+              "lastColumn": 15,
+              "lastLine": 41,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 42,
+        },
+        "name": "declEird",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8567,67 +8626,8 @@ Object {
             "callee": Object {
               "location": Object {
                 "firstColumn": 8,
-                "firstLine": 40,
-                "lastColumn": 9,
-                "lastLine": 40,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 40,
-              "lastColumn": 11,
-              "lastLine": 40,
-            },
-            "type": undefined,
-          },
-          Object {
-            "doesShadow": false,
-            "initialValue": Object {
-              "location": Object {
-                "firstColumn": 18,
-                "firstLine": 41,
-                "lastColumn": 19,
-                "lastLine": 41,
-              },
-              "type": "NumberLiteral",
-              "value": "2",
-            },
-            "isReassignable": false,
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 41,
-              "lastColumn": 20,
-              "lastLine": 41,
-            },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
-          },
-        ],
-        "location": Object {
-          "firstColumn": 25,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 42,
-        },
-        "name": "bar2",
-        "returnType": "void",
-        "type": "MethodDeclaration",
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Array [
-          Object {
-            "alternatives": Array [],
-            "body": Array [],
-            "condition": Object {
-              "location": Object {
-                "firstColumn": 11,
                 "firstLine": 45,
-                "lastColumn": 12,
+                "lastColumn": 9,
                 "lastLine": 45,
               },
               "type": "Identifier",
@@ -8636,10 +8636,10 @@ Object {
             "location": Object {
               "firstColumn": 8,
               "firstLine": 45,
-              "lastColumn": 15,
+              "lastColumn": 11,
               "lastLine": 45,
             },
-            "type": "If",
+            "type": undefined,
           },
           Object {
             "doesShadow": false,
@@ -8666,12 +8666,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
           "lastLine": 47,
         },
-        "name": "bar3",
+        "name": "elrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8680,12 +8680,13 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
-            "args": Array [],
-            "callee": Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
               "location": Object {
-                "firstColumn": 8,
+                "firstColumn": 11,
                 "firstLine": 50,
-                "lastColumn": 9,
+                "lastColumn": 12,
                 "lastLine": 50,
               },
               "type": "Identifier",
@@ -8694,107 +8695,8 @@ Object {
             "location": Object {
               "firstColumn": 8,
               "firstLine": 50,
-              "lastColumn": 11,
-              "lastLine": 50,
-            },
-            "type": undefined,
-          },
-          Object {
-            "args": Array [],
-            "callee": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 51,
-                "lastColumn": 9,
-                "lastLine": 51,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 51,
-              "lastColumn": 11,
-              "lastLine": 51,
-            },
-            "type": undefined,
-          },
-          Object {
-            "doesShadow": false,
-            "initialValue": Object {
-              "location": Object {
-                "firstColumn": 18,
-                "firstLine": 52,
-                "lastColumn": 19,
-                "lastLine": 52,
-              },
-              "type": "NumberLiteral",
-              "value": "2",
-            },
-            "isReassignable": false,
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 52,
-              "lastColumn": 20,
-              "lastLine": 52,
-            },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
-          },
-        ],
-        "location": Object {
-          "firstColumn": 25,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 53,
-        },
-        "name": "bar4",
-        "returnType": "void",
-        "type": "MethodDeclaration",
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Array [
-          Object {
-            "args": Array [],
-            "callee": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 56,
-                "lastColumn": 9,
-                "lastLine": 56,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 56,
-              "lastColumn": 11,
-              "lastLine": 56,
-            },
-            "type": undefined,
-          },
-          Object {
-            "alternatives": Array [],
-            "body": Array [],
-            "condition": Object {
-              "location": Object {
-                "firstColumn": 11,
-                "firstLine": 57,
-                "lastColumn": 12,
-                "lastLine": 57,
-              },
-              "type": "Identifier",
-              "value": "x",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 57,
               "lastColumn": 15,
-              "lastLine": 57,
+              "lastLine": 50,
             },
             "type": "If",
           },
@@ -8803,9 +8705,9 @@ Object {
             "initialValue": Object {
               "location": Object {
                 "firstColumn": 18,
-                "firstLine": 58,
+                "firstLine": 51,
                 "lastColumn": 19,
-                "lastLine": 58,
+                "lastLine": 51,
               },
               "type": "NumberLiteral",
               "value": "2",
@@ -8813,9 +8715,9 @@ Object {
             "isReassignable": false,
             "location": Object {
               "firstColumn": 8,
-              "firstLine": 58,
+              "firstLine": 51,
               "lastColumn": 20,
-              "lastLine": 58,
+              "lastLine": 51,
             },
             "name": "bar",
             "type": "LocalVariableDeclaration",
@@ -8823,12 +8725,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 59,
+          "lastLine": 52,
         },
-        "name": "bar5",
+        "name": "eirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8841,32 +8743,110 @@ Object {
             "initialValue": Object {
               "location": Object {
                 "firstColumn": 18,
-                "firstLine": 62,
+                "firstLine": 55,
                 "lastColumn": 19,
-                "lastLine": 62,
+                "lastLine": 55,
               },
               "type": "NumberLiteral",
               "value": "2",
             },
             "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 55,
+              "lastColumn": 20,
+              "lastLine": 55,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 56,
+                "lastColumn": 19,
+                "lastLine": 56,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 56,
+              "lastColumn": 20,
+              "lastLine": 56,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 57,
+        },
+        "name": "declDecl",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 62,
+                "lastColumn": 9,
+                "lastLine": 62,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
             "location": Object {
               "firstColumn": 8,
               "firstLine": 62,
-              "lastColumn": 20,
+              "lastColumn": 11,
               "lastLine": 62,
             },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
+            "type": undefined,
+          },
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 63,
+                "lastColumn": 9,
+                "lastLine": 63,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 63,
+              "lastColumn": 11,
+              "lastLine": 63,
+            },
+            "type": undefined,
           },
           Object {
             "doesShadow": false,
             "initialValue": Object {
               "location": Object {
                 "firstColumn": 18,
-                "firstLine": 63,
+                "firstLine": 64,
                 "lastColumn": 19,
-                "lastLine": 63,
+                "lastLine": 64,
               },
               "type": "NumberLiteral",
               "value": "2",
@@ -8874,9 +8854,9 @@ Object {
             "isReassignable": false,
             "location": Object {
               "firstColumn": 8,
-              "firstLine": 63,
+              "firstLine": 64,
               "lastColumn": 20,
-              "lastLine": 63,
+              "lastLine": 64,
             },
             "name": "bar",
             "type": "LocalVariableDeclaration",
@@ -8884,12 +8864,12 @@ Object {
           },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 64,
+          "lastLine": 65,
         },
-        "name": "bar6",
+        "name": "whereLastIsElrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8898,36 +8878,12 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
-            "doesShadow": false,
-            "initialValue": Object {
+            "args": Array [],
+            "callee": Object {
               "location": Object {
-                "firstColumn": 18,
-                "firstLine": 67,
-                "lastColumn": 19,
-                "lastLine": 67,
-              },
-              "type": "NumberLiteral",
-              "value": "2",
-            },
-            "isReassignable": false,
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 67,
-              "lastColumn": 20,
-              "lastLine": 67,
-            },
-            "name": "bar",
-            "type": "LocalVariableDeclaration",
-            "valueType": null,
-          },
-          Object {
-            "alternatives": Array [],
-            "body": Array [],
-            "condition": Object {
-              "location": Object {
-                "firstColumn": 11,
+                "firstColumn": 8,
                 "firstLine": 68,
-                "lastColumn": 12,
+                "lastColumn": 9,
                 "lastLine": 68,
               },
               "type": "Identifier",
@@ -8936,19 +8892,63 @@ Object {
             "location": Object {
               "firstColumn": 8,
               "firstLine": 68,
-              "lastColumn": 15,
+              "lastColumn": 11,
               "lastLine": 68,
+            },
+            "type": undefined,
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 69,
+                "lastColumn": 12,
+                "lastLine": 69,
+              },
+              "type": "Identifier",
+              "value": "x",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 69,
+              "lastColumn": 15,
+              "lastLine": 69,
             },
             "type": "If",
           },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 70,
+                "lastColumn": 19,
+                "lastLine": 70,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 70,
+              "lastColumn": 20,
+              "lastLine": 70,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
         ],
         "location": Object {
-          "firstColumn": 25,
+          "firstColumn": 28,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 69,
+          "lastLine": 71,
         },
-        "name": "bar7",
+        "name": "whereLastIsEirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
       },
@@ -8957,9 +8957,9 @@ Object {
       "firstColumn": 0,
       "firstLine": 1,
       "lastColumn": 1,
-      "lastLine": 70,
+      "lastLine": 72,
     },
-    "name": "LocalVariables",
+    "name": "LocalDeclarations",
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
@@ -9458,9 +9458,9 @@ exports[`the prebuilt parser throws an error complaining about the same line num
 
 exports[`the prebuilt parser throws an error complaining about the same line number: assignments/Unassignable.sand 1`] = `3`;
 
-exports[`the prebuilt parser throws an error complaining about the same line number: localVariables/DeclarationExpression.sand 1`] = `3`;
+exports[`the prebuilt parser throws an error complaining about the same line number: localVariableDeclarations/DeclarationExpression.sand 1`] = `3`;
 
-exports[`the prebuilt parser throws an error complaining about the same line number: localVariables/MissingSemicolon.sand 1`] = `3`;
+exports[`the prebuilt parser throws an error complaining about the same line number: localVariableDeclarations/MissingSemicolon.sand 1`] = `3`;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: nullable/DoubleNullable.sand 1`] = `2`;
 
