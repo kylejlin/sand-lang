@@ -450,8 +450,8 @@ expressionLackingRightDelimiterNotStartingWithInfixToken
     ;
 
 functionCall
-    : assignableExpression "(" optArgs ")"
-        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, args: $3, location: yy.camelCase(@$) }; }
+    : assignableExpression optTypeArgs "(" optArgs ")"
+        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, typeArgs: $2, args: $4, location: yy.camelCase(@$) }; }
     ;
 
 assignableExpression

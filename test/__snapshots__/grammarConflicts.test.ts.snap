@@ -85,6 +85,9 @@ Conflict in grammar: multiple actions possible when lookahead token is % in stat
 Conflict in grammar: multiple actions possible when lookahead token is ** in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
 - shift token (then go to state 155)
+Conflict in grammar: multiple actions possible when lookahead token is < in state 89
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression
+- shift token (then go to state 33)
 Conflict in grammar: multiple actions possible when lookahead token is ** in state 157
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 117)
@@ -127,10 +130,13 @@ Conflict in grammar: multiple actions possible when lookahead token is && in sta
 Conflict in grammar: multiple actions possible when lookahead token is || in state 157
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 104)
+Conflict in grammar: multiple actions possible when lookahead token is < in state 159
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression
+- shift token (then go to state 33)
 
 States with conflicts:
 State 78
-  expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken . #lookaheads= } ; { || && == != < <= > >= + - * / % ** , ] )
+  expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken . #lookaheads= } ; { || && == != < <= > >= + - * / % ** , ) ]
   expressionLackingRightDelimiterStartingWithInfixToken -> expressionLackingRightDelimiterStartingWithInfixToken .|| expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterStartingWithInfixToken -> expressionLackingRightDelimiterStartingWithInfixToken .&& expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterStartingWithInfixToken -> expressionLackingRightDelimiterStartingWithInfixToken .== expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
@@ -146,7 +152,7 @@ State 78
   expressionLackingRightDelimiterStartingWithInfixToken -> expressionLackingRightDelimiterStartingWithInfixToken .% expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterStartingWithInfixToken -> expressionLackingRightDelimiterStartingWithInfixToken .** expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
 State 79
-  expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken . #lookaheads= } ; { || && == != < <= > >= + - * / % ** , ] )
+  expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken . #lookaheads= } ; { || && == != < <= > >= + - * / % ** , ) ]
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .|| expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .&& expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .== expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
@@ -161,6 +167,14 @@ State 79
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken ./ expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .% expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .** expression #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
+State 89
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression . #lookaheads= ; } || && == != < <= > >= + - * / % **
+  assignment -> assignableExpression .= expression ; #lookaheads= } return_ re! re let! let IDENTIFIER if STRING NUMBER !
+  functionCall -> assignableExpression .optTypeArgs ( optArgs ) #lookaheads= ** % / * - + >= > <= < != == && || } ; . [ { ] ) ,
+  assignableExpression -> assignableExpression .. IDENTIFIER #lookaheads= ** % / * - + >= > <= < != == && || } ; = ( . [ { ] ) ,
+  assignableExpression -> assignableExpression .[ expression ] #lookaheads= ** % / * - + >= > <= < != == && || } ; = ( . [ { ] ) ,
+  optTypeArgs -> . #lookaheads= (
+  optTypeArgs -> .< typeArgs >
 State 157
   expression -> expressionIncludingRightDelimiter . #lookaheads= { ** % / * - + >= > <= < != == && || } ; ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .|| expression
@@ -177,13 +191,20 @@ State 157
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter ./ expression
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .% expression
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .** expression
+State 159
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression . #lookaheads= { || && == != < <= > >= + - * / % ** } ; ] ) ,
+  functionCall -> assignableExpression .optTypeArgs ( optArgs )
+  assignableExpression -> assignableExpression .. IDENTIFIER
+  assignableExpression -> assignableExpression .[ expression ]
+  optTypeArgs -> . #lookaheads= (
+  optTypeArgs -> .< typeArgs >
 "
 `;
 
 exports[`sand.jison sand.jison has the same number of each type of conflict 1`] = `
 Object {
   "reduceReduce": 0,
-  "reduceShift": 42,
-  "total": 42,
+  "reduceShift": 44,
+  "total": 44,
 }
 `;

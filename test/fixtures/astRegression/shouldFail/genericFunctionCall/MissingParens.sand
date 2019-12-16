@@ -1,0 +1,5 @@
+pub class MissingParens {
+    missing() {
+        foo<int>
+    }
+}

@@ -150,6 +150,7 @@ export interface Else {
 export interface FunctionCall {
   type: NodeType.FunctionCall;
   callee: Expr;
+  typeArgs: Type[];
   args: Expr[];
   location: NodeLocation;
 }
