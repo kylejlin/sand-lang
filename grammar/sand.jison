@@ -237,6 +237,9 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter expressionIncludingRightDelimiter
         { $$ = [$1, $2]; }
+    | localVariableDeclaration expressionIncludingRightDelimiter
+        { $$ = [$1, $2]; }
+        
     | expressionLackingRightDelimiter ";" localVariableDeclaration
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter localVariableDeclaration
