@@ -138,10 +138,8 @@ nullableType
     ;
 
 nonNullableType
-    : typeIdentifierWithPossibleDotChain "<" typeArgs ">"
-        { $$ = { name: $1, args: $3, location: yy.camelCase(@$) }; }
-    | typeIdentifierWithPossibleDotChain
-        { $$ = { name: $1, args: [], location: yy.camelCase(@$) }; }
+    : typeIdentifierWithPossibleDotChain optTypeArgs
+        { $$ = { name: $1, args: $2, location: yy.camelCase(@$) }; }
     | type "[" "]"
         { $$ = { name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" "*" "]"
@@ -152,6 +150,13 @@ typeIdentifierWithPossibleDotChain
     : IDENTIFIER
     | typeIdentifierWithPossibleDotChain "." IDENTIFIER
         { $$ = $1 + "." + $2; }
+    ;
+
+optTypeArgs
+    : /* empty */
+        { $$ = []; }
+    | "<" typeArgs ">"
+        { $$ = $2; }
     ;
 
 typeArgs
