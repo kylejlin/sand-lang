@@ -13,7 +13,7 @@
 "extends" return "extends"
 "if" return "if"
 "else" return "else"
-"return" return "return"
+"return" return "return_"
 "let!" return "let!"
 "let" return "let"
 "re!" return "re!"
@@ -262,6 +262,7 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
 statement
     : localVariableDeclaration
     | assignment
+    | return
     ;
 
 localVariableDeclaration
@@ -287,6 +288,13 @@ localVariableDeclaration
 assignment
     : assignableExpression "=" expression ";"
         { $$ = { type: yy.NodeType.Assignment, assignee: $1, value: $3, location: yy.camelCase(@$) }; }
+    ;
+
+return
+    : "return_" expression ";"
+        { $$ = { type: yy.NodeType.Return, value: $2, location: yy.camelCase(@$) }; }
+    | "return_" ";"
+        { $$ = { type: yy.NodeType.Return, value: null, location: yy.camelCase(@$) }; }
     ;
 
 expressionIncludingRightDelimiter

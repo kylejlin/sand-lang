@@ -13,6 +13,7 @@ export enum NodeType {
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
+  Return = "Return",
 
   File = "File",
   Class = "Class",
@@ -189,11 +190,9 @@ export interface MethodDeclaration {
   location: NodeLocation;
 }
 
-export type CompoundExpression = (
-  | Expr
-  | LocalVariableDeclaration
-  | Assignment
-)[];
+export type CompoundExpression = (Expr | Statement)[];
+
+export type Statement = LocalVariableDeclaration | Assignment | Return;
 
 export interface ArgDef {
   name: string;
@@ -221,5 +220,11 @@ export interface Assignment {
   type: NodeType.Assignment;
   assignee: Expr;
   value: Expr;
+  location: NodeLocation;
+}
+
+export interface Return {
+  type: NodeType.Return;
+  value: null | Expr;
   location: NodeLocation;
 }

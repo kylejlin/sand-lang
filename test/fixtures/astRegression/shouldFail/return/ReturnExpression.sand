@@ -1,0 +1,3 @@
+pub class ReturnExpression {
+    x(return;)
+}
