@@ -1,0 +1,5 @@
+pub class MissingSemicolon {
+    foo() {
+        let bar = 2
+    }
+}

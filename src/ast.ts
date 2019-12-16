@@ -11,6 +11,8 @@ export enum NodeType {
 
   If = "If",
 
+  LocalVariableDeclaration = "LocalVariableDeclaration",
+
   File = "File",
   Class = "Class",
 
@@ -182,9 +184,11 @@ export interface MethodDeclaration {
   name: string;
   args: ArgDef[];
   returnType: Type;
-  body: Expr[];
+  body: CompoundExpression;
   location: NodeLocation;
 }
+
+export type CompoundExpression = (Expr | LocalVariableDeclaration)[];
 
 export interface ArgDef {
   name: string;
@@ -196,4 +200,13 @@ export type OptAccessModifier = null | "pub" | "prot";
 
 export interface ImpliedNullExpr {
   type: NodeType.ImpliedNullExpr;
+}
+
+export interface LocalVariableDeclaration {
+  type: NodeType.LocalVariableDeclaration;
+  isReassignable: boolean;
+  doesShadow: boolean;
+  name: string;
+  initialValue: Expr;
+  valueType: null | Type;
 }

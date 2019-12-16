@@ -1,0 +1,60 @@
+pub class LocalVariables {
+    foo() {
+        let bar = 2;
+    }
+
+    foo2() {
+        let bar: int = 2;
+    }
+
+    foo3() {
+        let! bar = 2;
+    }
+
+    foo4() {
+        let! bar: int = 2;
+    }
+
+    foo5() {
+        re bar = 2;
+    }
+
+    foo6() {
+        re bar: int = 2;
+    }
+
+    foo7() {
+        re! bar = 2;
+    }
+
+    foo8() {
+        re! bar: int = 2;
+    }
+
+    bar() {
+        let bar = 2;
+        x();
+    }
+
+    bar2() {
+        x();
+        let bar = 2;
+    }
+
+    bar3() {
+        if x {}
+        let bar = 2;
+    }
+
+    bar4() {
+        x();
+        x();
+        let bar = 2;
+    }
+
+    bar5() {
+        x();
+        if x {}
+        let bar = 2;
+    }
+}

@@ -14,6 +14,10 @@
 "if" return "if"
 "else" return "else"
 "return" return "return"
+"let!" return "let!"
+"let" return "let"
+"re!" return "re!"
+"re" return "re"
 
 \-?\d+(\.\d+)?(e-?[1-9]\d*)?\b  return "NUMBER"
 \"(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"])*\" return "STRING"
@@ -42,6 +46,8 @@
 "." return "."
 "[" return "["
 "]" return "]"
+
+"=" return "="
 
 "("                   return "("
 ")"                   return ")"
@@ -202,6 +208,8 @@ compoundExpression
         { $$ = [$2]; }
     | "{" expressionIncludingRightDelimiter "}"
         { $$ = [$2]; }
+    | "{" localVariableDeclaration "}"
+        { $$ = [$2]; }
     | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter "}"
         { $$ = $2; }
     | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" "}"
@@ -216,6 +224,8 @@ twoOrMoreExpressionsWhereTheLastLacksRightDelimiter
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = [$1, $2]; }
+    | localVariableDeclaration expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = [$1, $2]; }
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionLackingRightDelimiterNotStartingWithInfixToken
@@ -227,10 +237,39 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter expressionIncludingRightDelimiter
         { $$ = [$1, $2]; }
+    | expressionLackingRightDelimiter ";" localVariableDeclaration
+        { $$ = [$1, $3]; }
+    | expressionIncludingRightDelimiter localVariableDeclaration
+        { $$ = [$1, $2]; }
+
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionIncludingRightDelimiter
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionIncludingRightDelimiter
         { $$ = $1.concat([$2]); }
+    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" localVariableDeclaration
+        { $$ = $1.concat([$3]); }
+    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter localVariableDeclaration
+        { $$ = $1.concat([$2]); }
+    ;
+
+localVariableDeclaration
+    : "let" IDENTIFIER "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null }; }
+    | "let!" IDENTIFIER "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null }; }
+    | "re" IDENTIFIER "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null }; }
+    | "re!" IDENTIFIER "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null }; }
+
+    | "let" IDENTIFIER ":" type "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4 }; }
+    | "let!" IDENTIFIER ":" type "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4 }; }
+    | "re" IDENTIFIER ":" type "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4 }; }
+    | "re!" IDENTIFIER ":" type "=" expression ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4 }; }
     ;
 
 expressionIncludingRightDelimiter
