@@ -1,0 +1,17 @@
+pub class GenericMethodDeclarations {
+    single<T>() {
+
+    }
+
+    complex<T, U extends T>() {
+
+    }
+
+    singleExplicitReturnType<T>(): void {
+
+    }
+
+    complexExplicitReturnType<T, U extends T>(): void {
+        
+    }
+}

@@ -171,10 +171,10 @@ classBody
 classItem
     : optAccessModifier IDENTIFIER ":" type ";"
         { $$ = { type: yy.NodeType.PropertyDeclaration, accessModifier: $1, name: $2, valueType: $4, location: yy.camelCase(@$) }; }
-    | optAccessModifier IDENTIFIER "(" optArgDefs ")" ":" type compoundExpression
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, args: $4, returnType: $7, body: $8, location: yy.camelCase(@$) }; }
-    | optAccessModifier IDENTIFIER "(" optArgDefs ")" compoundExpression
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, args: $4, returnType: "void", body: $6, location: yy.camelCase(@$) }; }
+    | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundExpression
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
+    | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundExpression
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: "void", body: $7, location: yy.camelCase(@$) }; }
     ;
 
 optAccessModifier

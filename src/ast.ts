@@ -184,6 +184,7 @@ export interface MethodDeclaration {
   type: NodeType.MethodDeclaration;
   accessModifier: OptAccessModifier;
   name: string;
+  typeArgs: TypeArgDef[];
   args: ArgDef[];
   returnType: Type;
   body: CompoundExpression;

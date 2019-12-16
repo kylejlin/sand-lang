@@ -84,6 +84,7 @@ Object {
           "name": "int",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -202,6 +203,7 @@ Object {
           "name": "dot",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
         Object {
           "accessModifier": null,
@@ -267,6 +269,7 @@ Object {
           "name": "callDot",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
         Object {
           "accessModifier": null,
@@ -331,6 +334,7 @@ Object {
           "name": "index",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
         Object {
           "accessModifier": null,
@@ -405,6 +409,7 @@ Object {
           "name": "callIndex",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
       ],
       "location": Object {
@@ -465,6 +470,7 @@ Object {
         "name": "ass",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -519,6 +525,7 @@ Object {
         "name": "assElrd",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -584,6 +591,7 @@ Object {
         "name": "assEird",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -651,6 +659,7 @@ Object {
         "name": "assDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -705,6 +714,7 @@ Object {
         "name": "elrdAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -770,6 +780,7 @@ Object {
         "name": "eirdAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -837,6 +848,7 @@ Object {
         "name": "declAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -910,6 +922,7 @@ Object {
         "name": "assAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -1013,6 +1026,7 @@ Object {
         "name": "foo",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1088,6 +1102,7 @@ Object {
         "name": "foo2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1175,6 +1190,7 @@ Object {
         "name": "bar",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1262,6 +1278,7 @@ Object {
         "name": "bar2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1369,6 +1386,7 @@ Object {
         "name": "bar3",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1476,6 +1494,7 @@ Object {
         "name": "bar4",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1573,6 +1592,7 @@ Object {
         "name": "bar5",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -1690,6 +1710,7 @@ Object {
         "name": "bar6",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -1897,6 +1918,7 @@ Object {
           "name": "int",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -1959,6 +1981,7 @@ Object {
           "name": "java....",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2015,6 +2038,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2049,6 +2073,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -2058,6 +2083,208 @@ Object {
       "lastLine": 13,
     },
     "name": "FullyQualifiedTypes",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
+exports[`the latest parser parses files consistently: GenericMethodDeclarations.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 17,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "single",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 11,
+              "firstLine": 2,
+              "lastColumn": 12,
+              "lastLine": 2,
+            },
+            "name": "T",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "complex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 12,
+              "firstLine": 6,
+              "lastColumn": 13,
+              "lastLine": 6,
+            },
+            "name": "T",
+          },
+          Object {
+            "constraint": Object {
+              "constraintType": "Extends",
+              "superClass": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 25,
+                  "firstLine": 6,
+                  "lastColumn": 26,
+                  "lastLine": 6,
+                },
+                "name": "T",
+              },
+            },
+            "location": Object {
+              "firstColumn": 15,
+              "firstLine": 6,
+              "lastColumn": 26,
+              "lastLine": 6,
+            },
+            "name": "U",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "singleExplicitReturnType",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 35,
+            "firstLine": 10,
+            "lastColumn": 39,
+            "lastLine": 10,
+          },
+          "name": "void",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 29,
+              "firstLine": 10,
+              "lastColumn": 30,
+              "lastLine": 10,
+            },
+            "name": "T",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "complexExplicitReturnType",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 49,
+            "firstLine": 14,
+            "lastColumn": 53,
+            "lastLine": 14,
+          },
+          "name": "void",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 30,
+              "firstLine": 14,
+              "lastColumn": 31,
+              "lastLine": 14,
+            },
+            "name": "T",
+          },
+          Object {
+            "constraint": Object {
+              "constraintType": "Extends",
+              "superClass": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 43,
+                  "firstLine": 14,
+                  "lastColumn": 44,
+                  "lastLine": 14,
+                },
+                "name": "T",
+              },
+            },
+            "location": Object {
+              "firstColumn": 33,
+              "firstLine": 14,
+              "lastColumn": 44,
+              "lastLine": 14,
+            },
+            "name": "U",
+          },
+        ],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 17,
+    },
+    "name": "GenericMethodDeclarations",
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
@@ -2176,6 +2403,7 @@ Object {
         "name": "main",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -2250,6 +2478,7 @@ Object {
         "name": "foo",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2306,6 +2535,7 @@ Object {
         "name": "foo2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2372,6 +2602,7 @@ Object {
         "name": "foo3",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2449,6 +2680,7 @@ Object {
         "name": "foo4",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2526,6 +2758,7 @@ Object {
         "name": "foo5",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2603,6 +2836,7 @@ Object {
         "name": "foo6",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2690,6 +2924,7 @@ Object {
         "name": "foo7",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2787,6 +3022,7 @@ Object {
         "name": "foo8",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2854,6 +3090,7 @@ Object {
         "name": "foo9",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2920,6 +3157,7 @@ Object {
         "name": "foo10",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -2976,6 +3214,7 @@ Object {
         "name": "foo11",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -3059,6 +3298,7 @@ Object {
         "name": "foo",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3125,6 +3365,7 @@ Object {
         "name": "foo2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3191,6 +3432,7 @@ Object {
         "name": "foo3",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3256,6 +3498,7 @@ Object {
         "name": "foo4",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3322,6 +3565,7 @@ Object {
         "name": "foo5",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3397,6 +3641,7 @@ Object {
         "name": "foo6",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -3463,6 +3708,7 @@ Object {
         "name": "decl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3510,6 +3756,7 @@ Object {
         "name": "annotated",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3548,6 +3795,7 @@ Object {
         "name": "shadow",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3595,6 +3843,7 @@ Object {
         "name": "shadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3633,6 +3882,7 @@ Object {
         "name": "reassignable",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3680,6 +3930,7 @@ Object {
         "name": "reassignableExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3718,6 +3969,7 @@ Object {
         "name": "reassignableShadow",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3765,6 +4017,7 @@ Object {
         "name": "reassignableShadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3823,6 +4076,7 @@ Object {
         "name": "declElrd",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3882,6 +4136,7 @@ Object {
         "name": "declEird",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3940,6 +4195,7 @@ Object {
         "name": "elrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -3999,6 +4255,7 @@ Object {
         "name": "eirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4060,6 +4317,7 @@ Object {
         "name": "declDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4138,6 +4396,7 @@ Object {
         "name": "whereLastIsElrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4217,6 +4476,7 @@ Object {
         "name": "whereLastIsEirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -4290,6 +4550,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4335,6 +4596,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4653,6 +4915,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -4761,6 +5024,7 @@ Object {
         "name": "ret",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4786,6 +5050,7 @@ Object {
         "name": "noVal",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4840,6 +5105,7 @@ Object {
         "name": "retElrd",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4895,6 +5161,7 @@ Object {
         "name": "retEird",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4939,6 +5206,7 @@ Object {
         "name": "elrdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -4994,6 +5262,7 @@ Object {
         "name": "eirdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5047,6 +5316,7 @@ Object {
         "name": "retRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5101,6 +5371,7 @@ Object {
         "name": "whereLastLrdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5166,6 +5437,7 @@ Object {
         "name": "whereLastIrdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -5190,6 +5462,10 @@ exports[`the latest parser throws an error complaining about the same line numbe
 exports[`the latest parser throws an error complaining about the same line number: assignments/MissingSemicolon.sand 1`] = `3`;
 
 exports[`the latest parser throws an error complaining about the same line number: assignments/Unassignable.sand 1`] = `3`;
+
+exports[`the latest parser throws an error complaining about the same line number: genericMethodDeclarations/MissingParens.sand 1`] = `2`;
+
+exports[`the latest parser throws an error complaining about the same line number: genericMethodDeclarations/NoArgs.sand 1`] = `2`;
 
 exports[`the latest parser throws an error complaining about the same line number: localVariableDeclarations/DeclarationExpression.sand 1`] = `3`;
 
@@ -5291,6 +5567,7 @@ Object {
           "name": "int",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -5409,6 +5686,7 @@ Object {
           "name": "dot",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
         Object {
           "accessModifier": null,
@@ -5474,6 +5752,7 @@ Object {
           "name": "callDot",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
         Object {
           "accessModifier": null,
@@ -5538,6 +5817,7 @@ Object {
           "name": "index",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
         Object {
           "accessModifier": null,
@@ -5612,6 +5892,7 @@ Object {
           "name": "callIndex",
           "returnType": "void",
           "type": "MethodDeclaration",
+          "typeArgs": Array [],
         },
       ],
       "location": Object {
@@ -5672,6 +5953,7 @@ Object {
         "name": "ass",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5726,6 +6008,7 @@ Object {
         "name": "assElrd",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5791,6 +6074,7 @@ Object {
         "name": "assEird",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5858,6 +6142,7 @@ Object {
         "name": "assDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5912,6 +6197,7 @@ Object {
         "name": "elrdAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -5977,6 +6263,7 @@ Object {
         "name": "eirdAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6044,6 +6331,7 @@ Object {
         "name": "declAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6117,6 +6405,7 @@ Object {
         "name": "assAss",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -6220,6 +6509,7 @@ Object {
         "name": "foo",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6295,6 +6585,7 @@ Object {
         "name": "foo2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6382,6 +6673,7 @@ Object {
         "name": "bar",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6469,6 +6761,7 @@ Object {
         "name": "bar2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6576,6 +6869,7 @@ Object {
         "name": "bar3",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6683,6 +6977,7 @@ Object {
         "name": "bar4",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6780,6 +7075,7 @@ Object {
         "name": "bar5",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -6897,6 +7193,7 @@ Object {
         "name": "bar6",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -7104,6 +7401,7 @@ Object {
           "name": "int",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -7166,6 +7464,7 @@ Object {
           "name": "java....",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7222,6 +7521,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7256,6 +7556,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -7265,6 +7566,208 @@ Object {
       "lastLine": 13,
     },
     "name": "FullyQualifiedTypes",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: GenericMethodDeclarations.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 17,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "single",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 11,
+              "firstLine": 2,
+              "lastColumn": 12,
+              "lastLine": 2,
+            },
+            "name": "T",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "complex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 12,
+              "firstLine": 6,
+              "lastColumn": 13,
+              "lastLine": 6,
+            },
+            "name": "T",
+          },
+          Object {
+            "constraint": Object {
+              "constraintType": "Extends",
+              "superClass": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 25,
+                  "firstLine": 6,
+                  "lastColumn": 26,
+                  "lastLine": 6,
+                },
+                "name": "T",
+              },
+            },
+            "location": Object {
+              "firstColumn": 15,
+              "firstLine": 6,
+              "lastColumn": 26,
+              "lastLine": 6,
+            },
+            "name": "U",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "singleExplicitReturnType",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 35,
+            "firstLine": 10,
+            "lastColumn": 39,
+            "lastLine": 10,
+          },
+          "name": "void",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 29,
+              "firstLine": 10,
+              "lastColumn": 30,
+              "lastLine": 10,
+            },
+            "name": "T",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "complexExplicitReturnType",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 49,
+            "firstLine": 14,
+            "lastColumn": 53,
+            "lastLine": 14,
+          },
+          "name": "void",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 30,
+              "firstLine": 14,
+              "lastColumn": 31,
+              "lastLine": 14,
+            },
+            "name": "T",
+          },
+          Object {
+            "constraint": Object {
+              "constraintType": "Extends",
+              "superClass": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 43,
+                  "firstLine": 14,
+                  "lastColumn": 44,
+                  "lastLine": 14,
+                },
+                "name": "T",
+              },
+            },
+            "location": Object {
+              "firstColumn": 33,
+              "firstLine": 14,
+              "lastColumn": 44,
+              "lastLine": 14,
+            },
+            "name": "U",
+          },
+        ],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 17,
+    },
+    "name": "GenericMethodDeclarations",
     "superClass": null,
     "type": "Class",
     "typeArgDefs": Array [],
@@ -7383,6 +7886,7 @@ Object {
         "name": "main",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -7457,6 +7961,7 @@ Object {
         "name": "foo",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7513,6 +8018,7 @@ Object {
         "name": "foo2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7579,6 +8085,7 @@ Object {
         "name": "foo3",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7656,6 +8163,7 @@ Object {
         "name": "foo4",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7733,6 +8241,7 @@ Object {
         "name": "foo5",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7810,6 +8319,7 @@ Object {
         "name": "foo6",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7897,6 +8407,7 @@ Object {
         "name": "foo7",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -7994,6 +8505,7 @@ Object {
         "name": "foo8",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8061,6 +8573,7 @@ Object {
         "name": "foo9",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8127,6 +8640,7 @@ Object {
         "name": "foo10",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8183,6 +8697,7 @@ Object {
         "name": "foo11",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -8266,6 +8781,7 @@ Object {
         "name": "foo",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8332,6 +8848,7 @@ Object {
         "name": "foo2",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8398,6 +8915,7 @@ Object {
         "name": "foo3",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8463,6 +8981,7 @@ Object {
         "name": "foo4",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8529,6 +9048,7 @@ Object {
         "name": "foo5",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8604,6 +9124,7 @@ Object {
         "name": "foo6",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -8670,6 +9191,7 @@ Object {
         "name": "decl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8717,6 +9239,7 @@ Object {
         "name": "annotated",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8755,6 +9278,7 @@ Object {
         "name": "shadow",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8802,6 +9326,7 @@ Object {
         "name": "shadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8840,6 +9365,7 @@ Object {
         "name": "reassignable",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8887,6 +9413,7 @@ Object {
         "name": "reassignableExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8925,6 +9452,7 @@ Object {
         "name": "reassignableShadow",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -8972,6 +9500,7 @@ Object {
         "name": "reassignableShadowExplicitType",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9030,6 +9559,7 @@ Object {
         "name": "declElrd",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9089,6 +9619,7 @@ Object {
         "name": "declEird",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9147,6 +9678,7 @@ Object {
         "name": "elrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9206,6 +9738,7 @@ Object {
         "name": "eirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9267,6 +9800,7 @@ Object {
         "name": "declDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9345,6 +9879,7 @@ Object {
         "name": "whereLastIsElrdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9424,6 +9959,7 @@ Object {
         "name": "whereLastIsEirdDecl",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -9497,6 +10033,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9542,6 +10079,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9860,6 +10398,7 @@ Object {
           "name": "nullable",
         },
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -9968,6 +10507,7 @@ Object {
         "name": "ret",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -9993,6 +10533,7 @@ Object {
         "name": "noVal",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10047,6 +10588,7 @@ Object {
         "name": "retElrd",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10102,6 +10644,7 @@ Object {
         "name": "retEird",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10146,6 +10689,7 @@ Object {
         "name": "elrdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10201,6 +10745,7 @@ Object {
         "name": "eirdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10254,6 +10799,7 @@ Object {
         "name": "retRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10308,6 +10854,7 @@ Object {
         "name": "whereLastLrdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
       Object {
         "accessModifier": null,
@@ -10373,6 +10920,7 @@ Object {
         "name": "whereLastIrdRet",
         "returnType": "void",
         "type": "MethodDeclaration",
+        "typeArgs": Array [],
       },
     ],
     "location": Object {
@@ -10397,6 +10945,10 @@ exports[`the prebuilt parser throws an error complaining about the same line num
 exports[`the prebuilt parser throws an error complaining about the same line number: assignments/MissingSemicolon.sand 1`] = `3`;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: assignments/Unassignable.sand 1`] = `3`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: genericMethodDeclarations/MissingParens.sand 1`] = `2`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: genericMethodDeclarations/NoArgs.sand 1`] = `2`;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: localVariableDeclarations/DeclarationExpression.sand 1`] = `3`;
 
