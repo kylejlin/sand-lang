@@ -180,28 +180,28 @@ case 45: case 46: case 50: case 52:
  this.$ = [$$[$0-1], $$[$0]]; 
 break;
 case 57:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
 break;
 case 58:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
 break;
 case 59:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
 break;
 case 60:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
 break;
 case 61:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3] }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
 break;
 case 62:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3] }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
 break;
 case 63:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3] }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
 break;
 case 64:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3] }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
 break;
 case 65:
  this.$ = { type: yy.NodeType.If, condition: $$[$0-2], body: $$[$0-1], alternatives: $$[$0], location: yy.camelCase(this._$) }; 

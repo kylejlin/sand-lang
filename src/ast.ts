@@ -209,4 +209,5 @@ export interface LocalVariableDeclaration {
   name: string;
   initialValue: Expr;
   valueType: null | Type;
+  location: NodeLocation;
 }
