@@ -57,4 +57,9 @@ pub class LocalVariables {
         if x {}
         let bar = 2;
     }
+
+    bar6() {
+        let bar = 2;
+        let bar = 2;
+    }
 }

@@ -241,6 +241,8 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter localVariableDeclaration
         { $$ = [$1, $2]; }
+    | localVariableDeclaration localVariableDeclaration
+        { $$ = [$1, $2]; }
 
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionIncludingRightDelimiter
         { $$ = $1.concat([$3]); }
