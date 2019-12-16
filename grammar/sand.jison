@@ -208,9 +208,7 @@ compoundExpression
         { $$ = [$2]; }
     | "{" expressionIncludingRightDelimiter "}"
         { $$ = [$2]; }
-    | "{" localVariableDeclaration "}"
-        { $$ = [$2]; }
-    | "{" assignment "}"
+    | "{" statement "}"
         { $$ = [$2]; }
     | "{" twoOrMoreExpressionsWhereTheLastLacksRightDelimiter "}"
         { $$ = $2; }
@@ -226,9 +224,7 @@ twoOrMoreExpressionsWhereTheLastLacksRightDelimiter
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = [$1, $2]; }
-    | localVariableDeclaration expressionLackingRightDelimiterNotStartingWithInfixToken
-        { $$ = [$1, $2]; }
-    | assignment expressionLackingRightDelimiterNotStartingWithInfixToken
+    | statement expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = [$1, $2]; }
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionLackingRightDelimiter
         { $$ = $1.concat([$3]); }
@@ -241,44 +237,31 @@ twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter
         { $$ = [$1, $3]; }
     | expressionIncludingRightDelimiter expressionIncludingRightDelimiter
         { $$ = [$1, $2]; }
-    | localVariableDeclaration expressionIncludingRightDelimiter
-        { $$ = [$1, $2]; }
-    | assignment expressionIncludingRightDelimiter
+    | statement expressionIncludingRightDelimiter
         { $$ = [$1, $2]; }
         
-    | expressionLackingRightDelimiter ";" localVariableDeclaration
+    | expressionLackingRightDelimiter ";" statement
         { $$ = [$1, $3]; }
-    | expressionIncludingRightDelimiter localVariableDeclaration
+    | expressionIncludingRightDelimiter statement
         { $$ = [$1, $2]; }
-    | localVariableDeclaration localVariableDeclaration
-        { $$ = [$1, $2]; }
-    | assignment localVariableDeclaration
-        { $$ = [$1, $2]; }
-
-    | expressionLackingRightDelimiter ";" assignment
-        { $$ = [$1, $3]; }
-    | expressionIncludingRightDelimiter assignment
-        { $$ = [$1, $2]; }
-    | localVariableDeclaration assignment
-        { $$ = [$1, $2]; }
-    | assignment assignment
+    | statement statement
         { $$ = [$1, $2]; }
     
-
     | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" expressionIncludingRightDelimiter
         { $$ = $1.concat([$3]); }
     | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter expressionIncludingRightDelimiter
         { $$ = $1.concat([$2]); }
 
-    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" localVariableDeclaration
+    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" statement
         { $$ = $1.concat([$3]); }
-    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter localVariableDeclaration
+    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter statement
         { $$ = $1.concat([$2]); }
-    
-    | twoOrMoreExpressionsWhereTheLastLacksRightDelimiter ";" assignment
-        { $$ = $1.concat([$3]); }
-    | twoOrMoreExpressionsWhereTheLastIncludesRightDelimiter assignment
-        { $$ = $1.concat([$2]); }
+    ;
+
+// Statements include semicolons
+statement
+    : localVariableDeclaration
+    | assignment
     ;
 
 localVariableDeclaration
