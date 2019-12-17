@@ -1972,7 +1972,7 @@ Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 13,
+    "lastLine": 29,
   },
   "privClasses": Array [],
   "pubClass": Object {
@@ -1988,27 +1988,16 @@ Object {
           "lastColumn": 5,
           "lastLine": 4,
         },
-        "name": "foo",
+        "name": "simple",
         "returnType": Object {
-          "args": Array [
-            Object {
-              "args": Array [],
-              "location": Object {
-                "firstColumn": 31,
-                "firstLine": 2,
-                "lastColumn": 37,
-                "lastLine": 2,
-              },
-              "name": "String",
-            },
-          ],
+          "args": Array [],
           "location": Object {
-            "firstColumn": 11,
+            "firstColumn": 14,
             "firstLine": 2,
-            "lastColumn": 38,
+            "lastColumn": 33,
             "lastLine": 2,
           },
-          "name": "java....",
+          "name": "java.util.ArrayList",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -2023,49 +2012,27 @@ Object {
           "lastColumn": 5,
           "lastLine": 8,
         },
-        "name": "bar",
+        "name": "withTypeArg",
         "returnType": Object {
           "args": Array [
             Object {
-              "args": Array [
-                Object {
-                  "args": Array [
-                    Object {
-                      "args": Array [],
-                      "location": Object {
-                        "firstColumn": 31,
-                        "firstLine": 6,
-                        "lastColumn": 37,
-                        "lastLine": 6,
-                      },
-                      "name": "String",
-                    },
-                  ],
-                  "location": Object {
-                    "firstColumn": 31,
-                    "firstLine": 6,
-                    "lastColumn": 38,
-                    "lastLine": 6,
-                  },
-                  "name": "nullable",
-                },
-              ],
+              "args": Array [],
               "location": Object {
-                "firstColumn": 11,
+                "firstColumn": 39,
                 "firstLine": 6,
-                "lastColumn": 39,
+                "lastColumn": 42,
                 "lastLine": 6,
               },
-              "name": "java....",
+              "name": "int",
             },
           ],
           "location": Object {
-            "firstColumn": 11,
+            "firstColumn": 19,
             "firstLine": 6,
-            "lastColumn": 40,
+            "lastColumn": 43,
             "lastLine": 6,
           },
-          "name": "nullable",
+          "name": "java.util.ArrayList",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -2080,27 +2047,210 @@ Object {
           "lastColumn": 5,
           "lastLine": 12,
         },
-        "name": "baz",
+        "name": "withTypeArgs",
         "returnType": Object {
           "args": Array [
             Object {
               "args": Array [],
               "location": Object {
-                "firstColumn": 11,
+                "firstColumn": 40,
                 "firstLine": 10,
-                "lastColumn": 30,
+                "lastColumn": 43,
                 "lastLine": 10,
               },
-              "name": "java....",
+              "name": "int",
+            },
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 45,
+                    "firstLine": 10,
+                    "lastColumn": 51,
+                    "lastLine": 10,
+                  },
+                  "name": "String",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 45,
+                "firstLine": 10,
+                "lastColumn": 52,
+                "lastLine": 10,
+              },
+              "name": "nullable",
             },
           ],
           "location": Object {
-            "firstColumn": 11,
+            "firstColumn": 20,
             "firstLine": 10,
-            "lastColumn": 31,
+            "lastColumn": 53,
             "lastLine": 10,
           },
-          "name": "nullable",
+          "name": "java.util.ArrayList",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "array",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 14,
+                "lastColumn": 32,
+                "lastLine": 14,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 14,
+            "lastColumn": 34,
+            "lastLine": 14,
+          },
+          "name": "array",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "arrayTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 40,
+                    "firstLine": 18,
+                    "lastColumn": 44,
+                    "lastLine": 18,
+                  },
+                  "name": "char",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 20,
+                "firstLine": 18,
+                "lastColumn": 45,
+                "lastLine": 18,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 18,
+            "lastColumn": 47,
+            "lastLine": 18,
+          },
+          "name": "array",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "arrayList",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 22,
+                "lastColumn": 36,
+                "lastLine": 22,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 22,
+            "lastColumn": 39,
+            "lastLine": 22,
+          },
+          "name": "java.util.ArrayList",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "arrayListTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 44,
+                    "firstLine": 26,
+                    "lastColumn": 48,
+                    "lastLine": 26,
+                  },
+                  "name": "char",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 24,
+                "firstLine": 26,
+                "lastColumn": 49,
+                "lastLine": 26,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 24,
+            "firstLine": 26,
+            "lastColumn": 52,
+            "lastLine": 26,
+          },
+          "name": "java.util.ArrayList",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -2110,7 +2260,7 @@ Object {
       "firstColumn": 0,
       "firstLine": 1,
       "lastColumn": 1,
-      "lastLine": 13,
+      "lastLine": 29,
     },
     "name": "FullyQualifiedTypes",
     "superClass": null,
@@ -7654,7 +7804,7 @@ Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 13,
+    "lastLine": 29,
   },
   "privClasses": Array [],
   "pubClass": Object {
@@ -7670,27 +7820,16 @@ Object {
           "lastColumn": 5,
           "lastLine": 4,
         },
-        "name": "foo",
+        "name": "simple",
         "returnType": Object {
-          "args": Array [
-            Object {
-              "args": Array [],
-              "location": Object {
-                "firstColumn": 31,
-                "firstLine": 2,
-                "lastColumn": 37,
-                "lastLine": 2,
-              },
-              "name": "String",
-            },
-          ],
+          "args": Array [],
           "location": Object {
-            "firstColumn": 11,
+            "firstColumn": 14,
             "firstLine": 2,
-            "lastColumn": 38,
+            "lastColumn": 33,
             "lastLine": 2,
           },
-          "name": "java....",
+          "name": "java.util.ArrayList",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -7705,49 +7844,27 @@ Object {
           "lastColumn": 5,
           "lastLine": 8,
         },
-        "name": "bar",
+        "name": "withTypeArg",
         "returnType": Object {
           "args": Array [
             Object {
-              "args": Array [
-                Object {
-                  "args": Array [
-                    Object {
-                      "args": Array [],
-                      "location": Object {
-                        "firstColumn": 31,
-                        "firstLine": 6,
-                        "lastColumn": 37,
-                        "lastLine": 6,
-                      },
-                      "name": "String",
-                    },
-                  ],
-                  "location": Object {
-                    "firstColumn": 31,
-                    "firstLine": 6,
-                    "lastColumn": 38,
-                    "lastLine": 6,
-                  },
-                  "name": "nullable",
-                },
-              ],
+              "args": Array [],
               "location": Object {
-                "firstColumn": 11,
+                "firstColumn": 39,
                 "firstLine": 6,
-                "lastColumn": 39,
+                "lastColumn": 42,
                 "lastLine": 6,
               },
-              "name": "java....",
+              "name": "int",
             },
           ],
           "location": Object {
-            "firstColumn": 11,
+            "firstColumn": 19,
             "firstLine": 6,
-            "lastColumn": 40,
+            "lastColumn": 43,
             "lastLine": 6,
           },
-          "name": "nullable",
+          "name": "java.util.ArrayList",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -7762,27 +7879,210 @@ Object {
           "lastColumn": 5,
           "lastLine": 12,
         },
-        "name": "baz",
+        "name": "withTypeArgs",
         "returnType": Object {
           "args": Array [
             Object {
               "args": Array [],
               "location": Object {
-                "firstColumn": 11,
+                "firstColumn": 40,
                 "firstLine": 10,
-                "lastColumn": 30,
+                "lastColumn": 43,
                 "lastLine": 10,
               },
-              "name": "java....",
+              "name": "int",
+            },
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 45,
+                    "firstLine": 10,
+                    "lastColumn": 51,
+                    "lastLine": 10,
+                  },
+                  "name": "String",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 45,
+                "firstLine": 10,
+                "lastColumn": 52,
+                "lastLine": 10,
+              },
+              "name": "nullable",
             },
           ],
           "location": Object {
-            "firstColumn": 11,
+            "firstColumn": 20,
             "firstLine": 10,
-            "lastColumn": 31,
+            "lastColumn": 53,
             "lastLine": 10,
           },
-          "name": "nullable",
+          "name": "java.util.ArrayList",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "array",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 14,
+                "lastColumn": 32,
+                "lastLine": 14,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 14,
+            "lastColumn": 34,
+            "lastLine": 14,
+          },
+          "name": "array",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "arrayTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 40,
+                    "firstLine": 18,
+                    "lastColumn": 44,
+                    "lastLine": 18,
+                  },
+                  "name": "char",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 20,
+                "firstLine": 18,
+                "lastColumn": 45,
+                "lastLine": 18,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 18,
+            "lastColumn": 47,
+            "lastLine": 18,
+          },
+          "name": "array",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "arrayList",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 22,
+                "lastColumn": 36,
+                "lastLine": 22,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 22,
+            "lastColumn": 39,
+            "lastLine": 22,
+          },
+          "name": "java.util.ArrayList",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "arrayListTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 44,
+                    "firstLine": 26,
+                    "lastColumn": 48,
+                    "lastLine": 26,
+                  },
+                  "name": "char",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 24,
+                "firstLine": 26,
+                "lastColumn": 49,
+                "lastLine": 26,
+              },
+              "name": "java.util.ArrayList",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 24,
+            "firstLine": 26,
+            "lastColumn": 52,
+            "lastLine": 26,
+          },
+          "name": "java.util.ArrayList",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -7792,7 +8092,7 @@ Object {
       "firstColumn": 0,
       "firstLine": 1,
       "lastColumn": 1,
-      "lastLine": 13,
+      "lastLine": 29,
     },
     "name": "FullyQualifiedTypes",
     "superClass": null,

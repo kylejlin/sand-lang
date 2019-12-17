@@ -129,7 +129,7 @@ case 18:
  this.$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.camelCase(this._$) }; 
 break;
 case 20:
- this.$ = $$[$0-2] + "." + $$[$0-1]; 
+ this.$ = $$[$0-2] + "." + $$[$0]; 
 break;
 case 23: case 141:
  this.$ = [$$[$0]]; 

@@ -1,13 +1,29 @@
 pub class FullyQualifiedTypes {
-    foo(): java.util.ArrayList<String> {
+    simple(): java.util.ArrayList {
 
     }
 
-    bar(): java.util.ArrayList<String?>? {
-        
+    withTypeArg(): java.util.ArrayList<int> {
+
     }
 
-    baz(): java.util.ArrayList? {
+    withTypeArgs(): java.util.ArrayList<int, String?> {
+
+    }
+
+    array(): java.util.ArrayList[] {
+
+    }
+
+    arrayTypeArg(): java.util.ArrayList<char>[] {
+
+    }
+
+    arrayList(): java.util.ArrayList[*] {
+
+    }
+
+    arrayListTypeArg(): java.util.ArrayList<char>[*] {
 
     }
 }

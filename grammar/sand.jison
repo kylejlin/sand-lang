@@ -149,7 +149,7 @@ nonNullableType
 typeIdentifierWithPossibleDotChain
     : IDENTIFIER
     | typeIdentifierWithPossibleDotChain "." IDENTIFIER
-        { $$ = $1 + "." + $2; }
+        { $$ = $1 + "." + $3; }
     ;
 
 optTypeArgs
