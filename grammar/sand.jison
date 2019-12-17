@@ -458,9 +458,9 @@ assignableExpression
     : IDENTIFIER
         { $$ = { type: yy.NodeType.Identifier, value: yytext, location: yy.camelCase(@$) }; }
     | assignableExpression "." IDENTIFIER
-        { $$ = yy.binaryExpr(".", $1, $3, @$); }
+        { $$ = yy.dotExpr($1, $3, @$); }
     | functionCall "." IDENTIFIER
-        { $$ = yy.binaryExpr(".", $1, $3, @$); }
+        { $$ = yy.dotExpr($1, $3, @$); }
     | assignableExpression "[" expression "]"
         { $$ = yy.binaryExpr("[", $1, $3, @$); }
     | functionCall "[" expression "]"

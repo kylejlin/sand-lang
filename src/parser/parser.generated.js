@@ -279,7 +279,7 @@ case 132:
  this.$ = { type: yy.NodeType.Identifier, value: yytext, location: yy.camelCase(this._$) }; 
 break;
 case 133: case 134:
- this.$ = yy.binaryExpr(".", $$[$0-2], $$[$0], this._$); 
+ this.$ = yy.dotExpr($$[$0-2], $$[$0], this._$); 
 break;
 case 135: case 136:
  this.$ = yy.binaryExpr("[", $$[$0-3], $$[$0-1], this._$); 

@@ -9,6 +9,8 @@ import {
   NodeType,
   UnaryExpr,
   UnaryOperation,
+  Expr,
+  DotExpr,
 } from "../ast";
 import { wrapPrimitiveIfNeeded } from "../sandTypes";
 import { SandParser } from "./parser.generated";
@@ -43,6 +45,19 @@ export default function addApi(parser: SandParser) {
     return {
       type: NodeType.UnaryExpr,
       operation,
+      right,
+      location: camelCase(location),
+    };
+  };
+
+  yy.dotExpr = function dotExpr(
+    left: Expr,
+    right: string,
+    location: JisonNodeLocation,
+  ): DotExpr {
+    return {
+      type: NodeType.DotExpr,
+      left,
       right,
       location: camelCase(location),
     };

@@ -5,6 +5,7 @@ export enum NodeType {
 
   BinaryExpr = "BinaryExpr",
   UnaryExpr = "UnaryExpr",
+  DotExpr = "DotExpr",
 
   PropertyDeclaration = "PropertyDeclaration",
   MethodDeclaration = "MethodDeclaration",
@@ -63,6 +64,7 @@ export type Expr =
   | Identifier
   | BinaryExpr
   | UnaryExpr
+  | DotExpr
   | If
   | FunctionCall;
 
@@ -93,7 +95,6 @@ export interface BinaryExpr {
 }
 
 export type BinaryOperation =
-  | "."
   | "["
   | "**"
   | "*"
@@ -118,6 +119,13 @@ export interface UnaryExpr {
 }
 
 export type UnaryOperation = "-" | "!";
+
+export interface DotExpr {
+  type: NodeType.DotExpr;
+  left: Expr;
+  right: string;
+  location: NodeLocation;
+}
 
 export interface If {
   type: NodeType.If;
