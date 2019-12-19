@@ -1,0 +1,13 @@
+pub class Operations {
+    associativity() {
+        a - b - c
+    }
+    
+    precedence() {
+        -a ** b + c * d - e
+    }
+
+    eirdPrecedence() {
+        -if x {} ** b + - if y {} * d - e
+    }
+}
