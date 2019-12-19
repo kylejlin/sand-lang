@@ -333,108 +333,330 @@ expressionLackingRightDelimiterStartingWithInfixToken
     | "-" expressionIncludingRightDelimiter %prec UMINUS
         { $$ = yy.unaryExpr("-", $2, @$); }
 
-    | expressionLackingRightDelimiterStartingWithInfixToken "||" expression
+    // elrdswit OPERATOR elrdswit
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "||" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("||", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken "&&" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "&&" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("&&", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterStartingWithInfixToken "==" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "==" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("==", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken "!=" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "!=" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("!=", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterStartingWithInfixToken "<" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "<" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("<", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken "<=" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "<=" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("<=", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken ">" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken ">" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr(">", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken ">=" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken ">=" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr(">=", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterStartingWithInfixToken "+" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "+" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("+", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken "-" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "-" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("-", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterStartingWithInfixToken "*" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "*" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("*", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken "/" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "/" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("/", $1, $3, @$); }
-    | expressionLackingRightDelimiterStartingWithInfixToken "%" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "%" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("%", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterStartingWithInfixToken "**" expression
+    | expressionLackingRightDelimiterStartingWithInfixToken "**" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+
+    // elrdswit OPERATOR elrdnswit
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "||" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "&&" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "==" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "!=" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "<" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "<=" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken ">" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken ">=" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "+" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "-" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "*" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "/" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "%" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "**" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+
+    // elrdswit OPERATOR eird
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "||" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "&&" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "==" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "!=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "<" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "<=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken ">" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken ">=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "+" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "-" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "*" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "/" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionLackingRightDelimiterStartingWithInfixToken "%" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterStartingWithInfixToken "**" expressionIncludingRightDelimiter
         { $$ = yy.binaryExpr("**", $1, $3, @$); }
     ;
 
 expressionLackingRightDelimiterNotStartingWithInfixToken
-    : expressionLackingRightDelimiterNotStartingWithInfixToken "||" expression
+    // elrdnswit OPERATOR elrdswit
+
+    : expressionLackingRightDelimiterNotStartingWithInfixToken "||" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("||", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "&&" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "&&" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("&&", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "==" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "==" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("==", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "!=" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "!=" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("!=", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "<" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("<", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "<=" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<=" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("<=", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken ">" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr(">", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken ">=" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">=" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr(">=", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "+" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "+" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("+", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "-" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "-" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("-", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "*" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "*" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("*", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "/" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "/" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("/", $1, $3, @$); }
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "%" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "%" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("%", $1, $3, @$); }
 
-    | expressionLackingRightDelimiterNotStartingWithInfixToken "**" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "**" expressionLackingRightDelimiterStartingWithInfixToken
         { $$ = yy.binaryExpr("**", $1, $3, @$); }
 
-    | expressionIncludingRightDelimiter "||" expression
+    // elrdnswit OPERATOR elrdnswit
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "||" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("||", $1, $3, @$); }
-    | expressionIncludingRightDelimiter "&&" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "&&" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("&&", $1, $3, @$); }
 
-    | expressionIncludingRightDelimiter "==" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "==" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("==", $1, $3, @$); }
-    | expressionIncludingRightDelimiter "!=" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "!=" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("!=", $1, $3, @$); }
 
-    | expressionIncludingRightDelimiter "<" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("<", $1, $3, @$); }
-    | expressionIncludingRightDelimiter "<=" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<=" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("<=", $1, $3, @$); }
-    | expressionIncludingRightDelimiter ">" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr(">", $1, $3, @$); }
-    | expressionIncludingRightDelimiter ">=" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">=" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr(">=", $1, $3, @$); }
 
-    | expressionIncludingRightDelimiter "+" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "+" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("+", $1, $3, @$); }
-    | expressionIncludingRightDelimiter "-" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "-" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("-", $1, $3, @$); }
 
-    | expressionIncludingRightDelimiter "*" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "*" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("*", $1, $3, @$); }
-    | expressionIncludingRightDelimiter "/" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "/" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("/", $1, $3, @$); }
-    | expressionIncludingRightDelimiter "%" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "%" expressionLackingRightDelimiterNotStartingWithInfixToken
         { $$ = yy.binaryExpr("%", $1, $3, @$); }
 
-    | expressionIncludingRightDelimiter "**" expression
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "**" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+    
+    // elrdnswit OPERATOR eird
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "||" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "&&" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "==" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "!=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "<=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken ">=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "+" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "-" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "*" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "/" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "%" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionLackingRightDelimiterNotStartingWithInfixToken "**" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+
+    // eird OPERATOR elrdswit
+
+    | expressionIncludingRightDelimiter "||" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "&&" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "==" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "!=" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "<" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "<=" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">=" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "+" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "-" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "*" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "/" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "%" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "**" expressionLackingRightDelimiterStartingWithInfixToken
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+
+    // eird OPERATOR elrdnswit
+
+    | expressionIncludingRightDelimiter "||" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "&&" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "==" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "!=" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "<" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "<=" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">=" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "+" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "-" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "*" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "/" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "%" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "**" expressionLackingRightDelimiterNotStartingWithInfixToken
+        { $$ = yy.binaryExpr("**", $1, $3, @$); }
+    
+    // eird OPERATOR eird
+
+    | expressionIncludingRightDelimiter "||" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("||", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "&&" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("&&", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "==" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("==", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "!=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("!=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "<" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("<", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "<=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("<=", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr(">", $1, $3, @$); }
+    | expressionIncludingRightDelimiter ">=" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr(">=", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "+" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("+", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "-" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("-", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "*" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("*", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "/" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("/", $1, $3, @$); }
+    | expressionIncludingRightDelimiter "%" expressionIncludingRightDelimiter
+        { $$ = yy.binaryExpr("%", $1, $3, @$); }
+
+    | expressionIncludingRightDelimiter "**" expressionIncludingRightDelimiter
         { $$ = yy.binaryExpr("**", $1, $3, @$); }
 
     | "!" expression

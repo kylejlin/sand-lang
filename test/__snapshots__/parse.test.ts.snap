@@ -3801,45 +3801,45 @@ Object {
         "body": Array [
           Object {
             "left": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 31,
-                "lastColumn": 16,
-                "lastLine": 31,
-              },
-              "operation": "-",
-              "right": Object {
-                "alternatives": Array [],
-                "body": Array [],
-                "condition": Object {
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 31,
-                    "lastColumn": 13,
-                    "lastLine": 31,
-                  },
-                  "type": "Identifier",
-                  "value": "x",
-                },
+              "left": Object {
                 "location": Object {
-                  "firstColumn": 9,
+                  "firstColumn": 8,
                   "firstLine": 31,
                   "lastColumn": 16,
                   "lastLine": 31,
                 },
-                "type": "If",
+                "operation": "-",
+                "right": Object {
+                  "alternatives": Array [],
+                  "body": Array [],
+                  "condition": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 31,
+                      "lastColumn": 13,
+                      "lastLine": 31,
+                    },
+                    "type": "Identifier",
+                    "value": "x",
+                  },
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 31,
+                    "lastColumn": 16,
+                    "lastLine": 31,
+                  },
+                  "type": "If",
+                },
+                "type": "UnaryExpr",
               },
-              "type": "UnaryExpr",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 31,
-              "lastColumn": 30,
-              "lastLine": 31,
-            },
-            "operation": "-",
-            "right": Object {
-              "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 31,
+                "lastColumn": 26,
+                "lastLine": 31,
+              },
+              "operation": "-",
+              "right": Object {
                 "alternatives": Array [],
                 "body": Array [],
                 "condition": Object {
@@ -3860,24 +3860,24 @@ Object {
                 },
                 "type": "If",
               },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 30,
+              "lastLine": 31,
+            },
+            "operation": "-",
+            "right": Object {
               "location": Object {
-                "firstColumn": 19,
+                "firstColumn": 29,
                 "firstLine": 31,
                 "lastColumn": 30,
                 "lastLine": 31,
               },
-              "operation": "-",
-              "right": Object {
-                "location": Object {
-                  "firstColumn": 29,
-                  "firstLine": 31,
-                  "lastColumn": 30,
-                  "lastLine": 31,
-                },
-                "type": "Identifier",
-                "value": "x",
-              },
-              "type": "BinaryExpr",
+              "type": "Identifier",
+              "value": "x",
             },
             "type": "BinaryExpr",
           },
@@ -5871,24 +5871,24 @@ Object {
         "body": Array [
           Object {
             "left": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 9,
+                  "lastLine": 3,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
               "location": Object {
                 "firstColumn": 8,
                 "firstLine": 3,
-                "lastColumn": 9,
+                "lastColumn": 13,
                 "lastLine": 3,
               },
-              "type": "Identifier",
-              "value": "a",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 3,
-              "lastColumn": 17,
-              "lastLine": 3,
-            },
-            "operation": "-",
-            "right": Object {
-              "left": Object {
+              "operation": "-",
+              "right": Object {
                 "location": Object {
                   "firstColumn": 12,
                   "firstLine": 3,
@@ -5898,24 +5898,24 @@ Object {
                 "type": "Identifier",
                 "value": "b",
               },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 17,
+              "lastLine": 3,
+            },
+            "operation": "-",
+            "right": Object {
               "location": Object {
-                "firstColumn": 12,
+                "firstColumn": 16,
                 "firstLine": 3,
                 "lastColumn": 17,
                 "lastLine": 3,
               },
-              "operation": "-",
-              "right": Object {
-                "location": Object {
-                  "firstColumn": 16,
-                  "firstLine": 3,
-                  "lastColumn": 17,
-                  "lastLine": 3,
-                },
-                "type": "Identifier",
-                "value": "c",
-              },
-              "type": "BinaryExpr",
+              "type": "Identifier",
+              "value": "c",
             },
             "type": "BinaryExpr",
           },
@@ -5937,47 +5937,50 @@ Object {
         "body": Array [
           Object {
             "left": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 7,
-                "lastColumn": 10,
-                "lastLine": 7,
-              },
-              "operation": "-",
-              "right": Object {
-                "location": Object {
-                  "firstColumn": 9,
-                  "firstLine": 7,
-                  "lastColumn": 10,
-                  "lastLine": 7,
-                },
-                "type": "Identifier",
-                "value": "a",
-              },
-              "type": "UnaryExpr",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 7,
-              "lastColumn": 27,
-              "lastLine": 7,
-            },
-            "operation": "**",
-            "right": Object {
               "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 7,
+                    "lastColumn": 10,
+                    "lastLine": 7,
+                  },
+                  "operation": "-",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 9,
+                      "firstLine": 7,
+                      "lastColumn": 10,
+                      "lastLine": 7,
+                    },
+                    "type": "Identifier",
+                    "value": "a",
+                  },
+                  "type": "UnaryExpr",
+                },
                 "location": Object {
-                  "firstColumn": 14,
+                  "firstColumn": 8,
                   "firstLine": 7,
                   "lastColumn": 15,
                   "lastLine": 7,
                 },
-                "type": "Identifier",
-                "value": "b",
+                "operation": "**",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 14,
+                    "firstLine": 7,
+                    "lastColumn": 15,
+                    "lastLine": 7,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
               },
               "location": Object {
-                "firstColumn": 14,
+                "firstColumn": 8,
                 "firstLine": 7,
-                "lastColumn": 27,
+                "lastColumn": 23,
                 "lastLine": 7,
               },
               "operation": "+",
@@ -5995,43 +5998,40 @@ Object {
                 "location": Object {
                   "firstColumn": 18,
                   "firstLine": 7,
-                  "lastColumn": 27,
+                  "lastColumn": 23,
                   "lastLine": 7,
                 },
                 "operation": "*",
                 "right": Object {
-                  "left": Object {
-                    "location": Object {
-                      "firstColumn": 22,
-                      "firstLine": 7,
-                      "lastColumn": 23,
-                      "lastLine": 7,
-                    },
-                    "type": "Identifier",
-                    "value": "d",
-                  },
                   "location": Object {
                     "firstColumn": 22,
                     "firstLine": 7,
-                    "lastColumn": 27,
+                    "lastColumn": 23,
                     "lastLine": 7,
                   },
-                  "operation": "-",
-                  "right": Object {
-                    "location": Object {
-                      "firstColumn": 26,
-                      "firstLine": 7,
-                      "lastColumn": 27,
-                      "lastLine": 7,
-                    },
-                    "type": "Identifier",
-                    "value": "e",
-                  },
-                  "type": "BinaryExpr",
+                  "type": "Identifier",
+                  "value": "d",
                 },
                 "type": "BinaryExpr",
               },
               "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 27,
+              "lastLine": 7,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 26,
+                "firstLine": 7,
+                "lastColumn": 27,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "e",
             },
             "type": "BinaryExpr",
           },
@@ -6053,58 +6053,61 @@ Object {
         "body": Array [
           Object {
             "left": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 11,
-                "lastColumn": 16,
-                "lastLine": 11,
-              },
-              "operation": "-",
-              "right": Object {
-                "alternatives": Array [],
-                "body": Array [],
-                "condition": Object {
+              "left": Object {
+                "left": Object {
                   "location": Object {
-                    "firstColumn": 12,
+                    "firstColumn": 8,
                     "firstLine": 11,
-                    "lastColumn": 13,
+                    "lastColumn": 16,
                     "lastLine": 11,
                   },
-                  "type": "Identifier",
-                  "value": "x",
+                  "operation": "-",
+                  "right": Object {
+                    "alternatives": Array [],
+                    "body": Array [],
+                    "condition": Object {
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 11,
+                        "lastColumn": 13,
+                        "lastLine": 11,
+                      },
+                      "type": "Identifier",
+                      "value": "x",
+                    },
+                    "location": Object {
+                      "firstColumn": 9,
+                      "firstLine": 11,
+                      "lastColumn": 16,
+                      "lastLine": 11,
+                    },
+                    "type": "If",
+                  },
+                  "type": "UnaryExpr",
                 },
                 "location": Object {
-                  "firstColumn": 9,
-                  "firstLine": 11,
-                  "lastColumn": 16,
-                  "lastLine": 11,
-                },
-                "type": "If",
-              },
-              "type": "UnaryExpr",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 11,
-              "lastColumn": 41,
-              "lastLine": 11,
-            },
-            "operation": "**",
-            "right": Object {
-              "left": Object {
-                "location": Object {
-                  "firstColumn": 20,
+                  "firstColumn": 8,
                   "firstLine": 11,
                   "lastColumn": 21,
                   "lastLine": 11,
                 },
-                "type": "Identifier",
-                "value": "b",
+                "operation": "**",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 20,
+                    "firstLine": 11,
+                    "lastColumn": 21,
+                    "lastLine": 11,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
               },
               "location": Object {
-                "firstColumn": 20,
+                "firstColumn": 8,
                 "firstLine": 11,
-                "lastColumn": 41,
+                "lastColumn": 37,
                 "lastLine": 11,
               },
               "operation": "+",
@@ -6143,43 +6146,40 @@ Object {
                 "location": Object {
                   "firstColumn": 24,
                   "firstLine": 11,
-                  "lastColumn": 41,
+                  "lastColumn": 37,
                   "lastLine": 11,
                 },
                 "operation": "*",
                 "right": Object {
-                  "left": Object {
-                    "location": Object {
-                      "firstColumn": 36,
-                      "firstLine": 11,
-                      "lastColumn": 37,
-                      "lastLine": 11,
-                    },
-                    "type": "Identifier",
-                    "value": "d",
-                  },
                   "location": Object {
                     "firstColumn": 36,
                     "firstLine": 11,
-                    "lastColumn": 41,
+                    "lastColumn": 37,
                     "lastLine": 11,
                   },
-                  "operation": "-",
-                  "right": Object {
-                    "location": Object {
-                      "firstColumn": 40,
-                      "firstLine": 11,
-                      "lastColumn": 41,
-                      "lastLine": 11,
-                    },
-                    "type": "Identifier",
-                    "value": "e",
-                  },
-                  "type": "BinaryExpr",
+                  "type": "Identifier",
+                  "value": "d",
                 },
                 "type": "BinaryExpr",
               },
               "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 41,
+              "lastLine": 11,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 40,
+                "firstLine": 11,
+                "lastColumn": 41,
+                "lastLine": 11,
+              },
+              "type": "Identifier",
+              "value": "e",
             },
             "type": "BinaryExpr",
           },
@@ -10523,45 +10523,45 @@ Object {
         "body": Array [
           Object {
             "left": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 31,
-                "lastColumn": 16,
-                "lastLine": 31,
-              },
-              "operation": "-",
-              "right": Object {
-                "alternatives": Array [],
-                "body": Array [],
-                "condition": Object {
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 31,
-                    "lastColumn": 13,
-                    "lastLine": 31,
-                  },
-                  "type": "Identifier",
-                  "value": "x",
-                },
+              "left": Object {
                 "location": Object {
-                  "firstColumn": 9,
+                  "firstColumn": 8,
                   "firstLine": 31,
                   "lastColumn": 16,
                   "lastLine": 31,
                 },
-                "type": "If",
+                "operation": "-",
+                "right": Object {
+                  "alternatives": Array [],
+                  "body": Array [],
+                  "condition": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 31,
+                      "lastColumn": 13,
+                      "lastLine": 31,
+                    },
+                    "type": "Identifier",
+                    "value": "x",
+                  },
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 31,
+                    "lastColumn": 16,
+                    "lastLine": 31,
+                  },
+                  "type": "If",
+                },
+                "type": "UnaryExpr",
               },
-              "type": "UnaryExpr",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 31,
-              "lastColumn": 30,
-              "lastLine": 31,
-            },
-            "operation": "-",
-            "right": Object {
-              "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 31,
+                "lastColumn": 26,
+                "lastLine": 31,
+              },
+              "operation": "-",
+              "right": Object {
                 "alternatives": Array [],
                 "body": Array [],
                 "condition": Object {
@@ -10582,24 +10582,24 @@ Object {
                 },
                 "type": "If",
               },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 30,
+              "lastLine": 31,
+            },
+            "operation": "-",
+            "right": Object {
               "location": Object {
-                "firstColumn": 19,
+                "firstColumn": 29,
                 "firstLine": 31,
                 "lastColumn": 30,
                 "lastLine": 31,
               },
-              "operation": "-",
-              "right": Object {
-                "location": Object {
-                  "firstColumn": 29,
-                  "firstLine": 31,
-                  "lastColumn": 30,
-                  "lastLine": 31,
-                },
-                "type": "Identifier",
-                "value": "x",
-              },
-              "type": "BinaryExpr",
+              "type": "Identifier",
+              "value": "x",
             },
             "type": "BinaryExpr",
           },
@@ -12593,24 +12593,24 @@ Object {
         "body": Array [
           Object {
             "left": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 9,
+                  "lastLine": 3,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
               "location": Object {
                 "firstColumn": 8,
                 "firstLine": 3,
-                "lastColumn": 9,
+                "lastColumn": 13,
                 "lastLine": 3,
               },
-              "type": "Identifier",
-              "value": "a",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 3,
-              "lastColumn": 17,
-              "lastLine": 3,
-            },
-            "operation": "-",
-            "right": Object {
-              "left": Object {
+              "operation": "-",
+              "right": Object {
                 "location": Object {
                   "firstColumn": 12,
                   "firstLine": 3,
@@ -12620,24 +12620,24 @@ Object {
                 "type": "Identifier",
                 "value": "b",
               },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 17,
+              "lastLine": 3,
+            },
+            "operation": "-",
+            "right": Object {
               "location": Object {
-                "firstColumn": 12,
+                "firstColumn": 16,
                 "firstLine": 3,
                 "lastColumn": 17,
                 "lastLine": 3,
               },
-              "operation": "-",
-              "right": Object {
-                "location": Object {
-                  "firstColumn": 16,
-                  "firstLine": 3,
-                  "lastColumn": 17,
-                  "lastLine": 3,
-                },
-                "type": "Identifier",
-                "value": "c",
-              },
-              "type": "BinaryExpr",
+              "type": "Identifier",
+              "value": "c",
             },
             "type": "BinaryExpr",
           },
@@ -12659,47 +12659,50 @@ Object {
         "body": Array [
           Object {
             "left": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 7,
-                "lastColumn": 10,
-                "lastLine": 7,
-              },
-              "operation": "-",
-              "right": Object {
-                "location": Object {
-                  "firstColumn": 9,
-                  "firstLine": 7,
-                  "lastColumn": 10,
-                  "lastLine": 7,
-                },
-                "type": "Identifier",
-                "value": "a",
-              },
-              "type": "UnaryExpr",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 7,
-              "lastColumn": 27,
-              "lastLine": 7,
-            },
-            "operation": "**",
-            "right": Object {
               "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 7,
+                    "lastColumn": 10,
+                    "lastLine": 7,
+                  },
+                  "operation": "-",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 9,
+                      "firstLine": 7,
+                      "lastColumn": 10,
+                      "lastLine": 7,
+                    },
+                    "type": "Identifier",
+                    "value": "a",
+                  },
+                  "type": "UnaryExpr",
+                },
                 "location": Object {
-                  "firstColumn": 14,
+                  "firstColumn": 8,
                   "firstLine": 7,
                   "lastColumn": 15,
                   "lastLine": 7,
                 },
-                "type": "Identifier",
-                "value": "b",
+                "operation": "**",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 14,
+                    "firstLine": 7,
+                    "lastColumn": 15,
+                    "lastLine": 7,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
               },
               "location": Object {
-                "firstColumn": 14,
+                "firstColumn": 8,
                 "firstLine": 7,
-                "lastColumn": 27,
+                "lastColumn": 23,
                 "lastLine": 7,
               },
               "operation": "+",
@@ -12717,43 +12720,40 @@ Object {
                 "location": Object {
                   "firstColumn": 18,
                   "firstLine": 7,
-                  "lastColumn": 27,
+                  "lastColumn": 23,
                   "lastLine": 7,
                 },
                 "operation": "*",
                 "right": Object {
-                  "left": Object {
-                    "location": Object {
-                      "firstColumn": 22,
-                      "firstLine": 7,
-                      "lastColumn": 23,
-                      "lastLine": 7,
-                    },
-                    "type": "Identifier",
-                    "value": "d",
-                  },
                   "location": Object {
                     "firstColumn": 22,
                     "firstLine": 7,
-                    "lastColumn": 27,
+                    "lastColumn": 23,
                     "lastLine": 7,
                   },
-                  "operation": "-",
-                  "right": Object {
-                    "location": Object {
-                      "firstColumn": 26,
-                      "firstLine": 7,
-                      "lastColumn": 27,
-                      "lastLine": 7,
-                    },
-                    "type": "Identifier",
-                    "value": "e",
-                  },
-                  "type": "BinaryExpr",
+                  "type": "Identifier",
+                  "value": "d",
                 },
                 "type": "BinaryExpr",
               },
               "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 27,
+              "lastLine": 7,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 26,
+                "firstLine": 7,
+                "lastColumn": 27,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "e",
             },
             "type": "BinaryExpr",
           },
@@ -12775,58 +12775,61 @@ Object {
         "body": Array [
           Object {
             "left": Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 11,
-                "lastColumn": 16,
-                "lastLine": 11,
-              },
-              "operation": "-",
-              "right": Object {
-                "alternatives": Array [],
-                "body": Array [],
-                "condition": Object {
+              "left": Object {
+                "left": Object {
                   "location": Object {
-                    "firstColumn": 12,
+                    "firstColumn": 8,
                     "firstLine": 11,
-                    "lastColumn": 13,
+                    "lastColumn": 16,
                     "lastLine": 11,
                   },
-                  "type": "Identifier",
-                  "value": "x",
+                  "operation": "-",
+                  "right": Object {
+                    "alternatives": Array [],
+                    "body": Array [],
+                    "condition": Object {
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 11,
+                        "lastColumn": 13,
+                        "lastLine": 11,
+                      },
+                      "type": "Identifier",
+                      "value": "x",
+                    },
+                    "location": Object {
+                      "firstColumn": 9,
+                      "firstLine": 11,
+                      "lastColumn": 16,
+                      "lastLine": 11,
+                    },
+                    "type": "If",
+                  },
+                  "type": "UnaryExpr",
                 },
                 "location": Object {
-                  "firstColumn": 9,
-                  "firstLine": 11,
-                  "lastColumn": 16,
-                  "lastLine": 11,
-                },
-                "type": "If",
-              },
-              "type": "UnaryExpr",
-            },
-            "location": Object {
-              "firstColumn": 8,
-              "firstLine": 11,
-              "lastColumn": 41,
-              "lastLine": 11,
-            },
-            "operation": "**",
-            "right": Object {
-              "left": Object {
-                "location": Object {
-                  "firstColumn": 20,
+                  "firstColumn": 8,
                   "firstLine": 11,
                   "lastColumn": 21,
                   "lastLine": 11,
                 },
-                "type": "Identifier",
-                "value": "b",
+                "operation": "**",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 20,
+                    "firstLine": 11,
+                    "lastColumn": 21,
+                    "lastLine": 11,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
               },
               "location": Object {
-                "firstColumn": 20,
+                "firstColumn": 8,
                 "firstLine": 11,
-                "lastColumn": 41,
+                "lastColumn": 37,
                 "lastLine": 11,
               },
               "operation": "+",
@@ -12865,43 +12868,40 @@ Object {
                 "location": Object {
                   "firstColumn": 24,
                   "firstLine": 11,
-                  "lastColumn": 41,
+                  "lastColumn": 37,
                   "lastLine": 11,
                 },
                 "operation": "*",
                 "right": Object {
-                  "left": Object {
-                    "location": Object {
-                      "firstColumn": 36,
-                      "firstLine": 11,
-                      "lastColumn": 37,
-                      "lastLine": 11,
-                    },
-                    "type": "Identifier",
-                    "value": "d",
-                  },
                   "location": Object {
                     "firstColumn": 36,
                     "firstLine": 11,
-                    "lastColumn": 41,
+                    "lastColumn": 37,
                     "lastLine": 11,
                   },
-                  "operation": "-",
-                  "right": Object {
-                    "location": Object {
-                      "firstColumn": 40,
-                      "firstLine": 11,
-                      "lastColumn": 41,
-                      "lastLine": 11,
-                    },
-                    "type": "Identifier",
-                    "value": "e",
-                  },
-                  "type": "BinaryExpr",
+                  "type": "Identifier",
+                  "value": "d",
                 },
                 "type": "BinaryExpr",
               },
               "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 41,
+              "lastLine": 11,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 40,
+                "firstLine": 11,
+                "lastColumn": 41,
+                "lastLine": 11,
+              },
+              "type": "Identifier",
+              "value": "e",
             },
             "type": "BinaryExpr",
           },
