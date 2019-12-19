@@ -2,6 +2,10 @@ import fs from "fs";
 import path from "path";
 import recursiveReadDir from "recursive-readdir";
 import { SandParser } from "../src/parser/parser.generated";
+import allSettledShim from "promise.allsettled";
+
+const allSettled: typeof allSettledShim =
+  (Promise as any).allSettled || allSettledShim;
 
 export interface TestCaseDirectories {
   successCases: string;
@@ -48,7 +52,7 @@ export class Tester {
   ): void {
     test(parserDescription + " parses files consistently", async () => {
       const contentMap = await this.successFileContent;
-      await Promise.all(
+      await allSettledAndAllSucceeded(
         Array.from(contentMap.entries()).map(
           async ([relativePath, contentProm]) => {
             const content = await contentProm;
@@ -68,7 +72,7 @@ export class Tester {
         " throws an error complaining about the same line number",
       async () => {
         const contentMap = await this.failureFileContent;
-        await Promise.all(
+        await allSettledAndAllSucceeded(
           Array.from(contentMap.entries()).map(
             async ([relativePath, contentProm]) => {
               const content = await contentProm;
@@ -107,4 +111,22 @@ function getParseErrorLineNumber(err: Error): number {
   }
 
   return parseInt(match[1], 10);
+}
+
+/**
+ * Like `Promise.all()`, but it won't reject until all the `Promise`s settle.
+ *
+ * This is in contrast to `Promise.all()`, which will immediately reject if any
+ * of the `Promise`s reject.
+ */
+function allSettledAndAllSucceeded<T>(
+  values: readonly (T | Promise<T>)[],
+): Promise<T[]> {
+  const all = Promise.all(values);
+  const settled = allSettled(values);
+  return all.catch(err =>
+    settled.then(() => {
+      throw err;
+    }),
+  );
 }
