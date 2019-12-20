@@ -4,9 +4,13 @@ import { FileNode } from "./astCopy";
 import { renderFileNode } from "./printer";
 import { NonNullReactNode } from "./types";
 
-export default class App extends React.Component<{}, State> {
-  constructor(props: {}) {
+export default class App extends React.Component<Props, State> {
+  private parseTreeSource: TreeSourceParser;
+
+  constructor(props: Props) {
     super(props);
+
+    this.parseTreeSource = props.treeSourceParser;
 
     this.state = {
       status: "EditingTreeSource",
@@ -104,7 +108,7 @@ export default class App extends React.Component<{}, State> {
   }
 
   private onViewTreeClick(): void {
-    const result = parseTreeSource(this.state.treeSource);
+    const result = this.parseTreeSource(this.state.treeSource);
     if (result instanceof Error) {
       this.setState({ treeSourceError: result });
     } else if (result.length > 1) {
@@ -142,6 +146,14 @@ export default class App extends React.Component<{}, State> {
   }
 }
 
+interface Props {
+  treeSourceParser: TreeSourceParser;
+}
+
+type TreeSourceParser = (src: string) => TreeSourceParseResult;
+
+export type TreeSourceParseResult = FileNode[] | Error;
+
 interface State {
   status: AppStatus;
   treeSource: string;
@@ -151,93 +163,3 @@ interface State {
 }
 
 type AppStatus = "EditingTreeSource" | "PickingTree" | "ViewingTree";
-
-type TreeSourceParseResult = FileNode[] | Error;
-
-function parseTreeSource(src: string): TreeSourceParseResult {
-  let jsonParseErr: Error;
-
-  try {
-    const obj = JSON.parse(src);
-    if (isFileNode(obj)) {
-      return [obj];
-    } else {
-      return new TypeError("Object is not a valid FileNode.");
-    }
-  } catch (e) {
-    jsonParseErr = e;
-  }
-
-  try {
-    const fileNodes = parseSnapFile(src);
-    if (fileNodes.length === 0) {
-      return new TypeError("Zero snapshots were valid FileNodes.");
-    } else {
-      return fileNodes;
-    }
-  } catch {
-    return jsonParseErr;
-  }
-}
-
-function parseSnapFile(src: string): FileNode[] {
-  const exportAssignments = src.match(
-    /exports\[`(?:\\`|[^`])*`\]\s*=\s*[\s\S]*?(?=(?:exports\[`(?:\\`|[^`])*`\]\s*=)|$)/g,
-  );
-  if (exportAssignments === null) {
-    return [];
-  } else {
-    return exportAssignments
-      .map(parseSnapshot)
-      .filter((x: FileNode | null): x is FileNode => x !== null);
-  }
-}
-
-function parseSnapshot(assignment: string): FileNode | null {
-  const assignmentLefthand = assignment.match(/exports\[`(?:\\`|[^`])*`\]\s*=/);
-
-  if (assignmentLefthand === null) {
-    return null;
-  }
-
-  const assignmentRighthand = assignment.slice(assignmentLefthand[0].length);
-  const firstBacktickIndex = assignmentRighthand.indexOf("`");
-  const lastBacktickIndex = assignmentRighthand.lastIndexOf("`");
-  const assignmentWithoutBackticks = assignmentRighthand.slice(
-    firstBacktickIndex + 1,
-    lastBacktickIndex,
-  );
-
-  if (!assignmentWithoutBackticks.trim().startsWith("Object")) {
-    return null;
-  }
-
-  try {
-    const obj = JSON.parse(
-      assignmentWithoutBackticks
-        .replace(/Object \{/g, "{")
-        .replace(/Array \[/g, "[")
-        .replace(/,\s*\}/g, "}")
-        .replace(/,\s*\]/g, "]"),
-    );
-
-    if (isFileNode(obj)) {
-      return obj;
-    } else {
-      return null;
-    }
-  } catch (e) {
-    return null;
-  }
-}
-
-function isFileNode(obj: any): obj is FileNode {
-  return (
-    "object" === typeof obj &&
-    obj !== null &&
-    "object" === typeof obj.pubClass &&
-    obj.pubClass !== null &&
-    "string" === typeof obj.pubClass.name &&
-    "boolean" === typeof obj.pubClass.isPub
-  );
-}
