@@ -1,6 +1,23 @@
 import React from "react";
 import "./App.css";
 
+import {
+  FileNode,
+  ClassItem,
+  NodeType,
+  Type,
+  OptAccessModifier,
+  TypeArgDef,
+  ArgDef,
+  ConstraintType,
+  CompoundExpression,
+  LocalVariableDeclaration,
+  Expr,
+  If,
+  IfAlternative,
+  IfAlternativeType,
+} from "./astCopy";
+
 type NonNullReactNode = Exclude<React.ReactNode, undefined | null>;
 
 export default class App extends React.Component<{}, State> {
@@ -85,6 +102,9 @@ export default class App extends React.Component<{}, State> {
     return (
       <div className="App">
         <h3>{tree.pubClass.name}.sand</h3>
+        <div className="ClassItemsContainer">
+          {tree.pubClass.items.map(renderClassItem)}
+        </div>
       </div>
     );
   }
@@ -251,10 +271,177 @@ function getParseErrorMessage(error: ParseError): string {
   }
 }
 
-interface FileNode {
-  pubClass: Class;
+function renderClassItem(item: ClassItem): NonNullReactNode {
+  switch (item.type) {
+    case NodeType.PropertyDeclaration:
+      return (
+        <div>
+          {renderAccessModifier(item.accessModifier)}
+          {item.name}: {renderType(item.valueType)}
+        </div>
+      );
+    case NodeType.MethodDeclaration:
+      return (
+        <div>
+          {renderAccessModifier(item.accessModifier)}
+          {item.name}
+          {renderTypeArgDefs(item.typeArgs)}(
+          {item.args.map(renderArgDef).join(", ")}):{" "}
+          {item.returnType === "void" ? "void" : renderType(item.returnType)}{" "}
+          {renderCompoundExpr(item.body)}
+        </div>
+      );
+  }
 }
-interface Class {
-  isPub: boolean;
-  name: string;
+
+function renderAccessModifier(mod: OptAccessModifier): string {
+  if (mod === null) {
+    return "";
+  } else {
+    return mod + " ";
+  }
 }
+
+function renderType(type: Type): string {
+  if (type.args.length === 0) {
+    return type.name;
+  } else {
+    return type.name + "<" + type.args.map(renderType).join(", ") + ">";
+  }
+}
+
+function renderTypeArgDefs(args: TypeArgDef[]): string {
+  if (args.length === 0) {
+    return "";
+  } else {
+    return "<" + args.map(renderTypeArgDef).join(", ") + ">";
+  }
+}
+
+function renderTypeArgDef(arg: TypeArgDef): string {
+  switch (arg.constraint.constraintType) {
+    case ConstraintType.None:
+      return arg.name;
+    case ConstraintType.Extends:
+      return arg.name + ": " + renderType(arg.constraint.superClass);
+  }
+}
+
+function renderArgDef(def: ArgDef): string {
+  return def.name + ": " + renderType(def.valueType);
+}
+
+function renderCompoundExpr(comp: CompoundExpression): string {
+  if (comp.length === 0) {
+    return "{}";
+  } else {
+    return (
+      "{\n" +
+      comp
+        .map(renderBlockChild)
+        .map(rendered => TAB + rendered)
+        .join("\n") +
+      "\n}"
+    );
+  }
+}
+
+function renderBlockChild(item: CompoundExpression[number]): string {
+  switch (item.type) {
+    case NodeType.LocalVariableDeclaration:
+      return (
+        getDeclareKeyword(item) +
+        " " +
+        item.name +
+        " = " +
+        renderExpr(item.initialValue) +
+        ";"
+      );
+    case NodeType.Assignment:
+      return renderExpr(item.assignee) + " = " + renderExpr(item.value) + ";";
+    case NodeType.Return:
+      if (item.value === null) {
+        return "return;";
+      } else {
+        return "return " + renderExpr(item.value) + ";";
+      }
+    case NodeType.If:
+      return renderIf(item);
+    default:
+      return renderExpr(item) + ";";
+  }
+}
+
+function getDeclareKeyword(decl: LocalVariableDeclaration): string {
+  const word = decl.isReassignable ? "re" : "let";
+  const bang = decl.doesShadow ? "!" : "";
+  return word + bang;
+}
+
+function renderAlternatives(item: If): string {
+  if (item.alternatives.length === 0) {
+    return "";
+  } else {
+    return " " + item.alternatives.map(renderAlternative).join(" ");
+  }
+}
+
+function renderAlternative(alt: IfAlternative): string {
+  switch (alt.type) {
+    case IfAlternativeType.ElseIf:
+      return (
+        "else if " + renderExpr(alt.condition) + renderCompoundExpr(alt.body)
+      );
+    case IfAlternativeType.Else:
+      return "else " + renderCompoundExpr(alt.body);
+  }
+}
+
+function renderExpr(expr: Expr): string {
+  switch (expr.type) {
+    case NodeType.NumberLiteral:
+      return expr.value;
+    case NodeType.StringLiteral:
+      return expr.value;
+    case NodeType.Identifier:
+      return expr.value;
+    case NodeType.BinaryExpr:
+      if (expr.operation === "[") {
+        return renderExpr(expr.left) + "[" + renderExpr(expr.right) + "]";
+      } else {
+        return (
+          "(" +
+          renderExpr(expr.left) +
+          " " +
+          expr.operation +
+          " " +
+          renderExpr(expr.right) +
+          ")"
+        );
+      }
+    case NodeType.UnaryExpr:
+      return "(" + expr.operation + renderExpr(expr.right) + ")";
+    case NodeType.DotExpr:
+      return renderExpr(expr.left) + "." + expr.right;
+    case NodeType.If:
+      return renderIf(expr);
+    case NodeType.FunctionCall:
+      return (
+        renderExpr(expr.callee) +
+        "(" +
+        expr.args.map(renderExpr).join(", ") +
+        ")"
+      );
+  }
+}
+
+function renderIf(ifExpr: If): string {
+  return (
+    "if " +
+    renderExpr(ifExpr.condition) +
+    renderCompoundExpr(ifExpr.body) +
+    renderAlternatives(ifExpr)
+  );
+}
+
+const TAB = "    ";
