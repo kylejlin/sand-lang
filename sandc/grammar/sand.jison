@@ -81,11 +81,11 @@
 
 %left "."
 
-%start classes
+%start file
 
 %% /* language grammar */
 
-classes
+file
     : pubClass optPrivClasses EOF
         { return { type: yy.NodeType.File, pubClass: $1, privClasses: $2, location: yy.camelCase(@$) }; }
     ;
