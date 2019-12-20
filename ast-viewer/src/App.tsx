@@ -41,6 +41,8 @@ export default class App extends React.Component<{}, State> {
     this.onDismissTreeSourceErrorClick = this.onDismissTreeSourceErrorClick.bind(
       this,
     );
+    this.onTreeViewerBackClick = this.onTreeViewerBackClick.bind(this);
+    this.onTreePickerBackClick = this.onTreePickerBackClick.bind(this);
   }
 
   render(): NonNullReactNode {
@@ -80,6 +82,7 @@ export default class App extends React.Component<{}, State> {
   private renderTreePicker(): NonNullReactNode {
     return (
       <div className="App">
+        <button onClick={this.onTreePickerBackClick}>Back</button>
         <h3>Pick a file</h3>
         <ul>
           {this.state.treeChoices.map((file, i) => (
@@ -101,7 +104,10 @@ export default class App extends React.Component<{}, State> {
 
     return (
       <div className="App">
+        <button onClick={this.onTreeViewerBackClick}>Back</button>
+
         <h3>{tree.pubClass.name}.sand</h3>
+
         <div className="ClassItemsContainer">
           {tree.pubClass.items.map(renderClassItem)}
         </div>
@@ -139,6 +145,18 @@ export default class App extends React.Component<{}, State> {
       status: "ViewingTree",
       tree: this.state.treeChoices[index],
     });
+  }
+
+  private onTreeViewerBackClick(): void {
+    if (this.state.treeChoices.length > 1) {
+      this.setState({ status: "PickingTree" });
+    } else {
+      this.setState({ status: "EditingTreeSource" });
+    }
+  }
+
+  private onTreePickerBackClick(): void {
+    this.setState({ status: "EditingTreeSource" });
   }
 }
 
