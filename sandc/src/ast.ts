@@ -186,9 +186,9 @@ export interface ExtendsConstraint {
   superClass: Type;
 }
 
-export interface File {
+export interface FileNode {
   type: NodeType.File;
-  pubClass: Class;
+  pubClass: PubClass;
   location: NodeLocation;
 }
 
