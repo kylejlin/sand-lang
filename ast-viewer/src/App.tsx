@@ -410,6 +410,7 @@ function renderIf(ifExpr: If): string {
   return (
     "if " +
     renderExpr(ifExpr.condition) +
+    " " +
     renderCompoundExpr(ifExpr.body) +
     renderAlternatives(ifExpr)
   );
