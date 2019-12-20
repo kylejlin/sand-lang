@@ -189,6 +189,7 @@ export interface ExtendsConstraint {
 export interface FileNode {
   type: NodeType.File;
   pubClass: PubClass;
+  privClasses: PrivClass[];
   location: NodeLocation;
 }
 
@@ -204,6 +205,10 @@ export interface Class {
 
 export interface PubClass extends Class {
   isPub: true;
+}
+
+export interface PrivClass extends Class {
+  isPub: false;
 }
 
 export enum ConstraintType {
