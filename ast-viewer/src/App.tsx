@@ -67,7 +67,7 @@ export default class App extends React.Component<{}, State> {
         {this.state.treeSourceError !== undefined && (
           <div className="ErrorBox">
             <h3>Error: </h3>
-            <div>{getParseErrorMessage(this.state.treeSourceError)}</div>
+            <div>{this.state.treeSourceError?.message}</div>
             <button onClick={this.onDismissTreeSourceErrorClick}>
               Dismiss
             </button>
@@ -117,12 +117,16 @@ export default class App extends React.Component<{}, State> {
 
   private onViewTreeClick(): void {
     const result = parseTreeSource(this.state.treeSource);
-    if (result.type === "SingleFileNode") {
-      this.setState({ status: "ViewingTree", tree: result.node });
-    } else if (result.type === "MultipleFileNodes") {
-      this.setState({ status: "PickingTree", treeChoices: result.nodes });
-    } else {
+    if (result instanceof Error) {
       this.setState({ treeSourceError: result });
+    } else if (result.length > 1) {
+      this.setState({ status: "PickingTree", treeChoices: result });
+    } else {
+      this.setState({
+        status: "ViewingTree",
+        tree: result[0],
+        treeChoices: result,
+      });
     }
   }
 
@@ -142,33 +146,13 @@ interface State {
   status: AppStatus;
   treeSource: string;
   treeChoices: FileNode[];
-  treeSourceError: ParseError | undefined;
+  treeSourceError: Error | undefined;
   tree: FileNode | undefined;
 }
 
 type AppStatus = "EditingTreeSource" | "PickingTree" | "ViewingTree";
 
-type TreeSourceParseResult = SingleFileNode | MultipleFileNodes | ParseError;
-type ParseError = JsonError | ZeroValidSnapshotsError;
-
-interface SingleFileNode {
-  type: "SingleFileNode";
-  node: FileNode;
-}
-
-interface MultipleFileNodes {
-  type: "MultipleFileNodes";
-  nodes: FileNode[];
-}
-
-interface JsonError {
-  type: "JsonError";
-  rawError: Error;
-}
-
-interface ZeroValidSnapshotsError {
-  type: "ZeroValidSnapshotsError";
-}
+type TreeSourceParseResult = FileNode[] | Error;
 
 function parseTreeSource(src: string): TreeSourceParseResult {
   let jsonParseErr: Error;
@@ -176,12 +160,9 @@ function parseTreeSource(src: string): TreeSourceParseResult {
   try {
     const obj = JSON.parse(src);
     if (isFileNode(obj)) {
-      return { type: "SingleFileNode", node: obj };
+      return [obj];
     } else {
-      return {
-        type: "JsonError",
-        rawError: new TypeError("Object is not a valid FileNode."),
-      };
+      return new TypeError("Object is not a valid FileNode.");
     }
   } catch (e) {
     jsonParseErr = e;
@@ -190,14 +171,12 @@ function parseTreeSource(src: string): TreeSourceParseResult {
   try {
     const fileNodes = parseSnapFile(src);
     if (fileNodes.length === 0) {
-      return { type: "ZeroValidSnapshotsError" };
-    } else if (fileNodes.length === 1) {
-      return { type: "SingleFileNode", node: fileNodes[0] };
+      return new TypeError("Zero snapshots were valid FileNodes.");
     } else {
-      return { type: "MultipleFileNodes", nodes: fileNodes };
+      return fileNodes;
     }
   } catch {
-    return { type: "JsonError", rawError: jsonParseErr };
+    return jsonParseErr;
   }
 }
 
@@ -261,14 +240,6 @@ function isFileNode(obj: any): obj is FileNode {
     "string" === typeof obj.pubClass.name &&
     "boolean" === typeof obj.pubClass.isPub
   );
-}
-
-function getParseErrorMessage(error: ParseError): string {
-  if (error.type === "JsonError") {
-    return error.rawError.message;
-  } else {
-    return "Zero snapshots were valid FileNodes.";
-  }
 }
 
 function renderClassItem(item: ClassItem): NonNullReactNode {
