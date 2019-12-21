@@ -32,6 +32,7 @@ export default class App extends React.Component<Props, State> {
     this.onTreePickerBackClick = this.onTreePickerBackClick.bind(this);
 
     this.saveState = this.saveState.bind(this);
+    this.clearState = this.clearState.bind(this);
   }
 
   private saveState(): void {
@@ -52,11 +53,14 @@ export default class App extends React.Component<Props, State> {
   private renderTreeSourceEditor(): NonNullReactNode {
     return (
       <div className="App">
+        <button onClick={this.clearState}>Clear saved state</button>
+
         <h2>Paste your JSON or Snap file:</h2>
         <textarea
           value={this.state.treeSource}
           onChange={this.onTreeSourceChange}
         ></textarea>
+
         <button onClick={this.onViewTreeClick}>View</button>
 
         {this.state.treeSourceError !== undefined && (
@@ -158,6 +162,10 @@ export default class App extends React.Component<Props, State> {
   private onTreePickerBackClick(): void {
     this.setState({ status: "EditingTreeSource" }, this.saveState);
   }
+
+  private clearState(): void {
+    this.stateSaver.clear();
+  }
 }
 
 export interface Props {
@@ -170,6 +178,7 @@ export type TreeSourceParser = (src: string) => TreeSourceParseResult;
 export interface StateSaver {
   load(): State;
   save(state: State): void;
+  clear(): void;
 }
 
 export type TreeSourceParseResult = FileNode[] | Error;

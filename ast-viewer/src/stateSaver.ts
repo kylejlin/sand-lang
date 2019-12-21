@@ -27,7 +27,10 @@ interface SerializedTreeViewState {
 const stateSaver: StateSaver = {
   load: loadStateFromLocalStorage,
   save: saveStateToLocalStorage,
+  clear: clearSavedStateFromLocalStorage,
 };
+
+export default stateSaver;
 
 const LOCAL_STORAGE_KEY = "sandAstViewerState";
 
@@ -152,4 +155,6 @@ function hashTree(tree: FileNode): string {
   return stringifyFileNode(tree);
 }
 
-export default stateSaver;
+function clearSavedStateFromLocalStorage(): void {
+  localStorage.removeItem(LOCAL_STORAGE_KEY);
+}
