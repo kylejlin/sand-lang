@@ -6,21 +6,20 @@ import { NonNullReactNode } from "./types";
 
 export default class App extends React.Component<Props, State> {
   private parseTreeSource: TreeSourceParser;
+  private stateSaver: StateSaver;
 
   constructor(props: Props) {
     super(props);
 
     this.parseTreeSource = props.treeSourceParser;
+    this.stateSaver = props.stateSaver;
 
-    this.state = {
-      status: "EditingTreeSource",
-      treeSource: "",
-      treeChoices: [],
-      treeSourceError: undefined,
-      tree: undefined,
-    };
+    this.state = this.stateSaver.load();
 
     this.bindMethods();
+
+    // @ts-ignore
+    window.astViewer = this;
   }
 
   private bindMethods(): void {
@@ -31,6 +30,12 @@ export default class App extends React.Component<Props, State> {
     );
     this.onTreeViewerBackClick = this.onTreeViewerBackClick.bind(this);
     this.onTreePickerBackClick = this.onTreePickerBackClick.bind(this);
+
+    this.saveState = this.saveState.bind(this);
+  }
+
+  private saveState(): void {
+    this.stateSaver.save(this.state);
   }
 
   render(): NonNullReactNode {
@@ -104,7 +109,7 @@ export default class App extends React.Component<Props, State> {
   private onTreeSourceChange(
     event: React.ChangeEvent<HTMLTextAreaElement>,
   ): void {
-    this.setState({ treeSource: event.target.value });
+    this.setState({ treeSource: event.target.value }, this.saveState);
   }
 
   private onViewTreeClick(): void {
@@ -112,13 +117,19 @@ export default class App extends React.Component<Props, State> {
     if (result instanceof Error) {
       this.setState({ treeSourceError: result });
     } else if (result.length > 1) {
-      this.setState({ status: "PickingTree", treeChoices: result });
+      this.setState(
+        { status: "PickingTree", treeChoices: result },
+        this.saveState,
+      );
     } else {
-      this.setState({
-        status: "ViewingTree",
-        tree: result[0],
-        treeChoices: result,
-      });
+      this.setState(
+        {
+          status: "ViewingTree",
+          tree: result[0],
+          treeChoices: result,
+        },
+        this.saveState,
+      );
     }
   }
 
@@ -127,34 +138,43 @@ export default class App extends React.Component<Props, State> {
   }
 
   private onPickFileClick(index: number): void {
-    this.setState({
-      status: "ViewingTree",
-      tree: this.state.treeChoices[index],
-    });
+    this.setState(
+      {
+        status: "ViewingTree",
+        tree: this.state.treeChoices[index],
+      },
+      this.saveState,
+    );
   }
 
   private onTreeViewerBackClick(): void {
     if (this.state.treeChoices.length > 1) {
-      this.setState({ status: "PickingTree" });
+      this.setState({ status: "PickingTree" }, this.saveState);
     } else {
-      this.setState({ status: "EditingTreeSource" });
+      this.setState({ status: "EditingTreeSource" }, this.saveState);
     }
   }
 
   private onTreePickerBackClick(): void {
-    this.setState({ status: "EditingTreeSource" });
+    this.setState({ status: "EditingTreeSource" }, this.saveState);
   }
 }
 
-interface Props {
+export interface Props {
   treeSourceParser: TreeSourceParser;
+  stateSaver: StateSaver;
 }
 
-type TreeSourceParser = (src: string) => TreeSourceParseResult;
+export type TreeSourceParser = (src: string) => TreeSourceParseResult;
+
+export interface StateSaver {
+  load(): State;
+  save(state: State): void;
+}
 
 export type TreeSourceParseResult = FileNode[] | Error;
 
-interface State {
+export interface State {
   status: AppStatus;
   treeSource: string;
   treeChoices: FileNode[];
@@ -162,4 +182,4 @@ interface State {
   tree: FileNode | undefined;
 }
 
-type AppStatus = "EditingTreeSource" | "PickingTree" | "ViewingTree";
+export type AppStatus = "EditingTreeSource" | "PickingTree" | "ViewingTree";

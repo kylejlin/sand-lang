@@ -19,7 +19,7 @@ import { NonNullReactNode } from "./types";
 
 const TAB = "    ";
 
-export function renderFileNode(node: FileNode) {
+export function renderFileNode(node: FileNode): NonNullReactNode {
   return (
     <div className="ClassItemsContainer">
       {node.pubClass.items.map(renderClassItem)}
@@ -46,6 +46,35 @@ function renderClassItem(item: ClassItem): NonNullReactNode {
           {item.returnType === "void" ? "void" : renderType(item.returnType)}{" "}
           {renderCompoundExpr(item.body)}
         </div>
+      );
+  }
+}
+
+export function stringifyFileNode(node: FileNode): string {
+  return node.pubClass.items.map(stringifyClassItem).join("\n\n");
+}
+
+function stringifyClassItem(item: ClassItem): string {
+  switch (item.type) {
+    case NodeType.PropertyDeclaration:
+      return (
+        renderAccessModifier(item.accessModifier) +
+        item.name +
+        ": " +
+        renderType(item.valueType)
+      );
+
+    case NodeType.MethodDeclaration:
+      return (
+        renderAccessModifier(item.accessModifier) +
+        item.name +
+        renderTypeArgDefs(item.typeArgs) +
+        "(" +
+        item.args.map(renderArgDef).join(", ") +
+        ")" +
+        (item.returnType === "void" ? "" : ": " + renderType(item.returnType)) +
+        " " +
+        renderCompoundExpr(item.body)
       );
   }
 }
