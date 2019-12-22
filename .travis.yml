@@ -3,6 +3,7 @@ node_js:
   - 11.7
 script:
   - cd sandc
+  - npm install
   - npm run jison
   - npm run build
   - npm test
