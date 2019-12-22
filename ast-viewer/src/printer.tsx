@@ -58,7 +58,10 @@ function renderClassItem(item: ClassItem): NonNullReactNode {
             item.args.map(d => renderArgDef(d)),
             ", ",
           )}
-          ): {item.returnType === "void" ? "void" : renderType(item.returnType)}{" "}
+          )
+          {item.returnType === null ? null : (
+            <>: {renderType(item.returnType)}</>
+          )}{" "}
           {renderCompoundExpr(item.body, 1)}
         </div>
       );
@@ -309,7 +312,7 @@ function stringifyClassItem(item: ClassItem): string {
         "(" +
         item.args.map(d => stringifyArgDef(d)).join(", ") +
         ")" +
-        (item.returnType === "void"
+        (item.returnType === null
           ? ""
           : ": " + stringifyType(item.returnType)) +
         " " +

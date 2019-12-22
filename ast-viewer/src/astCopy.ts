@@ -233,7 +233,7 @@ export interface MethodDeclaration {
   name: string;
   typeArgs: TypeArgDef[];
   args: ArgDef[];
-  returnType: Type | "void";
+  returnType: Type | null;
   body: CompoundExpression;
   location: NodeLocation;
 }
