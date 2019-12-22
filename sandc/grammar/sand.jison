@@ -179,7 +179,7 @@ classItem
     | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundExpression
         { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
     | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundExpression
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: "void", body: $7, location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: null, body: $7, location: yy.camelCase(@$) }; }
     ;
 
 optAccessModifier

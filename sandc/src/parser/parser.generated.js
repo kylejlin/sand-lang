@@ -147,7 +147,7 @@ case 28:
  this.$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $$[$0-8], name: $$[$0-7], typeArgs: $$[$0-6], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
 break;
 case 29:
- this.$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $$[$0-6], name: $$[$0-5], typeArgs: $$[$0-4], args: $$[$0-2], returnType: "void", body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $$[$0-6], name: $$[$0-5], typeArgs: $$[$0-4], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.camelCase(this._$) }; 
 break;
 case 31:
  this.$ = "pub"; 
