@@ -104,13 +104,13 @@ optTypeArgDefs
 
 typeArgDefs
     : IDENTIFIER
-        { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@$) }]; }
+        { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@$) }]; }
     | IDENTIFIER "extends" type
-        { $$ = [{ name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 }, location: yy.camelCase(@$) }]; }
+        { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 }, location: yy.camelCase(@$) }]; }
     | typeArgDefs "," IDENTIFIER
-        { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@3) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@3) }]); }
     | typeArgDefs "," IDENTIFIER "extends" type
-        { $$ = $1.concat([{ name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.camelCase(yy.merge(@3, @5)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.camelCase(yy.merge(@3, @5)) }]); }
     ;
 
 optPrivClasses
@@ -134,16 +134,16 @@ type
 
 nullableType
     : nonNullableType "?"
-        { $$ = { name: "nullable", args: [$1], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "nullable", args: [$1], location: yy.camelCase(@$) }; }
     ;
 
 nonNullableType
     : typeIdentifierWithPossibleDotChain optTypeArgs
-        { $$ = { name: $1, args: $2, location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: $1, args: $2, location: yy.camelCase(@$) }; }
     | type "[" "]"
-        { $$ = { name: "array", args: [$1], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" "*" "]"
-        { $$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
     ;
 
 typeIdentifierWithPossibleDotChain
@@ -199,9 +199,9 @@ optArgDefs
 
 argDefs
     : IDENTIFIER ":" type
-        { $$ = [{ name: $1, valueType: $3, location: yy.camelCase(@$) }]; }
+        { $$ = [{ type: yy.NodeType.ArgDef, name: $1, valueType: $3, location: yy.camelCase(@$) }]; }
     | argDefs "," IDENTIFIER ":" type
-        { $$ = $1.concat([{ name: $3, valueType: $5, location: yy.camelCase(yy.merge(@3, @5)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.ArgDef, name: $3, valueType: $5, location: yy.camelCase(yy.merge(@3, @5)) }]); }
     ;
 
 compoundExpression
@@ -310,14 +310,14 @@ expressionIncludingRightDelimiter
 optElseExpression
     : optElseIfExpression
     | optElseIfExpression "else" compoundExpression
-        { $$ = $1.concat([{ type: yy.IfAlternativeType.Else, body: $3, location: yy.camelCase(yy.merge(@2, @3)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $3, location: yy.camelCase(yy.merge(@2, @3)) }]); }
     ;
 
 optElseIfExpression
     : /* empty */
         { $$ = []; }
     | optElseIfExpression "else" "if" expression compoundExpression
-        { $$ = $1.concat([{ type: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.camelCase(yy.merge(@2, @5)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.camelCase(yy.merge(@2, @5)) }]); }
     ;
 
 expressionLackingRightDelimiter

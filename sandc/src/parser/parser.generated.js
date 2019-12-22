@@ -96,16 +96,16 @@ case 4: case 22: case 42: case 44:
  this.$ = $$[$0-1]; 
 break;
 case 5:
- this.$ = [{ name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(this._$) }]; 
 break;
 case 6:
- this.$ = [{ name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.camelCase(this._$) }]; 
 break;
 case 7:
- this.$ = $$[$0-2].concat([{ name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(_$[$0]) }]); 
+ this.$ = $$[$0-2].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(_$[$0]) }]); 
 break;
 case 8:
- this.$ = $$[$0-4].concat([{ name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.camelCase(yy.merge(_$[$0-2], _$[$0])) }]); 
+ this.$ = $$[$0-4].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.camelCase(yy.merge(_$[$0-2], _$[$0])) }]); 
 break;
 case 10:
  this.$ = $$[$0-7].concat([{ type: yy.NodeType.Class, isPub: false, name: $$[$0-5], typeArgDefs: $$[$0-4], superClass: $$[$0-3], items: $$[$0-1], location: yy.camelCase(yy.merge(_$[$0-6], _$[$0])) }]); 
@@ -117,16 +117,16 @@ case 12:
  this.$ = $$[$0]; 
 break;
 case 15:
- this.$ = { name: "nullable", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "nullable", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
 break;
 case 16:
- this.$ = { name: $$[$0-1], args: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: $$[$0-1], args: $$[$0], location: yy.camelCase(this._$) }; 
 break;
 case 17:
- this.$ = { name: "array", args: [$$[$0-2]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-2]], location: yy.camelCase(this._$) }; 
 break;
 case 18:
- this.$ = { name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.camelCase(this._$) }; 
 break;
 case 20:
  this.$ = $$[$0-2] + "." + $$[$0]; 
@@ -156,10 +156,10 @@ case 32:
  this.$ = "prot"; 
 break;
 case 35:
- this.$ = [{ name: $$[$0-2], valueType: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.camelCase(this._$) }]; 
 break;
 case 36:
- this.$ = $$[$0-4].concat([{ name: $$[$0-2], valueType: $$[$0], location: yy.camelCase(yy.merge(_$[$0-2], _$[$0])) }]); 
+ this.$ = $$[$0-4].concat([{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.camelCase(yy.merge(_$[$0-2], _$[$0])) }]); 
 break;
 case 38: case 40: case 41:
  this.$ = [$$[$0-1]]; 
@@ -213,10 +213,10 @@ case 74:
  this.$ = { type: yy.NodeType.If, condition: $$[$0-2], body: $$[$0-1], alternatives: $$[$0], location: yy.camelCase(this._$) }; 
 break;
 case 76:
- this.$ = $$[$0-2].concat([{ type: yy.IfAlternativeType.Else, body: $$[$0], location: yy.camelCase(yy.merge(_$[$0-1], _$[$0])) }]); 
+ this.$ = $$[$0-2].concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $$[$0], location: yy.camelCase(yy.merge(_$[$0-1], _$[$0])) }]); 
 break;
 case 78:
- this.$ = $$[$0-4].concat([{ type: yy.IfAlternativeType.ElseIf, condition: $$[$0-1], body: $$[$0], location: yy.camelCase(yy.merge(_$[$0-3], _$[$0])) }]); 
+ this.$ = $$[$0-4].concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $$[$0-1], body: $$[$0], location: yy.camelCase(yy.merge(_$[$0-3], _$[$0])) }]); 
 break;
 case 81: case 82: case 83:
  this.$ = yy.unaryExpr("-", $$[$0], this._$); 

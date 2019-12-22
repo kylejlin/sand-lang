@@ -23,6 +23,7 @@ Object {
               "lastLine": 2,
             },
             "name": "elem",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -32,6 +33,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "String",
+              "type": "Type",
             },
           },
           Object {
@@ -42,6 +44,7 @@ Object {
               "lastLine": 2,
             },
             "name": "arr",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -53,6 +56,7 @@ Object {
                     "lastLine": 2,
                   },
                   "name": "String",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -62,6 +66,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           },
         ],
@@ -82,6 +87,7 @@ Object {
             "lastLine": 2,
           },
           "name": "int",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -108,6 +114,7 @@ Object {
           "lastLine": 1,
         },
         "name": "T",
+        "type": "TypeArgDef",
       },
       Object {
         "constraint": Object {
@@ -121,6 +128,7 @@ Object {
               "lastLine": 1,
             },
             "name": "Foo",
+            "type": "Type",
           },
         },
         "location": Object {
@@ -130,6 +138,7 @@ Object {
           "lastLine": 1,
         },
         "name": "U",
+        "type": "TypeArgDef",
       },
     ],
   },
@@ -3498,6 +3507,7 @@ Object {
               "lastLine": 2,
             },
             "name": "n",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -3507,6 +3517,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -3514,6 +3525,7 @@ Object {
           Object {
             "alternatives": Array [
               Object {
+                "alternativeType": "Else",
                 "body": Array [
                   Object {
                     "left": Object {
@@ -3594,7 +3606,7 @@ Object {
                   "lastColumn": 9,
                   "lastLine": 7,
                 },
-                "type": "Else",
+                "type": "IfAlternative",
               },
             ],
             "body": Array [
@@ -3664,6 +3676,7 @@ Object {
             "lastLine": 2,
           },
           "name": "int",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3716,6 +3729,7 @@ Object {
             "lastLine": 2,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3742,6 +3756,7 @@ Object {
                 "lastLine": 6,
               },
               "name": "int",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -3751,6 +3766,7 @@ Object {
             "lastLine": 6,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3777,6 +3793,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "int",
+              "type": "Type",
             },
             Object {
               "args": Array [
@@ -3789,6 +3806,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "String",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -3798,6 +3816,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -3807,6 +3826,7 @@ Object {
             "lastLine": 10,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3833,6 +3853,7 @@ Object {
                 "lastLine": 14,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -3842,6 +3863,7 @@ Object {
             "lastLine": 14,
           },
           "name": "array",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3870,6 +3892,7 @@ Object {
                     "lastLine": 18,
                   },
                   "name": "char",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -3879,6 +3902,7 @@ Object {
                 "lastLine": 18,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -3888,6 +3912,7 @@ Object {
             "lastLine": 18,
           },
           "name": "array",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3914,6 +3939,7 @@ Object {
                 "lastLine": 22,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -3923,6 +3949,7 @@ Object {
             "lastLine": 22,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -3951,6 +3978,7 @@ Object {
                     "lastLine": 26,
                   },
                   "name": "char",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -3960,6 +3988,7 @@ Object {
                 "lastLine": 26,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -3969,6 +3998,7 @@ Object {
             "lastLine": 26,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -4034,6 +4064,7 @@ Object {
                   "lastLine": 3,
                 },
                 "name": "int",
+                "type": "Type",
               },
             ],
           },
@@ -4082,6 +4113,7 @@ Object {
                   "lastLine": 7,
                 },
                 "name": "int",
+                "type": "Type",
               },
               Object {
                 "args": Array [],
@@ -4092,6 +4124,7 @@ Object {
                   "lastLine": 7,
                 },
                 "name": "String",
+                "type": "Type",
               },
               Object {
                 "args": Array [
@@ -4113,6 +4146,7 @@ Object {
                   "lastLine": 7,
                 },
                 "name": "java.util.ArrayList",
+                "type": "Type",
               },
             ],
           },
@@ -4181,6 +4215,7 @@ Object {
               "lastLine": 2,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -4209,6 +4244,7 @@ Object {
               "lastLine": 6,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
           Object {
             "constraint": Object {
@@ -4222,6 +4258,7 @@ Object {
                   "lastLine": 6,
                 },
                 "name": "T",
+                "type": "Type",
               },
             },
             "location": Object {
@@ -4231,6 +4268,7 @@ Object {
               "lastLine": 6,
             },
             "name": "U",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -4254,6 +4292,7 @@ Object {
             "lastLine": 10,
           },
           "name": "void",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [
@@ -4268,6 +4307,7 @@ Object {
               "lastLine": 10,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -4291,6 +4331,7 @@ Object {
             "lastLine": 14,
           },
           "name": "void",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [
@@ -4305,6 +4346,7 @@ Object {
               "lastLine": 14,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
           Object {
             "constraint": Object {
@@ -4318,6 +4360,7 @@ Object {
                   "lastLine": 14,
                 },
                 "name": "T",
+                "type": "Type",
               },
             },
             "location": Object {
@@ -4327,6 +4370,7 @@ Object {
               "lastLine": 14,
             },
             "name": "U",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -4369,6 +4413,7 @@ Object {
               "lastLine": 2,
             },
             "name": "args",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -4380,6 +4425,7 @@ Object {
                     "lastLine": 2,
                   },
                   "name": "String",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -4389,6 +4435,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "array",
+              "type": "Type",
             },
           },
         ],
@@ -5796,6 +5843,7 @@ Object {
                 "lastLine": 7,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -5883,6 +5931,7 @@ Object {
                 "lastLine": 15,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -5970,6 +6019,7 @@ Object {
                 "lastLine": 23,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -6057,6 +6107,7 @@ Object {
                 "lastLine": 31,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -6596,6 +6647,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "int",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -6605,6 +6657,7 @@ Object {
             "lastLine": 2,
           },
           "name": "nullable",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -6642,6 +6695,7 @@ Object {
                 "lastLine": 6,
               },
               "name": "String",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -6651,6 +6705,7 @@ Object {
             "lastLine": 6,
           },
           "name": "nullable",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -6666,6 +6721,7 @@ Object {
               "lastLine": 10,
             },
             "name": "x",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -6679,6 +6735,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "String",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -6688,6 +6745,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "nullable",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -6697,6 +6755,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "array",
+              "type": "Type",
             },
           },
           Object {
@@ -6707,6 +6766,7 @@ Object {
               "lastLine": 10,
             },
             "name": "y",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -6720,6 +6780,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "String",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -6729,6 +6790,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "array",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -6738,6 +6800,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           },
           Object {
@@ -6748,6 +6811,7 @@ Object {
               "lastLine": 10,
             },
             "name": "z",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -6763,6 +6827,7 @@ Object {
                             "lastLine": 10,
                           },
                           "name": "String",
+                          "type": "Type",
                         },
                       ],
                       "location": Object {
@@ -6772,6 +6837,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "nullable",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -6781,6 +6847,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "array",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -6790,6 +6857,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           },
           Object {
@@ -6800,6 +6868,7 @@ Object {
               "lastLine": 10,
             },
             "name": "a",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -6815,6 +6884,7 @@ Object {
                             "lastLine": 10,
                           },
                           "name": "int",
+                          "type": "Type",
                         },
                       ],
                       "location": Object {
@@ -6824,6 +6894,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "nullable",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -6833,6 +6904,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "java.util.ArrayList",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -6842,6 +6914,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           },
         ],
@@ -6849,6 +6922,7 @@ Object {
           Object {
             "alternatives": Array [
               Object {
+                "alternativeType": "Else",
                 "body": Array [
                   Object {
                     "location": Object {
@@ -6867,7 +6941,7 @@ Object {
                   "lastColumn": 9,
                   "lastLine": 15,
                 },
-                "type": "Else",
+                "type": "IfAlternative",
               },
             ],
             "body": Array [
@@ -6943,6 +7017,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "String",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -6952,6 +7027,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "nullable",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -6961,6 +7037,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -6970,6 +7047,7 @@ Object {
             "lastLine": 10,
           },
           "name": "nullable",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -6996,6 +7074,7 @@ Object {
           "lastLine": 1,
         },
         "name": "T",
+        "type": "TypeArgDef",
       },
       Object {
         "constraint": Object {
@@ -7011,6 +7090,7 @@ Object {
                   "lastLine": 1,
                 },
                 "name": "T",
+                "type": "Type",
               },
             ],
             "location": Object {
@@ -7020,6 +7100,7 @@ Object {
               "lastLine": 1,
             },
             "name": "nullable",
+            "type": "Type",
           },
         },
         "location": Object {
@@ -7029,6 +7110,7 @@ Object {
           "lastLine": 1,
         },
         "name": "U",
+        "type": "TypeArgDef",
       },
     ],
   },
@@ -7928,6 +8010,7 @@ Object {
               "lastLine": 2,
             },
             "name": "elem",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -7937,6 +8020,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "String",
+              "type": "Type",
             },
           },
           Object {
@@ -7947,6 +8031,7 @@ Object {
               "lastLine": 2,
             },
             "name": "arr",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -7958,6 +8043,7 @@ Object {
                     "lastLine": 2,
                   },
                   "name": "String",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -7967,6 +8053,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           },
         ],
@@ -7987,6 +8074,7 @@ Object {
             "lastLine": 2,
           },
           "name": "int",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -8013,6 +8101,7 @@ Object {
           "lastLine": 1,
         },
         "name": "T",
+        "type": "TypeArgDef",
       },
       Object {
         "constraint": Object {
@@ -8026,6 +8115,7 @@ Object {
               "lastLine": 1,
             },
             "name": "Foo",
+            "type": "Type",
           },
         },
         "location": Object {
@@ -8035,6 +8125,7 @@ Object {
           "lastLine": 1,
         },
         "name": "U",
+        "type": "TypeArgDef",
       },
     ],
   },
@@ -11403,6 +11494,7 @@ Object {
               "lastLine": 2,
             },
             "name": "n",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -11412,6 +11504,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -11419,6 +11512,7 @@ Object {
           Object {
             "alternatives": Array [
               Object {
+                "alternativeType": "Else",
                 "body": Array [
                   Object {
                     "left": Object {
@@ -11499,7 +11593,7 @@ Object {
                   "lastColumn": 9,
                   "lastLine": 7,
                 },
-                "type": "Else",
+                "type": "IfAlternative",
               },
             ],
             "body": Array [
@@ -11569,6 +11663,7 @@ Object {
             "lastLine": 2,
           },
           "name": "int",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11621,6 +11716,7 @@ Object {
             "lastLine": 2,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11647,6 +11743,7 @@ Object {
                 "lastLine": 6,
               },
               "name": "int",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -11656,6 +11753,7 @@ Object {
             "lastLine": 6,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11682,6 +11780,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "int",
+              "type": "Type",
             },
             Object {
               "args": Array [
@@ -11694,6 +11793,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "String",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -11703,6 +11803,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -11712,6 +11813,7 @@ Object {
             "lastLine": 10,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11738,6 +11840,7 @@ Object {
                 "lastLine": 14,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -11747,6 +11850,7 @@ Object {
             "lastLine": 14,
           },
           "name": "array",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11775,6 +11879,7 @@ Object {
                     "lastLine": 18,
                   },
                   "name": "char",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -11784,6 +11889,7 @@ Object {
                 "lastLine": 18,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -11793,6 +11899,7 @@ Object {
             "lastLine": 18,
           },
           "name": "array",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11819,6 +11926,7 @@ Object {
                 "lastLine": 22,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -11828,6 +11936,7 @@ Object {
             "lastLine": 22,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11856,6 +11965,7 @@ Object {
                     "lastLine": 26,
                   },
                   "name": "char",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -11865,6 +11975,7 @@ Object {
                 "lastLine": 26,
               },
               "name": "java.util.ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -11874,6 +11985,7 @@ Object {
             "lastLine": 26,
           },
           "name": "java.util.ArrayList",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -11939,6 +12051,7 @@ Object {
                   "lastLine": 3,
                 },
                 "name": "int",
+                "type": "Type",
               },
             ],
           },
@@ -11987,6 +12100,7 @@ Object {
                   "lastLine": 7,
                 },
                 "name": "int",
+                "type": "Type",
               },
               Object {
                 "args": Array [],
@@ -11997,6 +12111,7 @@ Object {
                   "lastLine": 7,
                 },
                 "name": "String",
+                "type": "Type",
               },
               Object {
                 "args": Array [
@@ -12018,6 +12133,7 @@ Object {
                   "lastLine": 7,
                 },
                 "name": "java.util.ArrayList",
+                "type": "Type",
               },
             ],
           },
@@ -12086,6 +12202,7 @@ Object {
               "lastLine": 2,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -12114,6 +12231,7 @@ Object {
               "lastLine": 6,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
           Object {
             "constraint": Object {
@@ -12127,6 +12245,7 @@ Object {
                   "lastLine": 6,
                 },
                 "name": "T",
+                "type": "Type",
               },
             },
             "location": Object {
@@ -12136,6 +12255,7 @@ Object {
               "lastLine": 6,
             },
             "name": "U",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -12159,6 +12279,7 @@ Object {
             "lastLine": 10,
           },
           "name": "void",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [
@@ -12173,6 +12294,7 @@ Object {
               "lastLine": 10,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -12196,6 +12318,7 @@ Object {
             "lastLine": 14,
           },
           "name": "void",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [
@@ -12210,6 +12333,7 @@ Object {
               "lastLine": 14,
             },
             "name": "T",
+            "type": "TypeArgDef",
           },
           Object {
             "constraint": Object {
@@ -12223,6 +12347,7 @@ Object {
                   "lastLine": 14,
                 },
                 "name": "T",
+                "type": "Type",
               },
             },
             "location": Object {
@@ -12232,6 +12357,7 @@ Object {
               "lastLine": 14,
             },
             "name": "U",
+            "type": "TypeArgDef",
           },
         ],
       },
@@ -12274,6 +12400,7 @@ Object {
               "lastLine": 2,
             },
             "name": "args",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -12285,6 +12412,7 @@ Object {
                     "lastLine": 2,
                   },
                   "name": "String",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -12294,6 +12422,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "array",
+              "type": "Type",
             },
           },
         ],
@@ -13701,6 +13830,7 @@ Object {
                 "lastLine": 7,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -13788,6 +13918,7 @@ Object {
                 "lastLine": 15,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -13875,6 +14006,7 @@ Object {
                 "lastLine": 23,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -13962,6 +14094,7 @@ Object {
                 "lastLine": 31,
               },
               "name": "int",
+              "type": "Type",
             },
           },
         ],
@@ -14501,6 +14634,7 @@ Object {
                 "lastLine": 2,
               },
               "name": "int",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -14510,6 +14644,7 @@ Object {
             "lastLine": 2,
           },
           "name": "nullable",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -14547,6 +14682,7 @@ Object {
                 "lastLine": 6,
               },
               "name": "String",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -14556,6 +14692,7 @@ Object {
             "lastLine": 6,
           },
           "name": "nullable",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -14571,6 +14708,7 @@ Object {
               "lastLine": 10,
             },
             "name": "x",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -14584,6 +14722,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "String",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -14593,6 +14732,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "nullable",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -14602,6 +14742,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "array",
+              "type": "Type",
             },
           },
           Object {
@@ -14612,6 +14753,7 @@ Object {
               "lastLine": 10,
             },
             "name": "y",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -14625,6 +14767,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "String",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -14634,6 +14777,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "array",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -14643,6 +14787,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           },
           Object {
@@ -14653,6 +14798,7 @@ Object {
               "lastLine": 10,
             },
             "name": "z",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -14668,6 +14814,7 @@ Object {
                             "lastLine": 10,
                           },
                           "name": "String",
+                          "type": "Type",
                         },
                       ],
                       "location": Object {
@@ -14677,6 +14824,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "nullable",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -14686,6 +14834,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "array",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -14695,6 +14844,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           },
           Object {
@@ -14705,6 +14855,7 @@ Object {
               "lastLine": 10,
             },
             "name": "a",
+            "type": "ArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -14720,6 +14871,7 @@ Object {
                             "lastLine": 10,
                           },
                           "name": "int",
+                          "type": "Type",
                         },
                       ],
                       "location": Object {
@@ -14729,6 +14881,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "nullable",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -14738,6 +14891,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "java.util.ArrayList",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -14747,6 +14901,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "nullable",
+              "type": "Type",
             },
           },
         ],
@@ -14754,6 +14909,7 @@ Object {
           Object {
             "alternatives": Array [
               Object {
+                "alternativeType": "Else",
                 "body": Array [
                   Object {
                     "location": Object {
@@ -14772,7 +14928,7 @@ Object {
                   "lastColumn": 9,
                   "lastLine": 15,
                 },
-                "type": "Else",
+                "type": "IfAlternative",
               },
             ],
             "body": Array [
@@ -14848,6 +15004,7 @@ Object {
                         "lastLine": 10,
                       },
                       "name": "String",
+                      "type": "Type",
                     },
                   ],
                   "location": Object {
@@ -14857,6 +15014,7 @@ Object {
                     "lastLine": 10,
                   },
                   "name": "nullable",
+                  "type": "Type",
                 },
               ],
               "location": Object {
@@ -14866,6 +15024,7 @@ Object {
                 "lastLine": 10,
               },
               "name": "ArrayList",
+              "type": "Type",
             },
           ],
           "location": Object {
@@ -14875,6 +15034,7 @@ Object {
             "lastLine": 10,
           },
           "name": "nullable",
+          "type": "Type",
         },
         "type": "MethodDeclaration",
         "typeArgs": Array [],
@@ -14901,6 +15061,7 @@ Object {
           "lastLine": 1,
         },
         "name": "T",
+        "type": "TypeArgDef",
       },
       Object {
         "constraint": Object {
@@ -14916,6 +15077,7 @@ Object {
                   "lastLine": 1,
                 },
                 "name": "T",
+                "type": "Type",
               },
             ],
             "location": Object {
@@ -14925,6 +15087,7 @@ Object {
               "lastLine": 1,
             },
             "name": "nullable",
+            "type": "Type",
           },
         },
         "location": Object {
@@ -14934,6 +15097,7 @@ Object {
           "lastLine": 1,
         },
         "name": "U",
+        "type": "TypeArgDef",
       },
     ],
   },
