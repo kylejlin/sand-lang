@@ -21,6 +21,11 @@ export enum NodeType {
   Class = "Class",
 
   ImpliedNullExpr = "ImpliedNullExpr",
+
+  IfAlternative = "IfAlternative",
+  Type = "Type",
+  TypeArgDef = "TypeArgDef",
+  ArgDef = "ArgDef",
 }
 
 export interface NodeLocation {
@@ -143,14 +148,16 @@ export enum IfAlternativeType {
 }
 
 export interface ElseIf {
-  type: IfAlternativeType.ElseIf;
+  type: NodeType.IfAlternative;
+  alternativeType: IfAlternativeType.ElseIf;
   condition: Expr;
   body: CompoundExpression;
   location: NodeLocation;
 }
 
 export interface Else {
-  type: IfAlternativeType.Else;
+  type: NodeType.IfAlternative;
+  alternativeType: IfAlternativeType.Else;
   body: CompoundExpression;
   location: NodeLocation;
 }
@@ -164,12 +171,14 @@ export interface FunctionCall {
 }
 
 export interface Type {
+  type: NodeType.Type;
   name: string;
   args: Type[];
   location: NodeLocation;
 }
 
 export interface TypeArgDef {
+  type: NodeType.TypeArgDef;
   name: string;
   constraint: TypeConstraint;
   location: NodeLocation;
@@ -243,6 +252,7 @@ export type CompoundExpression = (Expr | Statement)[];
 export type Statement = LocalVariableDeclaration | Assignment | Return;
 
 export interface ArgDef {
+  type: NodeType.ArgDef;
   name: string;
   valueType: Type;
   location: NodeLocation;

@@ -214,7 +214,7 @@ function renderAlternative(
   alt: IfAlternative,
   depth: number,
 ): NonNullReactNode {
-  switch (alt.type) {
+  switch (alt.alternativeType) {
     case IfAlternativeType.ElseIf:
       return (
         <>
@@ -425,7 +425,7 @@ function stringifyAlternatives(item: If, depth: number): string {
 }
 
 function stringifyAlternative(alt: IfAlternative, depth: number): string {
-  switch (alt.type) {
+  switch (alt.alternativeType) {
     case IfAlternativeType.ElseIf:
       return (
         "else if " +
