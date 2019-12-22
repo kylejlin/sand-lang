@@ -1,0 +1,63 @@
+pub class AssignableExpressions {
+    simple() {
+        a = b;
+    }
+
+    dot() {
+        a.b = c;
+    }
+
+    dotDot() {
+        a.b.c = d;
+    }
+
+    dotIndex() {
+        a.b[c] = d;
+    }
+
+    index() {
+        a[b] = c;
+    }
+
+    indexDot() {
+        a[b].c = d;
+    }
+
+    indexIndex() {
+        a[b][c] = d;
+    }
+
+    callDot() {
+        a().b = c;
+    }
+
+    callIndex() {
+        a()[b] = c;
+    }
+}
+
+class DoubleEndings {
+    dotDotDot() {
+        a.b.c.d = e;
+    }
+
+    indexDotDot() {
+        a[b].c.d = e;
+    }
+
+    dotIndexIndex() {
+        a.b[c][d] = e;
+    }
+
+    indexIndexIndex() {
+        a[b][c][d] = e;
+    }
+
+    callDotDot() {
+        a().b.c = d;
+    }
+
+    callIndexIndex() {
+        a()[b][c] = d;
+    }
+}

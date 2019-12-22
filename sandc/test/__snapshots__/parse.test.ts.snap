@@ -137,6 +137,1189 @@ Object {
 }
 `;
 
+exports[`the latest parser parses files consistently: AssignableExpressions.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 63,
+  },
+  "privClasses": Array [
+    Object {
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 41,
+                        "lastColumn": 9,
+                        "lastLine": 41,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 41,
+                      "lastColumn": 11,
+                      "lastLine": 41,
+                    },
+                    "right": "b",
+                    "type": "DotExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 41,
+                    "lastColumn": 13,
+                    "lastLine": 41,
+                  },
+                  "right": "c",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 41,
+                  "lastColumn": 15,
+                  "lastLine": 41,
+                },
+                "right": "d",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 41,
+                "lastColumn": 20,
+                "lastLine": 41,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 41,
+                  "lastColumn": 19,
+                  "lastLine": 41,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 42,
+          },
+          "name": "dotDotDot",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 45,
+                        "lastColumn": 9,
+                        "lastLine": 45,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 45,
+                      "lastColumn": 12,
+                      "lastLine": 45,
+                    },
+                    "operation": "[",
+                    "right": Object {
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 45,
+                        "lastColumn": 11,
+                        "lastLine": 45,
+                      },
+                      "type": "Identifier",
+                      "value": "b",
+                    },
+                    "type": "BinaryExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 45,
+                    "lastColumn": 14,
+                    "lastLine": 45,
+                  },
+                  "right": "c",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 45,
+                  "lastColumn": 16,
+                  "lastLine": 45,
+                },
+                "right": "d",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 45,
+                "lastColumn": 21,
+                "lastLine": 45,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 19,
+                  "firstLine": 45,
+                  "lastColumn": 20,
+                  "lastLine": 45,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 46,
+          },
+          "name": "indexDotDot",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 49,
+                        "lastColumn": 9,
+                        "lastLine": 49,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 49,
+                      "lastColumn": 11,
+                      "lastLine": 49,
+                    },
+                    "right": "b",
+                    "type": "DotExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 49,
+                    "lastColumn": 14,
+                    "lastLine": 49,
+                  },
+                  "operation": "[",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 49,
+                      "lastColumn": 13,
+                      "lastLine": 49,
+                    },
+                    "type": "Identifier",
+                    "value": "c",
+                  },
+                  "type": "BinaryExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 49,
+                  "lastColumn": 17,
+                  "lastLine": 49,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 49,
+                    "lastColumn": 16,
+                    "lastLine": 49,
+                  },
+                  "type": "Identifier",
+                  "value": "d",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 49,
+                "lastColumn": 22,
+                "lastLine": 49,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 20,
+                  "firstLine": 49,
+                  "lastColumn": 21,
+                  "lastLine": 49,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 50,
+          },
+          "name": "dotIndexIndex",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 53,
+                        "lastColumn": 9,
+                        "lastLine": 53,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 53,
+                      "lastColumn": 12,
+                      "lastLine": 53,
+                    },
+                    "operation": "[",
+                    "right": Object {
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 53,
+                        "lastColumn": 11,
+                        "lastLine": 53,
+                      },
+                      "type": "Identifier",
+                      "value": "b",
+                    },
+                    "type": "BinaryExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 53,
+                    "lastColumn": 15,
+                    "lastLine": 53,
+                  },
+                  "operation": "[",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 13,
+                      "firstLine": 53,
+                      "lastColumn": 14,
+                      "lastLine": 53,
+                    },
+                    "type": "Identifier",
+                    "value": "c",
+                  },
+                  "type": "BinaryExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 53,
+                  "lastColumn": 18,
+                  "lastLine": 53,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 53,
+                    "lastColumn": 17,
+                    "lastLine": 53,
+                  },
+                  "type": "Identifier",
+                  "value": "d",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 53,
+                "lastColumn": 23,
+                "lastLine": 53,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 21,
+                  "firstLine": 53,
+                  "lastColumn": 22,
+                  "lastLine": 53,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 54,
+          },
+          "name": "indexIndexIndex",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 57,
+                        "lastColumn": 9,
+                        "lastLine": 57,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 57,
+                      "lastColumn": 11,
+                      "lastLine": 57,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 57,
+                    "lastColumn": 13,
+                    "lastLine": 57,
+                  },
+                  "right": "b",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 57,
+                  "lastColumn": 15,
+                  "lastLine": 57,
+                },
+                "right": "c",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 57,
+                "lastColumn": 20,
+                "lastLine": 57,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 57,
+                  "lastColumn": 19,
+                  "lastLine": 57,
+                },
+                "type": "Identifier",
+                "value": "d",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 58,
+          },
+          "name": "callDotDot",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 61,
+                        "lastColumn": 9,
+                        "lastLine": 61,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 61,
+                      "lastColumn": 11,
+                      "lastLine": 61,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 61,
+                    "lastColumn": 14,
+                    "lastLine": 61,
+                  },
+                  "operation": "[",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 61,
+                      "lastColumn": 13,
+                      "lastLine": 61,
+                    },
+                    "type": "Identifier",
+                    "value": "b",
+                  },
+                  "type": "BinaryExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 61,
+                  "lastColumn": 17,
+                  "lastLine": 61,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 61,
+                    "lastColumn": 16,
+                    "lastLine": 61,
+                  },
+                  "type": "Identifier",
+                  "value": "c",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 61,
+                "lastColumn": 22,
+                "lastLine": 61,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 20,
+                  "firstLine": 61,
+                  "lastColumn": 21,
+                  "lastLine": 61,
+                },
+                "type": "Identifier",
+                "value": "d",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 62,
+          },
+          "name": "callIndexIndex",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 39,
+        "lastColumn": 1,
+        "lastLine": 63,
+      },
+      "name": "DoubleEndings",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+    },
+  ],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 9,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 3,
+                "lastColumn": 13,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "simple",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 7,
+                  "lastColumn": 9,
+                  "lastLine": 7,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 11,
+                "lastLine": 7,
+              },
+              "right": "b",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 16,
+              "lastLine": 7,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 7,
+                "lastColumn": 15,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "dot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 11,
+                    "lastColumn": 9,
+                    "lastLine": 11,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 11,
+                  "lastColumn": 11,
+                  "lastLine": 11,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 13,
+                "lastLine": 11,
+              },
+              "right": "c",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 18,
+              "lastLine": 11,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 11,
+                "lastColumn": 17,
+                "lastLine": 11,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "dotDot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 15,
+                    "lastColumn": 9,
+                    "lastLine": 15,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 15,
+                  "lastColumn": 11,
+                  "lastLine": 15,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 14,
+                "lastLine": 15,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 15,
+                  "lastColumn": 13,
+                  "lastLine": 15,
+                },
+                "type": "Identifier",
+                "value": "c",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 19,
+              "lastLine": 15,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 15,
+                "lastColumn": 18,
+                "lastLine": 15,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "dotIndex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 19,
+                  "lastColumn": 9,
+                  "lastLine": 19,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 12,
+                "lastLine": 19,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 19,
+                  "lastColumn": 11,
+                  "lastLine": 19,
+                },
+                "type": "Identifier",
+                "value": "b",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 17,
+              "lastLine": 19,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 19,
+                "lastColumn": 16,
+                "lastLine": 19,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "index",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 23,
+                    "lastColumn": 9,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 23,
+                  "lastColumn": 12,
+                  "lastLine": 23,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 10,
+                    "firstLine": 23,
+                    "lastColumn": 11,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 14,
+                "lastLine": 23,
+              },
+              "right": "c",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 19,
+              "lastLine": 23,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 23,
+                "lastColumn": 18,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "indexDot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 27,
+                    "lastColumn": 9,
+                    "lastLine": 27,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 27,
+                  "lastColumn": 12,
+                  "lastLine": 27,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 10,
+                    "firstLine": 27,
+                    "lastColumn": 11,
+                    "lastLine": 27,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 27,
+                "lastColumn": 15,
+                "lastLine": 27,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 13,
+                  "firstLine": 27,
+                  "lastColumn": 14,
+                  "lastLine": 27,
+                },
+                "type": "Identifier",
+                "value": "c",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 20,
+              "lastLine": 27,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 27,
+                "lastColumn": 19,
+                "lastLine": 27,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "indexIndex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "args": Array [],
+                "callee": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 31,
+                    "lastColumn": 9,
+                    "lastLine": 31,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 31,
+                  "lastColumn": 11,
+                  "lastLine": 31,
+                },
+                "type": "FunctionCall",
+                "typeArgs": Array [],
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 31,
+                "lastColumn": 13,
+                "lastLine": 31,
+              },
+              "right": "b",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 18,
+              "lastLine": 31,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 31,
+                "lastColumn": 17,
+                "lastLine": 31,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 32,
+        },
+        "name": "callDot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "args": Array [],
+                "callee": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 35,
+                    "lastColumn": 9,
+                    "lastLine": 35,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 35,
+                  "lastColumn": 11,
+                  "lastLine": 35,
+                },
+                "type": "FunctionCall",
+                "typeArgs": Array [],
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 35,
+                "lastColumn": 14,
+                "lastLine": 35,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 35,
+                  "lastColumn": 13,
+                  "lastLine": 35,
+                },
+                "type": "Identifier",
+                "value": "b",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 35,
+              "lastColumn": 19,
+              "lastLine": 35,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 35,
+                "lastColumn": 18,
+                "lastLine": 35,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 36,
+        },
+        "name": "callIndex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 37,
+    },
+    "name": "AssignableExpressions",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
 exports[`the latest parser parses files consistently: Assignments.sand 1`] = `
 Object {
   "location": Object {
@@ -6854,6 +8037,1189 @@ Object {
         "name": "U",
       },
     ],
+  },
+  "type": "File",
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: AssignableExpressions.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 63,
+  },
+  "privClasses": Array [
+    Object {
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 41,
+                        "lastColumn": 9,
+                        "lastLine": 41,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 41,
+                      "lastColumn": 11,
+                      "lastLine": 41,
+                    },
+                    "right": "b",
+                    "type": "DotExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 41,
+                    "lastColumn": 13,
+                    "lastLine": 41,
+                  },
+                  "right": "c",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 41,
+                  "lastColumn": 15,
+                  "lastLine": 41,
+                },
+                "right": "d",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 41,
+                "lastColumn": 20,
+                "lastLine": 41,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 41,
+                  "lastColumn": 19,
+                  "lastLine": 41,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 42,
+          },
+          "name": "dotDotDot",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 45,
+                        "lastColumn": 9,
+                        "lastLine": 45,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 45,
+                      "lastColumn": 12,
+                      "lastLine": 45,
+                    },
+                    "operation": "[",
+                    "right": Object {
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 45,
+                        "lastColumn": 11,
+                        "lastLine": 45,
+                      },
+                      "type": "Identifier",
+                      "value": "b",
+                    },
+                    "type": "BinaryExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 45,
+                    "lastColumn": 14,
+                    "lastLine": 45,
+                  },
+                  "right": "c",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 45,
+                  "lastColumn": 16,
+                  "lastLine": 45,
+                },
+                "right": "d",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 45,
+                "lastColumn": 21,
+                "lastLine": 45,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 19,
+                  "firstLine": 45,
+                  "lastColumn": 20,
+                  "lastLine": 45,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 46,
+          },
+          "name": "indexDotDot",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 49,
+                        "lastColumn": 9,
+                        "lastLine": 49,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 49,
+                      "lastColumn": 11,
+                      "lastLine": 49,
+                    },
+                    "right": "b",
+                    "type": "DotExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 49,
+                    "lastColumn": 14,
+                    "lastLine": 49,
+                  },
+                  "operation": "[",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 49,
+                      "lastColumn": 13,
+                      "lastLine": 49,
+                    },
+                    "type": "Identifier",
+                    "value": "c",
+                  },
+                  "type": "BinaryExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 49,
+                  "lastColumn": 17,
+                  "lastLine": 49,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 49,
+                    "lastColumn": 16,
+                    "lastLine": 49,
+                  },
+                  "type": "Identifier",
+                  "value": "d",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 49,
+                "lastColumn": 22,
+                "lastLine": 49,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 20,
+                  "firstLine": 49,
+                  "lastColumn": 21,
+                  "lastLine": 49,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 50,
+          },
+          "name": "dotIndexIndex",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "left": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 53,
+                        "lastColumn": 9,
+                        "lastLine": 53,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 53,
+                      "lastColumn": 12,
+                      "lastLine": 53,
+                    },
+                    "operation": "[",
+                    "right": Object {
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 53,
+                        "lastColumn": 11,
+                        "lastLine": 53,
+                      },
+                      "type": "Identifier",
+                      "value": "b",
+                    },
+                    "type": "BinaryExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 53,
+                    "lastColumn": 15,
+                    "lastLine": 53,
+                  },
+                  "operation": "[",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 13,
+                      "firstLine": 53,
+                      "lastColumn": 14,
+                      "lastLine": 53,
+                    },
+                    "type": "Identifier",
+                    "value": "c",
+                  },
+                  "type": "BinaryExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 53,
+                  "lastColumn": 18,
+                  "lastLine": 53,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 53,
+                    "lastColumn": 17,
+                    "lastLine": 53,
+                  },
+                  "type": "Identifier",
+                  "value": "d",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 53,
+                "lastColumn": 23,
+                "lastLine": 53,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 21,
+                  "firstLine": 53,
+                  "lastColumn": 22,
+                  "lastLine": 53,
+                },
+                "type": "Identifier",
+                "value": "e",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 54,
+          },
+          "name": "indexIndexIndex",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 57,
+                        "lastColumn": 9,
+                        "lastLine": 57,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 57,
+                      "lastColumn": 11,
+                      "lastLine": 57,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 57,
+                    "lastColumn": 13,
+                    "lastLine": 57,
+                  },
+                  "right": "b",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 57,
+                  "lastColumn": 15,
+                  "lastLine": 57,
+                },
+                "right": "c",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 57,
+                "lastColumn": 20,
+                "lastLine": 57,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 57,
+                  "lastColumn": 19,
+                  "lastLine": 57,
+                },
+                "type": "Identifier",
+                "value": "d",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 58,
+          },
+          "name": "callDotDot",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 61,
+                        "lastColumn": 9,
+                        "lastLine": 61,
+                      },
+                      "type": "Identifier",
+                      "value": "a",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 61,
+                      "lastColumn": 11,
+                      "lastLine": 61,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 61,
+                    "lastColumn": 14,
+                    "lastLine": 61,
+                  },
+                  "operation": "[",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 61,
+                      "lastColumn": 13,
+                      "lastLine": 61,
+                    },
+                    "type": "Identifier",
+                    "value": "b",
+                  },
+                  "type": "BinaryExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 61,
+                  "lastColumn": 17,
+                  "lastLine": 61,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 61,
+                    "lastColumn": 16,
+                    "lastLine": 61,
+                  },
+                  "type": "Identifier",
+                  "value": "c",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 61,
+                "lastColumn": 22,
+                "lastLine": 61,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 20,
+                  "firstLine": 61,
+                  "lastColumn": 21,
+                  "lastLine": 61,
+                },
+                "type": "Identifier",
+                "value": "d",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 39,
+            "lastColumn": 5,
+            "lastLine": 62,
+          },
+          "name": "callIndexIndex",
+          "returnType": "void",
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 39,
+        "lastColumn": 1,
+        "lastLine": 63,
+      },
+      "name": "DoubleEndings",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+    },
+  ],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 9,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "a",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 3,
+                "lastColumn": 13,
+                "lastLine": 3,
+              },
+              "type": "Identifier",
+              "value": "b",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "simple",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 7,
+                  "lastColumn": 9,
+                  "lastLine": 7,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 11,
+                "lastLine": 7,
+              },
+              "right": "b",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 16,
+              "lastLine": 7,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 7,
+                "lastColumn": 15,
+                "lastLine": 7,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "dot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 11,
+                    "lastColumn": 9,
+                    "lastLine": 11,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 11,
+                  "lastColumn": 11,
+                  "lastLine": 11,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 13,
+                "lastLine": 11,
+              },
+              "right": "c",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 18,
+              "lastLine": 11,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 11,
+                "lastColumn": 17,
+                "lastLine": 11,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "dotDot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 15,
+                    "lastColumn": 9,
+                    "lastLine": 15,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 15,
+                  "lastColumn": 11,
+                  "lastLine": 15,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 14,
+                "lastLine": 15,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 15,
+                  "lastColumn": 13,
+                  "lastLine": 15,
+                },
+                "type": "Identifier",
+                "value": "c",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 19,
+              "lastLine": 15,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 15,
+                "lastColumn": 18,
+                "lastLine": 15,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "dotIndex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 19,
+                  "lastColumn": 9,
+                  "lastLine": 19,
+                },
+                "type": "Identifier",
+                "value": "a",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 12,
+                "lastLine": 19,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 19,
+                  "lastColumn": 11,
+                  "lastLine": 19,
+                },
+                "type": "Identifier",
+                "value": "b",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 17,
+              "lastLine": 19,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 19,
+                "lastColumn": 16,
+                "lastLine": 19,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "index",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 23,
+                    "lastColumn": 9,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 23,
+                  "lastColumn": 12,
+                  "lastLine": 23,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 10,
+                    "firstLine": 23,
+                    "lastColumn": 11,
+                    "lastLine": 23,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 14,
+                "lastLine": 23,
+              },
+              "right": "c",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 19,
+              "lastLine": 23,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 23,
+                "lastColumn": 18,
+                "lastLine": 23,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "indexDot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 27,
+                    "lastColumn": 9,
+                    "lastLine": 27,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 27,
+                  "lastColumn": 12,
+                  "lastLine": 27,
+                },
+                "operation": "[",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 10,
+                    "firstLine": 27,
+                    "lastColumn": 11,
+                    "lastLine": 27,
+                  },
+                  "type": "Identifier",
+                  "value": "b",
+                },
+                "type": "BinaryExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 27,
+                "lastColumn": 15,
+                "lastLine": 27,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 13,
+                  "firstLine": 27,
+                  "lastColumn": 14,
+                  "lastLine": 27,
+                },
+                "type": "Identifier",
+                "value": "c",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 20,
+              "lastLine": 27,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 27,
+                "lastColumn": 19,
+                "lastLine": 27,
+              },
+              "type": "Identifier",
+              "value": "d",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "indexIndex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "args": Array [],
+                "callee": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 31,
+                    "lastColumn": 9,
+                    "lastLine": 31,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 31,
+                  "lastColumn": 11,
+                  "lastLine": 31,
+                },
+                "type": "FunctionCall",
+                "typeArgs": Array [],
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 31,
+                "lastColumn": 13,
+                "lastLine": 31,
+              },
+              "right": "b",
+              "type": "DotExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 18,
+              "lastLine": 31,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 31,
+                "lastColumn": 17,
+                "lastLine": 31,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 32,
+        },
+        "name": "callDot",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "left": Object {
+                "args": Array [],
+                "callee": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 35,
+                    "lastColumn": 9,
+                    "lastLine": 35,
+                  },
+                  "type": "Identifier",
+                  "value": "a",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 35,
+                  "lastColumn": 11,
+                  "lastLine": 35,
+                },
+                "type": "FunctionCall",
+                "typeArgs": Array [],
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 35,
+                "lastColumn": 14,
+                "lastLine": 35,
+              },
+              "operation": "[",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 35,
+                  "lastColumn": 13,
+                  "lastLine": 35,
+                },
+                "type": "Identifier",
+                "value": "b",
+              },
+              "type": "BinaryExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 35,
+              "lastColumn": 19,
+              "lastLine": 35,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 35,
+                "lastColumn": 18,
+                "lastLine": 35,
+              },
+              "type": "Identifier",
+              "value": "c",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 32,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 36,
+        },
+        "name": "callIndex",
+        "returnType": "void",
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 37,
+    },
+    "name": "AssignableExpressions",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
   },
   "type": "File",
 }
