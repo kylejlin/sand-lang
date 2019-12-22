@@ -12,6 +12,8 @@ export enum NodeType {
 
   If = "If",
   FunctionCall = "FunctionCall",
+  TypedObjectLiteral = "TypedObjectLiteral",
+  ObjectEntry = "ObjectEntry",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
@@ -43,15 +45,24 @@ export interface JisonNodeLocation {
 }
 
 export function merge(
-  start: JisonNodeLocation,
-  end: JisonNodeLocation,
-): JisonNodeLocation {
+  start: NodeLocation | JisonNodeLocation,
+  end: NodeLocation | JisonNodeLocation,
+): NodeLocation {
+  const camelStart = camelCaseIfNeeded(start);
+  const camelEnd = camelCaseIfNeeded(end);
+
   return {
-    first_line: start.first_line,
-    first_column: start.first_column,
-    last_line: end.last_line,
-    last_column: end.last_column,
+    firstLine: camelStart.firstLine,
+    firstColumn: camelStart.firstColumn,
+    lastLine: camelEnd.lastLine,
+    lastColumn: camelEnd.lastColumn,
   };
+}
+
+function camelCaseIfNeeded(
+  location: NodeLocation | JisonNodeLocation,
+): NodeLocation {
+  return "first_line" in location ? camelCase(location) : location;
 }
 
 export function camelCase(location: JisonNodeLocation): NodeLocation {
@@ -71,7 +82,8 @@ export type Expr =
   | UnaryExpr
   | DotExpr
   | If
-  | FunctionCall;
+  | FunctionCall
+  | TypedObjectLiteral;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
@@ -167,6 +179,20 @@ export interface FunctionCall {
   callee: Expr;
   typeArgs: Type[];
   args: Expr[];
+  location: NodeLocation;
+}
+
+export interface TypedObjectLiteral {
+  type: NodeType.TypedObjectLiteral;
+  valueType: Type;
+  entries: ObjectEntry[];
+  location: NodeLocation;
+}
+
+export interface ObjectEntry {
+  type: NodeType.ObjectEntry;
+  key: string;
+  value: Expr;
   location: NodeLocation;
 }
 

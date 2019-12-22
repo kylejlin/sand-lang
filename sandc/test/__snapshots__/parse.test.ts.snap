@@ -4137,6 +4137,7 @@ Object {
                       "lastLine": 7,
                     },
                     "name": "java.lang.Character",
+                    "type": "Type",
                   },
                 ],
                 "location": Object {
@@ -7953,6 +7954,388 @@ Object {
 }
 `;
 
+exports[`the latest parser parses files consistently: TypedObjectLiterals.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 29,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 11,
+                "lastLine": 3,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "empty",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 8,
+                  "lastColumn": 18,
+                  "lastLine": 8,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 8,
+                    "lastColumn": 18,
+                    "lastLine": 8,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 9,
+                  "lastColumn": 18,
+                  "lastLine": 9,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 9,
+                    "lastColumn": 18,
+                    "lastLine": 9,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 10,
+                  "lastColumn": 21,
+                  "lastLine": 10,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 10,
+                    "lastColumn": 21,
+                    "lastLine": 10,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 9,
+              "lastLine": 11,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 11,
+                "lastLine": 7,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "withEntries",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 16,
+                  "lastColumn": 18,
+                  "lastLine": 16,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 16,
+                    "lastColumn": 18,
+                    "lastLine": 16,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 17,
+                  "lastColumn": 18,
+                  "lastLine": 17,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 17,
+                    "lastColumn": 18,
+                    "lastLine": 17,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 18,
+                  "lastColumn": 21,
+                  "lastLine": 18,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 18,
+                    "lastColumn": 21,
+                    "lastLine": 18,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 9,
+              "lastLine": 19,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 11,
+                "lastLine": 15,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "trailingComma",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 24,
+                  "lastColumn": 18,
+                  "lastLine": 24,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 24,
+                    "lastColumn": 18,
+                    "lastLine": 24,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 25,
+                  "lastColumn": 18,
+                  "lastLine": 25,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 25,
+                    "lastColumn": 18,
+                    "lastLine": 25,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 26,
+                  "lastColumn": 21,
+                  "lastLine": 26,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 26,
+                    "lastColumn": 21,
+                    "lastLine": 26,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 9,
+              "lastLine": 27,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 23,
+                    "lastColumn": 15,
+                    "lastLine": 23,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 23,
+                    "lastColumn": 23,
+                    "lastLine": 23,
+                  },
+                  "name": "String",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 24,
+                "lastLine": 23,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "typeArgs",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 29,
+    },
+    "name": "TypedObjectLiterals",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
 exports[`the latest parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
 exports[`the latest parser throws an error complaining about the same line number: assignments/AssignmentExpression.sand 1`] = `3`;
@@ -7986,6 +8369,10 @@ exports[`the latest parser throws an error complaining about the same line numbe
 exports[`the latest parser throws an error complaining about the same line number: return/MissingSemicolonNoVal.sand 1`] = `3`;
 
 exports[`the latest parser throws an error complaining about the same line number: return/ReturnExpression.sand 1`] = `2`;
+
+exports[`the latest parser throws an error complaining about the same line number: typedObjectLiteral/AssignmentLeftHand.sand 1`] = `3`;
+
+exports[`the latest parser throws an error complaining about the same line number: typedObjectLiteral/Extends.sand 1`] = `3`;
 
 exports[`the prebuilt parser parses files consistently: Args.sand 1`] = `
 Object {
@@ -12124,6 +12511,7 @@ Object {
                       "lastLine": 7,
                     },
                     "name": "java.lang.Character",
+                    "type": "Type",
                   },
                 ],
                 "location": Object {
@@ -15940,6 +16328,388 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: TypedObjectLiterals.sand 1`] = `
+Object {
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 29,
+  },
+  "privClasses": Array [],
+  "pubClass": Object {
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 11,
+                "lastLine": 3,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "empty",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 8,
+                  "lastColumn": 18,
+                  "lastLine": 8,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 8,
+                    "lastColumn": 18,
+                    "lastLine": 8,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 9,
+                  "lastColumn": 18,
+                  "lastLine": 9,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 9,
+                    "lastColumn": 18,
+                    "lastLine": 9,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 10,
+                  "lastColumn": 21,
+                  "lastLine": 10,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 10,
+                    "lastColumn": 21,
+                    "lastLine": 10,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 9,
+              "lastLine": 11,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 11,
+                "lastLine": 7,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "withEntries",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 16,
+                  "lastColumn": 18,
+                  "lastLine": 16,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 16,
+                    "lastColumn": 18,
+                    "lastLine": 16,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 17,
+                  "lastColumn": 18,
+                  "lastLine": 17,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 17,
+                    "lastColumn": 18,
+                    "lastLine": 17,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 18,
+                  "lastColumn": 21,
+                  "lastLine": 18,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 18,
+                    "lastColumn": 21,
+                    "lastLine": 18,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 9,
+              "lastLine": 19,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 11,
+                "lastLine": 15,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "trailingComma",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 24,
+                  "lastColumn": 18,
+                  "lastLine": 24,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 24,
+                    "lastColumn": 18,
+                    "lastLine": 24,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 25,
+                  "lastColumn": 18,
+                  "lastLine": 25,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 25,
+                    "lastColumn": 18,
+                    "lastLine": 25,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 26,
+                  "lastColumn": 21,
+                  "lastLine": 26,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 26,
+                    "lastColumn": 21,
+                    "lastLine": 26,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 9,
+              "lastLine": 27,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 23,
+                    "lastColumn": 15,
+                    "lastLine": 23,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 23,
+                    "lastColumn": 23,
+                    "lastLine": 23,
+                  },
+                  "name": "String",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 24,
+                "lastLine": 23,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "typeArgs",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 29,
+    },
+    "name": "TypedObjectLiterals",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+  },
+  "type": "File",
+}
+`;
+
 exports[`the prebuilt parser throws an error complaining about the same line number: FullyQualifiedTypes.sand 1`] = `2`;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: assignments/AssignmentExpression.sand 1`] = `3`;
@@ -15973,3 +16743,7 @@ exports[`the prebuilt parser throws an error complaining about the same line num
 exports[`the prebuilt parser throws an error complaining about the same line number: return/MissingSemicolonNoVal.sand 1`] = `3`;
 
 exports[`the prebuilt parser throws an error complaining about the same line number: return/ReturnExpression.sand 1`] = `2`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: typedObjectLiteral/AssignmentLeftHand.sand 1`] = `3`;
+
+exports[`the prebuilt parser throws an error complaining about the same line number: typedObjectLiteral/Extends.sand 1`] = `3`;

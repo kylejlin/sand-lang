@@ -3,135 +3,210 @@
 exports[`sand.jison sand.jison has the same conflicts 1`] = `
 "Conflict in grammar: multiple actions possible when lookahead token is || in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 128)
+- shift token (then go to state 131)
 Conflict in grammar: multiple actions possible when lookahead token is && in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 129)
+- shift token (then go to state 132)
 Conflict in grammar: multiple actions possible when lookahead token is == in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 130)
+- shift token (then go to state 133)
 Conflict in grammar: multiple actions possible when lookahead token is != in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 131)
+- shift token (then go to state 134)
 Conflict in grammar: multiple actions possible when lookahead token is < in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 132)
+- shift token (then go to state 135)
 Conflict in grammar: multiple actions possible when lookahead token is <= in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 133)
+- shift token (then go to state 136)
 Conflict in grammar: multiple actions possible when lookahead token is > in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 134)
+- shift token (then go to state 137)
 Conflict in grammar: multiple actions possible when lookahead token is >= in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 135)
+- shift token (then go to state 138)
 Conflict in grammar: multiple actions possible when lookahead token is + in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 136)
+- shift token (then go to state 139)
 Conflict in grammar: multiple actions possible when lookahead token is - in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 137)
+- shift token (then go to state 140)
 Conflict in grammar: multiple actions possible when lookahead token is * in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 138)
+- shift token (then go to state 141)
 Conflict in grammar: multiple actions possible when lookahead token is / in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 139)
+- shift token (then go to state 142)
 Conflict in grammar: multiple actions possible when lookahead token is % in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 140)
+- shift token (then go to state 143)
 Conflict in grammar: multiple actions possible when lookahead token is ** in state 78
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterStartingWithInfixToken
-- shift token (then go to state 141)
+- shift token (then go to state 144)
 Conflict in grammar: multiple actions possible when lookahead token is || in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 142)
+- shift token (then go to state 145)
 Conflict in grammar: multiple actions possible when lookahead token is && in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 143)
+- shift token (then go to state 146)
 Conflict in grammar: multiple actions possible when lookahead token is == in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 144)
+- shift token (then go to state 147)
 Conflict in grammar: multiple actions possible when lookahead token is != in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 145)
+- shift token (then go to state 148)
 Conflict in grammar: multiple actions possible when lookahead token is < in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 146)
+- shift token (then go to state 149)
 Conflict in grammar: multiple actions possible when lookahead token is <= in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 147)
+- shift token (then go to state 150)
 Conflict in grammar: multiple actions possible when lookahead token is > in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 148)
+- shift token (then go to state 151)
 Conflict in grammar: multiple actions possible when lookahead token is >= in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 149)
+- shift token (then go to state 152)
 Conflict in grammar: multiple actions possible when lookahead token is + in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 150)
+- shift token (then go to state 153)
 Conflict in grammar: multiple actions possible when lookahead token is - in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 151)
+- shift token (then go to state 154)
 Conflict in grammar: multiple actions possible when lookahead token is * in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 152)
+- shift token (then go to state 155)
 Conflict in grammar: multiple actions possible when lookahead token is / in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 153)
+- shift token (then go to state 156)
 Conflict in grammar: multiple actions possible when lookahead token is % in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 154)
+- shift token (then go to state 157)
 Conflict in grammar: multiple actions possible when lookahead token is ** in state 79
 - reduce by rule: expressionLackingRightDelimiter -> expressionLackingRightDelimiterNotStartingWithInfixToken
-- shift token (then go to state 155)
-Conflict in grammar: multiple actions possible when lookahead token is < in state 89
-- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression
+- shift token (then go to state 158)
+Conflict in grammar: multiple actions possible when lookahead token is ; in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is } in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is || in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is && in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is == in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is != in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is < in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is <= in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is > in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is >= in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is + in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is - in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is * in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is / in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is % in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is ** in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is { in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is ] in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is ) in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is , in state 86
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall
+Conflict in grammar: multiple actions possible when lookahead token is < in state 90
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> oneOrMoreDotSeparatedIdentifiers
 - shift token (then go to state 33)
-Conflict in grammar: multiple actions possible when lookahead token is ** in state 157
+Conflict in grammar: multiple actions possible when lookahead token is [ in state 90
+- reduce by rule: optTypeArgs -> 
+- shift token (then go to state 175)
+Conflict in grammar: multiple actions possible when lookahead token is < in state 91
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> heterogeneousDotExpr
+- shift token (then go to state 33)
+Conflict in grammar: multiple actions possible when lookahead token is ** in state 160
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- shift token (then go to state 120)
+Conflict in grammar: multiple actions possible when lookahead token is % in state 160
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- shift token (then go to state 119)
+Conflict in grammar: multiple actions possible when lookahead token is / in state 160
+- reduce by rule: expression -> expressionIncludingRightDelimiter
+- shift token (then go to state 118)
+Conflict in grammar: multiple actions possible when lookahead token is * in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 117)
-Conflict in grammar: multiple actions possible when lookahead token is % in state 157
+Conflict in grammar: multiple actions possible when lookahead token is - in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 116)
-Conflict in grammar: multiple actions possible when lookahead token is / in state 157
+Conflict in grammar: multiple actions possible when lookahead token is + in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 115)
-Conflict in grammar: multiple actions possible when lookahead token is * in state 157
+Conflict in grammar: multiple actions possible when lookahead token is >= in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 114)
-Conflict in grammar: multiple actions possible when lookahead token is - in state 157
+Conflict in grammar: multiple actions possible when lookahead token is > in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 113)
-Conflict in grammar: multiple actions possible when lookahead token is + in state 157
+Conflict in grammar: multiple actions possible when lookahead token is <= in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 112)
-Conflict in grammar: multiple actions possible when lookahead token is >= in state 157
+Conflict in grammar: multiple actions possible when lookahead token is < in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 111)
-Conflict in grammar: multiple actions possible when lookahead token is > in state 157
+Conflict in grammar: multiple actions possible when lookahead token is != in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 110)
-Conflict in grammar: multiple actions possible when lookahead token is <= in state 157
+Conflict in grammar: multiple actions possible when lookahead token is == in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 109)
-Conflict in grammar: multiple actions possible when lookahead token is < in state 157
+Conflict in grammar: multiple actions possible when lookahead token is && in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 108)
-Conflict in grammar: multiple actions possible when lookahead token is != in state 157
+Conflict in grammar: multiple actions possible when lookahead token is || in state 160
 - reduce by rule: expression -> expressionIncludingRightDelimiter
 - shift token (then go to state 107)
-Conflict in grammar: multiple actions possible when lookahead token is == in state 157
-- reduce by rule: expression -> expressionIncludingRightDelimiter
-- shift token (then go to state 106)
-Conflict in grammar: multiple actions possible when lookahead token is && in state 157
-- reduce by rule: expression -> expressionIncludingRightDelimiter
-- shift token (then go to state 105)
-Conflict in grammar: multiple actions possible when lookahead token is || in state 157
-- reduce by rule: expression -> expressionIncludingRightDelimiter
-- shift token (then go to state 104)
-Conflict in grammar: multiple actions possible when lookahead token is < in state 159
-- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression
+Conflict in grammar: multiple actions possible when lookahead token is < in state 162
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> oneOrMoreDotSeparatedIdentifiers
+- shift token (then go to state 33)
+Conflict in grammar: multiple actions possible when lookahead token is { in state 162
+- reduce by rule: optTypeArgs -> 
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> oneOrMoreDotSeparatedIdentifiers
+Conflict in grammar: multiple actions possible when lookahead token is [ in state 162
+- reduce by rule: optTypeArgs -> 
+- shift token (then go to state 175)
+Conflict in grammar: multiple actions possible when lookahead token is < in state 163
+- reduce by rule: expressionLackingRightDelimiterNotStartingWithInfixToken -> heterogeneousDotExpr
 - shift token (then go to state 33)
 
 States with conflicts:
@@ -223,15 +298,29 @@ State 79
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken ./ expressionIncludingRightDelimiter #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .% expressionIncludingRightDelimiter #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionLackingRightDelimiterNotStartingWithInfixToken .** expressionIncludingRightDelimiter #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
-State 89
-  expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression . #lookaheads= ; } || && == != < <= > >= + - * / % **
-  assignment -> assignableExpression .= expression ; #lookaheads= } return_ re! re let! let IDENTIFIER if STRING NUMBER !
-  functionCall -> assignableExpression .optTypeArgs ( optArgs ) #lookaheads= ** % / * - + >= > <= < != == && || } ; . [ { ] ) ,
-  assignableExpression -> assignableExpression .. IDENTIFIER #lookaheads= ** % / * - + >= > <= < != == && || } ; = ( . [ { ] ) ,
-  assignableExpression -> assignableExpression .[ expression ] #lookaheads= ** % / * - + >= > <= < != == && || } ; = ( . [ { ] ) ,
+State 86
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall . #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> functionCall . #lookaheads= ; } || && == != < <= > >= + - * / % ** { ] ) ,
+  heterogeneousDotExpr -> functionCall .. IDENTIFIER #lookaheads= ** % / * - + >= > <= < != == && || } ; = ( . [ { ] ) ,
+  index -> functionCall .[ expression ] #lookaheads= ** % / * - + >= > <= < != == && || } ; = . [ { ] ) ,
+State 90
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> oneOrMoreDotSeparatedIdentifiers . #lookaheads= ; } || && == != < <= > >= + - * / % **
+  assignment -> oneOrMoreDotSeparatedIdentifiers .= expression ; #lookaheads= } return_ re! re let! let IDENTIFIER if STRING NUMBER !
+  functionCall -> oneOrMoreDotSeparatedIdentifiers .optTypeArgs ( optArgs ) #lookaheads= ** % / * - + >= > <= < != == && || } ; . [ { ] ) ,
+  oneOrMoreDotSeparatedIdentifiers -> oneOrMoreDotSeparatedIdentifiers .. IDENTIFIER
+  index -> oneOrMoreDotSeparatedIdentifiers .[ expression ] #lookaheads= ** % / * - + >= > <= < != == && || } ; = . [ { ] ) ,
+  nonNullableType -> oneOrMoreDotSeparatedIdentifiers .optTypeArgs #lookaheads= { ? [
+  optTypeArgs -> . #lookaheads= ( ? { [
+  optTypeArgs -> .< typeArgs >
+State 91
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> heterogeneousDotExpr . #lookaheads= ; } || && == != < <= > >= + - * / % **
+  assignment -> heterogeneousDotExpr .= expression ; #lookaheads= } return_ re! re let! let IDENTIFIER if STRING NUMBER !
+  functionCall -> heterogeneousDotExpr .optTypeArgs ( optArgs ) #lookaheads= ** % / * - + >= > <= < != == && || } ; . [ { ] ) ,
+  heterogeneousDotExpr -> heterogeneousDotExpr .. IDENTIFIER #lookaheads= ** % / * - + >= > <= < != == && || } ; = ( . [ { ] ) ,
+  index -> heterogeneousDotExpr .[ expression ] #lookaheads= ** % / * - + >= > <= < != == && || } ; = . [ { ] ) ,
   optTypeArgs -> . #lookaheads= (
   optTypeArgs -> .< typeArgs >
-State 157
+State 160
   expression -> expressionIncludingRightDelimiter . #lookaheads= { ** % / * - + >= > <= < != == && || } ; ] ) ,
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .|| expressionLackingRightDelimiterStartingWithInfixToken
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .&& expressionLackingRightDelimiterStartingWithInfixToken
@@ -275,11 +364,19 @@ State 157
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter ./ expressionIncludingRightDelimiter
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .% expressionIncludingRightDelimiter
   expressionLackingRightDelimiterNotStartingWithInfixToken -> expressionIncludingRightDelimiter .** expressionIncludingRightDelimiter
-State 159
-  expressionLackingRightDelimiterNotStartingWithInfixToken -> assignableExpression . #lookaheads= { || && == != < <= > >= + - * / % ** } ; ] ) ,
-  functionCall -> assignableExpression .optTypeArgs ( optArgs )
-  assignableExpression -> assignableExpression .. IDENTIFIER
-  assignableExpression -> assignableExpression .[ expression ]
+State 162
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> oneOrMoreDotSeparatedIdentifiers . #lookaheads= { || && == != < <= > >= + - * / % ** } ; ] ) ,
+  functionCall -> oneOrMoreDotSeparatedIdentifiers .optTypeArgs ( optArgs )
+  oneOrMoreDotSeparatedIdentifiers -> oneOrMoreDotSeparatedIdentifiers .. IDENTIFIER
+  index -> oneOrMoreDotSeparatedIdentifiers .[ expression ]
+  nonNullableType -> oneOrMoreDotSeparatedIdentifiers .optTypeArgs
+  optTypeArgs -> . #lookaheads= ( ? { [
+  optTypeArgs -> .< typeArgs >
+State 163
+  expressionLackingRightDelimiterNotStartingWithInfixToken -> heterogeneousDotExpr . #lookaheads= { || && == != < <= > >= + - * / % ** } ; ] ) ,
+  functionCall -> heterogeneousDotExpr .optTypeArgs ( optArgs )
+  heterogeneousDotExpr -> heterogeneousDotExpr .. IDENTIFIER
+  index -> heterogeneousDotExpr .[ expression ]
   optTypeArgs -> . #lookaheads= (
   optTypeArgs -> .< typeArgs >
 "
@@ -287,8 +384,8 @@ State 159
 
 exports[`sand.jison sand.jison has the same number of each type of conflict 1`] = `
 Object {
-  "reduceReduce": 0,
-  "reduceShift": 44,
-  "total": 44,
+  "reduceReduce": 21,
+  "reduceShift": 48,
+  "total": 69,
 }
 `;

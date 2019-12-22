@@ -110,14 +110,14 @@ typeArgDefs
     | typeArgDefs "," IDENTIFIER
         { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@3) }]); }
     | typeArgDefs "," IDENTIFIER "extends" type
-        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.camelCase(yy.merge(@3, @5)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.merge(@3, @5) }]); }
     ;
 
 optPrivClasses
     : /* empty */
         { $$ = []; }
     | optPrivClasses "class" IDENTIFIER optTypeArgDefs optExtension "{" classBody "}"
-        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgDefs: $4, superClass: $5, items: $7, location: yy.camelCase(yy.merge(@2, @8)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgDefs: $4, superClass: $5, items: $7, location: yy.merge(@2, @8) }]); }
     ;
 
 optExtension
@@ -138,18 +138,12 @@ nullableType
     ;
 
 nonNullableType
-    : typeIdentifierWithPossibleDotChain optTypeArgs
-        { $$ = { type: yy.NodeType.Type, name: $1, args: $2, location: yy.camelCase(@$) }; }
+    : oneOrMoreDotSeparatedIdentifiers optTypeArgs
+        { $$ = { type: yy.NodeType.Type, name: $1.map(ident => ident.value).join('.'), args: $2, location: yy.camelCase(@$) }; }
     | type "[" "]"
         { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" "*" "]"
         { $$ = { type: yy.NodeType.Type, name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
-    ;
-
-typeIdentifierWithPossibleDotChain
-    : IDENTIFIER
-    | typeIdentifierWithPossibleDotChain "." IDENTIFIER
-        { $$ = $1 + "." + $3; }
     ;
 
 optTypeArgs
@@ -201,7 +195,7 @@ argDefs
     : IDENTIFIER ":" type
         { $$ = [{ type: yy.NodeType.ArgDef, name: $1, valueType: $3, location: yy.camelCase(@$) }]; }
     | argDefs "," IDENTIFIER ":" type
-        { $$ = $1.concat([{ type: yy.NodeType.ArgDef, name: $3, valueType: $5, location: yy.camelCase(yy.merge(@3, @5)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.ArgDef, name: $3, valueType: $5, location: yy.merge(@3, @5) }]); }
     ;
 
 compoundExpression
@@ -291,7 +285,11 @@ localVariableDeclaration
     ;
 
 assignment
-    : assignableExpression "=" expression ";"
+    : oneOrMoreDotSeparatedIdentifiers "=" expression ";"
+        { $$ = { type: yy.NodeType.Assignment, assignee: yy.buildDotChainIfNeeded($1), value: $3, location: yy.camelCase(@$) }; }
+    | heterogeneousDotExpr "=" expression ";"
+        { $$ = { type: yy.NodeType.Assignment, assignee: $1, value: $3, location: yy.camelCase(@$) }; }
+    | index "=" expression ";"
         { $$ = { type: yy.NodeType.Assignment, assignee: $1, value: $3, location: yy.camelCase(@$) }; }
     ;
 
@@ -310,14 +308,14 @@ expressionIncludingRightDelimiter
 optElseExpression
     : optElseIfExpression
     | optElseIfExpression "else" compoundExpression
-        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $3, location: yy.camelCase(yy.merge(@2, @3)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $3, location: yy.merge(@2, @3) }]); }
     ;
 
 optElseIfExpression
     : /* empty */
         { $$ = []; }
     | optElseIfExpression "else" "if" expression compoundExpression
-        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.camelCase(yy.merge(@2, @5)) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.merge(@2, @5) }]); }
     ;
 
 expressionLackingRightDelimiter
@@ -326,9 +324,13 @@ expressionLackingRightDelimiter
     ;
 
 expressionLackingRightDelimiterStartingWithInfixToken
-    : "-" assignableExpression %prec UMINUS
+    : "-" oneOrMoreDotSeparatedIdentifiers %prec UMINUS
+        { $$ = yy.unaryExpr("-", yy.buildDotChainIfNeeded($2), @$); }
+    | "-" heterogeneousDotExpr %prec UMINUS
         { $$ = yy.unaryExpr("-", $2, @$); }
     | "-" functionCall %prec UMINUS
+        { $$ = yy.unaryExpr("-", $2, @$); }
+    | "-" index %prec UMINUS
         { $$ = yy.unaryExpr("-", $2, @$); }
     | "-" expressionIncludingRightDelimiter %prec UMINUS
         { $$ = yy.unaryExpr("-", $2, @$); }
@@ -664,29 +666,68 @@ expressionLackingRightDelimiterNotStartingWithInfixToken
 
     | functionCall
 
+    | typedObjectLiteral
+
     | NUMBER
         { $$ = { type: yy.NodeType.NumberLiteral, value: yytext, location: yy.camelCase(@$) }; }
     | STRING
         { $$ = { type: yy.NodeType.StringLiteral, value: yytext, location: yy.camelCase(@$) }; }
-    | assignableExpression
+    
+    | oneOrMoreDotSeparatedIdentifiers
+        { $$ = yy.buildDotChainIfNeeded($1); }
+    | heterogeneousDotExpr
+    | functionCall
+    | index
+    ;
+
+oneOrMoreDotSeparatedIdentifiers
+    : IDENTIFIER
+        { $$ = [{ type: yy.NodeType.Identifier, value: $1, location: yy.camelCase(@$) }]; }
+    | oneOrMoreDotSeparatedIdentifiers "." IDENTIFIER
+        { $$ = $1.concat([{ type: yy.NodeType.Identifier, value: $3, location: yy.camelCase(@3) }]); }
+    ;
+
+heterogeneousDotExpr
+    : functionCall "." IDENTIFIER
+        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | index "." IDENTIFIER
+        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | heterogeneousDotExpr "." IDENTIFIER
+        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     ;
 
 functionCall
-    : assignableExpression optTypeArgs "(" optArgs ")"
+    : oneOrMoreDotSeparatedIdentifiers optTypeArgs "(" optArgs ")"
+        { $$ = { type: yy.NodeType.FunctionCall, callee: yy.buildDotChainIfNeeded($1), typeArgs: $2, args: $4, location: yy.camelCase(@$) }; }
+    | heterogeneousDotExpr optTypeArgs "(" optArgs ")"
         { $$ = { type: yy.NodeType.FunctionCall, callee: $1, typeArgs: $2, args: $4, location: yy.camelCase(@$) }; }
     ;
 
-assignableExpression
-    : IDENTIFIER
-        { $$ = { type: yy.NodeType.Identifier, value: yytext, location: yy.camelCase(@$) }; }
-    | assignableExpression "." IDENTIFIER
-        { $$ = yy.dotExpr($1, $3, @$); }
-    | functionCall "." IDENTIFIER
-        { $$ = yy.dotExpr($1, $3, @$); }
-    | assignableExpression "[" expression "]"
-        { $$ = yy.binaryExpr("[", $1, $3, @$); }
+index
+    : oneOrMoreDotSeparatedIdentifiers "[" expression "]"
+        { $$ = {type: yy.NodeType.BinaryExpr, operation: "[", left: yy.buildDotChainIfNeeded($1), right: $3, location: yy.camelCase(@$) }; }
     | functionCall "[" expression "]"
-        { $$ = yy.binaryExpr("[", $1, $3, @$); }
+        { $$ = {type: yy.NodeType.BinaryExpr, operation: "[", left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | heterogeneousDotExpr "[" expression "]"
+        { $$ = {type: yy.NodeType.BinaryExpr, operation: "[", left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | index "[" expression "]"
+        { $$ = {type: yy.NodeType.BinaryExpr, operation: "[", left: $1, right: $3, location: yy.camelCase(@$) }; }
+    ;
+
+typedObjectLiteral
+    : type "{" "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: $1, entries: [], location: yy.camelCase(@$) }; }
+    | type "{" objectEntries "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: $1, entries: $3, location: yy.camelCase(@$) }; }
+    | type "{" objectEntries "," "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: $1, entries: $3, location: yy.camelCase(@$) }; }
+    ;
+
+objectEntries
+    : IDENTIFIER ":" expression
+        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
+    | objectEntries "," IDENTIFIER ":" expression
+        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     ;
 
 expression

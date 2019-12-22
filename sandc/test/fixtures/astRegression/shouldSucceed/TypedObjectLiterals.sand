@@ -1,0 +1,29 @@
+pub class TypedObjectLiterals {
+    empty() {
+        Foo {}
+    }
+
+    withEntries() {
+        Foo {
+            baz: 8,
+            bar: 9,
+            qux: "yo"
+        }
+    }
+
+    trailingComma() {
+        Foo {
+            baz: 8,
+            bar: 9,
+            qux: "yo",
+        }
+    }
+
+    typeArgs() {
+        Foo<int, String> {
+            baz: 8,
+            bar: 9,
+            qux: "yo",
+        }
+    }
+}

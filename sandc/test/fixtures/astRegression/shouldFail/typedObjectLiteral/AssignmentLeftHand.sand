@@ -1,0 +1,5 @@
+pub class AssignmentLeftHand {
+    assignmentLeftHand() {
+        Foo {} = foo;
+    }
+}

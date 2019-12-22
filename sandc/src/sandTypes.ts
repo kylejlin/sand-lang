@@ -1,4 +1,4 @@
-import { Type } from "./ast";
+import { NodeType, Type } from "./ast";
 
 export type Primitive = "int" | "double" | "char" | "boolean";
 
@@ -7,13 +7,33 @@ export function wrapPrimitiveIfNeeded(unwrapped: Type): Type {
 
   switch (unwrapped.name) {
     case "int":
-      return { name: "java.lang.Integer", args: [], location };
+      return {
+        type: NodeType.Type,
+        name: "java.lang.Integer",
+        args: [],
+        location,
+      };
     case "double":
-      return { name: "java.lang.Double", args: [], location };
+      return {
+        type: NodeType.Type,
+        name: "java.lang.Double",
+        args: [],
+        location,
+      };
     case "char":
-      return { name: "java.lang.Character", args: [], location };
+      return {
+        type: NodeType.Type,
+        name: "java.lang.Character",
+        args: [],
+        location,
+      };
     case "boolean":
-      return { name: "java.lang.Boolean", args: [], location };
+      return {
+        type: NodeType.Type,
+        name: "java.lang.Boolean",
+        args: [],
+        location,
+      };
     default:
       return unwrapped;
   }
