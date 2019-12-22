@@ -6,6 +6,10 @@ import parseTreeSource from "./parseTreeSource";
 import * as serviceWorker from "./serviceWorker";
 import stateSaver from "./stateSaver";
 
+window.addEventListener("error", () => {
+  stateSaver.clear();
+});
+
 ReactDOM.render(
   <App treeSourceParser={parseTreeSource} stateSaver={stateSaver} />,
   document.getElementById("root"),
