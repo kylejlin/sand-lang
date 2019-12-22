@@ -8,3 +8,18 @@
   font-size: 1em;
   padding-left: 1em;
 }
+
+.AstNode .AstNode {
+  background-color: #000094;
+  color: white;
+}
+
+.AstNode .AstNode .AstNode {
+  background-color: #3e70db;
+  color: white;
+}
+
+.AstNode .AstNode .AstNode .AstNode {
+  background-color: #00b7ff;
+  color: white;
+}
