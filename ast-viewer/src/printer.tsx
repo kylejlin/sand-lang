@@ -14,6 +14,7 @@ import {
   OptAccessModifier,
   Type,
   TypeArgDef,
+  ObjectEntry,
 } from "./astCopy";
 import { NonNullReactNode } from "./types";
 import flat from "array.prototype.flat";
@@ -277,7 +278,45 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
           )
         </>
       );
+    case NodeType.TypedObjectLiteral:
+      return (
+        <>
+          {renderType(expr.valueType)}{" "}
+          {renderObjectEntries(expr.entries, depth)}
+        </>
+      );
   }
+}
+
+function renderObjectEntries(
+  entries: ObjectEntry[],
+  depth: number,
+): NonNullReactNode {
+  if (entries.length === 0) {
+    return "{}";
+  } else {
+    return (
+      <>
+        {"{\n"}
+        {separate(
+          entries
+            .map(e => renderObjectEntry(e, depth + 1))
+            .map(rendered => [TAB.repeat(depth), rendered, ","]),
+          "\n",
+        )
+          .flat()
+          .concat(["\n" + TAB.repeat(Math.max(0, depth - 1)) + "}"])}
+      </>
+    );
+  }
+}
+
+function renderObjectEntry(ent: ObjectEntry, depth: number): NonNullReactNode {
+  return (
+    <>
+      {ent.key}: {renderExpr(ent.value, depth)}
+    </>
+  );
 }
 
 function renderIf(ifExpr: If, depth: number): NonNullReactNode {
@@ -477,6 +516,26 @@ function stringifyExpr(expr: Expr, depth: number): string {
         expr.args.map(e => stringifyExpr(e, depth)).join(", ") +
         ")"
       );
+    case NodeType.TypedObjectLiteral:
+      return (
+        stringifyType(expr.valueType) +
+        " " +
+        stringifyObjectEntries(expr.entries, depth)
+      );
+  }
+}
+
+function stringifyObjectEntries(entries: ObjectEntry[], depth: number): string {
+  if (entries.length === 0) {
+    return "{}";
+  } else {
+    return (
+      "{ " +
+      entries
+        .map(e => e.key + ": " + stringifyExpr(e.value, depth))
+        .join(", ") +
+      " }"
+    );
   }
 }
 

@@ -65,7 +65,8 @@ function parseSnapshot(assignment: string): FileNode | null {
         .replace(/Object \{/g, "{")
         .replace(/Array \[/g, "[")
         .replace(/,\s*\}/g, "}")
-        .replace(/,\s*\]/g, "]"),
+        .replace(/,\s*\]/g, "]")
+        .replace(/([^\\])\\\\"/g, '$1\\"'),
     );
 
     if (isFileNode(obj)) {

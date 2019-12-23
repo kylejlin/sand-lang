@@ -12,6 +12,8 @@ export enum NodeType {
 
   If = "If",
   FunctionCall = "FunctionCall",
+  TypedObjectLiteral = "TypedObjectLiteral",
+  ObjectEntry = "ObjectEntry",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
@@ -71,7 +73,8 @@ export type Expr =
   | UnaryExpr
   | DotExpr
   | If
-  | FunctionCall;
+  | FunctionCall
+  | TypedObjectLiteral;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
@@ -167,6 +170,20 @@ export interface FunctionCall {
   callee: Expr;
   typeArgs: Type[];
   args: Expr[];
+  location: NodeLocation;
+}
+
+export interface TypedObjectLiteral {
+  type: NodeType.TypedObjectLiteral;
+  valueType: Type;
+  entries: ObjectEntry[];
+  location: NodeLocation;
+}
+
+export interface ObjectEntry {
+  type: NodeType.ObjectEntry;
+  key: string;
+  value: Expr;
   location: NodeLocation;
 }
 
