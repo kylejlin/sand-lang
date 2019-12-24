@@ -7,31 +7,42 @@ The following words cannot be used as identifier names.
 - `pub`
 - `prot`
 - `priv` <sup>\*</sup>
+- `static`
+- `inline` <sup>\*</sup>
+- `open`
+- `abstract`
+- `final` <sup>\*</sup>
+
 - `class`
 - `extends`
+
+- `inst`
+- `new` <sup>\*</sup>
+
+- `instanceof` <sup>\*</sup>
+
 - `if`
 - `else`
 - `switch` <sup>\*</sup>
 - `case` <sup>\*</sup>
 - `match` <sup>\*</sup>
+
 - `while`
 - `loop`
 - `repeat`
 - `for`
 - `in`
+
 - `let`
 - `re`
-- `static`
+- `var` <sup>\*</sup>
+
 - `use`
 - `import`
 - `copy`
+
 - `package`
 - `mod` <sup>\*</sup>
-- `inst`
-- `new` <sup>\*</sup>
-- `open`
-- `abstract`
-- `final` <sup>\*</sup>
 
 ## Types
 
@@ -43,11 +54,15 @@ The following words cannot be used as identifier names.
 - `float`
 - `double`
 - `boolean`
+
+- `void`
+
 - `nullable`
 - `array`
 - `rlist`
-- `void`
+
 - `never` <sup>\*</sup>
+
 - `iterable`
 - `iterator`
 - `inlinefn`
