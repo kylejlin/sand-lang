@@ -72,5 +72,7 @@ The following words cannot be used as identifier names.
 - `null`
 - `true`
 - `false`
+- `this`
+- `super` <sup>\*</sup>
 
 <sup>\*</sup> Reserved for future use
