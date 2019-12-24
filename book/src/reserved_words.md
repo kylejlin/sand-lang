@@ -37,6 +37,8 @@ The following words cannot be used as identifier names.
 - `re`
 - `var` <sup>\*</sup>
 
+- `continue`
+- `break`
 - `return`
 
 - `try` <sup>\*</sup>
