@@ -35,4 +35,5 @@
   - [Static method copying](./code_gen/static_copying.md)
   - [Inline functions](./code_gen/inline_funcs/intro.md)
     - [Squashing](./code_gen/inline_funcs/squashing.md)
+- [Reserved words](./reserved_words.md)
 - [Configuration](./config.md)
