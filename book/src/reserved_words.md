@@ -49,6 +49,7 @@ The following words cannot be used as identifier names.
 - `use`
 - `import`
 - `copy`
+- `as`
 
 - `package`
 - `mod` <sup>\*</sup>
