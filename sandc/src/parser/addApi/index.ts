@@ -1,37 +1,41 @@
 import {
-  BinaryExpr,
-  BinaryOperation,
   camelCase,
   ConstraintType,
+  DotExpr,
+  Expr,
+  Identifier,
   IfAlternativeType,
+  InfixExpr,
+  InfixOperation,
   JisonNodeLocation,
   merge,
   NodeType,
-  UnaryExpr,
-  UnaryOperation,
-  Expr,
-  DotExpr,
-  Identifier,
-  Type,
-} from "../ast";
-import { wrapPrimitiveIfNeeded } from "../sandTypes";
-import { SandParser } from "./parser.generated";
+  PrefixExpr,
+  PrefixOperation,
+} from "../../ast";
+import { wrapPrimitiveIfNeeded } from "../../sandTypes";
+import { SandParser } from "../parser.generated";
+import isThereUpcomingTypeArgListAndOpenParen from "./lexUtils/isThereUpcomingTypeArgListAndOpenParen";
 
 export default function addApi(parser: SandParser) {
   const { yy } = parser;
+
+  yy.lexUtils = {};
+
+  yy.lexUtils.isThereUpcomingTypeArgListAndOpenParen = isThereUpcomingTypeArgListAndOpenParen;
 
   yy.NodeType = NodeType;
   yy.IfAlternativeType = IfAlternativeType;
   yy.ConstraintType = ConstraintType;
 
   yy.binaryExpr = function binaryExpr(
-    operation: BinaryOperation,
+    operation: InfixOperation,
     left: any,
     right: any,
     location: JisonNodeLocation,
-  ): BinaryExpr {
+  ): InfixExpr {
     return {
-      type: NodeType.BinaryExpr,
+      type: NodeType.InfixExpr,
       operation,
       left,
       right,
@@ -40,12 +44,12 @@ export default function addApi(parser: SandParser) {
   };
 
   yy.unaryExpr = function unaryExpr(
-    operation: UnaryOperation,
+    operation: PrefixOperation,
     right: any,
     location: JisonNodeLocation,
-  ): UnaryExpr {
+  ): PrefixExpr {
     return {
-      type: NodeType.UnaryExpr,
+      type: NodeType.PrefixExpr,
       operation,
       right,
       location: camelCase(location),
@@ -81,7 +85,7 @@ export default function addApi(parser: SandParser) {
     const leftmostDot: DotExpr = {
       type: NodeType.DotExpr,
       left: idents[0],
-      right: idents[1].value,
+      right: idents[1].name,
       location: merge(idents[0].location, idents[1].location),
     };
 
@@ -91,7 +95,7 @@ export default function addApi(parser: SandParser) {
         return {
           type: NodeType.DotExpr,
           left,
-          right: right.value,
+          right: right.name,
           location: merge(left.location, right.location),
         };
       }, leftmostDot);

@@ -3,20 +3,7 @@ import parser from "./parser/prebuilt";
 const src = `
 pub class HelloWorld {
     pub main(args: String[]) {
-        System.out.println("Hello world!");
-    }
-
-    factorial(n: int): int {
-        if n == 0 {
-            1
-        } else {
-            n * factorial(n - 1)
-        }
-    }
-
-    pop(stack: int[:]): int {
-        stack.remove(stack.size() - 1);
-        item
+        System.out.println(a < b<c>(d));
     }
 }
 `;
