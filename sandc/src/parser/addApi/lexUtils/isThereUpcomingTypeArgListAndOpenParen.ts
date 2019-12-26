@@ -31,7 +31,7 @@ export default function isThereUpcomingTypeArgListAndOpenParen(
       /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*/,
     );
     if (dotSepIdents !== null) {
-      if (prevMatch === TokenType.LeftAngle || TokenType.Comma) {
+      if (prevMatch === TokenType.LeftAngle || prevMatch === TokenType.Comma) {
         i += dotSepIdents[0].length;
         prevMatch = TokenType.OneOrMoreDotSeparatedIdentifiers;
         continue;
