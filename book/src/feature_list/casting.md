@@ -1,18 +1,18 @@
 # Type casting
 
-Casting syntax is `(Type value)`.
+Casting syntax is `value as! Type`.
 
 For example:
 
 ```sand
 fn primCasting() {
     let x = 42int;
-    let y = (float x); // cast to float
-    let z = (char x); // cast to char
+    let y = x as! float;
+    let z = x as! char;
 }
 
 fn objCasting(dog: Dog) {
-    let x = (Animal dog); // upcast to Animal
-    let y = (Puppy dog); // downcast to Puppy
+    let x = dog as! Animal; // upcast to Animal
+    let y = dog as! Puppy; // downcast to Puppy
 }
 ```
