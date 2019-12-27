@@ -172,6 +172,32 @@ class Dog {
     pub incrementAge(this) {
         age += 1;
     }
+
+    pub incrementAge(this, amount: int) {
+        age += amount;
+    }
+}
+```
+
+### Method overloading
+
+Several methods can have the same name if their argument types differ.
+
+For example, in the above code, `incrementAge` refers to two methods: one accepting no arguments, and one accepting an `int`.
+Therefore, the code is valid.
+
+For the purposes of overloading, `this` is not considered when comparing argument types.
+Hence, the following code would not compile:
+
+```sand
+class Foo {
+    bar(this, baz: String): int {
+        baz.length()
+    }
+
+    bar(baz: String): int {
+        baz.length()
+    }
 }
 ```
 
