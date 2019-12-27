@@ -5,7 +5,9 @@ pub class HelloWorld {
     pub main(args: String[]) {
         System.out.println(a < b<c>(d));
 
-        Foo {}
+        Foo {};
+
+        let x: int[] = [1, 2, 3];
     }
 }
 `;

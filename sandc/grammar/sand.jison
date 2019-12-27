@@ -347,7 +347,7 @@ nodeSequence
         { $$ = [$1]; }
     | rightDelimitedStatement
         { $$ = [$1]; }
-    | nodeSequence expression ";"
+    | nodeSequence simpleExpression ";"
         { $$ = $1.concat([$2]); }
     | nodeSequence rightDelimitedStatement
         { $$ = $1.concat([$2]); }
@@ -512,6 +512,8 @@ simpleExpression
     
     | typedObjectLiteral
 
+    | arrayLiteral
+
     | parenthesizedExpression
     ;
 
@@ -585,4 +587,22 @@ objectEntries
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     | objectEntries "," IDENTIFIER ":" ifNode
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
+    ;
+
+arrayLiteral
+    : "[" "]"
+        { $$ = { type: yy.NodeType.ArrayLiteral, elements: [], location: yy.camelCase(@$) }; }
+    | "[" expressionSequence "]"
+        { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.camelCase(@$) }; }
+    ;
+
+expressionSequence
+    : simpleExpression
+        { $$ = [$1]; }
+    | ifNode
+        { $$ = [$1]; }
+    | expressionSequence "," simpleExpression
+        { $$ = $1.concat([$3]); }
+    | expressionSequence "," ifNode
+        { $$ = $1.concat([$3]); }
     ;

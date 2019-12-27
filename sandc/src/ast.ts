@@ -20,6 +20,7 @@ export enum NodeType {
   FunctionCall = "FunctionCall",
   TypedObjectLiteral = "TypedObjectLiteral",
   ObjectEntry = "ObjectEntry",
+  ArrayLiteral = "ArrayLiteral",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
@@ -206,7 +207,8 @@ export type Expr =
   | DotExpr
   | If
   | FunctionCall
-  | TypedObjectLiteral;
+  | TypedObjectLiteral
+  | ArrayLiteral;
 
 export type Statement =
   | Return
@@ -329,6 +331,12 @@ export interface ObjectEntry {
   type: NodeType.ObjectEntry;
   key: string;
   value: Expr;
+  location: NodeLocation;
+}
+
+export interface ArrayLiteral {
+  type: NodeType.ArrayLiteral;
+  elements: Expr[];
   location: NodeLocation;
 }
 
