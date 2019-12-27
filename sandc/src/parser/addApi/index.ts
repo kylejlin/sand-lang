@@ -12,10 +12,19 @@ import {
   NodeType,
   PrefixExpr,
   PrefixOperation,
+  Type,
+  NodeLocation,
 } from "../../ast";
 import { wrapPrimitiveIfNeeded } from "../../sandTypes";
 import { SandParser } from "../parser.generated";
+import typeParser from "../subparsers/type/prebuilt";
+import getUpcomingObjectLiteralType from "./lexUtils/getUpcomingObjectLiteralType";
 import isThereUpcomingTypeArgListAndOpenParen from "./lexUtils/isThereUpcomingTypeArgListAndOpenParen";
+
+interface PointLocation {
+  line: number;
+  column: number;
+}
 
 export default function addApi(parser: SandParser) {
   const { yy } = parser;
@@ -23,6 +32,7 @@ export default function addApi(parser: SandParser) {
   yy.lexUtils = {};
 
   yy.lexUtils.isThereUpcomingTypeArgListAndOpenParen = isThereUpcomingTypeArgListAndOpenParen;
+  yy.lexUtils.getUpcomingObjectLiteralType = getUpcomingObjectLiteralType;
 
   yy.NodeType = NodeType;
   yy.IfAlternativeType = IfAlternativeType;
@@ -100,6 +110,80 @@ export default function addApi(parser: SandParser) {
         };
       }, leftmostDot);
   };
+
+  yy.parseType = function parseType(
+    src: string,
+    location: JisonNodeLocation,
+  ): Type {
+    const start = { line: location.first_line, column: location.first_column };
+    const incorrectlyLocated = typeParser.parse(src);
+    return applyLocationCorrections(incorrectlyLocated, start);
+  };
+
+  function applyLocationCorrections(node: Type, start: PointLocation): Type {
+    return {
+      type: NodeType.Type,
+      name: node.name,
+      args: node.args.map(subType => applyLocationCorrections(subType, start)),
+      location: getAbsoluteNodeLocation(node.location, start),
+    };
+  }
+
+  /**
+   * Takes a location relative to its start position (offset)
+   * and computes the absolute location.
+   */
+  function getAbsoluteNodeLocation(
+    relative: NodeLocation,
+    offset: PointLocation,
+  ): NodeLocation {
+    const absStart = getAbsolutePointLocation(getStart(relative), offset);
+    const absEnd = getAbsolutePointLocation(getEnd(relative), offset);
+    return mergePointLocations(absStart, absEnd);
+  }
+
+  function getStart(location: NodeLocation): PointLocation {
+    return {
+      line: location.firstLine,
+      column: location.firstColumn,
+    };
+  }
+
+  function getEnd(location: NodeLocation): PointLocation {
+    return {
+      line: location.lastLine,
+      column: location.lastColumn,
+    };
+  }
+
+  function getAbsolutePointLocation(
+    relative: PointLocation,
+    offset: PointLocation,
+  ): PointLocation {
+    if (relative.line === 1) {
+      return {
+        line: relative.line + offset.line - 1,
+        column: relative.column + offset.column,
+      };
+    } else {
+      return {
+        line: relative.line + offset.line - 1,
+        column: relative.column,
+      };
+    }
+  }
+
+  function mergePointLocations(
+    start: PointLocation,
+    end: PointLocation,
+  ): NodeLocation {
+    return {
+      firstLine: start.line,
+      firstColumn: start.column,
+      lastLine: end.line,
+      lastColumn: end.column,
+    };
+  }
 
   yy.wrapPrimitiveIfNeeded = wrapPrimitiveIfNeeded;
   yy.camelCase = camelCase;

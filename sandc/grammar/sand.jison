@@ -61,7 +61,20 @@
 \-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b  return "NUMBER"
 \"(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*\" return "STRING"
 \'([^\\'\n]|\\[\\'nt])\' return "CHARACTER"
-[_a-zA-Z]\w* return "IDENTIFIER"
+[_a-zA-Z]\w* {
+    var upcoming = this.upcomingInput();
+    var past = this.pastInput();
+    var type = yy.lexUtils.getUpcomingObjectLiteralType(upcoming, past);
+    if (type === null) {
+        return "IDENTIFIER";
+    } else {
+        var i = type.length;
+        while (i--) {
+            this.input();
+        }
+        return "OBJECT_LITERAL_TYPE";
+    }
+}
 
 "**"                   return "**"
 "*"                   return "*"
@@ -303,7 +316,7 @@ compoundNode
         { $$ = [$2]; }
     | "{" nodeSequence "}"
         { $$ = $2; }
-    | "{" nodeSequence expression "}"
+    | "{" nodeSequence simpleExpression "}"
         { $$ = $2.concat([$3]); }
     ;
 
@@ -475,7 +488,7 @@ simpleExpression
     | simpleExpression "||" simpleExpression
         { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.camelCase(@$) }; }
     
-    // | typedObjectLiteral
+    | typedObjectLiteral
 
     | parenthesizedExpression
     ;
@@ -533,12 +546,12 @@ oneOrMoreDotSeparatedIdentifiers
     ;
 
 typedObjectLiteral
-    : type "{" "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: $1, entries: [], location: yy.camelCase(@$) }; }
-    | type "{" objectEntries "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: $1, entries: $3, location: yy.camelCase(@$) }; }
-    | type "{" objectEntries "," "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: $1, entries: $3, location: yy.camelCase(@$) }; }
+    : OBJECT_LITERAL_TYPE "{" "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), entries: [], location: yy.camelCase(@$) }; }
+    | OBJECT_LITERAL_TYPE "{" objectEntries "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), entries: $3, location: yy.camelCase(@$) }; }
+    | OBJECT_LITERAL_TYPE "{" objectEntries "," "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), entries: $3, location: yy.camelCase(@$) }; }
     ;
 
 objectEntries

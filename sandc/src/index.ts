@@ -4,6 +4,8 @@ const src = `
 pub class HelloWorld {
     pub main(args: String[]) {
         System.out.println(a < b<c>(d));
+
+        Foo {}
     }
 }
 `;
