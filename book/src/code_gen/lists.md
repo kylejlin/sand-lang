@@ -1,17 +1,15 @@
-# List literals
+# Lists
 
 ## Arrays
 
-Arrays are left as-is.
-
-That is, `T[]` transpiles to `T[]`.
+Array transpilation is straightforward.
 
 ## Resizable lists
 
-If a file uses `[*]` syntax, then `import java.util.ArrayList` will be added to the generated Java file, and `T[*]` will transpile to `ArrayList<T>`.
+`T[*]` transpiles to `java.util.ArrayList<T>`, boxing `T` if it's a primitive.
 
-If the name `ArrayList` conflicts with another reference, then the import will not be added, and `T[*]` will transpile to `java.util.ArrayList<T>`.
+For an `rlist` `x`:
 
-In either case, primitives will be boxed.
-
-For example, `int[*]` transpiles to `ArrayList<Integer>`, since primitives cannot be passed as type arguments.
+- `x[n]` transpiles to `x.get(n)`
+- `x[n] = v` transpiles to `x.set(n, v)`
+- `x[n] += v` transpiles to `x.set(n, x.get(n) + v)` (the same goes for the other assignment variations)
