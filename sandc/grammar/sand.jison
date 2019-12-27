@@ -17,38 +17,43 @@
 
 "class" return "class"
 "extends" return "extends"
+"interface" return "interface"
+"enum" return "enum"
+"implements" return "implements"
 
 "inst" return "inst"
 "new" return "new"
-
-"instanceof" return "instanceof"
 
 "if" return "if"
 "else" return "else"
 "switch" return "switch"
 "case" return "case"
 "match" return "match"
+"default" return "default"
 
 "while" return "while"
 "loop" return "loop"
 "repeat" return "repeat"
 "for" return "for"
 "in" return "in"
+"do" return "do"
+
+"continue" return "continue"
+"break" return "break"
+"return" return "return_"
 
 "let!" return "let!"
 "let" return "let"
 "re!" return "re!"
 "re" return "re"
 "var" return "var"
-
-"continue" return "continue"
-"break" return "break"
-"return" return "return_"
+"const" return "const"
 
 "try" return "try"
 "catch" return "catch"
 "finally" return "finally"
 "throw" return "throw"
+"throws" return "throws"
 
 "use" return "use"
 "import" return "import"
@@ -57,6 +62,23 @@
 
 "package" return "package"
 "mod" return "mod"
+
+"instanceof" return "instanceof"
+"_" return "_"
+
+"assert" return "assert"
+"goto" return "goto"
+"native" return "native"
+"private" return "private"
+"protected" return "protected"
+"public" return "public"
+"strictfp" return "strictfp"
+"synchronized" return "synchronized"
+"transient" return "transient"
+"volatile" return "volatile"
+"module" return "module"
+"requires" return "requires"
+"exports" return "exports"
 
 \-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b  return "NUMBER"
 \"(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*\" return "STRING"

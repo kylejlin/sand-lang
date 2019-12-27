@@ -787,75 +787,117 @@ case 9:return "class"
 break;
 case 10:return "extends"
 break;
-case 11:return "inst"
+case 11:return "interface"
 break;
-case 12:return "new"
+case 12:return "enum"
 break;
-case 13:return "instanceof"
+case 13:return "implements"
 break;
-case 14:return "if"
+case 14:return "inst"
 break;
-case 15:return "else"
+case 15:return "new"
 break;
-case 16:return "switch"
+case 16:return "if"
 break;
-case 17:return "case"
+case 17:return "else"
 break;
-case 18:return "match"
+case 18:return "switch"
 break;
-case 19:return "while"
+case 19:return "case"
 break;
-case 20:return "loop"
+case 20:return "match"
 break;
-case 21:return "repeat"
+case 21:return "default"
 break;
-case 22:return "for"
+case 22:return "while"
 break;
-case 23:return "in"
+case 23:return "loop"
 break;
-case 24:return "let!"
+case 24:return "repeat"
 break;
-case 25:return "let"
+case 25:return "for"
 break;
-case 26:return "re!"
+case 26:return "in"
 break;
-case 27:return "re"
+case 27:return "do"
 break;
-case 28:return "var"
+case 28:return "continue"
 break;
-case 29:return "continue"
+case 29:return "break"
 break;
-case 30:return "break"
+case 30:return "return_"
 break;
-case 31:return "return_"
+case 31:return "let!"
 break;
-case 32:return "try"
+case 32:return "let"
 break;
-case 33:return "catch"
+case 33:return "re!"
 break;
-case 34:return "finally"
+case 34:return "re"
 break;
-case 35:return "throw"
+case 35:return "var"
 break;
-case 36:return "use"
+case 36:return "const"
 break;
-case 37:return "import"
+case 37:return "try"
 break;
-case 38:return "copy"
+case 38:return "catch"
 break;
-case 39:return "as"
+case 39:return "finally"
 break;
-case 40:return "package"
+case 40:return "throw"
 break;
-case 41:return "mod"
+case 41:return "throws"
 break;
-case 42:return "NUMBER"
+case 42:return "use"
 break;
-case 43:return "STRING"
+case 43:return "import"
 break;
-case 44:return "CHARACTER"
+case 44:return "copy"
 break;
-case 45:
+case 45:return "as"
+break;
+case 46:return "package"
+break;
+case 47:return "mod"
+break;
+case 48:return "instanceof"
+break;
+case 49:return "_"
+break;
+case 50:return "assert"
+break;
+case 51:return "goto"
+break;
+case 52:return "native"
+break;
+case 53:return "private"
+break;
+case 54:return "protected"
+break;
+case 55:return "public"
+break;
+case 56:return "strictfp"
+break;
+case 57:return "synchronized"
+break;
+case 58:return "transient"
+break;
+case 59:return "volatile"
+break;
+case 60:return "module"
+break;
+case 61:return "requires"
+break;
+case 62:return "exports"
+break;
+case 63:return "NUMBER"
+break;
+case 64:return "STRING"
+break;
+case 65:return "CHARACTER"
+break;
+case 66:
     var upcoming = this.upcomingInput();
     var past = this.pastInput();
     var type = yy.lexUtils.getUpcomingObjectLiteralType(upcoming, past);
@@ -870,27 +912,27 @@ case 45:
     }
 
 break;
-case 46:return "**"
+case 67:return "**"
 break;
-case 47:return "*"
+case 68:return "*"
 break;
-case 48:return "/"
+case 69:return "/"
 break;
-case 49:return "%"
+case 70:return "%"
 break;
-case 50:return "-"
+case 71:return "-"
 break;
-case 51:return "+"
+case 72:return "+"
 break;
-case 52:return "~"
+case 73:return "~"
 break;
-case 53:return "=="
+case 74:return "=="
 break;
-case 54:return "!="
+case 75:return "!="
 break;
-case 55:return "~="
+case 76:return "~="
 break;
-case 56:
+case 77:
     var upcoming = this.upcomingInput();
     if (yy.lexUtils.isThereUpcomingTypeArgListAndOpenParen(upcoming)) {
         return "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET";
@@ -899,62 +941,62 @@ case 56:
     }
 
 break;
-case 57:return "<="
+case 78:return "<="
 break;
-case 58:return ">"
+case 79:return ">"
 break;
-case 59:return ">="
+case 80:return ">="
 break;
-case 60:return "!"
+case 81:return "!"
 break;
-case 61:return "&&"
+case 82:return "&&"
 break;
-case 62:return "||"
+case 83:return "||"
 break;
-case 63:return "?"
+case 84:return "?"
 break;
-case 64:return "."
+case 85:return "."
 break;
-case 65:return "["
+case 86:return "["
 break;
-case 66:return "]"
+case 87:return "]"
 break;
-case 67:return "="
+case 88:return "="
 break;
-case 68:return "**="
+case 89:return "**="
 break;
-case 69:return "*="
+case 90:return "*="
 break;
-case 70:return "/="
+case 91:return "/="
 break;
-case 71:return "%="
+case 92:return "%="
 break;
-case 72:return "+="
+case 93:return "+="
 break;
-case 73:return "-="
+case 94:return "-="
 break;
-case 74:return "("
+case 95:return "("
 break;
-case 75:return ")"
+case 96:return ")"
 break;
-case 76:return "{"
+case 97:return "{"
 break;
-case 77:return "}"
+case 98:return "}"
 break;
-case 78:return ":"
+case 99:return ":"
 break;
-case 79:return ","
+case 100:return ","
 break;
-case 80:return ";"
+case 101:return ";"
 break;
-case 81:return "EOF"
+case 102:return "EOF"
 break;
-case 82:return "INVALID"
+case 103:return "INVALID"
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:pub\b)/,/^(?:prot\b)/,/^(?:priv\b)/,/^(?:static\b)/,/^(?:inline\b)/,/^(?:open\b)/,/^(?:abstract\b)/,/^(?:final\b)/,/^(?:class\b)/,/^(?:extends\b)/,/^(?:inst\b)/,/^(?:new\b)/,/^(?:instanceof\b)/,/^(?:if\b)/,/^(?:else\b)/,/^(?:switch\b)/,/^(?:case\b)/,/^(?:match\b)/,/^(?:while\b)/,/^(?:loop\b)/,/^(?:repeat\b)/,/^(?:for\b)/,/^(?:in\b)/,/^(?:let!)/,/^(?:let\b)/,/^(?:re!)/,/^(?:re\b)/,/^(?:var\b)/,/^(?:continue\b)/,/^(?:break\b)/,/^(?:return\b)/,/^(?:try\b)/,/^(?:catch\b)/,/^(?:finally\b)/,/^(?:throw\b)/,/^(?:use\b)/,/^(?:import\b)/,/^(?:copy\b)/,/^(?:as\b)/,/^(?:package\b)/,/^(?:mod\b)/,/^(?:-?\d+(\.\d+)?(e?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b)/,/^(?:"(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*")/,/^(?:'([^\\'\n]|\\[\\'nt])')/,/^(?:[_a-zA-Z]\w*)/,/^(?:\*\*)/,/^(?:\*)/,/^(?:\/)/,/^(?:%)/,/^(?:-)/,/^(?:\+)/,/^(?:~)/,/^(?:==)/,/^(?:!=)/,/^(?:~=)/,/^(?:<)/,/^(?:<=)/,/^(?:>)/,/^(?:>=)/,/^(?:!)/,/^(?:&&)/,/^(?:\|\|)/,/^(?:\?)/,/^(?:\.)/,/^(?:\[)/,/^(?:\])/,/^(?:=)/,/^(?:\*\*=)/,/^(?:\*=)/,/^(?:\/=)/,/^(?:%=)/,/^(?:\+=)/,/^(?:-=)/,/^(?:\()/,/^(?:\))/,/^(?:\{)/,/^(?:\})/,/^(?::)/,/^(?:,)/,/^(?:;)/,/^(?:$)/,/^(?:.)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82],"inclusive":true}}
+rules: [/^(?:\s+)/,/^(?:pub\b)/,/^(?:prot\b)/,/^(?:priv\b)/,/^(?:static\b)/,/^(?:inline\b)/,/^(?:open\b)/,/^(?:abstract\b)/,/^(?:final\b)/,/^(?:class\b)/,/^(?:extends\b)/,/^(?:interface\b)/,/^(?:enum\b)/,/^(?:implements\b)/,/^(?:inst\b)/,/^(?:new\b)/,/^(?:if\b)/,/^(?:else\b)/,/^(?:switch\b)/,/^(?:case\b)/,/^(?:match\b)/,/^(?:default\b)/,/^(?:while\b)/,/^(?:loop\b)/,/^(?:repeat\b)/,/^(?:for\b)/,/^(?:in\b)/,/^(?:do\b)/,/^(?:continue\b)/,/^(?:break\b)/,/^(?:return\b)/,/^(?:let!)/,/^(?:let\b)/,/^(?:re!)/,/^(?:re\b)/,/^(?:var\b)/,/^(?:const\b)/,/^(?:try\b)/,/^(?:catch\b)/,/^(?:finally\b)/,/^(?:throw\b)/,/^(?:throws\b)/,/^(?:use\b)/,/^(?:import\b)/,/^(?:copy\b)/,/^(?:as\b)/,/^(?:package\b)/,/^(?:mod\b)/,/^(?:instanceof\b)/,/^(?:_\b)/,/^(?:assert\b)/,/^(?:goto\b)/,/^(?:native\b)/,/^(?:private\b)/,/^(?:protected\b)/,/^(?:public\b)/,/^(?:strictfp\b)/,/^(?:synchronized\b)/,/^(?:transient\b)/,/^(?:volatile\b)/,/^(?:module\b)/,/^(?:requires\b)/,/^(?:exports\b)/,/^(?:-?\d+(\.\d+)?(e?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b)/,/^(?:"(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*")/,/^(?:'([^\\'\n]|\\[\\'nt])')/,/^(?:[_a-zA-Z]\w*)/,/^(?:\*\*)/,/^(?:\*)/,/^(?:\/)/,/^(?:%)/,/^(?:-)/,/^(?:\+)/,/^(?:~)/,/^(?:==)/,/^(?:!=)/,/^(?:~=)/,/^(?:<)/,/^(?:<=)/,/^(?:>)/,/^(?:>=)/,/^(?:!)/,/^(?:&&)/,/^(?:\|\|)/,/^(?:\?)/,/^(?:\.)/,/^(?:\[)/,/^(?:\])/,/^(?:=)/,/^(?:\*\*=)/,/^(?:\*=)/,/^(?:\/=)/,/^(?:%=)/,/^(?:\+=)/,/^(?:-=)/,/^(?:\()/,/^(?:\))/,/^(?:\{)/,/^(?:\})/,/^(?::)/,/^(?:,)/,/^(?:;)/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103],"inclusive":true}}
 });
 return lexer;
 })();
