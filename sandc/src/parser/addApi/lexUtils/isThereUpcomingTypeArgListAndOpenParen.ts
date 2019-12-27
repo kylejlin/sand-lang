@@ -68,7 +68,10 @@ export default function isThereUpcomingTypeArgListAndOpenParen(
 
     const rightAngle = next.match(/^\s*>\s*/);
     if (rightAngle !== null) {
-      if (prevMatch === TokenType.OneOrMoreDotSeparatedIdentifiers) {
+      if (
+        prevMatch === TokenType.OneOrMoreDotSeparatedIdentifiers ||
+        prevMatch === TokenType.RightAngle
+      ) {
         i += rightAngle[0].length;
         prevMatch = TokenType.RightAngle;
         numberOfEnclosingAngleBrackets--;

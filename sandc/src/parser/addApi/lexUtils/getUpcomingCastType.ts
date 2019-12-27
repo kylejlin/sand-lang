@@ -5,23 +5,16 @@ enum TokenType {
   Comma,
 }
 
-export default function getUpcomingObjectLiteralType(
+export default function getUpcomingCastType(
   upcoming: string,
   past: string,
 ): string | null {
-  if (/class\s*$/.test(past)) {
+  if (!/as!\s*$/.test(past)) {
     return null;
   }
 
   if (upcoming === "") {
     return null;
-  }
-
-  const dotSepWithLeftCurly = upcoming.match(
-    /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*{/,
-  );
-  if (dotSepWithLeftCurly !== null) {
-    return dotSepWithLeftCurly[0].slice(-1);
   }
 
   const dotSepWithLeftAngle = upcoming.match(
@@ -88,11 +81,7 @@ export default function getUpcomingObjectLiteralType(
         numberOfEnclosingAngleBrackets--;
 
         if (numberOfEnclosingAngleBrackets === 0) {
-          if (upcoming.charAt(i) === "{") {
-            return upcoming.slice(0, i);
-          } else {
-            return null;
-          }
+          return upcoming.slice(0, i);
         } else {
           continue;
         }

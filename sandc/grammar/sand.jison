@@ -58,6 +58,7 @@
 "use" return "use"
 "import" return "import"
 "copy" return "copy"
+"as!" return "as!"
 "as" return "as"
 
 "package" return "package"
@@ -86,15 +87,25 @@
 [_a-zA-Z]\w* {
     var upcoming = this.upcomingInput();
     var past = this.pastInput();
-    var type = yy.lexUtils.getUpcomingObjectLiteralType(upcoming, past);
-    if (type === null) {
-        return "IDENTIFIER";
-    } else {
-        var i = type.length;
+    var objLitType = yy.lexUtils.getUpcomingObjectLiteralType(upcoming, past);
+    if (objLitType !== null) {
+        var i = Math.max(0, objLitType.length - yytext.length);
         while (i--) {
             this.input();
         }
         return "OBJECT_LITERAL_TYPE";
+    } else {
+        var castType = yy.lexUtils.getUpcomingCastType(upcoming, past);
+        if (castType !== null) {
+            var i = Math.max(0, castType.length - yytext.length);
+            var temp = '';
+            while (i--) {
+                temp+=this.input();
+            }
+            return "CAST_EXPRESSION_TARGET_TYPE";
+        } else {
+            return "IDENTIFIER";
+        }
     }
 }
 
@@ -163,6 +174,8 @@
 
 %left "==" "!="
 %left "<" "<=" ">" ">="
+
+%left "as!"
 
 %left "+" "-"
 %left "*" "/" "%"
@@ -514,6 +527,8 @@ simpleExpression
 
     | arrayLiteral
 
+    | castExpression
+
     | parenthesizedExpression
     ;
 
@@ -605,4 +620,9 @@ expressionSequence
         { $$ = $1.concat([$3]); }
     | expressionSequence "," ifNode
         { $$ = $1.concat([$3]); }
+    ;
+
+castExpression
+    : simpleExpression "as!" CAST_EXPRESSION_TARGET_TYPE
+        { $$ = { type: yy.NodeType.CastExpr, value: $1, targetType: yy.parseType($3, @3), location: yy.camelCase(@$) }; }
     ;

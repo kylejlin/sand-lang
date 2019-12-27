@@ -9,15 +9,16 @@ import {
   InfixOperation,
   JisonNodeLocation,
   merge,
+  NodeLocation,
   NodeType,
   PrefixExpr,
   PrefixOperation,
   Type,
-  NodeLocation,
 } from "../../ast";
 import { wrapPrimitiveIfNeeded } from "../../sandTypes";
 import { SandParser } from "../parser.generated";
 import typeParser from "../subparsers/type/prebuilt";
+import getUpcomingCastType from "./lexUtils/getUpcomingCastType";
 import getUpcomingObjectLiteralType from "./lexUtils/getUpcomingObjectLiteralType";
 import isThereUpcomingTypeArgListAndOpenParen from "./lexUtils/isThereUpcomingTypeArgListAndOpenParen";
 
@@ -33,6 +34,7 @@ export default function addApi(parser: SandParser) {
 
   yy.lexUtils.isThereUpcomingTypeArgListAndOpenParen = isThereUpcomingTypeArgListAndOpenParen;
   yy.lexUtils.getUpcomingObjectLiteralType = getUpcomingObjectLiteralType;
+  yy.lexUtils.getUpcomingCastType = getUpcomingCastType;
 
   yy.NodeType = NodeType;
   yy.IfAlternativeType = IfAlternativeType;

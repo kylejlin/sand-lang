@@ -12,6 +12,7 @@ export enum NodeType {
   PrefixExpr = "PrefixExpr",
   DotExpr = "DotExpr",
   IndexExpr = "IndexExpr",
+  CastExpr = "CastExpr",
 
   PropertyDeclaration = "PropertyDeclaration",
   MethodDeclaration = "MethodDeclaration",
@@ -205,6 +206,7 @@ export type Expr =
   | InfixExpr
   | PrefixExpr
   | DotExpr
+  | CastExpr
   | If
   | FunctionCall
   | TypedObjectLiteral
@@ -279,6 +281,13 @@ export interface IndexExpr {
   type: NodeType.IndexExpr;
   left: Expr;
   right: Expr;
+  location: NodeLocation;
+}
+
+export interface CastExpr {
+  type: NodeType.CastExpr;
+  value: Expr;
+  targetType: Type;
   location: NodeLocation;
 }
 
