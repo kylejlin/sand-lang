@@ -74,8 +74,8 @@ optCopyStatements
     ;
 
 pubClass
-    : "pub" "class" IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
-        { $$ = { type: yy.NodeType.Class, isPub: true, name: $3, typeArgDefs: $4, superClass: $5, copies: $7, useStatements: $8, items: $9, location: yy.camelCase(@$) }; }
+    : "pub" privClass
+        { $$ = { ...$2, isPub: true }; }
     ;
 
 optTypeArgDefs
@@ -99,8 +99,13 @@ typeArgDefs
 optPrivClasses
     : /* empty */
         { $$ = []; }
-    | optPrivClasses "class" IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
-        { $$ = $1.concat([{ type: yy.NodeType.Class, isPub: false, name: $3, typeArgDefs: $4, superClass: $5, copies: $7, useStatements: $8, items: $9, location: yy.merge(@2, @10) }]); }
+    | optPrivClasses privClass
+        { $$ = $1.concat([$2]); }
+    ;
+
+privClass
+    : "class" IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
+        { $$ = { type: yy.NodeType.Class, isPub: false, name: $2, typeArgDefs: $3, superClass: $4, copies: $6, useStatements: $7, items: $8, location: yy.camelCase(@$) }; }
     ;
 
 optExtension
