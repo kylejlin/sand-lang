@@ -2,18 +2,6 @@
 
 Before you continue reading, we'll need to define a few terms.
 
-## Iterables
-
-An _iterable_ is anything that can be iterated over by Sand's `for` loop.
-Java has its own definition of an iterable, but for this chapter, "iterable" will refer to one of the following:
-
-- a range (magic)
-- an array
-- a resizable list
-- an iterable returned by a built-in inline function (magic)
-
-An iterable can be magic (e.g., ranges and iterables returned by built-in inline functions) or non-magic (e.g., arrays and resizable lists).
-
 ## Undefined behavior
 
 _Undefined behavior_ means anything can happen.

@@ -14,6 +14,7 @@ The following words cannot be used as identifier names.
 - `open`
 - `abstract`
 - `final` <sup>\*</sup>
+- `magic`
 
 ### Declaring classes, interfaces, enums
 
@@ -118,10 +119,6 @@ The following words cannot be used as identifier names.
 - `rlist`
 
 - `never` <sup>\*</sup>
-
-- `iterable`
-- `iterator`
-- `inlinefn`
 
 ## Values
 

@@ -15,7 +15,7 @@ for s in ["Foo", "Bar", "baz"]
 }
 ```
 
-We could compile it to the following Java, using a separate loop for each iterable operation:
+We could compile it to the following Java, using a separate loop for each sequence operation:
 
 ```java
 // --snip--
@@ -81,7 +81,7 @@ This is what the current Sand compiler does.
 
 ## Implications on purity requirements
 
-Since squashing changes the order inline functions are called, the inline functions must be pure, or else behavior might be changed.
+Since squashing changes the order magic functions are called, the magic functions must be pure, or else behavior might be changed.
 
 For instance, consider the following:
 
@@ -144,4 +144,4 @@ for (int n = 1; n <= 3; n++) {
 }
 ```
 
-In short, Sand does not make any guarantee about the order in which inline functions passed to iterable operations will be called, so to avoid unexpected behavior, callbacks must be pure.
+In short, Sand does not make any guarantee about the order in which magic functions passed to iterable operations will be called, so to avoid unexpected behavior, callbacks must be pure.
