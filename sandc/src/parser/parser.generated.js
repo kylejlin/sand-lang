@@ -195,7 +195,7 @@ case 53: case 56:
  this.$ = $$[$0-2].concat([$$[$0-1]]); 
 break;
 case 64:
- this.$ = { type: yy.NodeType.If, condition: $$[$0-2], body: $$[$0-1], alternatives: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.If, condition: $$[$0-2], body: $$[$0-1], alternatives: $$[$0], location: yy.camelCase(this._$) }; console.log('if', this.$) 
 break;
 case 67:
  this.$ = $$[$0-2].concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $$[$0], location: yy.merge(_$[$0-1], _$[$0]) }]); 

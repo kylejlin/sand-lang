@@ -1,5 +1,4 @@
 import path from "path";
-import getLatestParser from "../src/parser/getLatestParser";
 import prebuiltParser from "../src/parser/prebuilt";
 import { Tester } from "./parserTester";
 
@@ -17,7 +16,4 @@ const tester = Tester.fromDirectories({
   failureCases: FAILURE_CASES_DIR,
 });
 
-const latestParser = getLatestParser();
-
-tester.test(latestParser, "the latest parser");
 tester.test(prebuiltParser, "the prebuilt parser");

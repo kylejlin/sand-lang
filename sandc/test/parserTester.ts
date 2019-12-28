@@ -67,27 +67,26 @@ export class Tester {
     parser: SandParser,
     parserDescription: string,
   ): void {
-    test(
-      parserDescription +
-        " throws an error complaining about the same line number",
-      async () => {
-        const contentMap = await this.failureFileContent;
-        await allSettledAndAllSucceeded(
-          Array.from(contentMap.entries()).map(
-            async ([relativePath, contentProm]) => {
-              const content = await contentProm;
-              try {
-                parser.parse(content);
-                fail("Parser did not throw error.");
-              } catch (err) {
-                const lineNum = getParseErrorLineNumber(err);
-                expect(lineNum).toMatchSnapshot(relativePath);
-              }
-            },
-          ),
-        );
-      },
-    );
+    test(parserDescription + " throws parse errors consistently", async () => {
+      const contentMap = await this.failureFileContent;
+      await allSettledAndAllSucceeded(
+        Array.from(contentMap.entries()).map(
+          async ([relativePath, contentProm]) => {
+            const content = await contentProm;
+            try {
+              parser.parse(content);
+              fail("Parser did not throw error when parsing " + relativePath);
+            } catch (err) {
+              const lineNum = getParseErrorLineNumber(err);
+              expect(lineNum).toMatchSnapshot(
+                relativePath + " error line number",
+              );
+              expect(err).toMatchSnapshot(relativePath + " error");
+            }
+          },
+        ),
+      );
+    });
   }
 }
 
