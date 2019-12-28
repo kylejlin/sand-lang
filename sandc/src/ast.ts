@@ -1,3 +1,5 @@
+import { JisonNodeLocation } from "./jison";
+
 export enum NodeType {
   Import = "Import",
   Use = "Use",
@@ -45,13 +47,6 @@ export interface NodeLocation {
   lastLine: number;
   firstColumn: number;
   lastColumn: number;
-}
-
-export interface JisonNodeLocation {
-  first_line: number;
-  last_line: number;
-  first_column: number;
-  last_column: number;
 }
 
 export function merge(

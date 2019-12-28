@@ -7,7 +7,6 @@ import {
   IfAlternativeType,
   InfixExpr,
   InfixOperation,
-  JisonNodeLocation,
   merge,
   NodeLocation,
   NodeType,
@@ -15,12 +14,11 @@ import {
   PrefixOperation,
   Type,
 } from "../../ast";
+import { JisonNodeLocation } from "../../jison";
 import { wrapPrimitiveIfNeeded } from "../../sandTypes";
 import { SandParser } from "../parser.generated";
 import typeParser from "../subparsers/type/prebuilt";
-import getUpcomingCastType from "./lexUtils/getUpcomingCastType";
-import getUpcomingObjectLiteralType from "./lexUtils/getUpcomingObjectLiteralType";
-import isThereUpcomingTypeArgListAndOpenParen from "./lexUtils/isThereUpcomingTypeArgListAndOpenParen";
+import SandScanner from "./scanner";
 
 interface PointLocation {
   line: number;
@@ -28,13 +26,9 @@ interface PointLocation {
 }
 
 export default function addApi(parser: SandParser) {
+  parser.lexer = new SandScanner();
+
   const { yy } = parser;
-
-  yy.lexUtils = {};
-
-  yy.lexUtils.isThereUpcomingTypeArgListAndOpenParen = isThereUpcomingTypeArgListAndOpenParen;
-  yy.lexUtils.getUpcomingObjectLiteralType = getUpcomingObjectLiteralType;
-  yy.lexUtils.getUpcomingCastType = getUpcomingCastType;
 
   yy.NodeType = NodeType;
   yy.IfAlternativeType = IfAlternativeType;
