@@ -8,7 +8,7 @@ pub class HelloWorld {
         Foo {};
 
         let x: int[] = [1, 2, 3];
-        let y = x as! Foo<Bar<Baz, int>>;
+        let y = x as! Foo<Bar<Baz, int>, int, String, Baz[*]>;
     }
 }
 `;

@@ -72,12 +72,12 @@
   }
 */
 var parser = (function(){
-var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,3],$V1=[5,10,11],$V2=[10,11];
+var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,7],$V2=[1,8],$V3=[5,10,11,15,16],$V4=[5,10,11,12,15,16],$V5=[15,16];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"typeAndEof":3,"type":4,"EOF":5,"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS":6,"optTypeArgs":7,"<":8,"oneOrMoreCommaSeparatedTypes":9,">":10,",":11,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",6:"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS",8:"<",10:">",11:","},
-productions_: [0,[3,2],[4,2],[7,0],[7,3],[9,1],[9,3]],
+symbols_: {"error":2,"typeAndEof":3,"type":4,"EOF":5,"nonNullableType":6,"nullableType":7,"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS":8,"optTypeArgs":9,"[]":10,"[*]":11,"?":12,"<":13,"oneOrMoreCommaSeparatedTypes":14,">":15,",":16,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",8:"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS",10:"[]",11:"[*]",12:"?",13:"<",15:">",16:","},
+productions_: [0,[3,2],[4,1],[4,1],[6,2],[6,2],[6,2],[7,2],[9,0],[9,3],[14,1],[14,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -86,25 +86,34 @@ switch (yystate) {
 case 1:
  return $$[$0-1]; 
 break;
-case 2:
+case 4:
  this.$ = { type: yy.NodeType.Type, name: $$[$0-1].trim(), args: $$[$0], location: yy.camelCase(this._$) }; 
 break;
-case 3:
- this.$ = []; 
-break;
-case 4:
- this.$ = $$[$0-1]; 
-break;
 case 5:
- this.$ = [$$[$0]]; 
+ this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
 break;
 case 6:
+ this.$ = { type: yy.NodeType.Type, name: "rlist", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+break;
+case 7:
+ this.$ = { type: yy.NodeType.Type, name: "nullable", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+break;
+case 8:
+ this.$ = []; 
+break;
+case 9:
+ this.$ = $$[$0-1]; 
+break;
+case 10:
+ this.$ = [$$[$0]]; 
+break;
+case 11:
  this.$ = $$[$0-2].concat([$$[$0]]); 
 break;
 }
 },
-table: [{3:1,4:2,6:$V0},{1:[3]},{5:[1,4]},o($V1,[2,3],{7:5,8:[1,6]}),{1:[2,1]},o($V1,[2,2]),{4:8,6:$V0,9:7},{10:[1,9],11:[1,10]},o($V2,[2,5]),o($V1,[2,4]),{4:11,6:$V0},o($V2,[2,6])],
-defaultActions: {4:[2,1]},
+table: [{3:1,4:2,6:3,7:4,8:$V0},{1:[3]},{5:[1,6],10:$V1,11:$V2},o($V3,[2,2],{12:[1,9]}),o($V3,[2,3]),o($V4,[2,8],{9:10,13:[1,11]}),{1:[2,1]},o($V4,[2,5]),o($V4,[2,6]),o($V3,[2,7]),o($V4,[2,4]),{4:13,6:3,7:4,8:$V0,14:12},{15:[1,14],16:[1,15]},o($V5,[2,10],{10:$V1,11:$V2}),o($V4,[2,9]),{4:16,6:3,7:4,8:$V0},o($V5,[2,11],{10:$V1,11:$V2})],
+defaultActions: {6:[2,1]},
 parseError: function parseError (str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -589,14 +598,20 @@ case 3:return ">"
 break;
 case 4:return ","
 break;
-case 5:return "EOF"
+case 5:return "?"
 break;
-case 6:return "INVALID"
+case 6:return "[]"
+break;
+case 7:return "[*]"
+break;
+case 8:return "EOF"
+break;
+case 9:return "INVALID"
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:[a-zA-Z_]\w*(\s*\.\s*[a-zA-Z_]\w*)*)/,/^(?:<)/,/^(?:>)/,/^(?:,)/,/^(?:$)/,/^(?:.)/],
-conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6],"inclusive":true}}
+rules: [/^(?:\s+)/,/^(?:[a-zA-Z_]\w*(\s*\.\s*[a-zA-Z_]\w*)*)/,/^(?:<)/,/^(?:>)/,/^(?:,)/,/^(?:\?)/,/^(?:\[\s*\])/,/^(?:\[\s*\*\s*\])/,/^(?:$)/,/^(?:.)/],
+conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9],"inclusive":true}}
 });
 return lexer;
 })();

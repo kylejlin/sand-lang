@@ -3,6 +3,9 @@ enum TokenType {
   RightAngle,
   OneOrMoreDotSeparatedIdentifiers,
   Comma,
+  LeftSquare,
+  Star,
+  RightSquare,
 }
 
 export default function getUpcomingCastType(
@@ -20,14 +23,31 @@ export default function getUpcomingCastType(
   const dotSepWithLeftAngle = upcoming.match(
     /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*</,
   );
-  if (dotSepWithLeftAngle === null) {
-    return null;
+  if (dotSepWithLeftAngle !== null) {
+    return getUpcomingCastTypeThatStartsWithLeftAngle(
+      upcoming,
+      dotSepWithLeftAngle[0].length,
+    );
   }
 
+  const withoutLeftAngle = upcoming.match(
+    /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*(\[\s*\*?\s*]\s*)?/,
+  );
+  if (withoutLeftAngle === null) {
+    return null;
+  } else {
+    return withoutLeftAngle[0];
+  }
+}
+
+function getUpcomingCastTypeThatStartsWithLeftAngle(
+  upcoming: string,
+  startIndex: number,
+): string | null {
   let prevMatch = TokenType.LeftAngle;
   let numberOfEnclosingAngleBrackets = 1;
 
-  let i = dotSepWithLeftAngle[0].length;
+  let i = startIndex;
   while (i < upcoming.length) {
     const next = upcoming.slice(i);
 
@@ -48,7 +68,8 @@ export default function getUpcomingCastType(
     if (comma !== null) {
       if (
         prevMatch === TokenType.OneOrMoreDotSeparatedIdentifiers ||
-        prevMatch === TokenType.RightAngle
+        prevMatch === TokenType.RightAngle ||
+        prevMatch === TokenType.RightSquare
       ) {
         i += comma[0].length;
         prevMatch = TokenType.Comma;
@@ -74,7 +95,8 @@ export default function getUpcomingCastType(
     if (rightAngle !== null) {
       if (
         prevMatch === TokenType.OneOrMoreDotSeparatedIdentifiers ||
-        prevMatch === TokenType.RightAngle
+        prevMatch === TokenType.RightAngle ||
+        prevMatch === TokenType.RightSquare
       ) {
         i += rightAngle[0].length;
         prevMatch = TokenType.RightAngle;
@@ -85,6 +107,43 @@ export default function getUpcomingCastType(
         } else {
           continue;
         }
+      } else {
+        return null;
+      }
+    }
+
+    const leftSquare = next.match(/^\s*\[\s*/);
+    if (leftSquare !== null) {
+      if (
+        prevMatch === TokenType.OneOrMoreDotSeparatedIdentifiers ||
+        prevMatch === TokenType.RightAngle ||
+        prevMatch === TokenType.RightSquare
+      ) {
+        i += leftSquare[0].length;
+        prevMatch = TokenType.LeftSquare;
+        continue;
+      } else {
+        return null;
+      }
+    }
+
+    const star = next.match(/^\s*\*\s*/);
+    if (star !== null) {
+      if (prevMatch === TokenType.LeftSquare) {
+        i += star[0].length;
+        prevMatch = TokenType.Star;
+        continue;
+      } else {
+        return null;
+      }
+    }
+
+    const rightSquare = next.match(/^\s*\]\s*/);
+    if (rightSquare !== null) {
+      if (prevMatch === TokenType.LeftSquare || prevMatch === TokenType.Star) {
+        i += rightSquare[0].length;
+        prevMatch = TokenType.RightSquare;
+        continue;
       } else {
         return null;
       }
