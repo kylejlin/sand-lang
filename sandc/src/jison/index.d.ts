@@ -12,7 +12,9 @@ export function print(line: string): void;
 
 export interface Scanner<TokenType = string> {
   yytext: string;
+  yyleng: number;
   yylloc: JisonNodeLocation;
+  yylineno: number;
 
   lex(): TokenType;
   setInput(input: string): void;

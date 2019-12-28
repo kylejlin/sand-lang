@@ -98,6 +98,14 @@ export default class SandScanner implements Scanner {
     this.pastInput_ += c;
     this.input_ = this.input_.slice(1);
   }
+
+  public get yylineno(): number {
+    return this.location.line;
+  }
+
+  public get yyleng(): number {
+    return this.yytext.length;
+  }
 }
 
 const TOKEN_TYPES: TokenType[] = [
@@ -408,6 +416,7 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
       const upcoming = scanner.upcomingInput();
       const past = scanner.pastInput();
       const objLitType = getUpcomingObjectLiteralType(upcoming, past);
+      console.log("upcoming", upcoming, "objlit", objLitType);
       if (objLitType !== null) {
         let i = Math.max(0, objLitType.length - scanner.yytext.length);
         while (i--) {
