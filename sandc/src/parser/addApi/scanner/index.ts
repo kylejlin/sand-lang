@@ -186,6 +186,8 @@ const TOKEN_TYPES: TokenType[] = [
   "&&",
   "||",
   "?",
+  "..=",
+  "..",
   ".",
   "[",
   "]",
@@ -297,6 +299,8 @@ type TokenType =
   | "&&"
   | "||"
   | "?"
+  | "..="
+  | ".."
   | "."
   | "["
   | "]"
@@ -316,11 +320,6 @@ type TokenType =
   | ";"
   | typeof EOF
   | typeof INVALID;
-
-interface Token {
-  type: TokenType;
-  text: string;
-}
 
 type TokenizationRule = [RegExp, (scanner: Scanner) => TokenType];
 
@@ -453,6 +452,8 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "&&",
   "||",
   "?",
+  "..=",
+  "..",
   ".",
   "[",
   "]",

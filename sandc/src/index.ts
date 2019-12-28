@@ -1,4 +1,5 @@
 import parser from "./parser/prebuilt";
+import SandScanner from "./parser/addApi/scanner";
 
 const src = `
 pub class HelloWorld {
@@ -9,6 +10,9 @@ pub class HelloWorld {
 
         let x: int[] = [1, 2, 3];
         let y = x as! Foo<Bar<Baz, int>, int, String, Baz[*]>;
+        
+        let ascDigits = (0..=9).rList();
+        let foo = (-5..-3).arr();
     }
 }
 `;

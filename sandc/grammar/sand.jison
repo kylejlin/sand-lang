@@ -12,6 +12,8 @@
 %left "==" "!="
 %left "<" "<=" ">" ">="
 
+%nonassoc "..=" ".."
+
 %left "as!"
 
 %left "+" "-"
@@ -364,6 +366,8 @@ simpleExpression
 
     | arrayLiteral
 
+    | range
+
     | castExpression
 
     | parenthesizedExpression
@@ -382,6 +386,8 @@ callableExpression
     | callableExpression "." IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     | functionCall "." IDENTIFIER
+        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | parenthesizedExpression "." IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     ;
 
@@ -457,6 +463,21 @@ expressionSequence
         { $$ = $1.concat([$3]); }
     | expressionSequence "," ifNode
         { $$ = $1.concat([$3]); }
+    ;
+
+range
+    : endInclusiveRange
+    | endExclusiveRange
+    ;
+
+endInclusiveRange
+    : simpleExpression "..=" simpleExpression
+        { $$ = { type: yy.NodeType.RangeLiteral, start: $1, end: $3, includesEnd: true, location: yy.camelCase(@$) }; }
+    ;
+
+endExclusiveRange
+    : simpleExpression ".." simpleExpression
+        { $$ = { type: yy.NodeType.RangeLiteral, start: $1, end: $3, includesEnd: false, location: yy.camelCase(@$) }; }
     ;
 
 castExpression

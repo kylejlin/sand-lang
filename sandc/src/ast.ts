@@ -24,6 +24,7 @@ export enum NodeType {
   TypedObjectLiteral = "TypedObjectLiteral",
   ObjectEntry = "ObjectEntry",
   ArrayLiteral = "ArrayLiteral",
+  RangeLiteral = "RangeLiteral",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
@@ -205,7 +206,8 @@ export type Expr =
   | If
   | FunctionCall
   | TypedObjectLiteral
-  | ArrayLiteral;
+  | ArrayLiteral
+  | RangeLiteral;
 
 export type Statement =
   | Return
@@ -341,6 +343,14 @@ export interface ObjectEntry {
 export interface ArrayLiteral {
   type: NodeType.ArrayLiteral;
   elements: Expr[];
+  location: NodeLocation;
+}
+
+export interface RangeLiteral {
+  type: NodeType.RangeLiteral;
+  start: Expr;
+  end: Expr;
+  includesEnd: boolean;
   location: NodeLocation;
 }
 
