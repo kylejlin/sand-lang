@@ -5,7 +5,7 @@
 - [Feature List](./feature_list/intro.md)
   - [Classes, properties, methods](./feature_list/classes.md)
   - [Aliases](./feature_list/aliases.md)
-  - [Literals](./feature_list/literals.md)
+  - [Data types](./feature_list/data.md)
   - [List operations](./feature_list/list_ops.md)
   - [Local variables](./feature_list/local_vars.md)
   - [If-else](./feature_list/if.md)
