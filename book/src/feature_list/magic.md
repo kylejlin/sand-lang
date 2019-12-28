@@ -45,9 +45,9 @@ let x = 0..10;
 
 Since ranges have no runtime representation, the compiler does not know how to generate Java for this, and it is therefore illegal.
 
-### Magic iterables
+### Magic sequences
 
-Some [inline functions](./inline_funcs.md) return magic values that can be iterated over.
+Some [inline functions](./inline_funcs.md) return magic sequences.
 
 For example, the following is valid Sand:
 
@@ -88,9 +88,9 @@ let x = ["foo", "baz", "bar"]
     .map(\s -> s.toUpperCase());
 ```
 
-Since magic iterables have no runtime representation, the compiler does not know how to generate Java for this, and it is therefore illegal.
+Since magic sequences have no runtime representation, the compiler does not know how to generate Java for this, and it is therefore illegal.
 
-To store the elements of the magic iterable in a variable, convert it to a non-magic value, such as a resizable list.
+To store the elements of the magic sequence in a variable, convert it to a non-magic value, such as a resizable list.
 
 For example, use `iterable.rList()`:
 
