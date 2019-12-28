@@ -100,7 +100,7 @@ export default class SandScanner implements Scanner {
   }
 
   public get yylineno(): number {
-    return this.location.line;
+    return this.location.line - 1;
   }
 
   public get yyleng(): number {
