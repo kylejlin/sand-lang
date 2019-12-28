@@ -337,8 +337,7 @@ simpleExpression
 
     | callableExpression
     | functionCall
-    | simpleExpression "[" simpleExpression "]"
-        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | indexExpression
     
     | "-" simpleExpression %prec UMINUS
         { $$ = { type: yy.NodeType.PrefixExpr, operation: $1, right: $2, location: yy.camelCase(@$) }; }
@@ -394,12 +393,19 @@ parenthesizedExpression
         { $$ = $2; }
     ;
 
+indexExpression
+    : simpleExpression "[" simpleExpression "]"
+        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    ;
+
 callableExpression
     : IDENTIFIER
         { $$ = { type: yy.NodeType.Identifier, name: $1, location: yy.camelCase(@$) }; }
     | callableExpression "." IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     | functionCall "." IDENTIFIER
+        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | indexExpression "." IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     | parenthesizedExpression "." IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
