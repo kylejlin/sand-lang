@@ -147,7 +147,7 @@ case 28:
  this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-2]], location: yy.camelCase(this._$) }; 
 break;
 case 29:
- this.$ = { type: yy.NodeType.Type, name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.camelCase(this._$) }; 
 break;
 case 32: case 51: case 134: case 135: case 149: case 150:
  this.$ = [$$[$0]]; 

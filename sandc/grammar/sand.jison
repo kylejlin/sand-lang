@@ -126,7 +126,7 @@ nonNullableType
     | type "[" "]"
         { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" "*" "]"
-        { $$ = { type: yy.NodeType.Type, name: "java.util.ArrayList", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
     ;
 
 optTypeArgs
