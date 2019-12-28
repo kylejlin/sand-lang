@@ -22,6 +22,7 @@ export interface Scanner<TokenType = string> {
   pastInput(): string;
   upcomingInput(): string;
   input(): void;
+  showPosition(): string;
 }
 
 export interface JisonNodeLocation {

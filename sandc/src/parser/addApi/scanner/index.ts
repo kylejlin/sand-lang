@@ -6,6 +6,9 @@ import getUpcomingObjectLiteralType from "./getUpcomingObjectLiteralType";
 const EOF = "EOF";
 const INVALID = "INVALID";
 
+const MAX_DEBUG_LENGTH = 20;
+const ELLIPSIS = "...";
+
 export default class SandScanner implements Scanner {
   public yytext: string;
   public yylloc: JisonNodeLocation;
@@ -105,6 +108,38 @@ export default class SandScanner implements Scanner {
 
   public get yyleng(): number {
     return this.yytext.length;
+  }
+
+  public showPosition(): string {
+    const past = this.getPastInputForDebug();
+    const underline = "-".repeat(past.length);
+    const upcoming = this.getUpcomingInputForDebug();
+    return past + upcoming + "\n" + underline + "^";
+  }
+
+  private getPastInputForDebug(): string {
+    const withoutCurrentMatch = this.pastInput_.slice(0, -this.yytext.length);
+    const withCollapsedWhitespace = withoutCurrentMatch.replace(/\s+/g, " ");
+    if (withCollapsedWhitespace.length <= MAX_DEBUG_LENGTH) {
+      return withCollapsedWhitespace;
+    } else {
+      return (
+        ELLIPSIS +
+        withCollapsedWhitespace.slice(-MAX_DEBUG_LENGTH + ELLIPSIS.length)
+      );
+    }
+  }
+
+  private getUpcomingInputForDebug(): string {
+    const withCollapsedWhitespace = this.upcomingInput().replace(/\s+/g, " ");
+    if (withCollapsedWhitespace.length <= MAX_DEBUG_LENGTH) {
+      return withCollapsedWhitespace;
+    } else {
+      return (
+        withCollapsedWhitespace.slice(0, MAX_DEBUG_LENGTH - ELLIPSIS.length) +
+        ELLIPSIS
+      );
+    }
   }
 }
 
