@@ -163,7 +163,7 @@ let y: rlist<int> = ~[1, 2, 3];
 
 ### Ranges
 
-Ranges are immutable sequences of zero or more `int`s.
+Ranges are immutable sequences of zero or more increasing consecutive `int`s.
 
 Create a range with `start..exclusiveEnd` or `start..=inclusiveEnd`.
 
@@ -171,19 +171,20 @@ The former (`..`) will create a range starting at `start` and ending just before
 
 The latter (`..=`) will create a range starting at `start` and ending at `inclusiveEnd`.
 
-For example, in the code below, `x` and `y` are equivalent:
+For example, in the code below, the range `0..=9` is equivalent to `0..10`—they both contain `0, 1, 2, 3, 4, 5, 6, 7, 8, 9`.
+
+#### Ranges must be ascending
+
+Ranges must be ascending or empty.
+
+For example, you might try to produce the sequence `3, 2, 1` by writing `3..=1`, but this will not work because ranges cannot be descending.
+
+In Sand, if a range's end value is less than or equal to its start value, then the range will be empty (i.e., it will contain zero integers).
+
+Example:
 
 ```sand
-let x = 1..10;
-let y = 1..=9;
-```
-
-They both refer to the sequence `1, 2, 3, 4, 5, 6, 7, 8, 9`.
-
-Ranges can be ascending, descending, or empty.
-
-```sand
-let ascending = 1..10;
-let descending = 10..1;
-let empty = 1..1;
+for i in 3..=1 {
+    // Never runs because 1 <= 3
+}
 ```
