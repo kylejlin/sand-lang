@@ -498,7 +498,7 @@ function compileShorthand(
       return [regex, getTokenType];
     } else if ("string" === typeof rule[0]) {
       const tokenType = rule[1] as TokenType;
-      const regex = new RegExp("^" + rule + "\\b");
+      const regex = new RegExp("^" + rule[0] + "\\b");
       const getTokenType = () => tokenType;
       return [regex, getTokenType];
     } else {
