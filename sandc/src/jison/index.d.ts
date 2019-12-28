@@ -14,10 +14,6 @@ export interface Scanner<TokenType = string> {
   yytext: string;
   yyleng: number;
   yylloc: JisonNodeLocation;
-  /**
-   * For whatever odd reason, Jison starts yylineno at 0,
-   * so make sure to subtract one if your line count is 1-based.
-   */
   yylineno: number;
 
   lex(): TokenType;

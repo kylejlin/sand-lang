@@ -100,7 +100,7 @@ export default class SandScanner implements Scanner {
   }
 
   public get yylineno(): number {
-    return this.location.line - 1;
+    return this.location.line;
   }
 
   public get yyleng(): number {
@@ -416,7 +416,6 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
       const upcoming = scanner.upcomingInput();
       const past = scanner.pastInput();
       const objLitType = getUpcomingObjectLiteralType(upcoming, past);
-      console.log("upcoming", upcoming, "objlit", objLitType);
       if (objLitType !== null) {
         let i = Math.max(0, objLitType.length - scanner.yytext.length);
         while (i--) {

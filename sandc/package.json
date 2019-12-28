@@ -15,7 +15,8 @@
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "doc": "typedoc --out docs src && cd docs && echo \"\" > .nojekyll",
-    "jison": "jison grammar/sand.jison --outfile src/parser/parser.generated.js && jison grammar/type.jison --outfile src/parser/subparsers/type/parser.generated.js"
+    "jison": "jison grammar/sand.jison --outfile src/parser/parser.generated.js && jison grammar/type.jison --outfile src/parser/subparsers/type/parser.generated.js && npm run fix-jison-error-report-line-numbers",
+    "fix-jison-error-report-line-numbers": "sed -i '' 's/[(]yylineno \\+ 1[)]/lexer\\.yylineno/g' src/parser/parser.generated.js"
   },
   "repository": {
     "type": "git",
