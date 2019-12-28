@@ -32,6 +32,7 @@ export default class SandScanner implements Scanner {
 
   public setInput(input: string) {
     this.input_ = input;
+    this.pastInput_ = "";
 
     this.yyloc = {
       first_line: 1,
@@ -39,6 +40,7 @@ export default class SandScanner implements Scanner {
       last_line: 1,
       last_column: 0,
     };
+    this.location = { line: 1, column: 0 };
   }
 
   public lex(): string {
@@ -51,6 +53,8 @@ export default class SandScanner implements Scanner {
     if (leadingWhitespace !== undefined) {
       this.input_ = this.input_.slice(leadingWhitespace.length);
       this.pastInput_ += leadingWhitespace;
+      this.yytext = leadingWhitespace;
+      this.advanceCursorAndUpdateYyloc();
       return this.lex();
     }
 
