@@ -75,7 +75,7 @@ optCopyStatements
 
 pubClass
     : "pub" privClass
-        { $$ = { ...$2, isPub: true }; }
+        { $$ = { ...$2, isPub: true, location: yy.camelCase(@$) }; }
     ;
 
 optTypeArgDefs
@@ -104,8 +104,17 @@ optPrivClasses
     ;
 
 privClass
-    : "class" IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
-        { $$ = { type: yy.NodeType.Class, isPub: false, name: $2, typeArgDefs: $3, superClass: $4, copies: $6, useStatements: $7, items: $8, location: yy.camelCase(@$) }; }
+    : optOpenOrAbstract "class" IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
+        { $$ = { type: yy.NodeType.Class, isPub: false, overridability: $1, name: $3, typeArgDefs: $4, superClass: $5, copies: $7, useStatements: $8, items: $9, location: yy.camelCase(@$) }; }
+    ;
+
+optOpenOrAbstract
+    : %empty
+        { $$ = yy.Overridability.Final; }
+    | "open"
+        { $$ = yy.Overridability.Open; }
+    | "abstract"
+        { $$ = yy.Overridability.Abstract; }
     ;
 
 optExtension

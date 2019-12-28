@@ -115,6 +115,7 @@ export interface Copy {
 export interface Class {
   type: NodeType.Class;
   isPub: boolean;
+  overridability: Overridability;
   name: string;
   typeArgDefs: TypeArgDef[];
   superClass: Type | null;
@@ -122,6 +123,12 @@ export interface Class {
   useStatements: Use[];
   items: ClassItem[];
   location: NodeLocation;
+}
+
+export enum Overridability {
+  Final = "Final",
+  Open = "Open",
+  Abstract = "Abstract",
 }
 
 export interface PubClass extends Class {

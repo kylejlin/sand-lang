@@ -10,6 +10,7 @@ import {
   merge,
   NodeLocation,
   NodeType,
+  Overridability,
   PrefixExpr,
   PrefixOperation,
   Type,
@@ -31,6 +32,7 @@ export default function addApi(parser: SandParser) {
   const { yy } = parser;
 
   yy.NodeType = NodeType;
+  yy.Overridability = Overridability;
   yy.IfAlternativeType = IfAlternativeType;
   yy.ConstraintType = ConstraintType;
 
