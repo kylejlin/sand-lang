@@ -4,7 +4,7 @@ export default function getUpcomingObjectLiteralType(
   upcoming: string,
   past: string,
 ): string | null {
-  if (/class\s*$/.test(past)) {
+  if (/class\s*$/.test(past) || /\)\s*:\s*$/.test(past)) {
     return null;
   }
 
