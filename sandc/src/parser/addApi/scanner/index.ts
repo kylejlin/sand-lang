@@ -8,7 +8,7 @@ const INVALID = "INVALID";
 
 export default class SandScanner implements Scanner {
   public yytext: string;
-  public yyloc: JisonNodeLocation;
+  public yylloc: JisonNodeLocation;
 
   private rules: TokenizationRule[];
   private input_: string;
@@ -17,7 +17,7 @@ export default class SandScanner implements Scanner {
 
   constructor() {
     this.yytext = "";
-    this.yyloc = {
+    this.yylloc = {
       first_line: 1,
       first_column: 0,
       last_line: 1,
@@ -34,7 +34,7 @@ export default class SandScanner implements Scanner {
     this.input_ = input;
     this.pastInput_ = "";
 
-    this.yyloc = {
+    this.yylloc = {
       first_line: 1,
       first_column: 0,
       last_line: 1,
@@ -80,7 +80,7 @@ export default class SandScanner implements Scanner {
   private advanceCursorAndUpdateYyloc() {
     const startLocation = this.location;
     const endLocation = getEndLocation(this.yytext, startLocation);
-    this.yyloc = mergePointLocations(startLocation, endLocation);
+    this.yylloc = mergePointLocations(startLocation, endLocation);
     this.location = endLocation;
   }
 
