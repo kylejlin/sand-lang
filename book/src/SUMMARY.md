@@ -11,7 +11,6 @@
   - [Local variables](./feature_list/local_vars.md)
   - [If-else](./feature_list/if.md)
   - [Loops](./feature_list/loops.md)
-  - [Ranges](./feature_list/ranges.md)
   - [Packages](./feature_list/packages.md)
   - [Explicit nullables](./feature_list/nullables.md)
   - [Type casting](./feature_list/casting.md)
