@@ -105,6 +105,7 @@ const TOKEN_TYPES: TokenType[] = [
   "open",
   "abstract",
   "final",
+  "magic",
   "class",
   "extends",
   "interface",
@@ -215,6 +216,7 @@ type TokenType =
   | "open"
   | "abstract"
   | "final"
+  | "magic"
   | "class"
   | "extends"
   | "interface"
