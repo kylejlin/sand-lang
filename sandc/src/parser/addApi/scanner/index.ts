@@ -9,7 +9,7 @@ const INVALID = "INVALID";
 const MAX_DEBUG_LENGTH = 20;
 const ELLIPSIS = "...";
 
-export default class SandScanner implements Scanner {
+export default class SandScanner implements Scanner<TokenType> {
   public yytext: string;
   public yylloc: JisonNodeLocation;
 
@@ -17,6 +17,8 @@ export default class SandScanner implements Scanner {
   private input_: string;
   private pastInput_: string;
   private location: PointLocation;
+
+  private braceRelativeLocationStack: BraceRelativeLocation[];
 
   constructor() {
     this.yytext = "";
@@ -31,6 +33,8 @@ export default class SandScanner implements Scanner {
     this.input_ = "";
     this.pastInput_ = "";
     this.location = { line: 1, column: 0 };
+
+    this.braceRelativeLocationStack = [];
   }
 
   public setInput(input: string) {
@@ -46,7 +50,7 @@ export default class SandScanner implements Scanner {
     this.location = { line: 1, column: 0 };
   }
 
-  public lex(): string {
+  public lex(): TokenType {
     if (this.input_ === "") {
       this.yytext = "";
       return EOF;
@@ -141,7 +145,197 @@ export default class SandScanner implements Scanner {
       );
     }
   }
+
+  onLeftCurlyEncountered(): void {
+    if (this.braceRelativeLocationStack.length === 0) {
+      return;
+    }
+
+    const top = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+
+    if (top === BraceRelativeLocation.BetweenFirstTokenAndStartOfCompoundNode) {
+      this.braceRelativeLocationStack.pop();
+      this.braceRelativeLocationStack.push(
+        BraceRelativeLocation.InCompoundNode,
+      );
+    } else if (
+      top === BraceRelativeLocation.BetweenObjectLiteralTypeAndStartOfBody
+    ) {
+      this.braceRelativeLocationStack.pop();
+      this.braceRelativeLocationStack.push(
+        BraceRelativeLocation.InObjectLiteralBody,
+      );
+    } else {
+      throw new Error(
+        "Attempted to record the start of an object body or compound node when stack was either empty or the top of the stack was `InCompoundNode` or `InObjectLiteralBody`.",
+      );
+    }
+  }
+
+  onRightCurlyEncountered(): void {
+    if (this.braceRelativeLocationStack.length === 0) {
+      return;
+    }
+
+    const top = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+
+    if (
+      top === BraceRelativeLocation.InCompoundNode ||
+      top === BraceRelativeLocation.InObjectLiteralBody
+    ) {
+      this.braceRelativeLocationStack.pop();
+    } else {
+      throw new Error(
+        "Encountered a right curly brace when the top of the braceRelativeLocationStack was " +
+          BraceRelativeLocation[top],
+      );
+    }
+  }
+
+  onStatementWithCompoundNodeStart(): void {
+    this.braceRelativeLocationStack.push(
+      BraceRelativeLocation.BetweenFirstTokenAndStartOfCompoundNode,
+    );
+  }
+
+  onObjectLiteralStart(): void {
+    this.braceRelativeLocationStack.push(
+      BraceRelativeLocation.BetweenObjectLiteralTypeAndStartOfBody,
+    );
+  }
+
+  isExpectingCompoundNode(): boolean {
+    const last = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+    return (
+      last === BraceRelativeLocation.BetweenFirstTokenAndStartOfCompoundNode
+    );
+  }
 }
+
+enum BraceRelativeLocation {
+  BetweenFirstTokenAndStartOfCompoundNode = "BetweenFirstTokenAndStartOfCompoundNode",
+  InCompoundNode = "InCompoundNode",
+  BetweenObjectLiteralTypeAndStartOfBody = "BetweenObjectLiteralTypeAndStartOfBody",
+  InObjectLiteralBody = "InObjectLiteralBody",
+}
+
+type TokenType =
+  | "pub"
+  | "prot"
+  | "priv"
+  | "static"
+  | "inline"
+  | "open"
+  | "abstract"
+  | "final"
+  | "magic"
+  | "class"
+  | "extends"
+  | "interface"
+  | "enum"
+  | "implements"
+  | "inst"
+  | "new"
+  | "if"
+  | "else"
+  | "switch"
+  | "case"
+  | "match"
+  | "default"
+  | "while"
+  | "loop"
+  | "repeat"
+  | "for"
+  | "in"
+  | "do"
+  | "continue"
+  | "break"
+  | "return_"
+  | "let!"
+  | "let"
+  | "re!"
+  | "re"
+  | "var"
+  | "const"
+  | "try"
+  | "catch"
+  | "finally"
+  | "throw"
+  | "throws"
+  | "use"
+  | "import"
+  | "copy"
+  | "as!"
+  | "as"
+  | "package"
+  | "mod"
+  | "instanceof"
+  | "_"
+  | "assert"
+  | "goto"
+  | "native"
+  | "private"
+  | "protected"
+  | "public"
+  | "strictfp"
+  | "synchronized"
+  | "transient"
+  | "volatile"
+  | "module"
+  | "requires"
+  | "exports"
+  | "NUMBER"
+  | "STRING"
+  | "CHARACTER"
+  | "IDENTIFIER"
+  | "OBJECT_LITERAL_TYPE"
+  | "CAST_EXPRESSION_TARGET_TYPE"
+  | "**"
+  | "*"
+  | "/"
+  | "%"
+  | "-"
+  | "+"
+  | "~"
+  | "=="
+  | "!="
+  | "~="
+  | "<"
+  | "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET"
+  | "<="
+  | ">"
+  | ">="
+  | "!"
+  | "&&"
+  | "||"
+  | "?"
+  | "..="
+  | ".."
+  | "."
+  | "["
+  | "]"
+  | "="
+  | "**="
+  | "*="
+  | "/="
+  | "%="
+  | "+="
+  | "-="
+  | "("
+  | ")"
+  | "{"
+  | "}"
+  | ":"
+  | ","
+  | ";"
+  | typeof EOF
+  | typeof INVALID;
 
 const TOKEN_TYPES: TokenType[] = [
   "pub",
@@ -256,124 +450,12 @@ const TOKEN_TYPES: TokenType[] = [
   INVALID,
 ];
 
-type TokenType =
-  | "pub"
-  | "prot"
-  | "priv"
-  | "static"
-  | "inline"
-  | "open"
-  | "abstract"
-  | "final"
-  | "magic"
-  | "class"
-  | "extends"
-  | "interface"
-  | "enum"
-  | "implements"
-  | "inst"
-  | "new"
-  | "if"
-  | "else"
-  | "switch"
-  | "case"
-  | "match"
-  | "default"
-  | "while"
-  | "loop"
-  | "repeat"
-  | "for"
-  | "in"
-  | "do"
-  | "continue"
-  | "break"
-  | "return_"
-  | "let!"
-  | "let"
-  | "re!"
-  | "re"
-  | "var"
-  | "const"
-  | "try"
-  | "catch"
-  | "finally"
-  | "throw"
-  | "throws"
-  | "use"
-  | "import"
-  | "copy"
-  | "as!"
-  | "as"
-  | "package"
-  | "mod"
-  | "instanceof"
-  | "_"
-  | "assert"
-  | "goto"
-  | "native"
-  | "private"
-  | "protected"
-  | "public"
-  | "strictfp"
-  | "synchronized"
-  | "transient"
-  | "volatile"
-  | "module"
-  | "requires"
-  | "exports"
-  | "NUMBER"
-  | "STRING"
-  | "CHARACTER"
-  | "IDENTIFIER"
-  | "OBJECT_LITERAL_TYPE"
-  | "CAST_EXPRESSION_TARGET_TYPE"
-  | "**"
-  | "*"
-  | "/"
-  | "%"
-  | "-"
-  | "+"
-  | "~"
-  | "=="
-  | "!="
-  | "~="
-  | "<"
-  | "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET"
-  | "<="
-  | ">"
-  | ">="
-  | "!"
-  | "&&"
-  | "||"
-  | "?"
-  | "..="
-  | ".."
-  | "."
-  | "["
-  | "]"
-  | "="
-  | "**="
-  | "*="
-  | "/="
-  | "%="
-  | "+="
-  | "-="
-  | "("
-  | ")"
-  | "{"
-  | "}"
-  | ":"
-  | ","
-  | ";"
-  | typeof EOF
-  | typeof INVALID;
-
-type TokenizationRule = [RegExp, (scanner: Scanner) => TokenType];
+type TokenizationRule = [RegExp, (scanner: SandScanner) => TokenType];
 
 type ShorthandTokenizationRule =
   | TokenType
   | [string, TokenType]
-  | [RegExp, (scanner: Scanner) => TokenType];
+  | [RegExp, (scanner: SandScanner) => TokenType];
 
 const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "pub",
@@ -391,18 +473,18 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "implements",
   "inst",
   "new",
-  "if",
-  "else",
-  "switch",
-  "case",
+  startOfStatementWithCompoundNode("if"),
+  startOfStatementWithCompoundNode("else"),
+  startOfStatementWithCompoundNode("switch"),
+  startOfStatementWithCompoundNode("case"),
   "match",
   "default",
-  "while",
-  "loop",
-  "repeat",
-  "for",
+  startOfStatementWithCompoundNode("while"),
+  startOfStatementWithCompoundNode("loop"),
+  startOfStatementWithCompoundNode("repeat"),
+  startOfStatementWithCompoundNode("for"),
   "in",
-  "do",
+  startOfStatementWithCompoundNode("do"),
   "continue",
   "break",
   ["return", "return_"],
@@ -412,9 +494,9 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "re",
   "var",
   "const",
-  "try",
-  "catch",
-  "finally",
+  startOfStatementWithCompoundNode("try"),
+  startOfStatementWithCompoundNode("catch"),
+  startOfStatementWithCompoundNode("finally"),
   "throw",
   "throws",
   "use",
@@ -447,15 +529,16 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   [/'([^\\'\n]|\\[\\'nt])\'/, () => "CHARACTER"],
   [
     /[_a-zA-Z]\w*/,
-    (scanner: Scanner) => {
+    (scanner: SandScanner) => {
       const upcoming = scanner.upcomingInput();
       const past = scanner.pastInput();
-      const objLitType = getUpcomingObjectLiteralType(upcoming, past);
+      const objLitType = getUpcomingObjectLiteralType(upcoming, past, scanner);
       if (objLitType !== null) {
         let i = Math.max(0, objLitType.length - scanner.yytext.length);
         while (i--) {
           scanner.input();
         }
+        scanner.onObjectLiteralStart();
         return "OBJECT_LITERAL_TYPE";
       } else {
         var castType = getUpcomingCastType(upcoming, past);
@@ -483,7 +566,7 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "~=",
   [
     /</,
-    (scanner: Scanner): TokenType => {
+    (scanner: SandScanner): TokenType => {
       const upcoming = scanner.upcomingInput();
       if (isThereUpcomingTypeArgListAndLeftParen(upcoming)) {
         return "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET";
@@ -513,8 +596,20 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "-=",
   "(",
   ")",
-  "{",
-  "}",
+  [
+    /\{/,
+    (scanner: SandScanner) => {
+      scanner.onLeftCurlyEncountered();
+      return "{";
+    },
+  ],
+  [
+    /\}/,
+    (scanner: SandScanner) => {
+      scanner.onRightCurlyEncountered();
+      return "}";
+    },
+  ],
   ":",
   ",",
   ";",
@@ -588,4 +683,20 @@ function mergePointLocations(
     last_line: end.line,
     last_column: end.column,
   };
+}
+
+function startOfStatementWithCompoundNode(token: TokenType): TokenizationRule {
+  if (!/^\w+$/.test(token)) {
+    throw new Error("Illegally formatted token.");
+  }
+
+  const regex = new RegExp("^" + token + "\\b");
+
+  return [
+    regex,
+    (scanner: SandScanner) => {
+      scanner.onStatementWithCompoundNodeStart();
+      return token;
+    },
+  ];
 }
