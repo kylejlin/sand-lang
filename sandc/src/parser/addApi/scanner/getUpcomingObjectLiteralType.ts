@@ -6,7 +6,11 @@ export default function getUpcomingObjectLiteralType(
   past: string,
   scanner: SandScanner,
 ): string | null {
-  if (/class\s*$/.test(past) || /\)\s*:\s*$/.test(past)) {
+  if (
+    /class\s*$/.test(past) ||
+    /\)\s*:\s*$/.test(past) ||
+    /\.\s*$/.test(past)
+  ) {
     return null;
   }
 
