@@ -461,7 +461,7 @@ objectEntries
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
     | IDENTIFIER ":" ifNode
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
-    | objectEntries "," IDENTIFIER ":" expression
+    | objectEntries "," IDENTIFIER ":" simpleExpression
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     | objectEntries "," IDENTIFIER ":" ifNode
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
