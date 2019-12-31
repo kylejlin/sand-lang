@@ -1,6 +1,6 @@
 import typeParser from "../../subparsers/type/prebuilt";
 
-export default function isThereUpcomingTypeArgListAndLeftParen(
+export default function isThereUpcomingTypeArgListAndFunctionCallLeftParen(
   upcoming: string,
 ): boolean {
   if (!/^\s*</.test(upcoming)) {
@@ -17,7 +17,12 @@ export default function isThereUpcomingTypeArgListAndLeftParen(
 
   const untilParen = upcoming.slice(0, indexOfFirstLeftParen);
   const typeArgs = untilParen.trim();
-  return areTypeArgsWellFormed(typeArgs);
+  const srcStartingWithParen = upcoming.slice(indexOfFirstLeftParen);
+
+  return (
+    areTypeArgsWellFormed(typeArgs) &&
+    !doesUpcomingLeftParenBeginArgDefs(srcStartingWithParen)
+  );
 }
 
 function areTypeArgsWellFormed(typeArgs: string): boolean {
@@ -29,4 +34,11 @@ function areTypeArgsWellFormed(typeArgs: string): boolean {
   } catch {
     return false;
   }
+}
+
+function doesUpcomingLeftParenBeginArgDefs(upcoming: string): boolean {
+  return (
+    /^\s*\(\s*[a-zA-Z_]\w*\s*:/.test(upcoming) ||
+    /^\s*\(\s*\)\s*[:{]/.test(upcoming)
+  );
 }

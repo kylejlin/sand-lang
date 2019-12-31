@@ -1,5 +1,5 @@
 import { Scanner, JisonNodeLocation } from "../../../jison";
-import isThereUpcomingTypeArgListAndLeftParen from "./isThereUpcomingTypeArgListAndLeftParen";
+import isThereUpcomingTypeArgListAndFunctionCallLeftParen from "./isThereUpcomingTypeArgListAndFunctionCallLeftParen";
 import getUpcomingCastType from "./getUpcomingCastType";
 import getUpcomingObjectLiteralType from "./getUpcomingObjectLiteralType";
 
@@ -568,7 +568,7 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
     /</,
     (scanner: SandScanner): TokenType => {
       const upcoming = scanner.upcomingInput();
-      if (isThereUpcomingTypeArgListAndLeftParen(upcoming)) {
+      if (isThereUpcomingTypeArgListAndFunctionCallLeftParen(upcoming)) {
         return "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET";
       } else {
         return "<";
