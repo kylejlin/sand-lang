@@ -169,7 +169,7 @@ export default class SandScanner implements Scanner<TokenType> {
       );
     } else {
       throw new Error(
-        "Attempted to record the start of an object body or compound node when stack was either empty or the top of the stack was `InCompoundNode` or `InObjectLiteralBody`.",
+        "Attempted to record the start of an object body or compound node when the top of the stack was neither `BetweenFirstTokenAndStartOfCompoundNode` nor `BetweenObjectLiteralTypeAndStartOfBody`.",
       );
     }
   }
