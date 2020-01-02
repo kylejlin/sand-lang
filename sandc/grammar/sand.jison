@@ -171,6 +171,7 @@ classItem
         { $$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $1, isReassignable: false, name: $2, valueType: $4, location: yy.camelCase(@$) }; }
     | optAccessModifier "re" IDENTIFIER ":" type ";"
         { $$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $1, isReassignable: true, name: $3, valueType: $5, location: yy.camelCase(@$) }; }
+
     | optAccessModifier "static" IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: $5, initialValue: $7, location: yy.camelCase(@$) }; }
     | optAccessModifier "static" "re" IDENTIFIER ":" type "=" simpleExpression ";"
@@ -179,6 +180,16 @@ classItem
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: $5, initialValue: $7, location: yy.camelCase(@$) }; }
     | optAccessModifier "static" "re" IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: $6, initialValue: $8, location: yy.camelCase(@$) }; }
+    
+    | optAccessModifier "static" IDENTIFIER "=" simpleExpression ";"
+        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: null, initialValue: $5, location: yy.camelCase(@$) }; }
+    | optAccessModifier "static" "re" IDENTIFIER "=" simpleExpression ";"
+        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.camelCase(@$) }; }
+    | optAccessModifier "static" IDENTIFIER "=" ifNode ";"
+        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: null, initialValue: $5, location: yy.camelCase(@$) }; }
+    | optAccessModifier "static" "re" IDENTIFIER "=" ifNode ";"
+        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.camelCase(@$) }; }
+
     | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
     | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundNode

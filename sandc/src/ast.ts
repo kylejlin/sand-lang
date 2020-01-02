@@ -189,7 +189,7 @@ export interface StaticPropertyDeclaration {
   accessModifier: OptAccessModifier;
   isReassignable: boolean;
   name: string;
-  valueType: Type;
+  valueType: Type | null;
   initialValue: Expr;
   location: NodeLocation;
 }

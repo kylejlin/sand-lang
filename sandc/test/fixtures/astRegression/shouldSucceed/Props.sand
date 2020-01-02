@@ -6,4 +6,11 @@ pub class Prop {
     static staticProp: int = 2;
     static re staticReProp: int = 2;
     static staticPropIf: int = if Foo.bar() { 1 } else { 0 };
+
+    static re typeInf = "Hello";
+    static typeInfIf = if Foo.bar() {
+        1int
+    } else {
+        0int
+    };
 }
