@@ -2,4 +2,8 @@ pub class Prop {
     basic: int;
     re reassignable: int;
     complexType: Foo<char[+]>?;
+
+    static staticProp: int = 2;
+    static re staticReProp: int = 2;
+    static staticPropIf: int = if Foo.bar() { 1 } else { 0 };
 }

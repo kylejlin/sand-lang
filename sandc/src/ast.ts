@@ -16,7 +16,8 @@ export enum NodeType {
   IndexExpr = "IndexExpr",
   CastExpr = "CastExpr",
 
-  PropertyDeclaration = "PropertyDeclaration",
+  InstancePropertyDeclaration = "InstancePropertyDeclaration",
+  StaticPropertyDeclaration = "StaticPropertyDeclaration",
   MethodDeclaration = "MethodDeclaration",
 
   If = "If",
@@ -139,7 +140,7 @@ export interface PrivClass extends Class {
   isPub: false;
 }
 
-export type ClassItem = PropertyDeclaration | MethodDeclaration;
+export type ClassItem = InstancePropertyDeclaration | MethodDeclaration;
 
 export interface TypeArgDef {
   type: NodeType.TypeArgDef;
@@ -174,12 +175,22 @@ export enum ConstraintType {
 
 export type OptAccessModifier = null | "pub" | "prot";
 
-export interface PropertyDeclaration {
-  type: NodeType.PropertyDeclaration;
+export interface InstancePropertyDeclaration {
+  type: NodeType.InstancePropertyDeclaration;
   accessModifier: OptAccessModifier;
   isReassignable: boolean;
   name: string;
   valueType: Type;
+  location: NodeLocation;
+}
+
+export interface StaticPropertyDeclaration {
+  type: NodeType.StaticPropertyDeclaration;
+  accessModifier: OptAccessModifier;
+  isReassignable: boolean;
+  name: string;
+  valueType: Type;
+  initialValue: Expr;
   location: NodeLocation;
 }
 
