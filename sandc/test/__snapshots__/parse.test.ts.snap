@@ -85,7 +85,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 28,
             "firstLine": 29,
@@ -102,7 +102,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 28,
             "firstLine": 29,
@@ -113,9 +113,9 @@ Object {
           "returnType": Object {
             "args": Array [],
             "location": Object {
-              "firstColumn": 23,
+              "firstColumn": 27,
               "firstLine": 40,
-              "lastColumn": 26,
+              "lastColumn": 30,
               "lastLine": 40,
             },
             "name": "int",
@@ -129,7 +129,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 4,
             "firstLine": 44,
@@ -140,9 +140,9 @@ Object {
           "returnType": Object {
             "args": Array [],
             "location": Object {
-              "firstColumn": 24,
+              "firstColumn": 28,
               "firstLine": 44,
-              "lastColumn": 27,
+              "lastColumn": 31,
               "lastLine": 44,
             },
             "name": "int",
@@ -274,7 +274,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 33,
           "firstLine": 1,
@@ -291,7 +291,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 33,
           "firstLine": 1,
@@ -302,9 +302,9 @@ Object {
         "returnType": Object {
           "args": Array [],
           "location": Object {
-            "firstColumn": 23,
+            "firstColumn": 27,
             "firstLine": 12,
-            "lastColumn": 26,
+            "lastColumn": 30,
             "lastLine": 12,
           },
           "name": "int",
@@ -318,7 +318,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 4,
           "firstLine": 16,
@@ -329,9 +329,9 @@ Object {
         "returnType": Object {
           "args": Array [],
           "location": Object {
-            "firstColumn": 24,
+            "firstColumn": 28,
             "firstLine": 16,
-            "lastColumn": 27,
+            "lastColumn": 31,
             "lastLine": 16,
           },
           "name": "int",
@@ -8675,7 +8675,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 15,
@@ -8692,7 +8692,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 4,
             "firstLine": 20,
@@ -8703,9 +8703,9 @@ Object {
           "returnType": Object {
             "args": Array [],
             "location": Object {
-              "firstColumn": 27,
+              "firstColumn": 31,
               "firstLine": 20,
-              "lastColumn": 30,
+              "lastColumn": 34,
               "lastLine": 20,
             },
             "name": "int",
@@ -8765,7 +8765,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 25,
           "firstLine": 1,
@@ -8782,7 +8782,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 4,
           "firstLine": 6,
@@ -8793,9 +8793,9 @@ Object {
         "returnType": Object {
           "args": Array [],
           "location": Object {
-            "firstColumn": 27,
+            "firstColumn": 31,
             "firstLine": 6,
-            "lastColumn": 30,
+            "lastColumn": 34,
             "lastLine": 6,
           },
           "name": "int",

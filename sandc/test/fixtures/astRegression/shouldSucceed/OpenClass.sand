@@ -1,9 +1,9 @@
 pub open class OpenClass {
-    open openMethod() {
+    open openMethod(this) {
 
     }
 
-    pub open openReturn(): int {
+    pub open openReturn(this): int {
         
     }
 
@@ -13,11 +13,11 @@ pub open class OpenClass {
 }
 
 open class OpenPriv {
-    open openMethod() {
+    open openMethod(this) {
 
     }
 
-    pub open openReturn(): int {
+    pub open openReturn(this): int {
         
     }
 

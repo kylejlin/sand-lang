@@ -223,7 +223,8 @@ Overriding is when a child class implements a method declared in an ancestor cla
 Overriding requires:
 
 1. The method be declared `open` or `abstract` in the parent.
-2. The child method be declared an `override`.
+2. The method is not `static`.
+3. The child method be declared an `override`.
 
 For example:
 
@@ -258,6 +259,8 @@ class Dog extends Animal {
     }
 }
 ```
+
+Static methods cannot be `open` because Sand compiles to Java, and Java does not support overriding static methods (because polymorphism only works on class instances, not classes themselves).
 
 ## Implicit `prot` accessibility
 

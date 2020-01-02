@@ -5,15 +5,15 @@ pub abstract class AbstractClass {
 
     pub abstract pubAbstract(this): int;
 
-    open openMethod() {
+    open openMethod(this) {
 
     }
 
-    open openReturn(): int {
+    open openReturn(this): int {
 
     }
 
-    pub open pubOpen(): int {
+    pub open pubOpen(this): int {
 
     }
 
@@ -33,15 +33,15 @@ abstract class AbstractPriv {
 
     pub abstract pubAbstract(this): int;
 
-    open openMethod() {
+    open openMethod(this) {
 
     }
 
-    open openReturn(): int {
+    open openReturn(this): int {
 
     }
 
-    pub open pubOpen(): int {
+    pub open pubOpen(this): int {
 
     }
 
