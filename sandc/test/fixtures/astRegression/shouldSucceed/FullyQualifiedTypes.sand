@@ -19,11 +19,11 @@ pub class FullyQualifiedTypes {
 
     }
 
-    arrayList(): java.util.ArrayList[*] {
+    arrayList(): java.util.ArrayList[+] {
 
     }
 
-    arrayListTypeArg(): java.util.ArrayList<char>[*] {
+    arrayListTypeArg(): java.util.ArrayList<char>[+] {
 
     }
 }

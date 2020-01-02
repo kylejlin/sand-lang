@@ -4,7 +4,7 @@ enum TokenType {
   OneOrMoreDotSeparatedIdentifiers,
   Comma,
   LeftSquare,
-  Star,
+  Plus,
   RightSquare,
 }
 
@@ -31,7 +31,7 @@ export default function getUpcomingCastType(
   }
 
   const withoutLeftAngle = upcoming.match(
-    /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*((\[\s*\*?\s*\]|\?)\s*)*/,
+    /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*((\[\s*\+?\s*\]|\?)\s*)*/,
   );
   if (withoutLeftAngle === null) {
     return null;
@@ -127,11 +127,11 @@ function getUpcomingCastTypeThatStartsWithLeftAngle(
       }
     }
 
-    const star = next.match(/^\s*\*\s*/);
-    if (star !== null) {
+    const plus = next.match(/^\s*\+\s*/);
+    if (plus !== null) {
       if (prevMatch === TokenType.LeftSquare) {
-        i += star[0].length;
-        prevMatch = TokenType.Star;
+        i += plus[0].length;
+        prevMatch = TokenType.Plus;
         continue;
       } else {
         return null;
@@ -140,7 +140,7 @@ function getUpcomingCastTypeThatStartsWithLeftAngle(
 
     const rightSquare = next.match(/^\s*\]\s*/);
     if (rightSquare !== null) {
-      if (prevMatch === TokenType.LeftSquare || prevMatch === TokenType.Star) {
+      if (prevMatch === TokenType.LeftSquare || prevMatch === TokenType.Plus) {
         i += rightSquare[0].length;
         prevMatch = TokenType.RightSquare;
         continue;

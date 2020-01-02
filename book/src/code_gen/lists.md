@@ -6,7 +6,7 @@ Array transpilation is straightforward.
 
 ## Resizable lists
 
-`T[*]` transpiles to `java.util.ArrayList<T>`, boxing `T` if it's a primitive.
+`T[+]` transpiles to `java.util.ArrayList<T>`, boxing `T` if it's a primitive.
 
 For an `rlist` `x`:
 

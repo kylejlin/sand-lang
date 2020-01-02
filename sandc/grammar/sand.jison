@@ -141,7 +141,7 @@ nonNullableType
         { $$ = { type: yy.NodeType.Type, name: $1.map(ident => ident.name).join('.'), args: [], location: yy.camelCase(@$) }; }
     | type "[" "]"
         { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
-    | type "[" "*" "]"
+    | type "[" "+" "]"
         { $$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
     ;
 

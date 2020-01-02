@@ -9597,7 +9597,7 @@ exports[`the prebuilt parser throws parse errors consistently: assignments/Assig
 [Error: Parse error on line 3:
 ... assExpr() { x(a = b;) } }
 --------------------^
-Expecting '<', '>', ',', '[', '*', ')', '-', '**', '/', '%', '+', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '=']
+Expecting '<', '>', ',', '[', '+', ')', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '=']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: assignments/AssignmentExpression.sand error line number 1`] = `3`;
@@ -9606,7 +9606,7 @@ exports[`the prebuilt parser throws parse errors consistently: assignments/Missi
 [Error: Parse error on line 4:
 ...ngSemi() { a = b } }
 --------------------^
-Expecting ';', '<', '>', '[', '*', '-', '**', '/', '%', '+', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '}']
+Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: assignments/MissingSemicolon.sand error line number 1`] = `4`;
@@ -9615,7 +9615,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericFunctionCa
 [Error: Parse error on line 3:
 ... { foo() { bar<T extends String>()...
 --------------------^
-Expecting ';', '<', '>', ',', '{', '}', '[', ']', '*', '(', ')', '=', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '/', '%', '+', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', '<', '>', ',', '{', '}', '[', ']', '+', '(', ')', '=', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericFunctionCall/Extends.sand error line number 1`] = `3`;
@@ -9669,7 +9669,7 @@ exports[`the prebuilt parser throws parse errors consistently: localVariableDecl
 [Error: Parse error on line 4:
 ...() { let bar = 2 } }
 --------------------^
-Expecting ';', '<', '>', '[', '*', '-', '**', '/', '%', '+', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '}']
+Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: localVariableDeclarations/MissingSemicolon.sand error line number 1`] = `4`;
@@ -9705,7 +9705,7 @@ exports[`the prebuilt parser throws parse errors consistently: return/MissingSem
 [Error: Parse error on line 4:
 ...emi() { return 8 } }
 --------------------^
-Expecting ';', '<', '>', '[', '*', '-', '**', '/', '%', '+', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '}']
+Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '..=', '..', 'as!', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: return/MissingSemicolon.sand error line number 1`] = `4`;
@@ -9732,7 +9732,7 @@ exports[`the prebuilt parser throws parse errors consistently: typedObjectLitera
 [Error: Parse error on line 3:
 ...xtends() { Foo<T extends ArrayList...
 --------------------^
-Expecting ';', '<', '>', ',', '{', '}', '[', ']', '*', '(', ')', '=', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '/', '%', '+', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', '<', '>', ',', '{', '}', '[', ']', '+', '(', ')', '=', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: typedObjectLiteral/Extends.sand error line number 1`] = `3`;

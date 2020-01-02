@@ -4,11 +4,11 @@ pub class Cast {
     }
 
     typeArg() {
-        a as! Foo<int, char[*]>
+        a as! Foo<int, char[+]>
     }
 
     typeRlist() {
-        a as! Foo[*]
+        a as! Foo[+]
     }
 
     typeNullable() {
@@ -16,31 +16,31 @@ pub class Cast {
     }
 
     objLit() {
-        Foo {} as! Foo<int, char[*]>
+        Foo {} as! Foo<int, char[+]>
     }
 
     if_() {
-        (if x {} else {}) as! Foo<int, char[*]>
+        (if x {} else {}) as! Foo<int, char[+]>
     }
 
     declaration() {
-        let x = x as! Foo<int, char[*]>;
+        let x = x as! Foo<int, char[+]>;
     }
 
     assignment() {
-        x = x as! Foo<int, char[*]>;
+        x = x as! Foo<int, char[+]>;
     }
 
     return_() {
-        return x as! Foo<int, char[*]>;
+        return x as! Foo<int, char[+]>;
     }
 
     arg() {
-        foo(x as! Foo<int, char[*]>)
+        foo(x as! Foo<int, char[+]>)
     }
 
     infix() {
-        4 + x as! Foo<int, char[*]>
+        4 + x as! Foo<int, char[+]>
     }
 
     prefix() {

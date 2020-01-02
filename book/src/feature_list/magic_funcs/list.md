@@ -123,7 +123,7 @@ Returns a resizable list containing the elements of this sequence.
 
 #### Return value
 
-`T[*]`
+`T[+]`
 
 ### `sequence.len()`
 

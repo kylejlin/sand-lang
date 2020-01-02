@@ -12,7 +12,7 @@
 "," return ","
 "?" return "?"
 \[\s*\] return "[]"
-\[\s*\*\s*\] return "[*]"
+\[\s*\+\s*\] return "[+]"
 
 <<EOF>> return "EOF"
 . return "INVALID"
@@ -38,7 +38,7 @@ nonNullableType
         { $$ = { type: yy.NodeType.Type, name: $1.trim(), args: $2, location: yy.camelCase(@$) }; }
     | type "[]"
         { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
-    | type "[*]"
+    | type "[+]"
         { $$ = { type: yy.NodeType.Type, name: "rlist", args: [$1], location: yy.camelCase(@$) }; }
     ;
 

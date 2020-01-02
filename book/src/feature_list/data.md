@@ -152,12 +152,12 @@ Resizable lists are (mutable) variable-length sequences.
 
 Currently, resizable lists are implemented with `java.util.ArrayList`, but this is subject to change.
 
-The type of a resizable list `T` can be denoted by either `T[*]` or `rlist<T>`.
+The type of a resizable list `T` can be denoted by either `T[+]` or `rlist<T>`.
 
 There are no literals to create resizable lists, but you can create an array and use the `~` operator to convert it to a resizable list:
 
 ```sand
-let x: int[*] = ~[1, 2, 3];
+let x: int[+] = ~[1, 2, 3];
 let y: rlist<int> = ~[1, 2, 3];
 ```
 

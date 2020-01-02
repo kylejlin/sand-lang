@@ -75,8 +75,8 @@ var parser = (function(){
 var o=function(k,v,o,l){for(o=o||{},l=k.length;l--;o[k[l]]=v);return o},$V0=[1,5],$V1=[1,7],$V2=[1,8],$V3=[5,10,11,15,16],$V4=[5,10,11,12,15,16],$V5=[15,16];
 var parser = {trace: function trace () { },
 yy: {},
-symbols_: {"error":2,"typeAndEof":3,"type":4,"EOF":5,"nonNullableType":6,"nullableType":7,"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS":8,"optTypeArgs":9,"[]":10,"[*]":11,"?":12,"<":13,"oneOrMoreCommaSeparatedTypes":14,">":15,",":16,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",8:"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS",10:"[]",11:"[*]",12:"?",13:"<",15:">",16:","},
+symbols_: {"error":2,"typeAndEof":3,"type":4,"EOF":5,"nonNullableType":6,"nullableType":7,"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS":8,"optTypeArgs":9,"[]":10,"[+]":11,"?":12,"<":13,"oneOrMoreCommaSeparatedTypes":14,">":15,",":16,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"EOF",8:"ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS",10:"[]",11:"[+]",12:"?",13:"<",15:">",16:","},
 productions_: [0,[3,2],[4,1],[4,1],[6,2],[6,2],[6,2],[7,2],[9,0],[9,3],[14,1],[14,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
@@ -602,7 +602,7 @@ case 5:return "?"
 break;
 case 6:return "[]"
 break;
-case 7:return "[*]"
+case 7:return "[+]"
 break;
 case 8:return "EOF"
 break;
@@ -610,7 +610,7 @@ case 9:return "INVALID"
 break;
 }
 },
-rules: [/^(?:\s+)/,/^(?:[a-zA-Z_]\w*(\s*\.\s*[a-zA-Z_]\w*)*)/,/^(?:<)/,/^(?:>)/,/^(?:,)/,/^(?:\?)/,/^(?:\[\s*\])/,/^(?:\[\s*\*\s*\])/,/^(?:$)/,/^(?:.)/],
+rules: [/^(?:\s+)/,/^(?:[a-zA-Z_]\w*(\s*\.\s*[a-zA-Z_]\w*)*)/,/^(?:<)/,/^(?:>)/,/^(?:,)/,/^(?:\?)/,/^(?:\[\s*\])/,/^(?:\[\s*\+\s*\])/,/^(?:$)/,/^(?:.)/],
 conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9],"inclusive":true}}
 });
 return lexer;

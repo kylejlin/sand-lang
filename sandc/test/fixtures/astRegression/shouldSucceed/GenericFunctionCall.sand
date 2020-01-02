@@ -4,6 +4,6 @@ pub class GenericFunctionCall {
     }
 
     multiple() {
-        foo<int, String, char[*]>()
+        foo<int, String, char[+]>()
     }
 }

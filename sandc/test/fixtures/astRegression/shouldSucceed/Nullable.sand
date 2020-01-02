@@ -7,7 +7,7 @@ pub class Nullable<T, U extends T?> {
         "hi"
     }
 
-    baz(x: String?[], y: String[]?, z: String?[]?, a: int?[*]?): ArrayList<String?>? {
+    baz(x: String?[], y: String[]?, z: String?[]?, a: int?[+]?): ArrayList<String?>? {
         if x == null {
             null
         } else {
