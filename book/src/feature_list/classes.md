@@ -256,6 +256,23 @@ class Dog extends Animal {
 }
 ```
 
+## Implicit `prot` accessiblity
+
+Normally, methods are private by default.
+However, if a method is `open` or `abstract`,
+it is protected by default.
+This is because `open` and `abstract` methods must be overridable or implementable by subclasses, which implies they must be accessible to the subclasses, and therefore have a minimum accesibility level of `prot`.
+
+Hence, the following is redundant, but legal:
+
+```sand
+open class Foo {
+    prot open foo() {
+
+    }
+}
+```
+
 ## Instantiating a class
 
 Instances can be created with the syntax
