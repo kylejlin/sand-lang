@@ -1345,6 +1345,1367 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: Assignments.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 86,
+  },
+  "packageName": null,
+  "privClasses": Array [
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 44,
+                    "lastColumn": 9,
+                    "lastLine": 44,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 44,
+                  "lastColumn": 11,
+                  "lastLine": 44,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 44,
+                "lastColumn": 16,
+                "lastLine": 44,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 14,
+                  "firstLine": 44,
+                  "lastColumn": 15,
+                  "lastLine": 44,
+                },
+                "name": "c",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 45,
+          },
+          "name": "identDot",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 48,
+                      "lastColumn": 9,
+                      "lastLine": 48,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 48,
+                    "lastColumn": 11,
+                    "lastLine": 48,
+                  },
+                  "right": "b",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 48,
+                  "lastColumn": 13,
+                  "lastLine": 48,
+                },
+                "right": "c",
+                "type": "DotExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 48,
+                "lastColumn": 18,
+                "lastLine": 48,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 48,
+                  "lastColumn": 17,
+                  "lastLine": 48,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 49,
+          },
+          "name": "dotDot",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "args": Array [],
+                  "callee": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 52,
+                      "lastColumn": 9,
+                      "lastLine": 52,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 52,
+                    "lastColumn": 11,
+                    "lastLine": 52,
+                  },
+                  "type": "FunctionCall",
+                  "typeArgs": Array [],
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 52,
+                  "lastColumn": 13,
+                  "lastLine": 52,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 52,
+                "lastColumn": 18,
+                "lastLine": 52,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 52,
+                  "lastColumn": 17,
+                  "lastLine": 52,
+                },
+                "name": "c",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 53,
+          },
+          "name": "callDot",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 56,
+                      "lastColumn": 9,
+                      "lastLine": 56,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 56,
+                    "lastColumn": 12,
+                    "lastLine": 56,
+                  },
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 56,
+                      "lastColumn": 11,
+                      "lastLine": 56,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "IndexExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 56,
+                  "lastColumn": 14,
+                  "lastLine": 56,
+                },
+                "right": "c",
+                "type": "DotExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 56,
+                "lastColumn": 19,
+                "lastLine": 56,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 17,
+                  "firstLine": 56,
+                  "lastColumn": 18,
+                  "lastLine": 56,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 57,
+          },
+          "name": "indexDot",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 60,
+                    "lastColumn": 9,
+                    "lastLine": 60,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 60,
+                  "lastColumn": 12,
+                  "lastLine": 60,
+                },
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 10,
+                    "firstLine": 60,
+                    "lastColumn": 11,
+                    "lastLine": 60,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "IndexExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 60,
+                "lastColumn": 17,
+                "lastLine": 60,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 15,
+                  "firstLine": 60,
+                  "lastColumn": 16,
+                  "lastLine": 60,
+                },
+                "name": "c",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 61,
+          },
+          "name": "identIndex",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 64,
+                      "lastColumn": 9,
+                      "lastLine": 64,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 64,
+                    "lastColumn": 11,
+                    "lastLine": 64,
+                  },
+                  "right": "b",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 64,
+                  "lastColumn": 14,
+                  "lastLine": 64,
+                },
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 64,
+                    "lastColumn": 13,
+                    "lastLine": 64,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "type": "IndexExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 64,
+                "lastColumn": 19,
+                "lastLine": 64,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 17,
+                  "firstLine": 64,
+                  "lastColumn": 18,
+                  "lastLine": 64,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 65,
+          },
+          "name": "dotIndex",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "args": Array [],
+                  "callee": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 68,
+                      "lastColumn": 9,
+                      "lastLine": 68,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 68,
+                    "lastColumn": 11,
+                    "lastLine": 68,
+                  },
+                  "type": "FunctionCall",
+                  "typeArgs": Array [],
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 68,
+                  "lastColumn": 14,
+                  "lastLine": 68,
+                },
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 68,
+                    "lastColumn": 13,
+                    "lastLine": 68,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "IndexExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 68,
+                "lastColumn": 19,
+                "lastLine": 68,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 17,
+                  "firstLine": 68,
+                  "lastColumn": 18,
+                  "lastLine": 68,
+                },
+                "name": "c",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 69,
+          },
+          "name": "callIndex",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 72,
+                        "lastColumn": 9,
+                        "lastLine": 72,
+                      },
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 72,
+                      "lastColumn": 11,
+                      "lastLine": 72,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 72,
+                    "lastColumn": 13,
+                    "lastLine": 72,
+                  },
+                  "right": "b",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 72,
+                  "lastColumn": 15,
+                  "lastLine": 72,
+                },
+                "right": "c",
+                "type": "DotExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 72,
+                "lastColumn": 20,
+                "lastLine": 72,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 72,
+                  "lastColumn": 19,
+                  "lastLine": 72,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 73,
+          },
+          "name": "callDotDot",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 8,
+                        "firstLine": 76,
+                        "lastColumn": 9,
+                        "lastLine": 76,
+                      },
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 76,
+                      "lastColumn": 11,
+                      "lastLine": 76,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 76,
+                    "lastColumn": 14,
+                    "lastLine": 76,
+                  },
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 76,
+                      "lastColumn": 13,
+                      "lastLine": 76,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "IndexExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 76,
+                  "lastColumn": 16,
+                  "lastLine": 76,
+                },
+                "right": "c",
+                "type": "DotExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 76,
+                "lastColumn": 21,
+                "lastLine": 76,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 19,
+                  "firstLine": 76,
+                  "lastColumn": 20,
+                  "lastLine": 76,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 77,
+          },
+          "name": "callIndexDot",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 80,
+                      "lastColumn": 9,
+                      "lastLine": 80,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 80,
+                    "lastColumn": 12,
+                    "lastLine": 80,
+                  },
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 80,
+                      "lastColumn": 11,
+                      "lastLine": 80,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "type": "IndexExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 80,
+                  "lastColumn": 15,
+                  "lastLine": 80,
+                },
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 13,
+                    "firstLine": 80,
+                    "lastColumn": 14,
+                    "lastLine": 80,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "type": "IndexExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 80,
+                "lastColumn": 20,
+                "lastLine": 80,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 80,
+                  "lastColumn": 19,
+                  "lastLine": 80,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 81,
+          },
+          "name": "callIndexIndex",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "assignee": Object {
+                "left": Object {
+                  "left": Object {
+                    "location": Object {
+                      "firstColumn": 8,
+                      "firstLine": 84,
+                      "lastColumn": 9,
+                      "lastLine": 84,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 84,
+                    "lastColumn": 11,
+                    "lastLine": 84,
+                  },
+                  "right": "b",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 84,
+                  "lastColumn": 14,
+                  "lastLine": 84,
+                },
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 84,
+                    "lastColumn": 13,
+                    "lastLine": 84,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "type": "IndexExpr",
+              },
+              "assignmentType": "=",
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 84,
+                "lastColumn": 19,
+                "lastLine": 84,
+              },
+              "type": "Assignment",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 17,
+                  "firstLine": 84,
+                  "lastColumn": 18,
+                  "lastLine": 84,
+                },
+                "name": "d",
+                "type": "Identifier",
+              },
+            },
+          ],
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 42,
+            "lastColumn": 5,
+            "lastLine": 85,
+          },
+          "name": "callDotIndex",
+          "returnType": null,
+          "type": "MethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 1,
+        "lastColumn": 1,
+        "lastLine": 86,
+      },
+      "name": "ComplexAssignments",
+      "overridability": "Final",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [],
+    },
+  ],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 9,
+                "lastLine": 3,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 3,
+                "lastColumn": 13,
+                "lastLine": 3,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "ass",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 9,
+                "lastLine": 7,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 14,
+              "lastLine": 7,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 7,
+                "lastColumn": 13,
+                "lastLine": 7,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 8,
+              "lastColumn": 9,
+              "lastLine": 8,
+            },
+            "type": "NumberLiteral",
+            "value": "9",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 9,
+        },
+        "name": "assElrd",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 12,
+                "lastColumn": 9,
+                "lastLine": 12,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 12,
+              "lastColumn": 14,
+              "lastLine": 12,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 12,
+                "lastColumn": 13,
+                "lastLine": 12,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 13,
+                "lastColumn": 12,
+                "lastLine": 13,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 13,
+              "lastColumn": 15,
+              "lastLine": 13,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 14,
+        },
+        "name": "assEird",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 17,
+                "lastColumn": 9,
+                "lastLine": 17,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 17,
+              "lastColumn": 14,
+              "lastLine": 17,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 17,
+                "lastColumn": 13,
+                "lastLine": 17,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 18,
+                "lastColumn": 17,
+                "lastLine": 18,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 18,
+              "lastColumn": 18,
+              "lastLine": 18,
+            },
+            "name": "a",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 19,
+        },
+        "name": "assDecl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 22,
+              "lastColumn": 9,
+              "lastLine": 22,
+            },
+            "type": "NumberLiteral",
+            "value": "9",
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 9,
+                "lastLine": 23,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 14,
+              "lastLine": 23,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 23,
+                "lastColumn": 13,
+                "lastLine": 23,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "elrdAss",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 27,
+                "lastColumn": 12,
+                "lastLine": 27,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 15,
+              "lastLine": 27,
+            },
+            "type": "If",
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 28,
+                "lastColumn": 9,
+                "lastLine": 28,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 28,
+              "lastColumn": 14,
+              "lastLine": 28,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 28,
+                "lastColumn": 13,
+                "lastLine": 28,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 29,
+        },
+        "name": "eirdAss",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 32,
+                "lastColumn": 17,
+                "lastLine": 32,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 32,
+              "lastColumn": 18,
+              "lastLine": 32,
+            },
+            "name": "a",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 33,
+                "lastColumn": 9,
+                "lastLine": 33,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 33,
+              "lastColumn": 14,
+              "lastLine": 33,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 33,
+                "lastColumn": 13,
+                "lastLine": 33,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 34,
+        },
+        "name": "declAss",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 37,
+                "lastColumn": 9,
+                "lastLine": 37,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 37,
+              "lastColumn": 14,
+              "lastLine": 37,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 37,
+                "lastColumn": 13,
+                "lastLine": 37,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 38,
+                "lastColumn": 9,
+                "lastLine": 38,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 38,
+              "lastColumn": 14,
+              "lastLine": 38,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 38,
+                "lastColumn": 13,
+                "lastLine": 38,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 39,
+        },
+        "name": "assAss",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 40,
+    },
+    "name": "Assignments",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: CompoundExpressions.sand 1`] = `
 Object {
   "imports": Array [],
@@ -2385,6 +3746,334 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: FullyQualifiedTypes.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 29,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "simple",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 14,
+            "firstLine": 2,
+            "lastColumn": 33,
+            "lastLine": 2,
+          },
+          "name": "java.util.ArrayList",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "withTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 39,
+                "firstLine": 6,
+                "lastColumn": 42,
+                "lastLine": 6,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 19,
+            "firstLine": 6,
+            "lastColumn": 43,
+            "lastLine": 6,
+          },
+          "name": "java.util.ArrayList",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "withTypeArgs",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 40,
+                "firstLine": 10,
+                "lastColumn": 43,
+                "lastLine": 10,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 45,
+                    "firstLine": 10,
+                    "lastColumn": 51,
+                    "lastLine": 10,
+                  },
+                  "name": "String",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 45,
+                "firstLine": 10,
+                "lastColumn": 52,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 10,
+            "lastColumn": 53,
+            "lastLine": 10,
+          },
+          "name": "java.util.ArrayList",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "array",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 14,
+                "lastColumn": 32,
+                "lastLine": 14,
+              },
+              "name": "java.util.ArrayList",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 14,
+            "lastColumn": 34,
+            "lastLine": 14,
+          },
+          "name": "array",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "arrayTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 40,
+                    "firstLine": 18,
+                    "lastColumn": 44,
+                    "lastLine": 18,
+                  },
+                  "name": "char",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 20,
+                "firstLine": 18,
+                "lastColumn": 45,
+                "lastLine": 18,
+              },
+              "name": "java.util.ArrayList",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 18,
+            "lastColumn": 47,
+            "lastLine": 18,
+          },
+          "name": "array",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "arrayList",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 22,
+                "lastColumn": 36,
+                "lastLine": 22,
+              },
+              "name": "java.util.ArrayList",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 22,
+            "lastColumn": 39,
+            "lastLine": 22,
+          },
+          "name": "rlist",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "arrayListTypeArg",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 44,
+                    "firstLine": 26,
+                    "lastColumn": 48,
+                    "lastLine": 26,
+                  },
+                  "name": "char",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 24,
+                "firstLine": 26,
+                "lastColumn": 49,
+                "lastLine": 26,
+              },
+              "name": "java.util.ArrayList",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 24,
+            "firstLine": 26,
+            "lastColumn": 52,
+            "lastLine": 26,
+          },
+          "name": "rlist",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 29,
+    },
+    "name": "FullyQualifiedTypes",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: GenericFunctionCall.sand 1`] = `
 Object {
   "imports": Array [],
@@ -2551,6 +4240,224 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: GenericMethodDeclarations.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 17,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "single",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 11,
+              "firstLine": 2,
+              "lastColumn": 12,
+              "lastLine": 2,
+            },
+            "name": "T",
+            "type": "TypeArgDef",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "complex",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 12,
+              "firstLine": 6,
+              "lastColumn": 13,
+              "lastLine": 6,
+            },
+            "name": "T",
+            "type": "TypeArgDef",
+          },
+          Object {
+            "constraint": Object {
+              "constraintType": "Extends",
+              "superClass": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 25,
+                  "firstLine": 6,
+                  "lastColumn": 26,
+                  "lastLine": 6,
+                },
+                "name": "T",
+                "type": "Type",
+              },
+            },
+            "location": Object {
+              "firstColumn": 15,
+              "firstLine": 6,
+              "lastColumn": 26,
+              "lastLine": 6,
+            },
+            "name": "U",
+            "type": "TypeArgDef",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "singleExplicitReturnType",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 35,
+            "firstLine": 10,
+            "lastColumn": 39,
+            "lastLine": 10,
+          },
+          "name": "void",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 29,
+              "firstLine": 10,
+              "lastColumn": 30,
+              "lastLine": 10,
+            },
+            "name": "T",
+            "type": "TypeArgDef",
+          },
+        ],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "complexExplicitReturnType",
+        "returnType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 49,
+            "firstLine": 14,
+            "lastColumn": 53,
+            "lastLine": 14,
+          },
+          "name": "void",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [
+          Object {
+            "constraint": Object {
+              "constraintType": "None",
+            },
+            "location": Object {
+              "firstColumn": 30,
+              "firstLine": 14,
+              "lastColumn": 31,
+              "lastLine": 14,
+            },
+            "name": "T",
+            "type": "TypeArgDef",
+          },
+          Object {
+            "constraint": Object {
+              "constraintType": "Extends",
+              "superClass": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 43,
+                  "firstLine": 14,
+                  "lastColumn": 44,
+                  "lastLine": 14,
+                },
+                "name": "T",
+                "type": "Type",
+              },
+            },
+            "location": Object {
+              "firstColumn": 33,
+              "firstLine": 14,
+              "lastColumn": 44,
+              "lastLine": 14,
+            },
+            "name": "U",
+            "type": "TypeArgDef",
+          },
+        ],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 17,
+    },
+    "name": "GenericMethodDeclarations",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: HelloWorld.sand 1`] = `
 Object {
   "imports": Array [],
@@ -2676,6 +4583,3093 @@ Object {
       "lastLine": 5,
     },
     "name": "HelloWorld",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: InfixPrefix.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 25,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 10,
+                "lastLine": 3,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 3,
+                  "lastColumn": 10,
+                  "lastLine": 3,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "PrefixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 13,
+                "firstLine": 3,
+                "lastColumn": 14,
+                "lastLine": 3,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 26,
+                "lastLine": 7,
+              },
+              "operation": "-",
+              "right": Object {
+                "alternatives": Array [
+                  Object {
+                    "alternativeType": "Else",
+                    "body": Array [],
+                    "location": Object {
+                      "firstColumn": 18,
+                      "firstLine": 7,
+                      "lastColumn": 25,
+                      "lastLine": 7,
+                    },
+                    "type": "IfAlternative",
+                  },
+                ],
+                "body": Array [],
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 13,
+                    "firstLine": 7,
+                    "lastColumn": 14,
+                    "lastLine": 7,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 7,
+                  "lastColumn": 25,
+                  "lastLine": 7,
+                },
+                "type": "If",
+              },
+              "type": "PrefixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 30,
+              "lastLine": 7,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 29,
+                "firstLine": 7,
+                "lastColumn": 30,
+                "lastLine": 7,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "foo2",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 10,
+                "lastLine": 11,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 11,
+                  "lastColumn": 10,
+                  "lastLine": 11,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "PrefixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 30,
+              "lastLine": 11,
+            },
+            "operation": "*",
+            "right": Object {
+              "alternatives": Array [
+                Object {
+                  "alternativeType": "Else",
+                  "body": Array [],
+                  "location": Object {
+                    "firstColumn": 22,
+                    "firstLine": 11,
+                    "lastColumn": 29,
+                    "lastLine": 11,
+                  },
+                  "type": "IfAlternative",
+                },
+              ],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 17,
+                  "firstLine": 11,
+                  "lastColumn": 18,
+                  "lastLine": 11,
+                },
+                "name": "b",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 11,
+                "lastColumn": 29,
+                "lastLine": 11,
+              },
+              "type": "If",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "foo3",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 12,
+                "lastLine": 15,
+              },
+              "operation": "-",
+              "right": Object {
+                "args": Array [],
+                "callee": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 15,
+                    "lastColumn": 10,
+                    "lastLine": 15,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 15,
+                  "lastColumn": 12,
+                  "lastLine": 15,
+                },
+                "type": "FunctionCall",
+                "typeArgs": Array [],
+              },
+              "type": "PrefixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 16,
+              "lastLine": 15,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 15,
+                "lastColumn": 16,
+                "lastLine": 15,
+              },
+              "name": "b",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "foo4",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 12,
+                "lastLine": 19,
+              },
+              "operation": "-",
+              "right": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 19,
+                    "lastColumn": 10,
+                    "lastLine": 19,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 19,
+                  "lastColumn": 12,
+                  "lastLine": 19,
+                },
+                "right": "b",
+                "type": "DotExpr",
+              },
+              "type": "PrefixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 16,
+              "lastLine": 19,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 19,
+                "lastColumn": 16,
+                "lastLine": 19,
+              },
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "foo5",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 13,
+                "lastLine": 23,
+              },
+              "operation": "-",
+              "right": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 23,
+                    "lastColumn": 10,
+                    "lastLine": 23,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 23,
+                  "lastColumn": 13,
+                  "lastLine": 23,
+                },
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 23,
+                    "lastColumn": 12,
+                    "lastLine": 23,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "IndexExpr",
+              },
+              "type": "PrefixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 17,
+              "lastLine": 23,
+            },
+            "operation": "*",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 23,
+                "lastColumn": 17,
+                "lastLine": 23,
+              },
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "foo6",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 25,
+    },
+    "name": "InfixPrefix",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: LocalDeclarations.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 72,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 3,
+                "lastColumn": 19,
+                "lastLine": 3,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 20,
+              "lastLine": 3,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "decl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 23,
+                "firstLine": 7,
+                "lastColumn": 24,
+                "lastLine": 7,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 25,
+              "lastLine": 7,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 7,
+                "lastColumn": 20,
+                "lastLine": 7,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "annotated",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": true,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 21,
+              "lastLine": 11,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "shadow",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": true,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 24,
+                "firstLine": 15,
+                "lastColumn": 25,
+                "lastLine": 15,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 26,
+              "lastLine": 15,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 15,
+                "lastColumn": 21,
+                "lastLine": 15,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "shadowExplicitType",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 19,
+                "lastColumn": 18,
+                "lastLine": 19,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": true,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 19,
+              "lastLine": 19,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "reassignable",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 22,
+                "firstLine": 23,
+                "lastColumn": 23,
+                "lastLine": 23,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": true,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 24,
+              "lastLine": 23,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 23,
+                "lastColumn": 19,
+                "lastLine": 23,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "reassignableExplicitType",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": true,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 27,
+                "lastColumn": 19,
+                "lastLine": 27,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": true,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 20,
+              "lastLine": 27,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "reassignableShadow",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": true,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 23,
+                "firstLine": 31,
+                "lastColumn": 24,
+                "lastLine": 31,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": true,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 25,
+              "lastLine": 31,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 31,
+                "lastColumn": 20,
+                "lastLine": 31,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 32,
+        },
+        "name": "reassignableShadowExplicitType",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 35,
+                "lastColumn": 19,
+                "lastLine": 35,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 35,
+              "lastColumn": 20,
+              "lastLine": 35,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 36,
+                "lastColumn": 9,
+                "lastLine": 36,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 36,
+              "lastColumn": 11,
+              "lastLine": 36,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 37,
+        },
+        "name": "declElrd",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 40,
+                "lastColumn": 19,
+                "lastLine": 40,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 40,
+              "lastColumn": 20,
+              "lastLine": 40,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 41,
+                "lastColumn": 12,
+                "lastLine": 41,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 41,
+              "lastColumn": 15,
+              "lastLine": 41,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 42,
+        },
+        "name": "declEird",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 45,
+                "lastColumn": 9,
+                "lastLine": 45,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 45,
+              "lastColumn": 11,
+              "lastLine": 45,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 46,
+                "lastColumn": 19,
+                "lastLine": 46,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 46,
+              "lastColumn": 20,
+              "lastLine": 46,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 47,
+        },
+        "name": "elrdDecl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 50,
+                "lastColumn": 12,
+                "lastLine": 50,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 50,
+              "lastColumn": 15,
+              "lastLine": 50,
+            },
+            "type": "If",
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 51,
+                "lastColumn": 19,
+                "lastLine": 51,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 51,
+              "lastColumn": 20,
+              "lastLine": 51,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 52,
+        },
+        "name": "eirdDecl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 55,
+                "lastColumn": 19,
+                "lastLine": 55,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 55,
+              "lastColumn": 20,
+              "lastLine": 55,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 56,
+                "lastColumn": 19,
+                "lastLine": 56,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 56,
+              "lastColumn": 20,
+              "lastLine": 56,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 57,
+        },
+        "name": "declDecl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 62,
+                "lastColumn": 9,
+                "lastLine": 62,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 62,
+              "lastColumn": 11,
+              "lastLine": 62,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 63,
+                "lastColumn": 9,
+                "lastLine": 63,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 63,
+              "lastColumn": 11,
+              "lastLine": 63,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 64,
+                "lastColumn": 19,
+                "lastLine": 64,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 64,
+              "lastColumn": 20,
+              "lastLine": 64,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 65,
+        },
+        "name": "whereLastIsElrdDecl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 68,
+                "lastColumn": 9,
+                "lastLine": 68,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 68,
+              "lastColumn": 11,
+              "lastLine": 68,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 69,
+                "lastColumn": 12,
+                "lastLine": 69,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 69,
+              "lastColumn": 15,
+              "lastLine": 69,
+            },
+            "type": "If",
+          },
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 70,
+                "lastColumn": 19,
+                "lastLine": 70,
+              },
+              "type": "NumberLiteral",
+              "value": "2",
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 70,
+              "lastColumn": 20,
+              "lastLine": 70,
+            },
+            "name": "bar",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 28,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 71,
+        },
+        "name": "whereLastIsEirdDecl",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 72,
+    },
+    "name": "LocalDeclarations",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: Nullable.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 17,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 12,
+              "lastLine": 3,
+            },
+            "name": "null",
+            "type": "Identifier",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "foo",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 2,
+                "lastColumn": 14,
+                "lastLine": 2,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 2,
+            "lastColumn": 15,
+            "lastLine": 2,
+          },
+          "name": "nullable",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 12,
+              "lastLine": 7,
+            },
+            "type": "StringLiteral",
+            "value": "\\"hi\\"",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "bar",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 6,
+                "lastColumn": 17,
+                "lastLine": 6,
+              },
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 6,
+            "lastColumn": 18,
+            "lastLine": 6,
+          },
+          "name": "nullable",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 10,
+              "lastColumn": 20,
+              "lastLine": 10,
+            },
+            "name": "x",
+            "type": "ArgDef",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 11,
+                        "firstLine": 10,
+                        "lastColumn": 17,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 10,
+                    "lastColumn": 18,
+                    "lastLine": 10,
+                  },
+                  "name": "nullable",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 10,
+                "lastColumn": 20,
+                "lastLine": 10,
+              },
+              "name": "array",
+              "type": "Type",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 22,
+              "firstLine": 10,
+              "lastColumn": 34,
+              "lastLine": 10,
+            },
+            "name": "y",
+            "type": "ArgDef",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 25,
+                        "firstLine": 10,
+                        "lastColumn": 31,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 25,
+                    "firstLine": 10,
+                    "lastColumn": 33,
+                    "lastLine": 10,
+                  },
+                  "name": "array",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 25,
+                "firstLine": 10,
+                "lastColumn": 34,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+              "type": "Type",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 36,
+              "firstLine": 10,
+              "lastColumn": 49,
+              "lastLine": 10,
+            },
+            "name": "z",
+            "type": "ArgDef",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 39,
+                            "firstLine": 10,
+                            "lastColumn": 45,
+                            "lastLine": 10,
+                          },
+                          "name": "String",
+                          "type": "Type",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 39,
+                        "firstLine": 10,
+                        "lastColumn": 46,
+                        "lastLine": 10,
+                      },
+                      "name": "nullable",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 39,
+                    "firstLine": 10,
+                    "lastColumn": 48,
+                    "lastLine": 10,
+                  },
+                  "name": "array",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 39,
+                "firstLine": 10,
+                "lastColumn": 49,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+              "type": "Type",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 51,
+              "firstLine": 10,
+              "lastColumn": 62,
+              "lastLine": 10,
+            },
+            "name": "a",
+            "type": "ArgDef",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 54,
+                            "firstLine": 10,
+                            "lastColumn": 57,
+                            "lastLine": 10,
+                          },
+                          "name": "int",
+                          "type": "Type",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 54,
+                        "firstLine": 10,
+                        "lastColumn": 58,
+                        "lastLine": 10,
+                      },
+                      "name": "nullable",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 54,
+                    "firstLine": 10,
+                    "lastColumn": 61,
+                    "lastLine": 10,
+                  },
+                  "name": "rlist",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 54,
+                "firstLine": 10,
+                "lastColumn": 62,
+                "lastLine": 10,
+              },
+              "name": "nullable",
+              "type": "Type",
+            },
+          },
+        ],
+        "body": Array [
+          Object {
+            "alternatives": Array [
+              Object {
+                "alternativeType": "Else",
+                "body": Array [
+                  Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 14,
+                      "lastColumn": 13,
+                      "lastLine": 14,
+                    },
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 13,
+                  "lastColumn": 9,
+                  "lastLine": 15,
+                },
+                "type": "IfAlternative",
+              },
+            ],
+            "body": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 12,
+                  "lastColumn": 16,
+                  "lastLine": 12,
+                },
+                "name": "null",
+                "type": "Identifier",
+              },
+            ],
+            "condition": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 11,
+                  "firstLine": 11,
+                  "lastColumn": 12,
+                  "lastLine": 11,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "operation": "==",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 11,
+                  "lastColumn": 20,
+                  "lastLine": 11,
+                },
+                "name": "null",
+                "type": "Identifier",
+              },
+              "type": "InfixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 9,
+              "lastLine": 15,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "baz",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 75,
+                        "firstLine": 10,
+                        "lastColumn": 81,
+                        "lastLine": 10,
+                      },
+                      "name": "String",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 75,
+                    "firstLine": 10,
+                    "lastColumn": 82,
+                    "lastLine": 10,
+                  },
+                  "name": "nullable",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 65,
+                "firstLine": 10,
+                "lastColumn": 83,
+                "lastLine": 10,
+              },
+              "name": "ArrayList",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 65,
+            "firstLine": 10,
+            "lastColumn": 84,
+            "lastLine": 10,
+          },
+          "name": "nullable",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 17,
+    },
+    "name": "Nullable",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [
+      Object {
+        "constraint": Object {
+          "constraintType": "None",
+        },
+        "location": Object {
+          "firstColumn": 19,
+          "firstLine": 1,
+          "lastColumn": 20,
+          "lastLine": 1,
+        },
+        "name": "T",
+        "type": "TypeArgDef",
+      },
+      Object {
+        "constraint": Object {
+          "constraintType": "Extends",
+          "superClass": Object {
+            "args": Array [
+              Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 32,
+                  "firstLine": 1,
+                  "lastColumn": 33,
+                  "lastLine": 1,
+                },
+                "name": "T",
+                "type": "Type",
+              },
+            ],
+            "location": Object {
+              "firstColumn": 32,
+              "firstLine": 1,
+              "lastColumn": 34,
+              "lastLine": 1,
+            },
+            "name": "nullable",
+            "type": "Type",
+          },
+        },
+        "location": Object {
+          "firstColumn": 22,
+          "firstLine": 1,
+          "lastColumn": 34,
+          "lastLine": 1,
+        },
+        "name": "U",
+        "type": "TypeArgDef",
+      },
+    ],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: Operations.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 13,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 9,
+                  "lastLine": 3,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 13,
+                "lastLine": 3,
+              },
+              "operation": "-",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 3,
+                  "lastColumn": 13,
+                  "lastLine": 3,
+                },
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "InfixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 17,
+              "lastLine": 3,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 3,
+                "lastColumn": 17,
+                "lastLine": 3,
+              },
+              "name": "c",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "associativity",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 7,
+                    "lastColumn": 10,
+                    "lastLine": 7,
+                  },
+                  "operation": "-",
+                  "right": Object {
+                    "location": Object {
+                      "firstColumn": 9,
+                      "firstLine": 7,
+                      "lastColumn": 10,
+                      "lastLine": 7,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "PrefixExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 7,
+                  "lastColumn": 15,
+                  "lastLine": 7,
+                },
+                "operation": "**",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 14,
+                    "firstLine": 7,
+                    "lastColumn": 15,
+                    "lastLine": 7,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "InfixExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 23,
+                "lastLine": 7,
+              },
+              "operation": "+",
+              "right": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 18,
+                    "firstLine": 7,
+                    "lastColumn": 19,
+                    "lastLine": 7,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 7,
+                  "lastColumn": 23,
+                  "lastLine": 7,
+                },
+                "operation": "*",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 22,
+                    "firstLine": 7,
+                    "lastColumn": 23,
+                    "lastLine": 7,
+                  },
+                  "name": "d",
+                  "type": "Identifier",
+                },
+                "type": "InfixExpr",
+              },
+              "type": "InfixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 27,
+              "lastLine": 7,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 26,
+                "firstLine": 7,
+                "lastColumn": 27,
+                "lastLine": 7,
+              },
+              "name": "e",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "precedence",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "left": Object {
+              "left": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 11,
+                    "lastColumn": 26,
+                    "lastLine": 11,
+                  },
+                  "operation": "-",
+                  "right": Object {
+                    "alternatives": Array [
+                      Object {
+                        "alternativeType": "Else",
+                        "body": Array [],
+                        "location": Object {
+                          "firstColumn": 18,
+                          "firstLine": 11,
+                          "lastColumn": 25,
+                          "lastLine": 11,
+                        },
+                        "type": "IfAlternative",
+                      },
+                    ],
+                    "body": Array [],
+                    "condition": Object {
+                      "location": Object {
+                        "firstColumn": 13,
+                        "firstLine": 11,
+                        "lastColumn": 14,
+                        "lastLine": 11,
+                      },
+                      "name": "x",
+                      "type": "Identifier",
+                    },
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 11,
+                      "lastColumn": 25,
+                      "lastLine": 11,
+                    },
+                    "type": "If",
+                  },
+                  "type": "PrefixExpr",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 11,
+                  "lastColumn": 31,
+                  "lastLine": 11,
+                },
+                "operation": "**",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 30,
+                    "firstLine": 11,
+                    "lastColumn": 31,
+                    "lastLine": 11,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "type": "InfixExpr",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 57,
+                "lastLine": 11,
+              },
+              "operation": "+",
+              "right": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 34,
+                    "firstLine": 11,
+                    "lastColumn": 53,
+                    "lastLine": 11,
+                  },
+                  "operation": "-",
+                  "right": Object {
+                    "alternatives": Array [
+                      Object {
+                        "alternativeType": "Else",
+                        "body": Array [],
+                        "location": Object {
+                          "firstColumn": 45,
+                          "firstLine": 11,
+                          "lastColumn": 52,
+                          "lastLine": 11,
+                        },
+                        "type": "IfAlternative",
+                      },
+                    ],
+                    "body": Array [],
+                    "condition": Object {
+                      "location": Object {
+                        "firstColumn": 40,
+                        "firstLine": 11,
+                        "lastColumn": 41,
+                        "lastLine": 11,
+                      },
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "location": Object {
+                      "firstColumn": 37,
+                      "firstLine": 11,
+                      "lastColumn": 52,
+                      "lastLine": 11,
+                    },
+                    "type": "If",
+                  },
+                  "type": "PrefixExpr",
+                },
+                "location": Object {
+                  "firstColumn": 34,
+                  "firstLine": 11,
+                  "lastColumn": 57,
+                  "lastLine": 11,
+                },
+                "operation": "*",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 56,
+                    "firstLine": 11,
+                    "lastColumn": 57,
+                    "lastLine": 11,
+                  },
+                  "name": "d",
+                  "type": "Identifier",
+                },
+                "type": "InfixExpr",
+              },
+              "type": "InfixExpr",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 61,
+              "lastLine": 11,
+            },
+            "operation": "-",
+            "right": Object {
+              "location": Object {
+                "firstColumn": 60,
+                "firstLine": 11,
+                "lastColumn": 61,
+                "lastLine": 11,
+              },
+              "name": "e",
+              "type": "Identifier",
+            },
+            "type": "InfixExpr",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "eirdPrecedence",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 13,
+    },
+    "name": "Operations",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: Return.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 46,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 17,
+              "lastLine": 3,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 3,
+                "lastColumn": 16,
+                "lastLine": 3,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "ret",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 15,
+              "lastLine": 7,
+            },
+            "type": "Return",
+            "value": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "noVal",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 17,
+              "lastLine": 11,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 11,
+                "lastColumn": 16,
+                "lastLine": 11,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+          Object {
+            "args": Array [],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 12,
+                "lastColumn": 9,
+                "lastLine": 12,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 12,
+              "lastColumn": 11,
+              "lastLine": 12,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 13,
+        },
+        "name": "retElrd",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 16,
+              "lastColumn": 17,
+              "lastLine": 16,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 16,
+                "lastColumn": 16,
+                "lastLine": 16,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 17,
+                "lastColumn": 12,
+                "lastLine": 17,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 17,
+              "lastColumn": 15,
+              "lastLine": 17,
+            },
+            "type": "If",
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 18,
+        },
+        "name": "retEird",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 21,
+              "lastColumn": 9,
+              "lastLine": 21,
+            },
+            "name": "x",
+            "type": "Identifier",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 22,
+              "lastColumn": 17,
+              "lastLine": 22,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 22,
+                "lastColumn": 16,
+                "lastLine": 22,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 23,
+        },
+        "name": "elrdRet",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 26,
+                "lastColumn": 12,
+                "lastLine": 26,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 26,
+              "lastColumn": 15,
+              "lastLine": 26,
+            },
+            "type": "If",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 17,
+              "lastLine": 27,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 27,
+                "lastColumn": 16,
+                "lastLine": 27,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "eirdRet",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 17,
+              "lastLine": 31,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 31,
+                "lastColumn": 16,
+                "lastLine": 31,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 32,
+              "lastColumn": 17,
+              "lastLine": 32,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 32,
+                "lastColumn": 16,
+                "lastLine": 32,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 33,
+        },
+        "name": "retRet",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 36,
+              "lastColumn": 9,
+              "lastLine": 36,
+            },
+            "name": "x",
+            "type": "Identifier",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 37,
+              "lastColumn": 9,
+              "lastLine": 37,
+            },
+            "name": "x",
+            "type": "Identifier",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 38,
+              "lastColumn": 17,
+              "lastLine": 38,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 38,
+                "lastColumn": 16,
+                "lastLine": 38,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 39,
+        },
+        "name": "whereLastLrdRet",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 42,
+              "lastColumn": 9,
+              "lastLine": 42,
+            },
+            "name": "x",
+            "type": "Identifier",
+          },
+          Object {
+            "alternatives": Array [],
+            "body": Array [],
+            "condition": Object {
+              "location": Object {
+                "firstColumn": 11,
+                "firstLine": 43,
+                "lastColumn": 12,
+                "lastLine": 43,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 43,
+              "lastColumn": 15,
+              "lastLine": 43,
+            },
+            "type": "If",
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 44,
+              "lastColumn": 17,
+              "lastLine": 44,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 44,
+                "lastColumn": 16,
+                "lastLine": 44,
+              },
+              "type": "NumberLiteral",
+              "value": "8",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 45,
+        },
+        "name": "whereLastIrdRet",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 46,
+    },
+    "name": "Return",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: TypedObjectLiterals.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 29,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 14,
+              "lastLine": 3,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 11,
+                "lastLine": 3,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "empty",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 8,
+                  "lastColumn": 18,
+                  "lastLine": 8,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 8,
+                    "lastColumn": 18,
+                    "lastLine": 8,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 9,
+                  "lastColumn": 18,
+                  "lastLine": 9,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 9,
+                    "lastColumn": 18,
+                    "lastLine": 9,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 10,
+                  "lastColumn": 21,
+                  "lastLine": 10,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 10,
+                    "lastColumn": 21,
+                    "lastLine": 10,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 9,
+              "lastLine": 11,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 11,
+                "lastLine": 7,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "withEntries",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 16,
+                  "lastColumn": 18,
+                  "lastLine": 16,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 16,
+                    "lastColumn": 18,
+                    "lastLine": 16,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 17,
+                  "lastColumn": 18,
+                  "lastLine": 17,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 17,
+                    "lastColumn": 18,
+                    "lastLine": 17,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 18,
+                  "lastColumn": 21,
+                  "lastLine": 18,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 18,
+                    "lastColumn": 21,
+                    "lastLine": 18,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 9,
+              "lastLine": 19,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 11,
+                "lastLine": 15,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "trailingComma",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 24,
+                  "lastColumn": 18,
+                  "lastLine": 24,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 24,
+                    "lastColumn": 18,
+                    "lastLine": 24,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 25,
+                  "lastColumn": 18,
+                  "lastLine": 25,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 25,
+                    "lastColumn": 18,
+                    "lastLine": 25,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "9",
+                },
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 26,
+                  "lastColumn": 21,
+                  "lastLine": 26,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 26,
+                    "lastColumn": 21,
+                    "lastLine": 26,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 9,
+              "lastLine": 27,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 23,
+                    "lastColumn": 15,
+                    "lastLine": 23,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 23,
+                    "lastColumn": 23,
+                    "lastLine": 23,
+                  },
+                  "name": "String",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 23,
+                "lastColumn": 24,
+                "lastLine": 23,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "typeArgs",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 29,
+    },
+    "name": "TypedObjectLiterals",
     "overridability": "Final",
     "superClass": null,
     "type": "Class",
