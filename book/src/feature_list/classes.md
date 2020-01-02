@@ -211,7 +211,10 @@ abstract class Animal {
 }
 ```
 
-Abstract classes are implicitly open.
+Abstract classes and methods are implicitly open.
+
+Abstract methods cannot be static or private.
+Abstract methods [default to `prot`](./classes.md#implicit-prot-accessibility) (protected visibility), because they cannot be private.
 
 ## Overriding methods
 
@@ -256,19 +259,19 @@ class Dog extends Animal {
 }
 ```
 
-## Implicit `prot` accessiblity
+## Implicit `prot` accessibility
 
 Normally, methods are private by default.
 However, if a method is `open` or `abstract`,
 it is protected by default.
 This is because `open` and `abstract` methods must be overridable or implementable by subclasses, which implies they must be accessible to the subclasses, and therefore have a minimum accesibility level of `prot`.
 
-Hence, the following is redundant, but legal:
+Hence, the following is redundant, and should instead be simply written `open foo()`:
 
 ```sand
 open class Foo {
     prot open foo() {
-
+//  ^^^^ Unnecessary
     }
 }
 ```

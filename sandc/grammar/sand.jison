@@ -210,11 +210,6 @@ classItem
     | optAccessModifier "open" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, name: $3, typeArgs: $4, args: $7, returnType: null, body: $9, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type ";"
-        { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: true, name: $3, typeArgs: $4, args: $6, returnType: $9, location: yy.camelCase(@$) }; }
-    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ";"
-        { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: true, name: $3, typeArgs: $4, args: $6, returnType: null, location: yy.camelCase(@$) }; }
-
     | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type ";"
         { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: false, name: $3, typeArgs: $4, args: $7, returnType: $10, location: yy.camelCase(@$) }; }
     | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ";"

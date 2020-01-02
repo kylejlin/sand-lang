@@ -1,9 +1,9 @@
 pub abstract class AbstractClass {
-    abstract abstractMethod();
+    abstract abstractMethod(this);
 
-    abstract absReturn(): int;
+    abstract absReturn(this): int;
 
-    pub abstract pubAbstract(): int;
+    pub abstract pubAbstract(this): int;
 
     open openMethod() {
 
@@ -22,16 +22,16 @@ pub abstract class AbstractClass {
     }
 
     privMethod() {
-
+        
     }
 }
 
 abstract class AbstractPriv {
-    abstract abstractMethod();
+    abstract abstractMethod(this);
 
-    abstract absReturn(): int;
+    abstract absReturn(this): int;
 
-    pub abstract pubAbstract(): int;
+    pub abstract pubAbstract(this): int;
 
     open openMethod() {
 

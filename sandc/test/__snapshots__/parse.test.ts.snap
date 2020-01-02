@@ -18,11 +18,11 @@ Object {
         Object {
           "accessModifier": null,
           "args": Array [],
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 28,
             "firstLine": 29,
-            "lastColumn": 30,
+            "lastColumn": 34,
             "lastLine": 30,
           },
           "name": "abstractMethod",
@@ -33,20 +33,20 @@ Object {
         Object {
           "accessModifier": null,
           "args": Array [],
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 28,
             "firstLine": 29,
-            "lastColumn": 30,
+            "lastColumn": 34,
             "lastLine": 32,
           },
           "name": "absReturn",
           "returnType": Object {
             "args": Array [],
             "location": Object {
-              "firstColumn": 26,
+              "firstColumn": 30,
               "firstLine": 32,
-              "lastColumn": 29,
+              "lastColumn": 33,
               "lastLine": 32,
             },
             "name": "int",
@@ -58,20 +58,20 @@ Object {
         Object {
           "accessModifier": "pub",
           "args": Array [],
-          "isStatic": true,
+          "isStatic": false,
           "location": Object {
             "firstColumn": 4,
             "firstLine": 34,
-            "lastColumn": 36,
+            "lastColumn": 40,
             "lastLine": 34,
           },
           "name": "pubAbstract",
           "returnType": Object {
             "args": Array [],
             "location": Object {
-              "firstColumn": 32,
+              "firstColumn": 36,
               "firstLine": 34,
-              "lastColumn": 35,
+              "lastColumn": 39,
               "lastLine": 34,
             },
             "name": "int",
@@ -207,11 +207,11 @@ Object {
       Object {
         "accessModifier": null,
         "args": Array [],
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 33,
           "firstLine": 1,
-          "lastColumn": 30,
+          "lastColumn": 34,
           "lastLine": 2,
         },
         "name": "abstractMethod",
@@ -222,20 +222,20 @@ Object {
       Object {
         "accessModifier": null,
         "args": Array [],
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 33,
           "firstLine": 1,
-          "lastColumn": 30,
+          "lastColumn": 34,
           "lastLine": 4,
         },
         "name": "absReturn",
         "returnType": Object {
           "args": Array [],
           "location": Object {
-            "firstColumn": 26,
+            "firstColumn": 30,
             "firstLine": 4,
-            "lastColumn": 29,
+            "lastColumn": 33,
             "lastLine": 4,
           },
           "name": "int",
@@ -247,20 +247,20 @@ Object {
       Object {
         "accessModifier": "pub",
         "args": Array [],
-        "isStatic": true,
+        "isStatic": false,
         "location": Object {
           "firstColumn": 4,
           "firstLine": 6,
-          "lastColumn": 36,
+          "lastColumn": 40,
           "lastLine": 6,
         },
         "name": "pubAbstract",
         "returnType": Object {
           "args": Array [],
           "location": Object {
-            "firstColumn": 32,
+            "firstColumn": 36,
             "firstLine": 6,
-            "lastColumn": 35,
+            "lastColumn": 39,
             "lastLine": 6,
           },
           "name": "int",
