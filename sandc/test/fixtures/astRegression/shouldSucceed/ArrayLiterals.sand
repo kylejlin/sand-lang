@@ -22,4 +22,8 @@ pub class ArrayLiterals {
     decl() {
         let x: int[] = [a, b, c];
     }
+
+    trailingComma() {
+        [a, b, c,]
+    }
 }

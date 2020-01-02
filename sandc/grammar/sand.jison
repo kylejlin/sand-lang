@@ -472,6 +472,8 @@ arrayLiteral
         { $$ = { type: yy.NodeType.ArrayLiteral, elements: [], location: yy.camelCase(@$) }; }
     | "[" expressionSequence "]"
         { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.camelCase(@$) }; }
+    | "[" expressionSequence "," "]"
+        { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.camelCase(@$) }; }
     ;
 
 expressionSequence
