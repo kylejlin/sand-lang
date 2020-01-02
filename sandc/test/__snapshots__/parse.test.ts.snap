@@ -1,5 +1,56 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`the prebuilt parser parses files consistently: AbstractClass.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 7,
+  },
+  "packageName": null,
+  "privClasses": Array [
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 5,
+        "lastColumn": 1,
+        "lastLine": 7,
+      },
+      "name": "AbstractPriv",
+      "overridability": "Abstract",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [],
+    },
+  ],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 3,
+    },
+    "name": "AbstractClass",
+    "overridability": "Abstract",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: Args.sand 1`] = `
 Object {
   "imports": Array [],
@@ -8151,6 +8202,57 @@ Object {
         "type": "TypeArgDef",
       },
     ],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: OpenClass.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 7,
+  },
+  "packageName": null,
+  "privClasses": Array [
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 5,
+        "lastColumn": 1,
+        "lastLine": 7,
+      },
+      "name": "OpenPriv",
+      "overridability": "Open",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [],
+    },
+  ],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 3,
+    },
+    "name": "OpenClass",
+    "overridability": "Open",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
     "useStatements": Array [],
   },
   "type": "File",

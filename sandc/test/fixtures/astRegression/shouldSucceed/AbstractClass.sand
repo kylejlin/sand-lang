@@ -1,0 +1,7 @@
+pub abstract class AbstractClass {
+
+}
+
+abstract class AbstractPriv {
+
+}
