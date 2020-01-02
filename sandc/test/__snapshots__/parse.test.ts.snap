@@ -2706,6 +2706,1036 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: Cast.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 49,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 3,
+              "lastColumn": 4,
+              "lastLine": 4,
+            },
+            "targetType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 3,
+                "lastColumn": 17,
+                "lastLine": 3,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 9,
+                "lastLine": 3,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "simple",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 7,
+              "lastColumn": 4,
+              "lastLine": 8,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 18,
+                    "firstLine": 7,
+                    "lastColumn": 21,
+                    "lastLine": 7,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 23,
+                        "firstLine": 7,
+                        "lastColumn": 27,
+                        "lastLine": 7,
+                      },
+                      "name": "char",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 23,
+                    "firstLine": 7,
+                    "lastColumn": 30,
+                    "lastLine": 7,
+                  },
+                  "name": "rlist",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 7,
+                "lastColumn": 31,
+                "lastLine": 7,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 9,
+                "lastLine": 7,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "typeArg",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 11,
+              "lastColumn": 4,
+              "lastLine": 12,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 14,
+                    "firstLine": 11,
+                    "lastColumn": 17,
+                    "lastLine": 11,
+                  },
+                  "name": "Foo",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 11,
+                "lastColumn": 20,
+                "lastLine": 11,
+              },
+              "name": "rlist",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 9,
+                "lastLine": 11,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "typeRlist",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 15,
+              "lastColumn": 4,
+              "lastLine": 16,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 14,
+                    "firstLine": 15,
+                    "lastColumn": 17,
+                    "lastLine": 15,
+                  },
+                  "name": "Foo",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 14,
+                "firstLine": 15,
+                "lastColumn": 18,
+                "lastLine": 15,
+              },
+              "name": "nullable",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 9,
+                "lastLine": 15,
+              },
+              "name": "a",
+              "type": "Identifier",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "typeNullable",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 19,
+              "lastColumn": 4,
+              "lastLine": 20,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 23,
+                    "firstLine": 19,
+                    "lastColumn": 26,
+                    "lastLine": 19,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 28,
+                        "firstLine": 19,
+                        "lastColumn": 32,
+                        "lastLine": 19,
+                      },
+                      "name": "char",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 28,
+                    "firstLine": 19,
+                    "lastColumn": 35,
+                    "lastLine": 19,
+                  },
+                  "name": "rlist",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 19,
+                "firstLine": 19,
+                "lastColumn": 36,
+                "lastLine": 19,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "entries": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 14,
+                "lastLine": 19,
+              },
+              "type": "TypedObjectLiteral",
+              "valueType": Object {
+                "args": Array [],
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 19,
+                  "lastColumn": 11,
+                  "lastLine": 19,
+                },
+                "name": "Foo",
+                "type": "Type",
+              },
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "objLit",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 23,
+              "lastColumn": 4,
+              "lastLine": 24,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 34,
+                    "firstLine": 23,
+                    "lastColumn": 37,
+                    "lastLine": 23,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 39,
+                        "firstLine": 23,
+                        "lastColumn": 43,
+                        "lastLine": 23,
+                      },
+                      "name": "char",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 39,
+                    "firstLine": 23,
+                    "lastColumn": 46,
+                    "lastLine": 23,
+                  },
+                  "name": "rlist",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 30,
+                "firstLine": 23,
+                "lastColumn": 47,
+                "lastLine": 23,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "alternatives": Array [
+                Object {
+                  "alternativeType": "Else",
+                  "body": Array [],
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 23,
+                    "lastColumn": 24,
+                    "lastLine": 23,
+                  },
+                  "type": "IfAlternative",
+                },
+              ],
+              "body": Array [],
+              "condition": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 23,
+                  "lastColumn": 13,
+                  "lastLine": 23,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 9,
+                "firstLine": 23,
+                "lastColumn": 24,
+                "lastLine": 23,
+              },
+              "type": "If",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "if_",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "doesShadow": false,
+            "initialValue": Object {
+              "location": Object {
+                "firstColumn": 16,
+                "firstLine": 27,
+                "lastColumn": 39,
+                "lastLine": 27,
+              },
+              "targetType": Object {
+                "args": Array [
+                  Object {
+                    "args": Array [],
+                    "location": Object {
+                      "firstColumn": 26,
+                      "firstLine": 27,
+                      "lastColumn": 29,
+                      "lastLine": 27,
+                    },
+                    "name": "int",
+                    "type": "Type",
+                  },
+                  Object {
+                    "args": Array [
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 31,
+                          "firstLine": 27,
+                          "lastColumn": 35,
+                          "lastLine": 27,
+                        },
+                        "name": "char",
+                        "type": "Type",
+                      },
+                    ],
+                    "location": Object {
+                      "firstColumn": 31,
+                      "firstLine": 27,
+                      "lastColumn": 38,
+                      "lastLine": 27,
+                    },
+                    "name": "rlist",
+                    "type": "Type",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 22,
+                  "firstLine": 27,
+                  "lastColumn": 39,
+                  "lastLine": 27,
+                },
+                "name": "Foo",
+                "type": "Type",
+              },
+              "type": "CastExpr",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 16,
+                  "firstLine": 27,
+                  "lastColumn": 17,
+                  "lastLine": 27,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+            },
+            "isReassignable": false,
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 27,
+              "lastColumn": 40,
+              "lastLine": 27,
+            },
+            "name": "x",
+            "type": "LocalVariableDeclaration",
+            "valueType": null,
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "declaration",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "assignee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 31,
+                "lastColumn": 9,
+                "lastLine": 31,
+              },
+              "name": "x",
+              "type": "Identifier",
+            },
+            "assignmentType": "=",
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 31,
+              "lastColumn": 36,
+              "lastLine": 31,
+            },
+            "type": "Assignment",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 12,
+                "firstLine": 31,
+                "lastColumn": 35,
+                "lastLine": 31,
+              },
+              "targetType": Object {
+                "args": Array [
+                  Object {
+                    "args": Array [],
+                    "location": Object {
+                      "firstColumn": 22,
+                      "firstLine": 31,
+                      "lastColumn": 25,
+                      "lastLine": 31,
+                    },
+                    "name": "int",
+                    "type": "Type",
+                  },
+                  Object {
+                    "args": Array [
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 27,
+                          "firstLine": 31,
+                          "lastColumn": 31,
+                          "lastLine": 31,
+                        },
+                        "name": "char",
+                        "type": "Type",
+                      },
+                    ],
+                    "location": Object {
+                      "firstColumn": 27,
+                      "firstLine": 31,
+                      "lastColumn": 34,
+                      "lastLine": 31,
+                    },
+                    "name": "rlist",
+                    "type": "Type",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 18,
+                  "firstLine": 31,
+                  "lastColumn": 35,
+                  "lastLine": 31,
+                },
+                "name": "Foo",
+                "type": "Type",
+              },
+              "type": "CastExpr",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 31,
+                  "lastColumn": 13,
+                  "lastLine": 31,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 32,
+        },
+        "name": "assignment",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 35,
+              "lastColumn": 39,
+              "lastLine": 35,
+            },
+            "type": "Return",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 35,
+                "lastColumn": 38,
+                "lastLine": 35,
+              },
+              "targetType": Object {
+                "args": Array [
+                  Object {
+                    "args": Array [],
+                    "location": Object {
+                      "firstColumn": 25,
+                      "firstLine": 35,
+                      "lastColumn": 28,
+                      "lastLine": 35,
+                    },
+                    "name": "int",
+                    "type": "Type",
+                  },
+                  Object {
+                    "args": Array [
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 30,
+                          "firstLine": 35,
+                          "lastColumn": 34,
+                          "lastLine": 35,
+                        },
+                        "name": "char",
+                        "type": "Type",
+                      },
+                    ],
+                    "location": Object {
+                      "firstColumn": 30,
+                      "firstLine": 35,
+                      "lastColumn": 37,
+                      "lastLine": 35,
+                    },
+                    "name": "rlist",
+                    "type": "Type",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 21,
+                  "firstLine": 35,
+                  "lastColumn": 38,
+                  "lastLine": 35,
+                },
+                "name": "Foo",
+                "type": "Type",
+              },
+              "type": "CastExpr",
+              "value": Object {
+                "location": Object {
+                  "firstColumn": 15,
+                  "firstLine": 35,
+                  "lastColumn": 16,
+                  "lastLine": 35,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 36,
+        },
+        "name": "return_",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "args": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 39,
+                  "lastColumn": 35,
+                  "lastLine": 39,
+                },
+                "targetType": Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 22,
+                        "firstLine": 39,
+                        "lastColumn": 25,
+                        "lastLine": 39,
+                      },
+                      "name": "int",
+                      "type": "Type",
+                    },
+                    Object {
+                      "args": Array [
+                        Object {
+                          "args": Array [],
+                          "location": Object {
+                            "firstColumn": 27,
+                            "firstLine": 39,
+                            "lastColumn": 31,
+                            "lastLine": 39,
+                          },
+                          "name": "char",
+                          "type": "Type",
+                        },
+                      ],
+                      "location": Object {
+                        "firstColumn": 27,
+                        "firstLine": 39,
+                        "lastColumn": 34,
+                        "lastLine": 39,
+                      },
+                      "name": "rlist",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 18,
+                    "firstLine": 39,
+                    "lastColumn": 35,
+                    "lastLine": 39,
+                  },
+                  "name": "Foo",
+                  "type": "Type",
+                },
+                "type": "CastExpr",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 39,
+                    "lastColumn": 13,
+                    "lastLine": 39,
+                  },
+                  "name": "x",
+                  "type": "Identifier",
+                },
+              },
+            ],
+            "callee": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 39,
+                "lastColumn": 11,
+                "lastLine": 39,
+              },
+              "name": "foo",
+              "type": "Identifier",
+            },
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 39,
+              "lastColumn": 36,
+              "lastLine": 39,
+            },
+            "type": "FunctionCall",
+            "typeArgs": Array [],
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 40,
+        },
+        "name": "arg",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 43,
+              "lastColumn": 4,
+              "lastLine": 44,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 22,
+                    "firstLine": 43,
+                    "lastColumn": 25,
+                    "lastLine": 43,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 27,
+                        "firstLine": 43,
+                        "lastColumn": 31,
+                        "lastLine": 43,
+                      },
+                      "name": "char",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 27,
+                    "firstLine": 43,
+                    "lastColumn": 34,
+                    "lastLine": 43,
+                  },
+                  "name": "rlist",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 18,
+                "firstLine": 43,
+                "lastColumn": 35,
+                "lastLine": 43,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 43,
+                  "lastColumn": 9,
+                  "lastLine": 43,
+                },
+                "type": "NumberLiteral",
+                "value": "4",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 43,
+                "lastColumn": 13,
+                "lastLine": 43,
+              },
+              "operation": "+",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 43,
+                  "lastColumn": 13,
+                  "lastLine": 43,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "InfixExpr",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 44,
+        },
+        "name": "infix",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 47,
+              "lastColumn": 4,
+              "lastLine": 48,
+            },
+            "targetType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 47,
+                    "lastColumn": 18,
+                    "lastLine": 47,
+                  },
+                  "name": "Foo",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 15,
+                "firstLine": 47,
+                "lastColumn": 20,
+                "lastLine": 47,
+              },
+              "name": "array",
+              "type": "Type",
+            },
+            "type": "CastExpr",
+            "value": Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 47,
+                "lastColumn": 10,
+                "lastLine": 47,
+              },
+              "operation": "~",
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 47,
+                  "lastColumn": 10,
+                  "lastLine": 47,
+                },
+                "name": "x",
+                "type": "Identifier",
+              },
+              "type": "PrefixExpr",
+            },
+          },
+        ],
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 48,
+        },
+        "name": "prefix",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 49,
+    },
+    "name": "Cast",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: CompoundExpressions.sand 1`] = `
 Object {
   "imports": Array [],
