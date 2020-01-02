@@ -50,7 +50,6 @@ function isUpcomingBodyAnObjectLiteralBody(
   }
 
   const srcBeginningWithTheTokenAfterBody = upcoming.slice(body.src.length);
-  console.log("afterbody", srcBeginningWithTheTokenAfterBody);
   return doesUpcomingTokenIndicateBodyToTheRightOfItIsObjectLiteralBody(
     srcBeginningWithTheTokenAfterBody,
     scanner,
