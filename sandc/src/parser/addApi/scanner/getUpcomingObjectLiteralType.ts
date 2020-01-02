@@ -50,6 +50,7 @@ function isUpcomingBodyAnObjectLiteralBody(
   }
 
   const srcBeginningWithTheTokenAfterBody = upcoming.slice(body.src.length);
+  console.log("afterbody", srcBeginningWithTheTokenAfterBody);
   return doesUpcomingTokenIndicateBodyToTheRightOfItIsObjectLiteralBody(
     srcBeginningWithTheTokenAfterBody,
     scanner,
@@ -107,9 +108,6 @@ function doesUpcomingTokenIndicateBodyToTheRightOfItIsObjectLiteralBody(
     /^\s*(if|else|switch|case|match|default|throw|while|loop|repeat|for|do|continue|break|return|let!?|re!?|try|catch|finally)/.test(
       upcoming,
     ) ||
-    /^\s*((-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b)|("(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*\")|('([^\\'\n]|\\[\\'nt])\')|([_a-zA-Z]\w*))/.test(
-      upcoming,
-    ) ||
     /^\s*[!~]/.test(upcoming)
   ) {
     return false;
@@ -132,6 +130,14 @@ function doesUpcomingTokenIndicateBodyToTheRightOfItIsObjectLiteralBody(
     /^\s*[[\](){,;]/.test(upcoming)
   ) {
     return true;
+  }
+
+  if (
+    /^\s*((-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b)|("(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*\")|('([^\\'\n]|\\[\\'nt])\')|([_a-zA-Z]\w*))/.test(
+      upcoming,
+    )
+  ) {
+    return false;
   }
 
   if (/^\s*\}/.test(upcoming)) {
