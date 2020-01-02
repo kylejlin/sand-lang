@@ -48,7 +48,7 @@ nullableType
     ;
 
 optTypeArgs
-    : /* empty */
+    : %empty
         { $$ = []; }
     | "<" oneOrMoreCommaSeparatedTypes ">"
         { $$ = $2; }

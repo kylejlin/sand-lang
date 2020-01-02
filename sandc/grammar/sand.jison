@@ -42,21 +42,21 @@ file
     ;
 
 optPackage
-    : /* empty */
+    : %empty
         { $$ = null; }
     | "package" oneOrMoreDotSeparatedIdentifiers ";"
         { $$ = $1.map(ident => ident.name).join("."); }
     ;
 
 optImports
-    : /* empty */
+    : %empty
         { $$ = []; }
     | optImports "import" oneOrMoreDotSeparatedIdentifiers ";"
         { $$ = $1.concat([{ type: yy.NodeType.Import, name: $3.map(ident => ident.name).join("."), alias: null, location: yy.merge(@2, @4) }]); }
     ;
 
 optUseStatements
-    : /* empty */
+    : %empty
         { $$ = []; }
     | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers "as" IDENTIFIER ";"
         { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, location: yy.merge(@2, @6) }]); }
@@ -65,7 +65,7 @@ optUseStatements
     ;
 
 optCopyStatements
-    : /* empty */
+    : %empty
         { $$ = []; }
     | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers "as" IDENTIFIER ";"
         { $$ = $1.concat([{ type: yy.NodeType.Copy, name: $3.map(ident => ident.name).join("."), alias: $5, location: yy.merge(@2, @6) }]); }
@@ -79,7 +79,7 @@ pubClass
     ;
 
 optTypeArgDefs
-    : /* empty */
+    : %empty
         { $$ = []; }
     | "<" typeArgDefs ">"
         { $$ = $2; }
@@ -97,7 +97,7 @@ typeArgDefs
     ;
 
 optPrivClasses
-    : /* empty */
+    : %empty
         { $$ = []; }
     | optPrivClasses privClass
         { $$ = $1.concat([$2]); }
@@ -118,7 +118,7 @@ optOpenOrAbstract
     ;
 
 optExtension
-    : /* empty */
+    : %empty
         { $$ = null; }
     | "extends" type
         { $$ = $2; }
@@ -146,7 +146,7 @@ nonNullableType
     ;
 
 optTypeArgs
-    : /* empty */
+    : %empty
         { $$ = []; }
     | "<" typeArgs ">"
         { $$ = $2; }
@@ -160,7 +160,7 @@ typeArgs
     ;
 
 optClassItems
-    : /* empty */
+    : %empty
         { $$ = []; }
     | optClassItems classItem
         { $$ = $1.concat([$2]); }
@@ -197,7 +197,7 @@ classItem
     ;
 
 optAccessModifier
-    : /* empty */
+    : %empty
         { $$ = null; }
     | "pub"
         { $$ = "pub"; }
@@ -206,7 +206,7 @@ optAccessModifier
     ;
 
 optArgDefs
-    : /* empty */
+    : %empty
         { $$ = []; }
     | argDefs
     ;
@@ -255,7 +255,7 @@ ifNode
     ;
 
 optIfAlternatives
-    : /* empty */
+    : %empty
         { $$ = []; }
     | ifAlternatives
     ;
@@ -438,14 +438,14 @@ functionCall
     ;
 
 optFunctionCallTypeArgs
-    : /* empty */
+    : %empty
         { $$ = []; }
     | FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET typeArgs ">"
         { $$ = $2; }
     ;
 
 optArgs
-    : /* empty */
+    : %empty
         { $$ = []; }
     | args
     ;
