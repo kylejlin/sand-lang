@@ -16,7 +16,7 @@ export default function getUpcomingCastType(
     return null;
   }
 
-  if (upcoming === "") {
+  if (/^\s*$/.test(upcoming)) {
     return null;
   }
 
@@ -31,7 +31,7 @@ export default function getUpcomingCastType(
   }
 
   const withoutLeftAngle = upcoming.match(
-    /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*(\[\s*\*?\s*]\s*)?/,
+    /^\s*[a-zA-Z_]\w*(?:\s*\.\s*[a-zA-Z_]\w*)*\s*((\[\s*\*?\s*\]|\?)\s*)*/,
   );
   if (withoutLeftAngle === null) {
     return null;
