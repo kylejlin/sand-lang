@@ -167,9 +167,21 @@ export default class SandScanner implements Scanner<TokenType> {
       this.braceRelativeLocationStack.push(
         BraceRelativeLocation.InObjectLiteralBody,
       );
+    } else if (
+      top === BraceRelativeLocation.BetweenClassKeywordAndStartOfClassBody
+    ) {
+      this.braceRelativeLocationStack.pop();
+      this.braceRelativeLocationStack.push(BraceRelativeLocation.InClassBody);
+    } else if (
+      top ===
+      BraceRelativeLocation.BetweenMethodDeclarationRightParenAndStartOfMethodBody
+    ) {
+      this.braceRelativeLocationStack.pop();
+      this.braceRelativeLocationStack.push(BraceRelativeLocation.InMethodBody);
     } else {
       throw new Error(
-        "Attempted to record the start of an object body or compound node when the top of the stack was neither `BetweenFirstTokenAndStartOfCompoundNode` nor `BetweenObjectLiteralTypeAndStartOfBody`.",
+        "Attempted to record the start of an object body or compound node when the top of the stack was " +
+          BraceRelativeLocation[top],
       );
     }
   }
@@ -185,7 +197,9 @@ export default class SandScanner implements Scanner<TokenType> {
 
     if (
       top === BraceRelativeLocation.InCompoundNode ||
-      top === BraceRelativeLocation.InObjectLiteralBody
+      top === BraceRelativeLocation.InObjectLiteralBody ||
+      top === BraceRelativeLocation.InClassBody ||
+      top === BraceRelativeLocation.InMethodBody
     ) {
       this.braceRelativeLocationStack.pop();
     } else {
@@ -194,6 +208,24 @@ export default class SandScanner implements Scanner<TokenType> {
           BraceRelativeLocation[top],
       );
     }
+  }
+
+  onRightParenEncountered(): void {
+    const top = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+
+    if (top === BraceRelativeLocation.InClassBody) {
+      this.braceRelativeLocationStack.push(
+        BraceRelativeLocation.BetweenMethodDeclarationRightParenAndStartOfMethodBody,
+      );
+    }
+  }
+
+  onClassKeywordEncountered(): void {
+    this.braceRelativeLocationStack.push(
+      BraceRelativeLocation.BetweenClassKeywordAndStartOfClassBody,
+    );
   }
 
   onStatementWithCompoundNodeStart(): void {
@@ -219,6 +251,10 @@ export default class SandScanner implements Scanner<TokenType> {
 }
 
 enum BraceRelativeLocation {
+  BetweenClassKeywordAndStartOfClassBody = "BetweenClassKeywordAndStartOfClassBody",
+  InClassBody = "InClassBody",
+  BetweenMethodDeclarationRightParenAndStartOfMethodBody = "BetweenMethodDeclarationRightParenAndStartOfMethodBody",
+  InMethodBody = "InMethodBody",
   BetweenFirstTokenAndStartOfCompoundNode = "BetweenFirstTokenAndStartOfCompoundNode",
   InCompoundNode = "InCompoundNode",
   BetweenObjectLiteralTypeAndStartOfBody = "BetweenObjectLiteralTypeAndStartOfBody",
@@ -466,7 +502,13 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "open",
   "abstract",
   "final",
-  "class",
+  [
+    /class\b/,
+    (scanner: SandScanner) => {
+      scanner.onClassKeywordEncountered();
+      return "class";
+    },
+  ],
   "extends",
   "interface",
   "enum",
@@ -595,7 +637,13 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "+=",
   "-=",
   "(",
-  ")",
+  [
+    /\)/,
+    (scanner: SandScanner) => {
+      scanner.onRightParenEncountered();
+      return ")";
+    },
+  ],
   [
     /\{/,
     (scanner: SandScanner) => {
