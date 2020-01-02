@@ -2,7 +2,7 @@ import React from "react";
 import {
   ArgDef,
   ClassItem,
-  CompoundExpression,
+  CompoundNode,
   ConstraintType,
   Expr,
   FileNode,
@@ -134,7 +134,7 @@ function renderArgDef(def: ArgDef): NonNullReactNode {
 }
 
 function renderCompoundExpr(
-  comp: CompoundExpression,
+  comp: CompoundNode,
   depth: number,
 ): NonNullReactNode {
   if (comp.length === 0) {
@@ -157,7 +157,7 @@ function renderCompoundExpr(
 }
 
 function renderBlockChild(
-  item: CompoundExpression[number],
+  item: CompoundNode[number],
   depth: number,
 ): NonNullReactNode {
   switch (item.type) {
@@ -182,6 +182,10 @@ function renderBlockChild(
       } else {
         return <>return {renderExpr(item.value, depth)};</>;
       }
+    case NodeType.Break:
+      return "break;";
+    case NodeType.Continue:
+      return "continue;";
     case NodeType.If:
       return renderIf(item, depth);
     default:
@@ -236,23 +240,15 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
     case NodeType.StringLiteral:
       return expr.value;
     case NodeType.Identifier:
-      return expr.value;
-    case NodeType.BinaryExpr:
-      if (expr.operation === "[") {
-        return (
-          <>
-            {renderExpr(expr.left, depth)}[{renderExpr(expr.right, depth)}]
-          </>
-        );
-      } else {
-        return (
-          <span className="AstNode">
-            ({renderExpr(expr.left, depth)} {expr.operation}{" "}
-            {renderExpr(expr.right, depth)})
-          </span>
-        );
-      }
-    case NodeType.UnaryExpr:
+      return expr.name;
+    case NodeType.InfixExpr:
+      return (
+        <span className="AstNode">
+          ({renderExpr(expr.left, depth)} {expr.operation}{" "}
+          {renderExpr(expr.right, depth)})
+        </span>
+      );
+    case NodeType.PrefixExpr:
       return (
         <span className="AstNode">
           ({expr.operation}
@@ -263,6 +259,12 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
       return (
         <>
           {renderExpr(expr.left, depth)}.{expr.right}
+        </>
+      );
+    case NodeType.IndexExpr:
+      return (
+        <>
+          {renderExpr(expr.left, depth)}[{renderExpr(expr.right, depth)}]
         </>
       );
     case NodeType.If:
@@ -283,6 +285,34 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
         <>
           {renderType(expr.valueType)}{" "}
           {renderObjectEntries(expr.entries, depth)}
+        </>
+      );
+    case NodeType.ArrayLiteral:
+      return (
+        <>
+          [
+          {expr.elements.map(expr => (
+            <>
+              {"\n"}
+              {TAB.repeat(depth)}
+              {renderExpr(expr, depth + 1)},
+            </>
+          ))}
+          {"\n" + TAB.repeat(depth - 1)}]
+        </>
+      );
+    case NodeType.RangeLiteral:
+      return (
+        <>
+          ({renderExpr(expr.start, depth)}
+          {expr.includesEnd ? "..=" : ".."}
+          {renderExpr(expr.end, depth)})
+        </>
+      );
+    case NodeType.CastExpr:
+      return (
+        <>
+          ({renderExpr(expr.value, depth)} as! {renderType(expr.targetType)})
         </>
       );
   }
@@ -399,10 +429,7 @@ function stringifyArgDef(def: ArgDef): string {
   return def.name + ": " + stringifyType(def.valueType);
 }
 
-function stringifyCompoundExpr(
-  comp: CompoundExpression,
-  depth: number,
-): string {
+function stringifyCompoundExpr(comp: CompoundNode, depth: number): string {
   if (comp.length === 0) {
     return "{}";
   } else {
@@ -420,7 +447,7 @@ function stringifyCompoundExpr(
 }
 
 function stringifyBlockChild(
-  item: CompoundExpression[number],
+  item: CompoundNode[number],
   depth: number,
 ): string {
   switch (item.type) {
@@ -448,6 +475,10 @@ function stringifyBlockChild(
       }
     case NodeType.If:
       return stringifyIf(item, depth);
+    case NodeType.Break:
+      return "break;";
+    case NodeType.Continue:
+      return "continue;";
     default:
       return stringifyExpr(item, depth) + ";";
   }
@@ -483,30 +514,28 @@ function stringifyExpr(expr: Expr, depth: number): string {
     case NodeType.StringLiteral:
       return expr.value;
     case NodeType.Identifier:
-      return expr.value;
-    case NodeType.BinaryExpr:
-      if (expr.operation === "[") {
-        return (
-          stringifyExpr(expr.left, depth) +
-          "[" +
-          stringifyExpr(expr.right, depth) +
-          "]"
-        );
-      } else {
-        return (
-          "(" +
-          stringifyExpr(expr.left, depth) +
-          " " +
-          expr.operation +
-          " " +
-          stringifyExpr(expr.right, depth) +
-          ")"
-        );
-      }
-    case NodeType.UnaryExpr:
+      return expr.name;
+    case NodeType.InfixExpr:
+      return (
+        "(" +
+        stringifyExpr(expr.left, depth) +
+        " " +
+        expr.operation +
+        " " +
+        stringifyExpr(expr.right, depth) +
+        ")"
+      );
+    case NodeType.PrefixExpr:
       return "(" + expr.operation + stringifyExpr(expr.right, depth) + ")";
     case NodeType.DotExpr:
       return stringifyExpr(expr.left, depth) + "." + expr.right;
+    case NodeType.IndexExpr:
+      return (
+        stringifyExpr(expr.left, depth) +
+        "[" +
+        stringifyExpr(expr.right, depth) +
+        "]"
+      );
     case NodeType.If:
       return stringifyIf(expr, depth);
     case NodeType.FunctionCall:
@@ -521,6 +550,32 @@ function stringifyExpr(expr: Expr, depth: number): string {
         stringifyType(expr.valueType) +
         " " +
         stringifyObjectEntries(expr.entries, depth)
+      );
+    case NodeType.ArrayLiteral:
+      return (
+        "[" +
+        expr.elements.map(
+          expr => "\n" + TAB.repeat(depth) + renderExpr(expr, depth + 1),
+        ) +
+        "\n" +
+        TAB.repeat(depth - 1) +
+        "]"
+      );
+    case NodeType.RangeLiteral:
+      return (
+        "(" +
+        renderExpr(expr.start, depth) +
+        (expr.includesEnd ? "..=" : "..") +
+        renderExpr(expr.end, depth) +
+        ")"
+      );
+    case NodeType.CastExpr:
+      return (
+        "(" +
+        renderExpr(expr.value, depth) +
+        "as!" +
+        renderType(expr.targetType) +
+        ")"
       );
   }
 }

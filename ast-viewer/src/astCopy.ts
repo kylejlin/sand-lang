@@ -1,11 +1,20 @@
+import { JisonNodeLocation } from "./jisonCopy";
+
 export enum NodeType {
+  Import = "Import",
+  Use = "Use",
+  Copy = "Copy",
+
   NumberLiteral = "NumberLiteral",
   StringLiteral = "StringLiteral",
+  CharacterLiteral = "CharacterLiteral",
   Identifier = "Identifier",
 
-  BinaryExpr = "BinaryExpr",
-  UnaryExpr = "UnaryExpr",
+  InfixExpr = "InfixExpr",
+  PrefixExpr = "PrefixExpr",
   DotExpr = "DotExpr",
+  IndexExpr = "IndexExpr",
+  CastExpr = "CastExpr",
 
   PropertyDeclaration = "PropertyDeclaration",
   MethodDeclaration = "MethodDeclaration",
@@ -14,10 +23,14 @@ export enum NodeType {
   FunctionCall = "FunctionCall",
   TypedObjectLiteral = "TypedObjectLiteral",
   ObjectEntry = "ObjectEntry",
+  ArrayLiteral = "ArrayLiteral",
+  RangeLiteral = "RangeLiteral",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
   Return = "Return",
+  Break = "Break",
+  Continue = "Continue",
 
   File = "File",
   Class = "Class",
@@ -37,23 +50,25 @@ export interface NodeLocation {
   lastColumn: number;
 }
 
-export interface JisonNodeLocation {
-  first_line: number;
-  last_line: number;
-  first_column: number;
-  last_column: number;
+export function merge(
+  start: NodeLocation | JisonNodeLocation,
+  end: NodeLocation | JisonNodeLocation,
+): NodeLocation {
+  const camelStart = camelCaseIfNeeded(start);
+  const camelEnd = camelCaseIfNeeded(end);
+
+  return {
+    firstLine: camelStart.firstLine,
+    firstColumn: camelStart.firstColumn,
+    lastLine: camelEnd.lastLine,
+    lastColumn: camelEnd.lastColumn,
+  };
 }
 
-export function merge(
-  start: JisonNodeLocation,
-  end: JisonNodeLocation,
-): JisonNodeLocation {
-  return {
-    first_line: start.first_line,
-    first_column: start.first_column,
-    last_line: end.last_line,
-    last_column: end.last_column,
-  };
+function camelCaseIfNeeded(
+  location: NodeLocation | JisonNodeLocation,
+): NodeLocation {
+  return "first_line" in location ? camelCase(location) : location;
 }
 
 export function camelCase(location: JisonNodeLocation): NodeLocation {
@@ -65,16 +80,149 @@ export function camelCase(location: JisonNodeLocation): NodeLocation {
   };
 }
 
+export interface FileNode {
+  type: NodeType.File;
+  packageName: string | null;
+  imports: Import[];
+  useStatements: Use[];
+  pubClass: PubClass;
+  privClasses: PrivClass[];
+  location: NodeLocation;
+}
+
+export interface Import {
+  type: NodeType.Import;
+  name: string;
+  /** May become `string | null` in the future. */
+  alias: null;
+  location: NodeLocation;
+}
+
+export interface Use {
+  type: NodeType.Use;
+  name: string;
+  alias: string | null;
+  location: NodeLocation;
+}
+
+export interface Copy {
+  type: NodeType.Copy;
+  name: string;
+  alias: string | null;
+  location: NodeLocation;
+}
+
+export interface Class {
+  type: NodeType.Class;
+  isPub: boolean;
+  overridability: Overridability;
+  name: string;
+  typeArgDefs: TypeArgDef[];
+  superClass: Type | null;
+  copies: Copy[];
+  useStatements: Use[];
+  items: ClassItem[];
+  location: NodeLocation;
+}
+
+export enum Overridability {
+  Final = "Final",
+  Open = "Open",
+  Abstract = "Abstract",
+}
+
+export interface PubClass extends Class {
+  isPub: true;
+}
+
+export interface PrivClass extends Class {
+  isPub: false;
+}
+
+export type ClassItem = PropertyDeclaration | MethodDeclaration;
+
+export interface TypeArgDef {
+  type: NodeType.TypeArgDef;
+  name: string;
+  constraint: TypeConstraint;
+  location: NodeLocation;
+}
+
+export interface Type {
+  type: NodeType.Type;
+  name: string;
+  args: Type[];
+  location: NodeLocation;
+}
+
+export type TypeConstraint = NoConstraint | ExtendsConstraint;
+
+export interface NoConstraint {
+  constraintType: ConstraintType.None;
+}
+
+export interface ExtendsConstraint {
+  constraintType: ConstraintType.Extends;
+  superClass: Type;
+}
+
+export enum ConstraintType {
+  None = "None",
+  Extends = "Extends",
+  // Super = "Super",
+}
+
+export type OptAccessModifier = null | "pub" | "prot";
+
+export interface PropertyDeclaration {
+  type: NodeType.PropertyDeclaration;
+  accessModifier: OptAccessModifier;
+  name: string;
+  valueType: Type;
+  location: NodeLocation;
+}
+
+export interface MethodDeclaration {
+  type: NodeType.MethodDeclaration;
+  accessModifier: OptAccessModifier;
+  name: string;
+  typeArgs: TypeArgDef[];
+  args: ArgDef[];
+  returnType: Type | null;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface ArgDef {
+  type: NodeType.ArgDef;
+  name: string;
+  valueType: Type;
+  location: NodeLocation;
+}
+
+export type CompoundNode = (Expr | Statement)[];
+
 export type Expr =
   | NumberLiteral
   | StringLiteral
   | Identifier
-  | BinaryExpr
-  | UnaryExpr
+  | InfixExpr
+  | PrefixExpr
   | DotExpr
+  | IndexExpr
+  | CastExpr
   | If
   | FunctionCall
-  | TypedObjectLiteral;
+  | TypedObjectLiteral
+  | ArrayLiteral
+  | RangeLiteral;
+
+export type Statement =
+  | Return
+  | Break
+  | Continue
+  | LocalVariableDeclaration
+  | Assignment;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
@@ -90,20 +238,19 @@ export interface StringLiteral {
 
 export interface Identifier {
   type: NodeType.Identifier;
-  value: string;
+  name: string;
   location: NodeLocation;
 }
 
-export interface BinaryExpr {
-  type: NodeType.BinaryExpr;
-  operation: BinaryOperation;
+export interface InfixExpr {
+  type: NodeType.InfixExpr;
+  operation: InfixOperation;
   left: Expr;
   right: Expr;
   location: NodeLocation;
 }
 
-export type BinaryOperation =
-  | "["
+export type InfixOperation =
   | "**"
   | "*"
   | "/"
@@ -119,14 +266,14 @@ export type BinaryOperation =
   | "&&"
   | "||";
 
-export interface UnaryExpr {
-  type: NodeType.UnaryExpr;
-  operation: UnaryOperation;
+export interface PrefixExpr {
+  type: NodeType.PrefixExpr;
+  operation: PrefixOperation;
   right: Expr;
   location: NodeLocation;
 }
 
-export type UnaryOperation = "-" | "!";
+export type PrefixOperation = "-" | "!" | "~";
 
 export interface DotExpr {
   type: NodeType.DotExpr;
@@ -135,10 +282,24 @@ export interface DotExpr {
   location: NodeLocation;
 }
 
+export interface IndexExpr {
+  type: NodeType.IndexExpr;
+  left: Expr;
+  right: Expr;
+  location: NodeLocation;
+}
+
+export interface CastExpr {
+  type: NodeType.CastExpr;
+  value: Expr;
+  targetType: Type;
+  location: NodeLocation;
+}
+
 export interface If {
   type: NodeType.If;
   condition: Expr;
-  body: CompoundExpression;
+  body: CompoundNode;
   alternatives: IfAlternative[];
   location: NodeLocation;
 }
@@ -154,14 +315,14 @@ export interface ElseIf {
   type: NodeType.IfAlternative;
   alternativeType: IfAlternativeType.ElseIf;
   condition: Expr;
-  body: CompoundExpression;
+  body: CompoundNode;
   location: NodeLocation;
 }
 
 export interface Else {
   type: NodeType.IfAlternative;
   alternativeType: IfAlternativeType.Else;
-  body: CompoundExpression;
+  body: CompoundNode;
   location: NodeLocation;
 }
 
@@ -187,98 +348,36 @@ export interface ObjectEntry {
   location: NodeLocation;
 }
 
-export interface Type {
-  type: NodeType.Type;
-  name: string;
-  args: Type[];
+export interface ArrayLiteral {
+  type: NodeType.ArrayLiteral;
+  elements: Expr[];
   location: NodeLocation;
 }
 
-export interface TypeArgDef {
-  type: NodeType.TypeArgDef;
-  name: string;
-  constraint: TypeConstraint;
+export interface RangeLiteral {
+  type: NodeType.RangeLiteral;
+  start: Expr;
+  end: Expr;
+  includesEnd: boolean;
   location: NodeLocation;
 }
 
-export type TypeConstraint = NoConstraint | ExtendsConstraint;
-
-export interface NoConstraint {
-  constraintType: ConstraintType.None;
-}
-
-export interface ExtendsConstraint {
-  constraintType: ConstraintType.Extends;
-  superClass: Type;
-}
-
-export interface FileNode {
-  type: NodeType.File;
-  pubClass: PubClass;
-  privClasses: PrivClass[];
+export interface Return {
+  type: NodeType.Return;
+  value: null | Expr;
   location: NodeLocation;
 }
 
-export interface Class {
-  type: NodeType.Class;
-  isPub: boolean;
-  name: string;
-  typeArgDefs: TypeArgDef[];
-  superClass: Type | null;
-  items: ClassItem[];
+export interface Break {
+  type: NodeType.Break;
+  /** May one day become `Expr | null`. */
+  value: null;
   location: NodeLocation;
 }
 
-export interface PubClass extends Class {
-  isPub: true;
-}
-
-export interface PrivClass extends Class {
-  isPub: false;
-}
-
-export enum ConstraintType {
-  None = "None",
-  Extends = "Extends",
-  // Super = "Super",
-}
-
-export type ClassItem = PropertyDeclaration | MethodDeclaration;
-
-export interface PropertyDeclaration {
-  type: NodeType.PropertyDeclaration;
-  accessModifier: OptAccessModifier;
-  name: string;
-  valueType: Type;
+export interface Continue {
+  type: NodeType.Continue;
   location: NodeLocation;
-}
-
-export interface MethodDeclaration {
-  type: NodeType.MethodDeclaration;
-  accessModifier: OptAccessModifier;
-  name: string;
-  typeArgs: TypeArgDef[];
-  args: ArgDef[];
-  returnType: Type | null;
-  body: CompoundExpression;
-  location: NodeLocation;
-}
-
-export type CompoundExpression = (Expr | Statement)[];
-
-export type Statement = LocalVariableDeclaration | Assignment | Return;
-
-export interface ArgDef {
-  type: NodeType.ArgDef;
-  name: string;
-  valueType: Type;
-  location: NodeLocation;
-}
-
-export type OptAccessModifier = null | "pub" | "prot";
-
-export interface ImpliedNullExpr {
-  type: NodeType.ImpliedNullExpr;
 }
 
 export interface LocalVariableDeclaration {
@@ -293,13 +392,14 @@ export interface LocalVariableDeclaration {
 
 export interface Assignment {
   type: NodeType.Assignment;
+  assignmentType: AssignmentType;
   assignee: Expr;
   value: Expr;
   location: NodeLocation;
 }
 
-export interface Return {
-  type: NodeType.Return;
-  value: null | Expr;
-  location: NodeLocation;
+export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
+
+export interface ImpliedNullExpr {
+  type: NodeType.ImpliedNullExpr;
 }
