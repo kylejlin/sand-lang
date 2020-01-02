@@ -197,6 +197,7 @@ export interface StaticPropertyDeclaration {
 export interface MethodDeclaration {
   type: NodeType.MethodDeclaration;
   accessModifier: OptAccessModifier;
+  isStatic: boolean;
   name: string;
   typeArgs: TypeArgDef[];
   args: ArgDef[];

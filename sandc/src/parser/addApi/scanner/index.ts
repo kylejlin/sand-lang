@@ -326,10 +326,12 @@ export type TokenType =
   | "module"
   | "requires"
   | "exports"
+  | "this"
+  | "super"
   | "NUMBER"
   | "STRING"
   | "CHARACTER"
-  | "IDENTIFIER"
+  | "NON_RESERVED_IDENTIFIER"
   | "OBJECT_LITERAL_TYPE"
   | "CAST_EXPRESSION_TARGET_TYPE"
   | "**"
@@ -438,10 +440,12 @@ const TOKEN_TYPES: TokenType[] = [
   "module",
   "requires",
   "exports",
+  "this",
+  "super",
   "NUMBER",
   "STRING",
   "CHARACTER",
-  "IDENTIFIER",
+  "NON_RESERVED_IDENTIFIER",
   "OBJECT_LITERAL_TYPE",
   "CAST_EXPRESSION_TARGET_TYPE",
   "**",
@@ -563,6 +567,8 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "module",
   "requires",
   "exports",
+  "this",
+  "super",
   [
     /-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b/,
     () => "NUMBER",
@@ -591,7 +597,7 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
           }
           return "CAST_EXPRESSION_TARGET_TYPE";
         } else {
-          return "IDENTIFIER";
+          return "NON_RESERVED_IDENTIFIER";
         }
       }
     },

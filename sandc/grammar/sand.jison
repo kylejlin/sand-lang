@@ -58,7 +58,7 @@ optImports
 optUseStatements
     : %empty
         { $$ = []; }
-    | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers "as" IDENTIFIER ";"
+    | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
         { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, location: yy.merge(@2, @6) }]); }
     | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers ";"
         { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: null, location: yy.merge(@2, @4) }]); }
@@ -67,7 +67,7 @@ optUseStatements
 optCopyStatements
     : %empty
         { $$ = []; }
-    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers "as" IDENTIFIER ";"
+    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
         { $$ = $1.concat([{ type: yy.NodeType.Copy, name: $3.map(ident => ident.name).join("."), alias: $5, location: yy.merge(@2, @6) }]); }
     | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers ";"
         { $$ = $1.concat([{ type: yy.NodeType.Copy, name: $3.map(ident => ident.name).join("."), alias: null, location: yy.merge(@2, @4) }]); }
@@ -86,13 +86,13 @@ optTypeArgDefs
     ;
 
 typeArgDefs
-    : IDENTIFIER
+    : NON_RESERVED_IDENTIFIER
         { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@$) }]; }
-    | IDENTIFIER "extends" type
+    | NON_RESERVED_IDENTIFIER "extends" type
         { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 }, location: yy.camelCase(@$) }]; }
-    | typeArgDefs "," IDENTIFIER
+    | typeArgDefs "," NON_RESERVED_IDENTIFIER
         { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(@3) }]); }
-    | typeArgDefs "," IDENTIFIER "extends" type
+    | typeArgDefs "," NON_RESERVED_IDENTIFIER "extends" type
         { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.merge(@3, @5) }]); }
     ;
 
@@ -104,7 +104,7 @@ optPrivClasses
     ;
 
 privClass
-    : optOpenOrAbstract "class" IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
+    : optOpenOrAbstract "class" NON_RESERVED_IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
         { $$ = { type: yy.NodeType.Class, isPub: false, overridability: $1, name: $3, typeArgDefs: $4, superClass: $5, copies: $7, useStatements: $8, items: $9, location: yy.camelCase(@$) }; }
     ;
 
@@ -167,33 +167,38 @@ optClassItems
     ;
 
 classItem
-    : optAccessModifier IDENTIFIER ":" type ";"
+    : optAccessModifier NON_RESERVED_IDENTIFIER ":" type ";"
         { $$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $1, isReassignable: false, name: $2, valueType: $4, location: yy.camelCase(@$) }; }
-    | optAccessModifier "re" IDENTIFIER ":" type ";"
+    | optAccessModifier "re" NON_RESERVED_IDENTIFIER ":" type ";"
         { $$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $1, isReassignable: true, name: $3, valueType: $5, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier "static" IDENTIFIER ":" type "=" simpleExpression ";"
+    | optAccessModifier "static" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: $5, initialValue: $7, location: yy.camelCase(@$) }; }
-    | optAccessModifier "static" "re" IDENTIFIER ":" type "=" simpleExpression ";"
+    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: $6, initialValue: $8, location: yy.camelCase(@$) }; }
-    | optAccessModifier "static" IDENTIFIER ":" type "=" ifNode ";"
+    | optAccessModifier "static" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: $5, initialValue: $7, location: yy.camelCase(@$) }; }
-    | optAccessModifier "static" "re" IDENTIFIER ":" type "=" ifNode ";"
+    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: $6, initialValue: $8, location: yy.camelCase(@$) }; }
     
-    | optAccessModifier "static" IDENTIFIER "=" simpleExpression ";"
+    | optAccessModifier "static" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: null, initialValue: $5, location: yy.camelCase(@$) }; }
-    | optAccessModifier "static" "re" IDENTIFIER "=" simpleExpression ";"
+    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.camelCase(@$) }; }
-    | optAccessModifier "static" IDENTIFIER "=" ifNode ";"
+    | optAccessModifier "static" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: null, initialValue: $5, location: yy.camelCase(@$) }; }
-    | optAccessModifier "static" "re" IDENTIFIER "=" ifNode ";"
+    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
-    | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundNode
-        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: null, body: $7, location: yy.camelCase(@$) }; }
+    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, isStatic: true, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
+    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundNode
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, isStatic: true, name: $2, typeArgs: $3, args: $5, returnType: null, body: $7, location: yy.camelCase(@$) }; }
+
+    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, isStatic: false, name: $2, typeArgs: $3, args: $6, returnType: $9, body: $10, location: yy.camelCase(@$) }; }
+    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
+        { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, isStatic: false, name: $2, typeArgs: $3, args: $6, returnType: null, body: $8, location: yy.camelCase(@$) }; }
     ;
 
 optAccessModifier
@@ -211,10 +216,17 @@ optArgDefs
     | argDefs
     ;
 
+optCommaAndArgDefs
+    : %empty
+        { $$ = []; }
+    | "," argDefs
+        { $$ = $2; }
+    ;
+
 argDefs
-    : IDENTIFIER ":" type
+    : NON_RESERVED_IDENTIFIER ":" type
         { $$ = [{ type: yy.NodeType.ArgDef, name: $1, valueType: $3, location: yy.camelCase(@$) }]; }
-    | argDefs "," IDENTIFIER ":" type
+    | argDefs "," NON_RESERVED_IDENTIFIER ":" type
         { $$ = $1.concat([{ type: yy.NodeType.ArgDef, name: $3, valueType: $5, location: yy.merge(@3, @5) }]); }
     ;
 
@@ -294,40 +306,40 @@ continueStatement
     ;
 
 localVarDeclaration
-    : "let" IDENTIFIER "=" simpleExpression ";"
+    : "let" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
-    | "let!" IDENTIFIER "=" simpleExpression ";"
+    | "let!" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
-    | "re" IDENTIFIER "=" simpleExpression ";"
+    | "re" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
-    | "re!" IDENTIFIER "=" simpleExpression ";"
+    | "re!" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
 
-    | "let" IDENTIFIER ":" type "=" simpleExpression ";"
+    | "let" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
-    | "let!" IDENTIFIER ":" type "=" simpleExpression ";"
+    | "let!" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
-    | "re" IDENTIFIER ":" type "=" simpleExpression ";"
+    | "re" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
-    | "re!" IDENTIFIER ":" type "=" simpleExpression ";"
+    | "re!" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
 
-    | "let" IDENTIFIER "=" ifNode ";"
+    | "let" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
-    | "let!" IDENTIFIER "=" ifNode ";"
+    | "let!" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
-    | "re" IDENTIFIER "=" ifNode ";"
+    | "re" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
-    | "re!" IDENTIFIER "=" ifNode ";"
+    | "re!" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
 
-    | "let" IDENTIFIER ":" type "=" ifNode ";"
+    | "let" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
-    | "let!" IDENTIFIER ":" type "=" ifNode ";"
+    | "let!" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
-    | "re" IDENTIFIER ":" type "=" ifNode ";"
+    | "re" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
-    | "re!" IDENTIFIER ":" type "=" ifNode ";"
+    | "re!" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
     ;
 
@@ -420,15 +432,15 @@ indexExpression
     ;
 
 callableExpression
-    : IDENTIFIER
+    : identifier
         { $$ = { type: yy.NodeType.Identifier, name: $1, location: yy.camelCase(@$) }; }
-    | callableExpression "." IDENTIFIER
+    | callableExpression "." NON_RESERVED_IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
-    | functionCall "." IDENTIFIER
+    | functionCall "." NON_RESERVED_IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
-    | indexExpression "." IDENTIFIER
+    | indexExpression "." NON_RESERVED_IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
-    | parenthesizedExpression "." IDENTIFIER
+    | parenthesizedExpression "." NON_RESERVED_IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     ;
 
@@ -462,9 +474,9 @@ args
     ;
 
 oneOrMoreDotSeparatedIdentifiers
-    : IDENTIFIER
+    : identifier
         { $$ = [{ type: yy.NodeType.Identifier, name: $1, location: yy.camelCase(@$) }]; }
-    | oneOrMoreDotSeparatedIdentifiers "." IDENTIFIER
+    | oneOrMoreDotSeparatedIdentifiers "." NON_RESERVED_IDENTIFIER
         { $$ = $1.concat([{ type: yy.NodeType.Identifier, name: $3, location: yy.camelCase(@3) }]); }
     ;
 
@@ -478,13 +490,13 @@ typedObjectLiteral
     ;
 
 objectEntries
-    : IDENTIFIER ":" simpleExpression
+    : NON_RESERVED_IDENTIFIER ":" simpleExpression
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
-    | IDENTIFIER ":" ifNode
+    | NON_RESERVED_IDENTIFIER ":" ifNode
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
-    | objectEntries "," IDENTIFIER ":" simpleExpression
+    | objectEntries "," NON_RESERVED_IDENTIFIER ":" simpleExpression
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
-    | objectEntries "," IDENTIFIER ":" ifNode
+    | objectEntries "," NON_RESERVED_IDENTIFIER ":" ifNode
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     ;
 
@@ -526,4 +538,10 @@ endExclusiveRange
 castExpression
     : simpleExpression "as!" CAST_EXPRESSION_TARGET_TYPE
         { $$ = { type: yy.NodeType.CastExpr, value: $1, targetType: yy.parseType($3, @3), location: yy.camelCase(@$) }; }
+    ;
+
+identifier
+    : NON_RESERVED_IDENTIFIER
+    | "this"
+    | "super"
     ;

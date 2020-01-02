@@ -74,6 +74,7 @@ Object {
           },
         ],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 33,
           "firstLine": 1,
@@ -182,6 +183,7 @@ Object {
             "type": "ArrayLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -219,6 +221,7 @@ Object {
             "type": "ArrayLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -276,6 +279,7 @@ Object {
             "type": "ArrayLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -343,6 +347,7 @@ Object {
             "type": "PrefixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -431,6 +436,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -523,6 +529,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -580,6 +587,7 @@ Object {
             "type": "ArrayLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 24,
           "firstLine": 1,
@@ -690,6 +698,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 39,
@@ -775,6 +784,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 39,
@@ -869,6 +879,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 39,
@@ -972,6 +983,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 39,
@@ -1049,6 +1061,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 39,
@@ -1144,6 +1157,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 39,
@@ -1209,6 +1223,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1265,6 +1280,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1331,6 +1347,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1406,6 +1423,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1471,6 +1489,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1546,6 +1565,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1630,6 +1650,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1697,6 +1718,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1773,6 +1795,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 32,
           "firstLine": 1,
@@ -1863,6 +1886,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -1929,6 +1953,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -1996,6 +2021,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2071,6 +2097,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2136,6 +2163,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2211,6 +2239,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2287,6 +2316,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2364,6 +2394,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2450,6 +2481,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2534,6 +2566,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2609,6 +2642,7 @@ Object {
               },
             },
           ],
+          "isStatic": true,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 42,
@@ -2674,6 +2708,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -2730,6 +2765,7 @@ Object {
             "value": "9",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -2797,6 +2833,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -2866,6 +2903,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -2922,6 +2960,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -2989,6 +3028,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -3058,6 +3098,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -3134,6 +3175,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -3214,6 +3256,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3295,6 +3338,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3353,6 +3397,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3411,6 +3456,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3503,6 +3549,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3607,6 +3654,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3701,6 +3749,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3802,6 +3851,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3892,6 +3942,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -3995,6 +4046,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -4096,6 +4148,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -4164,6 +4217,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 15,
           "firstLine": 1,
@@ -4277,6 +4331,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4356,6 +4411,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4447,6 +4503,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4538,6 +4595,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4650,6 +4708,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4762,6 +4821,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4863,6 +4923,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -4985,6 +5046,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 29,
           "firstLine": 1,
@@ -5194,6 +5256,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 4,
           "firstLine": 2,
@@ -5253,6 +5316,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5278,6 +5342,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5315,6 +5380,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5375,6 +5441,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5412,6 +5479,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5461,6 +5529,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5498,6 +5567,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5615,6 +5685,7 @@ Object {
             ],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5698,6 +5769,7 @@ Object {
             ],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -5747,6 +5819,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -5776,6 +5849,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -5829,6 +5903,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -5868,6 +5943,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Array [],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -6052,6 +6128,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 4,
           "firstLine": 2,
@@ -6142,6 +6219,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -6221,6 +6299,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -6300,6 +6379,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -6367,6 +6447,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -6433,6 +6514,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -6508,6 +6590,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 22,
           "firstLine": 1,
@@ -6527,6 +6610,153 @@ Object {
       "lastLine": 25,
     },
     "name": "InfixPrefix",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: InstanceMethods.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 13,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "isStatic": false,
+        "location": Object {
+          "firstColumn": 26,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "basic",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": "prot",
+        "args": Array [],
+        "body": Array [],
+        "isStatic": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 6,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "accessModifier",
+        "returnType": null,
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [
+          Object {
+            "location": Object {
+              "firstColumn": 20,
+              "firstLine": 10,
+              "lastColumn": 28,
+              "lastLine": 10,
+            },
+            "name": "foo",
+            "type": "ArgDef",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 25,
+                "firstLine": 10,
+                "lastColumn": 28,
+                "lastLine": 10,
+              },
+              "name": "int",
+              "type": "Type",
+            },
+          },
+          Object {
+            "location": Object {
+              "firstColumn": 30,
+              "firstLine": 10,
+              "lastColumn": 41,
+              "lastLine": 10,
+            },
+            "name": "bar",
+            "type": "ArgDef",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 35,
+                "firstLine": 10,
+                "lastColumn": 41,
+                "lastLine": 10,
+              },
+              "name": "String",
+              "type": "Type",
+            },
+          },
+        ],
+        "body": Array [],
+        "isStatic": false,
+        "location": Object {
+          "firstColumn": 26,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "otherArgs",
+        "returnType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 44,
+                "firstLine": 10,
+                "lastColumn": 48,
+                "lastLine": 10,
+              },
+              "name": "char",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 44,
+            "firstLine": 10,
+            "lastColumn": 50,
+            "lastLine": 10,
+          },
+          "name": "array",
+          "type": "Type",
+        },
+        "type": "MethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 13,
+    },
+    "name": "InstanceMethods",
     "overridability": "Final",
     "superClass": null,
     "type": "Class",
@@ -6581,6 +6811,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6630,6 +6861,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6669,6 +6901,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6718,6 +6951,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6757,6 +6991,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6806,6 +7041,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6845,6 +7081,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6894,6 +7131,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -6954,6 +7192,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7014,6 +7253,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7074,6 +7314,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7134,6 +7375,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7196,6 +7438,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7277,6 +7520,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7358,6 +7602,7 @@ Object {
             "valueType": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 28,
           "firstLine": 1,
@@ -7418,6 +7663,7 @@ Object {
             "type": "Identifier",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -7466,6 +7712,7 @@ Object {
             "value": "\\"hi\\"",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -7784,6 +8031,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 36,
           "firstLine": 1,
@@ -7980,6 +8228,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 21,
           "firstLine": 1,
@@ -8096,6 +8345,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 21,
           "firstLine": 1,
@@ -8268,6 +8518,7 @@ Object {
             "type": "InfixExpr",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 21,
           "firstLine": 1,
@@ -8764,6 +9015,7 @@ Object {
             "type": "RangeLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -8810,6 +9062,7 @@ Object {
             "type": "RangeLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -8856,6 +9109,7 @@ Object {
             "type": "RangeLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -8922,6 +9176,7 @@ Object {
             "type": "RangeLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -8978,6 +9233,7 @@ Object {
             "type": "RangeLiteral",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9044,6 +9300,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9099,6 +9356,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9168,6 +9426,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9194,6 +9453,7 @@ Object {
             "value": null,
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9250,6 +9510,7 @@ Object {
             "typeArgs": Array [],
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9306,6 +9567,7 @@ Object {
             "type": "If",
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9351,6 +9613,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9407,6 +9670,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9461,6 +9725,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9516,6 +9781,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9582,6 +9848,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 17,
           "firstLine": 1,
@@ -9653,6 +9920,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -9751,6 +10019,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -9849,6 +10118,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -9970,6 +10240,7 @@ Object {
             },
           },
         ],
+        "isStatic": true,
         "location": Object {
           "firstColumn": 30,
           "firstLine": 1,
@@ -10031,7 +10302,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericFunctionCa
 [Error: Parse error on line 3:
 ... { foo() { bar<T extends String>()...
 --------------------^
-Expecting ';', '<', '>', ',', '{', '}', '[', ']', '+', '=', '(', ')', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', 'as', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '(', ')', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericFunctionCall/Extends.sand error line number 1`] = `3`;
@@ -10040,7 +10311,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericFunctionCa
 [Error: Parse error on line 4:
 ...ing() { foo<int> } }
 --------------------^
-Expecting 'IDENTIFIER', '[', '(', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', got '}']
+Expecting 'NON_RESERVED_IDENTIFIER', '[', '(', 'this', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', 'super', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericFunctionCall/MissingParens.sand error line number 1`] = `4`;
@@ -10049,7 +10320,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericFunctionCa
 [Error: Parse error on line 3:
 ...{ noArgs() { foo<>() } }
 --------------------^
-Expecting 'IDENTIFIER', '[', '(', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', got '>']
+Expecting 'NON_RESERVED_IDENTIFIER', '[', '(', 'this', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', 'super', got '>']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericFunctionCall/NoArgs.sand error line number 1`] = `3`;
@@ -10058,7 +10329,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericMethodDecl
 [Error: Parse error on line 2:
 ...singParens { <T> MissingParens<T> ...
 --------------------^
-Expecting 'use', 'IDENTIFIER', 'copy', 'pub', '}', 're', 'static', 'prot', got 'OBJECT_LITERAL_TYPE']
+Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'copy', 'pub', '}', 're', 'static', 'prot', got 'OBJECT_LITERAL_TYPE']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericMethodDeclarations/MissingParens.sand error line number 1`] = `2`;
@@ -10067,7 +10338,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericMethodDecl
 [Error: Parse error on line 2:
 ... NoArgs { noArgs<>() { } }
 --------------------^
-Expecting 'IDENTIFIER', got '>']
+Expecting 'NON_RESERVED_IDENTIFIER', got '>']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericMethodDeclarations/NoArgs.sand error line number 1`] = `2`;
@@ -10076,7 +10347,7 @@ exports[`the prebuilt parser throws parse errors consistently: localVariableDecl
 [Error: Parse error on line 3:
 ...sion { foo() { x(let foo = 3;) } }
 --------------------^
-Expecting 'IDENTIFIER', '[', '(', ')', 'if', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', got 'let']
+Expecting 'NON_RESERVED_IDENTIFIER', '[', '(', ')', 'this', 'if', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', 'super', got 'let']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: localVariableDeclarations/DeclarationExpression.sand error line number 1`] = `3`;
@@ -10130,7 +10401,7 @@ exports[`the prebuilt parser throws parse errors consistently: return/MissingSem
 [Error: Parse error on line 4:
 ...noVal() { return } }
 --------------------^
-Expecting ';', 'IDENTIFIER', '[', '(', 'if', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', got '}']
+Expecting ';', 'NON_RESERVED_IDENTIFIER', '[', '(', 'this', 'if', 'NUMBER', 'STRING', 'CHARACTER', '-', '!', '~', 'OBJECT_LITERAL_TYPE', 'super', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: return/MissingSemicolonNoVal.sand error line number 1`] = `4`;
@@ -10139,7 +10410,7 @@ exports[`the prebuilt parser throws parse errors consistently: return/ReturnExpr
 [Error: Parse error on line 2:
 ...rnExpression { x(return;) }
 --------------------^
-Expecting 'IDENTIFIER', ')', got 'return_']
+Expecting 'NON_RESERVED_IDENTIFIER', ')', 'this', got 'return_']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: return/ReturnExpression.sand error line number 1`] = `2`;
@@ -10148,7 +10419,7 @@ exports[`the prebuilt parser throws parse errors consistently: typedObjectLitera
 [Error: Parse error on line 3:
 ...xtends() { Foo<T extends ArrayList...
 --------------------^
-Expecting ';', '<', '>', ',', '{', '}', '[', ']', '+', '=', '(', ')', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', 'as', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '(', ')', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: typedObjectLiteral/Extends.sand error line number 1`] = `3`;
