@@ -168,7 +168,9 @@ optClassItems
 
 classItem
     : optAccessModifier IDENTIFIER ":" type ";"
-        { $$ = { type: yy.NodeType.PropertyDeclaration, accessModifier: $1, name: $2, valueType: $4, location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.PropertyDeclaration, accessModifier: $1, isReassignable: false, name: $2, valueType: $4, location: yy.camelCase(@$) }; }
+    | optAccessModifier "re" IDENTIFIER ":" type ";"
+        { $$ = { type: yy.NodeType.PropertyDeclaration, accessModifier: $1, isReassignable: true, name: $3, valueType: $5, location: yy.camelCase(@$) }; }
     | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.MethodDeclaration, accessModifier: $1, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
     | optAccessModifier IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundNode

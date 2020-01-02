@@ -8298,6 +8298,145 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: Props.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 5,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 15,
+          "lastLine": 2,
+        },
+        "name": "basic",
+        "type": "PropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 2,
+            "lastColumn": 14,
+            "lastLine": 2,
+          },
+          "name": "int",
+          "type": "Type",
+        },
+      },
+      Object {
+        "accessModifier": null,
+        "isReassignable": true,
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 25,
+          "lastLine": 3,
+        },
+        "name": "reassignable",
+        "type": "PropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 21,
+            "firstLine": 3,
+            "lastColumn": 24,
+            "lastLine": 3,
+          },
+          "name": "int",
+          "type": "Type",
+        },
+      },
+      Object {
+        "accessModifier": null,
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 31,
+          "lastLine": 4,
+        },
+        "name": "complexType",
+        "type": "PropertyDeclaration",
+        "valueType": Object {
+          "args": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 21,
+                        "firstLine": 4,
+                        "lastColumn": 25,
+                        "lastLine": 4,
+                      },
+                      "name": "java.lang.Character",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 21,
+                    "firstLine": 4,
+                    "lastColumn": 28,
+                    "lastLine": 4,
+                  },
+                  "name": "rlist",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 17,
+                "firstLine": 4,
+                "lastColumn": 29,
+                "lastLine": 4,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 4,
+            "lastColumn": 30,
+            "lastLine": 4,
+          },
+          "name": "nullable",
+          "type": "Type",
+        },
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 5,
+    },
+    "name": "Prop",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: Ranges.sand 1`] = `
 Object {
   "imports": Array [],
@@ -9642,7 +9781,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericMethodDecl
 [Error: Parse error on line 2:
 ...singParens { <T> MissingParens<T> ...
 --------------------^
-Expecting 'use', 'IDENTIFIER', 'copy', 'pub', '}', 'prot', got 'OBJECT_LITERAL_TYPE']
+Expecting 'use', 'IDENTIFIER', 'copy', 'pub', '}', 're', 'prot', got 'OBJECT_LITERAL_TYPE']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericMethodDeclarations/MissingParens.sand error line number 1`] = `2`;

@@ -177,6 +177,7 @@ export type OptAccessModifier = null | "pub" | "prot";
 export interface PropertyDeclaration {
   type: NodeType.PropertyDeclaration;
   accessModifier: OptAccessModifier;
+  isReassignable: boolean;
   name: string;
   valueType: Type;
   location: NodeLocation;

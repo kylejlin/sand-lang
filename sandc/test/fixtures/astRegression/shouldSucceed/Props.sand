@@ -1,0 +1,5 @@
+pub class Prop {
+    basic: int;
+    re reassignable: int;
+    complexType: Foo<char[+]>?;
+}
