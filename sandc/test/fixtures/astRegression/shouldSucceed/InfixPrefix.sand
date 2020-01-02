@@ -4,11 +4,11 @@ pub class InfixPrefix {
     }
 
     foo2() {
-        -if a {} * b
+        -(if a {} else {}) * b
     }
 
     foo3() {
-        -a * if b {}
+        -a * (if b {} else {})
     }
 
     foo4() {

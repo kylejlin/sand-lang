@@ -8,6 +8,6 @@ pub class Operations {
     }
 
     eirdPrecedence() {
-        -if x {} ** b + - if y {} * d - e
+        -(if x {} else {}) ** b + - (if y {} else {}) * d - e
     }
 }
