@@ -1,7 +1,27 @@
 pub open class OpenClass {
-    
+    open openMethod() {
+
+    }
+
+    pub open openReturn(): int {
+        
+    }
+
+    prot nonOpen(): int {
+
+    }
 }
 
 open class OpenPriv {
+    open openMethod() {
 
+    }
+
+    pub open openReturn(): int {
+        
+    }
+
+    prot nonOpen(): int {
+
+    }
 }

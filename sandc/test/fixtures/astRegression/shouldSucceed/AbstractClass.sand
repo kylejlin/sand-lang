@@ -1,7 +1,55 @@
 pub abstract class AbstractClass {
+    abstract abstractMethod();
 
+    abstract absReturn(): int;
+
+    pub abstract pubAbstract(): int;
+
+    open openMethod() {
+
+    }
+
+    open openReturn(): int {
+
+    }
+
+    pub open pubOpen(): int {
+
+    }
+
+    prot nonOpen() {
+
+    }
+
+    privMethod() {
+
+    }
 }
 
 abstract class AbstractPriv {
+    abstract abstractMethod();
 
+    abstract absReturn(): int;
+
+    pub abstract pubAbstract(): int;
+
+    open openMethod() {
+
+    }
+
+    open openReturn(): int {
+
+    }
+
+    pub open pubOpen(): int {
+
+    }
+
+    prot nonOpen() {
+
+    }
+
+    privMethod() {
+        
+    }
 }

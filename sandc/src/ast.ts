@@ -18,7 +18,8 @@ export enum NodeType {
 
   InstancePropertyDeclaration = "InstancePropertyDeclaration",
   StaticPropertyDeclaration = "StaticPropertyDeclaration",
-  MethodDeclaration = "MethodDeclaration",
+  ConcreteMethodDeclaration = "ConcreteMethodDeclaration",
+  AbstractMethodDeclaration = "AbstractMethodDeclaration",
 
   If = "If",
   FunctionCall = "FunctionCall",
@@ -140,7 +141,7 @@ export interface PrivClass extends Class {
   isPub: false;
 }
 
-export type ClassItem = InstancePropertyDeclaration | MethodDeclaration;
+export type ClassItem = InstancePropertyDeclaration | ConcreteMethodDeclaration;
 
 export interface TypeArgDef {
   type: NodeType.TypeArgDef;
@@ -194,15 +195,27 @@ export interface StaticPropertyDeclaration {
   location: NodeLocation;
 }
 
-export interface MethodDeclaration {
-  type: NodeType.MethodDeclaration;
+export interface ConcreteMethodDeclaration {
+  type: NodeType.ConcreteMethodDeclaration;
+  accessModifier: OptAccessModifier;
+  isStatic: boolean;
+  isOpen: boolean;
+  name: string;
+  typeArgs: TypeArgDef[];
+  args: ArgDef[];
+  returnType: Type | null;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface AbstractMethodDeclaration {
+  type: NodeType.AbstractMethodDeclaration;
   accessModifier: OptAccessModifier;
   isStatic: boolean;
   name: string;
   typeArgs: TypeArgDef[];
   args: ArgDef[];
   returnType: Type | null;
-  body: CompoundNode;
   location: NodeLocation;
 }
 
