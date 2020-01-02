@@ -1,5 +1,5 @@
+import SandScanner, { TokenType } from ".";
 import typeParser from "../../subparsers/type/prebuilt";
-import SandScanner from ".";
 
 export default function getUpcomingObjectLiteralType(
   upcoming: string,
@@ -100,20 +100,77 @@ function getUpcomingBody(upcoming: string): UpcomingBody {
   return { isInvalidObjectLiteralBody: true };
 }
 
+const TOKENS_INDICATING_BODY_IS_COMPOUND_NODE: TokenType[] = [
+  "if",
+  "else",
+  "switch",
+  "case",
+  "match",
+  "default",
+  "throw",
+  "while",
+  "loop",
+  "repeat",
+  "for",
+  "do",
+  "continue",
+  "break",
+  "return_",
+  "let!",
+  "let",
+  "re!",
+  "re",
+  "try",
+  "catch",
+  "finally",
+  "!",
+  "~",
+  "NUMBER",
+  "STRING",
+  "CHARACTER",
+  "IDENTIFIER",
+  "OBJECT_LITERAL_TYPE",
+];
+const TOKENS_INDICATING_BODY_IS_OBJECT_LITERAL_BODY: TokenType[] = [
+  "as!",
+  "instanceof",
+  "**",
+  "*",
+  "/",
+  "%",
+  "+",
+  "==",
+  "!=",
+  "~=",
+  "<",
+  "<=",
+  ">",
+  ">=",
+  "&&",
+  "||",
+  "..=",
+  "..",
+  ".",
+  "[",
+  "]",
+  "(",
+  ")",
+  "{",
+  ",",
+  ";",
+];
+
 function doesUpcomingTokenIndicateBodyToTheRightOfItIsObjectLiteralBody(
   upcoming: string,
   scanner: SandScanner,
 ): boolean {
-  if (
-    /^\s*(if|else|switch|case|match|default|throw|while|loop|repeat|for|do|continue|break|return|let!?|re!?|try|catch|finally)/.test(
-      upcoming,
-    ) ||
-    /^\s*[!~]/.test(upcoming)
-  ) {
+  const nextTokenType = getNextTokenType(upcoming);
+
+  if (TOKENS_INDICATING_BODY_IS_COMPOUND_NODE.includes(nextTokenType)) {
     return false;
   }
 
-  if (/^\s*-/.test(upcoming)) {
+  if (nextTokenType === "-") {
     throw new SyntaxError(
       "Sorry, the parser is not sophisticated enough to determine whether there is an object literal on line " +
         scanner.yylineno +
@@ -123,28 +180,21 @@ function doesUpcomingTokenIndicateBodyToTheRightOfItIsObjectLiteralBody(
     );
   }
 
-  if (
-    /^\s*(as!|instanceof|\*\*|\*|\/|%|\+|==|!=|~=|<|<=|>|>=|&&|\|\||\.\.=|\.\.|\.)/.test(
-      upcoming,
-    ) ||
-    /^\s*[[\](){,;]/.test(upcoming)
-  ) {
+  if (TOKENS_INDICATING_BODY_IS_OBJECT_LITERAL_BODY.includes(nextTokenType)) {
     return true;
   }
 
-  if (
-    /^\s*((-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b)|("(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*\")|('([^\\'\n]|\\[\\'nt])\')|([_a-zA-Z]\w*))/.test(
-      upcoming,
-    )
-  ) {
-    return false;
-  }
-
-  if (/^\s*\}/.test(upcoming)) {
+  if (nextTokenType === "}") {
     return !scanner.isExpectingCompoundNode();
   }
 
   throwUnexpectedTokenError(upcoming, scanner);
+}
+
+function getNextTokenType(input: string): TokenType {
+  const scanner = new SandScanner();
+  scanner.setInput(input);
+  return scanner.lex();
 }
 
 function throwUnexpectedTokenError(

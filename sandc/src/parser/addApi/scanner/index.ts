@@ -261,7 +261,7 @@ enum BraceRelativeLocation {
   InObjectLiteralBody = "InObjectLiteralBody",
 }
 
-type TokenType =
+export type TokenType =
   | "pub"
   | "prot"
   | "priv"
