@@ -209,6 +209,7 @@ export type Expr =
   | InfixExpr
   | PrefixExpr
   | DotExpr
+  | IndexExpr
   | CastExpr
   | If
   | FunctionCall
