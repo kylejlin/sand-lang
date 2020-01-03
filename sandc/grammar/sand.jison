@@ -507,11 +507,27 @@ oneOrMoreDotSeparatedIdentifiers
 
 typedObjectLiteral
     : OBJECT_LITERAL_TYPE "{" "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), entries: [], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: [], entries: [], location: yy.camelCase(@$) }; }
     | OBJECT_LITERAL_TYPE "{" objectEntries "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), entries: $3, location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: [], entries: $3, location: yy.camelCase(@$) }; }
     | OBJECT_LITERAL_TYPE "{" objectEntries "," "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), entries: $3, location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: [], entries: $3, location: yy.camelCase(@$) }; }
+
+    | OBJECT_LITERAL_TYPE "{" objectCopies "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: [], location: yy.camelCase(@$) }; }
+    | OBJECT_LITERAL_TYPE "{" objectCopies "," "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: [], location: yy.camelCase(@$) }; }
+    | OBJECT_LITERAL_TYPE "{" objectCopies "," objectEntries "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: $5, location: yy.camelCase(@$) }; }
+    | OBJECT_LITERAL_TYPE "{" objectCopies "," objectEntries "," "}"
+        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: $5, location: yy.camelCase(@$) }; }
+    ;
+
+objectCopies
+    : "..." simpleExpression
+        { $$ = [{ type: yy.NodeType.ObjectCopy, source: $2, location: yy.camelCase(@$) }]; }
+    | objectCopies "," "..." simpleExpression
+        { $$ = $1.concat([{ type: yy.NodeType.ObjectCopy, source: $2, location: yy.merge(@3, @4) }]); }
     ;
 
 objectEntries

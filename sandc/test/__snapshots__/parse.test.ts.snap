@@ -4022,6 +4022,7 @@ Object {
             },
             "type": "CastExpr",
             "value": Object {
+              "copies": Array [],
               "entries": Array [],
               "location": Object {
                 "firstColumn": 8,
@@ -11379,7 +11380,7 @@ Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 55,
+    "lastLine": 76,
   },
   "packageName": null,
   "privClasses": Array [],
@@ -11392,6 +11393,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [],
             "location": Object {
               "firstColumn": 8,
@@ -11432,6 +11434,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [
               Object {
                 "key": "baz",
@@ -11533,6 +11536,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [
               Object {
                 "key": "baz",
@@ -11634,6 +11638,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [
               Object {
                 "key": "baz",
@@ -11758,6 +11763,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [
               Object {
                 "key": "baz",
@@ -11810,6 +11816,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [
               Object {
                 "key": "baz",
@@ -11862,6 +11869,7 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
+            "copies": Array [],
             "entries": Array [
               Object {
                 "key": "baz",
@@ -11926,84 +11934,41 @@ Object {
         "args": Array [],
         "body": Array [
           Object {
-            "entries": Array [
+            "copies": Array [
               Object {
-                "key": "baz",
                 "location": Object {
                   "firstColumn": 12,
                   "firstLine": 50,
-                  "lastColumn": 18,
+                  "lastColumn": 21,
                   "lastLine": 50,
                 },
-                "type": "ObjectEntry",
-                "value": Object {
+                "source": Object {
                   "location": Object {
-                    "firstColumn": 17,
+                    "firstColumn": 15,
                     "firstLine": 50,
-                    "lastColumn": 18,
+                    "lastColumn": 21,
                     "lastLine": 50,
                   },
-                  "type": "NumberLiteral",
-                  "value": "8",
+                  "name": "other1",
+                  "type": "Identifier",
                 },
-              },
-              Object {
-                "key": "bar",
-                "location": Object {
-                  "firstColumn": 12,
-                  "firstLine": 51,
-                  "lastColumn": 15,
-                  "lastLine": 51,
-                },
-                "type": "ObjectEntry",
-                "value": null,
-              },
-              Object {
-                "key": "qux",
-                "location": Object {
-                  "firstColumn": 12,
-                  "firstLine": 52,
-                  "lastColumn": 21,
-                  "lastLine": 52,
-                },
-                "type": "ObjectEntry",
-                "value": Object {
-                  "location": Object {
-                    "firstColumn": 17,
-                    "firstLine": 52,
-                    "lastColumn": 21,
-                    "lastLine": 52,
-                  },
-                  "type": "StringLiteral",
-                  "value": "\\"yo\\"",
-                },
+                "type": "ObjectCopy",
               },
             ],
+            "entries": Array [],
             "location": Object {
               "firstColumn": 8,
               "firstLine": 49,
               "lastColumn": 9,
-              "lastLine": 53,
+              "lastLine": 51,
             },
             "type": "TypedObjectLiteral",
             "valueType": Object {
-              "args": Array [
-                Object {
-                  "args": Array [],
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 49,
-                    "lastColumn": 15,
-                    "lastLine": 49,
-                  },
-                  "name": "int",
-                  "type": "Type",
-                },
-              ],
+              "args": Array [],
               "location": Object {
                 "firstColumn": 8,
                 "firstLine": 49,
-                "lastColumn": 16,
+                "lastColumn": 11,
                 "lastLine": 49,
               },
               "name": "Foo",
@@ -12018,7 +11983,274 @@ Object {
           "firstColumn": 30,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 54,
+          "lastLine": 52,
+        },
+        "name": "objCopy",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "copies": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 56,
+                  "lastColumn": 21,
+                  "lastLine": 56,
+                },
+                "source": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 56,
+                    "lastColumn": 21,
+                    "lastLine": 56,
+                  },
+                  "name": "other1",
+                  "type": "Identifier",
+                },
+                "type": "ObjectCopy",
+              },
+            ],
+            "entries": Array [],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 55,
+              "lastColumn": 9,
+              "lastLine": 57,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 55,
+                "lastColumn": 11,
+                "lastLine": 55,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 58,
+        },
+        "name": "objCopyTrailingComma",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "copies": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 62,
+                  "lastColumn": 21,
+                  "lastLine": 62,
+                },
+                "source": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 62,
+                    "lastColumn": 21,
+                    "lastLine": 62,
+                  },
+                  "name": "other1",
+                  "type": "Identifier",
+                },
+                "type": "ObjectCopy",
+              },
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 63,
+                  "lastColumn": 21,
+                  "lastLine": 63,
+                },
+                "source": ",",
+                "type": "ObjectCopy",
+              },
+            ],
+            "entries": Array [],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 61,
+              "lastColumn": 9,
+              "lastLine": 64,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 61,
+                "lastColumn": 11,
+                "lastLine": 61,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 65,
+        },
+        "name": "objCopyMultiple",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [
+          Object {
+            "copies": Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 69,
+                  "lastColumn": 21,
+                  "lastLine": 69,
+                },
+                "source": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 69,
+                    "lastColumn": 21,
+                    "lastLine": 69,
+                  },
+                  "name": "other1",
+                  "type": "Identifier",
+                },
+                "type": "ObjectCopy",
+              },
+              Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 70,
+                  "lastColumn": 21,
+                  "lastLine": 70,
+                },
+                "source": ",",
+                "type": "ObjectCopy",
+              },
+            ],
+            "entries": Array [
+              Object {
+                "key": "baz",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 71,
+                  "lastColumn": 18,
+                  "lastLine": 71,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 71,
+                    "lastColumn": 18,
+                    "lastLine": 71,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "8",
+                },
+              },
+              Object {
+                "key": "bar",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 72,
+                  "lastColumn": 15,
+                  "lastLine": 72,
+                },
+                "type": "ObjectEntry",
+                "value": null,
+              },
+              Object {
+                "key": "qux",
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 73,
+                  "lastColumn": 21,
+                  "lastLine": 73,
+                },
+                "type": "ObjectEntry",
+                "value": Object {
+                  "location": Object {
+                    "firstColumn": 17,
+                    "firstLine": 73,
+                    "lastColumn": 21,
+                    "lastLine": 73,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"yo\\"",
+                },
+              },
+            ],
+            "location": Object {
+              "firstColumn": 8,
+              "firstLine": 68,
+              "lastColumn": 9,
+              "lastLine": 74,
+            },
+            "type": "TypedObjectLiteral",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 68,
+                    "lastColumn": 15,
+                    "lastLine": 68,
+                  },
+                  "name": "int",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 68,
+                "lastColumn": 16,
+                "lastLine": 68,
+              },
+              "name": "Foo",
+              "type": "Type",
+            },
+          },
+        ],
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 30,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 75,
         },
         "name": "mixed",
         "returnType": null,
@@ -12030,7 +12262,7 @@ Object {
       "firstColumn": 0,
       "firstLine": 1,
       "lastColumn": 1,
-      "lastLine": 55,
+      "lastLine": 76,
     },
     "name": "TypedObjectLiterals",
     "overridability": "Final",

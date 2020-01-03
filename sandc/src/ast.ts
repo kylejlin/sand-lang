@@ -25,6 +25,7 @@ export enum NodeType {
   If = "If",
   FunctionCall = "FunctionCall",
   TypedObjectLiteral = "TypedObjectLiteral",
+  ObjectCopy = "ObjectCopy",
   ObjectEntry = "ObjectEntry",
   ArrayLiteral = "ArrayLiteral",
   RangeLiteral = "RangeLiteral",
@@ -376,7 +377,14 @@ export interface FunctionCall {
 export interface TypedObjectLiteral {
   type: NodeType.TypedObjectLiteral;
   valueType: Type;
+  copies: ObjectCopy[];
   entries: ObjectEntry[];
+  location: NodeLocation;
+}
+
+export interface ObjectCopy {
+  type: NodeType.ObjectCopy;
+  source: Expr;
   location: NodeLocation;
 }
 

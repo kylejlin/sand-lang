@@ -379,6 +379,7 @@ export type TokenType =
   | "&&"
   | "||"
   | "?"
+  | "..."
   | "..="
   | ".."
   | "."
@@ -494,6 +495,7 @@ const TOKEN_TYPES: TokenType[] = [
   "&&",
   "||",
   "?",
+  "...",
   "..=",
   "..",
   ".",
@@ -664,6 +666,7 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "&&",
   "||",
   "?",
+  "...",
   "..=",
   "..",
   ".",

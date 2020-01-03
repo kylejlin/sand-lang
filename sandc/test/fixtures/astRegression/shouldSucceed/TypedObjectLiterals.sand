@@ -45,8 +45,29 @@ pub class TypedObjectLiterals {
         }
     }
 
+    objCopy() {
+        Foo {
+            ...other1
+        }
+    }
+
+    objCopyTrailingComma() {
+        Foo {
+            ...other1,
+        }
+    }
+
+    objCopyMultiple() {
+        Foo {
+            ...other1,
+            ...other2,
+        }
+    }
+
     mixed() {
         Foo<int> {
+            ...other1,
+            ...other2,
             baz: 8,
             bar,
             qux: "yo",
