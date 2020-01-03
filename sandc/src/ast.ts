@@ -200,6 +200,7 @@ export interface ConcreteMethodDeclaration {
   accessModifier: OptAccessModifier;
   isStatic: boolean;
   isOpen: boolean;
+  isOverride: boolean;
   name: string;
   typeArgs: TypeArgDef[];
   args: ArgDef[];

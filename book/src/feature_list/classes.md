@@ -233,28 +233,28 @@ open class Animal {
     genus: String;
     species: String;
 
-    getLatinName(): String {
+    getLatinName(this): String {
         genus + species
     }
 
-    open greet() {}
+    open greet(this) {}
 }
 
 class Dog extends Animal {
     use System.out.println;
 
     // Illegal because getLatinName is non-open
-    getLatinName(): String {
+    getLatinName(this): String {
         "Canis lupus"
     }
 
     // Illegal because Dog.greet is not marked as an override
-    greet() {
+    greet(this) {
         println("Woof");
     }
 
     // Legal
-    override greet() {
+    override greet(this) {
         println("Woof");
     }
 }
@@ -265,16 +265,60 @@ Static methods cannot be `open` because Sand compiles to Java, and Java does not
 ## Implicit `prot` accessibility
 
 Normally, methods are private by default.
-However, if a method is `open` or `abstract`,
+However, if a method is `open`, `abstract`, or an `override`,
 it is protected by default.
 This is because `open` and `abstract` methods must be overridable or implementable by subclasses, which implies they must be accessible to the subclasses, and therefore have a minimum accesibility level of `prot`.
+Similarly, method `override`s can only be written for methods that can be accessed by the overriding (sub) class, which are by definition `prot` at a minimum.
 
-Hence, the following is redundant, and should instead be simply written `open foo()`:
+Hence, the following is redundant, and should instead be simply written `open foo()` and `override foo()`, respectively:
 
 ```sand
-open class Foo {
-    prot open foo() {
+open class Super {
+    prot open foo(this) {
 //  ^^^^ Unnecessary
+    }
+}
+
+class Sub extends Super {
+    prot override foo(this) {
+//  ^^^^ Unnecessary
+    }
+}
+```
+
+## `override` does not imply `open`
+
+`override` does not imply `open`—if you want an overridden method to in turn be overridable, you have to explicitly mark it `open`.
+
+Hence, the following is illegal:
+
+```sand
+open class Animal {
+    open species(this): String {
+
+    }
+}
+
+open class Dog extends Animal {
+    override species(this): String {
+
+    }
+}
+
+class Corgi extends Dog {
+    // Illegal override, because Dog.species() is not open
+    override species(this): String {
+
+    }
+}
+```
+
+To fix this, you would make `Dog.species` `open`:
+
+```sand
+open class Dog extends Animal {
+    open override species(this): String {
+
     }
 }
 ```

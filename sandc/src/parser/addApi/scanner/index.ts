@@ -174,7 +174,7 @@ export default class SandScanner implements Scanner<TokenType> {
       this.braceRelativeLocationStack.push(BraceRelativeLocation.InClassBody);
     } else if (
       top ===
-      BraceRelativeLocation.BetweenMethodDeclarationRightParenAndStartOfMethodBody
+      BraceRelativeLocation.BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody
     ) {
       this.braceRelativeLocationStack.pop();
       this.braceRelativeLocationStack.push(BraceRelativeLocation.InMethodBody);
@@ -217,8 +217,20 @@ export default class SandScanner implements Scanner<TokenType> {
 
     if (top === BraceRelativeLocation.InClassBody) {
       this.braceRelativeLocationStack.push(
-        BraceRelativeLocation.BetweenMethodDeclarationRightParenAndStartOfMethodBody,
+        BraceRelativeLocation.BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody,
       );
+    }
+  }
+
+  onSemicolonEncountered(): void {
+    const top = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+
+    if (
+      top === BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon
+    ) {
+      this.braceRelativeLocationStack.pop();
     }
   }
 
@@ -226,6 +238,18 @@ export default class SandScanner implements Scanner<TokenType> {
     this.braceRelativeLocationStack.push(
       BraceRelativeLocation.BetweenClassKeywordAndStartOfClassBody,
     );
+  }
+
+  onAbstractKeywordEncountered(): void {
+    const top = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+
+    if (top === BraceRelativeLocation.InClassBody) {
+      this.braceRelativeLocationStack.push(
+        BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon,
+      );
+    }
   }
 
   onStatementWithCompoundNodeStart(): void {
@@ -253,7 +277,8 @@ export default class SandScanner implements Scanner<TokenType> {
 enum BraceRelativeLocation {
   BetweenClassKeywordAndStartOfClassBody = "BetweenClassKeywordAndStartOfClassBody",
   InClassBody = "InClassBody",
-  BetweenMethodDeclarationRightParenAndStartOfMethodBody = "BetweenMethodDeclarationRightParenAndStartOfMethodBody",
+  BetweenAbstractMethodDeclarationAndSemicolon = "BetweenAbstractMethodDeclarationAndSemicolon",
+  BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody = "BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody",
   InMethodBody = "InMethodBody",
   BetweenFirstTokenAndStartOfCompoundNode = "BetweenFirstTokenAndStartOfCompoundNode",
   InCompoundNode = "InCompoundNode",
@@ -269,6 +294,7 @@ export type TokenType =
   | "inline"
   | "open"
   | "abstract"
+  | "override"
   | "final"
   | "magic"
   | "class"
@@ -383,6 +409,7 @@ const TOKEN_TYPES: TokenType[] = [
   "inline",
   "open",
   "abstract",
+  "override",
   "final",
   "magic",
   "class",
@@ -504,7 +531,14 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "static",
   "inline",
   "open",
-  "abstract",
+  [
+    /abstract\b/,
+    (scanner: SandScanner) => {
+      scanner.onAbstractKeywordEncountered();
+      return "abstract";
+    },
+  ],
+  "override",
   "final",
   [
     /class\b/,
@@ -666,7 +700,13 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   ],
   ":",
   ",",
-  ";",
+  [
+    /;/,
+    (scanner: SandScanner) => {
+      scanner.onSemicolonEncountered();
+      return ";";
+    },
+  ],
 ];
 
 interface PointLocation {

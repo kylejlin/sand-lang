@@ -85,6 +85,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
+          "isOverride": false,
           "isStatic": false,
           "location": Object {
             "firstColumn": 28,
@@ -102,6 +103,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
+          "isOverride": false,
           "isStatic": false,
           "location": Object {
             "firstColumn": 28,
@@ -129,6 +131,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
+          "isOverride": false,
           "isStatic": false,
           "location": Object {
             "firstColumn": 4,
@@ -156,6 +159,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 4,
@@ -173,6 +177,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 28,
@@ -274,6 +279,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 33,
@@ -291,6 +297,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 33,
@@ -318,6 +325,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 4,
@@ -345,6 +353,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 4,
@@ -362,6 +371,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 33,
@@ -468,6 +478,7 @@ Object {
         ],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 33,
@@ -578,6 +589,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -617,6 +629,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -676,6 +689,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -745,6 +759,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -835,6 +850,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -929,6 +945,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -988,6 +1005,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
@@ -1100,6 +1118,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 20,
@@ -1187,6 +1206,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 20,
@@ -1283,6 +1303,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 20,
@@ -1388,6 +1409,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 20,
@@ -1467,6 +1489,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 20,
@@ -1564,6 +1587,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 20,
@@ -1631,6 +1655,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -1689,6 +1714,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -1757,6 +1783,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -1834,6 +1861,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -1901,6 +1929,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -1978,6 +2007,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -2064,6 +2094,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -2133,6 +2164,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -2211,6 +2243,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 32,
@@ -2303,6 +2336,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2371,6 +2405,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2440,6 +2475,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2517,6 +2553,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2584,6 +2621,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2661,6 +2699,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2739,6 +2778,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2818,6 +2858,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2906,6 +2947,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -2992,6 +3034,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -3069,6 +3112,7 @@ Object {
             },
           ],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 25,
@@ -3136,6 +3180,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3194,6 +3239,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3263,6 +3309,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3334,6 +3381,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3392,6 +3440,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3461,6 +3510,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3532,6 +3582,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3610,6 +3661,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -3692,6 +3744,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -3775,6 +3828,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -3835,6 +3889,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -3895,6 +3950,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -3989,6 +4045,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4095,6 +4152,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4191,6 +4249,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4294,6 +4353,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4386,6 +4446,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4491,6 +4552,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4594,6 +4656,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4664,6 +4727,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 15,
@@ -4779,6 +4843,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -4860,6 +4925,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -4953,6 +5019,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -5046,6 +5113,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -5160,6 +5228,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -5274,6 +5343,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -5377,6 +5447,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -5501,6 +5572,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 29,
@@ -5712,6 +5784,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 4,
@@ -5773,6 +5846,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -5800,6 +5874,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -5839,6 +5914,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -5901,6 +5977,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -5940,6 +6017,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -5991,6 +6069,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -6030,6 +6109,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -6149,6 +6229,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -6234,6 +6315,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -6285,6 +6367,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -6316,6 +6399,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -6371,6 +6455,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -6412,6 +6497,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -6598,6 +6684,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 4,
@@ -6690,6 +6777,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -6771,6 +6859,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -6852,6 +6941,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -6921,6 +7011,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -6989,6 +7080,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -7066,6 +7158,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 22,
@@ -7117,6 +7210,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 26,
@@ -7134,6 +7228,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 4,
@@ -7194,6 +7289,7 @@ Object {
         ],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 26,
@@ -7291,6 +7387,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7342,6 +7439,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7383,6 +7481,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7434,6 +7533,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7475,6 +7575,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7526,6 +7627,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7567,6 +7669,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7618,6 +7721,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7680,6 +7784,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7742,6 +7847,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7804,6 +7910,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7866,6 +7973,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -7930,6 +8038,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -8013,6 +8122,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -8096,6 +8206,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 28,
@@ -8158,6 +8269,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -8208,6 +8320,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -8528,6 +8641,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 36,
@@ -8675,6 +8789,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
+          "isOverride": false,
           "isStatic": false,
           "location": Object {
             "firstColumn": 20,
@@ -8692,6 +8807,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": true,
+          "isOverride": false,
           "isStatic": false,
           "location": Object {
             "firstColumn": 4,
@@ -8719,6 +8835,7 @@ Object {
           "args": Array [],
           "body": Array [],
           "isOpen": false,
+          "isOverride": false,
           "isStatic": true,
           "location": Object {
             "firstColumn": 4,
@@ -8765,6 +8882,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 25,
@@ -8782,6 +8900,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": true,
+        "isOverride": false,
         "isStatic": false,
         "location": Object {
           "firstColumn": 4,
@@ -8809,6 +8928,7 @@ Object {
         "args": Array [],
         "body": Array [],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 4,
@@ -8921,6 +9041,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 21,
@@ -9039,6 +9160,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 21,
@@ -9213,6 +9335,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 21,
@@ -9233,6 +9356,494 @@ Object {
       "lastLine": 13,
     },
     "name": "Operations",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: Overrides.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 36,
+  },
+  "packageName": null,
+  "privClasses": Array [
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 22,
+            "firstLine": 5,
+            "lastColumn": 35,
+            "lastLine": 6,
+          },
+          "name": "species",
+          "returnType": Object {
+            "args": Array [],
+            "location": Object {
+              "firstColumn": 28,
+              "firstLine": 6,
+              "lastColumn": 34,
+              "lastLine": 6,
+            },
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "AbstractMethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 22,
+            "firstLine": 5,
+            "lastColumn": 25,
+            "lastLine": 7,
+          },
+          "name": "greet",
+          "returnType": null,
+          "type": "AbstractMethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 5,
+        "lastColumn": 1,
+        "lastLine": 8,
+      },
+      "name": "Animal",
+      "overridability": "Abstract",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [],
+    },
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 14,
+                "lastColumn": 21,
+                "lastLine": 14,
+              },
+              "type": "StringLiteral",
+              "value": "\\"Canis lupus\\"",
+            },
+          ],
+          "isOpen": false,
+          "isOverride": true,
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 30,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 15,
+          },
+          "name": "species",
+          "returnType": Object {
+            "args": Array [],
+            "location": Object {
+              "firstColumn": 28,
+              "firstLine": 13,
+              "lastColumn": 34,
+              "lastLine": 13,
+            },
+            "name": "String",
+            "type": "Type",
+          },
+          "type": "ConcreteMethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "left": Object {
+                    "left": Object {
+                      "args": Array [],
+                      "callee": Object {
+                        "location": Object {
+                          "firstColumn": 16,
+                          "firstLine": 18,
+                          "lastColumn": 20,
+                          "lastLine": 18,
+                        },
+                        "name": "bark",
+                        "type": "Identifier",
+                      },
+                      "location": Object {
+                        "firstColumn": 16,
+                        "firstLine": 18,
+                        "lastColumn": 22,
+                        "lastLine": 18,
+                      },
+                      "type": "FunctionCall",
+                      "typeArgs": Array [],
+                    },
+                    "location": Object {
+                      "firstColumn": 16,
+                      "firstLine": 18,
+                      "lastColumn": 28,
+                      "lastLine": 18,
+                    },
+                    "operation": "+",
+                    "right": Object {
+                      "location": Object {
+                        "firstColumn": 25,
+                        "firstLine": 18,
+                        "lastColumn": 28,
+                        "lastLine": 18,
+                      },
+                      "type": "StringLiteral",
+                      "value": "\\" \\"",
+                    },
+                    "type": "InfixExpr",
+                  },
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 18,
+                    "lastColumn": 40,
+                    "lastLine": 18,
+                  },
+                  "operation": "+",
+                  "right": Object {
+                    "args": Array [],
+                    "callee": Object {
+                      "location": Object {
+                        "firstColumn": 31,
+                        "firstLine": 18,
+                        "lastColumn": 38,
+                        "lastLine": 18,
+                      },
+                      "name": "species",
+                      "type": "Identifier",
+                    },
+                    "location": Object {
+                      "firstColumn": 31,
+                      "firstLine": 18,
+                      "lastColumn": 40,
+                      "lastLine": 18,
+                    },
+                    "type": "FunctionCall",
+                    "typeArgs": Array [],
+                  },
+                  "type": "InfixExpr",
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 18,
+                  "lastColumn": 15,
+                  "lastLine": 18,
+                },
+                "name": "println",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 18,
+                "lastColumn": 41,
+                "lastLine": 18,
+              },
+              "type": "FunctionCall",
+              "typeArgs": Array [],
+            },
+          ],
+          "isOpen": true,
+          "isOverride": true,
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 30,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 19,
+          },
+          "name": "greet",
+          "returnType": null,
+          "type": "ConcreteMethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 22,
+                    "lastColumn": 22,
+                    "lastLine": 22,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"Woof\\"",
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 22,
+                  "lastColumn": 15,
+                  "lastLine": 22,
+                },
+                "name": "println",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 22,
+                "lastColumn": 23,
+                "lastLine": 22,
+              },
+              "type": "FunctionCall",
+              "typeArgs": Array [],
+            },
+          ],
+          "isOpen": true,
+          "isOverride": false,
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 30,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 23,
+          },
+          "name": "bark",
+          "returnType": null,
+          "type": "ConcreteMethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 10,
+        "lastColumn": 1,
+        "lastLine": 24,
+      },
+      "name": "Dog",
+      "overridability": "Open",
+      "superClass": Object {
+        "args": Array [],
+        "location": Object {
+          "firstColumn": 23,
+          "firstLine": 10,
+          "lastColumn": 29,
+          "lastLine": 10,
+        },
+        "name": "Animal",
+        "type": "Type",
+      },
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [
+        Object {
+          "alias": null,
+          "location": Object {
+            "firstColumn": 4,
+            "firstLine": 11,
+            "lastColumn": 27,
+            "lastLine": 11,
+          },
+          "name": "System.out.println",
+          "type": "Use",
+        },
+      ],
+    },
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "callee": Object {
+                    "location": Object {
+                      "firstColumn": 16,
+                      "firstLine": 30,
+                      "lastColumn": 20,
+                      "lastLine": 30,
+                    },
+                    "name": "bark",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 30,
+                    "lastColumn": 22,
+                    "lastLine": 30,
+                  },
+                  "type": "FunctionCall",
+                  "typeArgs": Array [],
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 30,
+                  "lastColumn": 15,
+                  "lastLine": 30,
+                },
+                "name": "println",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 30,
+                "lastColumn": 23,
+                "lastLine": 30,
+              },
+              "type": "FunctionCall",
+              "typeArgs": Array [],
+            },
+          ],
+          "isOpen": false,
+          "isOverride": true,
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 22,
+            "firstLine": 26,
+            "lastColumn": 5,
+            "lastLine": 31,
+          },
+          "name": "greet",
+          "returnType": null,
+          "type": "ConcreteMethodDeclaration",
+          "typeArgs": Array [],
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 34,
+                    "lastColumn": 22,
+                    "lastLine": 34,
+                  },
+                  "type": "StringLiteral",
+                  "value": "\\"woof\\"",
+                },
+              ],
+              "callee": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 34,
+                  "lastColumn": 15,
+                  "lastLine": 34,
+                },
+                "name": "println",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 34,
+                "lastColumn": 23,
+                "lastLine": 34,
+              },
+              "type": "FunctionCall",
+              "typeArgs": Array [],
+            },
+          ],
+          "isOpen": false,
+          "isOverride": true,
+          "isStatic": false,
+          "location": Object {
+            "firstColumn": 22,
+            "firstLine": 26,
+            "lastColumn": 5,
+            "lastLine": 35,
+          },
+          "name": "bark",
+          "returnType": null,
+          "type": "ConcreteMethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 1,
+        "lastColumn": 1,
+        "lastLine": 36,
+      },
+      "name": "Pug",
+      "overridability": "Final",
+      "superClass": Object {
+        "args": Array [],
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 26,
+          "lastColumn": 21,
+          "lastLine": 26,
+        },
+        "name": "Dog",
+        "type": "Type",
+      },
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [
+        Object {
+          "alias": null,
+          "location": Object {
+            "firstColumn": 4,
+            "firstLine": 27,
+            "lastColumn": 27,
+            "lastLine": 27,
+          },
+          "name": "System.out.println",
+          "type": "Use",
+        },
+      ],
+    },
+  ],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 3,
+    },
+    "name": "Overrides",
     "overridability": "Final",
     "superClass": null,
     "type": "Class",
@@ -9711,6 +10322,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -9759,6 +10371,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -9807,6 +10420,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -9875,6 +10489,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -9933,6 +10548,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10001,6 +10617,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10058,6 +10675,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10129,6 +10747,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10157,6 +10776,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10215,6 +10835,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10273,6 +10894,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10320,6 +10942,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10378,6 +11001,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10434,6 +11058,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10491,6 +11116,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10559,6 +11185,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 17,
@@ -10632,6 +11259,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -10732,6 +11360,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -10832,6 +11461,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -10955,6 +11585,7 @@ Object {
           },
         ],
         "isOpen": false,
+        "isOverride": false,
         "isStatic": true,
         "location": Object {
           "firstColumn": 30,
@@ -11044,7 +11675,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericMethodDecl
 [Error: Parse error on line 2:
 ...singParens { <T> MissingParens<T> ...
 --------------------^
-Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'copy', 'pub', '}', 'open', 'abstract', 're', 'static', 'prot', got 'OBJECT_LITERAL_TYPE']
+Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'copy', 'pub', '}', 'open', 'abstract', 're', 'static', 'override', 'prot', got 'OBJECT_LITERAL_TYPE']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericMethodDeclarations/MissingParens.sand error line number 1`] = `2`;
