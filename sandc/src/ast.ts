@@ -144,8 +144,10 @@ export interface PrivClass extends Class {
 
 export type ClassItem =
   | InstancePropertyDeclaration
+  | StaticPropertyDeclaration
   | InstantiationRestriction
-  | ConcreteMethodDeclaration;
+  | ConcreteMethodDeclaration
+  | AbstractMethodDeclaration;
 
 export interface TypeArgDef {
   type: NodeType.TypeArgDef;
