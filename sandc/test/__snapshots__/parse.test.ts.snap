@@ -7343,6 +7343,161 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: InstantiationRestrictions.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 19,
+  },
+  "packageName": null,
+  "privClasses": Array [
+    Object {
+      "copies": Array [],
+      "isPub": false,
+      "items": Array [
+        Object {
+          "accessModifier": null,
+          "isReassignable": false,
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 11,
+            "lastColumn": 16,
+            "lastLine": 12,
+          },
+          "name": "foo",
+          "type": "InstancePropertyDeclaration",
+          "valueType": Object {
+            "args": Array [],
+            "location": Object {
+              "firstColumn": 9,
+              "firstLine": 12,
+              "lastColumn": 15,
+              "lastLine": 12,
+            },
+            "name": "String",
+            "type": "Type",
+          },
+        },
+        Object {
+          "level": "prot",
+          "location": Object {
+            "firstColumn": 4,
+            "firstLine": 14,
+            "lastColumn": 14,
+            "lastLine": 14,
+          },
+          "type": "InstantiationRestriction",
+        },
+        Object {
+          "accessModifier": null,
+          "args": Array [],
+          "body": Array [],
+          "isOpen": false,
+          "isOverride": false,
+          "isStatic": true,
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 11,
+            "lastColumn": 5,
+            "lastLine": 18,
+          },
+          "name": "bar",
+          "returnType": null,
+          "type": "ConcreteMethodDeclaration",
+          "typeArgs": Array [],
+        },
+      ],
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 1,
+        "lastColumn": 1,
+        "lastLine": 19,
+      },
+      "name": "ProtInst",
+      "overridability": "Final",
+      "superClass": null,
+      "type": "Class",
+      "typeArgDefs": Array [],
+      "useStatements": Array [],
+    },
+  ],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": "pub",
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 2,
+          "lastColumn": 20,
+          "lastLine": 2,
+        },
+        "name": "foo",
+        "type": "InstancePropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 2,
+            "lastColumn": 19,
+            "lastLine": 2,
+          },
+          "name": "String",
+          "type": "Type",
+        },
+      },
+      Object {
+        "level": "pub",
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 4,
+          "lastColumn": 13,
+          "lastLine": 4,
+        },
+        "type": "InstantiationRestriction",
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Array [],
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 36,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "bar",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 9,
+    },
+    "name": "InstantiationRestrictions",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: LocalDeclarations.sand 1`] = `
 Object {
   "imports": Array [],
@@ -11675,7 +11830,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericMethodDecl
 [Error: Parse error on line 2:
 ...singParens { <T> MissingParens<T> ...
 --------------------^
-Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'copy', 'pub', '}', 'open', 'abstract', 're', 'static', 'override', 'prot', got 'OBJECT_LITERAL_TYPE']
+Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'copy', 'pub', '}', 'open', 'abstract', 're', 'static', 'prot', 'override', got 'OBJECT_LITERAL_TYPE']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericMethodDeclarations/MissingParens.sand error line number 1`] = `2`;

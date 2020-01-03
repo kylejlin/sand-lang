@@ -190,6 +190,11 @@ classItem
     | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER "=" ifNode ";"
         { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.camelCase(@$) }; }
 
+    | "pub" "inst" ";"
+        { $$ = { type: yy.NodeType.InstantiationRestriction, level: "pub", location: yy.camelCase(@$) }; }
+    | "prot" "inst" ";"
+        { $$ = { type: yy.NodeType.InstantiationRestriction, level: "prot", location: yy.camelCase(@$) }; }
+
     | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: true, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
     | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundNode

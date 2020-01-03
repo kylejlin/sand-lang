@@ -18,6 +18,7 @@ export enum NodeType {
 
   InstancePropertyDeclaration = "InstancePropertyDeclaration",
   StaticPropertyDeclaration = "StaticPropertyDeclaration",
+  InstantiationRestriction = "InstantiationRestriction",
   ConcreteMethodDeclaration = "ConcreteMethodDeclaration",
   AbstractMethodDeclaration = "AbstractMethodDeclaration",
 
@@ -141,7 +142,10 @@ export interface PrivClass extends Class {
   isPub: false;
 }
 
-export type ClassItem = InstancePropertyDeclaration | ConcreteMethodDeclaration;
+export type ClassItem =
+  | InstancePropertyDeclaration
+  | InstantiationRestriction
+  | ConcreteMethodDeclaration;
 
 export interface TypeArgDef {
   type: NodeType.TypeArgDef;
@@ -192,6 +196,12 @@ export interface StaticPropertyDeclaration {
   name: string;
   valueType: Type | null;
   initialValue: Expr;
+  location: NodeLocation;
+}
+
+export interface InstantiationRestriction {
+  type: NodeType.InstantiationRestriction;
+  level: "pub" | "prot";
   location: NodeLocation;
 }
 
