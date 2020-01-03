@@ -519,10 +519,14 @@ objectEntries
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
     | NON_RESERVED_IDENTIFIER ":" ifNode
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
+    | NON_RESERVED_IDENTIFIER
+        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: null, location: yy.camelCase(@$) }]; }
     | objectEntries "," NON_RESERVED_IDENTIFIER ":" simpleExpression
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     | objectEntries "," NON_RESERVED_IDENTIFIER ":" ifNode
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
+    | objectEntries "," NON_RESERVED_IDENTIFIER
+        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: null, location: yy.camelCase(@3) }]); }
     ;
 
 arrayLiteral

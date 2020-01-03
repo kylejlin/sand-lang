@@ -26,4 +26,30 @@ pub class TypedObjectLiterals {
             qux: "yo",
         }
     }
+
+    shorthand() {
+        Foo {
+            baz
+        }
+    }
+
+    shorthandTrailingComma() {
+        Foo {
+            baz,
+        }
+    }
+
+    shorthandTypeArgs() {
+        Foo<int> {
+            baz
+        }
+    }
+
+    mixed() {
+        Foo<int> {
+            baz: 8,
+            bar,
+            qux: "yo",
+        }
+    }
 }

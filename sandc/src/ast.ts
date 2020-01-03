@@ -383,7 +383,7 @@ export interface TypedObjectLiteral {
 export interface ObjectEntry {
   type: NodeType.ObjectEntry;
   key: string;
-  value: Expr;
+  value: Expr | null;
   location: NodeLocation;
 }
 
