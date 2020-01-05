@@ -92,7 +92,7 @@ break;
 case 3:
  this.$ = $$[$0-2].map(ident => ident.name).join("."); 
 break;
-case 4: case 6: case 9: case 13: case 19: case 34: case 38: case 67: case 69: case 73: case 88: case 161: case 163:
+case 4: case 6: case 9: case 13: case 19: case 34: case 38: case 67: case 69: case 88: case 161: case 163:
  this.$ = []; 
 break;
 case 5:
@@ -113,7 +113,7 @@ break;
 case 12:
  this.$ = { ...$$[$0], isPub: true, location: yy.camelCase(this._$) }; 
 break;
-case 14: case 35: case 75: case 152: case 153: case 162:
+case 14: case 35: case 152: case 153: case 162:
  this.$ = $$[$0-1]; 
 break;
 case 15:
@@ -239,10 +239,19 @@ break;
 case 72:
  this.$ = $$[$0-4].concat([{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.merge(_$[$0-2], _$[$0]) }]); 
 break;
-case 74: case 77:
+case 73:
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [], location: yy.camelCase(this._$) }; 
+break;
+case 74: case 75:
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+break;
+case 76:
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: $$[$0-2].concat([$$[$0-1]]), location: yy.camelCase(this._$) }; 
+break;
+case 77:
  this.$ = [$$[$0-1]]; 
 break;
-case 76: case 79:
+case 79:
  this.$ = $$[$0-2].concat([$$[$0-1]]); 
 break;
 case 87:

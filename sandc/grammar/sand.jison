@@ -257,13 +257,13 @@ argDefs
 
 compoundNode
     : "{" "}"
-        { $$ = []; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [], location: yy.camelCase(@$) }; }
     | "{" simpleExpression "}"
-        { $$ = [$2]; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [$2], location: yy.camelCase(@$) }; }
     | "{" nodeSequence "}"
-        { $$ = $2; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [$2], location: yy.camelCase(@$) }; }
     | "{" nodeSequence simpleExpression "}"
-        { $$ = $2.concat([$3]); }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: $2.concat([$3]), location: yy.camelCase(@$) }; }
     ;
 
 nodeSequence

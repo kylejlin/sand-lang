@@ -45,6 +45,8 @@ export enum NodeType {
   Type = "Type",
   TypeArgDef = "TypeArgDef",
   ArgDef = "ArgDef",
+
+  CompoundNode = "CompoundNode",
 }
 
 export interface NodeLocation {
@@ -240,7 +242,12 @@ export interface ArgDef {
   location: NodeLocation;
 }
 
-export type CompoundNode = (Expr | Statement)[];
+export interface CompoundNode {
+  type: NodeType.CompoundNode;
+  useStatements: Use[];
+  nodes: (Expr | Statement)[];
+  location: NodeLocation;
+}
 
 export type Expr =
   | NumberLiteral
