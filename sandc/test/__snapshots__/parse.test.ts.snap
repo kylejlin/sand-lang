@@ -13697,6 +13697,132 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: literals/Strings.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 6,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 22,
+            "firstLine": 2,
+            "lastColumn": 35,
+            "lastLine": 2,
+          },
+          "type": "StringLiteral",
+          "value": "\\"Hello world\\"",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 36,
+          "lastLine": 2,
+        },
+        "name": "greeting",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 23,
+            "firstLine": 3,
+            "lastColumn": 57,
+            "lastLine": 3,
+          },
+          "type": "StringLiteral",
+          "value": "\\"Hey\\\\nlook\\\\na\\\\nmultiline\\\\nstring!\\"",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 58,
+          "lastLine": 3,
+        },
+        "name": "multiline",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 21,
+            "firstLine": 4,
+            "lastColumn": 66,
+            "lastLine": 4,
+          },
+          "type": "StringLiteral",
+          "value": "\\"This is a quote: \\\\\\". This is a backslash \\\\\\\\\\"",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 67,
+          "lastLine": 4,
+        },
+        "name": "escapes",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 40,
+            "firstLine": 5,
+            "lastColumn": 43,
+            "lastLine": 5,
+          },
+          "type": "StringLiteral",
+          "value": "\\"x\\"",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 44,
+          "lastLine": 5,
+        },
+        "name": "oneCharLongButStillAString",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 6,
+    },
+    "name": "Strings",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: literals/TypedObjectLiterals.sand 1`] = `
 Object {
   "imports": Array [],
