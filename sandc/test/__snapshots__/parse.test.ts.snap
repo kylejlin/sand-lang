@@ -668,557 +668,6 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser parses files consistently: ArrayLiterals.sand 1`] = `
-Object {
-  "imports": Array [],
-  "location": Object {
-    "firstColumn": 0,
-    "firstLine": 1,
-    "lastColumn": 1,
-    "lastLine": 29,
-  },
-  "packageName": null,
-  "privClasses": Array [],
-  "pubClass": Object {
-    "copies": Array [],
-    "isPub": true,
-    "items": Array [
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 12,
-            "firstLine": 2,
-            "lastColumn": 5,
-            "lastLine": 4,
-          },
-          "nodes": Array [
-            Object {
-              "elements": Array [],
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 3,
-                "lastColumn": 10,
-                "lastLine": 3,
-              },
-              "type": "ArrayLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 4,
-        },
-        "name": "empty",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 13,
-            "firstLine": 6,
-            "lastColumn": 5,
-            "lastLine": 8,
-          },
-          "nodes": Array [
-            Object {
-              "elements": Array [
-                Object {
-                  "location": Object {
-                    "firstColumn": 9,
-                    "firstLine": 7,
-                    "lastColumn": 10,
-                    "lastLine": 7,
-                  },
-                  "name": "a",
-                  "type": "Identifier",
-                },
-              ],
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 7,
-                "lastColumn": 11,
-                "lastLine": 7,
-              },
-              "type": "ArrayLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 8,
-        },
-        "name": "single",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 15,
-            "firstLine": 10,
-            "lastColumn": 5,
-            "lastLine": 12,
-          },
-          "nodes": Array [
-            Object {
-              "elements": Array [
-                Object {
-                  "location": Object {
-                    "firstColumn": 9,
-                    "firstLine": 11,
-                    "lastColumn": 10,
-                    "lastLine": 11,
-                  },
-                  "name": "a",
-                  "type": "Identifier",
-                },
-                Object {
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 11,
-                    "lastColumn": 13,
-                    "lastLine": 11,
-                  },
-                  "name": "b",
-                  "type": "Identifier",
-                },
-                Object {
-                  "location": Object {
-                    "firstColumn": 15,
-                    "firstLine": 11,
-                    "lastColumn": 16,
-                    "lastLine": 11,
-                  },
-                  "name": "c",
-                  "type": "Identifier",
-                },
-              ],
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 11,
-                "lastColumn": 17,
-                "lastLine": 11,
-              },
-              "type": "ArrayLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 12,
-        },
-        "name": "multiple",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 13,
-            "firstLine": 14,
-            "lastColumn": 5,
-            "lastLine": 16,
-          },
-          "nodes": Array [
-            Object {
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 15,
-                "lastColumn": 18,
-                "lastLine": 15,
-              },
-              "operation": "~",
-              "right": Object {
-                "elements": Array [
-                  Object {
-                    "location": Object {
-                      "firstColumn": 10,
-                      "firstLine": 15,
-                      "lastColumn": 11,
-                      "lastLine": 15,
-                    },
-                    "name": "a",
-                    "type": "Identifier",
-                  },
-                  Object {
-                    "location": Object {
-                      "firstColumn": 13,
-                      "firstLine": 15,
-                      "lastColumn": 14,
-                      "lastLine": 15,
-                    },
-                    "name": "b",
-                    "type": "Identifier",
-                  },
-                  Object {
-                    "location": Object {
-                      "firstColumn": 16,
-                      "firstLine": 15,
-                      "lastColumn": 17,
-                      "lastLine": 15,
-                    },
-                    "name": "c",
-                    "type": "Identifier",
-                  },
-                ],
-                "location": Object {
-                  "firstColumn": 9,
-                  "firstLine": 15,
-                  "lastColumn": 18,
-                  "lastLine": 15,
-                },
-                "type": "ArrayLiteral",
-              },
-              "type": "PrefixExpr",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 16,
-        },
-        "name": "prefix",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 12,
-            "firstLine": 18,
-            "lastColumn": 5,
-            "lastLine": 20,
-          },
-          "nodes": Array [
-            Object {
-              "left": Object {
-                "elements": Array [
-                  Object {
-                    "location": Object {
-                      "firstColumn": 9,
-                      "firstLine": 19,
-                      "lastColumn": 10,
-                      "lastLine": 19,
-                    },
-                    "name": "a",
-                    "type": "Identifier",
-                  },
-                  Object {
-                    "location": Object {
-                      "firstColumn": 12,
-                      "firstLine": 19,
-                      "lastColumn": 13,
-                      "lastLine": 19,
-                    },
-                    "name": "b",
-                    "type": "Identifier",
-                  },
-                  Object {
-                    "location": Object {
-                      "firstColumn": 15,
-                      "firstLine": 19,
-                      "lastColumn": 16,
-                      "lastLine": 19,
-                    },
-                    "name": "c",
-                    "type": "Identifier",
-                  },
-                ],
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 19,
-                  "lastColumn": 17,
-                  "lastLine": 19,
-                },
-                "type": "ArrayLiteral",
-              },
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 19,
-                "lastColumn": 23,
-                "lastLine": 19,
-              },
-              "operation": "+",
-              "right": Object {
-                "elements": Array [
-                  Object {
-                    "location": Object {
-                      "firstColumn": 21,
-                      "firstLine": 19,
-                      "lastColumn": 22,
-                      "lastLine": 19,
-                    },
-                    "name": "d",
-                    "type": "Identifier",
-                  },
-                ],
-                "location": Object {
-                  "firstColumn": 20,
-                  "firstLine": 19,
-                  "lastColumn": 23,
-                  "lastLine": 19,
-                },
-                "type": "ArrayLiteral",
-              },
-              "type": "InfixExpr",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 20,
-        },
-        "name": "infix",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 11,
-            "firstLine": 22,
-            "lastColumn": 5,
-            "lastLine": 24,
-          },
-          "nodes": Array [
-            Array [
-              Object {
-                "doesShadow": false,
-                "initialValue": Object {
-                  "elements": Array [
-                    Object {
-                      "location": Object {
-                        "firstColumn": 24,
-                        "firstLine": 23,
-                        "lastColumn": 25,
-                        "lastLine": 23,
-                      },
-                      "name": "a",
-                      "type": "Identifier",
-                    },
-                    Object {
-                      "location": Object {
-                        "firstColumn": 27,
-                        "firstLine": 23,
-                        "lastColumn": 28,
-                        "lastLine": 23,
-                      },
-                      "name": "b",
-                      "type": "Identifier",
-                    },
-                    Object {
-                      "location": Object {
-                        "firstColumn": 30,
-                        "firstLine": 23,
-                        "lastColumn": 31,
-                        "lastLine": 23,
-                      },
-                      "name": "c",
-                      "type": "Identifier",
-                    },
-                  ],
-                  "location": Object {
-                    "firstColumn": 23,
-                    "firstLine": 23,
-                    "lastColumn": 32,
-                    "lastLine": 23,
-                  },
-                  "type": "ArrayLiteral",
-                },
-                "isReassignable": false,
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 23,
-                  "lastColumn": 33,
-                  "lastLine": 23,
-                },
-                "name": "x",
-                "type": "LocalVariableDeclaration",
-                "valueType": Object {
-                  "args": Array [
-                    Object {
-                      "args": Array [],
-                      "location": Object {
-                        "firstColumn": 15,
-                        "firstLine": 23,
-                        "lastColumn": 18,
-                        "lastLine": 23,
-                      },
-                      "name": "int",
-                      "type": "Type",
-                    },
-                  ],
-                  "location": Object {
-                    "firstColumn": 15,
-                    "firstLine": 23,
-                    "lastColumn": 20,
-                    "lastLine": 23,
-                  },
-                  "name": "array",
-                  "type": "Type",
-                },
-              },
-            ],
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 24,
-        },
-        "name": "decl",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 20,
-            "firstLine": 26,
-            "lastColumn": 5,
-            "lastLine": 28,
-          },
-          "nodes": Array [
-            Object {
-              "elements": Array [
-                Object {
-                  "location": Object {
-                    "firstColumn": 9,
-                    "firstLine": 27,
-                    "lastColumn": 10,
-                    "lastLine": 27,
-                  },
-                  "name": "a",
-                  "type": "Identifier",
-                },
-                Object {
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 27,
-                    "lastColumn": 13,
-                    "lastLine": 27,
-                  },
-                  "name": "b",
-                  "type": "Identifier",
-                },
-                Object {
-                  "location": Object {
-                    "firstColumn": 15,
-                    "firstLine": 27,
-                    "lastColumn": 16,
-                    "lastLine": 27,
-                  },
-                  "name": "c",
-                  "type": "Identifier",
-                },
-              ],
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 27,
-                "lastColumn": 18,
-                "lastLine": 27,
-              },
-              "type": "ArrayLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 28,
-        },
-        "name": "trailingComma",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-    ],
-    "location": Object {
-      "firstColumn": 0,
-      "firstLine": 1,
-      "lastColumn": 1,
-      "lastLine": 29,
-    },
-    "name": "ArrayLiterals",
-    "overridability": "Final",
-    "superClass": null,
-    "type": "Class",
-    "typeArgDefs": Array [],
-    "useStatements": Array [],
-  },
-  "type": "File",
-  "useStatements": Array [],
-}
-`;
-
 exports[`the prebuilt parser parses files consistently: AssignableExpressions.sand 1`] = `
 Object {
   "imports": Array [],
@@ -12254,516 +11703,6 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser parses files consistently: Ranges.sand 1`] = `
-Object {
-  "imports": Array [],
-  "location": Object {
-    "firstColumn": 0,
-    "firstLine": 1,
-    "lastColumn": 1,
-    "lastLine": 29,
-  },
-  "packageName": null,
-  "privClasses": Array [],
-  "pubClass": Object {
-    "copies": Array [],
-    "isPub": true,
-    "items": Array [
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 14,
-            "firstLine": 2,
-            "lastColumn": 5,
-            "lastLine": 4,
-          },
-          "nodes": Array [
-            Object {
-              "end": Object {
-                "location": Object {
-                  "firstColumn": 11,
-                  "firstLine": 3,
-                  "lastColumn": 12,
-                  "lastLine": 3,
-                },
-                "type": "NumberLiteral",
-                "value": "9",
-              },
-              "includesEnd": false,
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 3,
-                "lastColumn": 12,
-                "lastLine": 3,
-              },
-              "start": Object {
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 3,
-                  "lastColumn": 9,
-                  "lastLine": 3,
-                },
-                "type": "NumberLiteral",
-                "value": "0",
-              },
-              "type": "RangeLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 4,
-        },
-        "name": "literal",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 13,
-            "firstLine": 6,
-            "lastColumn": 5,
-            "lastLine": 8,
-          },
-          "nodes": Array [
-            Object {
-              "end": Object {
-                "location": Object {
-                  "firstColumn": 11,
-                  "firstLine": 7,
-                  "lastColumn": 12,
-                  "lastLine": 7,
-                },
-                "name": "b",
-                "type": "Identifier",
-              },
-              "includesEnd": false,
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 7,
-                "lastColumn": 12,
-                "lastLine": 7,
-              },
-              "start": Object {
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 7,
-                  "lastColumn": 9,
-                  "lastLine": 7,
-                },
-                "name": "a",
-                "type": "Identifier",
-              },
-              "type": "RangeLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 8,
-        },
-        "name": "simple",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 16,
-            "firstLine": 10,
-            "lastColumn": 5,
-            "lastLine": 12,
-          },
-          "nodes": Array [
-            Object {
-              "end": Object {
-                "location": Object {
-                  "firstColumn": 12,
-                  "firstLine": 11,
-                  "lastColumn": 13,
-                  "lastLine": 11,
-                },
-                "name": "b",
-                "type": "Identifier",
-              },
-              "includesEnd": true,
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 11,
-                "lastColumn": 13,
-                "lastLine": 11,
-              },
-              "start": Object {
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 11,
-                  "lastColumn": 9,
-                  "lastLine": 11,
-                },
-                "name": "a",
-                "type": "Identifier",
-              },
-              "type": "RangeLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 12,
-        },
-        "name": "inclusive",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 12,
-            "firstLine": 14,
-            "lastColumn": 5,
-            "lastLine": 16,
-          },
-          "nodes": Array [
-            Object {
-              "end": Object {
-                "left": Object {
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 15,
-                    "lastColumn": 13,
-                    "lastLine": 15,
-                  },
-                  "name": "b",
-                  "type": "Identifier",
-                },
-                "location": Object {
-                  "firstColumn": 12,
-                  "firstLine": 15,
-                  "lastColumn": 17,
-                  "lastLine": 15,
-                },
-                "operation": "+",
-                "right": Object {
-                  "location": Object {
-                    "firstColumn": 16,
-                    "firstLine": 15,
-                    "lastColumn": 17,
-                    "lastLine": 15,
-                  },
-                  "type": "NumberLiteral",
-                  "value": "3",
-                },
-                "type": "InfixExpr",
-              },
-              "includesEnd": true,
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 15,
-                "lastColumn": 17,
-                "lastLine": 15,
-              },
-              "start": Object {
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 15,
-                  "lastColumn": 9,
-                  "lastLine": 15,
-                },
-                "name": "a",
-                "type": "Identifier",
-              },
-              "type": "RangeLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 16,
-        },
-        "name": "infix",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 13,
-            "firstLine": 18,
-            "lastColumn": 5,
-            "lastLine": 20,
-          },
-          "nodes": Array [
-            Object {
-              "end": Object {
-                "location": Object {
-                  "firstColumn": 13,
-                  "firstLine": 19,
-                  "lastColumn": 14,
-                  "lastLine": 19,
-                },
-                "name": "b",
-                "type": "Identifier",
-              },
-              "includesEnd": true,
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 19,
-                "lastColumn": 14,
-                "lastLine": 19,
-              },
-              "start": Object {
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 19,
-                  "lastColumn": 10,
-                  "lastLine": 19,
-                },
-                "operation": "-",
-                "right": Object {
-                  "location": Object {
-                    "firstColumn": 9,
-                    "firstLine": 19,
-                    "lastColumn": 10,
-                    "lastLine": 19,
-                  },
-                  "name": "a",
-                  "type": "Identifier",
-                },
-                "type": "PrefixExpr",
-              },
-              "type": "RangeLiteral",
-            },
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 20,
-        },
-        "name": "prefix",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 17,
-            "firstLine": 22,
-            "lastColumn": 5,
-            "lastLine": 24,
-          },
-          "nodes": Array [
-            Array [
-              Object {
-                "assignee": Object {
-                  "location": Object {
-                    "firstColumn": 8,
-                    "firstLine": 23,
-                    "lastColumn": 9,
-                    "lastLine": 23,
-                  },
-                  "name": "c",
-                  "type": "Identifier",
-                },
-                "assignmentType": "=",
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 23,
-                  "lastColumn": 17,
-                  "lastLine": 23,
-                },
-                "type": "Assignment",
-                "value": Object {
-                  "end": Object {
-                    "location": Object {
-                      "firstColumn": 15,
-                      "firstLine": 23,
-                      "lastColumn": 16,
-                      "lastLine": 23,
-                    },
-                    "name": "b",
-                    "type": "Identifier",
-                  },
-                  "includesEnd": false,
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 23,
-                    "lastColumn": 16,
-                    "lastLine": 23,
-                  },
-                  "start": Object {
-                    "location": Object {
-                      "firstColumn": 12,
-                      "firstLine": 23,
-                      "lastColumn": 13,
-                      "lastLine": 23,
-                    },
-                    "name": "a",
-                    "type": "Identifier",
-                  },
-                  "type": "RangeLiteral",
-                },
-              },
-            ],
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 24,
-        },
-        "name": "assignment",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 14,
-            "firstLine": 26,
-            "lastColumn": 5,
-            "lastLine": 28,
-          },
-          "nodes": Array [
-            Array [
-              Object {
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 27,
-                  "lastColumn": 20,
-                  "lastLine": 27,
-                },
-                "type": "Return",
-                "value": Object {
-                  "end": Object {
-                    "location": Object {
-                      "firstColumn": 18,
-                      "firstLine": 27,
-                      "lastColumn": 19,
-                      "lastLine": 27,
-                    },
-                    "name": "b",
-                    "type": "Identifier",
-                  },
-                  "includesEnd": false,
-                  "location": Object {
-                    "firstColumn": 15,
-                    "firstLine": 27,
-                    "lastColumn": 19,
-                    "lastLine": 27,
-                  },
-                  "start": Object {
-                    "location": Object {
-                      "firstColumn": 15,
-                      "firstLine": 27,
-                      "lastColumn": 16,
-                      "lastLine": 27,
-                    },
-                    "name": "a",
-                    "type": "Identifier",
-                  },
-                  "type": "RangeLiteral",
-                },
-              },
-            ],
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 17,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 28,
-        },
-        "name": "return_",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-    ],
-    "location": Object {
-      "firstColumn": 0,
-      "firstLine": 1,
-      "lastColumn": 1,
-      "lastLine": 29,
-    },
-    "name": "Ranges",
-    "overridability": "Final",
-    "superClass": null,
-    "type": "Class",
-    "typeArgDefs": Array [],
-    "useStatements": Array [],
-  },
-  "type": "File",
-  "useStatements": Array [],
-}
-`;
-
 exports[`the prebuilt parser parses files consistently: Return.sand 1`] = `
 Object {
   "imports": Array [],
@@ -13410,7 +12349,1355 @@ Object {
 }
 `;
 
-exports[`the prebuilt parser parses files consistently: TypedObjectLiterals.sand 1`] = `
+exports[`the prebuilt parser parses files consistently: UseStatements.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 25,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 5,
+          "lastColumn": 14,
+          "lastLine": 10,
+        },
+        "name": "prop",
+        "type": "InstancePropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 10,
+            "firstLine": 10,
+            "lastColumn": 13,
+            "lastLine": 10,
+          },
+          "name": "int",
+          "type": "Type",
+        },
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 12,
+            "lastColumn": 5,
+            "lastLine": 24,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "alternatives": Array [
+                  Object {
+                    "alternativeType": "Else",
+                    "body": Object {
+                      "location": Object {
+                        "firstColumn": 15,
+                        "firstLine": 21,
+                        "lastColumn": 9,
+                        "lastLine": 23,
+                      },
+                      "nodes": Array [
+                        Object {
+                          "location": Object {
+                            "firstColumn": 12,
+                            "firstLine": 22,
+                            "lastColumn": 15,
+                            "lastLine": 22,
+                          },
+                          "name": "qux",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "type": "CompoundNode",
+                      "useStatements": Array [],
+                    },
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 21,
+                      "lastColumn": 9,
+                      "lastLine": 23,
+                    },
+                    "type": "IfAlternative",
+                  },
+                ],
+                "body": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 15,
+                    "lastColumn": 9,
+                    "lastLine": 21,
+                  },
+                  "nodes": Array [
+                    Object {
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 20,
+                        "lastColumn": 13,
+                        "lastLine": 20,
+                      },
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "CompoundNode",
+                  "useStatements": Array [
+                    Object {
+                      "alias": "z",
+                      "doesShadow": false,
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 16,
+                        "lastColumn": 23,
+                        "lastLine": 16,
+                      },
+                      "name": "q",
+                      "type": "Use",
+                    },
+                    Object {
+                      "alias": null,
+                      "doesShadow": false,
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 17,
+                        "lastColumn": 24,
+                        "lastLine": 17,
+                      },
+                      "name": "foo.yob",
+                      "type": "Use",
+                    },
+                    Object {
+                      "alias": "yob",
+                      "doesShadow": true,
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 18,
+                        "lastColumn": 36,
+                        "lastLine": 18,
+                      },
+                      "name": "foo.bar.Baz",
+                      "type": "Use",
+                    },
+                  ],
+                },
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 15,
+                    "lastColumn": 14,
+                    "lastLine": 15,
+                  },
+                  "name": "yob",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 15,
+                  "lastColumn": 9,
+                  "lastLine": 23,
+                },
+                "type": "If",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [
+            Object {
+              "alias": null,
+              "doesShadow": false,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 13,
+                "lastColumn": 24,
+                "lastLine": 13,
+              },
+              "name": "foo.bar.yob",
+              "type": "Use",
+            },
+          ],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 5,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "method",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 5,
+      "lastColumn": 1,
+      "lastLine": 25,
+    },
+    "name": "UseStatements",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [
+      Object {
+        "alias": "foo",
+        "doesShadow": true,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 6,
+          "lastColumn": 20,
+          "lastLine": 6,
+        },
+        "name": "qux",
+        "type": "Use",
+      },
+      Object {
+        "alias": null,
+        "doesShadow": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 7,
+          "lastColumn": 20,
+          "lastLine": 7,
+        },
+        "name": "foo.bar.qux",
+        "type": "Use",
+      },
+      Object {
+        "alias": "q",
+        "doesShadow": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 8,
+          "lastColumn": 25,
+          "lastLine": 8,
+        },
+        "name": "foo.bar.qux",
+        "type": "Use",
+      },
+    ],
+  },
+  "type": "File",
+  "useStatements": Array [
+    Object {
+      "alias": null,
+      "doesShadow": false,
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 1,
+        "lastColumn": 16,
+        "lastLine": 1,
+      },
+      "name": "foo.bar.Baz",
+      "type": "Use",
+    },
+    Object {
+      "alias": "B",
+      "doesShadow": false,
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 2,
+        "lastColumn": 21,
+        "lastLine": 2,
+      },
+      "name": "foo.bar.Baz",
+      "type": "Use",
+    },
+    Object {
+      "alias": "Baz",
+      "doesShadow": true,
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 3,
+        "lastColumn": 20,
+        "lastLine": 3,
+      },
+      "name": "quz.baz",
+      "type": "Use",
+    },
+  ],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: literals/ArrayLiterals.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 29,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 12,
+            "firstLine": 2,
+            "lastColumn": 5,
+            "lastLine": 4,
+          },
+          "nodes": Array [
+            Object {
+              "elements": Array [],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 10,
+                "lastLine": 3,
+              },
+              "type": "ArrayLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "empty",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 6,
+            "lastColumn": 5,
+            "lastLine": 8,
+          },
+          "nodes": Array [
+            Object {
+              "elements": Array [
+                Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 7,
+                    "lastColumn": 10,
+                    "lastLine": 7,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 11,
+                "lastLine": 7,
+              },
+              "type": "ArrayLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "single",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 12,
+          },
+          "nodes": Array [
+            Object {
+              "elements": Array [
+                Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 11,
+                    "lastColumn": 10,
+                    "lastLine": 11,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 11,
+                    "lastColumn": 13,
+                    "lastLine": 11,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 11,
+                    "lastColumn": 16,
+                    "lastLine": 11,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 17,
+                "lastLine": 11,
+              },
+              "type": "ArrayLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "multiple",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 14,
+            "lastColumn": 5,
+            "lastLine": 16,
+          },
+          "nodes": Array [
+            Object {
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 18,
+                "lastLine": 15,
+              },
+              "operation": "~",
+              "right": Object {
+                "elements": Array [
+                  Object {
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 15,
+                      "lastColumn": 11,
+                      "lastLine": 15,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  Object {
+                    "location": Object {
+                      "firstColumn": 13,
+                      "firstLine": 15,
+                      "lastColumn": 14,
+                      "lastLine": 15,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  Object {
+                    "location": Object {
+                      "firstColumn": 16,
+                      "firstLine": 15,
+                      "lastColumn": 17,
+                      "lastLine": 15,
+                    },
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 9,
+                  "firstLine": 15,
+                  "lastColumn": 18,
+                  "lastLine": 15,
+                },
+                "type": "ArrayLiteral",
+              },
+              "type": "PrefixExpr",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "prefix",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 12,
+            "firstLine": 18,
+            "lastColumn": 5,
+            "lastLine": 20,
+          },
+          "nodes": Array [
+            Object {
+              "left": Object {
+                "elements": Array [
+                  Object {
+                    "location": Object {
+                      "firstColumn": 9,
+                      "firstLine": 19,
+                      "lastColumn": 10,
+                      "lastLine": 19,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 19,
+                      "lastColumn": 13,
+                      "lastLine": 19,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  Object {
+                    "location": Object {
+                      "firstColumn": 15,
+                      "firstLine": 19,
+                      "lastColumn": 16,
+                      "lastLine": 19,
+                    },
+                    "name": "c",
+                    "type": "Identifier",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 19,
+                  "lastColumn": 17,
+                  "lastLine": 19,
+                },
+                "type": "ArrayLiteral",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 23,
+                "lastLine": 19,
+              },
+              "operation": "+",
+              "right": Object {
+                "elements": Array [
+                  Object {
+                    "location": Object {
+                      "firstColumn": 21,
+                      "firstLine": 19,
+                      "lastColumn": 22,
+                      "lastLine": 19,
+                    },
+                    "name": "d",
+                    "type": "Identifier",
+                  },
+                ],
+                "location": Object {
+                  "firstColumn": 20,
+                  "firstLine": 19,
+                  "lastColumn": 23,
+                  "lastLine": 19,
+                },
+                "type": "ArrayLiteral",
+              },
+              "type": "InfixExpr",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "infix",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 11,
+            "firstLine": 22,
+            "lastColumn": 5,
+            "lastLine": 24,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "doesShadow": false,
+                "initialValue": Object {
+                  "elements": Array [
+                    Object {
+                      "location": Object {
+                        "firstColumn": 24,
+                        "firstLine": 23,
+                        "lastColumn": 25,
+                        "lastLine": 23,
+                      },
+                      "name": "a",
+                      "type": "Identifier",
+                    },
+                    Object {
+                      "location": Object {
+                        "firstColumn": 27,
+                        "firstLine": 23,
+                        "lastColumn": 28,
+                        "lastLine": 23,
+                      },
+                      "name": "b",
+                      "type": "Identifier",
+                    },
+                    Object {
+                      "location": Object {
+                        "firstColumn": 30,
+                        "firstLine": 23,
+                        "lastColumn": 31,
+                        "lastLine": 23,
+                      },
+                      "name": "c",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 23,
+                    "firstLine": 23,
+                    "lastColumn": 32,
+                    "lastLine": 23,
+                  },
+                  "type": "ArrayLiteral",
+                },
+                "isReassignable": false,
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 23,
+                  "lastColumn": 33,
+                  "lastLine": 23,
+                },
+                "name": "x",
+                "type": "LocalVariableDeclaration",
+                "valueType": Object {
+                  "args": Array [
+                    Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 15,
+                        "firstLine": 23,
+                        "lastColumn": 18,
+                        "lastLine": 23,
+                      },
+                      "name": "int",
+                      "type": "Type",
+                    },
+                  ],
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 23,
+                    "lastColumn": 20,
+                    "lastLine": 23,
+                  },
+                  "name": "array",
+                  "type": "Type",
+                },
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "decl",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 26,
+            "lastColumn": 5,
+            "lastLine": 28,
+          },
+          "nodes": Array [
+            Object {
+              "elements": Array [
+                Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 27,
+                    "lastColumn": 10,
+                    "lastLine": 27,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 27,
+                    "lastColumn": 13,
+                    "lastLine": 27,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 27,
+                    "lastColumn": 16,
+                    "lastLine": 27,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+              ],
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 27,
+                "lastColumn": 18,
+                "lastLine": 27,
+              },
+              "type": "ArrayLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "trailingComma",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 29,
+    },
+    "name": "ArrayLiterals",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: literals/Ranges.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 29,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 14,
+            "firstLine": 2,
+            "lastColumn": 5,
+            "lastLine": 4,
+          },
+          "nodes": Array [
+            Object {
+              "end": Object {
+                "location": Object {
+                  "firstColumn": 11,
+                  "firstLine": 3,
+                  "lastColumn": 12,
+                  "lastLine": 3,
+                },
+                "type": "NumberLiteral",
+                "value": "9",
+              },
+              "includesEnd": false,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 12,
+                "lastLine": 3,
+              },
+              "start": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 9,
+                  "lastLine": 3,
+                },
+                "type": "NumberLiteral",
+                "value": "0",
+              },
+              "type": "RangeLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "literal",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 6,
+            "lastColumn": 5,
+            "lastLine": 8,
+          },
+          "nodes": Array [
+            Object {
+              "end": Object {
+                "location": Object {
+                  "firstColumn": 11,
+                  "firstLine": 7,
+                  "lastColumn": 12,
+                  "lastLine": 7,
+                },
+                "name": "b",
+                "type": "Identifier",
+              },
+              "includesEnd": false,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 12,
+                "lastLine": 7,
+              },
+              "start": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 7,
+                  "lastColumn": 9,
+                  "lastLine": 7,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "RangeLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "simple",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 16,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 12,
+          },
+          "nodes": Array [
+            Object {
+              "end": Object {
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 11,
+                  "lastColumn": 13,
+                  "lastLine": 11,
+                },
+                "name": "b",
+                "type": "Identifier",
+              },
+              "includesEnd": true,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 13,
+                "lastLine": 11,
+              },
+              "start": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 11,
+                  "lastColumn": 9,
+                  "lastLine": 11,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "RangeLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "inclusive",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 12,
+            "firstLine": 14,
+            "lastColumn": 5,
+            "lastLine": 16,
+          },
+          "nodes": Array [
+            Object {
+              "end": Object {
+                "left": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 15,
+                    "lastColumn": 13,
+                    "lastLine": 15,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 12,
+                  "firstLine": 15,
+                  "lastColumn": 17,
+                  "lastLine": 15,
+                },
+                "operation": "+",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 15,
+                    "lastColumn": 17,
+                    "lastLine": 15,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "3",
+                },
+                "type": "InfixExpr",
+              },
+              "includesEnd": true,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 17,
+                "lastLine": 15,
+              },
+              "start": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 15,
+                  "lastColumn": 9,
+                  "lastLine": 15,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "type": "RangeLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 16,
+        },
+        "name": "infix",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 18,
+            "lastColumn": 5,
+            "lastLine": 20,
+          },
+          "nodes": Array [
+            Object {
+              "end": Object {
+                "location": Object {
+                  "firstColumn": 13,
+                  "firstLine": 19,
+                  "lastColumn": 14,
+                  "lastLine": 19,
+                },
+                "name": "b",
+                "type": "Identifier",
+              },
+              "includesEnd": true,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 19,
+                "lastColumn": 14,
+                "lastLine": 19,
+              },
+              "start": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 19,
+                  "lastColumn": 10,
+                  "lastLine": 19,
+                },
+                "operation": "-",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 9,
+                    "firstLine": 19,
+                    "lastColumn": 10,
+                    "lastLine": 19,
+                  },
+                  "name": "a",
+                  "type": "Identifier",
+                },
+                "type": "PrefixExpr",
+              },
+              "type": "RangeLiteral",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "prefix",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 22,
+            "lastColumn": 5,
+            "lastLine": 24,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "assignee": Object {
+                  "location": Object {
+                    "firstColumn": 8,
+                    "firstLine": 23,
+                    "lastColumn": 9,
+                    "lastLine": 23,
+                  },
+                  "name": "c",
+                  "type": "Identifier",
+                },
+                "assignmentType": "=",
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 23,
+                  "lastColumn": 17,
+                  "lastLine": 23,
+                },
+                "type": "Assignment",
+                "value": Object {
+                  "end": Object {
+                    "location": Object {
+                      "firstColumn": 15,
+                      "firstLine": 23,
+                      "lastColumn": 16,
+                      "lastLine": 23,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "includesEnd": false,
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 23,
+                    "lastColumn": 16,
+                    "lastLine": 23,
+                  },
+                  "start": Object {
+                    "location": Object {
+                      "firstColumn": 12,
+                      "firstLine": 23,
+                      "lastColumn": 13,
+                      "lastLine": 23,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "RangeLiteral",
+                },
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 24,
+        },
+        "name": "assignment",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 14,
+            "firstLine": 26,
+            "lastColumn": 5,
+            "lastLine": 28,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 27,
+                  "lastColumn": 20,
+                  "lastLine": 27,
+                },
+                "type": "Return",
+                "value": Object {
+                  "end": Object {
+                    "location": Object {
+                      "firstColumn": 18,
+                      "firstLine": 27,
+                      "lastColumn": 19,
+                      "lastLine": 27,
+                    },
+                    "name": "b",
+                    "type": "Identifier",
+                  },
+                  "includesEnd": false,
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 27,
+                    "lastColumn": 19,
+                    "lastLine": 27,
+                  },
+                  "start": Object {
+                    "location": Object {
+                      "firstColumn": 15,
+                      "firstLine": 27,
+                      "lastColumn": 16,
+                      "lastLine": 27,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "type": "RangeLiteral",
+                },
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 17,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "return_",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 29,
+    },
+    "name": "Ranges",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
+exports[`the prebuilt parser parses files consistently: literals/TypedObjectLiterals.sand 1`] = `
 Object {
   "imports": Array [],
   "location": Object {
@@ -14420,293 +14707,6 @@ Object {
   },
   "type": "File",
   "useStatements": Array [],
-}
-`;
-
-exports[`the prebuilt parser parses files consistently: UseStatements.sand 1`] = `
-Object {
-  "imports": Array [],
-  "location": Object {
-    "firstColumn": 0,
-    "firstLine": 1,
-    "lastColumn": 1,
-    "lastLine": 25,
-  },
-  "packageName": null,
-  "privClasses": Array [],
-  "pubClass": Object {
-    "copies": Array [],
-    "isPub": true,
-    "items": Array [
-      Object {
-        "accessModifier": null,
-        "isReassignable": false,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 5,
-          "lastColumn": 14,
-          "lastLine": 10,
-        },
-        "name": "prop",
-        "type": "InstancePropertyDeclaration",
-        "valueType": Object {
-          "args": Array [],
-          "location": Object {
-            "firstColumn": 10,
-            "firstLine": 10,
-            "lastColumn": 13,
-            "lastLine": 10,
-          },
-          "name": "int",
-          "type": "Type",
-        },
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 13,
-            "firstLine": 12,
-            "lastColumn": 5,
-            "lastLine": 24,
-          },
-          "nodes": Array [
-            Array [
-              Object {
-                "alternatives": Array [
-                  Object {
-                    "alternativeType": "Else",
-                    "body": Object {
-                      "location": Object {
-                        "firstColumn": 15,
-                        "firstLine": 21,
-                        "lastColumn": 9,
-                        "lastLine": 23,
-                      },
-                      "nodes": Array [
-                        Object {
-                          "location": Object {
-                            "firstColumn": 12,
-                            "firstLine": 22,
-                            "lastColumn": 15,
-                            "lastLine": 22,
-                          },
-                          "name": "qux",
-                          "type": "Identifier",
-                        },
-                      ],
-                      "type": "CompoundNode",
-                      "useStatements": Array [],
-                    },
-                    "location": Object {
-                      "firstColumn": 10,
-                      "firstLine": 21,
-                      "lastColumn": 9,
-                      "lastLine": 23,
-                    },
-                    "type": "IfAlternative",
-                  },
-                ],
-                "body": Object {
-                  "location": Object {
-                    "firstColumn": 15,
-                    "firstLine": 15,
-                    "lastColumn": 9,
-                    "lastLine": 21,
-                  },
-                  "nodes": Array [
-                    Object {
-                      "location": Object {
-                        "firstColumn": 12,
-                        "firstLine": 20,
-                        "lastColumn": 13,
-                        "lastLine": 20,
-                      },
-                      "name": "z",
-                      "type": "Identifier",
-                    },
-                  ],
-                  "type": "CompoundNode",
-                  "useStatements": Array [
-                    Object {
-                      "alias": "z",
-                      "doesShadow": false,
-                      "location": Object {
-                        "firstColumn": 12,
-                        "firstLine": 16,
-                        "lastColumn": 23,
-                        "lastLine": 16,
-                      },
-                      "name": "q",
-                      "type": "Use",
-                    },
-                    Object {
-                      "alias": null,
-                      "doesShadow": false,
-                      "location": Object {
-                        "firstColumn": 12,
-                        "firstLine": 17,
-                        "lastColumn": 24,
-                        "lastLine": 17,
-                      },
-                      "name": "foo.yob",
-                      "type": "Use",
-                    },
-                    Object {
-                      "alias": "yob",
-                      "doesShadow": true,
-                      "location": Object {
-                        "firstColumn": 12,
-                        "firstLine": 18,
-                        "lastColumn": 36,
-                        "lastLine": 18,
-                      },
-                      "name": "foo.bar.Baz",
-                      "type": "Use",
-                    },
-                  ],
-                },
-                "condition": Object {
-                  "location": Object {
-                    "firstColumn": 11,
-                    "firstLine": 15,
-                    "lastColumn": 14,
-                    "lastLine": 15,
-                  },
-                  "name": "yob",
-                  "type": "Identifier",
-                },
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 15,
-                  "lastColumn": 9,
-                  "lastLine": 23,
-                },
-                "type": "If",
-              },
-            ],
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [
-            Object {
-              "alias": null,
-              "doesShadow": false,
-              "location": Object {
-                "firstColumn": 8,
-                "firstLine": 13,
-                "lastColumn": 24,
-                "lastLine": 13,
-              },
-              "name": "foo.bar.yob",
-              "type": "Use",
-            },
-          ],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 24,
-          "firstLine": 5,
-          "lastColumn": 5,
-          "lastLine": 24,
-        },
-        "name": "method",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-    ],
-    "location": Object {
-      "firstColumn": 0,
-      "firstLine": 5,
-      "lastColumn": 1,
-      "lastLine": 25,
-    },
-    "name": "UseStatements",
-    "overridability": "Final",
-    "superClass": null,
-    "type": "Class",
-    "typeArgDefs": Array [],
-    "useStatements": Array [
-      Object {
-        "alias": "foo",
-        "doesShadow": true,
-        "location": Object {
-          "firstColumn": 4,
-          "firstLine": 6,
-          "lastColumn": 20,
-          "lastLine": 6,
-        },
-        "name": "qux",
-        "type": "Use",
-      },
-      Object {
-        "alias": null,
-        "doesShadow": false,
-        "location": Object {
-          "firstColumn": 4,
-          "firstLine": 7,
-          "lastColumn": 20,
-          "lastLine": 7,
-        },
-        "name": "foo.bar.qux",
-        "type": "Use",
-      },
-      Object {
-        "alias": "q",
-        "doesShadow": false,
-        "location": Object {
-          "firstColumn": 4,
-          "firstLine": 8,
-          "lastColumn": 25,
-          "lastLine": 8,
-        },
-        "name": "foo.bar.qux",
-        "type": "Use",
-      },
-    ],
-  },
-  "type": "File",
-  "useStatements": Array [
-    Object {
-      "alias": null,
-      "doesShadow": false,
-      "location": Object {
-        "firstColumn": 0,
-        "firstLine": 1,
-        "lastColumn": 16,
-        "lastLine": 1,
-      },
-      "name": "foo.bar.Baz",
-      "type": "Use",
-    },
-    Object {
-      "alias": "B",
-      "doesShadow": false,
-      "location": Object {
-        "firstColumn": 0,
-        "firstLine": 2,
-        "lastColumn": 21,
-        "lastLine": 2,
-      },
-      "name": "foo.bar.Baz",
-      "type": "Use",
-    },
-    Object {
-      "alias": "Baz",
-      "doesShadow": true,
-      "location": Object {
-        "firstColumn": 0,
-        "firstLine": 3,
-        "lastColumn": 20,
-        "lastLine": 3,
-      },
-      "name": "quz.baz",
-      "type": "Use",
-    },
-  ],
 }
 `;
 
