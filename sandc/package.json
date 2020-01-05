@@ -16,7 +16,7 @@
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "doc": "typedoc --out docs src && cd docs && echo \"\" > .nojekyll",
     "jison": "jison grammar/sand.jison --outfile src/parser/parser.generated.js && jison grammar/type.jison --outfile src/parser/subparsers/type/parser.generated.js && npm run fix-jison-error-report-line-numbers",
-    "fix-jison-error-report-line-numbers": "sed -i '' 's/[(]yylineno \\+ 1[)]/lexer\\.yylineno/g' src/parser/parser.generated.js"
+    "fix-jison-error-report-line-numbers": "ts-node ./bin/fixJisonErrorReportLineNumbers.ts"
   },
   "repository": {
     "type": "git",
@@ -45,5 +45,8 @@
     "ts-jest": "^24.1.0",
     "ts-node": "^8.5.4",
     "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "replace-in-file": "^5.0.2"
   }
 }
