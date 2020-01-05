@@ -7813,6 +7813,97 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: ImportStatements.sand 1`] = `
+Object {
+  "imports": Array [
+    Object {
+      "alias": null,
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 1,
+        "lastColumn": 27,
+        "lastLine": 1,
+      },
+      "name": "java.util.ArrayList",
+      "type": "Import",
+    },
+  ],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 6,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": "pub",
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 4,
+          "lastColumn": 32,
+          "lastLine": 4,
+        },
+        "name": "list",
+        "type": "InstancePropertyDeclaration",
+        "valueType": Object {
+          "args": Array [
+            Object {
+              "args": Array [],
+              "location": Object {
+                "firstColumn": 24,
+                "firstLine": 4,
+                "lastColumn": 30,
+                "lastLine": 4,
+              },
+              "name": "String",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "firstColumn": 14,
+            "firstLine": 4,
+            "lastColumn": 31,
+            "lastLine": 4,
+          },
+          "name": "ArrayList",
+          "type": "Type",
+        },
+      },
+      Object {
+        "level": "pub",
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 5,
+          "lastColumn": 13,
+          "lastLine": 5,
+        },
+        "type": "InstantiationRestriction",
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 3,
+      "lastColumn": 1,
+      "lastLine": 6,
+    },
+    "name": "ImportStatements",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: InfixPrefix.sand 1`] = `
 Object {
   "imports": Array [],
