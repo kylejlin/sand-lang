@@ -14330,6 +14330,250 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: UseStatements.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 22,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 4,
+          "lastColumn": 14,
+          "lastLine": 8,
+        },
+        "name": "prop",
+        "type": "InstancePropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 10,
+            "firstLine": 8,
+            "lastColumn": 13,
+            "lastLine": 8,
+          },
+          "name": "int",
+          "type": "Type",
+        },
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 13,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 21,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "alternatives": Array [
+                  Object {
+                    "alternativeType": "Else",
+                    "body": Object {
+                      "location": Object {
+                        "firstColumn": 15,
+                        "firstLine": 18,
+                        "lastColumn": 9,
+                        "lastLine": 20,
+                      },
+                      "nodes": Array [
+                        Object {
+                          "location": Object {
+                            "firstColumn": 12,
+                            "firstLine": 19,
+                            "lastColumn": 15,
+                            "lastLine": 19,
+                          },
+                          "name": "qux",
+                          "type": "Identifier",
+                        },
+                      ],
+                      "type": "CompoundNode",
+                      "useStatements": Array [],
+                    },
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 18,
+                      "lastColumn": 9,
+                      "lastLine": 20,
+                    },
+                    "type": "IfAlternative",
+                  },
+                ],
+                "body": Object {
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 13,
+                    "lastColumn": 9,
+                    "lastLine": 18,
+                  },
+                  "nodes": Array [
+                    Object {
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 17,
+                        "lastColumn": 13,
+                        "lastLine": 17,
+                      },
+                      "name": "z",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "CompoundNode",
+                  "useStatements": Array [
+                    Object {
+                      "alias": "z",
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 14,
+                        "lastColumn": 23,
+                        "lastLine": 14,
+                      },
+                      "name": "q",
+                      "type": "Use",
+                    },
+                    Object {
+                      "alias": null,
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 15,
+                        "lastColumn": 24,
+                        "lastLine": 15,
+                      },
+                      "name": "foo.yob",
+                      "type": "Use",
+                    },
+                  ],
+                },
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 13,
+                    "lastColumn": 14,
+                    "lastLine": 13,
+                  },
+                  "name": "yob",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 13,
+                  "lastColumn": 9,
+                  "lastLine": 20,
+                },
+                "type": "If",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [
+            Object {
+              "alias": null,
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 24,
+                "lastLine": 11,
+              },
+              "name": "foo.bar.yob",
+              "type": "Use",
+            },
+          ],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 24,
+          "firstLine": 4,
+          "lastColumn": 5,
+          "lastLine": 21,
+        },
+        "name": "method",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 4,
+      "lastColumn": 1,
+      "lastLine": 22,
+    },
+    "name": "UseStatements",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [
+      Object {
+        "alias": null,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 5,
+          "lastColumn": 20,
+          "lastLine": 5,
+        },
+        "name": "foo.bar.qux",
+        "type": "Use",
+      },
+      Object {
+        "alias": "q",
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 6,
+          "lastColumn": 25,
+          "lastLine": 6,
+        },
+        "name": "foo.bar.qux",
+        "type": "Use",
+      },
+    ],
+  },
+  "type": "File",
+  "useStatements": Array [
+    Object {
+      "alias": null,
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 1,
+        "lastColumn": 16,
+        "lastLine": 1,
+      },
+      "name": "foo.bar.Baz",
+      "type": "Use",
+    },
+    Object {
+      "alias": "B",
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 2,
+        "lastColumn": 21,
+        "lastLine": 2,
+      },
+      "name": "foo.bar.Baz",
+      "type": "Use",
+    },
+  ],
+}
+`;
+
 exports[`the prebuilt parser throws parse errors consistently: FullyQualifiedTypes.sand error 1`] = `
 [Error: Parse error on line 2:
 ...foo(): java.util?.ArrayList { } }

@@ -256,14 +256,14 @@ argDefs
     ;
 
 compoundNode
-    : "{" "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [], location: yy.camelCase(@$) }; }
-    | "{" simpleExpression "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [$2], location: yy.camelCase(@$) }; }
-    | "{" nodeSequence "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: [$2], location: yy.camelCase(@$) }; }
-    | "{" nodeSequence simpleExpression "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: [], nodes: $2.concat([$3]), location: yy.camelCase(@$) }; }
+    : "{" optUseStatements "}"
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [], location: yy.camelCase(@$) }; }
+    | "{" optUseStatements simpleExpression "}"
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], location: yy.camelCase(@$) }; }
+    | "{" optUseStatements nodeSequence "}"
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], location: yy.camelCase(@$) }; }
+    | "{" optUseStatements nodeSequence simpleExpression "}"
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: $3.concat([$4]), location: yy.camelCase(@$) }; }
     ;
 
 nodeSequence

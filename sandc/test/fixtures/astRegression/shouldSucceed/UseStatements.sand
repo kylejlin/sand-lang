@@ -1,0 +1,22 @@
+use foo.bar.Baz;
+use foo.bar.Baz as B;
+
+pub class UseStatements {
+    use foo.bar.qux;
+    use foo.bar.qux as q;
+
+    prop: int;
+
+    method() {
+        use foo.bar.yob;
+
+        if yob {
+            use q as z;
+            use foo.yob;
+            
+            z
+        } else {
+            qux
+        }
+    }
+}
