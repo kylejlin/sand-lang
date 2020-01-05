@@ -1,7 +1,9 @@
 use foo.bar.Baz;
 use foo.bar.Baz as B;
+use! quz.baz as Baz;
 
 pub class UseStatements {
+    use! qux as foo;
     use foo.bar.qux;
     use foo.bar.qux as q;
 
@@ -13,7 +15,8 @@ pub class UseStatements {
         if yob {
             use q as z;
             use foo.yob;
-            
+            use! foo.bar.Baz as yob;
+
             z
         } else {
             qux

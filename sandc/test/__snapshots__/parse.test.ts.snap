@@ -11494,6 +11494,7 @@ Object {
       "useStatements": Array [
         Object {
           "alias": null,
+          "doesShadow": false,
           "location": Object {
             "firstColumn": 4,
             "firstLine": 11,
@@ -11671,6 +11672,7 @@ Object {
       "useStatements": Array [
         Object {
           "alias": null,
+          "doesShadow": false,
           "location": Object {
             "firstColumn": 4,
             "firstLine": 27,
@@ -14337,7 +14339,7 @@ Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 22,
+    "lastLine": 25,
   },
   "packageName": null,
   "privClasses": Array [],
@@ -14350,9 +14352,9 @@ Object {
         "isReassignable": false,
         "location": Object {
           "firstColumn": 24,
-          "firstLine": 4,
+          "firstLine": 5,
           "lastColumn": 14,
-          "lastLine": 8,
+          "lastLine": 10,
         },
         "name": "prop",
         "type": "InstancePropertyDeclaration",
@@ -14360,9 +14362,9 @@ Object {
           "args": Array [],
           "location": Object {
             "firstColumn": 10,
-            "firstLine": 8,
+            "firstLine": 10,
             "lastColumn": 13,
-            "lastLine": 8,
+            "lastLine": 10,
           },
           "name": "int",
           "type": "Type",
@@ -14374,9 +14376,9 @@ Object {
         "body": Object {
           "location": Object {
             "firstColumn": 13,
-            "firstLine": 10,
+            "firstLine": 12,
             "lastColumn": 5,
-            "lastLine": 21,
+            "lastLine": 24,
           },
           "nodes": Array [
             Array [
@@ -14387,17 +14389,17 @@ Object {
                     "body": Object {
                       "location": Object {
                         "firstColumn": 15,
-                        "firstLine": 18,
+                        "firstLine": 21,
                         "lastColumn": 9,
-                        "lastLine": 20,
+                        "lastLine": 23,
                       },
                       "nodes": Array [
                         Object {
                           "location": Object {
                             "firstColumn": 12,
-                            "firstLine": 19,
+                            "firstLine": 22,
                             "lastColumn": 15,
-                            "lastLine": 19,
+                            "lastLine": 22,
                           },
                           "name": "qux",
                           "type": "Identifier",
@@ -14408,9 +14410,9 @@ Object {
                     },
                     "location": Object {
                       "firstColumn": 10,
-                      "firstLine": 18,
+                      "firstLine": 21,
                       "lastColumn": 9,
-                      "lastLine": 20,
+                      "lastLine": 23,
                     },
                     "type": "IfAlternative",
                   },
@@ -14418,17 +14420,17 @@ Object {
                 "body": Object {
                   "location": Object {
                     "firstColumn": 15,
-                    "firstLine": 13,
+                    "firstLine": 15,
                     "lastColumn": 9,
-                    "lastLine": 18,
+                    "lastLine": 21,
                   },
                   "nodes": Array [
                     Object {
                       "location": Object {
                         "firstColumn": 12,
-                        "firstLine": 17,
+                        "firstLine": 20,
                         "lastColumn": 13,
-                        "lastLine": 17,
+                        "lastLine": 20,
                       },
                       "name": "z",
                       "type": "Identifier",
@@ -14438,24 +14440,38 @@ Object {
                   "useStatements": Array [
                     Object {
                       "alias": "z",
+                      "doesShadow": false,
                       "location": Object {
                         "firstColumn": 12,
-                        "firstLine": 14,
+                        "firstLine": 16,
                         "lastColumn": 23,
-                        "lastLine": 14,
+                        "lastLine": 16,
                       },
                       "name": "q",
                       "type": "Use",
                     },
                     Object {
                       "alias": null,
+                      "doesShadow": false,
                       "location": Object {
                         "firstColumn": 12,
-                        "firstLine": 15,
+                        "firstLine": 17,
                         "lastColumn": 24,
-                        "lastLine": 15,
+                        "lastLine": 17,
                       },
                       "name": "foo.yob",
+                      "type": "Use",
+                    },
+                    Object {
+                      "alias": "yob",
+                      "doesShadow": true,
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 18,
+                        "lastColumn": 36,
+                        "lastLine": 18,
+                      },
+                      "name": "foo.bar.Baz",
                       "type": "Use",
                     },
                   ],
@@ -14463,18 +14479,18 @@ Object {
                 "condition": Object {
                   "location": Object {
                     "firstColumn": 11,
-                    "firstLine": 13,
+                    "firstLine": 15,
                     "lastColumn": 14,
-                    "lastLine": 13,
+                    "lastLine": 15,
                   },
                   "name": "yob",
                   "type": "Identifier",
                 },
                 "location": Object {
                   "firstColumn": 8,
-                  "firstLine": 13,
+                  "firstLine": 15,
                   "lastColumn": 9,
-                  "lastLine": 20,
+                  "lastLine": 23,
                 },
                 "type": "If",
               },
@@ -14484,11 +14500,12 @@ Object {
           "useStatements": Array [
             Object {
               "alias": null,
+              "doesShadow": false,
               "location": Object {
                 "firstColumn": 8,
-                "firstLine": 11,
+                "firstLine": 13,
                 "lastColumn": 24,
-                "lastLine": 11,
+                "lastLine": 13,
               },
               "name": "foo.bar.yob",
               "type": "Use",
@@ -14500,9 +14517,9 @@ Object {
         "isStatic": true,
         "location": Object {
           "firstColumn": 24,
-          "firstLine": 4,
+          "firstLine": 5,
           "lastColumn": 5,
-          "lastLine": 21,
+          "lastLine": 24,
         },
         "name": "method",
         "returnType": null,
@@ -14512,9 +14529,9 @@ Object {
     ],
     "location": Object {
       "firstColumn": 0,
-      "firstLine": 4,
+      "firstLine": 5,
       "lastColumn": 1,
-      "lastLine": 22,
+      "lastLine": 25,
     },
     "name": "UseStatements",
     "overridability": "Final",
@@ -14523,23 +14540,37 @@ Object {
     "typeArgDefs": Array [],
     "useStatements": Array [
       Object {
-        "alias": null,
+        "alias": "foo",
+        "doesShadow": true,
         "location": Object {
           "firstColumn": 4,
-          "firstLine": 5,
+          "firstLine": 6,
           "lastColumn": 20,
-          "lastLine": 5,
+          "lastLine": 6,
+        },
+        "name": "qux",
+        "type": "Use",
+      },
+      Object {
+        "alias": null,
+        "doesShadow": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 7,
+          "lastColumn": 20,
+          "lastLine": 7,
         },
         "name": "foo.bar.qux",
         "type": "Use",
       },
       Object {
         "alias": "q",
+        "doesShadow": false,
         "location": Object {
           "firstColumn": 4,
-          "firstLine": 6,
+          "firstLine": 8,
           "lastColumn": 25,
-          "lastLine": 6,
+          "lastLine": 8,
         },
         "name": "foo.bar.qux",
         "type": "Use",
@@ -14550,6 +14581,7 @@ Object {
   "useStatements": Array [
     Object {
       "alias": null,
+      "doesShadow": false,
       "location": Object {
         "firstColumn": 0,
         "firstLine": 1,
@@ -14561,6 +14593,7 @@ Object {
     },
     Object {
       "alias": "B",
+      "doesShadow": false,
       "location": Object {
         "firstColumn": 0,
         "firstLine": 2,
@@ -14568,6 +14601,18 @@ Object {
         "lastLine": 2,
       },
       "name": "foo.bar.Baz",
+      "type": "Use",
+    },
+    Object {
+      "alias": "Baz",
+      "doesShadow": true,
+      "location": Object {
+        "firstColumn": 0,
+        "firstLine": 3,
+        "lastColumn": 20,
+        "lastLine": 3,
+      },
+      "name": "quz.baz",
       "type": "Use",
     },
   ],
@@ -14632,7 +14677,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericMethodDecl
 [Error: Parse error on line 2:
 ...singParens { <T> MissingParens<T> ...
 --------------------^
-Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'copy', 'pub', '}', 'open', 'abstract', 're', 'static', 'prot', 'override', got 'OBJECT_LITERAL_TYPE']
+Expecting 'use', 'NON_RESERVED_IDENTIFIER', 'use!', 'copy', 'pub', '}', 'open', 'abstract', 're', 'static', 'prot', 'override', got 'OBJECT_LITERAL_TYPE']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericMethodDeclarations/MissingParens.sand error line number 1`] = `2`;

@@ -59,9 +59,13 @@ optUseStatements
     : %empty
         { $$ = []; }
     | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, location: yy.merge(@2, @6) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, doesShadow: false, location: yy.merge(@2, @6) }]); }
     | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: null, location: yy.merge(@2, @4) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: null, doesShadow: false, location: yy.merge(@2, @4) }]); }
+    | optUseStatements "use!" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
+        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, doesShadow: true, location: yy.merge(@2, @6) }]); }
+    | optUseStatements "use!" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: null, doesShadow: true, location: yy.merge(@2, @4) }]); }
     ;
 
 optCopyStatements

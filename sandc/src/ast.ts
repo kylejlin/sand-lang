@@ -108,6 +108,7 @@ export interface Use {
   type: NodeType.Use;
   name: string;
   alias: string | null;
+  doesShadow: boolean;
   location: NodeLocation;
 }
 

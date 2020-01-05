@@ -330,6 +330,7 @@ export type TokenType =
   | "finally"
   | "throw"
   | "throws"
+  | "use!"
   | "use"
   | "import"
   | "copy"
@@ -446,6 +447,7 @@ const TOKEN_TYPES: TokenType[] = [
   "finally",
   "throw",
   "throws",
+  "use!",
   "use",
   "import",
   "copy",
@@ -581,6 +583,7 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   startOfStatementWithCompoundNode("finally"),
   "throw",
   "throws",
+  "use!",
   "use",
   "import",
   "copy",
