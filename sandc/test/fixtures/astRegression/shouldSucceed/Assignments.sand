@@ -84,3 +84,14 @@ class ComplexAssignments {
         a.b[c] = d;
     }
 }
+
+class CompoundAssignments {
+    compoundAssignments() {
+        x **= y;
+        x *= y;
+        x /= y;
+        x %= y;
+        x += y;
+        x -= y;
+    }
+}
