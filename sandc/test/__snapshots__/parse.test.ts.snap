@@ -6205,6 +6205,90 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: EarlyExit.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 6,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 47,
+            "firstLine": 2,
+            "lastColumn": 5,
+            "lastLine": 5,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 14,
+                  "lastLine": 3,
+                },
+                "type": "Break",
+                "value": null,
+              },
+              Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 4,
+                  "lastColumn": 17,
+                  "lastLine": 4,
+                },
+                "type": "Continue",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 20,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 5,
+        },
+        "name": "syntacticallyValidButSemanticallyInvalid",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 6,
+    },
+    "name": "EarlyExit",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: Factorial.sand 1`] = `
 Object {
   "imports": Array [],
