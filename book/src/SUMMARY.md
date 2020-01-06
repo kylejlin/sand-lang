@@ -10,6 +10,7 @@
   - [Operators](./feature_list/operators.md)
   - [Local variables](./feature_list/local_vars.md)
   - [If-else](./feature_list/if.md)
+  - [Do](./feature_list/do.md)
   - [Loops](./feature_list/loops.md)
   - [Packages](./feature_list/packages.md)
   - [Explicit nullables](./feature_list/nullables.md)
