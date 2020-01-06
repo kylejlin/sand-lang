@@ -6205,6 +6205,127 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: Copy.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 12,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [
+      Object {
+        "alias": null,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 2,
+          "lastColumn": 35,
+          "lastLine": 2,
+        },
+        "name": "sand.util.IndexOf.indexOf",
+        "type": "Copy",
+      },
+      Object {
+        "alias": "lio",
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 3,
+          "lastColumn": 46,
+          "lastLine": 3,
+        },
+        "name": "sand.util.IndexOf.lastIndexOf",
+        "type": "Copy",
+      },
+    ],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 13,
+          "lastLine": 7,
+        },
+        "name": "foo",
+        "type": "InstancePropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 9,
+            "firstLine": 7,
+            "lastColumn": 12,
+            "lastLine": 7,
+          },
+          "name": "int",
+          "type": "Type",
+        },
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 10,
+            "firstLine": 9,
+            "lastColumn": 5,
+            "lastLine": 11,
+          },
+          "nodes": Array [],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 15,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 11,
+        },
+        "name": "bar",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 12,
+    },
+    "name": "Copy",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [
+      Object {
+        "alias": "io",
+        "doesShadow": false,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 5,
+          "lastColumn": 22,
+          "lastLine": 5,
+        },
+        "name": "indexOf",
+        "type": "Use",
+      },
+    ],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: EarlyExit.sand 1`] = `
 Object {
   "imports": Array [],

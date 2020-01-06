@@ -1,0 +1,12 @@
+pub class Copy {
+    copy sand.util.IndexOf.indexOf;
+    copy sand.util.IndexOf.lastIndexOf as lio;
+
+    use indexOf as io;
+
+    foo: int;
+
+    bar() {
+        
+    }
+}
