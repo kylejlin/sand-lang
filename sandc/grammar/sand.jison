@@ -288,6 +288,10 @@ rightDelimitedStatement
     | continueStatement
     | localVarDeclaration
     | assignment
+    | whileStatement
+    | loopStatement
+    | repeatStatement
+    | forStatement
     ;
 
 ifNode
@@ -388,6 +392,48 @@ assignmentOperation
     | "%="
     | "+="
     | "-="
+    ;
+
+whileStatement
+    : "while" simpleExpression compoundNode
+        { $$ = { type: yy.NodeType.While, condition: $2, body: $3, location: yy.camelCase(@$) }; }
+    ;
+
+loopStatement
+    : "loop" compoundNode
+        { $$ = { type: yy.NodeType.Loop, body: $2, location: yy.camelCase(@$) }; }
+    ;
+
+repeatStatement
+    : "repeat" simpleExpression compoundNode
+        { $$ = { type: yy.NodeType.Repeat, repetitions: $2, body: $3, location: yy.camelCase(@$) }; }
+    ;
+
+forStatement
+    : "for" binding "in" simpleExpression compoundNode
+        { $$ = { type: yy.NodeType.For, binding: $2, iteratee: $4, body: $5, location: yy.camelCase(@$) }; }
+    ;
+
+binding
+    : singleBinding
+    | flatTupleBinding
+    ;
+
+singleBinding
+    : NON_RESERVED_IDENTIFIER
+        { $$ = { type: yy.NodeType.SingleBinding, name: $1, location: yy.camelCase(@$) }; }
+    ;
+
+flatTupleBinding
+    : "(" singleBindings ")"
+        { $$ = { type: yy.NodeType.FlatTupleBinding, bindings: $2, location: yy.camelCase(@$) }; }
+    ;
+
+singleBindings
+    : singleBinding
+        { $$ = [$1]; }
+    | singleBindings "," singleBinding
+        { $$ = $1.concat($3); }
     ;
 
 simpleExpression

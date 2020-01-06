@@ -36,6 +36,14 @@ export enum NodeType {
   Break = "Break",
   Continue = "Continue",
 
+  While = "While",
+  Loop = "Loop",
+  Repeat = "Repeat",
+  For = "For",
+
+  SingleBinding = "SingleBinding",
+  FlatTupleBinding = "FlatTupleBinding",
+
   File = "File",
   Class = "Class",
 
@@ -270,7 +278,12 @@ export type Statement =
   | Break
   | Continue
   | LocalVariableDeclaration
-  | Assignment;
+  | Assignment
+  | If
+  | While
+  | Loop
+  | Repeat
+  | For;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
@@ -455,6 +468,48 @@ export interface Assignment {
 }
 
 export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
+
+export interface While {
+  type: NodeType.While;
+  condition: Expr;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface Loop {
+  type: NodeType.Loop;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface Repeat {
+  type: NodeType.Repeat;
+  repetitions: Expr;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface For {
+  type: NodeType.For;
+  binding: Binding;
+  iteratee: Expr;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export type Binding = SingleBinding | FlatTupleBinding;
+
+interface SingleBinding {
+  type: NodeType.SingleBinding;
+  name: string;
+  location: NodeLocation;
+}
+
+interface FlatTupleBinding {
+  type: NodeType.FlatTupleBinding;
+  bindings: SingleBinding[];
+  location: NodeLocation;
+}
 
 export interface ImpliedNullExpr {
   type: NodeType.ImpliedNullExpr;

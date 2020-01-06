@@ -1,0 +1,51 @@
+pub class Loops {
+    while_() {
+        let a = b;
+
+        while c {
+            d();
+        }
+
+        e
+    }
+
+    loop_() {
+        let a = b;
+
+        loop {
+            c();
+        }
+
+        d
+    }
+
+    repeat_() {
+        let a = b;
+
+        repeat c {
+            d();
+        }
+
+        e
+    }
+
+    forSimple() {
+        let a = b;
+
+        for c in d {
+            e();
+        }
+
+        f
+    }
+
+    forTuple() {
+        let a = b;
+
+        for (c, d) in e {
+            f();
+        }
+
+        g
+    }
+}
