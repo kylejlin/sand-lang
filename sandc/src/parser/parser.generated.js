@@ -90,7 +90,7 @@ case 2: case 27: case 66:
  this.$ = null; 
 break;
 case 3:
- this.$ = $$[$0-2].map(ident => ident.name).join("."); 
+ this.$ = $$[$0-1].map(ident => ident.name).join("."); 
 break;
 case 4: case 6: case 11: case 15: case 21: case 36: case 40: case 69: case 71: case 94: case 179: case 181:
  this.$ = []; 

@@ -1,0 +1,5 @@
+package my.awesome.pkg;
+
+pub class Package {
+
+}

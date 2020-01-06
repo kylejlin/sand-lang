@@ -13350,6 +13350,39 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: Package.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 5,
+  },
+  "packageName": "my.awesome.pkg",
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 3,
+      "lastColumn": 1,
+      "lastLine": 5,
+    },
+    "name": "Package",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: Props.sand 1`] = `
 Object {
   "imports": Array [],

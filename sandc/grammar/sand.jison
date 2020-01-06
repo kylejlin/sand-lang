@@ -45,7 +45,7 @@ optPackage
     : %empty
         { $$ = null; }
     | "package" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $1.map(ident => ident.name).join("."); }
+        { $$ = $2.map(ident => ident.name).join("."); }
     ;
 
 optImports
