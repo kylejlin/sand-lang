@@ -13187,6 +13187,224 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: literals/Characters.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 12,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 2,
+            "lastColumn": 18,
+            "lastLine": 2,
+          },
+          "type": "CharacterLiteral",
+          "value": "'a'",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 19,
+          "lastLine": 2,
+        },
+        "name": "x",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 3,
+            "lastColumn": 21,
+            "lastLine": 3,
+          },
+          "type": "NumberLiteral",
+          "value": "65char",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 22,
+          "lastLine": 3,
+        },
+        "name": "y",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 19,
+            "firstLine": 5,
+            "lastColumn": 22,
+            "lastLine": 5,
+          },
+          "type": "CharacterLiteral",
+          "value": "' '",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 23,
+          "lastLine": 5,
+        },
+        "name": "space",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 23,
+            "firstLine": 7,
+            "lastColumn": 27,
+            "lastLine": 7,
+          },
+          "type": "CharacterLiteral",
+          "value": "'\\\\\\\\'",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 28,
+          "lastLine": 7,
+        },
+        "name": "backslash",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 21,
+            "firstLine": 8,
+            "lastColumn": 25,
+            "lastLine": 8,
+          },
+          "type": "CharacterLiteral",
+          "value": "'\\\\n'",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 26,
+          "lastLine": 8,
+        },
+        "name": "newline",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 9,
+            "lastColumn": 21,
+            "lastLine": 9,
+          },
+          "type": "CharacterLiteral",
+          "value": "'\\\\t'",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 22,
+          "lastLine": 9,
+        },
+        "name": "tab",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 10,
+            "lastColumn": 29,
+            "lastLine": 10,
+          },
+          "type": "CharacterLiteral",
+          "value": "'\\\\''",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 30,
+          "lastLine": 10,
+        },
+        "name": "singleQuote",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 25,
+            "firstLine": 11,
+            "lastColumn": 28,
+            "lastLine": 11,
+          },
+          "type": "CharacterLiteral",
+          "value": "'\\"'",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 21,
+          "firstLine": 1,
+          "lastColumn": 29,
+          "lastLine": 11,
+        },
+        "name": "doubleQuote",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 12,
+    },
+    "name": "Characters",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: literals/Numbers.sand 1`] = `
 Object {
   "imports": Array [],
