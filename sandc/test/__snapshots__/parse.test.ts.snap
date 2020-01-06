@@ -7491,6 +7491,421 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: IfChains.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 33,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": "pub",
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 2,
+            "lastColumn": 5,
+            "lastLine": 6,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "alternatives": Array [],
+                "body": Object {
+                  "location": Object {
+                    "firstColumn": 13,
+                    "firstLine": 3,
+                    "lastColumn": 9,
+                    "lastLine": 5,
+                  },
+                  "nodes": Array [],
+                  "type": "CompoundNode",
+                  "useStatements": Array [],
+                },
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 3,
+                    "lastColumn": 12,
+                    "lastLine": 3,
+                  },
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 9,
+                  "lastLine": 5,
+                },
+                "type": "If",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 2,
+          "lastColumn": 5,
+          "lastLine": 6,
+        },
+        "name": "loneIf",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": "pub",
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 8,
+            "lastColumn": 5,
+            "lastLine": 14,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "doesShadow": false,
+                "initialValue": Object {
+                  "alternatives": Array [
+                    Object {
+                      "alternativeType": "Else",
+                      "body": Object {
+                        "location": Object {
+                          "firstColumn": 15,
+                          "firstLine": 11,
+                          "lastColumn": 9,
+                          "lastLine": 13,
+                        },
+                        "nodes": Array [],
+                        "type": "CompoundNode",
+                        "useStatements": Array [],
+                      },
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 11,
+                        "lastColumn": 9,
+                        "lastLine": 13,
+                      },
+                      "type": "IfAlternative",
+                    },
+                  ],
+                  "body": Object {
+                    "location": Object {
+                      "firstColumn": 21,
+                      "firstLine": 9,
+                      "lastColumn": 9,
+                      "lastLine": 11,
+                    },
+                    "nodes": Array [],
+                    "type": "CompoundNode",
+                    "useStatements": Array [],
+                  },
+                  "condition": Object {
+                    "location": Object {
+                      "firstColumn": 19,
+                      "firstLine": 9,
+                      "lastColumn": 20,
+                      "lastLine": 9,
+                    },
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 9,
+                    "lastColumn": 9,
+                    "lastLine": 13,
+                  },
+                  "type": "If",
+                },
+                "isReassignable": false,
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 9,
+                  "lastColumn": 10,
+                  "lastLine": 13,
+                },
+                "name": "y",
+                "type": "LocalVariableDeclaration",
+                "valueType": null,
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 8,
+          "lastColumn": 5,
+          "lastLine": 14,
+        },
+        "name": "ifElse",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": "pub",
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 17,
+            "firstLine": 16,
+            "lastColumn": 5,
+            "lastLine": 22,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "alternatives": Array [
+                  Object {
+                    "alternativeType": "ElseIf",
+                    "body": Object {
+                      "location": Object {
+                        "firstColumn": 20,
+                        "firstLine": 19,
+                        "lastColumn": 9,
+                        "lastLine": 21,
+                      },
+                      "nodes": Array [],
+                      "type": "CompoundNode",
+                      "useStatements": Array [],
+                    },
+                    "condition": Object {
+                      "location": Object {
+                        "firstColumn": 18,
+                        "firstLine": 19,
+                        "lastColumn": 19,
+                        "lastLine": 19,
+                      },
+                      "name": "y",
+                      "type": "Identifier",
+                    },
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 19,
+                      "lastColumn": 9,
+                      "lastLine": 21,
+                    },
+                    "type": "IfAlternative",
+                  },
+                ],
+                "body": Object {
+                  "location": Object {
+                    "firstColumn": 13,
+                    "firstLine": 17,
+                    "lastColumn": 9,
+                    "lastLine": 19,
+                  },
+                  "nodes": Array [],
+                  "type": "CompoundNode",
+                  "useStatements": Array [],
+                },
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 11,
+                    "firstLine": 17,
+                    "lastColumn": 12,
+                    "lastLine": 17,
+                  },
+                  "name": "x",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 17,
+                  "lastColumn": 9,
+                  "lastLine": 21,
+                },
+                "type": "If",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 16,
+          "lastColumn": 5,
+          "lastLine": 22,
+        },
+        "name": "ifElif",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": "pub",
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 21,
+            "firstLine": 24,
+            "lastColumn": 5,
+            "lastLine": 32,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "doesShadow": false,
+                "initialValue": Object {
+                  "alternatives": Array [
+                    Object {
+                      "alternativeType": "ElseIf",
+                      "body": Object {
+                        "location": Object {
+                          "firstColumn": 20,
+                          "firstLine": 27,
+                          "lastColumn": 9,
+                          "lastLine": 29,
+                        },
+                        "nodes": Array [],
+                        "type": "CompoundNode",
+                        "useStatements": Array [],
+                      },
+                      "condition": Object {
+                        "location": Object {
+                          "firstColumn": 18,
+                          "firstLine": 27,
+                          "lastColumn": 19,
+                          "lastLine": 27,
+                        },
+                        "name": "y",
+                        "type": "Identifier",
+                      },
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 27,
+                        "lastColumn": 9,
+                        "lastLine": 29,
+                      },
+                      "type": "IfAlternative",
+                    },
+                    Object {
+                      "alternativeType": "Else",
+                      "body": Object {
+                        "location": Object {
+                          "firstColumn": 15,
+                          "firstLine": 29,
+                          "lastColumn": 9,
+                          "lastLine": 31,
+                        },
+                        "nodes": Array [],
+                        "type": "CompoundNode",
+                        "useStatements": Array [],
+                      },
+                      "location": Object {
+                        "firstColumn": 10,
+                        "firstLine": 29,
+                        "lastColumn": 9,
+                        "lastLine": 31,
+                      },
+                      "type": "IfAlternative",
+                    },
+                  ],
+                  "body": Object {
+                    "location": Object {
+                      "firstColumn": 21,
+                      "firstLine": 25,
+                      "lastColumn": 9,
+                      "lastLine": 27,
+                    },
+                    "nodes": Array [],
+                    "type": "CompoundNode",
+                    "useStatements": Array [],
+                  },
+                  "condition": Object {
+                    "location": Object {
+                      "firstColumn": 19,
+                      "firstLine": 25,
+                      "lastColumn": 20,
+                      "lastLine": 25,
+                    },
+                    "name": "x",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 16,
+                    "firstLine": 25,
+                    "lastColumn": 9,
+                    "lastLine": 31,
+                  },
+                  "type": "If",
+                },
+                "isReassignable": false,
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 25,
+                  "lastColumn": 10,
+                  "lastLine": 31,
+                },
+                "name": "z",
+                "type": "LocalVariableDeclaration",
+                "valueType": null,
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 4,
+          "firstLine": 24,
+          "lastColumn": 5,
+          "lastLine": 32,
+        },
+        "name": "ifElifElse",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 33,
+    },
+    "name": "IfChains",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: ImportStatements.sand 1`] = `
 Object {
   "imports": Array [

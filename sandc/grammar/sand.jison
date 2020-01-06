@@ -302,10 +302,11 @@ optIfAlternatives
     ;
 
 ifAlternatives
-    : elseIfs "else" compoundNode
-        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $3, location: yy.merge(@2, @3) }]); }
-    | "else" compoundNode
+    : "else" compoundNode
         { $$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $2, location: yy.camelCase(@$) }]; }
+    | elseIfs
+    | elseIfs "else" compoundNode
+        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $3, location: yy.merge(@2, @3) }]); }
     ;
 
 elseIfs

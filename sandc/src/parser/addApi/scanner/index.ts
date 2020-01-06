@@ -557,7 +557,16 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "implements",
   "inst",
   "new",
-  startOfStatementWithCompoundNode("if"),
+  [
+    /if\b/,
+    (scanner: SandScanner) => {
+      if (!isUpcomingIfTheIfInElseIf(scanner)) {
+        scanner.onStatementWithCompoundNodeStart();
+      }
+
+      return "if";
+    },
+  ],
   startOfStatementWithCompoundNode("else"),
   startOfStatementWithCompoundNode("switch"),
   startOfStatementWithCompoundNode("case"),
@@ -799,4 +808,9 @@ function startOfStatementWithCompoundNode(token: TokenType): TokenizationRule {
       return token;
     },
   ];
+}
+
+function isUpcomingIfTheIfInElseIf(scanner: SandScanner): boolean {
+  const past = scanner.pastInput();
+  return /else\s*$/.test(past);
 }
