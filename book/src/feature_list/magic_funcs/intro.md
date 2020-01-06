@@ -31,7 +31,7 @@ However, they can be quite useful when used in conjunction with built-in magic f
 For instance, suppose you had a resizable list, and you wanted to calculate the list of its squares:
 
 ```sand
-let x = int [1, 2, 3];
+let x: int[] = [1, 2, 3];
 let y = x.map(\n -> n * n).rList();
 ```
 
