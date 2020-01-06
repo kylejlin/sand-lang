@@ -7,7 +7,46 @@ pub class Operations {
         -a ** b + c * d - e
     }
 
-    eirdPrecedence() {
+    ifExpPrecedence() {
         -(if x {} else {}) ** b + - (if y {} else {}) * d - e
+    }
+
+    infixOps() {
+        [
+            "hi" + '!',
+
+            2 ** 3,
+
+            2 * 3,
+            2 / 3,
+            2 % 3,
+
+            2 + 3,
+            2 - 3,
+
+            2 == 3,
+            2 != 3,
+            2 ~= 3,
+
+            2 < 3,
+            2 <= 3,
+            2 > 3,
+            2 >= 3,
+
+            true && false,
+            true || false,
+        ]
+    }
+
+    prefixOps() {
+        [
+            -2,
+            !true,
+            ~["apple", "banana", "cherry"],
+        ]
+    }
+
+    index() {
+        ["apple", "banana", "cherry"][0]
     }
 }

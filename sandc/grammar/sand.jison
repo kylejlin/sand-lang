@@ -9,7 +9,7 @@
 %left "||"
 %left "&&"
 
-%left "==" "!="
+%left "==" "!=" "~="
 %left "<" "<=" ">" ">="
 
 %nonassoc "..=" ".."
@@ -431,6 +431,8 @@ simpleExpression
     | simpleExpression "==" simpleExpression
         { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.camelCase(@$) }; }
     | simpleExpression "!=" simpleExpression
+        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | simpleExpression "~=" simpleExpression
         { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.camelCase(@$) }; }
     | simpleExpression "&&" simpleExpression
         { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.camelCase(@$) }; }
