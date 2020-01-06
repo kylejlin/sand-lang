@@ -13187,6 +13187,234 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: literals/Numbers.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 11,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 20,
+            "firstLine": 2,
+            "lastColumn": 21,
+            "lastLine": 2,
+          },
+          "type": "NumberLiteral",
+          "value": "0",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 22,
+          "lastLine": 2,
+        },
+        "name": "x",
+        "type": "StaticPropertyDeclaration",
+        "valueType": Object {
+          "args": Array [],
+          "location": Object {
+            "firstColumn": 14,
+            "firstLine": 2,
+            "lastColumn": 17,
+            "lastLine": 2,
+          },
+          "name": "int",
+          "type": "Type",
+        },
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 3,
+            "lastColumn": 21,
+            "lastLine": 3,
+          },
+          "type": "NumberLiteral",
+          "value": "65char",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 22,
+          "lastLine": 3,
+        },
+        "name": "y",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 4,
+            "lastColumn": 24,
+            "lastLine": 4,
+          },
+          "type": "NumberLiteral",
+          "value": "0.0double",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 25,
+          "lastLine": 4,
+        },
+        "name": "z",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 6,
+            "lastColumn": 22,
+            "lastLine": 6,
+          },
+          "type": "NumberLiteral",
+          "value": "-5e2int",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 23,
+          "lastLine": 6,
+        },
+        "name": "a",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 7,
+            "lastColumn": 26,
+            "lastLine": 7,
+          },
+          "type": "NumberLiteral",
+          "value": "2.3e-5float",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 27,
+          "lastLine": 7,
+        },
+        "name": "b",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 8,
+            "lastColumn": 22,
+            "lastLine": 8,
+          },
+          "type": "NumberLiteral",
+          "value": "122long",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 23,
+          "lastLine": 8,
+        },
+        "name": "c",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 9,
+            "lastColumn": 22,
+            "lastLine": 9,
+          },
+          "type": "NumberLiteral",
+          "value": "-5short",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 23,
+          "lastLine": 9,
+        },
+        "name": "d",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+      Object {
+        "accessModifier": null,
+        "initialValue": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 10,
+            "lastColumn": 21,
+            "lastLine": 10,
+          },
+          "type": "NumberLiteral",
+          "value": "15byte",
+        },
+        "isReassignable": false,
+        "location": Object {
+          "firstColumn": 18,
+          "firstLine": 1,
+          "lastColumn": 22,
+          "lastLine": 10,
+        },
+        "name": "e",
+        "type": "StaticPropertyDeclaration",
+        "valueType": null,
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 11,
+    },
+    "name": "Numbers",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: literals/Ranges.sand 1`] = `
 Object {
   "imports": Array [],
