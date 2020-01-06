@@ -29,6 +29,7 @@ export enum NodeType {
   ObjectEntry = "ObjectEntry",
   ArrayLiteral = "ArrayLiteral",
   RangeLiteral = "RangeLiteral",
+  MagicFunctionLiteral = "MagicFunctionLiteral",
 
   LocalVariableDeclaration = "LocalVariableDeclaration",
   Assignment = "Assignment",
@@ -53,6 +54,7 @@ export enum NodeType {
   Type = "Type",
   TypeArgDef = "TypeArgDef",
   ArgDef = "ArgDef",
+  UntypedArgDef = "UntypedArgDef",
 
   CompoundNode = "CompoundNode",
 }
@@ -271,7 +273,8 @@ export type Expr =
   | FunctionCall
   | TypedObjectLiteral
   | ArrayLiteral
-  | RangeLiteral;
+  | RangeLiteral
+  | MagicFunctionLiteral;
 
 export type Statement =
   | Return
@@ -428,6 +431,19 @@ export interface RangeLiteral {
   start: Expr;
   end: Expr;
   includesEnd: boolean;
+  location: NodeLocation;
+}
+
+export interface MagicFunctionLiteral {
+  type: NodeType.MagicFunctionLiteral;
+  args: UntypedArgDef[];
+  body: Expr;
+  location: NodeLocation;
+}
+
+export interface UntypedArgDef {
+  type: NodeType.UntypedArgDef;
+  name: string;
   location: NodeLocation;
 }
 

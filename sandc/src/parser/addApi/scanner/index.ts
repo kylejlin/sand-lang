@@ -361,6 +361,8 @@ export type TokenType =
   | "NON_RESERVED_IDENTIFIER"
   | "OBJECT_LITERAL_TYPE"
   | "CAST_EXPRESSION_TARGET_TYPE"
+  | "\\"
+  | "->"
   | "**"
   | "*"
   | "/"
@@ -478,6 +480,8 @@ const TOKEN_TYPES: TokenType[] = [
   "NON_RESERVED_IDENTIFIER",
   "OBJECT_LITERAL_TYPE",
   "CAST_EXPRESSION_TARGET_TYPE",
+  "\\",
+  "->",
   "**",
   "*",
   "/",
@@ -656,6 +660,8 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "%=",
   "+=",
   "-=",
+  "\\",
+  "->",
   "**",
   "*",
   "/",

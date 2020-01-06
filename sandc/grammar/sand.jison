@@ -6,6 +6,8 @@
 
 %nonassoc "=" "**=" "*=" "/=" "%=" "+=" "-="
 
+%nonassoc "->"
+
 %left "||"
 %left "&&"
 
@@ -492,6 +494,8 @@ simpleExpression
 
     | range
 
+    | magicFunctionLiteral
+
     | castExpression
 
     | parenthesizedExpression
@@ -631,6 +635,26 @@ endInclusiveRange
 endExclusiveRange
     : simpleExpression ".." simpleExpression
         { $$ = { type: yy.NodeType.RangeLiteral, start: $1, end: $3, includesEnd: false, location: yy.camelCase(@$) }; }
+    ;
+
+magicFunctionLiteral
+    : "\" optUntypedArgDefs "->" simpleExpression
+        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
+    | "\" optUntypedArgDefs "->" ifNode
+        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
+    ;
+
+optUntypedArgDefs
+    : %empty
+        { $$ = []; }
+    | untypedArgDefs
+    ;
+
+untypedArgDefs
+    : NON_RESERVED_IDENTIFIER
+        { $$ = [{ type: yy.NodeType.UntypedArgDef, name: $1, location: yy.camelCase(@$) }]; }
+    | untypedArgDefs "," NON_RESERVED_IDENTIFIER
+        { $$ = $1.concat([{ type: yy.NodeType.UntypedArgDef, name: $3, location: yy.camelCase(@3) }]); }
     ;
 
 castExpression
