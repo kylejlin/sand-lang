@@ -20,4 +20,18 @@ pub class MagicFunctions {
             System.out.println(n);
         }
     }
+
+    doReturn() {
+        \n -> do {
+            let a = b;
+            n * a + a
+        }
+    }
+
+    compoundReturn() {
+        \n -> {
+            let a = b;
+            n * a + a
+        }
+    }
 }

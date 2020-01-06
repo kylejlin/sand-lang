@@ -444,7 +444,7 @@ export interface RangeLiteral {
 export interface MagicFunctionLiteral {
   type: NodeType.MagicFunctionLiteral;
   args: UntypedArgDef[];
-  body: Expr;
+  body: Expr | CompoundNode;
   location: NodeLocation;
 }
 

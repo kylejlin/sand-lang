@@ -661,7 +661,16 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "+=",
   "-=",
   "\\",
-  "->",
+  [
+    /->/,
+    (scanner: SandScanner) => {
+      if (doesUpcomingArrowPointToACompoundNode(scanner)) {
+        scanner.onStatementWithCompoundNodeStart();
+      }
+
+      return "->";
+    },
+  ],
   "**",
   "*",
   "/",
@@ -819,4 +828,9 @@ function startOfStatementWithCompoundNode(token: TokenType): TokenizationRule {
 function isUpcomingIfTheIfInElseIf(scanner: SandScanner): boolean {
   const past = scanner.pastInput();
   return /else\s*$/.test(past);
+}
+
+function doesUpcomingArrowPointToACompoundNode(scanner: SandScanner): boolean {
+  const upcoming = scanner.upcomingInput();
+  return /^\s*->\s*\{/.test(upcoming);
 }

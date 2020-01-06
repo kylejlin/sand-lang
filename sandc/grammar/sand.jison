@@ -686,6 +686,8 @@ magicFunctionLiteral
         { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
     | "\" optUntypedArgDefs "->" doNode
         { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
+    | "\" optUntypedArgDefs "->" compoundNode
+        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
     ;
 
 optUntypedArgDefs
