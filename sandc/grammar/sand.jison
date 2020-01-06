@@ -285,6 +285,7 @@ nodeSequence
 
 rightDelimitedStatement
     : ifNode
+    | doNode
     | returnStatement
     | breakStatement
     | continueStatement
@@ -322,10 +323,17 @@ elseIfs
         { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.merge(@2, @5) }]); }
     ;
 
+doNode
+    : "do" compoundNode
+        { $$ = { type: yy.NodeType.Do, body: $2, location: yy.camelCase(@$) }; }
+    ;
+
 returnStatement
     : "return_" simpleExpression ";"
         { $$ = { type: yy.NodeType.Return, value: $2, location: yy.camelCase(@$) }; }
     | "return_" ifNode ";"
+        { $$ = { type: yy.NodeType.Return, value: $2, location: yy.camelCase(@$) }; }
+    | "return_" doNode ";"
         { $$ = { type: yy.NodeType.Return, value: $2, location: yy.camelCase(@$) }; }
     | "return_" ";"
         { $$ = { type: yy.NodeType.Return, value: null, location: yy.camelCase(@$) }; }
@@ -377,12 +385,32 @@ localVarDeclaration
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
     | "re!" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
         { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
+
+    | "let" NON_RESERVED_IDENTIFIER "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
+    | "let!" NON_RESERVED_IDENTIFIER "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
+    | "re" NON_RESERVED_IDENTIFIER "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
+    | "re!" NON_RESERVED_IDENTIFIER "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.camelCase(@$) }; }
+
+    | "let" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
+    | "let!" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
+    | "re" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
+    | "re!" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
+        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.camelCase(@$) }; }
     ;
 
 assignment
     : simpleExpression assignmentOperation simpleExpression ";"
         { $$ = { type: yy.NodeType.Assignment, assignee: $1, assignmentType: $2, value: $3, location: yy.camelCase(@$) }; }
     | simpleExpression assignmentOperation ifNode ";"
+        { $$ = { type: yy.NodeType.Assignment, assignee: $1, assignmentType: $2, value: $3, location: yy.camelCase(@$) }; }
+    | simpleExpression assignmentOperation doNode ";"
         { $$ = { type: yy.NodeType.Assignment, assignee: $1, assignmentType: $2, value: $3, location: yy.camelCase(@$) }; }
     ;
 
@@ -506,6 +534,8 @@ parenthesizedExpression
         { $$ = $2; }
     | "(" ifNode ")"
         { $$ = $2; }
+    | "(" doNode ")"
+        { $$ = $2; }
     ;
 
 indexExpression
@@ -549,9 +579,13 @@ args
         { $$ = [$1]; }
     | ifNode
         { $$ = [$1]; }
+    | doNode
+        { $$ = [$1]; }
     | args "," simpleExpression
         { $$ = $1.concat([$3]); }
     | args "," ifNode
+        { $$ = $1.concat([$3]); }
+    | args "," doNode
         { $$ = $1.concat([$3]); }
     ;
 
@@ -592,11 +626,15 @@ objectEntries
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
     | NON_RESERVED_IDENTIFIER ":" ifNode
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
+    | NON_RESERVED_IDENTIFIER ":" doNode
+        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.camelCase(@$) }]; }
     | NON_RESERVED_IDENTIFIER
         { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: null, location: yy.camelCase(@$) }]; }
     | objectEntries "," NON_RESERVED_IDENTIFIER ":" simpleExpression
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     | objectEntries "," NON_RESERVED_IDENTIFIER ":" ifNode
+        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
+    | objectEntries "," NON_RESERVED_IDENTIFIER ":" doNode
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
     | objectEntries "," NON_RESERVED_IDENTIFIER
         { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: null, location: yy.camelCase(@3) }]); }
@@ -616,9 +654,13 @@ expressionSequence
         { $$ = [$1]; }
     | ifNode
         { $$ = [$1]; }
+    | doNode
+        { $$ = [$1]; }
     | expressionSequence "," simpleExpression
         { $$ = $1.concat([$3]); }
     | expressionSequence "," ifNode
+        { $$ = $1.concat([$3]); }
+    | expressionSequence "," doNode
         { $$ = $1.concat([$3]); }
     ;
 
@@ -641,6 +683,8 @@ magicFunctionLiteral
     : "\" optUntypedArgDefs "->" simpleExpression
         { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
     | "\" optUntypedArgDefs "->" ifNode
+        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
+    | "\" optUntypedArgDefs "->" doNode
         { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.camelCase(@$) }; }
     ;
 

@@ -1,0 +1,58 @@
+pub class Do {
+    statement() {
+        let a = b;
+
+        do {
+            c();
+        }
+        
+        d
+    }
+
+    ret() {
+        return do {
+            a
+        };
+    }
+
+    implicitReturn() {
+        do {
+            a
+        }
+    }
+
+    declaration() {
+        let a = do {
+            b
+        };
+    }
+
+    assignment() {
+        a = do {
+            b
+        };
+    }
+
+    compoundAssignment() {
+        a **= do {
+            b
+        };
+    }
+
+    paren() {
+        2 * (do {
+            b
+        })
+    }
+
+    magicFunction() {
+        \n -> do {
+            let a = b().c;
+            if n < a {
+                -a
+            } else {
+                a
+            }
+        }
+    }
+}

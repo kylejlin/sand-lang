@@ -23,6 +23,7 @@ export enum NodeType {
   AbstractMethodDeclaration = "AbstractMethodDeclaration",
 
   If = "If",
+  Do = "Do",
   FunctionCall = "FunctionCall",
   TypedObjectLiteral = "TypedObjectLiteral",
   ObjectCopy = "ObjectCopy",
@@ -387,6 +388,12 @@ export interface ElseIf {
 export interface Else {
   type: NodeType.IfAlternative;
   alternativeType: IfAlternativeType.Else;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface Do {
+  type: NodeType.Do;
   body: CompoundNode;
   location: NodeLocation;
 }
