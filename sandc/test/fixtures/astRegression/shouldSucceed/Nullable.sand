@@ -14,4 +14,10 @@ pub class Nullable<T, U extends T?> {
             x
         }
     }
+
+    objLit() {
+        Foo? {
+            bar: baz,
+        }
+    }
 }
