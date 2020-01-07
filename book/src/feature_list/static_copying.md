@@ -138,5 +138,5 @@ class IndexOf {
 In order to be copyable, methods must:
 
 1. Be static.
-2. Not reference any static properties.
-3. Not reference any static methods that are not copyable themselves.
+2. Not reference any static property, unless that property is public.
+3. Not reference any static method, unless that method is public.
