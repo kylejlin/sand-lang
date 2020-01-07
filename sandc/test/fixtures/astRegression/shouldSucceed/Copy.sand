@@ -10,3 +10,60 @@ pub class Copy {
         
     }
 }
+
+class CopyAccessMods {
+    pub copy sand.util.IndexOf.indexOf;
+    pub copy sand.util.IndexOf.lastIndexOf as lio;
+
+    prot copy foo.indexOf2;
+    prot copy foo.lastIndexOf as lio2;
+
+    use a as b;
+
+    foo: int;
+
+    bar() {
+
+    }
+}
+
+class CopySignatures {
+    copy Foo.bar();
+    copy Foo.bar(T[+], T);
+    copy Foo.bar<T>();
+    copy Foo.bar<T>(T[+], T);
+
+    copy Foo.bar() as baz;
+    copy Foo.bar(T[+], T) as baz;
+    copy Foo.bar<T>() as baz;
+    copy Foo.bar<T>(T[+], T) as baz;
+
+    pub copy Foo.bar();
+    pub copy Foo.bar(T[+], T);
+    pub copy Foo.bar<T>();
+    pub copy Foo.bar<T>(T[+], T);
+
+    pub copy Foo.bar() as baz;
+    pub copy Foo.bar(T[+], T) as baz;
+    pub copy Foo.bar<T>() as baz;
+    pub copy Foo.bar<T>(T[+], T) as baz;
+
+    prot copy Foo.bar();
+    prot copy Foo.bar(T[+], T);
+    prot copy Foo.bar<T>();
+    prot copy Foo.bar<T>(T[+], T);
+
+    prot copy Foo.bar() as baz;
+    prot copy Foo.bar(T[+], T) as baz;
+    prot copy Foo.bar<T>() as baz;
+    prot copy Foo.bar<T>(T[+], T) as baz;
+
+    use a as b;
+
+    foo: int;
+
+    bar() {
+        
+    }
+}
+

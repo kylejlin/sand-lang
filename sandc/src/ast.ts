@@ -3,7 +3,8 @@ import { JisonNodeLocation } from "./jison";
 export enum NodeType {
   Import = "Import",
   Use = "Use",
-  Copy = "Copy",
+  StaticMethodCopy = "StaticMethodCopy",
+  StaticMethodCopySignature = "StaticMethodCopySignature",
 
   NumberLiteral = "NumberLiteral",
   StringLiteral = "StringLiteral",
@@ -123,10 +124,19 @@ export interface Use {
   location: NodeLocation;
 }
 
-export interface Copy {
-  type: NodeType.Copy;
+export interface StaticMethodCopy {
+  type: NodeType.StaticMethodCopy;
+  accessModifier: OptAccessModifier;
   name: string;
+  signature: StaticMethodCopySignature | null;
   alias: string | null;
+  location: NodeLocation;
+}
+
+export interface StaticMethodCopySignature {
+  type: NodeType.StaticMethodCopySignature;
+  typeArgs: TypeArgDef[];
+  argTypes: Type[];
   location: NodeLocation;
 }
 
@@ -137,7 +147,7 @@ export interface Class {
   name: string;
   typeArgDefs: TypeArgDef[];
   superClass: Type | null;
-  copies: Copy[];
+  copies: StaticMethodCopy[];
   useStatements: Use[];
   items: ClassItem[];
   location: NodeLocation;

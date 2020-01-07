@@ -334,6 +334,8 @@ export type TokenType =
   | "use"
   | "import"
   | "copy"
+  | "PUB_COPY"
+  | "PROT_COPY"
   | "as!"
   | "as"
   | "package"
@@ -453,6 +455,8 @@ const TOKEN_TYPES: TokenType[] = [
   "use",
   "import",
   "copy",
+  "PUB_COPY",
+  "PROT_COPY",
   "as!",
   "as",
   "package",
@@ -533,6 +537,8 @@ type ShorthandTokenizationRule =
   | [RegExp, (scanner: SandScanner) => TokenType];
 
 const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
+  [/pub\s+copy\b/, () => "PUB_COPY"],
+  [/prot\s+copy\b/, () => "PROT_COPY"],
   "pub",
   "prot",
   "priv",
@@ -686,7 +692,8 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
     /</,
     (scanner: SandScanner): TokenType => {
       const upcoming = scanner.upcomingInput();
-      if (isThereUpcomingTypeArgListAndFunctionCallLeftParen(upcoming)) {
+      const past = scanner.pastInput();
+      if (isThereUpcomingTypeArgListAndFunctionCallLeftParen(upcoming, past)) {
         return "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET";
       } else {
         return "<";

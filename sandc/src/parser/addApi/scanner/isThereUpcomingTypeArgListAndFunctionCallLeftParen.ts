@@ -2,11 +2,16 @@ import typeParser from "../../subparsers/type/prebuilt";
 
 export default function isThereUpcomingTypeArgListAndFunctionCallLeftParen(
   upcoming: string,
+  past: string,
 ): boolean {
   if (!/^\s*</.test(upcoming)) {
     throw new SyntaxError(
       "There cannot be an upcoming type argument list if the string does not begin with a left angle. This indicates you called this function erroneously.",
     );
+  }
+
+  if (/copy\s+([a-zA-Z_]\w*(\s*\.\s*[a-zA-Z_]\w*)*)\s*$/.test(past)) {
+    return false;
   }
 
   const indexOfFirstLeftParen = upcoming.indexOf("(");

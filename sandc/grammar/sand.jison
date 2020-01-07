@@ -73,10 +73,34 @@ optUseStatements
 optCopyStatements
     : %empty
         { $$ = []; }
-    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Copy, name: $3.map(ident => ident.name).join("."), alias: $5, location: yy.merge(@2, @6) }]); }
-    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Copy, name: $3.map(ident => ident.name).join("."), alias: null, location: yy.merge(@2, @4) }]); }
+
+    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers optCopySignature "as" NON_RESERVED_IDENTIFIER ";"
+        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: null, name: $3.map(ident => ident.name).join("."), signature: $4, alias: $6, location: yy.merge(@2, @7) }]); }
+    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers optCopySignature ";"
+        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: null, name: $3.map(ident => ident.name).join("."), signature: $4, alias: null, location: yy.merge(@2, @5) }]); }
+
+    | optCopyStatements PUB_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature "as" NON_RESERVED_IDENTIFIER ";"
+        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "pub", name: $3.map(ident => ident.name).join("."), signature: $4, alias: $6, location: yy.merge(@2, @7) }]); }
+    | optCopyStatements PUB_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature ";"
+        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "pub", name: $3.map(ident => ident.name).join("."), signature: $4, alias: null, location: yy.merge(@2, @5) }]); }
+
+    | optCopyStatements PROT_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature "as" NON_RESERVED_IDENTIFIER ";"
+        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "prot", name: $3.map(ident => ident.name).join("."), signature: $4, alias: $6, location: yy.merge(@2, @7) }]); }
+    | optCopyStatements PROT_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature ";"
+        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "prot", name: $3.map(ident => ident.name).join("."), signature: $4, alias: null, location: yy.merge(@2, @5) }]); }
+    ;
+
+optCopySignature
+    : %empty
+        { $$ = null; }
+    | "(" ")"
+        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: [], location: yy.camelCase(@$) }; }
+    | "(" typeArgs ")"
+        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: $2, location: yy.camelCase(@$) }; }
+    | "<" typeArgDefs ">" "(" ")"
+        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $2, argTypes: [], location: yy.camelCase(@$) }; }
+    | "<" typeArgDefs ">" "(" typeArgs ")"
+        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $2, argTypes: $5, location: yy.camelCase(@$) }; }
     ;
 
 pubClass
