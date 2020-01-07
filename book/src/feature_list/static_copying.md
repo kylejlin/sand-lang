@@ -57,6 +57,52 @@ If you don't want to rename the method, you can omit the `as` portion of the sta
 
 That is, `copy Foo.bar;` is syntactic sugar for `copy Foo.bar as bar;`.
 
+## Accessibility
+
+By default, method copies are private.
+
+If you want them to be public or protected, prepend `pub` or `prot`, respectively.
+
+For example:
+
+```sand
+pub class App {
+    pub copy IndexOf.indexOf as foo;
+
+    // ...
+}
+```
+
+## Overloads
+
+By default, all the overloads of a method are copied.
+
+For example, suppose we had
+
+```sand
+pub class IndexOf {
+    pub indexOf<T>(arr: T[], target: T): int {
+        // ...
+    }
+
+    pub indexOf<T>(arr: T[], target: T, startIndex: int): int {
+
+    }
+}
+```
+
+Since all overloads are copied by default, `copy IndexOf.indexOf;` will create both `indexOf<T>(T[], T)` and `indexOf<T>(T[], T, int)`.
+
+If you only want to copy a specific overload, you can specify the signature in the copy statement.
+
+For example:
+
+```sand
+pub class App {
+    copy IndexOf.indexOf<T>(T[], T);
+}
+```
+
 ## Why copy?
 
 You might wonder why you would want to copy a method instead of just creating a `use` alias.
