@@ -9,7 +9,7 @@ pub class HelloWorld {
         Foo {};
 
         let x: int[] = [1, 2, 3];
-        let y = x as! Foo<Bar<Baz, int>, int, String, Baz[*]>;
+        let y = x as! Foo<Bar<Baz, int>, int, String, Baz[+]>;
         
         let ascDigits = (0..=9).rList();
         let foo = (-5..-3).arr();
