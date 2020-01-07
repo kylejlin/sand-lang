@@ -11,6 +11,8 @@ pub class App {
 }
 ```
 
+## Scoping
+
 Variables are scoped to the set of curly braces (`{}`) they are declared within.
 
 Hence, the following is illegal:
@@ -25,6 +27,12 @@ pub class App {
     }
 }
 ```
+
+Since methods, `if`, `while`, `loop`, `repeat`, and `for` nodes all have braces, they all have their own variable scopes.
+
+If you want to manually create a new scope without using one of the above nodes, you can use a [`do` node](./do.md).
+
+## Reassignability
 
 Variables are non-reassignable by default.
 You can make them assignable by declaring them with `re` (short for "reassignable"):
@@ -46,6 +54,8 @@ pub class App {
     }
 }
 ```
+
+## Shadowing
 
 By default, you cannot declare a variable that "shadows" another variable.
 That is, you cannot declare a variable that has the same name as another variable currently in scope.
