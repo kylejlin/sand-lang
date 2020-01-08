@@ -17123,7 +17123,7 @@ Object {
     "firstColumn": 0,
     "firstLine": 1,
     "lastColumn": 1,
-    "lastLine": 45,
+    "lastLine": 55,
   },
   "packageName": null,
   "privClasses": Array [],
@@ -17203,6 +17203,27 @@ Object {
               },
               "catches": Array [
                 Object {
+                  "arg": Object {
+                    "location": Object {
+                      "firstColumn": 17,
+                      "firstLine": 7,
+                      "lastColumn": 29,
+                      "lastLine": 7,
+                    },
+                    "name": "e",
+                    "type": "ArgDef",
+                    "valueType": Object {
+                      "args": Array [],
+                      "location": Object {
+                        "firstColumn": 20,
+                        "firstLine": 7,
+                        "lastColumn": 29,
+                        "lastLine": 7,
+                      },
+                      "name": "Exception",
+                      "type": "Type",
+                    },
+                  },
                   "body": Object {
                     "location": Object {
                       "firstColumn": 31,
@@ -17238,32 +17259,12 @@ Object {
                     "type": "CompoundNode",
                     "useStatements": Array [],
                   },
+                  "catchType": "BoundCatch",
                   "location": Object {
                     "firstColumn": 10,
                     "firstLine": 7,
                     "lastColumn": 9,
                     "lastLine": 9,
-                  },
-                  "optArg": Object {
-                    "location": Object {
-                      "firstColumn": 17,
-                      "firstLine": 7,
-                      "lastColumn": 29,
-                      "lastLine": 7,
-                    },
-                    "name": "e",
-                    "type": "ArgDef",
-                    "valueType": Object {
-                      "args": Array [],
-                      "location": Object {
-                        "firstColumn": 20,
-                        "firstLine": 7,
-                        "lastColumn": 29,
-                        "lastLine": 7,
-                      },
-                      "name": "Exception",
-                      "type": "Type",
-                    },
                   },
                   "type": "Catch",
                 },
@@ -17310,10 +17311,236 @@ Object {
         "args": Array [],
         "body": Object {
           "location": Object {
-            "firstColumn": 21,
+            "firstColumn": 28,
             "firstLine": 14,
             "lastColumn": 5,
-            "lastLine": 24,
+            "lastLine": 20,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "body": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 15,
+                    "lastColumn": 9,
+                    "lastLine": 17,
+                  },
+                  "nodes": Array [
+                    Array [
+                      Object {
+                        "args": Array [],
+                        "callee": Object {
+                          "location": Object {
+                            "firstColumn": 12,
+                            "firstLine": 16,
+                            "lastColumn": 13,
+                            "lastLine": 16,
+                          },
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        "location": Object {
+                          "firstColumn": 12,
+                          "firstLine": 16,
+                          "lastColumn": 15,
+                          "lastLine": 16,
+                        },
+                        "type": "FunctionCall",
+                        "typeArgs": Array [],
+                      },
+                    ],
+                  ],
+                  "type": "CompoundNode",
+                  "useStatements": Array [],
+                },
+                "catches": Array [
+                  Object {
+                    "body": Array [
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 27,
+                          "firstLine": 17,
+                          "lastColumn": 30,
+                          "lastLine": 17,
+                        },
+                        "name": "Foo",
+                        "type": "Type",
+                      },
+                    ],
+                    "catchType": "RestrictedBindinglessCatch",
+                    "caughtTypes": "instanceof",
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 17,
+                      "lastColumn": 9,
+                      "lastLine": 19,
+                    },
+                    "type": "Catch",
+                  },
+                ],
+                "finallyNode": null,
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 15,
+                  "lastColumn": 9,
+                  "lastLine": 19,
+                },
+                "type": "Try",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 14,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "restrictedBindingless",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 12,
+            "firstLine": 22,
+            "lastColumn": 5,
+            "lastLine": 28,
+          },
+          "nodes": Array [
+            Array [
+              Object {
+                "body": Object {
+                  "location": Object {
+                    "firstColumn": 12,
+                    "firstLine": 23,
+                    "lastColumn": 9,
+                    "lastLine": 25,
+                  },
+                  "nodes": Array [
+                    Array [
+                      Object {
+                        "args": Array [],
+                        "callee": Object {
+                          "location": Object {
+                            "firstColumn": 12,
+                            "firstLine": 24,
+                            "lastColumn": 13,
+                            "lastLine": 24,
+                          },
+                          "name": "a",
+                          "type": "Identifier",
+                        },
+                        "location": Object {
+                          "firstColumn": 12,
+                          "firstLine": 24,
+                          "lastColumn": 15,
+                          "lastLine": 24,
+                        },
+                        "type": "FunctionCall",
+                        "typeArgs": Array [],
+                      },
+                    ],
+                  ],
+                  "type": "CompoundNode",
+                  "useStatements": Array [],
+                },
+                "catches": Array [
+                  Object {
+                    "body": Array [
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 27,
+                          "firstLine": 25,
+                          "lastColumn": 30,
+                          "lastLine": 25,
+                        },
+                        "name": "Foo",
+                        "type": "Type",
+                      },
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 33,
+                          "firstLine": 25,
+                          "lastColumn": 36,
+                          "lastLine": 25,
+                        },
+                        "name": "Bar",
+                        "type": "Type",
+                      },
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 39,
+                          "firstLine": 25,
+                          "lastColumn": 42,
+                          "lastLine": 25,
+                        },
+                        "name": "Baz",
+                        "type": "Type",
+                      },
+                    ],
+                    "catchType": "RestrictedBindinglessCatch",
+                    "caughtTypes": "instanceof",
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 25,
+                      "lastColumn": 9,
+                      "lastLine": 27,
+                    },
+                    "type": "Catch",
+                  },
+                ],
+                "finallyNode": null,
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 23,
+                  "lastColumn": 9,
+                  "lastLine": 27,
+                },
+                "type": "Try",
+              },
+            ],
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 14,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 28,
+        },
+        "name": "union",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "location": Object {
+            "firstColumn": 15,
+            "firstLine": 30,
+            "lastColumn": 5,
+            "lastLine": 40,
           },
           "nodes": Array [
             Object {
@@ -17321,9 +17548,9 @@ Object {
               "initialValue": Object {
                 "location": Object {
                   "firstColumn": 16,
-                  "firstLine": 15,
+                  "firstLine": 31,
                   "lastColumn": 17,
-                  "lastLine": 15,
+                  "lastLine": 31,
                 },
                 "name": "b",
                 "type": "Identifier",
@@ -17331,9 +17558,9 @@ Object {
               "isReassignable": false,
               "location": Object {
                 "firstColumn": 8,
-                "firstLine": 15,
+                "firstLine": 31,
                 "lastColumn": 18,
-                "lastLine": 15,
+                "lastLine": 31,
               },
               "name": "a",
               "type": "LocalVariableDeclaration",
@@ -17343,9 +17570,9 @@ Object {
               "body": Object {
                 "location": Object {
                   "firstColumn": 12,
-                  "firstLine": 17,
+                  "firstLine": 33,
                   "lastColumn": 9,
-                  "lastLine": 19,
+                  "lastLine": 35,
                 },
                 "nodes": Array [
                   Array [
@@ -17354,18 +17581,18 @@ Object {
                       "callee": Object {
                         "location": Object {
                           "firstColumn": 12,
-                          "firstLine": 18,
+                          "firstLine": 34,
                           "lastColumn": 13,
-                          "lastLine": 18,
+                          "lastLine": 34,
                         },
                         "name": "c",
                         "type": "Identifier",
                       },
                       "location": Object {
                         "firstColumn": 12,
-                        "firstLine": 18,
+                        "firstLine": 34,
                         "lastColumn": 15,
-                        "lastLine": 18,
+                        "lastLine": 34,
                       },
                       "type": "FunctionCall",
                       "typeArgs": Array [],
@@ -17380,9 +17607,9 @@ Object {
                   "body": Object {
                     "location": Object {
                       "firstColumn": 16,
-                      "firstLine": 19,
+                      "firstLine": 35,
                       "lastColumn": 9,
-                      "lastLine": 21,
+                      "lastLine": 37,
                     },
                     "nodes": Array [
                       Array [
@@ -17391,18 +17618,18 @@ Object {
                           "callee": Object {
                             "location": Object {
                               "firstColumn": 12,
-                              "firstLine": 20,
+                              "firstLine": 36,
                               "lastColumn": 13,
-                              "lastLine": 20,
+                              "lastLine": 36,
                             },
                             "name": "d",
                             "type": "Identifier",
                           },
                           "location": Object {
                             "firstColumn": 12,
-                            "firstLine": 20,
+                            "firstLine": 36,
                             "lastColumn": 15,
-                            "lastLine": 20,
+                            "lastLine": 36,
                           },
                           "type": "FunctionCall",
                           "typeArgs": Array [],
@@ -17412,31 +17639,31 @@ Object {
                     "type": "CompoundNode",
                     "useStatements": Array [],
                   },
+                  "catchType": "CatchAll",
                   "location": Object {
                     "firstColumn": 10,
-                    "firstLine": 19,
+                    "firstLine": 35,
                     "lastColumn": 9,
-                    "lastLine": 21,
+                    "lastLine": 37,
                   },
-                  "optArg": null,
                   "type": "Catch",
                 },
               ],
               "finallyNode": null,
               "location": Object {
                 "firstColumn": 8,
-                "firstLine": 17,
+                "firstLine": 33,
                 "lastColumn": 9,
-                "lastLine": 21,
+                "lastLine": 37,
               },
               "type": "Try",
             },
             Object {
               "location": Object {
                 "firstColumn": 8,
-                "firstLine": 23,
+                "firstLine": 39,
                 "lastColumn": 9,
-                "lastLine": 23,
+                "lastLine": 39,
               },
               "name": "d",
               "type": "Identifier",
@@ -17452,9 +17679,9 @@ Object {
           "firstColumn": 14,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 24,
+          "lastLine": 40,
         },
-        "name": "noCatchBinding",
+        "name": "catchAll",
         "returnType": null,
         "type": "ConcreteMethodDeclaration",
         "typeArgs": Array [],
@@ -17465,9 +17692,9 @@ Object {
         "body": Object {
           "location": Object {
             "firstColumn": 22,
-            "firstLine": 26,
+            "firstLine": 42,
             "lastColumn": 5,
-            "lastLine": 36,
+            "lastLine": 54,
           },
           "nodes": Array [
             Array [
@@ -17475,9 +17702,9 @@ Object {
                 "body": Object {
                   "location": Object {
                     "firstColumn": 12,
-                    "firstLine": 27,
+                    "firstLine": 43,
                     "lastColumn": 9,
-                    "lastLine": 29,
+                    "lastLine": 45,
                   },
                   "nodes": Array [
                     Array [
@@ -17486,18 +17713,18 @@ Object {
                         "callee": Object {
                           "location": Object {
                             "firstColumn": 12,
-                            "firstLine": 28,
+                            "firstLine": 44,
                             "lastColumn": 13,
-                            "lastLine": 28,
+                            "lastLine": 44,
                           },
                           "name": "a",
                           "type": "Identifier",
                         },
                         "location": Object {
                           "firstColumn": 12,
-                          "firstLine": 28,
+                          "firstLine": 44,
                           "lastColumn": 15,
-                          "lastLine": 28,
+                          "lastLine": 44,
                         },
                         "type": "FunctionCall",
                         "typeArgs": Array [],
@@ -17509,29 +17736,12 @@ Object {
                 },
                 "catches": Array [
                   Object {
-                    "body": Object {
-                      "location": Object {
-                        "firstColumn": 34,
-                        "firstLine": 29,
-                        "lastColumn": 9,
-                        "lastLine": 31,
-                      },
-                      "nodes": Array [],
-                      "type": "CompoundNode",
-                      "useStatements": Array [],
-                    },
-                    "location": Object {
-                      "firstColumn": 10,
-                      "firstLine": 29,
-                      "lastColumn": 9,
-                      "lastLine": 31,
-                    },
-                    "optArg": Object {
+                    "arg": Object {
                       "location": Object {
                         "firstColumn": 17,
-                        "firstLine": 29,
+                        "firstLine": 45,
                         "lastColumn": 32,
-                        "lastLine": 29,
+                        "lastLine": 45,
                       },
                       "name": "e",
                       "type": "ArgDef",
@@ -17539,40 +17749,41 @@ Object {
                         "args": Array [],
                         "location": Object {
                           "firstColumn": 20,
-                          "firstLine": 29,
+                          "firstLine": 45,
                           "lastColumn": 32,
-                          "lastLine": 29,
+                          "lastLine": 45,
                         },
                         "name": "FooException",
                         "type": "Type",
                       },
                     },
-                    "type": "Catch",
-                  },
-                  Object {
                     "body": Object {
                       "location": Object {
                         "firstColumn": 34,
-                        "firstLine": 31,
+                        "firstLine": 45,
                         "lastColumn": 9,
-                        "lastLine": 33,
+                        "lastLine": 47,
                       },
                       "nodes": Array [],
                       "type": "CompoundNode",
                       "useStatements": Array [],
                     },
+                    "catchType": "BoundCatch",
                     "location": Object {
                       "firstColumn": 10,
-                      "firstLine": 31,
+                      "firstLine": 45,
                       "lastColumn": 9,
-                      "lastLine": 33,
+                      "lastLine": 47,
                     },
-                    "optArg": Object {
+                    "type": "Catch",
+                  },
+                  Object {
+                    "arg": Object {
                       "location": Object {
                         "firstColumn": 17,
-                        "firstLine": 31,
+                        "firstLine": 47,
                         "lastColumn": 32,
-                        "lastLine": 31,
+                        "lastLine": 47,
                       },
                       "name": "e",
                       "type": "ArgDef",
@@ -17580,141 +17791,108 @@ Object {
                         "args": Array [],
                         "location": Object {
                           "firstColumn": 20,
-                          "firstLine": 31,
+                          "firstLine": 47,
                           "lastColumn": 32,
-                          "lastLine": 31,
+                          "lastLine": 47,
                         },
                         "name": "BarException",
                         "type": "Type",
                       },
                     },
-                    "type": "Catch",
-                  },
-                  Object {
                     "body": Object {
                       "location": Object {
-                        "firstColumn": 16,
-                        "firstLine": 33,
+                        "firstColumn": 34,
+                        "firstLine": 47,
                         "lastColumn": 9,
-                        "lastLine": 35,
+                        "lastLine": 49,
                       },
                       "nodes": Array [],
                       "type": "CompoundNode",
                       "useStatements": Array [],
                     },
+                    "catchType": "BoundCatch",
                     "location": Object {
                       "firstColumn": 10,
-                      "firstLine": 33,
+                      "firstLine": 47,
                       "lastColumn": 9,
-                      "lastLine": 35,
+                      "lastLine": 49,
                     },
-                    "optArg": null,
                     "type": "Catch",
                   },
-                ],
-                "finallyNode": null,
-                "location": Object {
-                  "firstColumn": 8,
-                  "firstLine": 27,
-                  "lastColumn": 9,
-                  "lastLine": 35,
-                },
-                "type": "Try",
-              },
-            ],
-          ],
-          "type": "CompoundNode",
-          "useStatements": Array [],
-        },
-        "isOpen": false,
-        "isOverride": false,
-        "isStatic": true,
-        "location": Object {
-          "firstColumn": 14,
-          "firstLine": 1,
-          "lastColumn": 5,
-          "lastLine": 36,
-        },
-        "name": "multipleCatches",
-        "returnType": null,
-        "type": "ConcreteMethodDeclaration",
-        "typeArgs": Array [],
-      },
-      Object {
-        "accessModifier": null,
-        "args": Array [],
-        "body": Object {
-          "location": Object {
-            "firstColumn": 20,
-            "firstLine": 38,
-            "lastColumn": 5,
-            "lastLine": 44,
-          },
-          "nodes": Array [
-            Array [
-              Object {
-                "body": Object {
-                  "location": Object {
-                    "firstColumn": 12,
-                    "firstLine": 39,
-                    "lastColumn": 9,
-                    "lastLine": 41,
-                  },
-                  "nodes": Array [
-                    Object {
-                      "location": Object {
-                        "firstColumn": 12,
-                        "firstLine": 40,
-                        "lastColumn": 13,
-                        "lastLine": 40,
+                  Object {
+                    "body": Array [
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 27,
+                          "firstLine": 49,
+                          "lastColumn": 30,
+                          "lastLine": 49,
+                        },
+                        "name": "Foo",
+                        "type": "Type",
                       },
-                      "name": "a",
-                      "type": "Identifier",
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 33,
+                          "firstLine": 49,
+                          "lastColumn": 36,
+                          "lastLine": 49,
+                        },
+                        "name": "Bar",
+                        "type": "Type",
+                      },
+                      Object {
+                        "args": Array [],
+                        "location": Object {
+                          "firstColumn": 39,
+                          "firstLine": 49,
+                          "lastColumn": 42,
+                          "lastLine": 49,
+                        },
+                        "name": "Baz",
+                        "type": "Type",
+                      },
+                    ],
+                    "catchType": "RestrictedBindinglessCatch",
+                    "caughtTypes": "instanceof",
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 49,
+                      "lastColumn": 9,
+                      "lastLine": 51,
                     },
-                  ],
-                  "type": "CompoundNode",
-                  "useStatements": Array [],
-                },
-                "catches": Array [
+                    "type": "Catch",
+                  },
                   Object {
                     "body": Object {
                       "location": Object {
                         "firstColumn": 16,
-                        "firstLine": 41,
+                        "firstLine": 51,
                         "lastColumn": 9,
-                        "lastLine": 43,
+                        "lastLine": 53,
                       },
-                      "nodes": Array [
-                        Object {
-                          "location": Object {
-                            "firstColumn": 12,
-                            "firstLine": 42,
-                            "lastColumn": 13,
-                            "lastLine": 42,
-                          },
-                          "name": "b",
-                          "type": "Identifier",
-                        },
-                      ],
+                      "nodes": Array [],
                       "type": "CompoundNode",
                       "useStatements": Array [],
                     },
+                    "catchType": "CatchAll",
                     "location": Object {
                       "firstColumn": 10,
-                      "firstLine": 41,
+                      "firstLine": 51,
                       "lastColumn": 9,
-                      "lastLine": 43,
+                      "lastLine": 53,
                     },
-                    "optArg": null,
                     "type": "Catch",
                   },
                 ],
                 "finallyNode": null,
                 "location": Object {
                   "firstColumn": 8,
-                  "firstLine": 39,
+                  "firstLine": 43,
                   "lastColumn": 9,
-                  "lastLine": 43,
+                  "lastLine": 53,
                 },
                 "type": "Try",
               },
@@ -17730,9 +17908,9 @@ Object {
           "firstColumn": 14,
           "firstLine": 1,
           "lastColumn": 5,
-          "lastLine": 44,
+          "lastLine": 54,
         },
-        "name": "lastStatement",
+        "name": "multipleCatches",
         "returnType": null,
         "type": "ConcreteMethodDeclaration",
         "typeArgs": Array [],
@@ -17742,7 +17920,7 @@ Object {
       "firstColumn": 0,
       "firstLine": 1,
       "lastColumn": 1,
-      "lastLine": 45,
+      "lastLine": 55,
     },
     "name": "Try",
     "overridability": "Final",
@@ -21561,7 +21739,7 @@ exports[`the prebuilt parser throws parse errors consistently: FullyQualifiedTyp
 [Error: Parse error on line 2:
 ...foo(): java.util?.ArrayList { } }
 --------------------^
-Expecting ';', ')', '>', ',', '{', '[', '=', got '.']
+Expecting ';', ')', '>', ',', '{', '[', '=', '|', got '.']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: FullyQualifiedTypes.sand error line number 1`] = `2`;
@@ -21588,7 +21766,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericFunctionCa
 [Error: Parse error on line 3:
 ... { foo() { bar<T extends String>()...
 --------------------^
-Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '|', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericFunctionCall/Extends.sand error line number 1`] = `3`;
@@ -21651,7 +21829,7 @@ exports[`the prebuilt parser throws parse errors consistently: nullable/DoubleNu
 [Error: Parse error on line 2:
 ... { foo(): String?? { } }
 --------------------^
-Expecting ';', ')', '>', ',', '{', '[', '=', got '?']
+Expecting ';', ')', '>', ',', '{', '[', '=', '|', got '?']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: nullable/DoubleNullable.sand error line number 1`] = `2`;
@@ -21705,7 +21883,7 @@ exports[`the prebuilt parser throws parse errors consistently: typedObjectLitera
 [Error: Parse error on line 3:
 ...xtends() { Foo<T extends ArrayList...
 --------------------^
-Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '|', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: typedObjectLiteral/Extends.sand error line number 1`] = `3`;

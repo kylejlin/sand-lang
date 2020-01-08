@@ -11,7 +11,23 @@ pub class Try {
         d
     }
 
-    noCatchBinding() {
+    restrictedBindingless() {
+        try {
+            a();
+        } catch instanceof Foo {
+            b();
+        }
+    }
+
+    union() {
+        try {
+            a();
+        } catch instanceof Foo | Bar | Baz {
+            b();
+        }
+    }
+
+    catchAll() {
         let a = b;
 
         try {
@@ -30,16 +46,10 @@ pub class Try {
 
         } catch (e: BarException) {
             
+        } catch instanceof Foo | Bar | Baz {
+            
         } catch {
 
-        }
-    }
-
-    lastStatement() {
-        try {
-            a
-        } catch {
-            b
         }
     }
 }

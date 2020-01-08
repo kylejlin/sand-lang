@@ -423,9 +423,33 @@ export interface Try {
   location: NodeLocation;
 }
 
-export interface Catch {
+export type Catch = BoundCatch | RestrictedBindinglessCatch | CatchAll;
+
+export enum CatchType {
+  BoundCatch = "BoundCatch",
+  RestrictedBindinglessCatch = "RestrictedBindinglessCatch",
+  CatchAll = "CatchAll",
+}
+
+export interface BoundCatch {
   type: NodeType.Catch;
-  optArg: ArgDef | null;
+  catchType: CatchType.BoundCatch;
+  arg: ArgDef;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface RestrictedBindinglessCatch {
+  type: NodeType.Catch;
+  catchType: CatchType.RestrictedBindinglessCatch;
+  caughtTypes: Type[];
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
+export interface CatchAll {
+  type: NodeType.Catch;
+  catchType: CatchType.CatchAll;
   body: CompoundNode;
   location: NodeLocation;
 }

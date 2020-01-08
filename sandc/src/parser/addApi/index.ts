@@ -1,5 +1,6 @@
 import {
   camelCase,
+  CatchType,
   ConstraintType,
   DotExpr,
   Expr,
@@ -35,6 +36,7 @@ export default function addApi(parser: SandParser) {
   yy.Overridability = Overridability;
   yy.IfAlternativeType = IfAlternativeType;
   yy.ConstraintType = ConstraintType;
+  yy.CatchType = CatchType;
 
   yy.binaryExpr = function binaryExpr(
     operation: InfixOperation,
