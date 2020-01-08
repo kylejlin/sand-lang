@@ -108,7 +108,7 @@ pubClass
         { $$ = { ...$2, isPub: true, location: yy.camelCase(@$) }; }
     ;
 
-optTypeArgDefs
+optAngleEnclosedTypeArgDefs
     : %empty
         { $$ = []; }
     | "<" typeArgDefs ">"
@@ -134,7 +134,7 @@ optPrivClasses
     ;
 
 privClass
-    : optOpenOrAbstract "class" NON_RESERVED_IDENTIFIER optTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
+    : optOpenOrAbstract "class" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
         { $$ = { type: yy.NodeType.Class, isPub: false, overridability: $1, name: $3, typeArgDefs: $4, superClass: $5, copies: $7, useStatements: $8, items: $9, location: yy.camelCase(@$) }; }
     ;
 
@@ -173,13 +173,6 @@ nonNullableType
         { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
     | type "[" "+" "]"
         { $$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.camelCase(@$) }; }
-    ;
-
-optTypeArgs
-    : %empty
-        { $$ = []; }
-    | "<" typeArgs ">"
-        { $$ = $2; }
     ;
 
 typeArgs
@@ -225,34 +218,34 @@ classItem
     | "prot" "inst" ";"
         { $$ = { type: yy.NodeType.InstantiationRestriction, level: "prot", location: yy.camelCase(@$) }; }
 
-    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
+    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: true, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.camelCase(@$) }; }
-    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" optArgDefs ")" compoundNode
+    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" optArgDefs ")" compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: true, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $5, returnType: null, body: $7, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
+    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $6, returnType: $9, body: $10, location: yy.camelCase(@$) }; }
-    | optAccessModifier NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
+    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $6, returnType: null, body: $8, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier "open" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
+    | optAccessModifier "open" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: false, name: $3, typeArgs: $4, args: $7, returnType: $10, body: $11, location: yy.camelCase(@$) }; }
-    | optAccessModifier "open" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
+    | optAccessModifier "open" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: false, name: $3, typeArgs: $4, args: $7, returnType: null, body: $9, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier "override" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
+    | optAccessModifier "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: true, name: $3, typeArgs: $4, args: $7, returnType: $10, body: $11, location: yy.camelCase(@$) }; }
-    | optAccessModifier "override" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
+    | optAccessModifier "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: true, name: $3, typeArgs: $4, args: $7, returnType: null, body: $9, location: yy.camelCase(@$) }; }
     
-    | optAccessModifier "open" "override" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
+    | optAccessModifier "open" "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: true, name: $4, typeArgs: $5, args: $8, returnType: $11, body: $12, location: yy.camelCase(@$) }; }
-    | optAccessModifier "open" "override" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
+    | optAccessModifier "open" "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
         { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: true, name: $4, typeArgs: $5, args: $8, returnType: null, body: $10, location: yy.camelCase(@$) }; }
 
-    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type ";"
+    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type ";"
         { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: false, name: $3, typeArgs: $4, args: $7, returnType: $10, location: yy.camelCase(@$) }; }
-    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optTypeArgDefs "(" "this" optCommaAndArgDefs ")" ";"
+    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ";"
         { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: false, name: $3, typeArgs: $4, args: $7, returnType: null, location: yy.camelCase(@$) }; }
     ;
 
@@ -667,24 +660,24 @@ objectEntries
 arrayLiteral
     : "[" "]"
         { $$ = { type: yy.NodeType.ArrayLiteral, elements: [], location: yy.camelCase(@$) }; }
-    | "[" expressionSequence "]"
+    | "[" expressions "]"
         { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.camelCase(@$) }; }
-    | "[" expressionSequence "," "]"
+    | "[" expressions "," "]"
         { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.camelCase(@$) }; }
     ;
 
-expressionSequence
+expressions
     : simpleExpression
         { $$ = [$1]; }
     | ifNode
         { $$ = [$1]; }
     | doNode
         { $$ = [$1]; }
-    | expressionSequence "," simpleExpression
+    | expressions "," simpleExpression
         { $$ = $1.concat([$3]); }
-    | expressionSequence "," ifNode
+    | expressions "," ifNode
         { $$ = $1.concat([$3]); }
-    | expressionSequence "," doNode
+    | expressions "," doNode
         { $$ = $1.concat([$3]); }
     ;
 
