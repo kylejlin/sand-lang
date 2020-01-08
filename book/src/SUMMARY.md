@@ -12,6 +12,7 @@
   - [If-else](./feature_list/if.md)
   - [Do](./feature_list/do.md)
   - [Loops](./feature_list/loops.md)
+  - [Error handling](./feature_list/error_handling.md)
   - [Packages](./feature_list/packages.md)
   - [Explicit nullables](./feature_list/nullables.md)
   - [Type casting](./feature_list/casting.md)
