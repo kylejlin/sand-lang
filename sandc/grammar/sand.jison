@@ -507,10 +507,10 @@ catchClauses
     ;
 
 catchClause
-    : "catch" "(" NON_RESERVED_IDENTIFIER ":" type ")" compoundNode
-        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.ArgDef, name: $3, valueType: $5, location: yy.merge(@3, @5) }, body: $7, location: yy.camelCase(@$) }; }
-    | "catch" "instanceof" unionOfOneOrMoreCatchTypes compoundNode
-        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $2, body: $3, location: yy.camelCase(@$) }; }
+    : "catch" NON_RESERVED_IDENTIFIER ":" type compoundNode
+        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.ArgDef, name: $2, valueType: $4, location: yy.merge(@2, @4) }, body: $5, location: yy.camelCase(@$) }; }
+    | "catch" ":" unionOfOneOrMoreCatchTypes compoundNode
+        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $3, body: $4, location: yy.camelCase(@$) }; }
     | "catch" compoundNode
         { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.CatchAll, body: $2, location: yy.camelCase(@$) }; }
     ;

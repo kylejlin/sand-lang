@@ -4,7 +4,7 @@ pub class Try {
 
         try {
             c();
-        } catch (e: Exception) {
+        } catch e: Exception {
             d();
         }
         
@@ -14,7 +14,7 @@ pub class Try {
     restrictedBindingless() {
         try {
             a();
-        } catch instanceof Foo {
+        } catch: Foo {
             b();
         }
     }
@@ -22,7 +22,7 @@ pub class Try {
     union() {
         try {
             a();
-        } catch instanceof Foo | Bar | Baz {
+        } catch: Foo | Bar | Baz {
             b();
         }
     }
@@ -42,11 +42,11 @@ pub class Try {
     multipleCatches() {
         try {
             a();
-        } catch (e: FooException) {
+        } catch e: FooException {
 
-        } catch (e: BarException) {
+        } catch e: BarException {
             
-        } catch instanceof Foo | Bar | Baz {
+        } catch: Foo | Bar | Baz {
             
         } catch {
 
