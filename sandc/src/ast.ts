@@ -281,6 +281,7 @@ export type Expr =
   | IndexExpr
   | CastExpr
   | If
+  | Do
   | FunctionCall
   | TypedObjectLiteral
   | ArrayLiteral
@@ -294,6 +295,7 @@ export type Statement =
   | LocalVariableDeclaration
   | Assignment
   | If
+  | Do
   | While
   | Loop
   | Repeat
