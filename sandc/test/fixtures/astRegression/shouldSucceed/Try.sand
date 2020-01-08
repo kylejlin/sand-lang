@@ -35,59 +35,11 @@ pub class Try {
         }
     }
 
-    ret() {
-        return try {
-            a
-        } catch {
-            b
-        };
-    }
-
-    implicitReturn() {
+    lastStatement() {
         try {
             a
         } catch {
             b
-        }
-    }
-
-    declaration() {
-        let a = try {
-            b
-        } catch {
-            c
-        };
-    }
-
-    assignment() {
-        a = try {
-            b
-        } catch {
-            c
-        };
-    }
-
-    compoundAssignment() {
-        a **= try {
-            b
-        } catch {
-            c
-        };
-    }
-
-    paren() {
-        2 * (try {
-            a
-        } catch {
-            b
-        })
-    }
-
-    magicFunction() {
-        \n -> try {
-            b
-        } catch {
-            c
         }
     }
 }

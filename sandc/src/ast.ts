@@ -286,7 +286,6 @@ export type Expr =
   | CastExpr
   | If
   | Do
-  | Try
   | FunctionCall
   | TypedObjectLiteral
   | ArrayLiteral
@@ -302,11 +301,11 @@ export type Statement =
   | Throw
   | If
   | Do
-  | Try
   | While
   | Loop
   | Repeat
-  | For;
+  | For
+  | Try;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
