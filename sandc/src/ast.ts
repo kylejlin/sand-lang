@@ -25,6 +25,7 @@ export enum NodeType {
 
   If = "If",
   Do = "Do",
+  Try = "Try",
   FunctionCall = "FunctionCall",
   TypedObjectLiteral = "TypedObjectLiteral",
   ObjectCopy = "ObjectCopy",
@@ -38,6 +39,7 @@ export enum NodeType {
   Return = "Return",
   Break = "Break",
   Continue = "Continue",
+  Throw = "Throw",
 
   While = "While",
   Loop = "Loop",
@@ -53,6 +55,8 @@ export enum NodeType {
   ImpliedNullExpr = "ImpliedNullExpr",
 
   IfAlternative = "IfAlternative",
+  Catch = "Catch",
+
   Type = "Type",
   TypeArgDef = "TypeArgDef",
   ArgDef = "ArgDef",
@@ -282,6 +286,7 @@ export type Expr =
   | CastExpr
   | If
   | Do
+  | Try
   | FunctionCall
   | TypedObjectLiteral
   | ArrayLiteral
@@ -294,8 +299,10 @@ export type Statement =
   | Continue
   | LocalVariableDeclaration
   | Assignment
+  | Throw
   | If
   | Do
+  | Try
   | While
   | Loop
   | Repeat
@@ -410,6 +417,20 @@ export interface Do {
   location: NodeLocation;
 }
 
+export interface Try {
+  type: NodeType.Try;
+  body: CompoundNode;
+  catches: Catch[];
+  location: NodeLocation;
+}
+
+export interface Catch {
+  type: NodeType.Catch;
+  optArg: ArgDef | null;
+  body: CompoundNode;
+  location: NodeLocation;
+}
+
 export interface FunctionCall {
   type: NodeType.FunctionCall;
   callee: Expr;
@@ -503,6 +524,12 @@ export interface Assignment {
 }
 
 export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
+
+export interface Throw {
+  type: NodeType.Throw;
+  value: Expr;
+  location: NodeLocation;
+}
 
 export interface While {
   type: NodeType.While;

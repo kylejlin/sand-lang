@@ -1,0 +1,93 @@
+pub class Try {
+    statement() {
+        let a = b;
+
+        try {
+            c();
+        } catch (e: Exception) {
+            d();
+        }
+        
+        d
+    }
+
+    noCatchBinding() {
+        let a = b;
+
+        try {
+            c();
+        } catch {
+            d();
+        }
+        
+        d
+    }
+
+    multipleCatches() {
+        try {
+            a();
+        } catch (e: FooException) {
+
+        } catch (e: BarException) {
+            
+        } catch {
+
+        }
+    }
+
+    ret() {
+        return try {
+            a
+        } catch {
+            b
+        };
+    }
+
+    implicitReturn() {
+        try {
+            a
+        } catch {
+            b
+        }
+    }
+
+    declaration() {
+        let a = try {
+            b
+        } catch {
+            c
+        };
+    }
+
+    assignment() {
+        a = try {
+            b
+        } catch {
+            c
+        };
+    }
+
+    compoundAssignment() {
+        a **= try {
+            b
+        } catch {
+            c
+        };
+    }
+
+    paren() {
+        2 * (try {
+            a
+        } catch {
+            b
+        })
+    }
+
+    magicFunction() {
+        \n -> try {
+            b
+        } catch {
+            c
+        }
+    }
+}
