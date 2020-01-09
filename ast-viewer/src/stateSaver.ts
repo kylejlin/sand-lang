@@ -1,7 +1,8 @@
+import ReactDomServer from "react-dom/server";
 import { State, StateSaver } from "./App";
 import { FileNode } from "./astCopy";
 import parseTreeSource from "./parseTreeSource";
-import { stringifyFileNode } from "./printer";
+import { renderFileNode } from "./printer";
 
 type SerializedState =
   | SerializedSourceEditState
@@ -152,7 +153,7 @@ function indexOfTree(selected: FileNode, choices: FileNode[]): number {
 }
 
 function hashTree(tree: FileNode): string {
-  return stringifyFileNode(tree);
+  return ReactDomServer.renderToStaticMarkup(renderFileNode(tree));
 }
 
 function clearSavedStateFromLocalStorage(): void {

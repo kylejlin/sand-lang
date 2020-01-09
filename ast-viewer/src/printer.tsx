@@ -1,6 +1,10 @@
+import flat from "array.prototype.flat";
 import React from "react";
 import {
   ArgDef,
+  Binding,
+  Catch,
+  CatchType,
   ClassItem,
   CompoundNode,
   ConstraintType,
@@ -10,14 +14,21 @@ import {
   IfAlternative,
   IfAlternativeType,
   LocalVariableDeclaration,
+  MagicFunctionLiteral,
   NodeType,
+  ObjectCopy,
+  ObjectEntry,
   OptAccessModifier,
   Type,
   TypeArgDef,
-  ObjectEntry,
+  Class,
+  Overridability,
+  StaticMethodCopy,
+  StaticMethodCopySignature,
+  Use,
+  Import,
 } from "./astCopy";
 import { NonNullReactNode } from "./types";
-import flat from "array.prototype.flat";
 
 flat.shim();
 
@@ -32,29 +43,161 @@ flat.shim();
 
 const TAB = "    ";
 
-export function renderFileNode(node: FileNode): NonNullReactNode {
+export function renderFileNode(node: FileNode): React.ReactElement {
   return (
-    <div className="ClassItemsContainer">
-      {node.pubClass.items.map(item => renderClassItem(item))}
+    <div className="FileNode">
+      {node.packageName === null ? "" : "package " + node.packageName + ";\n\n"}
+      {node.imports.map(statement => (
+        <>
+          {renderImportStatement(statement)}
+          {"\n"}
+        </>
+      ))}
+      {node.imports.length > 0 ? "\n" : ""}
+      {node.useStatements.map(use => (
+        <>
+          {renderUseStatement(use)}
+          {"\n"}
+        </>
+      ))}
+      {node.useStatements.length > 0 ? "\n" : ""}
+      {separate(
+        ([node.pubClass] as [Class])
+          .concat(node.privClasses)
+          .map(node => renderClass(node)),
+        "\n\n",
+      )}
     </div>
   );
 }
 
+function renderImportStatement(statement: Import): NonNullReactNode {
+  return "import " + statement.name + ";";
+}
+
+function renderUseStatement(use: Use): NonNullReactNode {
+  const keyword = use.doesShadow ? "use!" : "use";
+  if (use.alias === null) {
+    return keyword + " " + use.name + ";";
+  } else {
+    return keyword + " " + use.name + " as " + use.alias + ";";
+  }
+}
+
+function renderClass(node: Class): NonNullReactNode {
+  return (
+    <>
+      {node.isPub ? "pub " : ""}
+      {node.overridability === Overridability.Final
+        ? ""
+        : node.overridability === Overridability.Abstract
+        ? "abstract "
+        : "open "}
+      class {node.name}
+      {renderTypeArgDefs(node.typeArgDefs)}
+      {node.superClass === null ? "" : " extends " + node.superClass.name}
+      {" {"}
+      {node.copies.map(copy => (
+        <>
+          {"\n" + TAB}
+          {renderStaticMethodCopy(copy)}
+        </>
+      ))}
+      {node.copies.length > 0 ? "\n" : ""}
+      {node.useStatements.map(use => (
+        <>
+          {" "}
+          {"\n" + TAB}
+          {renderUseStatement(use)}
+        </>
+      ))}
+      {node.useStatements.length > 0 ? "\n" : ""}
+      {"\n"}
+      {separate(
+        node.items.map(item => (
+          <>
+            {TAB}
+            {renderClassItem(item)}
+          </>
+        )),
+        "\n\n",
+      )}
+      {"\n}"}
+    </>
+  );
+}
+
+function renderStaticMethodCopy(copy: StaticMethodCopy): NonNullReactNode {
+  if (copy.alias === null) {
+    return (
+      <>
+        {renderAccessModifier(copy.accessModifier)}copy {copy.name}
+        {renderOptCopySignature(copy.signature)};
+      </>
+    );
+  } else {
+    return (
+      <>
+        {renderAccessModifier(copy.accessModifier)}copy {copy.name}
+        {renderOptCopySignature(copy.signature)} as {copy.alias};
+      </>
+    );
+  }
+}
+
+function renderOptCopySignature(
+  sig: StaticMethodCopySignature | null,
+): NonNullReactNode {
+  if (sig === null) {
+    return "";
+  } else {
+    return (
+      <>
+        {renderTypeArgDefs(sig.typeArgs)}(
+        {separate(
+          sig.argTypes.map(t => renderType(t)),
+          ", ",
+        )}
+        )
+      </>
+    );
+  }
+}
+
 function renderClassItem(item: ClassItem): NonNullReactNode {
   switch (item.type) {
-    case NodeType.PropertyDeclaration:
+    case NodeType.InstancePropertyDeclaration:
       return (
-        <div>
+        <>
           {renderAccessModifier(item.accessModifier)}
-          {item.name}: {renderType(item.valueType)}
-        </div>
+          {item.name}: {renderType(item.valueType)};
+        </>
       );
-    case NodeType.MethodDeclaration:
+    case NodeType.StaticPropertyDeclaration:
+      if (item.valueType === null) {
+        return (
+          <>
+            {renderAccessModifier(item.accessModifier)}static {item.name} ={" "}
+            {renderExpr(item.initialValue, 2)};
+          </>
+        );
+      } else {
+        return (
+          <>
+            {renderAccessModifier(item.accessModifier)}static {item.name}:{" "}
+            {renderType(item.valueType)} = {renderExpr(item.initialValue, 2)};
+          </>
+        );
+      }
+    case NodeType.ConcreteMethodDeclaration:
       return (
-        <div>
+        <>
           {renderAccessModifier(item.accessModifier)}
+          {item.isOpen ? "open " : ""}
+          {item.isOverride ? "override " : ""}
           {item.name}
           {renderTypeArgDefs(item.typeArgs)}(
+          {item.isStatic ? "" : item.args.length === 0 ? "this" : "this, "}
           {separate(
             item.args.map(d => renderArgDef(d)),
             ", ",
@@ -63,9 +206,29 @@ function renderClassItem(item: ClassItem): NonNullReactNode {
           {item.returnType === null ? null : (
             <>: {renderType(item.returnType)}</>
           )}{" "}
-          {renderCompoundExpr(item.body, 1)}
-        </div>
+          {renderCompoundExpr(item.body, 2)}
+        </>
       );
+    case NodeType.AbstractMethodDeclaration:
+      return (
+        <>
+          {renderAccessModifier(item.accessModifier)}
+          abstract {item.name}
+          {renderTypeArgDefs(item.typeArgs)}(
+          {item.args.length === 0 ? "this" : "this, "}
+          {separate(
+            item.args.map(d => renderArgDef(d)),
+            ", ",
+          )}
+          )
+          {item.returnType === null ? null : (
+            <>: {renderType(item.returnType)}</>
+          )}
+          ;
+        </>
+      );
+    case NodeType.InstantiationRestriction:
+      return item.level + " inst;";
   }
 }
 
@@ -77,22 +240,30 @@ function renderAccessModifier(mod: OptAccessModifier): string {
   }
 }
 
-function renderType(type: Type): NonNullReactNode {
-  if (type.args.length === 0) {
-    return type.name;
+function renderTypeArgs(args: Type[]): NonNullReactNode {
+  if (args.length === 0) {
+    return "";
   } else {
     return (
       <>
-        {type.name}
         {"<"}
         {separate(
-          type.args.map(a => renderType(a)),
+          args.map(a => renderType(a)),
           ", ",
         )}
         {">"}
       </>
     );
   }
+}
+
+function renderType(type: Type): NonNullReactNode {
+  return (
+    <>
+      {type.name}
+      {renderTypeArgs(type.args)}
+    </>
+  );
 }
 
 function renderTypeArgDefs(args: TypeArgDef[]): NonNullReactNode {
@@ -119,7 +290,7 @@ function renderTypeArgDef(arg: TypeArgDef): NonNullReactNode {
     case ConstraintType.Extends:
       return (
         <>
-          {arg.name}: {renderType(arg.constraint.superClass)}
+          {arg.name} extends {renderType(arg.constraint.superClass)}
         </>
       );
   }
@@ -137,15 +308,15 @@ function renderCompoundExpr(
   comp: CompoundNode,
   depth: number,
 ): NonNullReactNode {
-  if (comp.length === 0) {
+  if (comp.nodes.length === 0) {
     return "{}";
   } else {
     return (
       <>
         {"{\n"}
         {separate(
-          comp
-            .map(c => renderBlockChild(c, depth + 1))
+          comp.nodes
+            .map(child => renderBlockChild(child, depth + 1))
             .map(rendered => [<span>{TAB.repeat(depth)}</span>, rendered]),
           "\n",
         )
@@ -157,7 +328,7 @@ function renderCompoundExpr(
 }
 
 function renderBlockChild(
-  item: CompoundNode[number],
+  item: CompoundNode["nodes"][number],
   depth: number,
 ): NonNullReactNode {
   switch (item.type) {
@@ -186,9 +357,49 @@ function renderBlockChild(
       return "break;";
     case NodeType.Continue:
       return "continue;";
+    case NodeType.Throw:
+      return <>throw {renderExpr(item.value, depth)};</>;
+    case NodeType.While:
+      return (
+        <>
+          while {renderExpr(item.condition, depth)}{" "}
+          {renderCompoundExpr(item.body, depth)}
+        </>
+      );
+    case NodeType.Loop:
+      return <>loop {renderCompoundExpr(item.body, depth)}</>;
+    case NodeType.Repeat:
+      return (
+        <>
+          repeat {renderExpr(item.repetitions, depth)}{" "}
+          {renderCompoundExpr(item.body, depth)}
+        </>
+      );
+    case NodeType.For:
+      return (
+        <>
+          for {renderBinding(item.binding)} in{" "}
+          {renderExpr(item.iteratee, depth)}{" "}
+          {renderCompoundExpr(item.body, depth)}
+        </>
+      );
+    case NodeType.Try:
+      return (
+        <>
+          try {renderCompoundExpr(item.body, depth)}
+          {item.catches.map(catchNode => (
+            <>
+              {" "}
+              catch{renderOptCatchBinding(catchNode)}{" "}
+              {renderCompoundExpr(catchNode.body, depth)}
+            </>
+          ))}
+        </>
+      );
     case NodeType.If:
       return renderIf(item, depth);
     default:
+      console.log("blockchild", item);
       return <>{renderExpr(item, depth)};</>;
   }
 }
@@ -223,7 +434,7 @@ function renderAlternative(
     case IfAlternativeType.ElseIf:
       return (
         <>
-          else if {renderExpr(alt.condition, depth)}
+          else if {renderExpr(alt.condition, depth)}{" "}
           {renderCompoundExpr(alt.body, depth)}
         </>
       );
@@ -233,11 +444,52 @@ function renderAlternative(
   }
 }
 
+function renderOptCatchBinding(catchNode: Catch): NonNullReactNode {
+  switch (catchNode.catchType) {
+    case CatchType.BoundCatch:
+      return (
+        <>
+          {" "}
+          {catchNode.arg.name}: {renderType(catchNode.arg.valueType)}
+        </>
+      );
+    case CatchType.RestrictedBindinglessCatch:
+      return (
+        <>
+          :{" "}
+          {separate(
+            catchNode.caughtTypes.map(t => renderType(t)),
+            " | ",
+          )}
+        </>
+      );
+    case CatchType.CatchAll:
+      return "";
+  }
+}
+
+function renderBinding(binding: Binding): NonNullReactNode {
+  switch (binding.type) {
+    case NodeType.SingleBinding:
+      return binding.name;
+    case NodeType.FlatTupleBinding:
+      return (
+        <>
+          (
+          {binding.bindings.map(singleBinding => singleBinding.name).join(", ")}
+          )
+        </>
+      );
+  }
+}
+
 function renderExpr(expr: Expr, depth: number): NonNullReactNode {
   switch (expr.type) {
     case NodeType.NumberLiteral:
       return expr.value;
     case NodeType.StringLiteral:
+      return expr.value;
+    case NodeType.CharacterLiteral:
       return expr.value;
     case NodeType.Identifier:
       return expr.name;
@@ -272,7 +524,8 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
     case NodeType.FunctionCall:
       return (
         <>
-          {renderExpr(expr.callee, depth)}(
+          {renderExpr(expr.callee, depth)}
+          {renderTypeArgs(expr.typeArgs)}(
           {separate(
             expr.args.map(e => renderExpr(e, depth)),
             ", ",
@@ -284,23 +537,27 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
       return (
         <>
           {renderType(expr.valueType)}{" "}
-          {renderObjectEntries(expr.entries, depth)}
+          {renderObjectCopiesAndEntries(expr.copies, expr.entries, depth)}
         </>
       );
     case NodeType.ArrayLiteral:
-      return (
-        <>
-          [
-          {expr.elements.map(expr => (
-            <>
-              {"\n"}
-              {TAB.repeat(depth)}
-              {renderExpr(expr, depth + 1)},
-            </>
-          ))}
-          {"\n" + TAB.repeat(depth - 1)}]
-        </>
-      );
+      if (expr.elements.length === 0) {
+        return "[]";
+      } else {
+        return (
+          <>
+            [
+            {expr.elements.map(expr => (
+              <>
+                {"\n"}
+                {TAB.repeat(depth)}
+                {renderExpr(expr, depth + 1)},
+              </>
+            ))}
+            {"\n" + TAB.repeat(depth - 1)}]
+          </>
+        );
+      }
     case NodeType.RangeLiteral:
       return (
         <>
@@ -315,19 +572,44 @@ function renderExpr(expr: Expr, depth: number): NonNullReactNode {
           ({renderExpr(expr.value, depth)} as! {renderType(expr.targetType)})
         </>
       );
+    case NodeType.Do:
+      console.log("doexpr", expr);
+      return <>do {renderCompoundExpr(expr.body, depth)}</>;
+    case NodeType.MagicFunctionLiteral:
+      return (
+        <>
+          \
+          {separate(
+            expr.args.map(arg => arg.name),
+            ", ",
+          )}{" "}
+          -> {renderMagicFunctionBody(expr.body, depth)}
+        </>
+      );
   }
 }
 
-function renderObjectEntries(
+function renderObjectCopiesAndEntries(
+  copies: ObjectCopy[],
   entries: ObjectEntry[],
   depth: number,
 ): NonNullReactNode {
-  if (entries.length === 0) {
+  if (copies.length + entries.length === 0) {
     return "{}";
   } else {
     return (
       <>
         {"{\n"}
+        {copies
+          .map(c => <>...{renderExpr(c.source, depth + 1)}</>)
+          .map(rendered => (
+            <>
+              {TAB.repeat(depth)}
+              {rendered}
+              {",\n"}
+            </>
+          ))}
+
         {separate(
           entries
             .map(e => renderObjectEntry(e, depth + 1))
@@ -342,11 +624,15 @@ function renderObjectEntries(
 }
 
 function renderObjectEntry(ent: ObjectEntry, depth: number): NonNullReactNode {
-  return (
-    <>
-      {ent.key}: {renderExpr(ent.value, depth)}
-    </>
-  );
+  if (ent.value === null) {
+    return ent.key;
+  } else {
+    return (
+      <>
+        {ent.key}: {renderExpr(ent.value, depth)}
+      </>
+    );
+  }
 }
 
 function renderIf(ifExpr: If, depth: number): NonNullReactNode {
@@ -359,249 +645,15 @@ function renderIf(ifExpr: If, depth: number): NonNullReactNode {
   );
 }
 
-export function stringifyFileNode(node: FileNode): string {
-  return node.pubClass.items.map(stringifyClassItem).join("\n\n");
-}
-
-function stringifyClassItem(item: ClassItem): string {
-  switch (item.type) {
-    case NodeType.PropertyDeclaration:
-      return (
-        stringifyAccessModifier(item.accessModifier) +
-        item.name +
-        ": " +
-        stringifyType(item.valueType)
-      );
-
-    case NodeType.MethodDeclaration:
-      return (
-        stringifyAccessModifier(item.accessModifier) +
-        item.name +
-        stringifyTypeArgDefs(item.typeArgs) +
-        "(" +
-        item.args.map(d => stringifyArgDef(d)).join(", ") +
-        ")" +
-        (item.returnType === null
-          ? ""
-          : ": " + stringifyType(item.returnType)) +
-        " " +
-        stringifyCompoundExpr(item.body, 1)
-      );
-  }
-}
-
-function stringifyAccessModifier(mod: OptAccessModifier): string {
-  if (mod === null) {
-    return "";
-  } else {
-    return mod + " ";
-  }
-}
-
-function stringifyType(type: Type): string {
-  if (type.args.length === 0) {
-    return type.name;
-  } else {
-    return (
-      type.name + "<" + type.args.map(a => stringifyType(a)).join(", ") + ">"
-    );
-  }
-}
-
-function stringifyTypeArgDefs(args: TypeArgDef[]): string {
-  if (args.length === 0) {
-    return "";
-  } else {
-    return "<" + args.map(d => stringifyTypeArgDef(d)).join(", ") + ">";
-  }
-}
-
-function stringifyTypeArgDef(arg: TypeArgDef): string {
-  switch (arg.constraint.constraintType) {
-    case ConstraintType.None:
-      return arg.name;
-    case ConstraintType.Extends:
-      return arg.name + ": " + stringifyType(arg.constraint.superClass);
-  }
-}
-
-function stringifyArgDef(def: ArgDef): string {
-  return def.name + ": " + stringifyType(def.valueType);
-}
-
-function stringifyCompoundExpr(comp: CompoundNode, depth: number): string {
-  if (comp.length === 0) {
-    return "{}";
-  } else {
-    return (
-      "{\n" +
-      comp
-        .map(c => stringifyBlockChild(c, depth + 1))
-        .map(stringifyed => TAB.repeat(depth) + stringifyed)
-        .join("\n") +
-      "\n" +
-      TAB.repeat(Math.max(0, depth - 1)) +
-      "}"
-    );
-  }
-}
-
-function stringifyBlockChild(
-  item: CompoundNode[number],
+function renderMagicFunctionBody(
+  body: MagicFunctionLiteral["body"],
   depth: number,
-): string {
-  switch (item.type) {
-    case NodeType.LocalVariableDeclaration:
-      return (
-        getDeclareKeyword(item) +
-        " " +
-        item.name +
-        " = " +
-        stringifyExpr(item.initialValue, depth) +
-        ";"
-      );
-    case NodeType.Assignment:
-      return (
-        stringifyExpr(item.assignee, depth) +
-        " = " +
-        stringifyExpr(item.value, depth) +
-        ";"
-      );
-    case NodeType.Return:
-      if (item.value === null) {
-        return "return;";
-      } else {
-        return "return " + stringifyExpr(item.value, depth) + ";";
-      }
-    case NodeType.If:
-      return stringifyIf(item, depth);
-    case NodeType.Break:
-      return "break;";
-    case NodeType.Continue:
-      return "continue;";
-    default:
-      return stringifyExpr(item, depth) + ";";
-  }
-}
-
-function stringifyAlternatives(item: If, depth: number): string {
-  if (item.alternatives.length === 0) {
-    return "";
+): NonNullReactNode {
+  if (body.type === NodeType.CompoundNode) {
+    return renderCompoundExpr(body, depth);
   } else {
-    return (
-      " " + item.alternatives.map(a => stringifyAlternative(a, depth)).join(" ")
-    );
+    return renderExpr(body, depth);
   }
-}
-
-function stringifyAlternative(alt: IfAlternative, depth: number): string {
-  switch (alt.alternativeType) {
-    case IfAlternativeType.ElseIf:
-      return (
-        "else if " +
-        stringifyExpr(alt.condition, depth) +
-        stringifyCompoundExpr(alt.body, depth)
-      );
-    case IfAlternativeType.Else:
-      return "else " + stringifyCompoundExpr(alt.body, depth);
-  }
-}
-
-function stringifyExpr(expr: Expr, depth: number): string {
-  switch (expr.type) {
-    case NodeType.NumberLiteral:
-      return expr.value;
-    case NodeType.StringLiteral:
-      return expr.value;
-    case NodeType.Identifier:
-      return expr.name;
-    case NodeType.InfixExpr:
-      return (
-        "(" +
-        stringifyExpr(expr.left, depth) +
-        " " +
-        expr.operation +
-        " " +
-        stringifyExpr(expr.right, depth) +
-        ")"
-      );
-    case NodeType.PrefixExpr:
-      return "(" + expr.operation + stringifyExpr(expr.right, depth) + ")";
-    case NodeType.DotExpr:
-      return stringifyExpr(expr.left, depth) + "." + expr.right;
-    case NodeType.IndexExpr:
-      return (
-        stringifyExpr(expr.left, depth) +
-        "[" +
-        stringifyExpr(expr.right, depth) +
-        "]"
-      );
-    case NodeType.If:
-      return stringifyIf(expr, depth);
-    case NodeType.FunctionCall:
-      return (
-        stringifyExpr(expr.callee, depth) +
-        "(" +
-        expr.args.map(e => stringifyExpr(e, depth)).join(", ") +
-        ")"
-      );
-    case NodeType.TypedObjectLiteral:
-      return (
-        stringifyType(expr.valueType) +
-        " " +
-        stringifyObjectEntries(expr.entries, depth)
-      );
-    case NodeType.ArrayLiteral:
-      return (
-        "[" +
-        expr.elements.map(
-          expr => "\n" + TAB.repeat(depth) + renderExpr(expr, depth + 1),
-        ) +
-        "\n" +
-        TAB.repeat(depth - 1) +
-        "]"
-      );
-    case NodeType.RangeLiteral:
-      return (
-        "(" +
-        renderExpr(expr.start, depth) +
-        (expr.includesEnd ? "..=" : "..") +
-        renderExpr(expr.end, depth) +
-        ")"
-      );
-    case NodeType.CastExpr:
-      return (
-        "(" +
-        renderExpr(expr.value, depth) +
-        "as!" +
-        renderType(expr.targetType) +
-        ")"
-      );
-  }
-}
-
-function stringifyObjectEntries(entries: ObjectEntry[], depth: number): string {
-  if (entries.length === 0) {
-    return "{}";
-  } else {
-    return (
-      "{ " +
-      entries
-        .map(e => e.key + ": " + stringifyExpr(e.value, depth))
-        .join(", ") +
-      " }"
-    );
-  }
-}
-
-function stringifyIf(ifExpr: If, depth: number): string {
-  return (
-    "if " +
-    stringifyExpr(ifExpr.condition, depth) +
-    " " +
-    stringifyCompoundExpr(ifExpr.body, depth) +
-    stringifyAlternatives(ifExpr, depth)
-  );
 }
 
 function separate<T, U>(arr: T[], sep: U): (T | U)[] {
