@@ -276,7 +276,7 @@ case 83:
  this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: [$$[$0-1]], definitelyDoesNotEndWithSemicolon: true, location: yy.camelCase(this._$) }; 
 break;
 case 84:
- this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: [$$[$0-1]], definitelyDoesNotEndWithSemicolon: false, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: $$[$0-1], definitelyDoesNotEndWithSemicolon: false, location: yy.camelCase(this._$) }; 
 break;
 case 85:
  this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-3], nodes: $$[$0-2].concat([$$[$0-1]]), definitelyDoesNotEndWithSemicolon: true, location: yy.camelCase(this._$) }; 
