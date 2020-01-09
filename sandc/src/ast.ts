@@ -272,6 +272,7 @@ export interface CompoundNode {
   type: NodeType.CompoundNode;
   useStatements: Use[];
   nodes: (Expr | Statement)[];
+  definitelyDoesNotEndWithSemicolon: boolean;
   location: NodeLocation;
 }
 

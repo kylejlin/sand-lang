@@ -280,13 +280,13 @@ argDefs
 
 compoundNode
     : "{" optUseStatements "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [], definitelyDoesNotEndWithSemicolon: false, location: yy.camelCase(@$) }; }
     | "{" optUseStatements simpleExpression "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], definitelyDoesNotEndWithSemicolon: true, location: yy.camelCase(@$) }; }
     | "{" optUseStatements nodeSequence "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], definitelyDoesNotEndWithSemicolon: false, location: yy.camelCase(@$) }; }
     | "{" optUseStatements nodeSequence simpleExpression "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: $3.concat([$4]), location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: $3.concat([$4]), definitelyDoesNotEndWithSemicolon: true, location: yy.camelCase(@$) }; }
     ;
 
 nodeSequence

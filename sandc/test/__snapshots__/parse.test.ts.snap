@@ -84,6 +84,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 26,
               "firstLine": 36,
@@ -112,6 +113,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 31,
               "firstLine": 40,
@@ -150,6 +152,7 @@ Object {
           "accessModifier": "pub",
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 32,
               "firstLine": 44,
@@ -188,6 +191,7 @@ Object {
           "accessModifier": "prot",
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 19,
               "firstLine": 48,
@@ -216,6 +220,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 17,
               "firstLine": 52,
@@ -328,6 +333,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 26,
             "firstLine": 8,
@@ -356,6 +362,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 31,
             "firstLine": 12,
@@ -394,6 +401,7 @@ Object {
         "accessModifier": "pub",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 32,
             "firstLine": 16,
@@ -432,6 +440,7 @@ Object {
         "accessModifier": "prot",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 19,
             "firstLine": 20,
@@ -460,6 +469,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 24,
@@ -577,6 +587,7 @@ Object {
           },
         ],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 47,
             "firstLine": 2,
@@ -687,6 +698,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 16,
               "firstLine": 40,
@@ -778,6 +790,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 18,
               "firstLine": 44,
@@ -878,6 +891,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 20,
               "firstLine": 48,
@@ -987,6 +1001,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 22,
               "firstLine": 52,
@@ -1105,6 +1120,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 17,
               "firstLine": 56,
@@ -1197,6 +1213,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 21,
               "firstLine": 60,
@@ -1326,6 +1343,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 2,
@@ -1387,6 +1405,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 6,
@@ -1458,6 +1477,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 10,
@@ -1539,6 +1559,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 14,
@@ -1629,6 +1650,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 18,
@@ -1709,6 +1731,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 22,
@@ -1799,6 +1822,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 26,
@@ -1898,6 +1922,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 30,
@@ -1980,6 +2005,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 34,
@@ -2105,6 +2131,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 15,
               "firstLine": 43,
@@ -2176,6 +2203,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 13,
               "firstLine": 47,
@@ -2257,6 +2285,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 14,
               "firstLine": 51,
@@ -2339,6 +2368,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 15,
               "firstLine": 55,
@@ -2429,6 +2459,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 17,
               "firstLine": 59,
@@ -2509,6 +2540,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 15,
               "firstLine": 63,
@@ -2599,6 +2631,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 16,
               "firstLine": 67,
@@ -2690,6 +2723,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 17,
               "firstLine": 71,
@@ -2782,6 +2816,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 19,
               "firstLine": 75,
@@ -2883,6 +2918,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 21,
               "firstLine": 79,
@@ -2982,6 +3018,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 19,
               "firstLine": 83,
@@ -3090,6 +3127,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 26,
               "firstLine": 89,
@@ -3320,6 +3358,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 2,
@@ -3381,6 +3420,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 6,
@@ -3450,6 +3490,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 11,
@@ -3491,6 +3532,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 13,
@@ -3542,6 +3584,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 16,
@@ -3626,6 +3669,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 21,
@@ -3697,6 +3741,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 26,
@@ -3708,6 +3753,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 27,
@@ -3789,6 +3835,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 31,
@@ -3873,6 +3920,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 36,
@@ -3998,6 +4046,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 2,
@@ -4057,6 +4106,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 6,
@@ -4151,6 +4201,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 10,
@@ -4222,6 +4273,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 19,
             "firstLine": 14,
@@ -4293,6 +4345,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 18,
@@ -4399,6 +4452,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 22,
@@ -4465,6 +4519,7 @@ Object {
                   Object {
                     "alternativeType": "Else",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 22,
                         "firstLine": 23,
@@ -4485,6 +4540,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 14,
                     "firstLine": 23,
@@ -4536,6 +4592,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 18,
             "firstLine": 26,
@@ -4645,6 +4702,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 30,
@@ -4761,6 +4819,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 34,
@@ -4866,6 +4925,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 38,
@@ -4982,6 +5042,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 42,
@@ -5096,6 +5157,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 46,
@@ -5211,6 +5273,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 2,
@@ -5303,6 +5366,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 8,
@@ -5397,6 +5461,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 14,
@@ -5407,6 +5472,7 @@ Object {
             Object {
               "alternatives": Array [],
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": true,
                 "location": Object {
                   "firstColumn": 17,
                   "firstLine": 15,
@@ -5511,6 +5577,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 21,
@@ -5522,6 +5589,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 22,
@@ -5627,6 +5695,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 28,
@@ -5637,6 +5706,7 @@ Object {
             Object {
               "alternatives": Array [],
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": true,
                 "location": Object {
                   "firstColumn": 17,
                   "firstLine": 29,
@@ -5762,6 +5832,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 36,
@@ -5772,6 +5843,7 @@ Object {
             Object {
               "alternatives": Array [],
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": true,
                 "location": Object {
                   "firstColumn": 17,
                   "firstLine": 37,
@@ -5897,6 +5969,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 44,
@@ -5929,6 +6002,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 46,
@@ -5971,6 +6045,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 49,
@@ -6033,6 +6108,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 54,
@@ -6065,6 +6141,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 56,
@@ -6128,6 +6205,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 60,
@@ -6300,6 +6378,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 10,
               "firstLine": 25,
@@ -7523,6 +7602,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 10,
               "firstLine": 65,
@@ -7633,6 +7713,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 9,
@@ -7708,6 +7789,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 2,
@@ -7740,6 +7822,7 @@ Object {
             },
             Object {
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 11,
                   "firstLine": 5,
@@ -7814,6 +7897,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 12,
@@ -7832,6 +7916,7 @@ Object {
                 "type": "Return",
                 "value": Object {
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": true,
                     "location": Object {
                       "firstColumn": 18,
                       "firstLine": 13,
@@ -7885,6 +7970,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 21,
             "firstLine": 18,
@@ -7895,6 +7981,7 @@ Object {
             Array [
               Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 11,
                     "firstLine": 19,
@@ -7947,6 +8034,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 18,
             "firstLine": 24,
@@ -7959,6 +8047,7 @@ Object {
                 "doesShadow": false,
                 "initialValue": Object {
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": true,
                     "location": Object {
                       "firstColumn": 19,
                       "firstLine": 25,
@@ -8022,6 +8111,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 30,
@@ -8051,6 +8141,7 @@ Object {
                 "type": "Assignment",
                 "value": Object {
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": true,
                     "location": Object {
                       "firstColumn": 15,
                       "firstLine": 31,
@@ -8104,6 +8195,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 36,
@@ -8133,6 +8225,7 @@ Object {
                 "type": "Assignment",
                 "value": Object {
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": true,
                     "location": Object {
                       "firstColumn": 17,
                       "firstLine": 37,
@@ -8186,6 +8279,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 42,
@@ -8213,6 +8307,7 @@ Object {
               "operation": "*",
               "right": Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 16,
                     "firstLine": 43,
@@ -8266,6 +8361,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 48,
@@ -8288,6 +8384,7 @@ Object {
               ],
               "body": Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 49,
@@ -8345,6 +8442,7 @@ Object {
                           Object {
                             "alternativeType": "Else",
                             "body": Object {
+                              "definitelyDoesNotEndWithSemicolon": true,
                               "location": Object {
                                 "firstColumn": 19,
                                 "firstLine": 53,
@@ -8376,6 +8474,7 @@ Object {
                           },
                         ],
                         "body": Object {
+                          "definitelyDoesNotEndWithSemicolon": true,
                           "location": Object {
                             "firstColumn": 21,
                             "firstLine": 51,
@@ -8522,6 +8621,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 47,
             "firstLine": 2,
@@ -8628,6 +8728,7 @@ Object {
           },
         ],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 40,
             "firstLine": 2,
@@ -8641,6 +8742,7 @@ Object {
                   Object {
                     "alternativeType": "Else",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": true,
                       "location": Object {
                         "firstColumn": 15,
                         "firstLine": 5,
@@ -8734,6 +8836,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 18,
                     "firstLine": 3,
@@ -8860,6 +8963,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 34,
             "firstLine": 2,
@@ -8898,6 +9002,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 44,
             "firstLine": 6,
@@ -8948,6 +9053,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 54,
             "firstLine": 10,
@@ -9021,6 +9127,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 35,
             "firstLine": 14,
@@ -9071,6 +9178,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 48,
             "firstLine": 18,
@@ -9133,6 +9241,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 40,
             "firstLine": 22,
@@ -9183,6 +9292,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 53,
             "firstLine": 26,
@@ -9279,6 +9389,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 2,
@@ -9341,6 +9452,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 6,
@@ -9471,6 +9583,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 2,
@@ -9513,6 +9626,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 30,
             "firstLine": 6,
@@ -9579,6 +9693,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 40,
             "firstLine": 10,
@@ -9631,6 +9746,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 54,
             "firstLine": 14,
@@ -9775,6 +9891,7 @@ Object {
           },
         ],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 29,
             "firstLine": 2,
@@ -9892,6 +10009,7 @@ Object {
         "accessModifier": "pub",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 2,
@@ -9903,6 +10021,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 3,
@@ -9954,6 +10073,7 @@ Object {
         "accessModifier": "pub",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 8,
@@ -9969,6 +10089,7 @@ Object {
                     Object {
                       "alternativeType": "Else",
                       "body": Object {
+                        "definitelyDoesNotEndWithSemicolon": false,
                         "location": Object {
                           "firstColumn": 15,
                           "firstLine": 11,
@@ -9989,6 +10110,7 @@ Object {
                     },
                   ],
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": false,
                     "location": Object {
                       "firstColumn": 21,
                       "firstLine": 9,
@@ -10051,6 +10173,7 @@ Object {
         "accessModifier": "pub",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 16,
@@ -10064,6 +10187,7 @@ Object {
                   Object {
                     "alternativeType": "ElseIf",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 20,
                         "firstLine": 19,
@@ -10094,6 +10218,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 17,
@@ -10145,6 +10270,7 @@ Object {
         "accessModifier": "pub",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 21,
             "firstLine": 24,
@@ -10160,6 +10286,7 @@ Object {
                     Object {
                       "alternativeType": "ElseIf",
                       "body": Object {
+                        "definitelyDoesNotEndWithSemicolon": false,
                         "location": Object {
                           "firstColumn": 20,
                           "firstLine": 27,
@@ -10191,6 +10318,7 @@ Object {
                     Object {
                       "alternativeType": "Else",
                       "body": Object {
+                        "definitelyDoesNotEndWithSemicolon": false,
                         "location": Object {
                           "firstColumn": 15,
                           "firstLine": 29,
@@ -10211,6 +10339,7 @@ Object {
                     },
                   ],
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": false,
                     "location": Object {
                       "firstColumn": 21,
                       "firstLine": 25,
@@ -10398,6 +10527,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 2,
@@ -10467,6 +10597,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 6,
@@ -10488,6 +10619,7 @@ Object {
                     Object {
                       "alternativeType": "Else",
                       "body": Object {
+                        "definitelyDoesNotEndWithSemicolon": false,
                         "location": Object {
                           "firstColumn": 23,
                           "firstLine": 7,
@@ -10508,6 +10640,7 @@ Object {
                     },
                   ],
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": false,
                     "location": Object {
                       "firstColumn": 15,
                       "firstLine": 7,
@@ -10579,6 +10712,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 10,
@@ -10619,6 +10753,7 @@ Object {
                   Object {
                     "alternativeType": "Else",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 27,
                         "firstLine": 11,
@@ -10639,6 +10774,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 19,
                     "firstLine": 11,
@@ -10691,6 +10827,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 14,
@@ -10771,6 +10908,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 18,
@@ -10850,6 +10988,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 22,
@@ -10972,6 +11111,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 2,
@@ -11000,6 +11140,7 @@ Object {
         "accessModifier": "prot",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 30,
             "firstLine": 6,
@@ -11071,6 +11212,7 @@ Object {
           },
         ],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 51,
             "firstLine": 10,
@@ -11188,6 +11330,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 10,
               "firstLine": 16,
@@ -11268,6 +11411,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 6,
@@ -11330,6 +11474,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 2,
@@ -11384,6 +11529,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 6,
@@ -11448,6 +11594,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 10,
@@ -11502,6 +11649,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 14,
@@ -11566,6 +11714,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 19,
             "firstLine": 18,
@@ -11620,6 +11769,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 31,
             "firstLine": 22,
@@ -11684,6 +11834,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 25,
             "firstLine": 26,
@@ -11738,6 +11889,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 37,
             "firstLine": 30,
@@ -11802,6 +11954,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 34,
@@ -11875,6 +12028,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 39,
@@ -11909,6 +12063,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 41,
@@ -11960,6 +12115,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 44,
@@ -12035,6 +12191,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 49,
@@ -12046,6 +12203,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 50,
@@ -12120,6 +12278,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 54,
@@ -12197,6 +12356,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 26,
             "firstLine": 61,
@@ -12293,6 +12453,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 26,
             "firstLine": 67,
@@ -12325,6 +12486,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 69,
@@ -12433,6 +12595,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 2,
@@ -12465,6 +12628,7 @@ Object {
             },
             Object {
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 16,
                   "firstLine": 5,
@@ -12549,6 +12713,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 12,
@@ -12581,6 +12746,7 @@ Object {
             },
             Object {
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 13,
                   "firstLine": 15,
@@ -12655,6 +12821,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 22,
@@ -12687,6 +12854,7 @@ Object {
             },
             Object {
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 17,
                   "firstLine": 25,
@@ -12771,6 +12939,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 32,
@@ -12813,6 +12982,7 @@ Object {
                 "type": "SingleBinding",
               },
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 19,
                   "firstLine": 35,
@@ -12897,6 +13067,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 42,
@@ -12960,6 +13131,7 @@ Object {
                 "type": "FlatTupleBinding",
               },
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 24,
                   "firstLine": 45,
@@ -13078,6 +13250,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 2,
@@ -13139,6 +13312,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 19,
             "firstLine": 6,
@@ -13405,6 +13579,7 @@ Object {
           },
         ],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 85,
             "firstLine": 10,
@@ -13418,6 +13593,7 @@ Object {
                   Object {
                     "alternativeType": "Else",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": true,
                       "location": Object {
                         "firstColumn": 15,
                         "firstLine": 13,
@@ -13449,6 +13625,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 21,
                     "firstLine": 11,
@@ -13577,6 +13754,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 18,
@@ -13745,6 +13923,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 26,
               "firstLine": 16,
@@ -13773,6 +13952,7 @@ Object {
           "accessModifier": "pub",
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 35,
               "firstLine": 20,
@@ -13811,6 +13991,7 @@ Object {
           "accessModifier": "prot",
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 24,
               "firstLine": 24,
@@ -13868,6 +14049,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 26,
             "firstLine": 2,
@@ -13896,6 +14078,7 @@ Object {
         "accessModifier": "pub",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 35,
             "firstLine": 6,
@@ -13934,6 +14117,7 @@ Object {
         "accessModifier": "prot",
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 24,
             "firstLine": 10,
@@ -14006,6 +14190,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 2,
@@ -14085,6 +14270,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 6,
@@ -14214,6 +14400,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 22,
             "firstLine": 10,
@@ -14237,6 +14424,7 @@ Object {
                         Object {
                           "alternativeType": "Else",
                           "body": Object {
+                            "definitelyDoesNotEndWithSemicolon": false,
                             "location": Object {
                               "firstColumn": 23,
                               "firstLine": 11,
@@ -14257,6 +14445,7 @@ Object {
                         },
                       ],
                       "body": Object {
+                        "definitelyDoesNotEndWithSemicolon": false,
                         "location": Object {
                           "firstColumn": 15,
                           "firstLine": 11,
@@ -14327,6 +14516,7 @@ Object {
                         Object {
                           "alternativeType": "Else",
                           "body": Object {
+                            "definitelyDoesNotEndWithSemicolon": false,
                             "location": Object {
                               "firstColumn": 50,
                               "firstLine": 11,
@@ -14347,6 +14537,7 @@ Object {
                         },
                       ],
                       "body": Object {
+                        "definitelyDoesNotEndWithSemicolon": false,
                         "location": Object {
                           "firstColumn": 42,
                           "firstLine": 11,
@@ -14439,6 +14630,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 14,
@@ -14959,6 +15151,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 41,
@@ -15080,6 +15273,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 49,
@@ -15261,6 +15455,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": true,
             "location": Object {
               "firstColumn": 35,
               "firstLine": 13,
@@ -15310,6 +15505,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 30,
               "firstLine": 17,
@@ -15435,6 +15631,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 20,
               "firstLine": 21,
@@ -15539,6 +15736,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 25,
               "firstLine": 29,
@@ -15613,6 +15811,7 @@ Object {
           "accessModifier": null,
           "args": Array [],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": false,
             "location": Object {
               "firstColumn": 24,
               "firstLine": 33,
@@ -15958,6 +16157,7 @@ Object {
             Object {
               "alternativeType": "Else",
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": true,
                 "location": Object {
                   "firstColumn": 55,
                   "firstLine": 8,
@@ -15989,6 +16189,7 @@ Object {
             },
           ],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": true,
             "location": Object {
               "firstColumn": 44,
               "firstLine": 8,
@@ -16100,6 +16301,7 @@ Object {
             Object {
               "alternativeType": "Else",
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": true,
                 "location": Object {
                   "firstColumn": 11,
                   "firstLine": 13,
@@ -16131,6 +16333,7 @@ Object {
             },
           ],
           "body": Object {
+            "definitelyDoesNotEndWithSemicolon": true,
             "location": Object {
               "firstColumn": 36,
               "firstLine": 11,
@@ -16240,6 +16443,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 2,
@@ -16290,6 +16494,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 6,
@@ -16331,6 +16536,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 10,
@@ -16400,6 +16606,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 15,
@@ -16430,6 +16637,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 17,
@@ -16481,6 +16689,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 20,
@@ -16541,6 +16750,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 25,
@@ -16552,6 +16762,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 26,
@@ -16622,6 +16833,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 30,
@@ -16691,6 +16903,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 22,
             "firstLine": 35,
@@ -16761,6 +16974,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 22,
             "firstLine": 41,
@@ -16782,6 +16996,7 @@ Object {
               Object {
                 "alternatives": Array [],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 13,
                     "firstLine": 43,
@@ -16886,6 +17101,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 2,
@@ -16968,6 +17184,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 6,
@@ -17018,6 +17235,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 10,
             "firstLine": 10,
@@ -17135,6 +17353,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 2,
@@ -17167,6 +17386,7 @@ Object {
             },
             Object {
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 12,
                   "firstLine": 5,
@@ -17225,6 +17445,7 @@ Object {
                     },
                   },
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": false,
                     "location": Object {
                       "firstColumn": 29,
                       "firstLine": 7,
@@ -17310,6 +17531,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 28,
             "firstLine": 14,
@@ -17320,6 +17542,7 @@ Object {
             Array [
               Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 12,
                     "firstLine": 15,
@@ -17357,6 +17580,7 @@ Object {
                 "catches": Array [
                   Object {
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 21,
                         "firstLine": 17,
@@ -17446,6 +17670,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 22,
@@ -17456,6 +17681,7 @@ Object {
             Array [
               Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 12,
                     "firstLine": 23,
@@ -17493,6 +17719,7 @@ Object {
                 "catches": Array [
                   Object {
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 33,
                         "firstLine": 25,
@@ -17604,6 +17831,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 30,
@@ -17636,6 +17864,7 @@ Object {
             },
             Object {
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": false,
                 "location": Object {
                   "firstColumn": 12,
                   "firstLine": 33,
@@ -17673,6 +17902,7 @@ Object {
               "catches": Array [
                 Object {
                   "body": Object {
+                    "definitelyDoesNotEndWithSemicolon": false,
                     "location": Object {
                       "firstColumn": 16,
                       "firstLine": 35,
@@ -17758,6 +17988,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 22,
             "firstLine": 42,
@@ -17768,6 +17999,7 @@ Object {
             Array [
               Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 12,
                     "firstLine": 43,
@@ -17826,6 +18058,7 @@ Object {
                       },
                     },
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 32,
                         "firstLine": 45,
@@ -17868,6 +18101,7 @@ Object {
                       },
                     },
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 32,
                         "firstLine": 47,
@@ -17889,6 +18123,7 @@ Object {
                   },
                   Object {
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 33,
                         "firstLine": 49,
@@ -17945,6 +18180,7 @@ Object {
                   },
                   Object {
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": false,
                       "location": Object {
                         "firstColumn": 16,
                         "firstLine": 51,
@@ -18054,6 +18290,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 12,
@@ -18067,6 +18304,7 @@ Object {
                   Object {
                     "alternativeType": "Else",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": true,
                       "location": Object {
                         "firstColumn": 15,
                         "firstLine": 21,
@@ -18098,6 +18336,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 15,
                     "firstLine": 15,
@@ -18318,6 +18557,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 2,
@@ -18357,6 +18597,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 6,
@@ -18407,6 +18648,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 10,
@@ -18477,6 +18719,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 14,
@@ -18557,6 +18800,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 18,
@@ -18658,6 +18902,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 11,
             "firstLine": 22,
@@ -18765,6 +19010,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 26,
@@ -19087,6 +19333,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 2,
@@ -19167,6 +19414,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 6,
@@ -19192,6 +19440,7 @@ Object {
                   Object {
                     "alternativeType": "Else",
                     "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": true,
                       "location": Object {
                         "firstColumn": 15,
                         "firstLine": 9,
@@ -19223,6 +19472,7 @@ Object {
                   },
                 ],
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 23,
                     "firstLine": 7,
@@ -19322,6 +19572,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 14,
@@ -19423,6 +19674,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 18,
@@ -19443,6 +19695,7 @@ Object {
                   "type": "SingleBinding",
                 },
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": false,
                   "location": Object {
                     "firstColumn": 43,
                     "firstLine": 19,
@@ -19642,6 +19895,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 24,
@@ -19664,6 +19918,7 @@ Object {
               ],
               "body": Object {
                 "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
                   "location": Object {
                     "firstColumn": 17,
                     "firstLine": 25,
@@ -19786,6 +20041,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 21,
             "firstLine": 31,
@@ -19807,6 +20063,7 @@ Object {
                 },
               ],
               "body": Object {
+                "definitelyDoesNotEndWithSemicolon": true,
                 "location": Object {
                   "firstColumn": 14,
                   "firstLine": 32,
@@ -20183,6 +20440,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 2,
@@ -20242,6 +20500,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 6,
@@ -20301,6 +20560,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 10,
@@ -20360,6 +20620,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 14,
@@ -20439,6 +20700,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 13,
             "firstLine": 18,
@@ -20508,6 +20770,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 17,
             "firstLine": 22,
@@ -20589,6 +20852,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": false,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 26,
@@ -20819,6 +21083,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 2,
@@ -20870,6 +21135,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 18,
             "firstLine": 6,
@@ -20982,6 +21248,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 20,
             "firstLine": 14,
@@ -21094,6 +21361,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 15,
             "firstLine": 22,
@@ -21229,6 +21497,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 16,
             "firstLine": 30,
@@ -21292,6 +21561,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 29,
             "firstLine": 36,
@@ -21355,6 +21625,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 24,
             "firstLine": 42,
@@ -21430,6 +21701,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 14,
             "firstLine": 48,
@@ -21501,6 +21773,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 27,
             "firstLine": 54,
@@ -21572,6 +21845,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 22,
             "firstLine": 60,
@@ -21653,6 +21927,7 @@ Object {
         "accessModifier": null,
         "args": Array [],
         "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
           "location": Object {
             "firstColumn": 12,
             "firstLine": 67,
