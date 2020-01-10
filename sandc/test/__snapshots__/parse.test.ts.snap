@@ -21903,7 +21903,7 @@ exports[`the prebuilt parser throws parse errors consistently: assignments/Assig
 [Error: Parse error on line 3:
 ... assExpr() { x(a = b;) } }
 --------------------^
-Expecting ')', '<', '>', ',', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '=']
+Expecting ')', '<', '>', ',', '[', ']', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '=']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: assignments/AssignmentExpression.sand error line number 1`] = `3`;

@@ -613,7 +613,9 @@ callableExpression
     ;
 
 functionCall
-    : callableExpression optFunctionCallTypeArgs "(" optArgs ")"
+    : callableExpression optFunctionCallTypeArgs "(" ")"
+        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, typeArgs: $2, args: [], location: yy.camelCase(@$) }; }
+    | callableExpression optFunctionCallTypeArgs "(" expressions ")"
         { $$ = { type: yy.NodeType.FunctionCall, callee: $1, typeArgs: $2, args: $4, location: yy.camelCase(@$) }; }
     ;
 
@@ -622,27 +624,6 @@ optFunctionCallTypeArgs
         { $$ = []; }
     | FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET typeArgs ">"
         { $$ = $2; }
-    ;
-
-optArgs
-    : %empty
-        { $$ = []; }
-    | args
-    ;
-
-args
-    : simpleExpression
-        { $$ = [$1]; }
-    | ifNode
-        { $$ = [$1]; }
-    | doNode
-        { $$ = [$1]; }
-    | args "," simpleExpression
-        { $$ = $1.concat([$3]); }
-    | args "," ifNode
-        { $$ = $1.concat([$3]); }
-    | args "," doNode
-        { $$ = $1.concat([$3]); }
     ;
 
 oneOrMoreDotSeparatedIdentifiers
