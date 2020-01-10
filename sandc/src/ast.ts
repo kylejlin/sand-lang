@@ -279,6 +279,7 @@ export interface CompoundNode {
 export type Expr =
   | NumberLiteral
   | StringLiteral
+  | CharacterLiteral
   | Identifier
   | InfixExpr
   | PrefixExpr
@@ -316,6 +317,12 @@ export interface NumberLiteral {
 
 export interface StringLiteral {
   type: NodeType.StringLiteral;
+  value: string;
+  location: NodeLocation;
+}
+
+export interface CharacterLiteral {
+  type: NodeType.CharacterLiteral;
   value: string;
   location: NodeLocation;
 }
