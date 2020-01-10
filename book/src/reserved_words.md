@@ -103,6 +103,8 @@ The following words cannot be used as identifier names.
 
 ## Types
 
+### Primitives
+
 - `int`
 - `long`
 - `short`
@@ -112,12 +114,16 @@ The following words cannot be used as identifier names.
 - `double`
 - `boolean`
 
-- `void`
+### Parameterized
 
 - `nullable`
+- `sequence`
 - `array`
 - `rlist`
 
+### Valueless
+
+- `void`
 - `never` <sup>\*</sup>
 
 ## Values
