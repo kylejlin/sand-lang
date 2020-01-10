@@ -10398,6 +10398,448 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: Index.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "firstColumn": 0,
+    "firstLine": 1,
+    "lastColumn": 1,
+    "lastLine": 21,
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [],
+    "isPub": true,
+    "items": Array [
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
+          "location": Object {
+            "firstColumn": 12,
+            "firstLine": 2,
+            "lastColumn": 5,
+            "lastLine": 4,
+          },
+          "nodes": Array [
+            Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 3,
+                  "lastColumn": 9,
+                  "lastLine": 3,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 3,
+                "lastColumn": 12,
+                "lastLine": 3,
+              },
+              "right": Object {
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 3,
+                  "lastColumn": 11,
+                  "lastLine": 3,
+                },
+                "name": "b",
+                "type": "Identifier",
+              },
+              "type": "IndexExpr",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 16,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 4,
+        },
+        "name": "ident",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
+          "location": Object {
+            "firstColumn": 10,
+            "firstLine": 6,
+            "lastColumn": 5,
+            "lastLine": 8,
+          },
+          "nodes": Array [
+            Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 7,
+                  "lastColumn": 9,
+                  "lastLine": 7,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 7,
+                "lastColumn": 23,
+                "lastLine": 7,
+              },
+              "right": Object {
+                "left": Object {
+                  "left": Object {
+                    "location": Object {
+                      "firstColumn": 10,
+                      "firstLine": 7,
+                      "lastColumn": 11,
+                      "lastLine": 7,
+                    },
+                    "name": "a",
+                    "type": "Identifier",
+                  },
+                  "location": Object {
+                    "firstColumn": 10,
+                    "firstLine": 7,
+                    "lastColumn": 18,
+                    "lastLine": 7,
+                  },
+                  "right": "length",
+                  "type": "DotExpr",
+                },
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 7,
+                  "lastColumn": 22,
+                  "lastLine": 7,
+                },
+                "operation": "-",
+                "right": Object {
+                  "location": Object {
+                    "firstColumn": 21,
+                    "firstLine": 7,
+                    "lastColumn": 22,
+                    "lastLine": 7,
+                  },
+                  "type": "NumberLiteral",
+                  "value": "1",
+                },
+                "type": "InfixExpr",
+              },
+              "type": "IndexExpr",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 16,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 8,
+        },
+        "name": "dot",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
+          "location": Object {
+            "firstColumn": 10,
+            "firstLine": 10,
+            "lastColumn": 5,
+            "lastLine": 12,
+          },
+          "nodes": Array [
+            Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 11,
+                  "lastColumn": 9,
+                  "lastLine": 11,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 11,
+                "lastColumn": 32,
+                "lastLine": 11,
+              },
+              "right": Object {
+                "alternatives": Array [
+                  Object {
+                    "alternativeType": "Else",
+                    "body": Object {
+                      "definitelyDoesNotEndWithSemicolon": true,
+                      "location": Object {
+                        "firstColumn": 26,
+                        "firstLine": 11,
+                        "lastColumn": 31,
+                        "lastLine": 11,
+                      },
+                      "nodes": Array [
+                        Object {
+                          "location": Object {
+                            "firstColumn": 28,
+                            "firstLine": 11,
+                            "lastColumn": 29,
+                            "lastLine": 11,
+                          },
+                          "type": "NumberLiteral",
+                          "value": "1",
+                        },
+                      ],
+                      "type": "CompoundNode",
+                      "useStatements": Array [],
+                    },
+                    "location": Object {
+                      "firstColumn": 21,
+                      "firstLine": 11,
+                      "lastColumn": 31,
+                      "lastLine": 11,
+                    },
+                    "type": "IfAlternative",
+                  },
+                ],
+                "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
+                  "location": Object {
+                    "firstColumn": 15,
+                    "firstLine": 11,
+                    "lastColumn": 20,
+                    "lastLine": 11,
+                  },
+                  "nodes": Array [
+                    Object {
+                      "location": Object {
+                        "firstColumn": 17,
+                        "firstLine": 11,
+                        "lastColumn": 18,
+                        "lastLine": 11,
+                      },
+                      "type": "NumberLiteral",
+                      "value": "0",
+                    },
+                  ],
+                  "type": "CompoundNode",
+                  "useStatements": Array [],
+                },
+                "condition": Object {
+                  "location": Object {
+                    "firstColumn": 13,
+                    "firstLine": 11,
+                    "lastColumn": 14,
+                    "lastLine": 11,
+                  },
+                  "name": "b",
+                  "type": "Identifier",
+                },
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 11,
+                  "lastColumn": 31,
+                  "lastLine": 11,
+                },
+                "type": "If",
+              },
+              "type": "IndexExpr",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 16,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 12,
+        },
+        "name": "if_",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+      Object {
+        "accessModifier": null,
+        "args": Array [],
+        "body": Object {
+          "definitelyDoesNotEndWithSemicolon": true,
+          "location": Object {
+            "firstColumn": 10,
+            "firstLine": 14,
+            "lastColumn": 5,
+            "lastLine": 20,
+          },
+          "nodes": Array [
+            Object {
+              "left": Object {
+                "location": Object {
+                  "firstColumn": 8,
+                  "firstLine": 15,
+                  "lastColumn": 9,
+                  "lastLine": 15,
+                },
+                "name": "a",
+                "type": "Identifier",
+              },
+              "location": Object {
+                "firstColumn": 8,
+                "firstLine": 15,
+                "lastColumn": 10,
+                "lastLine": 19,
+              },
+              "right": Object {
+                "body": Object {
+                  "definitelyDoesNotEndWithSemicolon": true,
+                  "location": Object {
+                    "firstColumn": 13,
+                    "firstLine": 15,
+                    "lastColumn": 9,
+                    "lastLine": 19,
+                  },
+                  "nodes": Array [
+                    Object {
+                      "doesShadow": false,
+                      "initialValue": Object {
+                        "location": Object {
+                          "firstColumn": 19,
+                          "firstLine": 16,
+                          "lastColumn": 20,
+                          "lastLine": 16,
+                        },
+                        "type": "NumberLiteral",
+                        "value": "2",
+                      },
+                      "isReassignable": true,
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 16,
+                        "lastColumn": 21,
+                        "lastLine": 16,
+                      },
+                      "name": "d",
+                      "type": "LocalVariableDeclaration",
+                      "valueType": null,
+                    },
+                    Object {
+                      "assignee": Object {
+                        "location": Object {
+                          "firstColumn": 12,
+                          "firstLine": 17,
+                          "lastColumn": 13,
+                          "lastLine": 17,
+                        },
+                        "name": "d",
+                        "type": "Identifier",
+                      },
+                      "assignmentType": "+=",
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 17,
+                        "lastColumn": 19,
+                        "lastLine": 17,
+                      },
+                      "type": "Assignment",
+                      "value": Object {
+                        "location": Object {
+                          "firstColumn": 17,
+                          "firstLine": 17,
+                          "lastColumn": 18,
+                          "lastLine": 17,
+                        },
+                        "type": "NumberLiteral",
+                        "value": "1",
+                      },
+                    },
+                    Object {
+                      "location": Object {
+                        "firstColumn": 12,
+                        "firstLine": 18,
+                        "lastColumn": 13,
+                        "lastLine": 18,
+                      },
+                      "name": "d",
+                      "type": "Identifier",
+                    },
+                  ],
+                  "type": "CompoundNode",
+                  "useStatements": Array [],
+                },
+                "location": Object {
+                  "firstColumn": 10,
+                  "firstLine": 15,
+                  "lastColumn": 9,
+                  "lastLine": 19,
+                },
+                "type": "Do",
+              },
+              "type": "IndexExpr",
+            },
+          ],
+          "type": "CompoundNode",
+          "useStatements": Array [],
+        },
+        "isOpen": false,
+        "isOverride": false,
+        "isStatic": true,
+        "location": Object {
+          "firstColumn": 16,
+          "firstLine": 1,
+          "lastColumn": 5,
+          "lastLine": 20,
+        },
+        "name": "do_",
+        "returnType": null,
+        "type": "ConcreteMethodDeclaration",
+        "typeArgs": Array [],
+      },
+    ],
+    "location": Object {
+      "firstColumn": 0,
+      "firstLine": 1,
+      "lastColumn": 1,
+      "lastLine": 21,
+    },
+    "name": "Index",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: InfixPrefix.sand 1`] = `
 Object {
   "imports": Array [],

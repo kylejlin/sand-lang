@@ -597,6 +597,10 @@ parenthesizedExpression
 indexExpression
     : simpleExpression "[" simpleExpression "]"
         { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | simpleExpression "[" ifNode "]"
+        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
+    | simpleExpression "[" doNode "]"
+        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.camelCase(@$) }; }
     ;
 
 callableExpression
