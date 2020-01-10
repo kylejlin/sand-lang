@@ -42,7 +42,7 @@ repeat 3 {
 
 ## `for`
 
-Iterates over an iterable (see the [Inline functions chapter](./inline_funcs/intro.md) for more details).
+Iterates over a [sequence](./data.md#sequences).
 
 ```sand
 // --snip--

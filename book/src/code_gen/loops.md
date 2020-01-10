@@ -8,4 +8,4 @@
 If `i` conflicts with some other variable, another name will be used instead.
 
 The algorithm for transpiling `for` is a little more complicated.
-See the [Inline functions chapter](./inline_funcs/intro.md) for more info.
+See the [Magic functions chapter](./magic_funcs/intro.md) for more info.

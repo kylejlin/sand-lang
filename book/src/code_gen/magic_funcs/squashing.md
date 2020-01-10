@@ -55,7 +55,7 @@ for (String s : temp4) {
 
 This works, but it's an eyesore (not to mention inefficient).
 
-If we assume that each of the callbacks passed to `.map` and `.filter` are [pure](../../feature_list/inline_funcs/vocab_defs.md#pure-vs-impure-functions), we can concisely "squash" the operations into a single for loop:
+If we assume that each of the callbacks passed to `.map` and `.filter` are [pure](../../feature_list/magic_funcs/vocab_defs.md#pure-vs-impure-functions), we can concisely "squash" the operations into a single for loop:
 
 ```java
 // --snip--

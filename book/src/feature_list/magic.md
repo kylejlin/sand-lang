@@ -13,7 +13,7 @@ Future versions of the compiler may support this.
 
 ### Ranges
 
-[Ranges](./ranges.md) are a magic values.
+[Ranges](./data.md#ranges) are a magic values.
 
 So the following is valid Sand:
 
@@ -47,7 +47,7 @@ Since ranges have no runtime representation, the compiler does not know how to g
 
 ### Magic sequences
 
-Some [inline functions](./inline_funcs.md) return magic sequences.
+Some [magic functions](./magic_funcs/intro.md) return magic sequences.
 
 For example, the following is valid Sand:
 
