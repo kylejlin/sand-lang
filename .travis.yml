@@ -1,13 +1,29 @@
-language: node_js
-node_js:
-  - 11.7
-script:
-  - cd sandc
-  - npm install
-  - npm run jison
-  - npm run build
-  - npm test
-  - npm run coveralls
+matrix:
+  include:
+    - language: node_js
+      node_js:
+        - 11.7
+      script:
+        - cd sandc
+        - npm install
+        - npm run jison
+        - npm run build
+        - npm test
+        - npm run coveralls
+
+    - language: rust
+      rust:
+        - 1.40.0
+      cache: cargo
+      before_script:
+        - rm -rf "$TRAVIS_HOME/.cargo/registry/src"
+        - (test -x $HOME/.cargo/bin/cargo-install-update || cargo install cargo-update)
+        - (test -x $HOME/.cargo/bin/mdbook || cargo install --vers "^0.3" mdbook)
+        - cargo install-update -a
+      script:
+        - cd book
+        - mdbook build
+
 branches:
   only:
     - master
