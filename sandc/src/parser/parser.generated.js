@@ -438,7 +438,7 @@ case 232:
  this.$ = [{ type: yy.NodeType.ObjectCopy, source: $$[$0], location: yy.camelCase(this._$) }]; 
 break;
 case 233:
- this.$ = $$[$0-3].concat([{ type: yy.NodeType.ObjectCopy, source: $$[$0-2], location: yy.merge(_$[$0-1], _$[$0]) }]); 
+ this.$ = $$[$0-3].concat([{ type: yy.NodeType.ObjectCopy, source: $$[$0], location: yy.merge(_$[$0-1], _$[$0]) }]); 
 break;
 case 234: case 235: case 236:
  this.$ = [{ type: yy.NodeType.ObjectEntry, key: $$[$0-2], value: $$[$0], location: yy.camelCase(this._$) }]; 

@@ -674,7 +674,7 @@ objectCopies
     : "..." simpleExpression
         { $$ = [{ type: yy.NodeType.ObjectCopy, source: $2, location: yy.camelCase(@$) }]; }
     | objectCopies "," "..." simpleExpression
-        { $$ = $1.concat([{ type: yy.NodeType.ObjectCopy, source: $2, location: yy.merge(@3, @4) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.ObjectCopy, source: $4, location: yy.merge(@3, @4) }]); }
     ;
 
 objectEntries
