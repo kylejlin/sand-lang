@@ -1,5 +1,27 @@
 import { TextRange } from "./textPosition";
 
+export type Node =
+  | FileNode
+  | Import
+  | Use
+  | StaticMethodCopy
+  | StaticMethodCopySignature
+  | Class
+  | ClassItem
+  | TypeArgDef
+  | Type
+  | InstantiationRestriction
+  | ArgDef
+  | CompoundNode
+  | Expr
+  | Statement
+  | IfAlternative
+  | Catch
+  | ObjectCopy
+  | ObjectEntry
+  | UntypedArgDef
+  | Binding;
+
 export enum NodeType {
   Import = "Import",
   Use = "Use",
@@ -63,28 +85,6 @@ export enum NodeType {
   CompoundNode = "CompoundNode",
 }
 
-export type Node =
-  | FileNode
-  | Import
-  | Use
-  | StaticMethodCopy
-  | StaticMethodCopySignature
-  | Class
-  | ClassItem
-  | TypeArgDef
-  | Type
-  | InstantiationRestriction
-  | ArgDef
-  | CompoundNode
-  | Expr
-  | Statement
-  | IfAlternative
-  | Catch
-  | ObjectCopy
-  | ObjectEntry
-  | UntypedArgDef
-  | Binding;
-
 export interface FileNode {
   type: NodeType.File;
   packageName: string | null;
@@ -111,6 +111,64 @@ export interface Use {
   location: TextRange;
 }
 
+export interface Class {
+  type: NodeType.Class;
+  isPub: boolean;
+  overridability: Overridability;
+  name: string;
+  typeArgDefs: TypeArgDef[];
+  superClass: Type | null;
+  copies: StaticMethodCopy[];
+  useStatements: Use[];
+  items: ClassItem[];
+  location: TextRange;
+}
+
+export interface PubClass extends Class {
+  isPub: true;
+}
+
+export interface PrivClass extends Class {
+  isPub: false;
+}
+
+export enum Overridability {
+  Final = "Final",
+  Open = "Open",
+  Abstract = "Abstract",
+}
+
+export interface TypeArgDef {
+  type: NodeType.TypeArgDef;
+  name: string;
+  constraint: TypeConstraint;
+  location: TextRange;
+}
+
+export type TypeConstraint = NoConstraint | ExtendsConstraint;
+
+export enum ConstraintType {
+  None = "None",
+  Extends = "Extends",
+  // Super = "Super",
+}
+
+export interface NoConstraint {
+  constraintType: ConstraintType.None;
+}
+
+export interface ExtendsConstraint {
+  constraintType: ConstraintType.Extends;
+  superType: Type;
+}
+
+export interface Type {
+  type: NodeType.Type;
+  name: string;
+  args: Type[];
+  location: TextRange;
+}
+
 export interface StaticMethodCopy {
   type: NodeType.StaticMethodCopy;
   accessModifier: OptAccessModifier;
@@ -127,72 +185,20 @@ export interface StaticMethodCopySignature {
   location: TextRange;
 }
 
-export interface Class {
-  type: NodeType.Class;
-  isPub: boolean;
-  overridability: Overridability;
-  name: string;
-  typeArgDefs: TypeArgDef[];
-  superClass: Type | null;
-  copies: StaticMethodCopy[];
-  useStatements: Use[];
-  items: ClassItem[];
-  location: TextRange;
-}
-
-export enum Overridability {
-  Final = "Final",
-  Open = "Open",
-  Abstract = "Abstract",
-}
-
-export interface PubClass extends Class {
-  isPub: true;
-}
-
-export interface PrivClass extends Class {
-  isPub: false;
-}
+export type OptAccessModifier = null | "pub" | "prot";
 
 export type ClassItem =
+  | InstantiationRestriction
   | InstancePropertyDeclaration
   | StaticPropertyDeclaration
-  | InstantiationRestriction
   | ConcreteMethodDeclaration
   | AbstractMethodDeclaration;
 
-export interface TypeArgDef {
-  type: NodeType.TypeArgDef;
-  name: string;
-  constraint: TypeConstraint;
+export interface InstantiationRestriction {
+  type: NodeType.InstantiationRestriction;
+  level: "pub" | "prot";
   location: TextRange;
 }
-
-export interface Type {
-  type: NodeType.Type;
-  name: string;
-  args: Type[];
-  location: TextRange;
-}
-
-export type TypeConstraint = NoConstraint | ExtendsConstraint;
-
-export interface NoConstraint {
-  constraintType: ConstraintType.None;
-}
-
-export interface ExtendsConstraint {
-  constraintType: ConstraintType.Extends;
-  superType: Type;
-}
-
-export enum ConstraintType {
-  None = "None",
-  Extends = "Extends",
-  // Super = "Super",
-}
-
-export type OptAccessModifier = null | "pub" | "prot";
 
 export interface InstancePropertyDeclaration {
   type: NodeType.InstancePropertyDeclaration;
@@ -210,12 +216,6 @@ export interface StaticPropertyDeclaration {
   name: string;
   valueType: Type | null;
   initialValue: Expr;
-  location: TextRange;
-}
-
-export interface InstantiationRestriction {
-  type: NodeType.InstantiationRestriction;
-  level: "pub" | "prot";
   location: TextRange;
 }
 
@@ -287,19 +287,19 @@ export type Expr =
   | MagicFunctionLiteral;
 
 export type Statement =
+  | LocalVariableDeclaration
+  | Assignment
   | Return
   | Break
   | Continue
-  | LocalVariableDeclaration
-  | Assignment
   | Throw
   | If
   | Do
+  | Try
   | While
   | Loop
   | Repeat
-  | For
-  | Try;
+  | For;
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
@@ -416,44 +416,6 @@ export interface Do {
   location: TextRange;
 }
 
-export interface Try {
-  type: NodeType.Try;
-  body: CompoundNode;
-  catches: Catch[];
-  location: TextRange;
-}
-
-export type Catch = BoundCatch | RestrictedBindinglessCatch | CatchAll;
-
-export enum CatchType {
-  BoundCatch = "BoundCatch",
-  RestrictedBindinglessCatch = "RestrictedBindinglessCatch",
-  CatchAll = "CatchAll",
-}
-
-export interface BoundCatch {
-  type: NodeType.Catch;
-  catchType: CatchType.BoundCatch;
-  arg: ArgDef;
-  body: CompoundNode;
-  location: TextRange;
-}
-
-export interface RestrictedBindinglessCatch {
-  type: NodeType.Catch;
-  catchType: CatchType.RestrictedBindinglessCatch;
-  caughtTypes: Type[];
-  body: CompoundNode;
-  location: TextRange;
-}
-
-export interface CatchAll {
-  type: NodeType.Catch;
-  catchType: CatchType.CatchAll;
-  body: CompoundNode;
-  location: TextRange;
-}
-
 export interface FunctionCall {
   type: NodeType.FunctionCall;
   callee: Expr;
@@ -510,24 +472,6 @@ export interface UntypedArgDef {
   location: TextRange;
 }
 
-export interface Return {
-  type: NodeType.Return;
-  value: null | Expr;
-  location: TextRange;
-}
-
-export interface Break {
-  type: NodeType.Break;
-  /** May one day become `Expr | null`. */
-  value: null;
-  location: TextRange;
-}
-
-export interface Continue {
-  type: NodeType.Continue;
-  location: TextRange;
-}
-
 export interface LocalVariableDeclaration {
   type: NodeType.LocalVariableDeclaration;
   isReassignable: boolean;
@@ -548,9 +492,65 @@ export interface Assignment {
 
 export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
 
+export interface Return {
+  type: NodeType.Return;
+  value: null | Expr;
+  location: TextRange;
+}
+
+export interface Break {
+  type: NodeType.Break;
+  /** May one day become `Expr | null`. */
+  value: null;
+  location: TextRange;
+}
+
+export interface Continue {
+  type: NodeType.Continue;
+  location: TextRange;
+}
+
 export interface Throw {
   type: NodeType.Throw;
   value: Expr;
+  location: TextRange;
+}
+
+export interface Try {
+  type: NodeType.Try;
+  body: CompoundNode;
+  catches: Catch[];
+  location: TextRange;
+}
+
+export type Catch = BoundCatch | RestrictedBindinglessCatch | CatchAll;
+
+export enum CatchType {
+  BoundCatch = "BoundCatch",
+  RestrictedBindinglessCatch = "RestrictedBindinglessCatch",
+  CatchAll = "CatchAll",
+}
+
+export interface BoundCatch {
+  type: NodeType.Catch;
+  catchType: CatchType.BoundCatch;
+  arg: ArgDef;
+  body: CompoundNode;
+  location: TextRange;
+}
+
+export interface RestrictedBindinglessCatch {
+  type: NodeType.Catch;
+  catchType: CatchType.RestrictedBindinglessCatch;
+  caughtTypes: Type[];
+  body: CompoundNode;
+  location: TextRange;
+}
+
+export interface CatchAll {
+  type: NodeType.Catch;
+  catchType: CatchType.CatchAll;
+  body: CompoundNode;
   location: TextRange;
 }
 
