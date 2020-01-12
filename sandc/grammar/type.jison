@@ -35,16 +35,16 @@ type
 
 nonNullableType
     : ONE_OR_MORE_DOT_SEPARATED_IDENTIFIERS optTypeArgs
-        { $$ = { type: yy.NodeType.Type, name: $1.trim(), args: $2, location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: $1.trim(), args: $2, location: yy.convertToRange(@$) }; }
     | type "[]"
-        { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.convertToRange(@$) }; }
     | type "[+]"
-        { $$ = { type: yy.NodeType.Type, name: "rlist", args: [$1], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "rlist", args: [$1], location: yy.convertToRange(@$) }; }
     ;
 
 nullableType
     : nonNullableType "?"
-        { $$ = { type: yy.NodeType.Type, name: "nullable", args: [$1], location: yy.camelCase(@$) }; }
+        { $$ = { type: yy.NodeType.Type, name: "nullable", args: [$1], location: yy.convertToRange(@$) }; }
     ;
 
 optTypeArgs

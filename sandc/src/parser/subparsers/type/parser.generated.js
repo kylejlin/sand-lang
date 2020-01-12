@@ -87,16 +87,16 @@ case 1:
  return $$[$0-1]; 
 break;
 case 4:
- this.$ = { type: yy.NodeType.Type, name: $$[$0-1].trim(), args: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: $$[$0-1].trim(), args: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 5:
- this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-1]], location: yy.convertToRange(this._$) }; 
 break;
 case 6:
- this.$ = { type: yy.NodeType.Type, name: "rlist", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "rlist", args: [$$[$0-1]], location: yy.convertToRange(this._$) }; 
 break;
 case 7:
- this.$ = { type: yy.NodeType.Type, name: "nullable", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "nullable", args: [$$[$0-1]], location: yy.convertToRange(this._$) }; 
 break;
 case 8:
  this.$ = []; 

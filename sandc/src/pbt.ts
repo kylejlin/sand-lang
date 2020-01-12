@@ -1,5 +1,5 @@
-import { NodeLocation } from "./ast";
 import * as ast from "./ast";
+import { TextRange } from "./textPosition";
 
 export interface Ref {
   refId: RefId;
@@ -137,7 +137,7 @@ export interface FileNode {
   useStatements: Use[];
   pubClass: PubClass;
   privClasses: PrivClass[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Import {
@@ -151,7 +151,7 @@ export interface Import {
   leftmostInRefId: RefId;
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Use {
@@ -165,7 +165,7 @@ export interface Use {
   leftmostInRefId: RefId;
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticMethodCopy {
@@ -180,7 +180,7 @@ export interface StaticMethodCopy {
   leftmostInRefId: RefId;
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticMethodCopySignature {
@@ -189,7 +189,7 @@ export interface StaticMethodCopySignature {
 
   typeArgs: TypeArgDef[];
   argTypes: Type[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Class {
@@ -207,7 +207,7 @@ export interface Class {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export enum Overridability {
@@ -240,7 +240,7 @@ export interface TypeArgDef {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Type {
@@ -252,7 +252,7 @@ export interface Type {
 
   inRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type TypeConstraint = NoConstraint | ExtendsConstraint;
@@ -285,7 +285,7 @@ export interface InstancePropertyDeclaration {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticPropertyDeclaration {
@@ -300,7 +300,7 @@ export interface StaticPropertyDeclaration {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface InstantiationRestriction {
@@ -308,7 +308,7 @@ export interface InstantiationRestriction {
   nodeId: NodeId<false, false>;
 
   level: "pub" | "prot";
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ConcreteMethodDeclaration {
@@ -327,7 +327,7 @@ export interface ConcreteMethodDeclaration {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticMethodDeclaration extends ConcreteMethodDeclaration {
@@ -352,7 +352,7 @@ export interface AbstractMethodDeclaration {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ArgDef {
@@ -364,7 +364,7 @@ export interface ArgDef {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CompoundNode {
@@ -374,7 +374,7 @@ export interface CompoundNode {
   useStatements: Use[];
   nodes: (Expr | Statement)[];
   definitelyDoesNotEndWithSemicolon: boolean;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Expr =
@@ -415,7 +415,7 @@ export interface NumberLiteral {
   nodeId: NodeId<false, false>;
 
   value: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StringLiteral {
@@ -423,7 +423,7 @@ export interface StringLiteral {
   nodeId: NodeId<false, false>;
 
   value: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CharacterLiteral {
@@ -431,7 +431,7 @@ export interface CharacterLiteral {
   nodeId: NodeId<false, false>;
 
   value: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Identifier {
@@ -442,7 +442,7 @@ export interface Identifier {
 
   inRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface InfixExpr {
@@ -452,7 +452,7 @@ export interface InfixExpr {
   operation: InfixOperation;
   left: Expr;
   right: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type InfixOperation =
@@ -478,7 +478,7 @@ export interface PrefixExpr {
 
   operation: PrefixOperation;
   right: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type PrefixOperation = "-" | "!" | "~";
@@ -489,7 +489,7 @@ export interface DotExpr {
 
   left: Expr;
   right: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface IndexExpr {
@@ -498,7 +498,7 @@ export interface IndexExpr {
 
   left: Expr;
   right: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CastExpr {
@@ -507,7 +507,7 @@ export interface CastExpr {
 
   value: Expr;
   targetType: Type;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface If {
@@ -517,7 +517,7 @@ export interface If {
   condition: Expr;
   body: CompoundNode;
   alternatives: IfAlternative[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type IfAlternative = ElseIf | Else;
@@ -534,7 +534,7 @@ export interface ElseIf {
   alternativeType: IfAlternativeType.ElseIf;
   condition: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Else {
@@ -543,7 +543,7 @@ export interface Else {
 
   alternativeType: IfAlternativeType.Else;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Do {
@@ -551,7 +551,7 @@ export interface Do {
   nodeId: NodeId<false, false>;
 
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Try {
@@ -560,7 +560,7 @@ export interface Try {
 
   body: CompoundNode;
   catches: Catch[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Catch = BoundCatch | RestrictedBindinglessCatch | CatchAll;
@@ -578,7 +578,7 @@ export interface BoundCatch {
   catchType: CatchType.BoundCatch;
   arg: ArgDef;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface RestrictedBindinglessCatch {
@@ -588,7 +588,7 @@ export interface RestrictedBindinglessCatch {
   catchType: CatchType.RestrictedBindinglessCatch;
   caughtTypes: Type[];
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CatchAll {
@@ -597,7 +597,7 @@ export interface CatchAll {
 
   catchType: CatchType.CatchAll;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface FunctionCall {
@@ -607,7 +607,7 @@ export interface FunctionCall {
   callee: Expr;
   typeArgs: Type[];
   args: Expr[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface TypedObjectLiteral {
@@ -617,7 +617,7 @@ export interface TypedObjectLiteral {
   valueType: Type;
   copies: ObjectCopy[];
   entries: ObjectEntry[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ObjectCopy {
@@ -625,7 +625,7 @@ export interface ObjectCopy {
   nodeId: NodeId<false, false>;
 
   source: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ObjectEntry {
@@ -634,7 +634,7 @@ export interface ObjectEntry {
 
   key: string;
   value: Expr | null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ArrayLiteral {
@@ -642,7 +642,7 @@ export interface ArrayLiteral {
   nodeId: NodeId<false, false>;
 
   elements: Expr[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface RangeLiteral {
@@ -652,7 +652,7 @@ export interface RangeLiteral {
   start: Expr;
   end: Expr;
   includesEnd: boolean;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface MagicFunctionLiteral {
@@ -661,7 +661,7 @@ export interface MagicFunctionLiteral {
 
   args: UntypedArgDef[];
   body: Expr | CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface UntypedArgDef {
@@ -672,7 +672,7 @@ export interface UntypedArgDef {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Return {
@@ -680,7 +680,7 @@ export interface Return {
   nodeId: NodeId<false, false>;
 
   value: null | Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Break {
@@ -689,14 +689,14 @@ export interface Break {
 
   /** May one day become `Expr | null`. */
   value: null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Continue {
   type: NodeType.Continue;
   nodeId: NodeId<false, false>;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface LocalVariableDeclaration {
@@ -711,7 +711,7 @@ export interface LocalVariableDeclaration {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Assignment {
@@ -721,7 +721,7 @@ export interface Assignment {
   assignmentType: AssignmentType;
   assignee: Expr;
   value: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
@@ -731,7 +731,7 @@ export interface Throw {
   nodeId: NodeId<false, false>;
 
   value: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface While {
@@ -740,7 +740,7 @@ export interface While {
 
   condition: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Loop {
@@ -748,7 +748,7 @@ export interface Loop {
   nodeId: NodeId<false, false>;
 
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Repeat {
@@ -757,7 +757,7 @@ export interface Repeat {
 
   repetitions: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface For {
@@ -767,7 +767,7 @@ export interface For {
   binding: Binding;
   iteratee: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Binding = SingleBinding | FlatTupleBinding;
@@ -780,7 +780,7 @@ export interface SingleBinding {
 
   outRefId: RefId;
 
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface FlatTupleBinding {
@@ -788,7 +788,7 @@ export interface FlatTupleBinding {
   nodeId: NodeId<false, false>;
 
   bindings: SingleBinding[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Bound<T extends ast.Node> = T extends ast.FileNode

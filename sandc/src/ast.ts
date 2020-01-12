@@ -1,4 +1,4 @@
-import { JisonNodeLocation } from "./jison";
+import { TextRange } from "./textPosition";
 
 export enum NodeType {
   Import = "Import",
@@ -85,43 +85,6 @@ export type Node =
   | UntypedArgDef
   | Binding;
 
-export interface NodeLocation {
-  firstLine: number;
-  lastLine: number;
-  firstColumn: number;
-  lastColumn: number;
-}
-
-export function merge(
-  start: NodeLocation | JisonNodeLocation,
-  end: NodeLocation | JisonNodeLocation,
-): NodeLocation {
-  const camelStart = camelCaseIfNeeded(start);
-  const camelEnd = camelCaseIfNeeded(end);
-
-  return {
-    firstLine: camelStart.firstLine,
-    firstColumn: camelStart.firstColumn,
-    lastLine: camelEnd.lastLine,
-    lastColumn: camelEnd.lastColumn,
-  };
-}
-
-function camelCaseIfNeeded(
-  location: NodeLocation | JisonNodeLocation,
-): NodeLocation {
-  return "first_line" in location ? camelCase(location) : location;
-}
-
-export function camelCase(location: JisonNodeLocation): NodeLocation {
-  return {
-    firstLine: location.first_line,
-    lastLine: location.last_line,
-    firstColumn: location.first_column,
-    lastColumn: location.last_column,
-  };
-}
-
 export interface FileNode {
   type: NodeType.File;
   packageName: string | null;
@@ -129,7 +92,7 @@ export interface FileNode {
   useStatements: Use[];
   pubClass: PubClass;
   privClasses: PrivClass[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Import {
@@ -137,7 +100,7 @@ export interface Import {
   name: string;
   /** May become `string | null` in the future. */
   alias: null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Use {
@@ -145,7 +108,7 @@ export interface Use {
   name: string;
   alias: string | null;
   doesShadow: boolean;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticMethodCopy {
@@ -154,14 +117,14 @@ export interface StaticMethodCopy {
   name: string;
   signature: StaticMethodCopySignature | null;
   alias: string | null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticMethodCopySignature {
   type: NodeType.StaticMethodCopySignature;
   typeArgs: TypeArgDef[];
   argTypes: Type[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Class {
@@ -174,7 +137,7 @@ export interface Class {
   copies: StaticMethodCopy[];
   useStatements: Use[];
   items: ClassItem[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export enum Overridability {
@@ -202,14 +165,14 @@ export interface TypeArgDef {
   type: NodeType.TypeArgDef;
   name: string;
   constraint: TypeConstraint;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Type {
   type: NodeType.Type;
   name: string;
   args: Type[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type TypeConstraint = NoConstraint | ExtendsConstraint;
@@ -237,7 +200,7 @@ export interface InstancePropertyDeclaration {
   isReassignable: boolean;
   name: string;
   valueType: Type;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticPropertyDeclaration {
@@ -247,13 +210,13 @@ export interface StaticPropertyDeclaration {
   name: string;
   valueType: Type | null;
   initialValue: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface InstantiationRestriction {
   type: NodeType.InstantiationRestriction;
   level: "pub" | "prot";
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ConcreteMethodDeclaration {
@@ -267,7 +230,7 @@ export interface ConcreteMethodDeclaration {
   args: ArgDef[];
   returnType: Type | null;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StaticMethodDeclaration extends ConcreteMethodDeclaration {
@@ -287,14 +250,14 @@ export interface AbstractMethodDeclaration {
   typeArgs: TypeArgDef[];
   args: ArgDef[];
   returnType: Type | null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ArgDef {
   type: NodeType.ArgDef;
   name: string;
   valueType: Type;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CompoundNode {
@@ -302,7 +265,7 @@ export interface CompoundNode {
   useStatements: Use[];
   nodes: (Expr | Statement)[];
   definitelyDoesNotEndWithSemicolon: boolean;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Expr =
@@ -341,25 +304,25 @@ export type Statement =
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
   value: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface StringLiteral {
   type: NodeType.StringLiteral;
   value: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CharacterLiteral {
   type: NodeType.CharacterLiteral;
   value: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Identifier {
   type: NodeType.Identifier;
   name: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface InfixExpr {
@@ -367,7 +330,7 @@ export interface InfixExpr {
   operation: InfixOperation;
   left: Expr;
   right: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type InfixOperation =
@@ -391,7 +354,7 @@ export interface PrefixExpr {
   type: NodeType.PrefixExpr;
   operation: PrefixOperation;
   right: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type PrefixOperation = "-" | "!" | "~";
@@ -400,21 +363,21 @@ export interface DotExpr {
   type: NodeType.DotExpr;
   left: Expr;
   right: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface IndexExpr {
   type: NodeType.IndexExpr;
   left: Expr;
   right: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CastExpr {
   type: NodeType.CastExpr;
   value: Expr;
   targetType: Type;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface If {
@@ -422,7 +385,7 @@ export interface If {
   condition: Expr;
   body: CompoundNode;
   alternatives: IfAlternative[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type IfAlternative = ElseIf | Else;
@@ -437,27 +400,27 @@ export interface ElseIf {
   alternativeType: IfAlternativeType.ElseIf;
   condition: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Else {
   type: NodeType.IfAlternative;
   alternativeType: IfAlternativeType.Else;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Do {
   type: NodeType.Do;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Try {
   type: NodeType.Try;
   body: CompoundNode;
   catches: Catch[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Catch = BoundCatch | RestrictedBindinglessCatch | CatchAll;
@@ -473,7 +436,7 @@ export interface BoundCatch {
   catchType: CatchType.BoundCatch;
   arg: ArgDef;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface RestrictedBindinglessCatch {
@@ -481,14 +444,14 @@ export interface RestrictedBindinglessCatch {
   catchType: CatchType.RestrictedBindinglessCatch;
   caughtTypes: Type[];
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface CatchAll {
   type: NodeType.Catch;
   catchType: CatchType.CatchAll;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface FunctionCall {
@@ -496,7 +459,7 @@ export interface FunctionCall {
   callee: Expr;
   typeArgs: Type[];
   args: Expr[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface TypedObjectLiteral {
@@ -504,26 +467,26 @@ export interface TypedObjectLiteral {
   valueType: Type;
   copies: ObjectCopy[];
   entries: ObjectEntry[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ObjectCopy {
   type: NodeType.ObjectCopy;
   source: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ObjectEntry {
   type: NodeType.ObjectEntry;
   key: string;
   value: Expr | null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface ArrayLiteral {
   type: NodeType.ArrayLiteral;
   elements: Expr[];
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface RangeLiteral {
@@ -531,38 +494,38 @@ export interface RangeLiteral {
   start: Expr;
   end: Expr;
   includesEnd: boolean;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface MagicFunctionLiteral {
   type: NodeType.MagicFunctionLiteral;
   args: UntypedArgDef[];
   body: Expr | CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface UntypedArgDef {
   type: NodeType.UntypedArgDef;
   name: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Return {
   type: NodeType.Return;
   value: null | Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Break {
   type: NodeType.Break;
   /** May one day become `Expr | null`. */
   value: null;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Continue {
   type: NodeType.Continue;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface LocalVariableDeclaration {
@@ -572,7 +535,7 @@ export interface LocalVariableDeclaration {
   name: string;
   initialValue: Expr;
   valueType: null | Type;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Assignment {
@@ -580,7 +543,7 @@ export interface Assignment {
   assignmentType: AssignmentType;
   assignee: Expr;
   value: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
@@ -588,27 +551,27 @@ export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
 export interface Throw {
   type: NodeType.Throw;
   value: Expr;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface While {
   type: NodeType.While;
   condition: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Loop {
   type: NodeType.Loop;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface Repeat {
   type: NodeType.Repeat;
   repetitions: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface For {
@@ -616,7 +579,7 @@ export interface For {
   binding: Binding;
   iteratee: Expr;
   body: CompoundNode;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export type Binding = SingleBinding | FlatTupleBinding;
@@ -624,11 +587,11 @@ export type Binding = SingleBinding | FlatTupleBinding;
 export interface SingleBinding {
   type: NodeType.SingleBinding;
   name: string;
-  location: NodeLocation;
+  location: TextRange;
 }
 
 export interface FlatTupleBinding {
   type: NodeType.FlatTupleBinding;
   bindings: SingleBinding[];
-  location: NodeLocation;
+  location: TextRange;
 }

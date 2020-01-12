@@ -1,4 +1,5 @@
-import { camelCase, NodeType } from "../../../ast";
+import { NodeType } from "../../../ast";
+import { convertToRange } from "../../../textPosition";
 import { TypeParser } from "./parser.generated";
 
 export default function addApi(parser: TypeParser) {
@@ -6,5 +7,5 @@ export default function addApi(parser: TypeParser) {
 
   yy.NodeType = NodeType;
 
-  yy.camelCase = camelCase;
+  yy.convertToRange = convertToRange;
 }

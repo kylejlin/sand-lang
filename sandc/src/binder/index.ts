@@ -1,7 +1,7 @@
 import * as ast from "../ast";
 import * as pbt from "../pbt";
-import { NodeLocation } from "../ast";
-import { Ref, RefId, NodeId } from "../pbt";
+import { NodeId, Ref, RefId } from "../pbt";
+import { TextPosition } from "../textPosition";
 import { all as globallyAvailableReferences } from "./globallyAvailableReferences";
 
 export function bindFileNode(fileNode: ast.FileNode): pbt.FileNode {
@@ -107,7 +107,7 @@ class Binder {
     return null;
   }
 
-  private expectRef(name: string, location: PointLocation): Ref {
+  private expectRef(name: string, location: TextPosition): Ref {
     const ref = this.findRef(name);
     if (ref === null) {
       throw new ReferenceError(
@@ -127,14 +127,14 @@ class Binder {
   private dependOnRef(
     name: string,
     nodeId: NodeId<true, boolean>,
-    location: PointLocation,
+    location: TextPosition,
   ): Ref {
     const ref = this.expectRef(name, location);
     ref.dependentNodeIds.push(nodeId);
     return ref;
   }
 
-  private assertNameShadows(name: string, location: PointLocation): void {
+  private assertNameShadows(name: string, location: TextPosition): void {
     if (this.findRef(name) === null) {
       throw new ReferenceError(
         "ReferenceError at (" +
@@ -149,7 +149,7 @@ class Binder {
   private createAndAppendNonShadowingRefFromSourceId(
     sourceId: NodeId<boolean, true>,
     name: string,
-    location: PointLocation,
+    location: TextPosition,
   ): Ref {
     if (this.findRef(name) !== null) {
       throw new ReferenceError(
@@ -227,13 +227,13 @@ class Binder {
       const leftmostInRef = this.dependOnRef(
         leftmostIdentifier,
         nodeId,
-        start(statement.location),
+        statement.location.start,
       );
       const rightmostIdentifier = getRightmostIdentifierName(statement.name);
       const outRef = this.createAndAppendNonShadowingRefFromSourceId(
         nodeId,
         rightmostIdentifier,
-        start(statement.location),
+        statement.location.start,
       );
 
       return {
@@ -259,7 +259,7 @@ class Binder {
     const outRef = this.createAndAppendNonShadowingRefFromSourceId(
       nodeId,
       classNode.name,
-      start(classNode.location),
+      classNode.location.start,
     );
     return { ...classNode, nodeId, outRefId: outRef.refId };
   }
@@ -298,7 +298,7 @@ class Binder {
     const outRef = this.createAndAppendNonShadowingRefFromSourceId(
       nodeId,
       def.name,
-      start(def.location),
+      def.location.start,
     );
     const constraint = this.bindTypeConstraint(def.constraint);
     return { ...def, nodeId, outRefId: outRef.refId, constraint };
@@ -319,7 +319,7 @@ class Binder {
 
   private bindType(type: ast.Type): pbt.Type {
     const nodeId = this.createNodeId(true, false);
-    const inRef = this.dependOnRef(type.name, nodeId, start(type.location));
+    const inRef = this.dependOnRef(type.name, nodeId, type.location.start);
     const args = type.args.map(this.bindType);
     return { ...type, nodeId, inRefId: inRef.refId, args };
   }
@@ -332,12 +332,12 @@ class Binder {
     const leftmostInRef = this.dependOnRef(
       leftmostIdent,
       nodeId,
-      start(copy.location),
+      copy.location.start,
     );
     const outRef = this.createAndAppendNonShadowingRefFromSourceId(
       nodeId,
       getStaticMethodCopyStatementRefName(copy),
-      start(copy.location),
+      copy.location.start,
     );
     const signature = nullishMap(
       copy.signature,
@@ -367,19 +367,19 @@ class Binder {
     const leftmostInRef = this.dependOnRef(
       leftmostIdentifier,
       nodeId,
-      start(use.location),
+      use.location.start,
     );
     const refName = getUseStatementRefName(use);
 
     const outRef: Ref = (() => {
       if (use.doesShadow) {
-        this.assertNameShadows(refName, start(use.location));
+        this.assertNameShadows(refName, use.location.start);
         return this.createAndAppendRefFromSourceId(nodeId, refName);
       } else {
         return this.createAndAppendNonShadowingRefFromSourceId(
           nodeId,
           refName,
-          start(use.location),
+          use.location.start,
         );
       }
     })();
@@ -459,7 +459,7 @@ class Binder {
         return this.createAndAppendNonShadowingRefFromSourceId(
           nodeId,
           item.name,
-          start(item.location),
+          item.location.start,
         );
       }
     })();
@@ -575,7 +575,7 @@ class Binder {
 
   private bindIdentifier(node: ast.Identifier): pbt.Identifier {
     const nodeId = this.createNodeId(true, false);
-    const inRef = this.expectRef(node.name, start(node.location));
+    const inRef = this.expectRef(node.name, node.location.start);
     return { ...node, nodeId, inRefId: inRef.refId };
   }
 
@@ -764,7 +764,7 @@ class Binder {
       : this.createAndAppendNonShadowingRefFromSourceId(
           nodeId,
           node.name,
-          start(node.location),
+          node.location.start,
         );
     const valueType = nullishMap(node.valueType, this.bindType);
     const initialValue = this.bindExpr(node.initialValue);
@@ -864,7 +864,7 @@ class Binder {
     const outRef = this.createAndAppendNonShadowingRefFromSourceId(
       nodeId,
       node.name,
-      start(node.location),
+      node.location.start,
     );
     return { ...node, nodeId, outRefId: outRef.refId };
   }
@@ -956,11 +956,6 @@ type AstCompoundNodeItem = ast.CompoundNode["nodes"][number];
 
 type PbtCompoundNodeItem = pbt.CompoundNode["nodes"][number];
 
-interface PointLocation {
-  line: number;
-  column: number;
-}
-
 function getLeftmostIdentifierName(dotSeparatedIdentifiers: string): string {
   const idents = dotSeparatedIdentifiers.split(".");
   return idents[0];
@@ -993,10 +988,6 @@ function getStaticMethodCopyStatementRefName(
   } else {
     return copy.alias;
   }
-}
-
-function start(location: NodeLocation): PointLocation {
-  return { line: location.firstLine, column: location.firstColumn };
 }
 
 function nullishMap<T, U>(val: T | null, mapper: (start: T) => U): U | null;

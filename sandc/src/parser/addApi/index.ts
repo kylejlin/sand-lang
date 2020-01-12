@@ -1,5 +1,4 @@
 import {
-  camelCase,
   CatchType,
   ConstraintType,
   DotExpr,
@@ -8,8 +7,6 @@ import {
   IfAlternativeType,
   InfixExpr,
   InfixOperation,
-  merge,
-  NodeLocation,
   NodeType,
   Overridability,
   PrefixExpr,
@@ -18,14 +15,15 @@ import {
 } from "../../ast";
 import { JisonNodeLocation } from "../../jison";
 import { wrapPrimitiveIfNeeded } from "../../sandTypes";
+import {
+  convertToRange,
+  merge,
+  TextPosition,
+  TextRange,
+} from "../../textPosition";
 import { SandParser } from "../parser.generated";
 import typeParser from "../subparsers/type/prebuilt";
 import SandScanner from "./scanner";
-
-interface PointLocation {
-  line: number;
-  column: number;
-}
 
 export default function addApi(parser: SandParser) {
   parser.lexer = new SandScanner();
@@ -49,7 +47,7 @@ export default function addApi(parser: SandParser) {
       operation,
       left,
       right,
-      location: camelCase(location),
+      location: convertToRange(location),
     };
   };
 
@@ -62,7 +60,7 @@ export default function addApi(parser: SandParser) {
       type: NodeType.PrefixExpr,
       operation,
       right,
-      location: camelCase(location),
+      location: convertToRange(location),
     };
   };
 
@@ -75,7 +73,7 @@ export default function addApi(parser: SandParser) {
       type: NodeType.DotExpr,
       left,
       right,
-      location: camelCase(location),
+      location: convertToRange(location),
     };
   };
 
@@ -120,7 +118,7 @@ export default function addApi(parser: SandParser) {
     return applyLocationCorrections(incorrectlyLocated, start);
   };
 
-  function applyLocationCorrections(node: Type, start: PointLocation): Type {
+  function applyLocationCorrections(node: Type, start: TextPosition): Type {
     return {
       type: NodeType.Type,
       name: node.name,
@@ -134,32 +132,18 @@ export default function addApi(parser: SandParser) {
    * and computes the absolute location.
    */
   function getAbsoluteNodeLocation(
-    relative: NodeLocation,
-    offset: PointLocation,
-  ): NodeLocation {
-    const absStart = getAbsolutePointLocation(getStart(relative), offset);
-    const absEnd = getAbsolutePointLocation(getEnd(relative), offset);
-    return mergePointLocations(absStart, absEnd);
+    relative: TextRange,
+    offset: TextPosition,
+  ): TextRange {
+    const absStart = getAbsolutePosition(relative.start, offset);
+    const absEnd = getAbsolutePosition(relative.end, offset);
+    return { start: absStart, end: absEnd };
   }
 
-  function getStart(location: NodeLocation): PointLocation {
-    return {
-      line: location.firstLine,
-      column: location.firstColumn,
-    };
-  }
-
-  function getEnd(location: NodeLocation): PointLocation {
-    return {
-      line: location.lastLine,
-      column: location.lastColumn,
-    };
-  }
-
-  function getAbsolutePointLocation(
-    relative: PointLocation,
-    offset: PointLocation,
-  ): PointLocation {
+  function getAbsolutePosition(
+    relative: TextPosition,
+    offset: TextPosition,
+  ): TextPosition {
     if (relative.line === 1) {
       return {
         line: relative.line + offset.line - 1,
@@ -173,19 +157,7 @@ export default function addApi(parser: SandParser) {
     }
   }
 
-  function mergePointLocations(
-    start: PointLocation,
-    end: PointLocation,
-  ): NodeLocation {
-    return {
-      firstLine: start.line,
-      firstColumn: start.column,
-      lastLine: end.line,
-      lastColumn: end.column,
-    };
-  }
-
   yy.wrapPrimitiveIfNeeded = wrapPrimitiveIfNeeded;
-  yy.camelCase = camelCase;
+  yy.convertToRange = convertToRange;
   yy.merge = merge;
 }

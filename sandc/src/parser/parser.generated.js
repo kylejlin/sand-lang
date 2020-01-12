@@ -84,7 +84,7 @@ performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* actio
 var $0 = $$.length - 1;
 switch (yystate) {
 case 1:
- return { type: yy.NodeType.File, packageName: $$[$0-5], imports: $$[$0-4], useStatements: $$[$0-3], pubClass: $$[$0-2], privClasses: $$[$0-1], location: yy.camelCase(this._$) }; 
+ return { type: yy.NodeType.File, packageName: $$[$0-5], imports: $$[$0-4], useStatements: $$[$0-3], pubClass: $$[$0-2], privClasses: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 2: case 18: case 36: case 73:
  this.$ = null; 
@@ -129,31 +129,31 @@ case 17:
  this.$ = $$[$0-4].concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "prot", name: $$[$0-2].map(ident => ident.name).join("."), signature: $$[$0-1], alias: null, location: yy.merge(_$[$0-3], _$[$0]) }]); 
 break;
 case 19:
- this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: [], location: yy.convertToRange(this._$) }; 
 break;
 case 20:
- this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 21:
- this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $$[$0-3], argTypes: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $$[$0-3], argTypes: [], location: yy.convertToRange(this._$) }; 
 break;
 case 22:
- this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $$[$0-4], argTypes: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $$[$0-4], argTypes: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 23:
- this.$ = { ...$$[$0], isPub: true, location: yy.camelCase(this._$) }; 
+ this.$ = { ...$$[$0], isPub: true, location: yy.convertToRange(this._$) }; 
 break;
 case 25: case 203: case 204: case 205: case 217:
  this.$ = $$[$0-1]; 
 break;
 case 26:
- this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(this._$) }]; 
 break;
 case 27:
- this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.convertToRange(this._$) }]; 
 break;
 case 28:
- this.$ = $$[$0-2].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.camelCase(_$[$0]) }]); 
+ this.$ = $$[$0-2].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(_$[$0]) }]); 
 break;
 case 29:
  this.$ = $$[$0-4].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.merge(_$[$0-2], _$[$0]) }]); 
@@ -162,7 +162,7 @@ case 31: case 48: case 89: case 167:
  this.$ = $$[$0-1].concat([$$[$0]]); 
 break;
 case 32:
- this.$ = { type: yy.NodeType.Class, isPub: false, overridability: $$[$0-9], name: $$[$0-7], typeArgDefs: $$[$0-6], superClass: $$[$0-5], copies: $$[$0-3], useStatements: $$[$0-2], items: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Class, isPub: false, overridability: $$[$0-9], name: $$[$0-7], typeArgDefs: $$[$0-6], superClass: $$[$0-5], copies: $$[$0-3], useStatements: $$[$0-2], items: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 33:
  this.$ = yy.Overridability.Final; 
@@ -177,19 +177,19 @@ case 37: case 79:
  this.$ = $$[$0]; 
 break;
 case 40:
- this.$ = { type: yy.NodeType.Type, name: "nullable", args: [$$[$0-1]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "nullable", args: [$$[$0-1]], location: yy.convertToRange(this._$) }; 
 break;
 case 41:
- this.$ = { type: yy.NodeType.Type, name: $$[$0-3].map(ident => ident.name).join('.'), args: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: $$[$0-3].map(ident => ident.name).join('.'), args: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 42:
- this.$ = { type: yy.NodeType.Type, name: $$[$0].map(ident => ident.name).join('.'), args: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: $$[$0].map(ident => ident.name).join('.'), args: [], location: yy.convertToRange(this._$) }; 
 break;
 case 43:
- this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-2]], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "array", args: [$$[$0-2]], location: yy.convertToRange(this._$) }; 
 break;
 case 44:
- this.$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($$[$0-3])], location: yy.convertToRange(this._$) }; 
 break;
 case 45: case 87: case 163: case 166: case 171: case 240: case 241: case 242:
  this.$ = [$$[$0]]; 
@@ -198,64 +198,64 @@ case 46: case 172: case 243: case 244: case 245:
  this.$ = $$[$0-2].concat([$$[$0]]); 
 break;
 case 49:
- this.$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $$[$0-4], isReassignable: false, name: $$[$0-3], valueType: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $$[$0-4], isReassignable: false, name: $$[$0-3], valueType: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 50:
- this.$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $$[$0-5], isReassignable: true, name: $$[$0-3], valueType: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $$[$0-5], isReassignable: true, name: $$[$0-3], valueType: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 51: case 53:
- this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-7], isReassignable: false, name: $$[$0-5], valueType: $$[$0-3], initialValue: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-7], isReassignable: false, name: $$[$0-5], valueType: $$[$0-3], initialValue: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 52: case 54:
- this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-8], isReassignable: true, name: $$[$0-5], valueType: $$[$0-3], initialValue: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-8], isReassignable: true, name: $$[$0-5], valueType: $$[$0-3], initialValue: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 55: case 57:
- this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-5], isReassignable: false, name: $$[$0-3], valueType: null, initialValue: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-5], isReassignable: false, name: $$[$0-3], valueType: null, initialValue: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 56: case 58:
- this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-6], isReassignable: true, name: $$[$0-3], valueType: null, initialValue: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $$[$0-6], isReassignable: true, name: $$[$0-3], valueType: null, initialValue: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 59:
- this.$ = { type: yy.NodeType.InstantiationRestriction, level: "pub", location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.InstantiationRestriction, level: "pub", location: yy.convertToRange(this._$) }; 
 break;
 case 60:
- this.$ = { type: yy.NodeType.InstantiationRestriction, level: "prot", location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.InstantiationRestriction, level: "prot", location: yy.convertToRange(this._$) }; 
 break;
 case 61:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-8], isStatic: true, isOpen: false, isOverride: false, name: $$[$0-7], typeArgs: $$[$0-6], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-8], isStatic: true, isOpen: false, isOverride: false, name: $$[$0-7], typeArgs: $$[$0-6], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 62:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-6], isStatic: true, isOpen: false, isOverride: false, name: $$[$0-5], typeArgs: $$[$0-4], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-6], isStatic: true, isOpen: false, isOverride: false, name: $$[$0-5], typeArgs: $$[$0-4], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 63:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-9], isStatic: false, isOpen: false, isOverride: false, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-9], isStatic: false, isOpen: false, isOverride: false, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 64:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-7], isStatic: false, isOpen: false, isOverride: false, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-7], isStatic: false, isOpen: false, isOverride: false, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 65:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-10], isStatic: false, isOpen: true, isOverride: false, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-10], isStatic: false, isOpen: true, isOverride: false, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 66:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-8], isStatic: false, isOpen: true, isOverride: false, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-8], isStatic: false, isOpen: true, isOverride: false, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 67:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-10], isStatic: false, isOpen: false, isOverride: true, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-10], isStatic: false, isOpen: false, isOverride: true, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 68:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-8], isStatic: false, isOpen: false, isOverride: true, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-8], isStatic: false, isOpen: false, isOverride: true, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 69:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-11], isStatic: false, isOpen: true, isOverride: true, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-11], isStatic: false, isOpen: true, isOverride: true, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 70:
- this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-9], isStatic: false, isOpen: true, isOverride: true, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $$[$0-9], isStatic: false, isOpen: true, isOverride: true, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 71:
- this.$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $$[$0-10], isStatic: false, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $$[$0-10], isStatic: false, name: $$[$0-8], typeArgs: $$[$0-7], args: $$[$0-4], returnType: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 72:
- this.$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $$[$0-8], isStatic: false, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $$[$0-8], isStatic: false, name: $$[$0-6], typeArgs: $$[$0-5], args: $$[$0-2], returnType: null, location: yy.convertToRange(this._$) }; 
 break;
 case 74:
  this.$ = "pub"; 
@@ -264,22 +264,22 @@ case 75:
  this.$ = "prot"; 
 break;
 case 80:
- this.$ = [{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 81:
  this.$ = $$[$0-4].concat([{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.merge(_$[$0-2], _$[$0]) }]); 
 break;
 case 82:
- this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-1], nodes: [], definitelyDoesNotEndWithSemicolon: false, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-1], nodes: [], definitelyDoesNotEndWithSemicolon: false, location: yy.convertToRange(this._$) }; 
 break;
 case 83:
- this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: [$$[$0-1]], definitelyDoesNotEndWithSemicolon: true, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: [$$[$0-1]], definitelyDoesNotEndWithSemicolon: true, location: yy.convertToRange(this._$) }; 
 break;
 case 84:
- this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: $$[$0-1], definitelyDoesNotEndWithSemicolon: false, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-2], nodes: $$[$0-1], definitelyDoesNotEndWithSemicolon: false, location: yy.convertToRange(this._$) }; 
 break;
 case 85:
- this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-3], nodes: $$[$0-2].concat([$$[$0-1]]), definitelyDoesNotEndWithSemicolon: true, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-3], nodes: $$[$0-2].concat([$$[$0-1]]), definitelyDoesNotEndWithSemicolon: true, location: yy.convertToRange(this._$) }; 
 break;
 case 86:
  this.$ = [$$[$0-1]]; 
@@ -288,199 +288,199 @@ case 88:
  this.$ = $$[$0-2].concat([$$[$0-1]]); 
 break;
 case 103:
- this.$ = { type: yy.NodeType.If, condition: $$[$0-2], body: $$[$0-1], alternatives: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.If, condition: $$[$0-2], body: $$[$0-1], alternatives: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 106:
- this.$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 108:
  this.$ = $$[$0-2].concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $$[$0], location: yy.merge(_$[$0-1], _$[$0]) }]); 
 break;
 case 109:
- this.$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 110:
  this.$ = $$[$0-4].concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $$[$0-1], body: $$[$0], location: yy.merge(_$[$0-3], _$[$0]) }]); 
 break;
 case 111:
- this.$ = { type: yy.NodeType.Do, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Do, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 112: case 113: case 114:
- this.$ = { type: yy.NodeType.Return, value: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Return, value: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 115:
- this.$ = { type: yy.NodeType.Return, value: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Return, value: null, location: yy.convertToRange(this._$) }; 
 break;
 case 116:
- this.$ = { type: yy.NodeType.Break, value: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Break, value: null, location: yy.convertToRange(this._$) }; 
 break;
 case 117:
- this.$ = { type: yy.NodeType.Continue, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Continue, location: yy.convertToRange(this._$) }; 
 break;
 case 118: case 126: case 134:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.convertToRange(this._$) }; 
 break;
 case 119: case 127: case 135:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.convertToRange(this._$) }; 
 break;
 case 120: case 128: case 136:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.convertToRange(this._$) }; 
 break;
 case 121: case 129: case 137:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-3], initialValue: $$[$0-1], valueType: null, location: yy.convertToRange(this._$) }; 
 break;
 case 122: case 130: case 138:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.convertToRange(this._$) }; 
 break;
 case 123: case 131: case 139:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.convertToRange(this._$) }; 
 break;
 case 124: case 132: case 140:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.convertToRange(this._$) }; 
 break;
 case 125: case 133: case 141:
- this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $$[$0-5], initialValue: $$[$0-1], valueType: $$[$0-3], location: yy.convertToRange(this._$) }; 
 break;
 case 142: case 143: case 144:
- this.$ = { type: yy.NodeType.Assignment, assignee: $$[$0-3], assignmentType: $$[$0-2], value: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Assignment, assignee: $$[$0-3], assignmentType: $$[$0-2], value: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 152: case 153: case 154:
- this.$ = { type: yy.NodeType.Throw, value: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Throw, value: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 155:
- this.$ = { type: yy.NodeType.While, condition: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.While, condition: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 156:
- this.$ = { type: yy.NodeType.Loop, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Loop, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 157:
- this.$ = { type: yy.NodeType.Repeat, repetitions: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Repeat, repetitions: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 158:
- this.$ = { type: yy.NodeType.For, binding: $$[$0-3], iteratee: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.For, binding: $$[$0-3], iteratee: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 161:
- this.$ = { type: yy.NodeType.SingleBinding, name: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.SingleBinding, name: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 162:
- this.$ = { type: yy.NodeType.FlatTupleBinding, bindings: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.FlatTupleBinding, bindings: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 164:
  this.$ = $$[$0-2].concat($$[$0]); 
 break;
 case 165:
- this.$ = { type: yy.NodeType.Try, body: $$[$0-1], catches: $$[$0], finallyNode: null, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Try, body: $$[$0-1], catches: $$[$0], finallyNode: null, location: yy.convertToRange(this._$) }; 
 break;
 case 168:
- this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.ArgDef, name: $$[$0-3], valueType: $$[$0-1], location: yy.merge(_$[$0-3], _$[$0-1]) }, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.ArgDef, name: $$[$0-3], valueType: $$[$0-1], location: yy.merge(_$[$0-3], _$[$0-1]) }, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 169:
- this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $$[$0-1], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 170:
- this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.CatchAll, body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.CatchAll, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 173:
- this.$ = { type: yy.NodeType.NumberLiteral, value: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.NumberLiteral, value: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 174:
- this.$ = { type: yy.NodeType.StringLiteral, value: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.StringLiteral, value: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 175:
- this.$ = { type: yy.NodeType.CharacterLiteral, value: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CharacterLiteral, value: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 179: case 180: case 181:
- this.$ = { type: yy.NodeType.PrefixExpr, operation: $$[$0-1], right: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.PrefixExpr, operation: $$[$0-1], right: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 182: case 183: case 184: case 185: case 186: case 187: case 188: case 189: case 190: case 191: case 192: case 193: case 194: case 195: case 196:
- this.$ = { type: yy.NodeType.InfixExpr, operation: $$[$0-1], left: $$[$0-2], right: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.InfixExpr, operation: $$[$0-1], left: $$[$0-2], right: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 206: case 207: case 208:
- this.$ = { type: yy.NodeType.IndexExpr, left: $$[$0-3], right: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.IndexExpr, left: $$[$0-3], right: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 209:
- this.$ = { type: yy.NodeType.Identifier, name: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.Identifier, name: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 210: case 211: case 212: case 213:
- this.$ = { type: yy.NodeType.DotExpr, left: $$[$0-2], right: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.DotExpr, left: $$[$0-2], right: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 214:
- this.$ = { type: yy.NodeType.FunctionCall, callee: $$[$0-3], typeArgs: $$[$0-2], args: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.FunctionCall, callee: $$[$0-3], typeArgs: $$[$0-2], args: [], location: yy.convertToRange(this._$) }; 
 break;
 case 215:
- this.$ = { type: yy.NodeType.FunctionCall, callee: $$[$0-4], typeArgs: $$[$0-3], args: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.FunctionCall, callee: $$[$0-4], typeArgs: $$[$0-3], args: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 218:
- this.$ = [{ type: yy.NodeType.Identifier, name: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.Identifier, name: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 219:
- this.$ = $$[$0-2].concat([{ type: yy.NodeType.Identifier, name: $$[$0], location: yy.camelCase(_$[$0]) }]); 
+ this.$ = $$[$0-2].concat([{ type: yy.NodeType.Identifier, name: $$[$0], location: yy.convertToRange(_$[$0]) }]); 
 break;
 case 220:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-2], _$[$0-2]), copies: [], entries: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-2], _$[$0-2]), copies: [], entries: [], location: yy.convertToRange(this._$) }; 
 break;
 case 221:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-3], _$[$0-3]), copies: [], entries: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-3], _$[$0-3]), copies: [], entries: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 222:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-4], _$[$0-4]), copies: [], entries: $$[$0-2], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-4], _$[$0-4]), copies: [], entries: $$[$0-2], location: yy.convertToRange(this._$) }; 
 break;
 case 223:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-3], _$[$0-3]), copies: $$[$0-1], entries: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-3], _$[$0-3]), copies: $$[$0-1], entries: [], location: yy.convertToRange(this._$) }; 
 break;
 case 224:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-4], _$[$0-4]), copies: $$[$0-2], entries: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-4], _$[$0-4]), copies: $$[$0-2], entries: [], location: yy.convertToRange(this._$) }; 
 break;
 case 225:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-5], _$[$0-5]), copies: $$[$0-3], entries: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-5], _$[$0-5]), copies: $$[$0-3], entries: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 226:
- this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-6], _$[$0-6]), copies: $$[$0-4], entries: $$[$0-2], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-6], _$[$0-6]), copies: $$[$0-4], entries: $$[$0-2], location: yy.convertToRange(this._$) }; 
 break;
 case 227:
- this.$ = [{ type: yy.NodeType.ObjectCopy, source: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.ObjectCopy, source: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 228:
  this.$ = $$[$0-3].concat([{ type: yy.NodeType.ObjectCopy, source: $$[$0], location: yy.merge(_$[$0-1], _$[$0]) }]); 
 break;
 case 229: case 230: case 231:
- this.$ = [{ type: yy.NodeType.ObjectEntry, key: $$[$0-2], value: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.ObjectEntry, key: $$[$0-2], value: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 232:
- this.$ = [{ type: yy.NodeType.ObjectEntry, key: $$[$0], value: null, location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.ObjectEntry, key: $$[$0], value: null, location: yy.convertToRange(this._$) }]; 
 break;
 case 233: case 234: case 235:
  this.$ = $$[$0-4].concat([{ type: yy.NodeType.ObjectEntry, key: $$[$0-2], value: $$[$0], location: yy.merge(_$[$0-2], _$[$0]) }]); 
 break;
 case 236:
- this.$ = $$[$0-2].concat([{ type: yy.NodeType.ObjectEntry, key: $$[$0], value: null, location: yy.camelCase(_$[$0]) }]); 
+ this.$ = $$[$0-2].concat([{ type: yy.NodeType.ObjectEntry, key: $$[$0], value: null, location: yy.convertToRange(_$[$0]) }]); 
 break;
 case 237:
- this.$ = { type: yy.NodeType.ArrayLiteral, elements: [], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ArrayLiteral, elements: [], location: yy.convertToRange(this._$) }; 
 break;
 case 238:
- this.$ = { type: yy.NodeType.ArrayLiteral, elements: $$[$0-1], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ArrayLiteral, elements: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 239:
- this.$ = { type: yy.NodeType.ArrayLiteral, elements: $$[$0-2], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.ArrayLiteral, elements: $$[$0-2], location: yy.convertToRange(this._$) }; 
 break;
 case 248:
- this.$ = { type: yy.NodeType.RangeLiteral, start: $$[$0-2], end: $$[$0], includesEnd: true, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.RangeLiteral, start: $$[$0-2], end: $$[$0], includesEnd: true, location: yy.convertToRange(this._$) }; 
 break;
 case 249:
- this.$ = { type: yy.NodeType.RangeLiteral, start: $$[$0-2], end: $$[$0], includesEnd: false, location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.RangeLiteral, start: $$[$0-2], end: $$[$0], includesEnd: false, location: yy.convertToRange(this._$) }; 
 break;
 case 250: case 251: case 252: case 253:
- this.$ = { type: yy.NodeType.MagicFunctionLiteral, args: $$[$0-2], body: $$[$0], location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.MagicFunctionLiteral, args: $$[$0-2], body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 256:
- this.$ = [{ type: yy.NodeType.UntypedArgDef, name: $$[$0], location: yy.camelCase(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.UntypedArgDef, name: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 257:
- this.$ = $$[$0-2].concat([{ type: yy.NodeType.UntypedArgDef, name: $$[$0], location: yy.camelCase(_$[$0]) }]); 
+ this.$ = $$[$0-2].concat([{ type: yy.NodeType.UntypedArgDef, name: $$[$0], location: yy.convertToRange(_$[$0]) }]); 
 break;
 case 258:
- this.$ = { type: yy.NodeType.CastExpr, value: $$[$0-2], targetType: yy.parseType($$[$0], _$[$0]), location: yy.camelCase(this._$) }; 
+ this.$ = { type: yy.NodeType.CastExpr, value: $$[$0-2], targetType: yy.parseType($$[$0], _$[$0]), location: yy.convertToRange(this._$) }; 
 break;
 }
 },
