@@ -1,7 +1,8 @@
-import * as ast from "./ast";
-import * as pbt from "./pbt";
-import { NodeLocation } from "./ast";
-import { Ref, RefId, NodeId } from "./pbt";
+import * as ast from "../ast";
+import * as pbt from "../pbt";
+import { NodeLocation } from "../ast";
+import { Ref, RefId, NodeId } from "../pbt";
+import { all as globallyAvailableReferences } from "./globallyAvailableReferences";
 
 export function bindFileNode(fileNode: ast.FileNode): pbt.FileNode {
   return Binder.bindFileNode(fileNode);
@@ -18,16 +19,17 @@ class Binder {
   }
 
   private constructor() {
+    this.bindMethods();
+
     this.refIdCounter = 0;
     this.refMap = new Map();
     this.refStack = this.getGlobalRefs();
 
     this.nodeIdCounter = 0;
-
-    this.bindMethods();
   }
 
   private bindMethods(): void {
+    this.createGlobalRef = this.createGlobalRef.bind(this);
     this.emitClassRef = this.emitClassRef.bind(this);
     this.bindClass = this.bindClass.bind(this);
     this.bindTypeArgDef = this.bindTypeArgDef.bind(this);
@@ -57,36 +59,7 @@ class Binder {
   }
 
   private getGlobalRefs(): Ref[] {
-    return [
-      this.createGlobalRef("null"),
-      this.createGlobalRef("true"),
-      this.createGlobalRef("false"),
-      this.createGlobalRef("this"),
-      this.createGlobalRef("super"),
-
-      this.createGlobalRef("int"),
-      this.createGlobalRef("byte"),
-      this.createGlobalRef("short"),
-      this.createGlobalRef("long"),
-      this.createGlobalRef("char"),
-      this.createGlobalRef("double"),
-      this.createGlobalRef("float"),
-      this.createGlobalRef("boolean"),
-
-      this.createGlobalRef("void"),
-      this.createGlobalRef("never"),
-
-      this.createGlobalRef("sequence"),
-      this.createGlobalRef("array"),
-      this.createGlobalRef("rlist"),
-
-      this.createGlobalRef("nullable"),
-
-      this.createGlobalRef("java"),
-      this.createGlobalRef("sand"),
-
-      this.createGlobalRef("String"),
-    ];
+    return globallyAvailableReferences.map(this.createGlobalRef);
   }
 
   private createRefId(): RefId {

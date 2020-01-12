@@ -5,8 +5,6 @@ import { bindFileNode } from "./binder";
 const src = `
 pub class HelloWorld {
     pub main(args: String[]) {
-        use sand.System;
-
         System.out.println(factorial(5));
     }
 
