@@ -1,6 +1,49 @@
-import { JisonNodeLocation } from "./jison";
+import { NodeLocation } from "./ast";
+import * as ast from "./ast";
+
+export interface Ref {
+  refId: RefId;
+  /**
+   * A Ref normally has exactly one source,
+   * but in the case of method overloading,
+   * it will have multiple, because each
+   * method node is considered a source.
+   */
+  sourceNodeIds: NodeId<boolean, true>[];
+  dependentNodeIds: NodeId<true, boolean>[];
+  name: string;
+}
+
+export interface RefId {
+  isRefId: true;
+  value: number;
+}
+
+export interface NodeId<
+  DependsOnRef extends boolean,
+  EmitsRef extends boolean
+> {
+  isNodeId: true;
+  isRefDependencyNodeId: DependsOnRef;
+  isRefSourceNodeId: EmitsRef;
+  value: number;
+}
+
+export type RefSource =
+  | GlobalRefSource
+  | (Node & { nodeId: NodeId<boolean, true>; outRefId: RefId });
+
+export type RefDependency = Node & { nodeId: NodeId<true, boolean> };
+
+export interface GlobalRefSource {
+  type: NodeType.GlobalRefSource;
+  name: string;
+  outRefId: RefId;
+}
 
 export enum NodeType {
+  GlobalRefSource = "GlobalRefSource",
+
   Import = "Import",
   Use = "Use",
   StaticMethodCopy = "StaticMethodCopy",
@@ -85,45 +128,10 @@ export type Node =
   | UntypedArgDef
   | Binding;
 
-export interface NodeLocation {
-  firstLine: number;
-  lastLine: number;
-  firstColumn: number;
-  lastColumn: number;
-}
-
-export function merge(
-  start: NodeLocation | JisonNodeLocation,
-  end: NodeLocation | JisonNodeLocation,
-): NodeLocation {
-  const camelStart = camelCaseIfNeeded(start);
-  const camelEnd = camelCaseIfNeeded(end);
-
-  return {
-    firstLine: camelStart.firstLine,
-    firstColumn: camelStart.firstColumn,
-    lastLine: camelEnd.lastLine,
-    lastColumn: camelEnd.lastColumn,
-  };
-}
-
-function camelCaseIfNeeded(
-  location: NodeLocation | JisonNodeLocation,
-): NodeLocation {
-  return "first_line" in location ? camelCase(location) : location;
-}
-
-export function camelCase(location: JisonNodeLocation): NodeLocation {
-  return {
-    firstLine: location.first_line,
-    lastLine: location.last_line,
-    firstColumn: location.first_column,
-    lastColumn: location.last_column,
-  };
-}
-
 export interface FileNode {
   type: NodeType.File;
+  nodeId: NodeId<false, false>;
+
   packageName: string | null;
   imports: Import[];
   useStatements: Use[];
@@ -134,31 +142,51 @@ export interface FileNode {
 
 export interface Import {
   type: NodeType.Import;
+  nodeId: NodeId<true, true>;
+
   name: string;
   /** May become `string | null` in the future. */
   alias: null;
+
+  leftmostInRefId: RefId;
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface Use {
   type: NodeType.Use;
+  nodeId: NodeId<true, true>;
+
   name: string;
   alias: string | null;
   doesShadow: boolean;
+
+  leftmostInRefId: RefId;
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface StaticMethodCopy {
   type: NodeType.StaticMethodCopy;
+  nodeId: NodeId<true, true>;
+
   accessModifier: OptAccessModifier;
   name: string;
   signature: StaticMethodCopySignature | null;
   alias: string | null;
+
+  leftmostInRefId: RefId;
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface StaticMethodCopySignature {
   type: NodeType.StaticMethodCopySignature;
+  nodeId: NodeId<false, false>;
+
   typeArgs: TypeArgDef[];
   argTypes: Type[];
   location: NodeLocation;
@@ -166,6 +194,8 @@ export interface StaticMethodCopySignature {
 
 export interface Class {
   type: NodeType.Class;
+  nodeId: NodeId<false, true>;
+
   isPub: boolean;
   overridability: Overridability;
   name: string;
@@ -174,6 +204,9 @@ export interface Class {
   copies: StaticMethodCopy[];
   useStatements: Use[];
   items: ClassItem[];
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
@@ -200,15 +233,25 @@ export type ClassItem =
 
 export interface TypeArgDef {
   type: NodeType.TypeArgDef;
+  nodeId: NodeId<false, true>;
+
   name: string;
   constraint: TypeConstraint;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface Type {
   type: NodeType.Type;
+  nodeId: NodeId<true, false>;
+
   name: string;
   args: Type[];
+
+  inRefId: RefId;
+
   location: NodeLocation;
 }
 
@@ -233,31 +276,45 @@ export type OptAccessModifier = null | "pub" | "prot";
 
 export interface InstancePropertyDeclaration {
   type: NodeType.InstancePropertyDeclaration;
+  nodeId: NodeId<false, true>;
+
   accessModifier: OptAccessModifier;
   isReassignable: boolean;
   name: string;
   valueType: Type;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface StaticPropertyDeclaration {
   type: NodeType.StaticPropertyDeclaration;
+  nodeId: NodeId<false, true>;
+
   accessModifier: OptAccessModifier;
   isReassignable: boolean;
   name: string;
   valueType: Type | null;
   initialValue: Expr;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface InstantiationRestriction {
   type: NodeType.InstantiationRestriction;
+  nodeId: NodeId<false, false>;
+
   level: "pub" | "prot";
   location: NodeLocation;
 }
 
 export interface ConcreteMethodDeclaration {
   type: NodeType.ConcreteMethodDeclaration;
+  nodeId: NodeId<false, true>;
+
   accessModifier: OptAccessModifier;
   isStatic: boolean;
   isOpen: boolean;
@@ -267,6 +324,9 @@ export interface ConcreteMethodDeclaration {
   args: ArgDef[];
   returnType: Type | null;
   body: CompoundNode;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
@@ -281,24 +341,36 @@ export interface ConcreteInstanceMethodDeclaration
 
 export interface AbstractMethodDeclaration {
   type: NodeType.AbstractMethodDeclaration;
+  nodeId: NodeId<false, true>;
+
   accessModifier: OptAccessModifier;
   isStatic: boolean;
   name: string;
   typeArgs: TypeArgDef[];
   args: ArgDef[];
   returnType: Type | null;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface ArgDef {
   type: NodeType.ArgDef;
+  nodeId: NodeId<false, true>;
+
   name: string;
   valueType: Type;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface CompoundNode {
   type: NodeType.CompoundNode;
+  nodeId: NodeId<false, false>;
+
   useStatements: Use[];
   nodes: (Expr | Statement)[];
   definitelyDoesNotEndWithSemicolon: boolean;
@@ -340,30 +412,43 @@ export type Statement =
 
 export interface NumberLiteral {
   type: NodeType.NumberLiteral;
+  nodeId: NodeId<false, false>;
+
   value: string;
   location: NodeLocation;
 }
 
 export interface StringLiteral {
   type: NodeType.StringLiteral;
+  nodeId: NodeId<false, false>;
+
   value: string;
   location: NodeLocation;
 }
 
 export interface CharacterLiteral {
   type: NodeType.CharacterLiteral;
+  nodeId: NodeId<false, false>;
+
   value: string;
   location: NodeLocation;
 }
 
 export interface Identifier {
   type: NodeType.Identifier;
+  nodeId: NodeId<true, false>;
+
   name: string;
+
+  inRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface InfixExpr {
   type: NodeType.InfixExpr;
+  nodeId: NodeId<false, false>;
+
   operation: InfixOperation;
   left: Expr;
   right: Expr;
@@ -389,6 +474,8 @@ export type InfixOperation =
 
 export interface PrefixExpr {
   type: NodeType.PrefixExpr;
+  nodeId: NodeId<false, false>;
+
   operation: PrefixOperation;
   right: Expr;
   location: NodeLocation;
@@ -398,6 +485,8 @@ export type PrefixOperation = "-" | "!" | "~";
 
 export interface DotExpr {
   type: NodeType.DotExpr;
+  nodeId: NodeId<false, false>;
+
   left: Expr;
   right: string;
   location: NodeLocation;
@@ -405,6 +494,8 @@ export interface DotExpr {
 
 export interface IndexExpr {
   type: NodeType.IndexExpr;
+  nodeId: NodeId<false, false>;
+
   left: Expr;
   right: Expr;
   location: NodeLocation;
@@ -412,6 +503,8 @@ export interface IndexExpr {
 
 export interface CastExpr {
   type: NodeType.CastExpr;
+  nodeId: NodeId<false, false>;
+
   value: Expr;
   targetType: Type;
   location: NodeLocation;
@@ -419,6 +512,8 @@ export interface CastExpr {
 
 export interface If {
   type: NodeType.If;
+  nodeId: NodeId<false, false>;
+
   condition: Expr;
   body: CompoundNode;
   alternatives: IfAlternative[];
@@ -434,6 +529,8 @@ export enum IfAlternativeType {
 
 export interface ElseIf {
   type: NodeType.IfAlternative;
+  nodeId: NodeId<false, false>;
+
   alternativeType: IfAlternativeType.ElseIf;
   condition: Expr;
   body: CompoundNode;
@@ -442,6 +539,8 @@ export interface ElseIf {
 
 export interface Else {
   type: NodeType.IfAlternative;
+  nodeId: NodeId<false, false>;
+
   alternativeType: IfAlternativeType.Else;
   body: CompoundNode;
   location: NodeLocation;
@@ -449,12 +548,16 @@ export interface Else {
 
 export interface Do {
   type: NodeType.Do;
+  nodeId: NodeId<false, false>;
+
   body: CompoundNode;
   location: NodeLocation;
 }
 
 export interface Try {
   type: NodeType.Try;
+  nodeId: NodeId<false, false>;
+
   body: CompoundNode;
   catches: Catch[];
   location: NodeLocation;
@@ -470,6 +573,8 @@ export enum CatchType {
 
 export interface BoundCatch {
   type: NodeType.Catch;
+  nodeId: NodeId<false, false>;
+
   catchType: CatchType.BoundCatch;
   arg: ArgDef;
   body: CompoundNode;
@@ -478,6 +583,8 @@ export interface BoundCatch {
 
 export interface RestrictedBindinglessCatch {
   type: NodeType.Catch;
+  nodeId: NodeId<false, false>;
+
   catchType: CatchType.RestrictedBindinglessCatch;
   caughtTypes: Type[];
   body: CompoundNode;
@@ -486,6 +593,8 @@ export interface RestrictedBindinglessCatch {
 
 export interface CatchAll {
   type: NodeType.Catch;
+  nodeId: NodeId<false, false>;
+
   catchType: CatchType.CatchAll;
   body: CompoundNode;
   location: NodeLocation;
@@ -493,6 +602,8 @@ export interface CatchAll {
 
 export interface FunctionCall {
   type: NodeType.FunctionCall;
+  nodeId: NodeId<false, false>;
+
   callee: Expr;
   typeArgs: Type[];
   args: Expr[];
@@ -501,6 +612,8 @@ export interface FunctionCall {
 
 export interface TypedObjectLiteral {
   type: NodeType.TypedObjectLiteral;
+  nodeId: NodeId<false, false>;
+
   valueType: Type;
   copies: ObjectCopy[];
   entries: ObjectEntry[];
@@ -509,12 +622,16 @@ export interface TypedObjectLiteral {
 
 export interface ObjectCopy {
   type: NodeType.ObjectCopy;
+  nodeId: NodeId<false, false>;
+
   source: Expr;
   location: NodeLocation;
 }
 
 export interface ObjectEntry {
   type: NodeType.ObjectEntry;
+  nodeId: NodeId<false, false>;
+
   key: string;
   value: Expr | null;
   location: NodeLocation;
@@ -522,12 +639,16 @@ export interface ObjectEntry {
 
 export interface ArrayLiteral {
   type: NodeType.ArrayLiteral;
+  nodeId: NodeId<false, false>;
+
   elements: Expr[];
   location: NodeLocation;
 }
 
 export interface RangeLiteral {
   type: NodeType.RangeLiteral;
+  nodeId: NodeId<false, false>;
+
   start: Expr;
   end: Expr;
   includesEnd: boolean;
@@ -536,6 +657,8 @@ export interface RangeLiteral {
 
 export interface MagicFunctionLiteral {
   type: NodeType.MagicFunctionLiteral;
+  nodeId: NodeId<false, false>;
+
   args: UntypedArgDef[];
   body: Expr | CompoundNode;
   location: NodeLocation;
@@ -543,18 +666,27 @@ export interface MagicFunctionLiteral {
 
 export interface UntypedArgDef {
   type: NodeType.UntypedArgDef;
+  nodeId: NodeId<false, true>;
+
   name: string;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface Return {
   type: NodeType.Return;
+  nodeId: NodeId<false, false>;
+
   value: null | Expr;
   location: NodeLocation;
 }
 
 export interface Break {
   type: NodeType.Break;
+  nodeId: NodeId<false, false>;
+
   /** May one day become `Expr | null`. */
   value: null;
   location: NodeLocation;
@@ -562,21 +694,30 @@ export interface Break {
 
 export interface Continue {
   type: NodeType.Continue;
+  nodeId: NodeId<false, false>;
+
   location: NodeLocation;
 }
 
 export interface LocalVariableDeclaration {
   type: NodeType.LocalVariableDeclaration;
+  nodeId: NodeId<false, true>;
+
   isReassignable: boolean;
   doesShadow: boolean;
   name: string;
   initialValue: Expr;
   valueType: null | Type;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface Assignment {
   type: NodeType.Assignment;
+  nodeId: NodeId<false, false>;
+
   assignmentType: AssignmentType;
   assignee: Expr;
   value: Expr;
@@ -587,12 +728,16 @@ export type AssignmentType = "=" | "**=" | "*=" | "/=" | "%=" | "+=" | "-=";
 
 export interface Throw {
   type: NodeType.Throw;
+  nodeId: NodeId<false, false>;
+
   value: Expr;
   location: NodeLocation;
 }
 
 export interface While {
   type: NodeType.While;
+  nodeId: NodeId<false, false>;
+
   condition: Expr;
   body: CompoundNode;
   location: NodeLocation;
@@ -600,12 +745,16 @@ export interface While {
 
 export interface Loop {
   type: NodeType.Loop;
+  nodeId: NodeId<false, false>;
+
   body: CompoundNode;
   location: NodeLocation;
 }
 
 export interface Repeat {
   type: NodeType.Repeat;
+  nodeId: NodeId<false, false>;
+
   repetitions: Expr;
   body: CompoundNode;
   location: NodeLocation;
@@ -613,6 +762,8 @@ export interface Repeat {
 
 export interface For {
   type: NodeType.For;
+  nodeId: NodeId<false, false>;
+
   binding: Binding;
   iteratee: Expr;
   body: CompoundNode;
@@ -623,12 +774,121 @@ export type Binding = SingleBinding | FlatTupleBinding;
 
 export interface SingleBinding {
   type: NodeType.SingleBinding;
+  nodeId: NodeId<false, true>;
+
   name: string;
+
+  outRefId: RefId;
+
   location: NodeLocation;
 }
 
 export interface FlatTupleBinding {
   type: NodeType.FlatTupleBinding;
+  nodeId: NodeId<false, false>;
+
   bindings: SingleBinding[];
   location: NodeLocation;
 }
+
+export type Bound<T extends ast.Node> = T extends ast.FileNode
+  ? FileNode
+  : T extends ast.Import
+  ? Import
+  : T extends ast.Use
+  ? Use
+  : T extends ast.StaticMethodCopy
+  ? StaticMethodCopy
+  : T extends ast.StaticMethodCopySignature
+  ? StaticMethodCopySignature
+  : T extends ast.Class
+  ? Class
+  : T extends ast.TypeArgDef
+  ? TypeArgDef
+  : T extends ast.Type
+  ? Type
+  : T extends ast.InstancePropertyDeclaration
+  ? InstancePropertyDeclaration
+  : T extends ast.StaticPropertyDeclaration
+  ? StaticPropertyDeclaration
+  : T extends ast.InstantiationRestriction
+  ? InstantiationRestriction
+  : T extends ast.ConcreteMethodDeclaration
+  ? ConcreteMethodDeclaration
+  : T extends ast.AbstractMethodDeclaration
+  ? AbstractMethodDeclaration
+  : T extends ast.ArgDef
+  ? ArgDef
+  : T extends ast.CompoundNode
+  ? CompoundNode
+  : T extends ast.NumberLiteral
+  ? NumberLiteral
+  : T extends ast.StringLiteral
+  ? StringLiteral
+  : T extends ast.CharacterLiteral
+  ? CharacterLiteral
+  : T extends ast.Identifier
+  ? Identifier
+  : T extends ast.InfixExpr
+  ? InfixExpr
+  : T extends ast.PrefixExpr
+  ? PrefixExpr
+  : T extends ast.DotExpr
+  ? DotExpr
+  : T extends ast.IndexExpr
+  ? IndexExpr
+  : T extends ast.CastExpr
+  ? CastExpr
+  : T extends ast.If
+  ? If
+  : T extends ast.ElseIf
+  ? ElseIf
+  : T extends ast.Else
+  ? Else
+  : T extends ast.Do
+  ? Do
+  : T extends ast.Try
+  ? Try
+  : T extends ast.BoundCatch
+  ? BoundCatch
+  : T extends ast.RestrictedBindinglessCatch
+  ? RestrictedBindinglessCatch
+  : T extends ast.CatchAll
+  ? CatchAll
+  : T extends ast.FunctionCall
+  ? FunctionCall
+  : T extends ast.TypedObjectLiteral
+  ? TypedObjectLiteral
+  : T extends ast.ObjectCopy
+  ? ObjectCopy
+  : T extends ast.ObjectEntry
+  ? ObjectEntry
+  : T extends ast.ArrayLiteral
+  ? ArrayLiteral
+  : T extends ast.RangeLiteral
+  ? RangeLiteral
+  : T extends ast.MagicFunctionLiteral
+  ? MagicFunctionLiteral
+  : T extends ast.UntypedArgDef
+  ? UntypedArgDef
+  : T extends ast.Return
+  ? Return
+  : T extends ast.Break
+  ? Break
+  : T extends ast.Continue
+  ? Continue
+  : T extends ast.LocalVariableDeclaration
+  ? LocalVariableDeclaration
+  : T extends ast.Assignment
+  ? Assignment
+  : T extends ast.Throw
+  ? Throw
+  : T extends ast.While
+  ? While
+  : T extends ast.Loop
+  ? Loop
+  : T extends ast.Repeat
+  ? Repeat
+  : T extends ast.For
+  ? For
+  : "If you see this as a type, then something went horribly wrong.";

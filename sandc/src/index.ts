@@ -1,26 +1,31 @@
 import parser from "./parser/prebuilt";
 import SandScanner from "./parser/addApi/scanner";
+import { bindFileNode } from "./binder";
 
 const src = `
 pub class HelloWorld {
     pub main(args: String[]) {
-        System.out.println(a < b<c>(d));
+        use sand.System;
 
-        Foo {};
+        System.out.println(factorial(5));
+    }
 
-        let x: int[] = [1, 2, 3];
-        let y = x as! Foo<Bar<Baz, int>, int, String, Baz[+]>;
-        
-        let ascDigits = (0..=9).rList();
-        let foo = (-5..-3).arr();
+    factorial(n: int): int {
+        use sand.lang.IllegalArgumentException as err;
 
-        if x {}
+        if n < 0 {
+            err(n)
+        } else if n == 0 {
+            1
+        } else {
+            n * factorial(n - 1)
+        }
     }
 }
 `;
 
 console.log("Parsing...");
 
-const res = parser.parse(src);
-console.log(res);
-console.log(JSON.stringify(res, null, 4));
+const ast = parser.parse(src);
+const pbt = bindFileNode(ast);
+console.log(JSON.stringify(pbt, null, 4));
