@@ -78,6 +78,14 @@ export class Tester {
               fail("Parser did not throw error when parsing " + relativePath);
             } catch (err) {
               const lineNum = getParseErrorLineNumber(err);
+
+              if (lineNum === null) {
+                throw new Error(
+                  "Received an error that does not have a line number when parsing " +
+                    relativePath,
+                );
+              }
+
               expect(lineNum).toMatchSnapshot(
                 relativePath + " error line number",
               );
@@ -102,14 +110,14 @@ function readFile(path: string): Promise<string> {
   });
 }
 
-function getParseErrorLineNumber(err: Error): number {
+function getParseErrorLineNumber(err: Error): number | null {
   const match = err.message.match(/Parse error on line (\d+):/);
 
   if (match === null) {
-    throw new Error("Error does not have a line number.");
+    return null;
+  } else {
+    return parseInt(match[1], 10);
   }
-
-  return parseInt(match[1], 10);
 }
 
 /**
