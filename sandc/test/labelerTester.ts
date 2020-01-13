@@ -4,7 +4,7 @@ import recursiveReadDir from "recursive-readdir";
 import parser from "../src/parser/prebuilt";
 import allSettledShim from "promise.allsettled";
 import * as ast from "../src/ast";
-import { LabeledFileNodeAndIds } from "../src/labelFileNodes";
+import { LabeledFileNodeAndIds } from "../src/labeler";
 
 const allSettled: typeof allSettledShim =
   (Promise as any).allSettled || allSettledShim;

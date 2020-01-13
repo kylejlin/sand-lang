@@ -1,5 +1,5 @@
 import path from "path";
-import { labelFileNodes } from "../src/labelFileNodes";
+import { labelFileNodes } from "../src/labeler";
 import { Tester } from "./labelerTester";
 
 const SUCCESS_CASES_DIR = path.join(
