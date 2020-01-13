@@ -1,0 +1,19 @@
+pub class InstantiationRestrictions {
+    pub foo: String;
+
+    pub inst;
+
+    bar() {
+
+    }
+}
+
+class ProtInst {
+    foo: String;
+
+    prot inst;
+
+    bar() {
+        
+    }
+}

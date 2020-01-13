@@ -1,0 +1,29 @@
+pub class Ranges {
+    literal() {
+        0..9
+    }
+
+    simple() {
+        a..b
+    }
+
+    inclusive() {
+        a..=b
+    }
+
+    infix() {
+        a..=b + 3
+    }
+
+    prefix() {
+        -a..=b
+    }
+
+    assignment() {
+        c = a..b;
+    }
+
+    return_() {
+        return a..b;
+    }
+}

@@ -1,0 +1,97 @@
+pub class Assignments {
+    ass() {
+        a = b;
+    }
+
+    assElrd() {
+        a = b;
+        9
+    }
+
+    assEird() {
+        a = b;
+        if x {}
+    }
+
+    assDecl() {
+        a = b;
+        let a = b;
+    }
+
+    elrdAss() {
+        9;
+        a = b;
+    }
+
+    eirdAss() {
+        if x {}
+        a = b;
+    }
+
+    declAss() {
+        let a = 2;
+        a = b;
+    }
+
+    assAss() {
+        a = b;
+        a = b;
+    }
+}
+
+class ComplexAssignments {
+    identDot() {
+        a.b = c;
+    }
+
+    dotDot() {
+        a.b.c = d;
+    }
+
+    callDot() {
+        a().b = c;
+    }
+
+    indexDot() {
+        a[b].c = d;
+    }
+
+    identIndex() {
+        a[b] = c;
+    }
+
+    dotIndex() {
+        a.b[c] = d;
+    }
+
+    callIndex() {
+        a()[b] = c;
+    }
+
+    callDotDot() {
+        a().b.c = d;
+    }
+
+    callIndexDot() {
+        a()[b].c = d;
+    }
+
+    callIndexIndex() {
+        a[b][c] = d;
+    }
+
+    callDotIndex() {
+        a.b[c] = d;
+    }
+}
+
+class CompoundAssignments {
+    compoundAssignments() {
+        x **= y;
+        x *= y;
+        x /= y;
+        x %= y;
+        x += y;
+        x -= y;
+    }
+}

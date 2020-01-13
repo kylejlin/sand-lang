@@ -1,0 +1,6 @@
+pub class EarlyExit {
+    syntacticallyValidButSemanticallyInvalid() {
+        break;
+        continue;
+    }
+}

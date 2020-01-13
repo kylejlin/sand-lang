@@ -1,0 +1,23 @@
+pub class Nullable<T, U extends T?> {
+    foo(): int? {
+        null
+    }
+
+    bar(): String? {
+        "hi"
+    }
+
+    baz(x: String?[], y: String[]?, z: String?[]?, a: int?[+]?): ArrayList<String?>? {
+        if x == null {
+            null
+        } else {
+            x
+        }
+    }
+
+    objLit() {
+        Foo? {
+            bar: baz,
+        }
+    }
+}

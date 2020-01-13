@@ -2,6 +2,7 @@ import * as ast from "../ast";
 import * as pbt from "../pbt";
 import { NodeId, Ref, RefId } from "../pbt";
 import { TextPosition } from "../textPosition";
+import nullishMap from "../utils/nullishMap";
 import { all as globallyAvailableReferences } from "./globallyAvailableReferences";
 
 export function bindFileNode(fileNode: ast.FileNode): pbt.FileNode {
@@ -987,26 +988,6 @@ function getStaticMethodCopyStatementRefName(
     return getRightmostIdentifierName(copy.name);
   } else {
     return copy.alias;
-  }
-}
-
-function nullishMap<T, U>(val: T | null, mapper: (start: T) => U): U | null;
-function nullishMap<T, U>(
-  val: T | undefined,
-  mapper: (start: T) => U,
-): U | undefined;
-function nullishMap<T, U>(
-  val: T | null | undefined,
-  mapper: (start: T) => U,
-): U | null | undefined;
-function nullishMap<T, U>(
-  val: T | null | undefined,
-  mapper: (start: T) => U,
-): U | null | undefined {
-  if (val === null || val === undefined) {
-    return val as null | undefined;
-  } else {
-    return mapper(val);
   }
 }
 

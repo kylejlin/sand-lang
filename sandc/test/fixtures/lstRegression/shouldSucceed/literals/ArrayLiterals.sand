@@ -1,0 +1,29 @@
+pub class ArrayLiterals {
+    empty() {
+        []
+    }
+
+    single() {
+        [a]
+    }
+
+    multiple() {
+        [a, b, c]
+    }
+
+    prefix() {
+        ~[a, b, c]
+    }
+
+    infix() {
+        [a, b, c] + [d]
+    }
+
+    decl() {
+        let x: int[] = [a, b, c];
+    }
+
+    trailingComma() {
+        [a, b, c,]
+    }
+}

@@ -1,0 +1,27 @@
+pub open class OpenClass {
+    open openMethod(this) {
+
+    }
+
+    pub open openReturn(this): int {
+        
+    }
+
+    prot nonOpen(): int {
+
+    }
+}
+
+open class OpenPriv {
+    open openMethod(this) {
+
+    }
+
+    pub open openReturn(this): int {
+        
+    }
+
+    prot nonOpen(): int {
+
+    }
+}

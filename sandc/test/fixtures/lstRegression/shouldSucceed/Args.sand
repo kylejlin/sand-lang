@@ -1,0 +1,5 @@
+pub class Args<T, U extends Foo> {
+    indexOf(elem: String, arr: String[+]): int {
+
+    }
+}

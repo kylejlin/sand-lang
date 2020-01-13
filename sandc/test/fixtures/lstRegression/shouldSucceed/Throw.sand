@@ -1,0 +1,15 @@
+pub class Throw {
+    foo() {
+        throw Exception.withMessage("Hi");
+    }
+
+    bar() {
+        throw 8;
+    }
+
+    baz() {
+        throw Exception {
+            message: "Hi",
+        };
+    }
+}

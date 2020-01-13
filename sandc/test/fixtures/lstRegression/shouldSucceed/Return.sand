@@ -1,0 +1,46 @@
+pub class Return {
+    ret() {
+        return 8;
+    }
+
+    noVal() {
+        return;
+    }
+
+    retElrd() {
+        return 8;
+        x()
+    }
+
+    retEird() {
+        return 8;
+        if x {}
+    }
+
+    elrdRet() {
+        x;
+        return 8;
+    }
+
+    eirdRet() {
+        if x {}
+        return 8;
+    }
+
+    retRet() {
+        return 8;
+        return 8;
+    }
+
+    whereLastLrdRet() {
+        x;
+        x;
+        return 8;
+    }
+
+    whereLastIrdRet() {
+        x;
+        if x {}
+        return 8;
+    }
+}

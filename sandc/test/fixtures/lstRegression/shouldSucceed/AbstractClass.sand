@@ -1,0 +1,55 @@
+pub abstract class AbstractClass {
+    abstract abstractMethod(this);
+
+    abstract absReturn(this): int;
+
+    pub abstract pubAbstract(this): int;
+
+    open openMethod(this) {
+
+    }
+
+    open openReturn(this): int {
+
+    }
+
+    pub open pubOpen(this): int {
+
+    }
+
+    prot nonOpen() {
+
+    }
+
+    privMethod() {
+        
+    }
+}
+
+abstract class AbstractPriv {
+    abstract abstractMethod(this);
+
+    abstract absReturn(this): int;
+
+    pub abstract pubAbstract(this): int;
+
+    open openMethod(this) {
+
+    }
+
+    open openReturn(this): int {
+
+    }
+
+    pub open pubOpen(this): int {
+
+    }
+
+    prot nonOpen() {
+
+    }
+
+    privMethod() {
+        
+    }
+}

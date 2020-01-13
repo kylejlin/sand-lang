@@ -1,0 +1,55 @@
+pub class Try {
+    statement() {
+        let a = b;
+
+        try {
+            c();
+        } catch e: Exception {
+            d();
+        }
+        
+        d
+    }
+
+    restrictedBindingless() {
+        try {
+            a();
+        } catch: Foo {
+            b();
+        }
+    }
+
+    union() {
+        try {
+            a();
+        } catch: Foo | Bar | Baz {
+            b();
+        }
+    }
+
+    catchAll() {
+        let a = b;
+
+        try {
+            c();
+        } catch {
+            d();
+        }
+        
+        d
+    }
+
+    multipleCatches() {
+        try {
+            a();
+        } catch e: FooException {
+
+        } catch e: BarException {
+            
+        } catch: Foo | Bar | Baz {
+            
+        } catch {
+
+        }
+    }
+}

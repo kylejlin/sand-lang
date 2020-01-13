@@ -1,0 +1,36 @@
+pub class Overrides {
+
+}
+
+abstract class Animal {
+    abstract species(this): String;
+    abstract greet(this);
+}
+
+open class Dog extends Animal {
+    use System.out.println;
+
+    override species(this): String {
+        "Canis lupus"
+    }
+
+    open override greet(this) {
+        println(bark() + " " + species());
+    }
+
+    open bark(this) {
+        println("Woof");
+    }
+}
+
+class Pug extends Dog {
+    use System.out.println;
+
+    override greet(this) {
+        println(bark());
+    }
+
+    override bark(this) {
+        println("woof");
+    }
+}
