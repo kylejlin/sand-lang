@@ -695,7 +695,7 @@ Object {
               },
             },
             "name": "elem",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -724,7 +724,7 @@ Object {
               },
             },
             "name": "arr",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -11523,7 +11523,7 @@ Object {
               },
             },
             "name": "n",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -13032,7 +13032,7 @@ Object {
               },
             },
             "name": "args",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -15356,7 +15356,7 @@ Object {
               },
             },
             "name": "foo",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -15385,7 +15385,7 @@ Object {
               },
             },
             "name": "bar",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [],
               "location": Object {
@@ -18223,7 +18223,7 @@ Object {
               },
             },
             "name": "x",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -18284,7 +18284,7 @@ Object {
               },
             },
             "name": "y",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -18345,7 +18345,7 @@ Object {
               },
             },
             "name": "z",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -18422,7 +18422,7 @@ Object {
               },
             },
             "name": "a",
-            "type": "ArgDef",
+            "type": "TypedArgDef",
             "valueType": Object {
               "args": Array [
                 Object {
@@ -23607,7 +23607,7 @@ Object {
                       },
                     },
                     "name": "e",
-                    "type": "ArgDef",
+                    "type": "TypedArgDef",
                     "valueType": Object {
                       "args": Array [],
                       "location": Object {
@@ -24399,7 +24399,7 @@ Object {
                       },
                     },
                     "name": "e",
-                    "type": "ArgDef",
+                    "type": "TypedArgDef",
                     "valueType": Object {
                       "args": Array [],
                       "location": Object {
@@ -24458,7 +24458,7 @@ Object {
                       },
                     },
                     "name": "e",
-                    "type": "ArgDef",
+                    "type": "TypedArgDef",
                     "valueType": Object {
                       "args": Array [],
                       "location": Object {

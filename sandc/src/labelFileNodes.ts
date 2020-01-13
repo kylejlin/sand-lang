@@ -158,7 +158,7 @@ function getLabeler(): Labeler {
   ): lst.ConcreteMethodDeclaration {
     const nodeId = createNodeId(node.type);
     const typeArgs = node.typeArgs.map(labelTypeArgDef);
-    const args = node.args.map(labelArgDef);
+    const args = node.args.map(labelTypedArgDef);
     const returnType = nullishMap(node.returnType, labelTypeNode);
     const body = labelCompoundNode(node.body);
     return { ...node, nodeId, typeArgs, args, returnType, body };
@@ -169,12 +169,12 @@ function getLabeler(): Labeler {
   ): lst.AbstractMethodDeclaration {
     const nodeId = createNodeId(node.type);
     const typeArgs = node.typeArgs.map(labelTypeArgDef);
-    const args = node.args.map(labelArgDef);
+    const args = node.args.map(labelTypedArgDef);
     const returnType = nullishMap(node.returnType, labelTypeNode);
     return { ...node, nodeId, typeArgs, args, returnType };
   }
 
-  function labelArgDef(node: ast.ArgDef): lst.ArgDef {
+  function labelTypedArgDef(node: ast.TypedArgDef): lst.TypedArgDef {
     const nodeId = createNodeId(node.type);
     const valueType = labelTypeNode(node.valueType);
     return { ...node, nodeId, valueType };
@@ -324,7 +324,7 @@ function getLabeler(): Labeler {
     node: ast.BoundCatch,
   ): lst.BoundCatch {
     const nodeId = createNodeId(node.type);
-    const arg = labelArgDef(node.arg);
+    const arg = labelTypedArgDef(node.arg);
     const body = labelCompoundNode(node.body);
     return { ...node, nodeId, arg, body };
   }

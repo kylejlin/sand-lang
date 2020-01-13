@@ -847,10 +847,10 @@ Object {
                 },
                 "name": "n",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 40,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "location": Object {
@@ -1649,7 +1649,7 @@ Object {
       "rawValue": 39,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 40,
     },
     Object {
@@ -2780,10 +2780,10 @@ Object {
                 },
                 "name": "elem",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 6,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "location": Object {
@@ -2817,10 +2817,10 @@ Object {
                 },
                 "name": "arr",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 8,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [
                     Object {
@@ -3036,7 +3036,7 @@ Object {
       "rawValue": 5,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 6,
     },
     Object {
@@ -3044,7 +3044,7 @@ Object {
       "rawValue": 7,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 8,
     },
     Object {
@@ -19160,10 +19160,10 @@ Object {
                 },
                 "name": "n",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 3,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "location": Object {
@@ -19565,7 +19565,7 @@ Object {
       "rawValue": 2,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 3,
     },
     Object {
@@ -21413,10 +21413,10 @@ Object {
                 },
                 "name": "args",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 3,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [
                     Object {
@@ -21633,7 +21633,7 @@ Object {
       "rawValue": 2,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 3,
     },
     Object {
@@ -24911,10 +24911,10 @@ Object {
                 },
                 "name": "foo",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 7,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "location": Object {
@@ -24948,10 +24948,10 @@ Object {
                 },
                 "name": "bar",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 9,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "location": Object {
@@ -25109,7 +25109,7 @@ Object {
       "rawValue": 6,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 7,
     },
     Object {
@@ -25117,7 +25117,7 @@ Object {
       "rawValue": 8,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 9,
     },
     Object {
@@ -29178,10 +29178,10 @@ Object {
                 },
                 "name": "x",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 17,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [
                     Object {
@@ -29255,10 +29255,10 @@ Object {
                 },
                 "name": "y",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 21,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [
                     Object {
@@ -29332,10 +29332,10 @@ Object {
                 },
                 "name": "z",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 25,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [
                     Object {
@@ -29429,10 +29429,10 @@ Object {
                 },
                 "name": "a",
                 "nodeId": Object {
-                  "nodeType": "ArgDef",
+                  "nodeType": "TypedArgDef",
                   "rawValue": 30,
                 },
-                "type": "ArgDef",
+                "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [
                     Object {
@@ -30123,7 +30123,7 @@ Object {
       "rawValue": 16,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 17,
     },
     Object {
@@ -30139,7 +30139,7 @@ Object {
       "rawValue": 20,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 21,
     },
     Object {
@@ -30155,7 +30155,7 @@ Object {
       "rawValue": 24,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 25,
     },
     Object {
@@ -30175,7 +30175,7 @@ Object {
       "rawValue": 29,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 30,
     },
     Object {
@@ -37362,10 +37362,10 @@ Object {
                         },
                         "name": "e",
                         "nodeId": Object {
-                          "nodeType": "ArgDef",
+                          "nodeType": "TypedArgDef",
                           "rawValue": 11,
                         },
-                        "type": "ArgDef",
+                        "type": "TypedArgDef",
                         "valueType": Object {
                           "args": Array [],
                           "location": Object {
@@ -38354,10 +38354,10 @@ Object {
                         },
                         "name": "e",
                         "nodeId": Object {
-                          "nodeType": "ArgDef",
+                          "nodeType": "TypedArgDef",
                           "rawValue": 61,
                         },
-                        "type": "ArgDef",
+                        "type": "TypedArgDef",
                         "valueType": Object {
                           "args": Array [],
                           "location": Object {
@@ -38429,10 +38429,10 @@ Object {
                         },
                         "name": "e",
                         "nodeId": Object {
-                          "nodeType": "ArgDef",
+                          "nodeType": "TypedArgDef",
                           "rawValue": 65,
                         },
-                        "type": "ArgDef",
+                        "type": "TypedArgDef",
                         "valueType": Object {
                           "args": Array [],
                           "location": Object {
@@ -38741,7 +38741,7 @@ Object {
       "rawValue": 10,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 11,
     },
     Object {
@@ -38941,7 +38941,7 @@ Object {
       "rawValue": 60,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 61,
     },
     Object {
@@ -38957,7 +38957,7 @@ Object {
       "rawValue": 64,
     },
     Object {
-      "nodeType": "ArgDef",
+      "nodeType": "TypedArgDef",
       "rawValue": 65,
     },
     Object {

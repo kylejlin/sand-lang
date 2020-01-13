@@ -11,7 +11,7 @@ export type Node =
   | TypeArgDef
   | Type
   | InstantiationRestriction
-  | ArgDef
+  | TypedArgDef
   | CompoundNode
   | Expr
   | Statement
@@ -79,7 +79,7 @@ export enum NodeType {
 
   Type = "Type",
   TypeArgDef = "TypeArgDef",
-  ArgDef = "ArgDef",
+  TypedArgDef = "TypedArgDef",
   UntypedArgDef = "UntypedArgDef",
 
   CompoundNode = "CompoundNode",
@@ -227,7 +227,7 @@ export interface ConcreteMethodDeclaration {
   isOverride: boolean;
   name: string;
   typeArgs: TypeArgDef[];
-  args: ArgDef[];
+  args: TypedArgDef[];
   returnType: Type | null;
   body: CompoundNode;
   location: TextRange;
@@ -248,13 +248,13 @@ export interface AbstractMethodDeclaration {
   isStatic: boolean;
   name: string;
   typeArgs: TypeArgDef[];
-  args: ArgDef[];
+  args: TypedArgDef[];
   returnType: Type | null;
   location: TextRange;
 }
 
-export interface ArgDef {
-  type: NodeType.ArgDef;
+export interface TypedArgDef {
+  type: NodeType.TypedArgDef;
   name: string;
   valueType: Type;
   location: TextRange;
@@ -534,7 +534,7 @@ export enum CatchType {
 export interface BoundCatch {
   type: NodeType.Catch;
   catchType: CatchType.BoundCatch;
-  arg: ArgDef;
+  arg: TypedArgDef;
   body: CompoundNode;
   location: TextRange;
 }

@@ -264,10 +264,10 @@ case 75:
  this.$ = "prot"; 
 break;
 case 80:
- this.$ = [{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.convertToRange(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.TypedArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.convertToRange(this._$) }]; 
 break;
 case 81:
- this.$ = $$[$0-4].concat([{ type: yy.NodeType.ArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.merge(_$[$0-2], _$[$0]) }]); 
+ this.$ = $$[$0-4].concat([{ type: yy.NodeType.TypedArgDef, name: $$[$0-2], valueType: $$[$0], location: yy.merge(_$[$0-2], _$[$0]) }]); 
 break;
 case 82:
  this.$ = { type: yy.NodeType.CompoundNode, useStatements: $$[$0-1], nodes: [], definitelyDoesNotEndWithSemicolon: false, location: yy.convertToRange(this._$) }; 
@@ -372,7 +372,7 @@ case 165:
  this.$ = { type: yy.NodeType.Try, body: $$[$0-1], catches: $$[$0], finallyNode: null, location: yy.convertToRange(this._$) }; 
 break;
 case 168:
- this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.ArgDef, name: $$[$0-3], valueType: $$[$0-1], location: yy.merge(_$[$0-3], _$[$0-1]) }, body: $$[$0], location: yy.convertToRange(this._$) }; 
+ this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.TypedArgDef, name: $$[$0-3], valueType: $$[$0-1], location: yy.merge(_$[$0-3], _$[$0-1]) }, body: $$[$0], location: yy.convertToRange(this._$) }; 
 break;
 case 169:
  this.$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $$[$0-1], body: $$[$0], location: yy.convertToRange(this._$) }; 

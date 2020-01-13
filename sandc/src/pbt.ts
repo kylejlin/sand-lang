@@ -100,7 +100,7 @@ export enum NodeType {
 
   Type = "Type",
   TypeArgDef = "TypeArgDef",
-  ArgDef = "ArgDef",
+  TypedArgDef = "TypedArgDef",
   UntypedArgDef = "UntypedArgDef",
 
   CompoundNode = "CompoundNode",
@@ -117,7 +117,7 @@ export type Node =
   | TypeArgDef
   | Type
   | InstantiationRestriction
-  | ArgDef
+  | TypedArgDef
   | CompoundNode
   | Expr
   | Statement
@@ -321,7 +321,7 @@ export interface ConcreteMethodDeclaration {
   isOverride: boolean;
   name: string;
   typeArgs: TypeArgDef[];
-  args: ArgDef[];
+  args: TypedArgDef[];
   returnType: Type | null;
   body: CompoundNode;
 
@@ -347,7 +347,7 @@ export interface AbstractMethodDeclaration {
   isStatic: boolean;
   name: string;
   typeArgs: TypeArgDef[];
-  args: ArgDef[];
+  args: TypedArgDef[];
   returnType: Type | null;
 
   outRefId: RefId;
@@ -355,8 +355,8 @@ export interface AbstractMethodDeclaration {
   location: TextRange;
 }
 
-export interface ArgDef {
-  type: NodeType.ArgDef;
+export interface TypedArgDef {
+  type: NodeType.TypedArgDef;
   nodeId: NodeId<false, true>;
 
   name: string;
@@ -576,7 +576,7 @@ export interface BoundCatch {
   nodeId: NodeId<false, false>;
 
   catchType: CatchType.BoundCatch;
-  arg: ArgDef;
+  arg: TypedArgDef;
   body: CompoundNode;
   location: TextRange;
 }
@@ -817,8 +817,8 @@ export type Bound<T extends ast.Node> = T extends ast.FileNode
   ? ConcreteMethodDeclaration
   : T extends ast.AbstractMethodDeclaration
   ? AbstractMethodDeclaration
-  : T extends ast.ArgDef
-  ? ArgDef
+  : T extends ast.TypedArgDef
+  ? TypedArgDef
   : T extends ast.CompoundNode
   ? CompoundNode
   : T extends ast.NumberLiteral

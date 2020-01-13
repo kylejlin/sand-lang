@@ -273,9 +273,9 @@ optCommaAndArgDefs
 
 argDefs
     : NON_RESERVED_IDENTIFIER ":" type
-        { $$ = [{ type: yy.NodeType.ArgDef, name: $1, valueType: $3, location: yy.convertToRange(@$) }]; }
+        { $$ = [{ type: yy.NodeType.TypedArgDef, name: $1, valueType: $3, location: yy.convertToRange(@$) }]; }
     | argDefs "," NON_RESERVED_IDENTIFIER ":" type
-        { $$ = $1.concat([{ type: yy.NodeType.ArgDef, name: $3, valueType: $5, location: yy.merge(@3, @5) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.TypedArgDef, name: $3, valueType: $5, location: yy.merge(@3, @5) }]); }
     ;
 
 compoundNode
@@ -508,7 +508,7 @@ catchClauses
 
 catchClause
     : "catch" NON_RESERVED_IDENTIFIER ":" type compoundNode
-        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.ArgDef, name: $2, valueType: $4, location: yy.merge(@2, @4) }, body: $5, location: yy.convertToRange(@$) }; }
+        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.TypedArgDef, name: $2, valueType: $4, location: yy.merge(@2, @4) }, body: $5, location: yy.convertToRange(@$) }; }
     | "catch" ":" unionOfOneOrMoreCatchTypes compoundNode
         { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $3, body: $4, location: yy.convertToRange(@$) }; }
     | "catch" compoundNode
