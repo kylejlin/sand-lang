@@ -2,79 +2,85 @@ import * as ast from "./ast";
 import * as lst from "./lst";
 import nullishMap from "./utils/nullishMap";
 
-export interface LabeledFileNodeAndIds {
-  nodeIds: lst.NodeId<lst.NodeType>[];
+export interface LabeledFileNodesAndIdReferents {
   fileNodes: lst.FileNode[];
+  referents: lst.Node[];
 }
 
-export function labelFileNodes(nodes: ast.FileNode[]): LabeledFileNodeAndIds {
+export function labelFileNodes(
+  nodes: ast.FileNode[],
+): LabeledFileNodesAndIdReferents {
   return getLabeler().labelFileNodes(nodes);
 }
 
 interface Labeler {
-  labelFileNodes(nodes: ast.FileNode[]): LabeledFileNodeAndIds;
+  labelFileNodes(nodes: ast.FileNode[]): LabeledFileNodesAndIdReferents;
 }
 
 function getLabeler(): Labeler {
-  const nodeIds: lst.NodeId<lst.NodeType>[] = [];
+  const referents: lst.Node[] = [];
 
-  function createNodeId<T extends ast.NodeType>(nodeType: T): lst.NodeId<T> {
-    const rawValue = nodeIds.length;
-    const id = { nodeType, rawValue };
-    nodeIds.push(id);
-    return id;
+  function withNodeId<T extends lst.Node>(node: Omit<T, "nodeId">): T {
+    const rawValue = referents.length;
+    const nodeId = { nodeType: node.type, rawValue };
+
+    const withNodeId = { ...node, nodeId } as T;
+    referents.push(withNodeId);
+    return withNodeId;
   }
 
-  function labelFileNodes(nodes: ast.FileNode[]): LabeledFileNodeAndIds {
+  function labelFileNodes(
+    nodes: ast.FileNode[],
+  ): LabeledFileNodesAndIdReferents {
     const labeled = nodes.map(labelFileNode);
-    return { nodeIds, fileNodes: labeled };
+    return { fileNodes: labeled, referents };
   }
 
   function labelFileNode(node: ast.FileNode): lst.FileNode {
-    const nodeId = createNodeId(node.type);
     const imports = node.imports.map(labelImportStatement);
     const useStatements = node.useStatements.map(labelUseStatement);
     const pubClass = labelClassNode(node.pubClass);
     const privClasses = node.privClasses.map(labelClassNode);
-    return { ...node, nodeId, imports, useStatements, pubClass, privClasses };
+    return withNodeId({
+      ...node,
+      imports,
+      useStatements,
+      pubClass,
+      privClasses,
+    });
   }
 
   function labelImportStatement(node: ast.Import): lst.Import {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId(node);
   }
 
   function labelUseStatement(node: ast.Use): lst.Use {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId(node);
   }
 
   function labelClassNode(node: ast.PubClass): lst.PubClass;
   function labelClassNode(node: ast.PrivClass): lst.PrivClass;
 
   function labelClassNode(node: ast.Class): lst.Class {
-    const nodeId = createNodeId(node.type);
     const typeArgDefs = node.typeArgDefs.map(labelTypeArgDef);
     const superClass = nullishMap(node.superClass, labelTypeNode);
     const copies = node.copies.map(labelStaticMethodCopy);
     const useStatements = node.useStatements.map(labelUseStatement);
     const items = node.items.map(labelClassItem);
 
-    return {
+    return withNodeId({
       ...node,
-      nodeId,
       typeArgDefs,
       superClass,
       copies,
       useStatements,
       items,
-    };
+    });
   }
 
   function labelTypeArgDef(node: ast.TypeArgDef): lst.TypeArgDef {
-    const nodeId = createNodeId(node.type);
     const constraint = labelTypeConstraint(node.constraint);
-    return { ...node, nodeId, constraint };
+    return withNodeId({ ...node, constraint });
   }
 
   function labelTypeConstraint(node: ast.TypeConstraint): lst.TypeConstraint {
@@ -89,29 +95,26 @@ function getLabeler(): Labeler {
   }
 
   function labelTypeNode(node: ast.Type): lst.Type {
-    const nodeId = createNodeId(node.type);
     const args = node.args.map(labelTypeNode);
-    return { ...node, nodeId, args };
+    return withNodeId({ ...node, args });
   }
 
   function labelStaticMethodCopy(
     node: ast.StaticMethodCopy,
   ): lst.StaticMethodCopy {
-    const nodeId = createNodeId(node.type);
     const signature = nullishMap(
       node.signature,
       labelStaticMethodCopySignature,
     );
-    return { ...node, nodeId, signature };
+    return withNodeId({ ...node, signature });
   }
 
   function labelStaticMethodCopySignature(
     node: ast.StaticMethodCopySignature,
   ): lst.StaticMethodCopySignature {
-    const nodeId = createNodeId(node.type);
     const typeArgs = node.typeArgs.map(labelTypeArgDef);
     const argTypes = node.argTypes.map(labelTypeNode);
-    return { ...node, nodeId, typeArgs, argTypes };
+    return withNodeId({ ...node, typeArgs, argTypes });
   }
 
   function labelClassItem(node: ast.ClassItem): lst.ClassItem {
@@ -132,59 +135,52 @@ function getLabeler(): Labeler {
   function labelInstantiationRestriction(
     node: ast.InstantiationRestriction,
   ): lst.InstantiationRestriction {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelStaticPropertyDeclaration(
     node: ast.StaticPropertyDeclaration,
   ): lst.StaticPropertyDeclaration {
-    const nodeId = createNodeId(node.type);
     const valueType = nullishMap(node.valueType, labelTypeNode);
     const initialValue = labelExpr(node.initialValue);
-    return { ...node, nodeId, valueType, initialValue };
+    return withNodeId({ ...node, valueType, initialValue });
   }
 
   function labelInstancePropertyDeclaration(
     node: ast.InstancePropertyDeclaration,
   ): lst.InstancePropertyDeclaration {
-    const nodeId = createNodeId(node.type);
     const valueType = labelTypeNode(node.valueType);
-    return { ...node, nodeId, valueType };
+    return withNodeId({ ...node, valueType });
   }
 
   function labelConcreteMethodDeclaration(
     node: ast.ConcreteMethodDeclaration,
   ): lst.ConcreteMethodDeclaration {
-    const nodeId = createNodeId(node.type);
     const typeArgs = node.typeArgs.map(labelTypeArgDef);
     const args = node.args.map(labelTypedArgDef);
     const returnType = nullishMap(node.returnType, labelTypeNode);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, typeArgs, args, returnType, body };
+    return withNodeId({ ...node, typeArgs, args, returnType, body });
   }
 
   function labelAbstractMethodDeclaration(
     node: ast.AbstractMethodDeclaration,
   ): lst.AbstractMethodDeclaration {
-    const nodeId = createNodeId(node.type);
     const typeArgs = node.typeArgs.map(labelTypeArgDef);
     const args = node.args.map(labelTypedArgDef);
     const returnType = nullishMap(node.returnType, labelTypeNode);
-    return { ...node, nodeId, typeArgs, args, returnType };
+    return withNodeId({ ...node, typeArgs, args, returnType });
   }
 
   function labelTypedArgDef(node: ast.TypedArgDef): lst.TypedArgDef {
-    const nodeId = createNodeId(node.type);
     const valueType = labelTypeNode(node.valueType);
-    return { ...node, nodeId, valueType };
+    return withNodeId({ ...node, valueType });
   }
 
   function labelCompoundNode(node: ast.CompoundNode): lst.CompoundNode {
-    const nodeId = createNodeId(node.type);
     const useStatements = node.useStatements.map(labelUseStatement);
     const nodes = node.nodes.map(labelCompoundNodeSubnode);
-    return { ...node, nodeId, useStatements, nodes };
+    return withNodeId({ ...node, useStatements, nodes });
   }
 
   function labelCompoundNodeSubnode(
@@ -231,47 +227,40 @@ function getLabeler(): Labeler {
   function labelLocalVariableDeclaration(
     node: ast.LocalVariableDeclaration,
   ): lst.LocalVariableDeclaration {
-    const nodeId = createNodeId(node.type);
     const valueType = nullishMap(node.valueType, labelTypeNode);
     const initialValue = labelExpr(node.initialValue);
-    return { ...node, nodeId, valueType, initialValue };
+    return withNodeId({ ...node, valueType, initialValue });
   }
 
   function labelAssignment(node: ast.Assignment): lst.Assignment {
-    const nodeId = createNodeId(node.type);
     const assignee = labelExpr(node.assignee);
     const value = labelExpr(node.value);
-    return { ...node, nodeId, assignee, value };
+    return withNodeId({ ...node, assignee, value });
   }
 
   function labelReturnStatement(node: ast.Return): lst.Return {
-    const nodeId = createNodeId(node.type);
     const value = nullishMap(node.value, labelExpr);
-    return { ...node, nodeId, value };
+    return withNodeId({ ...node, value });
   }
 
   function labelBreakStatement(node: ast.Break): lst.Break {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelContinueStatement(node: ast.Continue): lst.Continue {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelThrowStatement(node: ast.Throw): lst.Throw {
-    const nodeId = createNodeId(node.type);
     const value = labelExpr(node.value);
-    return { ...node, nodeId, value };
+    return withNodeId({ ...node, value });
   }
 
   function labelIfNode(node: ast.If): lst.If {
-    const nodeId = createNodeId(node.type);
     const condition = labelExpr(node.condition);
     const body = labelCompoundNode(node.body);
     const alternatives = node.alternatives.map(labelIfAlternative);
-    return { ...node, nodeId, condition, body, alternatives };
+    return withNodeId({ ...node, condition, body, alternatives });
   }
 
   function labelIfAlternative(node: ast.IfAlternative): lst.IfAlternative {
@@ -284,29 +273,25 @@ function getLabeler(): Labeler {
   }
 
   function labelElseIfNode(node: ast.ElseIf): lst.ElseIf {
-    const nodeId = createNodeId(node.type);
     const condition = labelExpr(node.condition);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, condition, body };
+    return withNodeId({ ...node, condition, body });
   }
 
   function labelElseNode(node: ast.Else): lst.Else {
-    const nodeId = createNodeId(node.type);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, body };
+    return withNodeId({ ...node, body });
   }
 
   function labelDoNode(node: ast.Do): lst.Do {
-    const nodeId = createNodeId(node.type);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, body };
+    return withNodeId({ ...node, body });
   }
 
   function labelTryStatement(node: ast.Try): lst.Try {
-    const nodeId = createNodeId(node.type);
     const body = labelCompoundNode(node.body);
     const catches = node.catches.map(labelCatchNode);
-    return { ...node, nodeId, body, catches };
+    return withNodeId({ ...node, body, catches });
   }
 
   function labelCatchNode(node: ast.Catch): lst.Catch {
@@ -323,53 +308,46 @@ function getLabeler(): Labeler {
   function labelCatchNodeWithErrorBinding(
     node: ast.BoundCatch,
   ): lst.BoundCatch {
-    const nodeId = createNodeId(node.type);
     const arg = labelTypedArgDef(node.arg);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, arg, body };
+    return withNodeId({ ...node, arg, body });
   }
 
   function labelCatchNodeWithBindinglessErrorRestriction(
     node: ast.RestrictedBindinglessCatch,
   ): lst.RestrictedBindinglessCatch {
-    const nodeId = createNodeId(node.type);
     const caughtTypes = node.caughtTypes.map(labelTypeNode);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, caughtTypes, body };
+    return withNodeId({ ...node, caughtTypes, body });
   }
 
   function labelCatchAllNode(node: ast.CatchAll): lst.CatchAll {
-    const nodeId = createNodeId(node.type);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, body };
+    return withNodeId({ ...node, body });
   }
 
   function labelWhileStatement(node: ast.While): lst.While {
-    const nodeId = createNodeId(node.type);
     const condition = labelExpr(node.condition);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, condition, body };
+    return withNodeId({ ...node, condition, body });
   }
 
   function labelLoopStatement(node: ast.Loop): lst.Loop {
-    const nodeId = createNodeId(node.type);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, body };
+    return withNodeId({ ...node, body });
   }
 
   function labelRepeatStatement(node: ast.Repeat): lst.Repeat {
-    const nodeId = createNodeId(node.type);
     const repetitions = labelExpr(node.repetitions);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, repetitions, body };
+    return withNodeId({ ...node, repetitions, body });
   }
 
   function labelForStatement(node: ast.For): lst.For {
-    const nodeId = createNodeId(node.type);
     const binding = labelForNodeBinding(node.binding);
     const iteratee = labelExpr(node.iteratee);
     const body = labelCompoundNode(node.body);
-    return { ...node, nodeId, binding, iteratee, body };
+    return withNodeId({ ...node, binding, iteratee, body });
   }
 
   function labelForNodeBinding(node: ast.Binding): lst.Binding {
@@ -382,16 +360,14 @@ function getLabeler(): Labeler {
   }
 
   function labelSingleBinding(node: ast.SingleBinding): lst.SingleBinding {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelFlatTupleBinding(
     node: ast.FlatTupleBinding,
   ): lst.FlatTupleBinding {
-    const nodeId = createNodeId(node.type);
     const bindings = node.bindings.map(labelSingleBinding);
-    return { ...node, nodeId, bindings };
+    return withNodeId({ ...node, bindings });
   }
 
   function labelExpr(node: ast.Expr): lst.Expr {
@@ -432,115 +408,98 @@ function getLabeler(): Labeler {
   }
 
   function labelNumberLiteral(node: ast.NumberLiteral): lst.NumberLiteral {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelStringLiteral(node: ast.StringLiteral): lst.StringLiteral {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelCharacterLiteral(
     node: ast.CharacterLiteral,
   ): lst.CharacterLiteral {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelIdentifier(node: ast.Identifier): lst.Identifier {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelInfixExpr(node: ast.InfixExpr): lst.InfixExpr {
-    const nodeId = createNodeId(node.type);
     const left = labelExpr(node.left);
     const right = labelExpr(node.right);
-    return { ...node, nodeId, left, right };
+    return withNodeId({ ...node, left, right });
   }
 
   function labelPrefixExpr(node: ast.PrefixExpr): lst.PrefixExpr {
-    const nodeId = createNodeId(node.type);
     const right = labelExpr(node.right);
-    return { ...node, nodeId, right };
+    return withNodeId({ ...node, right });
   }
 
   function labelDotExpr(node: ast.DotExpr): lst.DotExpr {
-    const nodeId = createNodeId(node.type);
     const left = labelExpr(node.left);
-    return { ...node, nodeId, left };
+    return withNodeId({ ...node, left });
   }
 
   function labelIndexExpr(node: ast.IndexExpr): lst.IndexExpr {
-    const nodeId = createNodeId(node.type);
     const left = labelExpr(node.left);
     const right = labelExpr(node.right);
-    return { ...node, nodeId, left, right };
+    return withNodeId({ ...node, left, right });
   }
 
   function labelCastExpr(node: ast.CastExpr): lst.CastExpr {
-    const nodeId = createNodeId(node.type);
     const value = labelExpr(node.value);
     const targetType = labelTypeNode(node.targetType);
-    return { ...node, nodeId, value, targetType };
+    return withNodeId({ ...node, value, targetType });
   }
 
   function labelFunctionCall(node: ast.FunctionCall): lst.FunctionCall {
-    const nodeId = createNodeId(node.type);
     const callee = labelExpr(node.callee);
     const typeArgs = node.typeArgs.map(labelTypeNode);
     const args = node.args.map(labelExpr);
-    return { ...node, nodeId, callee, typeArgs, args };
+    return withNodeId({ ...node, callee, typeArgs, args });
   }
 
   function labelTypedObjectLiteral(
     node: ast.TypedObjectLiteral,
   ): lst.TypedObjectLiteral {
-    const nodeId = createNodeId(node.type);
     const valueType = labelTypeNode(node.valueType);
     const copies = node.copies.map(labelObjectCopyNode);
     const entries = node.entries.map(labelObjectEntryNode);
-    return { ...node, nodeId, valueType, copies, entries };
+    return withNodeId({ ...node, valueType, copies, entries });
   }
 
   function labelObjectCopyNode(node: ast.ObjectCopy): lst.ObjectCopy {
-    const nodeId = createNodeId(node.type);
     const source = labelExpr(node.source);
-    return { ...node, nodeId, source };
+    return withNodeId({ ...node, source });
   }
 
   function labelObjectEntryNode(node: ast.ObjectEntry): lst.ObjectEntry {
-    const nodeId = createNodeId(node.type);
     const value = nullishMap(node.value, labelExpr);
-    return { ...node, nodeId, value };
+    return withNodeId({ ...node, value });
   }
 
   function labelArrayLiteral(node: ast.ArrayLiteral): lst.ArrayLiteral {
-    const nodeId = createNodeId(node.type);
     const elements = node.elements.map(labelExpr);
-    return { ...node, nodeId, elements };
+    return withNodeId({ ...node, elements });
   }
 
   function labelRangeLiteral(node: ast.RangeLiteral): lst.RangeLiteral {
-    const nodeId = createNodeId(node.type);
     const start = labelExpr(node.start);
     const end = labelExpr(node.end);
-    return { ...node, nodeId, start, end };
+    return withNodeId({ ...node, start, end });
   }
 
   function labelMagicFunctionLiteral(
     node: ast.MagicFunctionLiteral,
   ): lst.MagicFunctionLiteral {
-    const nodeId = createNodeId(node.type);
     const args = node.args.map(labelUntypedArgDef);
     const body = labelMagicFunctionBody(node.body);
-    return { ...node, nodeId, args, body };
+    return withNodeId({ ...node, args, body });
   }
 
   function labelUntypedArgDef(node: ast.UntypedArgDef): lst.UntypedArgDef {
-    const nodeId = createNodeId(node.type);
-    return { ...node, nodeId };
+    return withNodeId({ ...node });
   }
 
   function labelMagicFunctionBody(

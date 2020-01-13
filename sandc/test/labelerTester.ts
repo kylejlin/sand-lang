@@ -4,12 +4,12 @@ import recursiveReadDir from "recursive-readdir";
 import parser from "../src/parser/prebuilt";
 import allSettledShim from "promise.allsettled";
 import * as ast from "../src/ast";
-import { LabeledFileNodeAndIds } from "../src/labeler";
+import { LabeledFileNodesAndIdReferents } from "../src/labeler";
 
 const allSettled: typeof allSettledShim =
   (Promise as any).allSettled || allSettledShim;
 
-export type Labeler = (nodes: ast.FileNode[]) => LabeledFileNodeAndIds;
+export type Labeler = (nodes: ast.FileNode[]) => LabeledFileNodesAndIdReferents;
 
 export interface Config {
   directory: string;
