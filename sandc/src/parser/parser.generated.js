@@ -150,13 +150,13 @@ case 26:
  this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(this._$) }]; 
 break;
 case 27:
- this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.convertToRange(this._$) }]; 
+ this.$ = [{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superType: $$[$0] }, location: yy.convertToRange(this._$) }]; 
 break;
 case 28:
  this.$ = $$[$0-2].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0], constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(_$[$0]) }]); 
 break;
 case 29:
- this.$ = $$[$0-4].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superClass: $$[$0] }, location: yy.merge(_$[$0-2], _$[$0]) }]); 
+ this.$ = $$[$0-4].concat([{ type: yy.NodeType.TypeArgDef, name: $$[$0-2], constraint: { constraintType: yy.ConstraintType.Extends, superType: $$[$0] }, location: yy.merge(_$[$0-2], _$[$0]) }]); 
 break;
 case 31: case 48: case 89: case 167:
  this.$ = $$[$0-1].concat([$$[$0]]); 

@@ -119,11 +119,11 @@ typeArgDefs
     : NON_RESERVED_IDENTIFIER
         { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(@$) }]; }
     | NON_RESERVED_IDENTIFIER "extends" type
-        { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $3 }, location: yy.convertToRange(@$) }]; }
+        { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superType: $3 }, location: yy.convertToRange(@$) }]; }
     | typeArgDefs "," NON_RESERVED_IDENTIFIER
         { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(@3) }]); }
     | typeArgDefs "," NON_RESERVED_IDENTIFIER "extends" type
-        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superClass: $5 }, location: yy.merge(@3, @5) }]); }
+        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superType: $5 }, location: yy.merge(@3, @5) }]); }
     ;
 
 optPrivClasses
