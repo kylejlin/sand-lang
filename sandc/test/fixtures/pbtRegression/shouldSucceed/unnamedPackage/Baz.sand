@@ -1,0 +1,5 @@
+pub class Baz<T extends Foo> {
+    qux(n: T): Bar {
+        n as! T
+    }
+}

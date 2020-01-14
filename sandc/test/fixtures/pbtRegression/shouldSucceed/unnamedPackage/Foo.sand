@@ -1,0 +1,5 @@
+pub class Foo {
+    pub left: Foo?;
+    pub middle: Bar?;
+    pub right: Baz?;
+}

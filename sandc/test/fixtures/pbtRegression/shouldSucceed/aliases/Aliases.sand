@@ -1,0 +1,16 @@
+package com.foo;
+
+pub class Aliases {
+    copy Foo.qux;
+    copy Bar.qux as q;
+
+    use Foo as Foo2;
+
+    foo(m: Foo2): Foo {
+        use m as n;
+        use m.baz;
+        use! n as baz;
+
+        q(m) + qux(n) + qux(baz)
+    }
+}

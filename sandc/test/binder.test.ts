@@ -16,4 +16,4 @@ const tester = Tester.fromDirectories({
   failure: FAILURE_CASE_DIR,
 });
 
-tester.test(bindFileNodes, "the partial binder");
+tester.test(bindFileNodes, "the binder");

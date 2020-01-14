@@ -1,0 +1,13 @@
+pub class Factorial {
+    use sand.lang.IllegalArgumentException as err;
+
+    pub factorial(n: int): int {
+        if n < 0 {
+            err("" + n)
+        } else if n == 0 {
+            1
+        } else {
+            n * factorial(n - 1)
+        }
+    }
+}

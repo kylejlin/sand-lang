@@ -1,0 +1,9 @@
+pub class LanguageDefinedGlobals extends java.util.ArrayList {
+    foo: String;
+    bar: Class;
+
+    baz(): never {
+        [true, false, null];
+        throw sand.lang.IllegalArgumentException.fromMessage("Error!");
+    }
+}
