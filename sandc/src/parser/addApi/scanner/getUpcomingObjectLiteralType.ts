@@ -8,6 +8,7 @@ export default function getUpcomingObjectLiteralType(
 ): string | null {
   if (
     /class\s*$/.test(past) ||
+    /extends\s*$/.test(past) ||
     /\)\s*:\s*$/.test(past) ||
     /\.\s*$/.test(past)
   ) {
