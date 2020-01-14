@@ -1,8 +1,9 @@
 import parser from "./parser/prebuilt";
 import SandScanner from "./parser/addApi/scanner";
-import { bindFileNode } from "./binder";
+import { bindFileNodes } from "./binder/index";
+import { labelFileNodes } from "./labeler";
 
-const src = `pub class Args<T, U extends Foo> {
+const src = `pub class Args<T, U extends sand.Foo> {
     indexOf(elem: String, arr: String[+]): int {
 
     }
@@ -11,4 +12,6 @@ const src = `pub class Args<T, U extends Foo> {
 console.log("Parsing...");
 
 const ast = parser.parse(src);
-console.log(JSON.stringify(ast.pubClass.typeArgDefs, null, 4));
+const lst = labelFileNodes([ast]).fileNodes[0];
+const res = bindFileNodes([lst]);
+console.log(JSON.stringify(res.refs, null, 4));

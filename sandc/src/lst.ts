@@ -809,3 +809,33 @@ export interface FlatTupleBinding {
   bindings: SingleBinding[];
   location: TextRange;
 }
+
+export function isStatement(node: Node): node is Statement {
+  switch (node.type) {
+    case NodeType.Return:
+    case NodeType.Break:
+    case NodeType.Continue:
+    case NodeType.LocalVariableDeclaration:
+    case NodeType.Assignment:
+    case NodeType.Throw:
+    case NodeType.If:
+    case NodeType.Do:
+    case NodeType.While:
+    case NodeType.Loop:
+    case NodeType.Repeat:
+    case NodeType.For:
+    case NodeType.Try: {
+      // Hack to get type checker to verify exhaustiveness
+      const _: Statement = node;
+
+      return true;
+    }
+
+    default: {
+      // Hack to get type checker to verify exhaustiveness
+      const _: Exclude<Node, Statement> = node;
+
+      return false;
+    }
+  }
+}
