@@ -4,7 +4,7 @@ import * as pbt from "../pbt";
 import { Ref } from "../pbt";
 import { TextPosition } from "../textPosition";
 import nullishMap from "../utils/nullishMap";
-import { all as globallyAvailableReferences } from "./globallyAvailableReferences";
+import { all as globallyAvailableReferenceNames } from "./globallyAvailableReferences";
 
 export interface BoundFileNodesAndRefs {
   fileNodes: pbt.FileNode[];
@@ -19,33 +19,99 @@ interface Binder {
   bindFileNodes(nodes: lst.FileNode[]): BoundFileNodesAndRefs;
 }
 
+type FileNodeWithOutBoundPubClass = Omit<lst.FileNode, "pubClass"> & {
+  pubClass: OutBoundPubClass;
+};
+
+type OutBoundPubClass = lst.PubClass & { outRef: Ref };
+
+type OutBoundClassItem =
+  | lst.InstantiationRestriction
+  | (lst.ClassItem & { outRef: Ref });
+
 function getBinder(): Binder {
   const allRefs: Ref[] = [];
   const refStack: Ref[] = [];
-
-  refStack.push(...getGlobalRefs());
+  const refsDefinedInEachPackage = new PackageRefCollector();
 
   function bindFileNodes(nodes: lst.FileNode[]): BoundFileNodesAndRefs {
-    const bound = nodes.map(bindFileNode);
-    return { fileNodes: bound, refs: allRefs };
+    const withPubClassOutBound = nodes.map(outBindFileNodePubClass);
+
+    pushLanguageDefinedGlobalRefs();
+    pushRefsDefinedInUnnamedPackage();
+
+    const inBound = withPubClassOutBound.map(bindFileNode);
+    return { fileNodes: inBound, refs: allRefs };
   }
 
-  function bindFileNode(node: lst.FileNode): pbt.FileNode {
-    const imports = node.imports.map(bindImportStatement);
-    const useStatements = node.useStatements.map(bindUseStatement);
+  function outBindFileNodePubClass(
+    node: lst.FileNode,
+  ): FileNodeWithOutBoundPubClass {
+    const outRef = createAndPushRefToPackageCollector(
+      node.pubClass.name,
+      node.packageName,
+    );
+    const pubClass = { ...node.pubClass, outRef };
+    return { ...node, pubClass };
+  }
 
-    const outBoundPubClass = outBindClass(node.pubClass);
-    const outBoundPrivClasses = node.privClasses.map(outBindClass);
-    const pubClass = inBindClass(outBoundPubClass);
-    const privClasses = outBoundPrivClasses.map(inBindClass);
+  function pushLanguageDefinedGlobalRefs(): void {
+    globallyAvailableReferenceNames.forEach(createAndPushRef);
+  }
 
-    return {
-      ...node,
-      imports,
-      useStatements,
-      pubClass,
-      privClasses,
-    };
+  function pushRefsDefinedInUnnamedPackage(): void {
+    const refs = refsDefinedInEachPackage.getRefsDefinedIn(null);
+    refs.forEach(ref => {
+      if (canFindRef(ref.name)) {
+        throw new ReferenceError(
+          "ReferenceError: `" +
+            ref.name +
+            "` (defined in the unnamed package) conflicts with another reference of the same name.",
+        );
+      } else {
+        refStack.push(ref);
+      }
+    });
+  }
+
+  function bindFileNode(node: FileNodeWithOutBoundPubClass): pbt.FileNode {
+    return execInNewRefScope<pbt.FileNode>(() => {
+      if (node.packageName !== null) {
+        pushRefsDefinedInNamedPackage(node.packageName);
+      }
+
+      const imports = node.imports.map(bindImportStatement);
+      const useStatements = node.useStatements.map(bindUseStatement);
+
+      const outBoundPrivClasses = node.privClasses.map(outBindClass);
+      const pubClass = inBindClass(node.pubClass);
+      const privClasses = outBoundPrivClasses.map(inBindClass);
+
+      return {
+        ...node,
+        imports,
+        useStatements,
+        pubClass,
+        privClasses,
+      };
+    });
+  }
+
+  function pushRefsDefinedInNamedPackage(packageName: string): void {
+    const refs = refsDefinedInEachPackage.getRefsDefinedIn(null);
+    refs.forEach(ref => {
+      if (canFindRef(ref.name)) {
+        throw new ReferenceError(
+          "ReferenceError: `" +
+            ref.name +
+            '` (defined in package "' +
+            packageName +
+            '") conflicts with another reference of the same name.',
+        );
+      } else {
+        refStack.push(ref);
+      }
+    });
   }
 
   function bindImportStatement(node: lst.Import): pbt.Import {
@@ -53,7 +119,7 @@ function getBinder(): Binder {
     const leftmostIdentifier = getLeftmostIdentifierName(node.name);
     const leftmostInRef = expectRef(leftmostIdentifier, node.location.start);
     const rightmostIdentifier = getRightmostIdentifierName(node.name);
-    const outRef = pushNonShadowingRef(
+    const outRef = createAndPushNonShadowingRef(
       rightmostIdentifier,
       node.location.start,
     );
@@ -73,9 +139,9 @@ function getBinder(): Binder {
     const outRef: Ref = (() => {
       if (node.doesShadow) {
         assertNameShadows(refName, node.location.start);
-        return pushRef(refName);
+        return createAndPushRef(refName);
       } else {
-        return pushNonShadowingRef(refName, node.location.start);
+        return createAndPushNonShadowingRef(refName, node.location.start);
       }
     })();
 
@@ -90,7 +156,7 @@ function getBinder(): Binder {
   function outBindClass(node: lst.PrivClass): lst.PrivClass & { outRef: Ref };
 
   function outBindClass(node: lst.Class): lst.Class & { outRef: Ref } {
-    const outRef = pushNonShadowingRef(node.name, node.location.start);
+    const outRef = createAndPushNonShadowingRef(node.name, node.location.start);
     return { ...node, outRef };
   }
 
@@ -110,7 +176,7 @@ function getBinder(): Binder {
   }
 
   function bindTypeArgDef(node: lst.TypeArgDef): pbt.TypeArgDef {
-    const outRef = pushNonShadowingRef(node.name, node.location.start);
+    const outRef = createAndPushNonShadowingRef(node.name, node.location.start);
     const constraint = bindTypeConstraint(node.constraint);
     return { ...node, constraint, outRef };
   }
@@ -141,7 +207,7 @@ function getBinder(): Binder {
       getLeftmostIdentifierName(node.name),
       node.location.start,
     );
-    const outRef = pushNonShadowingRef(
+    const outRef = createAndPushNonShadowingRef(
       getStaticMethodCopyStatementRefName(node),
       node.location.start,
     );
@@ -169,7 +235,10 @@ function getBinder(): Binder {
     ) {
       return { ...node, outRef: shadowedRef };
     } else {
-      const outRef = pushNonShadowingRef(node.name, node.location.start);
+      const outRef = createAndPushNonShadowingRef(
+        node.name,
+        node.location.start,
+      );
       return { ...node, outRef };
     }
   }
@@ -228,7 +297,7 @@ function getBinder(): Binder {
   }
 
   function bindTypedArgDef(def: lst.TypedArgDef): pbt.TypedArgDef {
-    const outRef = pushRef(def.name);
+    const outRef = createAndPushRef(def.name);
     const valueType = bindTypeNode(def.valueType);
     return { ...def, valueType, outRef };
   }
@@ -286,8 +355,8 @@ function getBinder(): Binder {
     node: lst.LocalVariableDeclaration,
   ): pbt.LocalVariableDeclaration {
     const outRef = node.doesShadow
-      ? pushRef(node.name)
-      : pushNonShadowingRef(node.name, node.location.start);
+      ? createAndPushRef(node.name)
+      : createAndPushNonShadowingRef(node.name, node.location.start);
     const valueType = nullishMap(node.valueType, bindTypeNode);
     const initialValue = bindExpr(node.initialValue);
     return { ...node, outRef, valueType, initialValue };
@@ -415,7 +484,7 @@ function getBinder(): Binder {
   }
 
   function bindSingleBinding(node: lst.SingleBinding): pbt.SingleBinding {
-    const outRef = pushNonShadowingRef(node.name, node.location.start);
+    const outRef = createAndPushNonShadowingRef(node.name, node.location.start);
     return { ...node, outRef };
   }
 
@@ -544,7 +613,7 @@ function getBinder(): Binder {
   }
 
   function bindUntypedArgDef(node: lst.UntypedArgDef): pbt.UntypedArgDef {
-    const outRef = pushRef(node.name);
+    const outRef = createAndPushRef(node.name);
     return { ...node, outRef };
   }
 
@@ -558,13 +627,18 @@ function getBinder(): Binder {
     }
   }
 
-  function getGlobalRefs(): Ref[] {
-    return globallyAvailableReferences.map(pushRef);
-  }
-
-  function pushRef(name: string): Ref {
+  function createAndPushRef(name: string): Ref {
     const ref = createRef(name);
     refStack.push(ref);
+    return ref;
+  }
+
+  function createAndPushRefToPackageCollector(
+    refName: string,
+    packageName: string | null,
+  ): Ref {
+    const ref = createRef(refName);
+    refsDefinedInEachPackage.addRef(packageName, ref);
     return ref;
   }
 
@@ -581,7 +655,7 @@ function getBinder(): Binder {
     return ref;
   }
 
-  function pushNonShadowingRef(
+  function createAndPushNonShadowingRef(
     name: string,
     locationToBlame: TextPosition,
   ): Ref {
@@ -595,7 +669,7 @@ function getBinder(): Binder {
           name,
       );
     } else {
-      return pushRef(name);
+      return createAndPushRef(name);
     }
   }
 
@@ -653,6 +727,26 @@ function getBinder(): Binder {
   return { bindFileNodes };
 }
 
+class PackageRefCollector {
+  private refMap: Map<string | null, Ref[]>;
+
+  constructor() {
+    this.refMap = new Map();
+  }
+
+  addRef(packageName: string | null, ref: Ref): void {
+    if (!this.refMap.has(packageName)) {
+      this.refMap.set(packageName, []);
+    }
+
+    this.refMap.get(packageName)!.push(ref);
+  }
+
+  getRefsDefinedIn(packageName: string | null): Ref[] {
+    return this.refMap.get(packageName) || [];
+  }
+}
+
 function truncate(arr: any[], len: number): void {
   arr.splice(len, arr.length - len);
 }
@@ -690,7 +784,3 @@ function getRightmostIdentifierName(dotSeparatedIdentifiers: string): string {
   const idents = dotSeparatedIdentifiers.split(".");
   return idents[idents.length - 1];
 }
-
-type OutBoundClassItem =
-  | lst.InstantiationRestriction
-  | (lst.ClassItem & { outRef: Ref });
