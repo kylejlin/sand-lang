@@ -98,7 +98,7 @@ function getBinder(): Binder {
   }
 
   function pushRefsDefinedInNamedPackage(packageName: string): void {
-    const refs = refsDefinedInEachPackage.getRefsDefinedIn(null);
+    const refs = refsDefinedInEachPackage.getRefsDefinedIn(packageName);
     refs.forEach(ref => {
       if (canFindRef(ref.name)) {
         throw new ReferenceError(
