@@ -1,0 +1,11 @@
+pub class IntraFileItems extends Foo {
+    bar: Bar;
+}
+
+open class Foo {
+
+}
+
+class Bar {
+
+}

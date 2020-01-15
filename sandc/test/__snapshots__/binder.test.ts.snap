@@ -5211,6 +5211,662 @@ Object {
 }
 `;
 
+exports[`the binder binds files consistently: intraFileItems 1`] = `
+Object {
+  "fileNodes": Array [
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 11,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 6,
+      },
+      "packageName": null,
+      "privClasses": Array [
+        Object {
+          "copies": Array [],
+          "isPub": false,
+          "items": Array [],
+          "location": Object {
+            "end": Object {
+              "column": 1,
+              "line": 7,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 5,
+            },
+          },
+          "name": "Foo",
+          "nodeId": Object {
+            "nodeType": "Class",
+            "rawValue": 4,
+          },
+          "outRef": Object {
+            "name": "Foo",
+            "refId": 114,
+          },
+          "overridability": "Open",
+          "superClass": null,
+          "type": "Class",
+          "typeArgDefs": Array [],
+          "useStatements": Array [],
+        },
+        Object {
+          "copies": Array [],
+          "isPub": false,
+          "items": Array [],
+          "location": Object {
+            "end": Object {
+              "column": 1,
+              "line": 11,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 1,
+            },
+          },
+          "name": "Bar",
+          "nodeId": Object {
+            "nodeType": "Class",
+            "rawValue": 5,
+          },
+          "outRef": Object {
+            "name": "Bar",
+            "refId": 115,
+          },
+          "overridability": "Final",
+          "superClass": null,
+          "type": "Class",
+          "typeArgDefs": Array [],
+          "useStatements": Array [],
+        },
+      ],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [
+          Object {
+            "accessModifier": null,
+            "isReassignable": false,
+            "location": Object {
+              "end": Object {
+                "column": 13,
+                "line": 2,
+              },
+              "start": Object {
+                "column": 37,
+                "line": 1,
+              },
+            },
+            "name": "bar",
+            "nodeId": Object {
+              "nodeType": "InstancePropertyDeclaration",
+              "rawValue": 2,
+            },
+            "outRef": Object {
+              "name": "bar",
+              "refId": 116,
+            },
+            "type": "InstancePropertyDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "leftmostInRef": Object {
+                "name": "Bar",
+                "refId": 115,
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 2,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 2,
+                },
+              },
+              "name": "Bar",
+              "nodeId": Object {
+                "nodeType": "Type",
+                "rawValue": 1,
+              },
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 3,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "name": "IntraFileItems",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 3,
+        },
+        "outRef": Object {
+          "name": "IntraFileItems",
+          "refId": 0,
+        },
+        "overridability": "Final",
+        "superClass": Object {
+          "args": Array [],
+          "leftmostInRef": Object {
+            "name": "Foo",
+            "refId": 114,
+          },
+          "location": Object {
+            "end": Object {
+              "column": 36,
+              "line": 1,
+            },
+            "start": Object {
+              "column": 33,
+              "line": 1,
+            },
+          },
+          "name": "Foo",
+          "nodeId": Object {
+            "nodeType": "Type",
+            "rawValue": 0,
+          },
+          "type": "Type",
+        },
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [],
+      },
+      "type": "File",
+      "useStatements": Array [],
+    },
+  ],
+  "refs": Array [
+    Object {
+      "name": "IntraFileItems",
+      "refId": 0,
+    },
+    Object {
+      "name": "null",
+      "refId": 1,
+    },
+    Object {
+      "name": "true",
+      "refId": 2,
+    },
+    Object {
+      "name": "false",
+      "refId": 3,
+    },
+    Object {
+      "name": "this",
+      "refId": 4,
+    },
+    Object {
+      "name": "super",
+      "refId": 5,
+    },
+    Object {
+      "name": "int",
+      "refId": 6,
+    },
+    Object {
+      "name": "byte",
+      "refId": 7,
+    },
+    Object {
+      "name": "short",
+      "refId": 8,
+    },
+    Object {
+      "name": "long",
+      "refId": 9,
+    },
+    Object {
+      "name": "char",
+      "refId": 10,
+    },
+    Object {
+      "name": "double",
+      "refId": 11,
+    },
+    Object {
+      "name": "float",
+      "refId": 12,
+    },
+    Object {
+      "name": "boolean",
+      "refId": 13,
+    },
+    Object {
+      "name": "void",
+      "refId": 14,
+    },
+    Object {
+      "name": "never",
+      "refId": 15,
+    },
+    Object {
+      "name": "sequence",
+      "refId": 16,
+    },
+    Object {
+      "name": "array",
+      "refId": 17,
+    },
+    Object {
+      "name": "rlist",
+      "refId": 18,
+    },
+    Object {
+      "name": "nullable",
+      "refId": 19,
+    },
+    Object {
+      "name": "java",
+      "refId": 20,
+    },
+    Object {
+      "name": "sand",
+      "refId": 21,
+    },
+    Object {
+      "name": "Appendable",
+      "refId": 22,
+    },
+    Object {
+      "name": "AutoCloseable",
+      "refId": 23,
+    },
+    Object {
+      "name": "CharSequence",
+      "refId": 24,
+    },
+    Object {
+      "name": "Cloneable",
+      "refId": 25,
+    },
+    Object {
+      "name": "Comparable",
+      "refId": 26,
+    },
+    Object {
+      "name": "Iterable",
+      "refId": 27,
+    },
+    Object {
+      "name": "Readable",
+      "refId": 28,
+    },
+    Object {
+      "name": "Runnable",
+      "refId": 29,
+    },
+    Object {
+      "name": "Boolean",
+      "refId": 30,
+    },
+    Object {
+      "name": "Byte",
+      "refId": 31,
+    },
+    Object {
+      "name": "Character",
+      "refId": 32,
+    },
+    Object {
+      "name": "Class",
+      "refId": 33,
+    },
+    Object {
+      "name": "ClassLoader",
+      "refId": 34,
+    },
+    Object {
+      "name": "ClassValue",
+      "refId": 35,
+    },
+    Object {
+      "name": "Compiler",
+      "refId": 36,
+    },
+    Object {
+      "name": "Double",
+      "refId": 37,
+    },
+    Object {
+      "name": "Enum",
+      "refId": 38,
+    },
+    Object {
+      "name": "Float",
+      "refId": 39,
+    },
+    Object {
+      "name": "InheritableThreadLocal",
+      "refId": 40,
+    },
+    Object {
+      "name": "Integer",
+      "refId": 41,
+    },
+    Object {
+      "name": "Long",
+      "refId": 42,
+    },
+    Object {
+      "name": "Math",
+      "refId": 43,
+    },
+    Object {
+      "name": "Number",
+      "refId": 44,
+    },
+    Object {
+      "name": "Object",
+      "refId": 45,
+    },
+    Object {
+      "name": "Package",
+      "refId": 46,
+    },
+    Object {
+      "name": "Process",
+      "refId": 47,
+    },
+    Object {
+      "name": "ProcessBuilder",
+      "refId": 48,
+    },
+    Object {
+      "name": "Runtime",
+      "refId": 49,
+    },
+    Object {
+      "name": "RuntimePermission",
+      "refId": 50,
+    },
+    Object {
+      "name": "SecurityManager",
+      "refId": 51,
+    },
+    Object {
+      "name": "Short",
+      "refId": 52,
+    },
+    Object {
+      "name": "StackTraceElement",
+      "refId": 53,
+    },
+    Object {
+      "name": "StrictMath",
+      "refId": 54,
+    },
+    Object {
+      "name": "String",
+      "refId": 55,
+    },
+    Object {
+      "name": "StringBuffer",
+      "refId": 56,
+    },
+    Object {
+      "name": "StringBuilder",
+      "refId": 57,
+    },
+    Object {
+      "name": "System",
+      "refId": 58,
+    },
+    Object {
+      "name": "Thread",
+      "refId": 59,
+    },
+    Object {
+      "name": "ThreadGroup",
+      "refId": 60,
+    },
+    Object {
+      "name": "ThreadLocal",
+      "refId": 61,
+    },
+    Object {
+      "name": "Throwable",
+      "refId": 62,
+    },
+    Object {
+      "name": "Void",
+      "refId": 63,
+    },
+    Object {
+      "name": "ArithmeticException",
+      "refId": 64,
+    },
+    Object {
+      "name": "ArrayIndexOutOfBoundsException",
+      "refId": 65,
+    },
+    Object {
+      "name": "ArrayStoreException",
+      "refId": 66,
+    },
+    Object {
+      "name": "ClassCastException",
+      "refId": 67,
+    },
+    Object {
+      "name": "ClassNotFoundException",
+      "refId": 68,
+    },
+    Object {
+      "name": "CloneNotSupportedException",
+      "refId": 69,
+    },
+    Object {
+      "name": "EnumConstantNotPresentException",
+      "refId": 70,
+    },
+    Object {
+      "name": "Exception",
+      "refId": 71,
+    },
+    Object {
+      "name": "IllegalAccessException",
+      "refId": 72,
+    },
+    Object {
+      "name": "IllegalArgumentException",
+      "refId": 73,
+    },
+    Object {
+      "name": "IllegalMonitorStateException",
+      "refId": 74,
+    },
+    Object {
+      "name": "IllegalStateException",
+      "refId": 75,
+    },
+    Object {
+      "name": "IllegalThreadStateException",
+      "refId": 76,
+    },
+    Object {
+      "name": "IndexOutOfBoundsException",
+      "refId": 77,
+    },
+    Object {
+      "name": "InstantiationException",
+      "refId": 78,
+    },
+    Object {
+      "name": "InterruptedException",
+      "refId": 79,
+    },
+    Object {
+      "name": "NegativeArraySizeException",
+      "refId": 80,
+    },
+    Object {
+      "name": "NoSuchFieldException",
+      "refId": 81,
+    },
+    Object {
+      "name": "NoSuchMethodException",
+      "refId": 82,
+    },
+    Object {
+      "name": "NullPointerException",
+      "refId": 83,
+    },
+    Object {
+      "name": "NumberFormatException",
+      "refId": 84,
+    },
+    Object {
+      "name": "ReflectiveOperationException",
+      "refId": 85,
+    },
+    Object {
+      "name": "RuntimeException",
+      "refId": 86,
+    },
+    Object {
+      "name": "SecurityException",
+      "refId": 87,
+    },
+    Object {
+      "name": "StringIndexOutOfBoundsException",
+      "refId": 88,
+    },
+    Object {
+      "name": "TypeNotPresentException",
+      "refId": 89,
+    },
+    Object {
+      "name": "UnsupportedOperationException",
+      "refId": 90,
+    },
+    Object {
+      "name": "AbstractMethodError",
+      "refId": 91,
+    },
+    Object {
+      "name": "AssertionError",
+      "refId": 92,
+    },
+    Object {
+      "name": "BootstrapMethodError",
+      "refId": 93,
+    },
+    Object {
+      "name": "ClassCircularityError",
+      "refId": 94,
+    },
+    Object {
+      "name": "ClassFormatError",
+      "refId": 95,
+    },
+    Object {
+      "name": "Error",
+      "refId": 96,
+    },
+    Object {
+      "name": "ExceptionInInitializerError",
+      "refId": 97,
+    },
+    Object {
+      "name": "IllegalAccessError",
+      "refId": 98,
+    },
+    Object {
+      "name": "IncompatibleClassChangeError",
+      "refId": 99,
+    },
+    Object {
+      "name": "InstantiationError",
+      "refId": 100,
+    },
+    Object {
+      "name": "InternalError",
+      "refId": 101,
+    },
+    Object {
+      "name": "LinkageError",
+      "refId": 102,
+    },
+    Object {
+      "name": "NoClassDefFoundError",
+      "refId": 103,
+    },
+    Object {
+      "name": "NoSuchFieldError",
+      "refId": 104,
+    },
+    Object {
+      "name": "NoSuchMethodError",
+      "refId": 105,
+    },
+    Object {
+      "name": "OutOfMemoryError",
+      "refId": 106,
+    },
+    Object {
+      "name": "StackOverflowError",
+      "refId": 107,
+    },
+    Object {
+      "name": "ThreadDeath",
+      "refId": 108,
+    },
+    Object {
+      "name": "UnknownError",
+      "refId": 109,
+    },
+    Object {
+      "name": "UnsatisfiedLinkError",
+      "refId": 110,
+    },
+    Object {
+      "name": "UnsupportedClassVersionError",
+      "refId": 111,
+    },
+    Object {
+      "name": "VerifyError",
+      "refId": 112,
+    },
+    Object {
+      "name": "VirtualMachineError",
+      "refId": 113,
+    },
+    Object {
+      "name": "Foo",
+      "refId": 114,
+    },
+    Object {
+      "name": "Bar",
+      "refId": 115,
+    },
+    Object {
+      "name": "bar",
+      "refId": 116,
+    },
+  ],
+}
+`;
+
 exports[`the binder binds files consistently: languageDefinedGlobals 1`] = `
 Object {
   "fileNodes": Array [
