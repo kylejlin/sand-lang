@@ -1,0 +1,6 @@
+pub class Qux {
+    use foo.Baz;
+
+    bar: foo.Bar;
+    baz: Baz;
+}

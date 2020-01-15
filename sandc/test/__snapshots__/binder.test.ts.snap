@@ -6143,6 +6143,843 @@ Object {
 }
 `;
 
+exports[`the binder binds files consistently: manyFilesSamePackage 1`] = `
+Object {
+  "fileNodes": Array [
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 5,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 3,
+      },
+      "packageName": "foo",
+      "privClasses": Array [],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [
+          Object {
+            "accessModifier": null,
+            "isReassignable": false,
+            "location": Object {
+              "end": Object {
+                "column": 11,
+                "line": 4,
+              },
+              "start": Object {
+                "column": 19,
+                "line": 3,
+              },
+            },
+            "name": "q",
+            "nodeId": Object {
+              "nodeType": "InstancePropertyDeclaration",
+              "rawValue": 1,
+            },
+            "outRef": Object {
+              "name": "q",
+              "refId": 117,
+            },
+            "type": "InstancePropertyDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "leftmostInRef": Object {
+                "name": "Qux",
+                "refId": 2,
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 10,
+                  "line": 4,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 4,
+                },
+              },
+              "name": "Qux",
+              "nodeId": Object {
+                "nodeType": "Type",
+                "rawValue": 0,
+              },
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 5,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 3,
+          },
+        },
+        "name": "Bar",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 2,
+        },
+        "outRef": Object {
+          "name": "Bar",
+          "refId": 0,
+        },
+        "overridability": "Open",
+        "superClass": null,
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [],
+      },
+      "type": "File",
+      "useStatements": Array [],
+    },
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 5,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 6,
+      },
+      "packageName": "foo",
+      "privClasses": Array [],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 5,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 3,
+          },
+        },
+        "name": "Baz",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 5,
+        },
+        "outRef": Object {
+          "name": "Baz",
+          "refId": 1,
+        },
+        "overridability": "Final",
+        "superClass": Object {
+          "args": Array [],
+          "leftmostInRef": Object {
+            "name": "Bar",
+            "refId": 0,
+          },
+          "location": Object {
+            "end": Object {
+              "column": 25,
+              "line": 3,
+            },
+            "start": Object {
+              "column": 22,
+              "line": 3,
+            },
+          },
+          "name": "Bar",
+          "nodeId": Object {
+            "nodeType": "Type",
+            "rawValue": 4,
+          },
+          "type": "Type",
+        },
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [],
+      },
+      "type": "File",
+      "useStatements": Array [],
+    },
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 6,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 13,
+      },
+      "packageName": null,
+      "privClasses": Array [],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [
+          Object {
+            "accessModifier": null,
+            "isReassignable": false,
+            "location": Object {
+              "end": Object {
+                "column": 17,
+                "line": 4,
+              },
+              "start": Object {
+                "column": 14,
+                "line": 1,
+              },
+            },
+            "name": "bar",
+            "nodeId": Object {
+              "nodeType": "InstancePropertyDeclaration",
+              "rawValue": 9,
+            },
+            "outRef": Object {
+              "name": "bar",
+              "refId": 119,
+            },
+            "type": "InstancePropertyDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "leftmostInRef": Object {
+                "name": "foo",
+                "refId": 116,
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 16,
+                  "line": 4,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 4,
+                },
+              },
+              "name": "foo.Bar",
+              "nodeId": Object {
+                "nodeType": "Type",
+                "rawValue": 8,
+              },
+              "type": "Type",
+            },
+          },
+          Object {
+            "accessModifier": null,
+            "isReassignable": false,
+            "location": Object {
+              "end": Object {
+                "column": 13,
+                "line": 5,
+              },
+              "start": Object {
+                "column": 14,
+                "line": 1,
+              },
+            },
+            "name": "baz",
+            "nodeId": Object {
+              "nodeType": "InstancePropertyDeclaration",
+              "rawValue": 11,
+            },
+            "outRef": Object {
+              "name": "baz",
+              "refId": 120,
+            },
+            "type": "InstancePropertyDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "leftmostInRef": Object {
+                "name": "Baz",
+                "refId": 118,
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 12,
+                  "line": 5,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 5,
+                },
+              },
+              "name": "Baz",
+              "nodeId": Object {
+                "nodeType": "Type",
+                "rawValue": 10,
+              },
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 6,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "name": "Qux",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 12,
+        },
+        "outRef": Object {
+          "name": "Qux",
+          "refId": 2,
+        },
+        "overridability": "Final",
+        "superClass": null,
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [
+          Object {
+            "alias": null,
+            "doesShadow": false,
+            "leftmostInRef": Object {
+              "name": "foo",
+              "refId": 116,
+            },
+            "location": Object {
+              "end": Object {
+                "column": 16,
+                "line": 2,
+              },
+              "start": Object {
+                "column": 4,
+                "line": 2,
+              },
+            },
+            "name": "foo.Baz",
+            "nodeId": Object {
+              "nodeType": "Use",
+              "rawValue": 7,
+            },
+            "outRef": Object {
+              "name": "Baz",
+              "refId": 118,
+            },
+            "type": "Use",
+          },
+        ],
+      },
+      "type": "File",
+      "useStatements": Array [],
+    },
+  ],
+  "refs": Array [
+    Object {
+      "name": "Bar",
+      "refId": 0,
+    },
+    Object {
+      "name": "Baz",
+      "refId": 1,
+    },
+    Object {
+      "name": "Qux",
+      "refId": 2,
+    },
+    Object {
+      "name": "null",
+      "refId": 3,
+    },
+    Object {
+      "name": "true",
+      "refId": 4,
+    },
+    Object {
+      "name": "false",
+      "refId": 5,
+    },
+    Object {
+      "name": "this",
+      "refId": 6,
+    },
+    Object {
+      "name": "super",
+      "refId": 7,
+    },
+    Object {
+      "name": "int",
+      "refId": 8,
+    },
+    Object {
+      "name": "byte",
+      "refId": 9,
+    },
+    Object {
+      "name": "short",
+      "refId": 10,
+    },
+    Object {
+      "name": "long",
+      "refId": 11,
+    },
+    Object {
+      "name": "char",
+      "refId": 12,
+    },
+    Object {
+      "name": "double",
+      "refId": 13,
+    },
+    Object {
+      "name": "float",
+      "refId": 14,
+    },
+    Object {
+      "name": "boolean",
+      "refId": 15,
+    },
+    Object {
+      "name": "void",
+      "refId": 16,
+    },
+    Object {
+      "name": "never",
+      "refId": 17,
+    },
+    Object {
+      "name": "sequence",
+      "refId": 18,
+    },
+    Object {
+      "name": "array",
+      "refId": 19,
+    },
+    Object {
+      "name": "rlist",
+      "refId": 20,
+    },
+    Object {
+      "name": "nullable",
+      "refId": 21,
+    },
+    Object {
+      "name": "java",
+      "refId": 22,
+    },
+    Object {
+      "name": "sand",
+      "refId": 23,
+    },
+    Object {
+      "name": "Appendable",
+      "refId": 24,
+    },
+    Object {
+      "name": "AutoCloseable",
+      "refId": 25,
+    },
+    Object {
+      "name": "CharSequence",
+      "refId": 26,
+    },
+    Object {
+      "name": "Cloneable",
+      "refId": 27,
+    },
+    Object {
+      "name": "Comparable",
+      "refId": 28,
+    },
+    Object {
+      "name": "Iterable",
+      "refId": 29,
+    },
+    Object {
+      "name": "Readable",
+      "refId": 30,
+    },
+    Object {
+      "name": "Runnable",
+      "refId": 31,
+    },
+    Object {
+      "name": "Boolean",
+      "refId": 32,
+    },
+    Object {
+      "name": "Byte",
+      "refId": 33,
+    },
+    Object {
+      "name": "Character",
+      "refId": 34,
+    },
+    Object {
+      "name": "Class",
+      "refId": 35,
+    },
+    Object {
+      "name": "ClassLoader",
+      "refId": 36,
+    },
+    Object {
+      "name": "ClassValue",
+      "refId": 37,
+    },
+    Object {
+      "name": "Compiler",
+      "refId": 38,
+    },
+    Object {
+      "name": "Double",
+      "refId": 39,
+    },
+    Object {
+      "name": "Enum",
+      "refId": 40,
+    },
+    Object {
+      "name": "Float",
+      "refId": 41,
+    },
+    Object {
+      "name": "InheritableThreadLocal",
+      "refId": 42,
+    },
+    Object {
+      "name": "Integer",
+      "refId": 43,
+    },
+    Object {
+      "name": "Long",
+      "refId": 44,
+    },
+    Object {
+      "name": "Math",
+      "refId": 45,
+    },
+    Object {
+      "name": "Number",
+      "refId": 46,
+    },
+    Object {
+      "name": "Object",
+      "refId": 47,
+    },
+    Object {
+      "name": "Package",
+      "refId": 48,
+    },
+    Object {
+      "name": "Process",
+      "refId": 49,
+    },
+    Object {
+      "name": "ProcessBuilder",
+      "refId": 50,
+    },
+    Object {
+      "name": "Runtime",
+      "refId": 51,
+    },
+    Object {
+      "name": "RuntimePermission",
+      "refId": 52,
+    },
+    Object {
+      "name": "SecurityManager",
+      "refId": 53,
+    },
+    Object {
+      "name": "Short",
+      "refId": 54,
+    },
+    Object {
+      "name": "StackTraceElement",
+      "refId": 55,
+    },
+    Object {
+      "name": "StrictMath",
+      "refId": 56,
+    },
+    Object {
+      "name": "String",
+      "refId": 57,
+    },
+    Object {
+      "name": "StringBuffer",
+      "refId": 58,
+    },
+    Object {
+      "name": "StringBuilder",
+      "refId": 59,
+    },
+    Object {
+      "name": "System",
+      "refId": 60,
+    },
+    Object {
+      "name": "Thread",
+      "refId": 61,
+    },
+    Object {
+      "name": "ThreadGroup",
+      "refId": 62,
+    },
+    Object {
+      "name": "ThreadLocal",
+      "refId": 63,
+    },
+    Object {
+      "name": "Throwable",
+      "refId": 64,
+    },
+    Object {
+      "name": "Void",
+      "refId": 65,
+    },
+    Object {
+      "name": "ArithmeticException",
+      "refId": 66,
+    },
+    Object {
+      "name": "ArrayIndexOutOfBoundsException",
+      "refId": 67,
+    },
+    Object {
+      "name": "ArrayStoreException",
+      "refId": 68,
+    },
+    Object {
+      "name": "ClassCastException",
+      "refId": 69,
+    },
+    Object {
+      "name": "ClassNotFoundException",
+      "refId": 70,
+    },
+    Object {
+      "name": "CloneNotSupportedException",
+      "refId": 71,
+    },
+    Object {
+      "name": "EnumConstantNotPresentException",
+      "refId": 72,
+    },
+    Object {
+      "name": "Exception",
+      "refId": 73,
+    },
+    Object {
+      "name": "IllegalAccessException",
+      "refId": 74,
+    },
+    Object {
+      "name": "IllegalArgumentException",
+      "refId": 75,
+    },
+    Object {
+      "name": "IllegalMonitorStateException",
+      "refId": 76,
+    },
+    Object {
+      "name": "IllegalStateException",
+      "refId": 77,
+    },
+    Object {
+      "name": "IllegalThreadStateException",
+      "refId": 78,
+    },
+    Object {
+      "name": "IndexOutOfBoundsException",
+      "refId": 79,
+    },
+    Object {
+      "name": "InstantiationException",
+      "refId": 80,
+    },
+    Object {
+      "name": "InterruptedException",
+      "refId": 81,
+    },
+    Object {
+      "name": "NegativeArraySizeException",
+      "refId": 82,
+    },
+    Object {
+      "name": "NoSuchFieldException",
+      "refId": 83,
+    },
+    Object {
+      "name": "NoSuchMethodException",
+      "refId": 84,
+    },
+    Object {
+      "name": "NullPointerException",
+      "refId": 85,
+    },
+    Object {
+      "name": "NumberFormatException",
+      "refId": 86,
+    },
+    Object {
+      "name": "ReflectiveOperationException",
+      "refId": 87,
+    },
+    Object {
+      "name": "RuntimeException",
+      "refId": 88,
+    },
+    Object {
+      "name": "SecurityException",
+      "refId": 89,
+    },
+    Object {
+      "name": "StringIndexOutOfBoundsException",
+      "refId": 90,
+    },
+    Object {
+      "name": "TypeNotPresentException",
+      "refId": 91,
+    },
+    Object {
+      "name": "UnsupportedOperationException",
+      "refId": 92,
+    },
+    Object {
+      "name": "AbstractMethodError",
+      "refId": 93,
+    },
+    Object {
+      "name": "AssertionError",
+      "refId": 94,
+    },
+    Object {
+      "name": "BootstrapMethodError",
+      "refId": 95,
+    },
+    Object {
+      "name": "ClassCircularityError",
+      "refId": 96,
+    },
+    Object {
+      "name": "ClassFormatError",
+      "refId": 97,
+    },
+    Object {
+      "name": "Error",
+      "refId": 98,
+    },
+    Object {
+      "name": "ExceptionInInitializerError",
+      "refId": 99,
+    },
+    Object {
+      "name": "IllegalAccessError",
+      "refId": 100,
+    },
+    Object {
+      "name": "IncompatibleClassChangeError",
+      "refId": 101,
+    },
+    Object {
+      "name": "InstantiationError",
+      "refId": 102,
+    },
+    Object {
+      "name": "InternalError",
+      "refId": 103,
+    },
+    Object {
+      "name": "LinkageError",
+      "refId": 104,
+    },
+    Object {
+      "name": "NoClassDefFoundError",
+      "refId": 105,
+    },
+    Object {
+      "name": "NoSuchFieldError",
+      "refId": 106,
+    },
+    Object {
+      "name": "NoSuchMethodError",
+      "refId": 107,
+    },
+    Object {
+      "name": "OutOfMemoryError",
+      "refId": 108,
+    },
+    Object {
+      "name": "StackOverflowError",
+      "refId": 109,
+    },
+    Object {
+      "name": "ThreadDeath",
+      "refId": 110,
+    },
+    Object {
+      "name": "UnknownError",
+      "refId": 111,
+    },
+    Object {
+      "name": "UnsatisfiedLinkError",
+      "refId": 112,
+    },
+    Object {
+      "name": "UnsupportedClassVersionError",
+      "refId": 113,
+    },
+    Object {
+      "name": "VerifyError",
+      "refId": 114,
+    },
+    Object {
+      "name": "VirtualMachineError",
+      "refId": 115,
+    },
+    Object {
+      "name": "foo",
+      "refId": 116,
+    },
+    Object {
+      "name": "q",
+      "refId": 117,
+    },
+    Object {
+      "name": "Baz",
+      "refId": 118,
+    },
+    Object {
+      "name": "bar",
+      "refId": 119,
+    },
+    Object {
+      "name": "baz",
+      "refId": 120,
+    },
+  ],
+}
+`;
+
 exports[`the binder binds files consistently: namedPackage 1`] = `
 Object {
   "fileNodes": Array [
