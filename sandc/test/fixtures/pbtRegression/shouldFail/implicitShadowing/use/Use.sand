@@ -1,4 +1,4 @@
-pub class Foo {
+pub class Use {
     use java.util.ArrayList;
     use rlist as ArrayList;
 }

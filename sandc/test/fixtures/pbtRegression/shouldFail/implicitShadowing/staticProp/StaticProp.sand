@@ -1,0 +1,3 @@
+pub class StaticProp {
+    static sand: int = 2;
+}

@@ -1,0 +1,5 @@
+package foo;
+
+pub class Foo extends Bar {
+
+}

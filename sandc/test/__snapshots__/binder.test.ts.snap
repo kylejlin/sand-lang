@@ -5908,12 +5908,14 @@ Object {
 }
 `;
 
-exports[`the binderthrows errors consistently: implicitShadowStaticMethodCopy 1`] = `[ReferenceError: Reference error at (2:4): Cannot shadow reference String]`;
+exports[`the binderthrows errors consistently: implicitShadowing/instanceProp 1`] = `[ReferenceError: Reference error at (1:23): Cannot shadow reference sand]`;
 
-exports[`the binderthrows errors consistently: implicitShadowUse 1`] = `[ReferenceError: Reference error at (3:4): Cannot shadow reference ArrayList]`;
+exports[`the binderthrows errors consistently: implicitShadowing/staticMethodCopy 1`] = `[ReferenceError: Reference error at (2:4): Cannot shadow reference String]`;
 
-exports[`the binderthrows errors consistently: propShadowing 1`] = `[ReferenceError: Reference error at (1:14): Cannot shadow reference sand]`;
+exports[`the binderthrows errors consistently: implicitShadowing/staticProp 1`] = `[ReferenceError: Reference error at (1:21): Cannot shadow reference sand]`;
 
-exports[`the binderthrows errors consistently: unqualifiedNamedFromDifferentlyNamed 1`] = `[ReferenceError: Reference error at (3:22): Cannot resolve reference "Foo".]`;
+exports[`the binderthrows errors consistently: implicitShadowing/use 1`] = `[ReferenceError: Reference error at (3:4): Cannot shadow reference ArrayList]`;
 
-exports[`the binderthrows errors consistently: unqualifiedNamedFromUnnamed 1`] = `[ReferenceError: Reference error at (1:26): Cannot resolve reference "Foo".]`;
+exports[`the binderthrows errors consistently: unqualifiedPackageRefs/namedFromDifferentlyNamed 1`] = `[ReferenceError: Reference error at (3:22): Cannot resolve reference "Bar".]`;
+
+exports[`the binderthrows errors consistently: unqualifiedPackageRefs/namedFromUnnamed 1`] = `[ReferenceError: Reference error at (1:26): Cannot resolve reference "Named".]`;

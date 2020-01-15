@@ -1,5 +1,0 @@
-package bar;
-
-pub class Bar extends Foo {
-    
-}
