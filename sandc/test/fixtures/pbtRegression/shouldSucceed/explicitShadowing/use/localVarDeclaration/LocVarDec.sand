@@ -1,0 +1,6 @@
+pub class LocVarDec {
+    pub foo() {
+        let! LocVarDec = 0int;
+        re! true = false;
+    }
+}

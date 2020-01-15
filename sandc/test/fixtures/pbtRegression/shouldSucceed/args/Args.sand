@@ -1,0 +1,5 @@
+pub class Args {
+    pub arg(a: int, b: String): String {
+        b.substring(a)
+    }
+}

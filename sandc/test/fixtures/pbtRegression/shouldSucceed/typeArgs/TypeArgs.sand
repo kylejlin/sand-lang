@@ -1,0 +1,3 @@
+pub class TypeArgs<T, U extends T> {
+    foo: U;
+}

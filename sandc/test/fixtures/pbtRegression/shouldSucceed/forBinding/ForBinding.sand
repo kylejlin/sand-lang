@@ -1,0 +1,7 @@
+pub class ForBinding {
+    pub foo(z: int[+]) {
+        for (x, y) in z.enumerate() {
+            x(y);
+        }
+    }
+}
