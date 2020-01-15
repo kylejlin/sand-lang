@@ -38,6 +38,7 @@ function getBinder(): Binder {
     const withPubClassOutBound = nodes.map(outBindFileNodePubClass);
 
     pushLanguageDefinedGlobalRefs();
+    pushPackageNames();
     pushRefsDefinedInUnnamedPackage();
 
     const inBound = withPubClassOutBound.map(bindFileNode);
@@ -57,6 +58,15 @@ function getBinder(): Binder {
 
   function pushLanguageDefinedGlobalRefs(): void {
     globallyAvailableReferenceNames.forEach(createAndPushRef);
+  }
+
+  function pushPackageNames(): void {
+    const packageNames = refsDefinedInEachPackage.getPackageNames();
+    packageNames.forEach(name => {
+      if (!canFindRef(name)) {
+        createAndPushRef(name);
+      }
+    });
   }
 
   function pushRefsDefinedInUnnamedPackage(): void {
@@ -744,6 +754,12 @@ class PackageRefCollector {
 
   getRefsDefinedIn(packageName: string | null): Ref[] {
     return this.refMap.get(packageName) || [];
+  }
+
+  getPackageNames(): string[] {
+    return Array.from(this.refMap.keys()).filter(
+      (x: string | null): x is string => x !== null,
+    );
   }
 }
 

@@ -1,0 +1,4 @@
+pub class Unnamed extends bar.Bar {
+    use foo.Foo as Baz;
+    t: Baz;
+}

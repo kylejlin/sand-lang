@@ -47,7 +47,7 @@ Object {
             },
             "outRef": Object {
               "name": "qux",
-              "refId": 116,
+              "refId": 117,
             },
             "signature": null,
             "type": "StaticMethodCopy",
@@ -76,7 +76,7 @@ Object {
             },
             "outRef": Object {
               "name": "q",
-              "refId": 117,
+              "refId": 118,
             },
             "signature": null,
             "type": "StaticMethodCopy",
@@ -105,14 +105,14 @@ Object {
                 },
                 "outRef": Object {
                   "name": "m",
-                  "refId": 120,
+                  "refId": 121,
                 },
                 "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "leftmostInRef": Object {
                     "name": "Foo2",
-                    "refId": 118,
+                    "refId": 119,
                   },
                   "location": Object {
                     "end": Object {
@@ -157,7 +157,7 @@ Object {
                         Object {
                           "inRef": Object {
                             "name": "m",
-                            "refId": 120,
+                            "refId": 121,
                           },
                           "location": Object {
                             "end": Object {
@@ -180,7 +180,7 @@ Object {
                       "callee": Object {
                         "inRef": Object {
                           "name": "q",
-                          "refId": 117,
+                          "refId": 118,
                         },
                         "location": Object {
                           "end": Object {
@@ -236,7 +236,7 @@ Object {
                         Object {
                           "inRef": Object {
                             "name": "n",
-                            "refId": 121,
+                            "refId": 122,
                           },
                           "location": Object {
                             "end": Object {
@@ -259,7 +259,7 @@ Object {
                       "callee": Object {
                         "inRef": Object {
                           "name": "qux",
-                          "refId": 116,
+                          "refId": 117,
                         },
                         "location": Object {
                           "end": Object {
@@ -317,7 +317,7 @@ Object {
                       Object {
                         "inRef": Object {
                           "name": "baz",
-                          "refId": 123,
+                          "refId": 124,
                         },
                         "location": Object {
                           "end": Object {
@@ -340,7 +340,7 @@ Object {
                     "callee": Object {
                       "inRef": Object {
                         "name": "qux",
-                        "refId": 116,
+                        "refId": 117,
                       },
                       "location": Object {
                         "end": Object {
@@ -386,7 +386,7 @@ Object {
                   "doesShadow": false,
                   "leftmostInRef": Object {
                     "name": "m",
-                    "refId": 120,
+                    "refId": 121,
                   },
                   "location": Object {
                     "end": Object {
@@ -405,7 +405,7 @@ Object {
                   },
                   "outRef": Object {
                     "name": "n",
-                    "refId": 121,
+                    "refId": 122,
                   },
                   "type": "Use",
                 },
@@ -414,7 +414,7 @@ Object {
                   "doesShadow": false,
                   "leftmostInRef": Object {
                     "name": "m",
-                    "refId": 120,
+                    "refId": 121,
                   },
                   "location": Object {
                     "end": Object {
@@ -433,7 +433,7 @@ Object {
                   },
                   "outRef": Object {
                     "name": "baz",
-                    "refId": 122,
+                    "refId": 123,
                   },
                   "type": "Use",
                 },
@@ -442,7 +442,7 @@ Object {
                   "doesShadow": true,
                   "leftmostInRef": Object {
                     "name": "n",
-                    "refId": 121,
+                    "refId": 122,
                   },
                   "location": Object {
                     "end": Object {
@@ -461,7 +461,7 @@ Object {
                   },
                   "outRef": Object {
                     "name": "baz",
-                    "refId": 123,
+                    "refId": 124,
                   },
                   "type": "Use",
                 },
@@ -487,7 +487,7 @@ Object {
             },
             "outRef": Object {
               "name": "foo",
-              "refId": 119,
+              "refId": 120,
             },
             "returnType": Object {
               "args": Array [],
@@ -564,7 +564,7 @@ Object {
             },
             "outRef": Object {
               "name": "Foo2",
-              "refId": 118,
+              "refId": 119,
             },
             "type": "Use",
           },
@@ -1140,36 +1140,40 @@ Object {
       "refId": 115,
     },
     Object {
-      "name": "qux",
+      "name": "com.foo",
       "refId": 116,
     },
     Object {
-      "name": "q",
+      "name": "qux",
       "refId": 117,
     },
     Object {
-      "name": "Foo2",
+      "name": "q",
       "refId": 118,
     },
     Object {
-      "name": "foo",
+      "name": "Foo2",
       "refId": 119,
     },
     Object {
-      "name": "m",
+      "name": "foo",
       "refId": 120,
     },
     Object {
-      "name": "n",
+      "name": "m",
       "refId": 121,
     },
     Object {
-      "name": "baz",
+      "name": "n",
       "refId": 122,
     },
     Object {
       "name": "baz",
       "refId": 123,
+    },
+    Object {
+      "name": "baz",
+      "refId": 124,
     },
   ],
 }
@@ -6184,7 +6188,7 @@ Object {
             },
             "outRef": Object {
               "name": "left",
-              "refId": 116,
+              "refId": 117,
             },
             "type": "InstancePropertyDeclaration",
             "valueType": Object {
@@ -6255,7 +6259,7 @@ Object {
             },
             "outRef": Object {
               "name": "middle",
-              "refId": 117,
+              "refId": 118,
             },
             "type": "InstancePropertyDeclaration",
             "valueType": Object {
@@ -6326,7 +6330,7 @@ Object {
             },
             "outRef": Object {
               "name": "right",
-              "refId": 118,
+              "refId": 119,
             },
             "type": "InstancePropertyDeclaration",
             "valueType": Object {
@@ -6449,14 +6453,14 @@ Object {
                 },
                 "outRef": Object {
                   "name": "n",
-                  "refId": 121,
+                  "refId": 122,
                 },
                 "type": "TypedArgDef",
                 "valueType": Object {
                   "args": Array [],
                   "leftmostInRef": Object {
                     "name": "T",
-                    "refId": 119,
+                    "refId": 120,
                   },
                   "location": Object {
                     "end": Object {
@@ -6513,7 +6517,7 @@ Object {
                     "args": Array [],
                     "leftmostInRef": Object {
                       "name": "T",
-                      "refId": 119,
+                      "refId": 120,
                     },
                     "location": Object {
                       "end": Object {
@@ -6536,7 +6540,7 @@ Object {
                   "value": Object {
                     "inRef": Object {
                       "name": "n",
-                      "refId": 121,
+                      "refId": 122,
                     },
                     "location": Object {
                       "end": Object {
@@ -6580,7 +6584,7 @@ Object {
             },
             "outRef": Object {
               "name": "qux",
-              "refId": 120,
+              "refId": 121,
             },
             "returnType": Object {
               "args": Array [],
@@ -6676,7 +6680,7 @@ Object {
             },
             "outRef": Object {
               "name": "T",
-              "refId": 119,
+              "refId": 120,
             },
             "type": "TypeArgDef",
           },
@@ -6728,7 +6732,7 @@ Object {
             },
             "outRef": Object {
               "name": "left",
-              "refId": 122,
+              "refId": 123,
             },
             "type": "InstancePropertyDeclaration",
             "valueType": Object {
@@ -6799,7 +6803,7 @@ Object {
             },
             "outRef": Object {
               "name": "middle",
-              "refId": 123,
+              "refId": 124,
             },
             "type": "InstancePropertyDeclaration",
             "valueType": Object {
@@ -6870,7 +6874,7 @@ Object {
             },
             "outRef": Object {
               "name": "right",
-              "refId": 124,
+              "refId": 125,
             },
             "type": "InstancePropertyDeclaration",
             "valueType": Object {
@@ -7417,40 +7421,913 @@ Object {
       "refId": 115,
     },
     Object {
-      "name": "left",
+      "name": "com.foobarbaz",
       "refId": 116,
     },
     Object {
-      "name": "middle",
+      "name": "left",
       "refId": 117,
     },
     Object {
-      "name": "right",
+      "name": "middle",
       "refId": 118,
     },
     Object {
-      "name": "T",
+      "name": "right",
       "refId": 119,
     },
     Object {
-      "name": "qux",
+      "name": "T",
       "refId": 120,
     },
     Object {
-      "name": "n",
+      "name": "qux",
       "refId": 121,
     },
     Object {
-      "name": "left",
+      "name": "n",
       "refId": 122,
     },
     Object {
-      "name": "middle",
+      "name": "left",
       "refId": 123,
     },
     Object {
-      "name": "right",
+      "name": "middle",
       "refId": 124,
+    },
+    Object {
+      "name": "right",
+      "refId": 125,
+    },
+  ],
+}
+`;
+
+exports[`the binder binds files consistently: qualifiedPackageItems 1`] = `
+Object {
+  "fileNodes": Array [
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 7,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 3,
+      },
+      "packageName": "bar",
+      "privClasses": Array [],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 7,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 5,
+          },
+        },
+        "name": "Bar",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 2,
+        },
+        "outRef": Object {
+          "name": "Bar",
+          "refId": 0,
+        },
+        "overridability": "Final",
+        "superClass": Object {
+          "args": Array [],
+          "leftmostInRef": Object {
+            "name": "Foo",
+            "refId": 118,
+          },
+          "location": Object {
+            "end": Object {
+              "column": 25,
+              "line": 5,
+            },
+            "start": Object {
+              "column": 22,
+              "line": 5,
+            },
+          },
+          "name": "Foo",
+          "nodeId": Object {
+            "nodeType": "Type",
+            "rawValue": 1,
+          },
+          "type": "Type",
+        },
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [],
+      },
+      "type": "File",
+      "useStatements": Array [
+        Object {
+          "alias": null,
+          "doesShadow": false,
+          "leftmostInRef": Object {
+            "name": "foo",
+            "refId": 117,
+          },
+          "location": Object {
+            "end": Object {
+              "column": 12,
+              "line": 3,
+            },
+            "start": Object {
+              "column": 0,
+              "line": 3,
+            },
+          },
+          "name": "foo.Foo",
+          "nodeId": Object {
+            "nodeType": "Use",
+            "rawValue": 0,
+          },
+          "outRef": Object {
+            "name": "Foo",
+            "refId": 118,
+          },
+          "type": "Use",
+        },
+      ],
+    },
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 5,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 8,
+      },
+      "packageName": "foo",
+      "privClasses": Array [],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [
+          Object {
+            "accessModifier": null,
+            "isReassignable": false,
+            "location": Object {
+              "end": Object {
+                "column": 16,
+                "line": 4,
+              },
+              "start": Object {
+                "column": 14,
+                "line": 3,
+              },
+            },
+            "name": "t",
+            "nodeId": Object {
+              "nodeType": "InstancePropertyDeclaration",
+              "rawValue": 6,
+            },
+            "outRef": Object {
+              "name": "t",
+              "refId": 119,
+            },
+            "type": "InstancePropertyDeclaration",
+            "valueType": Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "leftmostInRef": Object {
+                    "name": "bar",
+                    "refId": 116,
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 14,
+                      "line": 4,
+                    },
+                    "start": Object {
+                      "column": 7,
+                      "line": 4,
+                    },
+                  },
+                  "name": "bar.Bar",
+                  "nodeId": Object {
+                    "nodeType": "Type",
+                    "rawValue": 4,
+                  },
+                  "type": "Type",
+                },
+              ],
+              "leftmostInRef": Object {
+                "name": "nullable",
+                "refId": 21,
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 15,
+                  "line": 4,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 4,
+                },
+              },
+              "name": "nullable",
+              "nodeId": Object {
+                "nodeType": "Type",
+                "rawValue": 5,
+              },
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 5,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 3,
+          },
+        },
+        "name": "Foo",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 7,
+        },
+        "outRef": Object {
+          "name": "Foo",
+          "refId": 1,
+        },
+        "overridability": "Final",
+        "superClass": null,
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [],
+      },
+      "type": "File",
+      "useStatements": Array [],
+    },
+    Object {
+      "imports": Array [],
+      "location": Object {
+        "end": Object {
+          "column": 1,
+          "line": 4,
+        },
+        "start": Object {
+          "column": 0,
+          "line": 1,
+        },
+      },
+      "nodeId": Object {
+        "nodeType": "File",
+        "rawValue": 14,
+      },
+      "packageName": null,
+      "privClasses": Array [],
+      "pubClass": Object {
+        "copies": Array [],
+        "isPub": true,
+        "items": Array [
+          Object {
+            "accessModifier": null,
+            "isReassignable": false,
+            "location": Object {
+              "end": Object {
+                "column": 11,
+                "line": 3,
+              },
+              "start": Object {
+                "column": 34,
+                "line": 1,
+              },
+            },
+            "name": "t",
+            "nodeId": Object {
+              "nodeType": "InstancePropertyDeclaration",
+              "rawValue": 12,
+            },
+            "outRef": Object {
+              "name": "t",
+              "refId": 121,
+            },
+            "type": "InstancePropertyDeclaration",
+            "valueType": Object {
+              "args": Array [],
+              "leftmostInRef": Object {
+                "name": "Baz",
+                "refId": 120,
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 10,
+                  "line": 3,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 3,
+                },
+              },
+              "name": "Baz",
+              "nodeId": Object {
+                "nodeType": "Type",
+                "rawValue": 11,
+              },
+              "type": "Type",
+            },
+          },
+        ],
+        "location": Object {
+          "end": Object {
+            "column": 1,
+            "line": 4,
+          },
+          "start": Object {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "name": "Unnamed",
+        "nodeId": Object {
+          "nodeType": "Class",
+          "rawValue": 13,
+        },
+        "outRef": Object {
+          "name": "Unnamed",
+          "refId": 2,
+        },
+        "overridability": "Final",
+        "superClass": Object {
+          "args": Array [],
+          "leftmostInRef": Object {
+            "name": "bar",
+            "refId": 116,
+          },
+          "location": Object {
+            "end": Object {
+              "column": 33,
+              "line": 1,
+            },
+            "start": Object {
+              "column": 26,
+              "line": 1,
+            },
+          },
+          "name": "bar.Bar",
+          "nodeId": Object {
+            "nodeType": "Type",
+            "rawValue": 9,
+          },
+          "type": "Type",
+        },
+        "type": "Class",
+        "typeArgDefs": Array [],
+        "useStatements": Array [
+          Object {
+            "alias": "Baz",
+            "doesShadow": false,
+            "leftmostInRef": Object {
+              "name": "foo",
+              "refId": 117,
+            },
+            "location": Object {
+              "end": Object {
+                "column": 23,
+                "line": 2,
+              },
+              "start": Object {
+                "column": 4,
+                "line": 2,
+              },
+            },
+            "name": "foo.Foo",
+            "nodeId": Object {
+              "nodeType": "Use",
+              "rawValue": 10,
+            },
+            "outRef": Object {
+              "name": "Baz",
+              "refId": 120,
+            },
+            "type": "Use",
+          },
+        ],
+      },
+      "type": "File",
+      "useStatements": Array [],
+    },
+  ],
+  "refs": Array [
+    Object {
+      "name": "Bar",
+      "refId": 0,
+    },
+    Object {
+      "name": "Foo",
+      "refId": 1,
+    },
+    Object {
+      "name": "Unnamed",
+      "refId": 2,
+    },
+    Object {
+      "name": "null",
+      "refId": 3,
+    },
+    Object {
+      "name": "true",
+      "refId": 4,
+    },
+    Object {
+      "name": "false",
+      "refId": 5,
+    },
+    Object {
+      "name": "this",
+      "refId": 6,
+    },
+    Object {
+      "name": "super",
+      "refId": 7,
+    },
+    Object {
+      "name": "int",
+      "refId": 8,
+    },
+    Object {
+      "name": "byte",
+      "refId": 9,
+    },
+    Object {
+      "name": "short",
+      "refId": 10,
+    },
+    Object {
+      "name": "long",
+      "refId": 11,
+    },
+    Object {
+      "name": "char",
+      "refId": 12,
+    },
+    Object {
+      "name": "double",
+      "refId": 13,
+    },
+    Object {
+      "name": "float",
+      "refId": 14,
+    },
+    Object {
+      "name": "boolean",
+      "refId": 15,
+    },
+    Object {
+      "name": "void",
+      "refId": 16,
+    },
+    Object {
+      "name": "never",
+      "refId": 17,
+    },
+    Object {
+      "name": "sequence",
+      "refId": 18,
+    },
+    Object {
+      "name": "array",
+      "refId": 19,
+    },
+    Object {
+      "name": "rlist",
+      "refId": 20,
+    },
+    Object {
+      "name": "nullable",
+      "refId": 21,
+    },
+    Object {
+      "name": "java",
+      "refId": 22,
+    },
+    Object {
+      "name": "sand",
+      "refId": 23,
+    },
+    Object {
+      "name": "Appendable",
+      "refId": 24,
+    },
+    Object {
+      "name": "AutoCloseable",
+      "refId": 25,
+    },
+    Object {
+      "name": "CharSequence",
+      "refId": 26,
+    },
+    Object {
+      "name": "Cloneable",
+      "refId": 27,
+    },
+    Object {
+      "name": "Comparable",
+      "refId": 28,
+    },
+    Object {
+      "name": "Iterable",
+      "refId": 29,
+    },
+    Object {
+      "name": "Readable",
+      "refId": 30,
+    },
+    Object {
+      "name": "Runnable",
+      "refId": 31,
+    },
+    Object {
+      "name": "Boolean",
+      "refId": 32,
+    },
+    Object {
+      "name": "Byte",
+      "refId": 33,
+    },
+    Object {
+      "name": "Character",
+      "refId": 34,
+    },
+    Object {
+      "name": "Class",
+      "refId": 35,
+    },
+    Object {
+      "name": "ClassLoader",
+      "refId": 36,
+    },
+    Object {
+      "name": "ClassValue",
+      "refId": 37,
+    },
+    Object {
+      "name": "Compiler",
+      "refId": 38,
+    },
+    Object {
+      "name": "Double",
+      "refId": 39,
+    },
+    Object {
+      "name": "Enum",
+      "refId": 40,
+    },
+    Object {
+      "name": "Float",
+      "refId": 41,
+    },
+    Object {
+      "name": "InheritableThreadLocal",
+      "refId": 42,
+    },
+    Object {
+      "name": "Integer",
+      "refId": 43,
+    },
+    Object {
+      "name": "Long",
+      "refId": 44,
+    },
+    Object {
+      "name": "Math",
+      "refId": 45,
+    },
+    Object {
+      "name": "Number",
+      "refId": 46,
+    },
+    Object {
+      "name": "Object",
+      "refId": 47,
+    },
+    Object {
+      "name": "Package",
+      "refId": 48,
+    },
+    Object {
+      "name": "Process",
+      "refId": 49,
+    },
+    Object {
+      "name": "ProcessBuilder",
+      "refId": 50,
+    },
+    Object {
+      "name": "Runtime",
+      "refId": 51,
+    },
+    Object {
+      "name": "RuntimePermission",
+      "refId": 52,
+    },
+    Object {
+      "name": "SecurityManager",
+      "refId": 53,
+    },
+    Object {
+      "name": "Short",
+      "refId": 54,
+    },
+    Object {
+      "name": "StackTraceElement",
+      "refId": 55,
+    },
+    Object {
+      "name": "StrictMath",
+      "refId": 56,
+    },
+    Object {
+      "name": "String",
+      "refId": 57,
+    },
+    Object {
+      "name": "StringBuffer",
+      "refId": 58,
+    },
+    Object {
+      "name": "StringBuilder",
+      "refId": 59,
+    },
+    Object {
+      "name": "System",
+      "refId": 60,
+    },
+    Object {
+      "name": "Thread",
+      "refId": 61,
+    },
+    Object {
+      "name": "ThreadGroup",
+      "refId": 62,
+    },
+    Object {
+      "name": "ThreadLocal",
+      "refId": 63,
+    },
+    Object {
+      "name": "Throwable",
+      "refId": 64,
+    },
+    Object {
+      "name": "Void",
+      "refId": 65,
+    },
+    Object {
+      "name": "ArithmeticException",
+      "refId": 66,
+    },
+    Object {
+      "name": "ArrayIndexOutOfBoundsException",
+      "refId": 67,
+    },
+    Object {
+      "name": "ArrayStoreException",
+      "refId": 68,
+    },
+    Object {
+      "name": "ClassCastException",
+      "refId": 69,
+    },
+    Object {
+      "name": "ClassNotFoundException",
+      "refId": 70,
+    },
+    Object {
+      "name": "CloneNotSupportedException",
+      "refId": 71,
+    },
+    Object {
+      "name": "EnumConstantNotPresentException",
+      "refId": 72,
+    },
+    Object {
+      "name": "Exception",
+      "refId": 73,
+    },
+    Object {
+      "name": "IllegalAccessException",
+      "refId": 74,
+    },
+    Object {
+      "name": "IllegalArgumentException",
+      "refId": 75,
+    },
+    Object {
+      "name": "IllegalMonitorStateException",
+      "refId": 76,
+    },
+    Object {
+      "name": "IllegalStateException",
+      "refId": 77,
+    },
+    Object {
+      "name": "IllegalThreadStateException",
+      "refId": 78,
+    },
+    Object {
+      "name": "IndexOutOfBoundsException",
+      "refId": 79,
+    },
+    Object {
+      "name": "InstantiationException",
+      "refId": 80,
+    },
+    Object {
+      "name": "InterruptedException",
+      "refId": 81,
+    },
+    Object {
+      "name": "NegativeArraySizeException",
+      "refId": 82,
+    },
+    Object {
+      "name": "NoSuchFieldException",
+      "refId": 83,
+    },
+    Object {
+      "name": "NoSuchMethodException",
+      "refId": 84,
+    },
+    Object {
+      "name": "NullPointerException",
+      "refId": 85,
+    },
+    Object {
+      "name": "NumberFormatException",
+      "refId": 86,
+    },
+    Object {
+      "name": "ReflectiveOperationException",
+      "refId": 87,
+    },
+    Object {
+      "name": "RuntimeException",
+      "refId": 88,
+    },
+    Object {
+      "name": "SecurityException",
+      "refId": 89,
+    },
+    Object {
+      "name": "StringIndexOutOfBoundsException",
+      "refId": 90,
+    },
+    Object {
+      "name": "TypeNotPresentException",
+      "refId": 91,
+    },
+    Object {
+      "name": "UnsupportedOperationException",
+      "refId": 92,
+    },
+    Object {
+      "name": "AbstractMethodError",
+      "refId": 93,
+    },
+    Object {
+      "name": "AssertionError",
+      "refId": 94,
+    },
+    Object {
+      "name": "BootstrapMethodError",
+      "refId": 95,
+    },
+    Object {
+      "name": "ClassCircularityError",
+      "refId": 96,
+    },
+    Object {
+      "name": "ClassFormatError",
+      "refId": 97,
+    },
+    Object {
+      "name": "Error",
+      "refId": 98,
+    },
+    Object {
+      "name": "ExceptionInInitializerError",
+      "refId": 99,
+    },
+    Object {
+      "name": "IllegalAccessError",
+      "refId": 100,
+    },
+    Object {
+      "name": "IncompatibleClassChangeError",
+      "refId": 101,
+    },
+    Object {
+      "name": "InstantiationError",
+      "refId": 102,
+    },
+    Object {
+      "name": "InternalError",
+      "refId": 103,
+    },
+    Object {
+      "name": "LinkageError",
+      "refId": 104,
+    },
+    Object {
+      "name": "NoClassDefFoundError",
+      "refId": 105,
+    },
+    Object {
+      "name": "NoSuchFieldError",
+      "refId": 106,
+    },
+    Object {
+      "name": "NoSuchMethodError",
+      "refId": 107,
+    },
+    Object {
+      "name": "OutOfMemoryError",
+      "refId": 108,
+    },
+    Object {
+      "name": "StackOverflowError",
+      "refId": 109,
+    },
+    Object {
+      "name": "ThreadDeath",
+      "refId": 110,
+    },
+    Object {
+      "name": "UnknownError",
+      "refId": 111,
+    },
+    Object {
+      "name": "UnsatisfiedLinkError",
+      "refId": 112,
+    },
+    Object {
+      "name": "UnsupportedClassVersionError",
+      "refId": 113,
+    },
+    Object {
+      "name": "VerifyError",
+      "refId": 114,
+    },
+    Object {
+      "name": "VirtualMachineError",
+      "refId": 115,
+    },
+    Object {
+      "name": "bar",
+      "refId": 116,
+    },
+    Object {
+      "name": "foo",
+      "refId": 117,
+    },
+    Object {
+      "name": "Foo",
+      "refId": 118,
+    },
+    Object {
+      "name": "t",
+      "refId": 119,
+    },
+    Object {
+      "name": "Baz",
+      "refId": 120,
+    },
+    Object {
+      "name": "t",
+      "refId": 121,
     },
   ],
 }
