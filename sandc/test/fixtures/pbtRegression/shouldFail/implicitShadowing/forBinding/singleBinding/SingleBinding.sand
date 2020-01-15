@@ -1,0 +1,8 @@
+pub class SingleBinding {
+    foo() {
+        let i = 0;
+        for i in 0..9 {
+            
+        }
+    }
+}

@@ -1,0 +1,8 @@
+pub class FlatTupleBinding {
+    foo() {
+        let i = 0;
+        for (v, i) in (0..9).enumerate() {
+            
+        }
+    }
+}

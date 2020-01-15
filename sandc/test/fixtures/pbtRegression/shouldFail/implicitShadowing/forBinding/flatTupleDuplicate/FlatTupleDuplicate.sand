@@ -1,0 +1,7 @@
+pub class FlatTupleDuplictate {
+    pub foo() {
+        for (n, n) in 0..9 {
+            
+        }
+    }
+}

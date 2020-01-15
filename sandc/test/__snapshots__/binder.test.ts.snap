@@ -5908,13 +5908,27 @@ Object {
 }
 `;
 
+exports[`the binderthrows errors consistently: implicitShadowing/class 1`] = `[ReferenceError: ReferenceError: \`String\` (defined in the unnamed package) conflicts with another reference of the same name.]`;
+
+exports[`the binderthrows errors consistently: implicitShadowing/forBinding/flatTupleBinding 1`] = `[ReferenceError: Reference error at (4:16): Cannot shadow reference i]`;
+
+exports[`the binderthrows errors consistently: implicitShadowing/forBinding/flatTupleDuplicate 1`] = `[ReferenceError: Reference error at (3:16): Cannot shadow reference n]`;
+
+exports[`the binderthrows errors consistently: implicitShadowing/forBinding/singleBinding 1`] = `[ReferenceError: Reference error at (4:12): Cannot shadow reference i]`;
+
 exports[`the binderthrows errors consistently: implicitShadowing/instanceProp 1`] = `[ReferenceError: Reference error at (1:23): Cannot shadow reference sand]`;
+
+exports[`the binderthrows errors consistently: implicitShadowing/localVarDeclaration 1`] = `[ReferenceError: Reference error at (3:8): Cannot shadow reference true]`;
 
 exports[`the binderthrows errors consistently: implicitShadowing/staticMethodCopy 1`] = `[ReferenceError: Reference error at (2:4): Cannot shadow reference String]`;
 
 exports[`the binderthrows errors consistently: implicitShadowing/staticProp 1`] = `[ReferenceError: Reference error at (1:21): Cannot shadow reference sand]`;
 
+exports[`the binderthrows errors consistently: implicitShadowing/typeArgDef 1`] = `[ReferenceError: Reference error at (1:21): Cannot shadow reference int]`;
+
 exports[`the binderthrows errors consistently: implicitShadowing/use 1`] = `[ReferenceError: Reference error at (3:4): Cannot shadow reference ArrayList]`;
+
+exports[`the binderthrows errors consistently: privPackageItem 1`] = `[ReferenceError: Reference error at (1:28): Cannot resolve reference "Priv".]`;
 
 exports[`the binderthrows errors consistently: unqualifiedPackageRefs/namedFromDifferentlyNamed 1`] = `[ReferenceError: Reference error at (3:22): Cannot resolve reference "Bar".]`;
 
