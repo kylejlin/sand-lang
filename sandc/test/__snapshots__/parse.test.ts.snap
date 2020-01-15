@@ -23480,6 +23480,240 @@ Object {
 }
 `;
 
+exports[`the prebuilt parser parses files consistently: TrailingCopy.sand 1`] = `
+Object {
+  "imports": Array [],
+  "location": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+    },
+    "start": Object {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "packageName": null,
+  "privClasses": Array [],
+  "pubClass": Object {
+    "copies": Array [
+      Object {
+        "accessModifier": null,
+        "alias": null,
+        "location": Object {
+          "end": Object {
+            "column": 46,
+            "line": 2,
+          },
+          "start": Object {
+            "column": 4,
+            "line": 2,
+          },
+        },
+        "name": "sand.util.IndexOf.indexOf",
+        "signature": Object {
+          "argTypes": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "end": Object {
+                      "column": 39,
+                      "line": 2,
+                    },
+                    "start": Object {
+                      "column": 38,
+                      "line": 2,
+                    },
+                  },
+                  "name": "T",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "end": Object {
+                  "column": 41,
+                  "line": 2,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 2,
+                },
+              },
+              "name": "array",
+              "type": "Type",
+            },
+            Object {
+              "args": Array [],
+              "location": Object {
+                "end": Object {
+                  "column": 44,
+                  "line": 2,
+                },
+                "start": Object {
+                  "column": 43,
+                  "line": 2,
+                },
+              },
+              "name": "T",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "end": Object {
+              "column": 45,
+              "line": 2,
+            },
+            "start": Object {
+              "column": 34,
+              "line": 2,
+            },
+          },
+          "type": "StaticMethodCopySignature",
+          "typeArgs": Array [
+            Object {
+              "constraint": Object {
+                "constraintType": "None",
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 2,
+                },
+                "start": Object {
+                  "column": 35,
+                  "line": 2,
+                },
+              },
+              "name": "T",
+              "type": "TypeArgDef",
+            },
+          ],
+        },
+        "type": "StaticMethodCopy",
+      },
+      Object {
+        "accessModifier": null,
+        "alias": null,
+        "location": Object {
+          "end": Object {
+            "column": 47,
+            "line": 3,
+          },
+          "start": Object {
+            "column": 4,
+            "line": 3,
+          },
+        },
+        "name": "sand.util.IndexOf.indexOf",
+        "signature": Object {
+          "argTypes": Array [
+            Object {
+              "args": Array [
+                Object {
+                  "args": Array [],
+                  "location": Object {
+                    "end": Object {
+                      "column": 39,
+                      "line": 3,
+                    },
+                    "start": Object {
+                      "column": 38,
+                      "line": 3,
+                    },
+                  },
+                  "name": "T",
+                  "type": "Type",
+                },
+              ],
+              "location": Object {
+                "end": Object {
+                  "column": 42,
+                  "line": 3,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 3,
+                },
+              },
+              "name": "rlist",
+              "type": "Type",
+            },
+            Object {
+              "args": Array [],
+              "location": Object {
+                "end": Object {
+                  "column": 45,
+                  "line": 3,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 3,
+                },
+              },
+              "name": "T",
+              "type": "Type",
+            },
+          ],
+          "location": Object {
+            "end": Object {
+              "column": 46,
+              "line": 3,
+            },
+            "start": Object {
+              "column": 34,
+              "line": 3,
+            },
+          },
+          "type": "StaticMethodCopySignature",
+          "typeArgs": Array [
+            Object {
+              "constraint": Object {
+                "constraintType": "None",
+              },
+              "location": Object {
+                "end": Object {
+                  "column": 36,
+                  "line": 3,
+                },
+                "start": Object {
+                  "column": 35,
+                  "line": 3,
+                },
+              },
+              "name": "T",
+              "type": "TypeArgDef",
+            },
+          ],
+        },
+        "type": "StaticMethodCopy",
+      },
+    ],
+    "isPub": true,
+    "items": Array [],
+    "location": Object {
+      "end": Object {
+        "column": 1,
+        "line": 4,
+      },
+      "start": Object {
+        "column": 0,
+        "line": 1,
+      },
+    },
+    "name": "TrailingCopy",
+    "overridability": "Final",
+    "superClass": null,
+    "type": "Class",
+    "typeArgDefs": Array [],
+    "useStatements": Array [],
+  },
+  "type": "File",
+  "useStatements": Array [],
+}
+`;
+
 exports[`the prebuilt parser parses files consistently: Try.sand 1`] = `
 Object {
   "imports": Array [],

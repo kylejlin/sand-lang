@@ -1,0 +1,4 @@
+pub class TrailingCopy {
+    copy sand.util.IndexOf.indexOf<T>(T[], T);
+    copy sand.util.IndexOf.indexOf<T>(T[+], T);
+}

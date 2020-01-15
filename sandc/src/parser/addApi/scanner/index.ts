@@ -228,7 +228,9 @@ export default class SandScanner implements Scanner<TokenType> {
     ];
 
     if (
-      top === BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon
+      top ===
+        BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon ||
+      top === BraceRelativeLocation.BetweenCopyKeywordAndSemicolon
     ) {
       this.braceRelativeLocationStack.pop();
     }
@@ -248,6 +250,18 @@ export default class SandScanner implements Scanner<TokenType> {
     if (top === BraceRelativeLocation.InClassBody) {
       this.braceRelativeLocationStack.push(
         BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon,
+      );
+    }
+  }
+
+  onCopyKeywordEncountered(): void {
+    const top = this.braceRelativeLocationStack[
+      this.braceRelativeLocationStack.length - 1
+    ];
+
+    if (top === BraceRelativeLocation.InClassBody) {
+      this.braceRelativeLocationStack.push(
+        BraceRelativeLocation.BetweenCopyKeywordAndSemicolon,
       );
     }
   }
@@ -278,6 +292,7 @@ enum BraceRelativeLocation {
   BetweenClassKeywordAndStartOfClassBody = "BetweenClassKeywordAndStartOfClassBody",
   InClassBody = "InClassBody",
   BetweenAbstractMethodDeclarationAndSemicolon = "BetweenAbstractMethodDeclarationAndSemicolon",
+  BetweenCopyKeywordAndSemicolon = "BetweenCopyKeywordAndSemicolon",
   BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody = "BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody",
   InMethodBody = "InMethodBody",
   BetweenFirstTokenAndStartOfCompoundNode = "BetweenFirstTokenAndStartOfCompoundNode",
@@ -607,7 +622,13 @@ const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
   "use!",
   "use",
   "import",
-  "copy",
+  [
+    /copy\b/,
+    (scanner: SandScanner) => {
+      scanner.onCopyKeywordEncountered();
+      return "copy";
+    },
+  ],
   "as!",
   "as",
   "package",
