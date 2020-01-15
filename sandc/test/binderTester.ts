@@ -1,11 +1,11 @@
 import fs from "fs";
-import path, { parse } from "path";
+import path from "path";
 import allSettledShim from "promise.allsettled";
 import recursiveReadDir from "recursive-readdir";
 import { BoundFileNodesAndRefs } from "../src/binder";
+import { labelFileNodes } from "../src/labeler";
 import * as lst from "../src/lst";
 import parser from "../src/parser/prebuilt";
-import { labelFileNodes } from "../src/labeler";
 
 const allSettled: typeof allSettledShim =
   (Promise as any).allSettled || allSettledShim;
@@ -50,25 +50,54 @@ export class Tester {
 
   test(binder: Binder, binderDescription: string): void {
     this.testSuccessCases(binder, binderDescription);
+    this.testFailureCases(binder, binderDescription);
   }
 
   private testSuccessCases(binder: Binder, binderDescription: string): void {
-    test(
-      binderDescription + " labels individual files consistently",
-      async () => {
-        const contentMap = await this.successFileContent;
-        const filesInEachDir = partitionByDirectory(contentMap);
-        for (const [projectDir, fileContents] of filesInEachDir.entries()) {
-          const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
-            parser.parse(fileContent),
-          );
-          const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
-            .fileNodes;
-          const pbt = binder(labeledSyntaxTrees);
-          expect(pbt).toMatchSnapshot(projectDir);
+    test(binderDescription + " binds files consistently", async () => {
+      const contentMap = await this.successFileContent;
+      const filesInEachDir = partitionByDirectory(contentMap);
+      for (const [projectDir, fileContents] of filesInEachDir.entries()) {
+        const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
+          parser.parse(fileContent),
+        );
+        const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
+          .fileNodes;
+        const pbt = binder(labeledSyntaxTrees);
+        expect(pbt).toMatchSnapshot(projectDir);
+      }
+    });
+  }
+
+  private testFailureCases(binder: Binder, binderDescription: string): void {
+    test(binderDescription + "throws errors consistently", async () => {
+      const contentMap = await this.failureFileContent;
+      const filesInEachDir = partitionByDirectory(contentMap);
+      for (const [projectDir, fileContents] of filesInEachDir.entries()) {
+        const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
+          parser.parse(fileContent),
+        );
+        const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
+          .fileNodes;
+
+        let didError = false;
+
+        try {
+          const _pbt = binder(labeledSyntaxTrees);
+        } catch (e) {
+          didError = true;
+          expect(e).toMatchSnapshot(projectDir);
         }
-      },
-    );
+
+        if (!didError) {
+          throw new Error(
+            'Binding files in directory "' +
+              projectDir +
+              '" did not result in an error being thrown.',
+          );
+        }
+      }
+    });
   }
 }
 
@@ -104,10 +133,9 @@ function partitionByDirectory(
     { pathRelativeToDirectoryPartitionedInto: string; fileContent: string }[]
   > = new Map();
   files.forEach((fileContent, relativePath) => {
-    const [
-      outerDirectory,
-      pathRelativeToDirectoryPartitionedInto,
-    ] = relativePath.split("/", 1);
+    const parts = relativePath.split("/");
+    const outerDirectory = parts.slice(0, -1).join("/");
+    const pathRelativeToDirectoryPartitionedInto = parts[parts.length - 1];
 
     if (!partitioned.has(outerDirectory)) {
       partitioned.set(outerDirectory, []);
@@ -119,22 +147,4 @@ function partitionByDirectory(
     });
   });
   return partitioned;
-}
-
-/**
- * Like `Promise.all()`, but it won't reject until all the `Promise`s settle.
- *
- * This is in contrast to `Promise.all()`, which will immediately reject if any
- * of the `Promise`s reject.
- */
-function allSettledAndAllSucceeded<T>(
-  values: readonly (T | Promise<T>)[],
-): Promise<T[]> {
-  const all = Promise.all(values);
-  const settled = allSettled(values);
-  return all.catch(err =>
-    settled.then(() => {
-      throw err;
-    }),
-  );
 }

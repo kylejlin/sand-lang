@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`the binder labels individual files consistently: aliases 1`] = `
+exports[`the binder binds files consistently: aliases 1`] = `
 Object {
   "fileNodes": Array [
     Object {
@@ -1175,7 +1175,7 @@ Object {
 }
 `;
 
-exports[`the binder labels individual files consistently: factorial 1`] = `
+exports[`the binder binds files consistently: factorial 1`] = `
 Object {
   "fileNodes": Array [
     Object {
@@ -2342,7 +2342,7 @@ Object {
 }
 `;
 
-exports[`the binder labels individual files consistently: languageDefinedGlobals 1`] = `
+exports[`the binder binds files consistently: languageDefinedGlobals 1`] = `
 Object {
   "fileNodes": Array [
     Object {
@@ -3274,7 +3274,7 @@ Object {
 }
 `;
 
-exports[`the binder labels individual files consistently: namedPackage 1`] = `
+exports[`the binder binds files consistently: namedPackage 1`] = `
 Object {
   "fileNodes": Array [
     Object {
@@ -4591,7 +4591,7 @@ Object {
 }
 `;
 
-exports[`the binder labels individual files consistently: unnamedPackage 1`] = `
+exports[`the binder binds files consistently: unnamedPackage 1`] = `
 Object {
   "fileNodes": Array [
     Object {
@@ -5907,3 +5907,13 @@ Object {
   ],
 }
 `;
+
+exports[`the binderthrows errors consistently: implicitShadowStaticMethodCopy 1`] = `[ReferenceError: Reference error at (2:4): Cannot shadow reference String]`;
+
+exports[`the binderthrows errors consistently: implicitShadowUse 1`] = `[ReferenceError: Reference error at (3:4): Cannot shadow reference ArrayList]`;
+
+exports[`the binderthrows errors consistently: propShadowing 1`] = `[ReferenceError: Reference error at (1:14): Cannot shadow reference sand]`;
+
+exports[`the binderthrows errors consistently: unqualifiedNamedFromDifferentlyNamed 1`] = `[ReferenceError: Reference error at (3:22): Cannot resolve reference "Foo".]`;
+
+exports[`the binderthrows errors consistently: unqualifiedNamedFromUnnamed 1`] = `[ReferenceError: Reference error at (1:26): Cannot resolve reference "Foo".]`;

@@ -1,0 +1,3 @@
+pub class Foo {
+    copy sand.lang.String;
+}

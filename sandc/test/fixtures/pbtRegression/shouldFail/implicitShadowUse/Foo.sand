@@ -1,0 +1,4 @@
+pub class Foo {
+    use java.util.ArrayList;
+    use rlist as ArrayList;
+}
