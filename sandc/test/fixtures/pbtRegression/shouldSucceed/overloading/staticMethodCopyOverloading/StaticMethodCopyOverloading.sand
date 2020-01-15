@@ -1,0 +1,4 @@
+pub class StaticMethodCopyOverloading {
+    copy sand.util.IndexOf.indexOf<T>(T[], T);
+    copy sand.util.IndexOf.indexOf<T>(T[+], T);
+}

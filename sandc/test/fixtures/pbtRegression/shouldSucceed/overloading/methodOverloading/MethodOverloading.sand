@@ -1,0 +1,9 @@
+pub class MethodOverloading {
+    foo() {
+
+    }
+    
+    foo(n: int) {
+
+    }
+}

@@ -217,10 +217,15 @@ function getBinder(): Binder {
       getLeftmostIdentifierName(node.name),
       node.location.start,
     );
-    const outRef = createAndPushNonShadowingRef(
-      getStaticMethodCopyStatementRefName(node),
-      node.location.start,
-    );
+    const refName = getStaticMethodCopyStatementRefName(node);
+    const outRef = (() => {
+      const overloadedRef = findRef(refName);
+      if (overloadedRef !== null) {
+        return overloadedRef;
+      } else {
+        return createAndPushRef(refName);
+      }
+    })();
     return { ...node, signature, leftmostInRef, outRef };
   }
 

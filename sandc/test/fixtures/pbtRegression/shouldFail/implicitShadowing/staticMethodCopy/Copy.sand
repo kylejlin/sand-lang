@@ -1,3 +1,0 @@
-pub class Copy {
-    copy sand.lang.String;
-}
