@@ -1,0 +1,12 @@
+pub class CopiesSharingTypeArgDefs {
+    copy Foo.foo<T>(T[]);
+    copy Bar.bar<T>(T);
+}
+
+class Foo {
+
+}
+
+class Bar {
+    
+}

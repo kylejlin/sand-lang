@@ -227,9 +227,11 @@ function getBinder(): Binder {
   function bindStaticMethodCopySignature(
     node: lst.StaticMethodCopySignature,
   ): pbt.StaticMethodCopySignature {
-    const typeArgs = node.typeArgs.map(bindTypeArgDef);
-    const argTypes = node.argTypes.map(bindTypeNode);
-    return { ...node, typeArgs, argTypes };
+    return execInNewRefScope<pbt.StaticMethodCopySignature>(() => {
+      const typeArgs = node.typeArgs.map(bindTypeArgDef);
+      const argTypes = node.argTypes.map(bindTypeNode);
+      return { ...node, typeArgs, argTypes };
+    });
   }
 
   function outBindClassItem(node: lst.ClassItem): OutBoundClassItem {
