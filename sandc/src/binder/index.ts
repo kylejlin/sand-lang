@@ -33,12 +33,13 @@ function getBinder(): Binder {
   const allRefs: Ref[] = [];
   const refStack: Ref[] = [];
   const refsDefinedInEachPackage = new PackageRefCollector();
+  const unnamedPackageRef = createRef("<unnamed package>");
 
   function bindFileNodes(nodes: lst.FileNode[]): BoundFileNodesAndRefs {
     const withPubClassOutBound = nodes.map(outBindFileNodePubClass);
 
     pushLanguageDefinedGlobalRefs();
-    pushPackageNames();
+    pushLeftmostPartsOfPackageNames();
     pushRefsDefinedInUnnamedPackage();
 
     const inBound = withPubClassOutBound.map(bindFileNode);
@@ -60,11 +61,12 @@ function getBinder(): Binder {
     globallyAvailableReferenceNames.forEach(createAndPushRef);
   }
 
-  function pushPackageNames(): void {
+  function pushLeftmostPartsOfPackageNames(): void {
     const packageNames = refsDefinedInEachPackage.getPackageNames();
-    packageNames.forEach(name => {
-      if (!canFindRef(name)) {
-        createAndPushRef(name);
+    packageNames.forEach(fullName => {
+      const leftmost = getLeftmostIdentifierName(fullName);
+      if (!canFindRef(leftmost)) {
+        createAndPushRef(leftmost);
       }
     });
   }
@@ -90,6 +92,17 @@ function getBinder(): Binder {
         pushRefsDefinedInNamedPackage(node.packageName);
       }
 
+      const packageLeftmostInRef = (() => {
+        if (node.packageName !== null) {
+          const leftmostIdentifier = getLeftmostIdentifierName(
+            node.packageName,
+          );
+          return expectRef(leftmostIdentifier, node.location.start);
+        } else {
+          return unnamedPackageRef;
+        }
+      })();
+
       const imports = node.imports.map(bindImportStatement);
       const useStatements = node.useStatements.map(bindUseStatement);
 
@@ -99,6 +112,7 @@ function getBinder(): Binder {
 
       return {
         ...node,
+        packageLeftmostInRef,
         imports,
         useStatements,
         pubClass,

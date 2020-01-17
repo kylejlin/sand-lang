@@ -201,6 +201,8 @@ export interface FileNode {
   nodeId: NodeId<NodeType.File>;
 
   packageName: string | null;
+  packageLeftmostInRef: Ref;
+
   imports: Import[];
   useStatements: Use[];
   pubClass: PubClass;

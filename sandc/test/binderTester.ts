@@ -1,14 +1,10 @@
 import fs from "fs";
 import path from "path";
-import allSettledShim from "promise.allsettled";
 import recursiveReadDir from "recursive-readdir";
 import { BoundFileNodesAndRefs } from "../src/binder";
 import { labelFileNodes } from "../src/labeler";
 import * as lst from "../src/lst";
 import parser from "../src/parser/prebuilt";
-
-const allSettled: typeof allSettledShim =
-  (Promise as any).allSettled || allSettledShim;
 
 export type Binder = (nodes: lst.FileNode[]) => BoundFileNodesAndRefs;
 
@@ -58,12 +54,19 @@ export class Tester {
       const contentMap = await this.successFileContent;
       const filesInEachDir = partitionByDirectory(contentMap);
       for (const [projectDir, fileContents] of filesInEachDir.entries()) {
-        const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
-          parser.parse(fileContent),
-        );
-        const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
-          .fileNodes;
-        const pbt = binder(labeledSyntaxTrees);
+        let pbt: BoundFileNodesAndRefs;
+        try {
+          const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
+            parser.parse(fileContent),
+          );
+          const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
+            .fileNodes;
+          pbt = binder(labeledSyntaxTrees);
+        } catch (e) {
+          e.message += ' (error occurred in directory "' + projectDir + '")';
+          throw e;
+        }
+
         expect(pbt).toMatchSnapshot(projectDir);
       }
     });
