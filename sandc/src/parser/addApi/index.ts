@@ -77,6 +77,17 @@ export default function addApi(parser: SandParser) {
     };
   };
 
+  yy.identifier = function identifier(
+    name: string,
+    location: JisonNodeLocation,
+  ): Identifier {
+    return {
+      type: NodeType.Identifier,
+      name,
+      location: convertToRange(location),
+    };
+  };
+
   yy.buildDotChainIfNeeded = function buildDotChainIfNeeded(
     idents: Identifier[],
   ): Identifier | DotExpr {

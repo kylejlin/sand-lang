@@ -605,7 +605,7 @@ indexExpression
 
 callableExpression
     : identifier
-        { $$ = { type: yy.NodeType.Identifier, name: $1, location: yy.convertToRange(@$) }; }
+        { $$ = yy.identifier($1, @1); }
     | callableExpression "." NON_RESERVED_IDENTIFIER
         { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
     | functionCall "." NON_RESERVED_IDENTIFIER
@@ -632,9 +632,9 @@ optFunctionCallTypeArgs
 
 oneOrMoreDotSeparatedIdentifiers
     : identifier
-        { $$ = [{ type: yy.NodeType.Identifier, name: $1, location: yy.convertToRange(@$) }]; }
+        { $$ = [yy.identifier($1, @1)]; }
     | oneOrMoreDotSeparatedIdentifiers "." NON_RESERVED_IDENTIFIER
-        { $$ = $1.concat([{ type: yy.NodeType.Identifier, name: $3, location: yy.convertToRange(@3) }]); }
+        { $$ = $1.concat([yy.identifier($3, @3)]); }
     ;
 
 typedObjectLiteral

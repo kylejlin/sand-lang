@@ -399,7 +399,7 @@ case 206: case 207: case 208:
  this.$ = { type: yy.NodeType.IndexExpr, left: $$[$0-3], right: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 209:
- this.$ = { type: yy.NodeType.Identifier, name: $$[$0], location: yy.convertToRange(this._$) }; 
+ this.$ = yy.identifier($$[$0], _$[$0]); 
 break;
 case 210: case 211: case 212: case 213:
  this.$ = { type: yy.NodeType.DotExpr, left: $$[$0-2], right: $$[$0], location: yy.convertToRange(this._$) }; 
@@ -411,10 +411,10 @@ case 215:
  this.$ = { type: yy.NodeType.FunctionCall, callee: $$[$0-4], typeArgs: $$[$0-3], args: $$[$0-1], location: yy.convertToRange(this._$) }; 
 break;
 case 218:
- this.$ = [{ type: yy.NodeType.Identifier, name: $$[$0], location: yy.convertToRange(this._$) }]; 
+ this.$ = [yy.identifier($$[$0], _$[$0])]; 
 break;
 case 219:
- this.$ = $$[$0-2].concat([{ type: yy.NodeType.Identifier, name: $$[$0], location: yy.convertToRange(_$[$0]) }]); 
+ this.$ = $$[$0-2].concat([yy.identifier($$[$0], _$[$0])]); 
 break;
 case 220:
  this.$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($$[$0-2], _$[$0-2]), copies: [], entries: [], location: yy.convertToRange(this._$) }; 
