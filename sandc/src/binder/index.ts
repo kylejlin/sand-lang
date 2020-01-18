@@ -6,17 +6,17 @@ import { TextPosition } from "../textPosition";
 import nullishMap from "../utils/nullishMap";
 import { all as globallyAvailableReferenceNames } from "./globallyAvailableReferences";
 
-export interface BoundFileNodesAndRefs {
+export interface BindingResult {
   fileNodes: pbt.FileNode[];
   refs: Ref[];
 }
 
-export function bindFileNodes(nodes: lst.FileNode[]): BoundFileNodesAndRefs {
+export function bindFileNodes(nodes: lst.FileNode[]): BindingResult {
   return getBinder().bindFileNodes(nodes);
 }
 
 interface Binder {
-  bindFileNodes(nodes: lst.FileNode[]): BoundFileNodesAndRefs;
+  bindFileNodes(nodes: lst.FileNode[]): BindingResult;
 }
 
 type FileNodeWithOutBoundPubClass = Omit<lst.FileNode, "pubClass"> & {
@@ -35,7 +35,7 @@ function getBinder(): Binder {
   const refsDefinedInEachPackage = new PackageRefCollector();
   const unnamedPackageRef = createRef("<unnamed package>");
 
-  function bindFileNodes(nodes: lst.FileNode[]): BoundFileNodesAndRefs {
+  function bindFileNodes(nodes: lst.FileNode[]): BindingResult {
     const withPubClassOutBound = nodes.map(outBindFileNodePubClass);
 
     pushLanguageDefinedGlobalRefs();

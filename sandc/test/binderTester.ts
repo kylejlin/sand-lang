@@ -1,12 +1,12 @@
 import fs from "fs";
 import path from "path";
 import recursiveReadDir from "recursive-readdir";
-import { BoundFileNodesAndRefs } from "../src/binder";
+import { BindingResult } from "../src/binder";
 import { labelFileNodes } from "../src/labeler";
 import * as lst from "../src/lst";
 import parser from "../src/parser/prebuilt";
 
-export type Binder = (nodes: lst.FileNode[]) => BoundFileNodesAndRefs;
+export type Binder = (nodes: lst.FileNode[]) => BindingResult;
 
 export interface Directories {
   success: string;
@@ -54,7 +54,7 @@ export class Tester {
       const contentMap = await this.successFileContent;
       const filesInEachDir = partitionByDirectory(contentMap);
       for (const [projectDir, fileContents] of filesInEachDir.entries()) {
-        let pbt: BoundFileNodesAndRefs;
+        let pbt: BindingResult;
 
         try {
           const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
