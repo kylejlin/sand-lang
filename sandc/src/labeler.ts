@@ -2,19 +2,17 @@ import * as ast from "./ast";
 import * as lst from "./lst";
 import nullishMap from "./utils/nullishMap";
 
-export interface LabeledFileNodesAndIdReferents {
+export interface LabelingResult {
   fileNodes: lst.FileNode[];
-  referents: lst.Node[];
+  nodeIdReferents: lst.Node[];
 }
 
-export function labelFileNodes(
-  nodes: ast.FileNode[],
-): LabeledFileNodesAndIdReferents {
+export function labelFileNodes(nodes: ast.FileNode[]): LabelingResult {
   return getLabeler().labelFileNodes(nodes);
 }
 
 interface Labeler {
-  labelFileNodes(nodes: ast.FileNode[]): LabeledFileNodesAndIdReferents;
+  labelFileNodes(nodes: ast.FileNode[]): LabelingResult;
 }
 
 function getLabeler(): Labeler {
@@ -29,11 +27,9 @@ function getLabeler(): Labeler {
     return withNodeId;
   }
 
-  function labelFileNodes(
-    nodes: ast.FileNode[],
-  ): LabeledFileNodesAndIdReferents {
+  function labelFileNodes(nodes: ast.FileNode[]): LabelingResult {
     const labeled = nodes.map(labelFileNode);
-    return { fileNodes: labeled, referents };
+    return { fileNodes: labeled, nodeIdReferents: referents };
   }
 
   function labelFileNode(node: ast.FileNode): lst.FileNode {

@@ -4,12 +4,12 @@ import recursiveReadDir from "recursive-readdir";
 import parser from "../src/parser/prebuilt";
 import allSettledShim from "promise.allsettled";
 import * as ast from "../src/ast";
-import { LabeledFileNodesAndIdReferents } from "../src/labeler";
+import { LabelingResult } from "../src/labeler";
 
 const allSettled: typeof allSettledShim =
   (Promise as any).allSettled || allSettledShim;
 
-export type Labeler = (nodes: ast.FileNode[]) => LabeledFileNodesAndIdReferents;
+export type Labeler = (nodes: ast.FileNode[]) => LabelingResult;
 
 export interface Config {
   directory: string;
@@ -59,7 +59,7 @@ export class Tester {
         await allSettledAndAllSucceeded(
           Array.from(contentMap.entries()).map(
             async ([relativePath, contentProm]) => {
-              let labelingResults: LabeledFileNodesAndIdReferents;
+              let labelingResults: LabelingResult;
 
               try {
                 const content = await contentProm;
@@ -93,7 +93,7 @@ export class Tester {
         this.fileCombinations.forEach(filePaths => {
           const snapshotName = "[" + filePaths.join(", ") + "]";
 
-          let labelingResults: LabeledFileNodesAndIdReferents;
+          let labelingResults: LabelingResult;
 
           try {
             const fileNodes = filePaths
