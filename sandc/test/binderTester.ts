@@ -2,11 +2,11 @@ import fs from "fs";
 import path from "path";
 import recursiveReadDir from "recursive-readdir";
 import { BindingResult } from "../src/binder";
-import { labelFileNodes } from "../src/labeler";
+import { labelFileNodes, LabelingResult } from "../src/labeler";
 import * as lst from "../src/lst";
 import parser from "../src/parser/prebuilt";
 
-export type Binder = (nodes: lst.FileNode[]) => BindingResult;
+export type Binder = (nodes: LabelingResult) => BindingResult;
 
 export interface Directories {
   success: string;
@@ -60,9 +60,8 @@ export class Tester {
           const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
             parser.parse(fileContent),
           );
-          const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
-            .fileNodes;
-          pbt = binder(labeledSyntaxTrees);
+          const labelingResult = labelFileNodes(abstractSyntaxTrees);
+          pbt = binder(labelingResult);
         } catch (e) {
           e.message +=
             ' (this unexpected error occurred in directory "' +
@@ -81,13 +80,13 @@ export class Tester {
       const contentMap = await this.failureFileContent;
       const filesInEachDir = partitionByDirectory(contentMap);
       for (const [projectDir, fileContents] of filesInEachDir.entries()) {
-        let labeledSyntaxTrees: lst.FileNode[];
+        let labelingResult: LabelingResult;
 
         try {
           const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
             parser.parse(fileContent),
           );
-          labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees).fileNodes;
+          labelingResult = labelFileNodes(abstractSyntaxTrees);
         } catch (e) {
           e.message +=
             ' (this unexpected error occurred in directory "' +
@@ -99,7 +98,7 @@ export class Tester {
         let didError = false;
 
         try {
-          const _pbt = binder(labeledSyntaxTrees);
+          const _pbt = binder(labelingResult);
         } catch (e) {
           didError = true;
           expect(e).toMatchSnapshot(projectDir);

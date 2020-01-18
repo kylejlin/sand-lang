@@ -1,3 +1,4 @@
+import { LabelingResult } from "../labeler";
 import * as lst from "../lst";
 import { NodeType } from "../lst";
 import * as pbt from "../pbt";
@@ -8,15 +9,16 @@ import { all as globallyAvailableReferenceNames } from "./globallyAvailableRefer
 
 export interface BindingResult {
   fileNodes: pbt.FileNode[];
+  nodeIdReferents: pbt.Node[];
   refs: Ref[];
 }
 
-export function bindFileNodes(nodes: lst.FileNode[]): BindingResult {
-  return getBinder().bindFileNodes(nodes);
+export function bindFileNodes(labeled: LabelingResult): BindingResult {
+  return getBinder().bindFileNodes(labeled);
 }
 
 interface Binder {
-  bindFileNodes(nodes: lst.FileNode[]): BindingResult;
+  bindFileNodes(labeled: LabelingResult): BindingResult;
 }
 
 type FileNodeWithOutBoundPubClass = Omit<lst.FileNode, "pubClass"> & {
@@ -30,20 +32,25 @@ type OutBoundClassItem =
   | (lst.ClassItem & { outRef: Ref });
 
 function getBinder(): Binder {
+  const nodeIdReferents: pbt.Node[] = [];
+
   const allRefs: Ref[] = [];
   const refStack: Ref[] = [];
   const refsDefinedInEachPackage = new PackageRefCollector();
   const unnamedPackageRef = createRef("<unnamed package>");
 
-  function bindFileNodes(nodes: lst.FileNode[]): BindingResult {
-    const withPubClassOutBound = nodes.map(outBindFileNodePubClass);
+  function bindFileNodes(labeled: LabelingResult): BindingResult {
+    const withPubClassOutBound = labeled.fileNodes.map(outBindFileNodePubClass);
 
     pushLanguageDefinedGlobalRefs();
     pushLeftmostPartsOfPackageNames();
     pushRefsDefinedInUnnamedPackage();
 
     const inBound = withPubClassOutBound.map(bindFileNode);
-    return { fileNodes: inBound, refs: allRefs };
+
+    validateNodeIdReferents(labeled.nodeIdReferents);
+
+    return { fileNodes: inBound, nodeIdReferents, refs: allRefs };
   }
 
   function outBindFileNodePubClass(
@@ -54,6 +61,7 @@ function getBinder(): Binder {
       node.packageName,
     );
     const pubClass = { ...node.pubClass, outRef };
+
     return { ...node, pubClass };
   }
 
@@ -110,7 +118,7 @@ function getBinder(): Binder {
       const pubClass = inBindClass(node.pubClass);
       const privClasses = outBoundPrivClasses.map(inBindClass);
 
-      return {
+      const bound = {
         ...node,
         packageLeftmostInRef,
         imports,
@@ -118,6 +126,8 @@ function getBinder(): Binder {
         pubClass,
         privClasses,
       };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -148,11 +158,9 @@ function getBinder(): Binder {
       node.location.start,
     );
 
-    return {
-      ...node,
-      leftmostInRef,
-      outRef,
-    };
+    const bound = { ...node, leftmostInRef, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindUseStatement(node: lst.Use): pbt.Use {
@@ -169,11 +177,9 @@ function getBinder(): Binder {
       }
     })();
 
-    return {
-      ...node,
-      leftmostInRef,
-      outRef,
-    };
+    const bound = { ...node, leftmostInRef, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function outBindClass(node: lst.PubClass): lst.PubClass & { outRef: Ref };
@@ -181,6 +187,7 @@ function getBinder(): Binder {
 
   function outBindClass(node: lst.Class): lst.Class & { outRef: Ref } {
     const outRef = createAndPushNonShadowingRef(node.name, node.location.start);
+
     return { ...node, outRef };
   }
 
@@ -195,14 +202,27 @@ function getBinder(): Binder {
       const useStatements = node.useStatements.map(bindUseStatement);
       const outBoundItems = node.items.map(outBindClassItem);
       const items = outBoundItems.map(inBindClassItem);
-      return { ...node, copies, typeArgDefs, superClass, useStatements, items };
+
+      const bound = {
+        ...node,
+        copies,
+        typeArgDefs,
+        superClass,
+        useStatements,
+        items,
+      };
+      recordReferent(bound);
+      return bound;
     });
   }
 
   function bindTypeArgDef(node: lst.TypeArgDef): pbt.TypeArgDef {
     const outRef = createAndPushNonShadowingRef(node.name, node.location.start);
     const constraint = bindTypeConstraint(node.constraint);
-    return { ...node, constraint, outRef };
+
+    const bound = { ...node, constraint, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindTypeConstraint(node: lst.TypeConstraint): pbt.TypeConstraint {
@@ -211,6 +231,7 @@ function getBinder(): Binder {
         return node;
       case lst.ConstraintType.Extends: {
         const superType = bindTypeNode(node.superType);
+
         return { ...node, superType };
       }
     }
@@ -220,7 +241,10 @@ function getBinder(): Binder {
     const leftmostIdentName = getLeftmostIdentifierName(node.name);
     const leftmostInRef = expectRef(leftmostIdentName, node.location.start);
     const args = node.args.map(bindTypeNode);
-    return { ...node, args, leftmostInRef };
+
+    const bound = { ...node, args, leftmostInRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindStaticMethodCopyStatement(
@@ -240,7 +264,10 @@ function getBinder(): Binder {
         return createAndPushRef(refName);
       }
     })();
-    return { ...node, signature, leftmostInRef, outRef };
+
+    const bound = { ...node, signature, leftmostInRef, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindStaticMethodCopySignature(
@@ -249,7 +276,10 @@ function getBinder(): Binder {
     return execInNewRefScope<pbt.StaticMethodCopySignature>(() => {
       const typeArgs = node.typeArgs.map(bindTypeArgDef);
       const argTypes = node.argTypes.map(bindTypeNode);
-      return { ...node, typeArgs, argTypes };
+
+      const bound = { ...node, typeArgs, argTypes };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -270,6 +300,7 @@ function getBinder(): Binder {
         node.name,
         node.location.start,
       );
+
       return { ...node, outRef };
     }
   }
@@ -294,14 +325,20 @@ function getBinder(): Binder {
   ): pbt.StaticPropertyDeclaration {
     const valueType = nullishMap(node.valueType, bindTypeNode);
     const initialValue = bindExpr(node.initialValue);
-    return { ...node, valueType, initialValue };
+
+    const bound = { ...node, valueType, initialValue };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindInstancePropertyDeclaration(
     node: lst.InstancePropertyDeclaration & { outRef: Ref },
   ): pbt.InstancePropertyDeclaration {
     const valueType = bindTypeNode(node.valueType);
-    return { ...node, valueType };
+
+    const bound = { ...node, valueType };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindConcreteMethodDeclaration(
@@ -312,7 +349,10 @@ function getBinder(): Binder {
       const args = node.args.map(bindTypedArgDef);
       const returnType = nullishMap(node.returnType, bindTypeNode);
       const body = bindCompoundNode(node.body);
-      return { ...node, typeArgs, args, returnType, body };
+
+      const bound = { ...node, typeArgs, args, returnType, body };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -323,7 +363,10 @@ function getBinder(): Binder {
       const typeArgs = node.typeArgs.map(bindTypeArgDef);
       const args = node.args.map(bindTypedArgDef);
       const returnType = nullishMap(node.returnType, bindTypeNode);
-      return { ...node, typeArgs, args, returnType };
+
+      const bound = { ...node, typeArgs, args, returnType };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -337,7 +380,10 @@ function getBinder(): Binder {
     return execInNewRefScope<pbt.CompoundNode>(() => {
       const useStatements = node.useStatements.map(bindUseStatement);
       const nodes = node.nodes.map(bindCompoundNodeSubnode);
-      return { ...node, useStatements, nodes };
+
+      const bound = { ...node, useStatements, nodes };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -360,8 +406,10 @@ function getBinder(): Binder {
       case NodeType.Return:
         return bindReturnStatement(node);
       case NodeType.Break:
+        recordReferent(node);
         return node;
       case NodeType.Continue:
+        recordReferent(node);
         return node;
       case NodeType.Throw:
         return bindThrowStatement(node);
@@ -390,30 +438,45 @@ function getBinder(): Binder {
       : createAndPushNonShadowingRef(node.name, node.location.start);
     const valueType = nullishMap(node.valueType, bindTypeNode);
     const initialValue = bindExpr(node.initialValue);
-    return { ...node, outRef, valueType, initialValue };
+
+    const bound = { ...node, outRef, valueType, initialValue };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindAssignment(node: lst.Assignment): pbt.Assignment {
     const assignee = bindExpr(node.assignee);
     const value = bindExpr(node.value);
-    return { ...node, assignee, value };
+
+    const bound = { ...node, assignee, value };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindReturnStatement(node: lst.Return): pbt.Return {
     const value = nullishMap(node.value, bindExpr);
-    return { ...node, value };
+
+    const bound = { ...node, value };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindThrowStatement(node: lst.Throw): pbt.Throw {
     const value = bindExpr(node.value);
-    return { ...node, value };
+
+    const bound = { ...node, value };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindIfNode(node: lst.If): pbt.If {
     const condition = bindExpr(node.condition);
     const body = bindCompoundNode(node.body);
     const alternatives = node.alternatives.map(bindIfAlternative);
-    return { ...node, condition, body, alternatives };
+
+    const bound = { ...node, condition, body, alternatives };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindIfAlternative(node: lst.IfAlternative): pbt.IfAlternative {
@@ -428,23 +491,35 @@ function getBinder(): Binder {
   function bindElseIfNode(node: lst.ElseIf): pbt.ElseIf {
     const condition = bindExpr(node.condition);
     const body = bindCompoundNode(node.body);
-    return { ...node, condition, body };
+
+    const bound = { ...node, condition, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindElseNode(node: lst.Else): pbt.Else {
     const body = bindCompoundNode(node.body);
-    return { ...node, body };
+
+    const bound = { ...node, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindDoNode(node: lst.Do): pbt.Do {
     const body = bindCompoundNode(node.body);
-    return { ...node, body };
+
+    const bound = { ...node, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindTryStatement(node: lst.Try): pbt.Try {
     const body = bindCompoundNode(node.body);
     const catches = node.catches.map(bindCatchNode);
-    return { ...node, body, catches };
+
+    const bound = { ...node, body, catches };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindCatchNode(node: lst.Catch): pbt.Catch {
@@ -462,7 +537,10 @@ function getBinder(): Binder {
     return execInNewRefScope<pbt.BoundCatch>(() => {
       const arg = bindTypedArgDef(node.arg);
       const body = bindCompoundNode(node.body);
-      return { ...node, arg, body };
+
+      const bound = { ...node, arg, body };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -471,29 +549,44 @@ function getBinder(): Binder {
   ): pbt.RestrictedBindinglessCatch {
     const caughtTypes = node.caughtTypes.map(bindTypeNode);
     const body = bindCompoundNode(node.body);
-    return { ...node, caughtTypes, body };
+
+    const bound = { ...node, caughtTypes, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindCatchAllNode(node: lst.CatchAll): pbt.CatchAll {
     const body = bindCompoundNode(node.body);
-    return { ...node, body };
+
+    const bound = { ...node, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindWhileStatement(node: lst.While): pbt.While {
     const condition = bindExpr(node.condition);
     const body = bindCompoundNode(node.body);
-    return { ...node, condition, body };
+
+    const bound = { ...node, condition, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindLoopStatement(node: lst.Loop): pbt.Loop {
     const body = bindCompoundNode(node.body);
-    return { ...node, body };
+
+    const bound = { ...node, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindRepeatStatement(node: lst.Repeat): pbt.Repeat {
     const repetitions = bindExpr(node.repetitions);
     const body = bindCompoundNode(node.body);
-    return { ...node, repetitions, body };
+
+    const bound = { ...node, repetitions, body };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindForStatement(node: lst.For): pbt.For {
@@ -501,7 +594,10 @@ function getBinder(): Binder {
       const binding = bindForNodeBinding(node.binding);
       const iteratee = bindExpr(node.iteratee);
       const body = bindCompoundNode(node.body);
-      return { ...node, binding, iteratee, body };
+
+      const bound = { ...node, binding, iteratee, body };
+      recordReferent(bound);
+      return bound;
     });
   }
 
@@ -516,23 +612,32 @@ function getBinder(): Binder {
 
   function bindSingleBinding(node: lst.SingleBinding): pbt.SingleBinding {
     const outRef = createAndPushNonShadowingRef(node.name, node.location.start);
-    return { ...node, outRef };
+
+    const bound = { ...node, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindFlatTupleBinding(
     node: lst.FlatTupleBinding,
   ): pbt.FlatTupleBinding {
     const bindings = node.bindings.map(bindSingleBinding);
-    return { ...node, bindings };
+
+    const bound = { ...node, bindings };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindExpr(node: lst.Expr): pbt.Expr {
     switch (node.type) {
       case NodeType.NumberLiteral:
+        recordReferent(node);
         return node;
       case NodeType.StringLiteral:
+        recordReferent(node);
         return node;
       case NodeType.CharacterLiteral:
+        recordReferent(node);
         return node;
       case NodeType.Identifier:
         return bindIdentifier(node);
@@ -565,42 +670,63 @@ function getBinder(): Binder {
 
   function bindIdentifier(node: lst.Identifier): pbt.Identifier {
     const inRef = expectRef(node.name, node.location.start);
-    return { ...node, inRef };
+
+    const bound = { ...node, inRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindInfixExpr(node: lst.InfixExpr): pbt.InfixExpr {
     const left = bindExpr(node.left);
     const right = bindExpr(node.right);
-    return { ...node, left, right };
+
+    const bound = { ...node, left, right };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindPrefixExpr(node: lst.PrefixExpr): pbt.PrefixExpr {
     const right = bindExpr(node.right);
-    return { ...node, right };
+
+    const bound = { ...node, right };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindDotExpr(node: lst.DotExpr): pbt.DotExpr {
     const left = bindExpr(node.left);
-    return { ...node, left };
+
+    const bound = { ...node, left };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindIndexExpr(node: lst.IndexExpr): pbt.IndexExpr {
     const left = bindExpr(node.left);
     const right = bindExpr(node.right);
-    return { ...node, left, right };
+
+    const bound = { ...node, left, right };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindCastExpr(node: lst.CastExpr): pbt.CastExpr {
     const value = bindExpr(node.value);
     const targetType = bindTypeNode(node.targetType);
-    return { ...node, value, targetType };
+
+    const bound = { ...node, value, targetType };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindFunctionCall(node: lst.FunctionCall): pbt.FunctionCall {
     const callee = bindExpr(node.callee);
     const typeArgs = node.typeArgs.map(bindTypeNode);
     const args = node.args.map(bindExpr);
-    return { ...node, callee, typeArgs, args };
+
+    const bound = { ...node, callee, typeArgs, args };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindTypedObjectLiteral(
@@ -609,28 +735,43 @@ function getBinder(): Binder {
     const valueType = bindTypeNode(node.valueType);
     const copies = node.copies.map(bindObjectCopyNode);
     const entries = node.entries.map(bindObjectEntryNode);
-    return { ...node, valueType, copies, entries };
+
+    const bound = { ...node, valueType, copies, entries };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindObjectCopyNode(node: lst.ObjectCopy): pbt.ObjectCopy {
     const source = bindExpr(node.source);
-    return { ...node, source };
+
+    const bound = { ...node, source };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindObjectEntryNode(node: lst.ObjectEntry): pbt.ObjectEntry {
     const value = nullishMap(node.value, bindExpr);
-    return { ...node, value };
+
+    const bound = { ...node, value };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindArrayLiteral(node: lst.ArrayLiteral): pbt.ArrayLiteral {
     const elements = node.elements.map(bindExpr);
-    return { ...node, elements };
+
+    const bound = { ...node, elements };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindRangeLiteral(node: lst.RangeLiteral): pbt.RangeLiteral {
     const start = bindExpr(node.start);
     const end = bindExpr(node.end);
-    return { ...node, start, end };
+
+    const bound = { ...node, start, end };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindMagicFunctionLiteral(
@@ -639,13 +780,19 @@ function getBinder(): Binder {
     return execInNewRefScope<pbt.MagicFunctionLiteral>(() => {
       const args = node.args.map(bindUntypedArgDef);
       const body = bindMagicFunctionBody(node.body);
-      return { ...node, args, body };
+
+      const bound = { ...node, args, body };
+      recordReferent(bound);
+      return bound;
     });
   }
 
   function bindUntypedArgDef(node: lst.UntypedArgDef): pbt.UntypedArgDef {
     const outRef = createAndPushRef(node.name);
-    return { ...node, outRef };
+
+    const bound = { ...node, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindMagicFunctionBody(
@@ -753,6 +900,53 @@ function getBinder(): Binder {
     const val = callback();
     truncate(refStack, originalRefStackLen);
     return val;
+  }
+
+  function recordReferent<T extends pbt.Node>(referent: T): void {
+    nodeIdReferents[referent.nodeId.rawValue] = referent;
+  }
+
+  function validateNodeIdReferents(unboundReferents: lst.Node[]): void {
+    if (nodeIdReferents.length < unboundReferents.length) {
+      throw new Error(
+        "Internal error: nodeId " +
+          nodeIdReferents.length +
+          " is missing a referent. This indicates a bug in the binder.",
+      );
+    }
+
+    if (nodeIdReferents.length > unboundReferents.length) {
+      throw new Error(
+        "Internal error: the list of bound referents is longer than the list of unbound referents. This is impossible and indicates a bug in the binder.",
+      );
+    }
+
+    const indexOfMissingReferent = (nodeIdReferents as (
+      | pbt.Node
+      | undefined
+    )[]).indexOf(undefined);
+
+    if (indexOfMissingReferent !== -1) {
+      throw new Error(
+        "Internal error: nodeId " +
+          indexOfMissingReferent +
+          "is missing a referent. This indicates a bug in the binder.",
+      );
+    }
+
+    nodeIdReferents.forEach(bound => {
+      const unbound = unboundReferents[bound.nodeId.rawValue];
+      if (bound.type !== unbound.type) {
+        throw new Error(
+          "Internal error: For nodeId " +
+            bound.nodeId +
+            ", unbound referent is of type " +
+            NodeType[unbound.type] +
+            " but bound referent is of type " +
+            NodeType[bound.type],
+        );
+      }
+    });
   }
 
   return { bindFileNodes };
