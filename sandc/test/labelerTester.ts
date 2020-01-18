@@ -59,14 +59,21 @@ export class Tester {
         await allSettledAndAllSucceeded(
           Array.from(contentMap.entries()).map(
             async ([relativePath, contentProm]) => {
+              let labelingResults: LabeledFileNodesAndIdReferents;
+
               try {
                 const content = await contentProm;
                 const ast = parser.parse(content);
-                expect(labeler([ast])).toMatchSnapshot(relativePath);
+                labelingResults = labeler([ast]);
               } catch (e) {
-                e.message += " thrown when attempting to label " + relativePath;
+                e.message +=
+                  ' (this unexpected error was thrown when attempting to label "' +
+                  relativePath +
+                  '")';
                 throw e;
               }
+
+              expect(labelingResults).toMatchSnapshot(relativePath);
             },
           ),
         );
@@ -85,10 +92,23 @@ export class Tester {
         const contentMap = await promiseDotAllForMap(contentPromMap);
         this.fileCombinations.forEach(filePaths => {
           const snapshotName = "[" + filePaths.join(", ") + "]";
-          const fileNodes = filePaths
-            .map(path => contentMap.get(path)!)
-            .map(content => parser.parse(content));
-          expect(labeler(fileNodes)).toMatchSnapshot(snapshotName);
+
+          let labelingResults: LabeledFileNodesAndIdReferents;
+
+          try {
+            const fileNodes = filePaths
+              .map(path => contentMap.get(path)!)
+              .map(content => parser.parse(content));
+            labelingResults = labeler(fileNodes);
+          } catch (e) {
+            e.message +=
+              " (this unexpected error was thrown when attempting to label " +
+              snapshotName +
+              ")";
+            throw e;
+          }
+
+          expect(labelingResults).toMatchSnapshot(snapshotName);
         });
       },
     );

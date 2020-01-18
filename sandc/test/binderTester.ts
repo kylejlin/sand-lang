@@ -55,6 +55,7 @@ export class Tester {
       const filesInEachDir = partitionByDirectory(contentMap);
       for (const [projectDir, fileContents] of filesInEachDir.entries()) {
         let pbt: BoundFileNodesAndRefs;
+
         try {
           const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
             parser.parse(fileContent),
@@ -63,7 +64,10 @@ export class Tester {
             .fileNodes;
           pbt = binder(labeledSyntaxTrees);
         } catch (e) {
-          e.message += ' (error occurred in directory "' + projectDir + '")';
+          e.message +=
+            ' (this unexpected error occurred in directory "' +
+            projectDir +
+            '")';
           throw e;
         }
 
@@ -77,11 +81,20 @@ export class Tester {
       const contentMap = await this.failureFileContent;
       const filesInEachDir = partitionByDirectory(contentMap);
       for (const [projectDir, fileContents] of filesInEachDir.entries()) {
-        const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
-          parser.parse(fileContent),
-        );
-        const labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees)
-          .fileNodes;
+        let labeledSyntaxTrees: lst.FileNode[];
+
+        try {
+          const abstractSyntaxTrees = fileContents.map(({ fileContent }) =>
+            parser.parse(fileContent),
+          );
+          labeledSyntaxTrees = labelFileNodes(abstractSyntaxTrees).fileNodes;
+        } catch (e) {
+          e.message +=
+            ' (this unexpected error occurred in directory "' +
+            projectDir +
+            '")';
+          throw e;
+        }
 
         let didError = false;
 
