@@ -922,10 +922,9 @@ function getBinder(): Binder {
       );
     }
 
-    const indexOfMissingReferent = (nodeIdReferents as (
-      | pbt.Node
-      | undefined
-    )[]).indexOf(undefined);
+    const indexOfMissingReferent = sparseToDense(nodeIdReferents).indexOf(
+      undefined,
+    );
 
     if (indexOfMissingReferent !== -1) {
       throw new Error(
@@ -1015,4 +1014,8 @@ function getLeftmostIdentifierName(dotSeparatedIdentifiers: string): string {
 function getRightmostIdentifierName(dotSeparatedIdentifiers: string): string {
   const idents = dotSeparatedIdentifiers.split(".");
   return idents[idents.length - 1];
+}
+
+function sparseToDense<T>(sparse: T[]): (T | undefined)[] {
+  return Array.from(sparse.values());
 }
