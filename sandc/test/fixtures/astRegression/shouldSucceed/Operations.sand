@@ -33,6 +33,11 @@ pub class Operations {
             2 > 3,
             2 >= 3,
 
+            2 ~< 3,
+            2 ~<= 3,
+            2 ~> 3,
+            2 ~>= 3,
+
             true && false,
             true || false,
         ]

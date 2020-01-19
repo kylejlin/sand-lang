@@ -19269,7 +19269,7 @@ Object {
   "location": Object {
     "end": Object {
       "column": 1,
-      "line": 52,
+      "line": 57,
     },
     "start": Object {
       "column": 0,
@@ -19890,7 +19890,7 @@ Object {
           "location": Object {
             "end": Object {
               "column": 5,
-              "line": 39,
+              "line": 44,
             },
             "start": Object {
               "column": 15,
@@ -20492,12 +20492,180 @@ Object {
                   "left": Object {
                     "location": Object {
                       "end": Object {
-                        "column": 16,
+                        "column": 13,
                         "line": 36,
                       },
                       "start": Object {
                         "column": 12,
                         "line": 36,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "2",
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 36,
+                    },
+                    "start": Object {
+                      "column": 12,
+                      "line": 36,
+                    },
+                  },
+                  "operation": "~<",
+                  "right": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 18,
+                        "line": 36,
+                      },
+                      "start": Object {
+                        "column": 17,
+                        "line": 36,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "3",
+                  },
+                  "type": "InfixExpr",
+                },
+                Object {
+                  "left": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 13,
+                        "line": 37,
+                      },
+                      "start": Object {
+                        "column": 12,
+                        "line": 37,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "2",
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 19,
+                      "line": 37,
+                    },
+                    "start": Object {
+                      "column": 12,
+                      "line": 37,
+                    },
+                  },
+                  "operation": "~<=",
+                  "right": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 19,
+                        "line": 37,
+                      },
+                      "start": Object {
+                        "column": 18,
+                        "line": 37,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "3",
+                  },
+                  "type": "InfixExpr",
+                },
+                Object {
+                  "left": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 13,
+                        "line": 38,
+                      },
+                      "start": Object {
+                        "column": 12,
+                        "line": 38,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "2",
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 18,
+                      "line": 38,
+                    },
+                    "start": Object {
+                      "column": 12,
+                      "line": 38,
+                    },
+                  },
+                  "operation": "~>",
+                  "right": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 18,
+                        "line": 38,
+                      },
+                      "start": Object {
+                        "column": 17,
+                        "line": 38,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "3",
+                  },
+                  "type": "InfixExpr",
+                },
+                Object {
+                  "left": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 13,
+                        "line": 39,
+                      },
+                      "start": Object {
+                        "column": 12,
+                        "line": 39,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "2",
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 19,
+                      "line": 39,
+                    },
+                    "start": Object {
+                      "column": 12,
+                      "line": 39,
+                    },
+                  },
+                  "operation": "~>=",
+                  "right": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 19,
+                        "line": 39,
+                      },
+                      "start": Object {
+                        "column": 18,
+                        "line": 39,
+                      },
+                    },
+                    "type": "NumberLiteral",
+                    "value": "3",
+                  },
+                  "type": "InfixExpr",
+                },
+                Object {
+                  "left": Object {
+                    "location": Object {
+                      "end": Object {
+                        "column": 16,
+                        "line": 41,
+                      },
+                      "start": Object {
+                        "column": 12,
+                        "line": 41,
                       },
                     },
                     "name": "true",
@@ -20506,11 +20674,11 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 25,
-                      "line": 36,
+                      "line": 41,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 36,
+                      "line": 41,
                     },
                   },
                   "operation": "&&",
@@ -20518,11 +20686,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 25,
-                        "line": 36,
+                        "line": 41,
                       },
                       "start": Object {
                         "column": 20,
-                        "line": 36,
+                        "line": 41,
                       },
                     },
                     "name": "false",
@@ -20535,11 +20703,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 16,
-                        "line": 37,
+                        "line": 42,
                       },
                       "start": Object {
                         "column": 12,
-                        "line": 37,
+                        "line": 42,
                       },
                     },
                     "name": "true",
@@ -20548,11 +20716,11 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 25,
-                      "line": 37,
+                      "line": 42,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 37,
+                      "line": 42,
                     },
                   },
                   "operation": "||",
@@ -20560,11 +20728,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 25,
-                        "line": 37,
+                        "line": 42,
                       },
                       "start": Object {
                         "column": 20,
-                        "line": 37,
+                        "line": 42,
                       },
                     },
                     "name": "false",
@@ -20576,7 +20744,7 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 9,
-                  "line": 38,
+                  "line": 43,
                 },
                 "start": Object {
                   "column": 8,
@@ -20595,7 +20763,7 @@ Object {
         "location": Object {
           "end": Object {
             "column": 5,
-            "line": 39,
+            "line": 44,
           },
           "start": Object {
             "column": 21,
@@ -20615,11 +20783,11 @@ Object {
           "location": Object {
             "end": Object {
               "column": 5,
-              "line": 47,
+              "line": 52,
             },
             "start": Object {
               "column": 16,
-              "line": 41,
+              "line": 46,
             },
           },
           "nodes": Array [
@@ -20629,11 +20797,11 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 14,
-                      "line": 43,
+                      "line": 48,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 43,
+                      "line": 48,
                     },
                   },
                   "type": "NumberLiteral",
@@ -20643,11 +20811,11 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 17,
-                      "line": 44,
+                      "line": 49,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 44,
+                      "line": 49,
                     },
                   },
                   "operation": "!",
@@ -20655,11 +20823,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 17,
-                        "line": 44,
+                        "line": 49,
                       },
                       "start": Object {
                         "column": 13,
-                        "line": 44,
+                        "line": 49,
                       },
                     },
                     "name": "true",
@@ -20671,11 +20839,11 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 42,
-                      "line": 45,
+                      "line": 50,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 45,
+                      "line": 50,
                     },
                   },
                   "operation": "~",
@@ -20685,11 +20853,11 @@ Object {
                         "location": Object {
                           "end": Object {
                             "column": 21,
-                            "line": 45,
+                            "line": 50,
                           },
                           "start": Object {
                             "column": 14,
-                            "line": 45,
+                            "line": 50,
                           },
                         },
                         "type": "StringLiteral",
@@ -20699,11 +20867,11 @@ Object {
                         "location": Object {
                           "end": Object {
                             "column": 31,
-                            "line": 45,
+                            "line": 50,
                           },
                           "start": Object {
                             "column": 23,
-                            "line": 45,
+                            "line": 50,
                           },
                         },
                         "type": "StringLiteral",
@@ -20713,11 +20881,11 @@ Object {
                         "location": Object {
                           "end": Object {
                             "column": 41,
-                            "line": 45,
+                            "line": 50,
                           },
                           "start": Object {
                             "column": 33,
-                            "line": 45,
+                            "line": 50,
                           },
                         },
                         "type": "StringLiteral",
@@ -20727,11 +20895,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 42,
-                        "line": 45,
+                        "line": 50,
                       },
                       "start": Object {
                         "column": 13,
-                        "line": 45,
+                        "line": 50,
                       },
                     },
                     "type": "ArrayLiteral",
@@ -20742,11 +20910,11 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 9,
-                  "line": 46,
+                  "line": 51,
                 },
                 "start": Object {
                   "column": 8,
-                  "line": 42,
+                  "line": 47,
                 },
               },
               "type": "ArrayLiteral",
@@ -20761,7 +20929,7 @@ Object {
         "location": Object {
           "end": Object {
             "column": 5,
-            "line": 47,
+            "line": 52,
           },
           "start": Object {
             "column": 21,
@@ -20781,11 +20949,11 @@ Object {
           "location": Object {
             "end": Object {
               "column": 5,
-              "line": 51,
+              "line": 56,
             },
             "start": Object {
               "column": 12,
-              "line": 49,
+              "line": 54,
             },
           },
           "nodes": Array [
@@ -20796,11 +20964,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 16,
-                        "line": 50,
+                        "line": 55,
                       },
                       "start": Object {
                         "column": 9,
-                        "line": 50,
+                        "line": 55,
                       },
                     },
                     "type": "StringLiteral",
@@ -20810,11 +20978,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 26,
-                        "line": 50,
+                        "line": 55,
                       },
                       "start": Object {
                         "column": 18,
-                        "line": 50,
+                        "line": 55,
                       },
                     },
                     "type": "StringLiteral",
@@ -20824,11 +20992,11 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 36,
-                        "line": 50,
+                        "line": 55,
                       },
                       "start": Object {
                         "column": 28,
-                        "line": 50,
+                        "line": 55,
                       },
                     },
                     "type": "StringLiteral",
@@ -20838,11 +21006,11 @@ Object {
                 "location": Object {
                   "end": Object {
                     "column": 37,
-                    "line": 50,
+                    "line": 55,
                   },
                   "start": Object {
                     "column": 8,
-                    "line": 50,
+                    "line": 55,
                   },
                 },
                 "type": "ArrayLiteral",
@@ -20850,22 +21018,22 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 40,
-                  "line": 50,
+                  "line": 55,
                 },
                 "start": Object {
                   "column": 8,
-                  "line": 50,
+                  "line": 55,
                 },
               },
               "right": Object {
                 "location": Object {
                   "end": Object {
                     "column": 39,
-                    "line": 50,
+                    "line": 55,
                   },
                   "start": Object {
                     "column": 38,
-                    "line": 50,
+                    "line": 55,
                   },
                 },
                 "type": "NumberLiteral",
@@ -20883,7 +21051,7 @@ Object {
         "location": Object {
           "end": Object {
             "column": 5,
-            "line": 51,
+            "line": 56,
           },
           "start": Object {
             "column": 21,
@@ -20899,7 +21067,7 @@ Object {
     "location": Object {
       "end": Object {
         "column": 1,
-        "line": 52,
+        "line": 57,
       },
       "start": Object {
         "column": 0,
@@ -30059,7 +30227,7 @@ exports[`the prebuilt parser throws parse errors consistently: assignments/Assig
 [Error: Parse error on line 3:
 ... assExpr() { x(a = b;) } }
 --------------------^
-Expecting ')', '<', '>', ',', '[', ']', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '=']
+Expecting ')', '<', '>', ',', '[', ']', '+', '-', '**', '*', '/', '%', '<=', '>=', '~<', '~<=', '~>', '~>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '=']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: assignments/AssignmentExpression.sand error line number 1`] = `3`;
@@ -30068,7 +30236,7 @@ exports[`the prebuilt parser throws parse errors consistently: assignments/Missi
 [Error: Parse error on line 4:
 ...ngSemi() { a = b } }
 --------------------^
-Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '}']
+Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '~<', '~<=', '~>', '~>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: assignments/MissingSemicolon.sand error line number 1`] = `4`;
@@ -30077,7 +30245,7 @@ exports[`the prebuilt parser throws parse errors consistently: genericFunctionCa
 [Error: Parse error on line 3:
 ... { foo() { bar<T extends String>()...
 --------------------^
-Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '|', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '|', '-', '**', '*', '/', '%', '<=', '>=', '~<', '~<=', '~>', '~>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: genericFunctionCall/Extends.sand error line number 1`] = `3`;
@@ -30131,7 +30299,7 @@ exports[`the prebuilt parser throws parse errors consistently: localVariableDecl
 [Error: Parse error on line 4:
 ...() { let bar = 2 } }
 --------------------^
-Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '}']
+Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '~<', '~<=', '~>', '~>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: localVariableDeclarations/MissingSemicolon.sand error line number 1`] = `4`;
@@ -30167,7 +30335,7 @@ exports[`the prebuilt parser throws parse errors consistently: return/MissingSem
 [Error: Parse error on line 4:
 ...emi() { return 8 } }
 --------------------^
-Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '}']
+Expecting ';', '<', '>', '[', '+', '-', '**', '*', '/', '%', '<=', '>=', '~<', '~<=', '~>', '~>=', '==', '!=', '~=', '&&', '||', '..=', '..', 'as!', got '}']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: return/MissingSemicolon.sand error line number 1`] = `4`;
@@ -30194,7 +30362,7 @@ exports[`the prebuilt parser throws parse errors consistently: typedObjectLitera
 [Error: Parse error on line 3:
 ...xtends() { Foo<T extends ArrayList...
 --------------------^
-Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '|', '-', '**', '*', '/', '%', '<=', '>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
+Expecting ';', 'as', '(', ')', '<', '>', ',', '{', '}', '?', '[', ']', '+', '=', '**=', '*=', '/=', '%=', '+=', '-=', '|', '-', '**', '*', '/', '%', '<=', '>=', '~<', '~<=', '~>', '~>=', '==', '!=', '~=', '&&', '||', '.', 'FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET', '..=', '..', 'as!', got 'extends']
 `;
 
 exports[`the prebuilt parser throws parse errors consistently: typedObjectLiteral/Extends.sand error line number 1`] = `3`;

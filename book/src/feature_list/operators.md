@@ -16,7 +16,8 @@ Sand has most of the operator expressions you're familiar with from Java:
 Sand also has the following operator expressions:
 
 - `**` - exponentiation
-- `~=` - `.equals()` equality
+- `~=` - abstract (`.equals()`) equality
+- `~<`, `~<=`, `~>`, `~>=` - abstract (`.compareTo()`) comparison
 - `~` - a prefix operator that converts an array to a resizable list
 
 ## Statements
