@@ -386,10 +386,10 @@ export type TokenType =
   | "%"
   | "-"
   | "+"
+  | "~="
   | "~"
   | "=="
   | "!="
-  | "~="
   | "<"
   | "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET"
   | "<="
@@ -508,10 +508,10 @@ const TOKEN_TYPES: TokenType[] = [
   "%",
   "-",
   "+",
+  "~=",
   "~",
   "==",
   "!=",
-  "~=",
   "<",
   "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET",
   "<=",
