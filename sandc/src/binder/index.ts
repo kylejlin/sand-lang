@@ -231,7 +231,6 @@ function getBinder(): Binder {
         return node;
       case lst.ConstraintType.Extends: {
         const superType = bindTypeNode(node.superType);
-
         return { ...node, superType };
       }
     }
@@ -300,7 +299,6 @@ function getBinder(): Binder {
         node.name,
         node.location.start,
       );
-
       return { ...node, outRef };
     }
   }
@@ -370,10 +368,13 @@ function getBinder(): Binder {
     });
   }
 
-  function bindTypedArgDef(def: lst.TypedArgDef): pbt.TypedArgDef {
-    const outRef = createAndPushRef(def.name);
-    const valueType = bindTypeNode(def.valueType);
-    return { ...def, valueType, outRef };
+  function bindTypedArgDef(node: lst.TypedArgDef): pbt.TypedArgDef {
+    const outRef = createAndPushRef(node.name);
+    const valueType = bindTypeNode(node.valueType);
+
+    const bound = { ...node, valueType, outRef };
+    recordReferent(bound);
+    return bound;
   }
 
   function bindCompoundNode(node: lst.CompoundNode): pbt.CompoundNode {

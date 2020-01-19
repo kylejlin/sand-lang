@@ -796,7 +796,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 15,
+          "line": 9,
+        },
+        "start": Object {
+          "column": 8,
+          "line": 9,
+        },
+      },
+      "name": "m",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 4,
+      },
+      "outRef": Object {
+        "name": "m",
+        "refId": 122,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "Foo2",
+          "refId": 120,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 15,
+            "line": 9,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 9,
+          },
+        },
+        "name": "Foo2",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 3,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "args": Array [],
       "leftmostInRef": Object {
@@ -4494,7 +4538,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 18,
+          "line": 2,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 2,
+        },
+      },
+      "name": "a",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 1,
+      },
+      "outRef": Object {
+        "name": "a",
+        "refId": 116,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "int",
+          "refId": 7,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 18,
+            "line": 2,
+          },
+          "start": Object {
+            "column": 15,
+            "line": 2,
+          },
+        },
+        "name": "int",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 0,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "args": Array [],
       "leftmostInRef": Object {
@@ -4518,7 +4606,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 29,
+          "line": 2,
+        },
+        "start": Object {
+          "column": 20,
+          "line": 2,
+        },
+      },
+      "name": "b",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 3,
+      },
+      "outRef": Object {
+        "name": "b",
+        "refId": 117,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "String",
+          "refId": 56,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 29,
+            "line": 2,
+          },
+          "start": Object {
+            "column": 23,
+            "line": 2,
+          },
+        },
+        "name": "String",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 2,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "args": Array [],
       "leftmostInRef": Object {
@@ -8981,7 +9113,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 24,
+          "line": 4,
+        },
+        "start": Object {
+          "column": 18,
+          "line": 4,
+        },
+      },
+      "name": "n",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 2,
+      },
+      "outRef": Object {
+        "name": "n",
+        "refId": 117,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "int",
+          "refId": 7,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 24,
+            "line": 4,
+          },
+          "start": Object {
+            "column": 21,
+            "line": 4,
+          },
+        },
+        "name": "int",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 1,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "args": Array [],
       "leftmostInRef": Object {
@@ -14366,7 +14542,75 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 21,
+          "line": 2,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 2,
+        },
+      },
+      "name": "z",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 2,
+      },
+      "outRef": Object {
+        "name": "z",
+        "refId": 116,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [
+          Object {
+            "args": Array [],
+            "leftmostInRef": Object {
+              "name": "java",
+              "refId": 21,
+            },
+            "location": Object {
+              "end": Object {
+                "column": 18,
+                "line": 2,
+              },
+              "start": Object {
+                "column": 15,
+                "line": 2,
+              },
+            },
+            "name": "java.lang.Integer",
+            "nodeId": Object {
+              "nodeType": "Type",
+              "rawValue": 0,
+            },
+            "type": "Type",
+          },
+        ],
+        "leftmostInRef": Object {
+          "name": "rlist",
+          "refId": 19,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 21,
+            "line": 2,
+          },
+          "start": Object {
+            "column": 15,
+            "line": 2,
+          },
+        },
+        "name": "rlist",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 1,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "location": Object {
         "end": Object {
@@ -24717,7 +24961,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 12,
+          "line": 4,
+        },
+        "start": Object {
+          "column": 8,
+          "line": 4,
+        },
+      },
+      "name": "n",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 14,
+      },
+      "outRef": Object {
+        "name": "n",
+        "refId": 123,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "T",
+          "refId": 121,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 12,
+            "line": 4,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 4,
+          },
+        },
+        "name": "T",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 13,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "args": Array [],
       "leftmostInRef": Object {
@@ -27398,7 +27686,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 14,
+          "line": 6,
+        },
+        "start": Object {
+          "column": 8,
+          "line": 6,
+        },
+      },
+      "name": "n",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 3,
+      },
+      "outRef": Object {
+        "name": "n",
+        "refId": 116,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "int",
+          "refId": 7,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 14,
+            "line": 6,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 6,
+          },
+        },
+        "name": "int",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 2,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "definitelyDoesNotEndWithSemicolon": false,
       "location": Object {
@@ -37461,7 +37793,51 @@ Object {
       },
       "type": "Type",
     },
-    undefined,
+    Object {
+      "location": Object {
+        "end": Object {
+          "column": 12,
+          "line": 2,
+        },
+        "start": Object {
+          "column": 8,
+          "line": 2,
+        },
+      },
+      "name": "n",
+      "nodeId": Object {
+        "nodeType": "TypedArgDef",
+        "rawValue": 14,
+      },
+      "outRef": Object {
+        "name": "n",
+        "refId": 122,
+      },
+      "type": "TypedArgDef",
+      "valueType": Object {
+        "args": Array [],
+        "leftmostInRef": Object {
+          "name": "T",
+          "refId": 120,
+        },
+        "location": Object {
+          "end": Object {
+            "column": 12,
+            "line": 2,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 2,
+          },
+        },
+        "name": "T",
+        "nodeId": Object {
+          "nodeType": "Type",
+          "rawValue": 13,
+        },
+        "type": "Type",
+      },
+    },
     Object {
       "args": Array [],
       "leftmostInRef": Object {
