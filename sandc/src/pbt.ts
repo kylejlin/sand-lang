@@ -7,6 +7,10 @@ export interface Ref {
   name: string;
 }
 
+export type RefSource = Node & { outRef: Ref };
+
+export type RefDependent = Node & ({ inRef: Ref } | { leftmostInRef: Ref });
+
 export type Bound<T extends lst.Node> = T extends lst.FileNode
   ? FileNode
   : T extends lst.Import

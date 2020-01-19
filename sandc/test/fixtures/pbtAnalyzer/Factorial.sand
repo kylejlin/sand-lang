@@ -1,0 +1,25 @@
+package factorial.test.sandc;
+
+pub class Factorial {
+    use sand.lang.IllegalArgumentException.fromMessage as err;
+
+    static TEST_VAL = 5int;
+
+    pub main(args: String[]) {
+        printFactorial(TEST_VAL);
+    }
+
+    pub factorial(n: int): int {
+        if n < 0 {
+            throw err(n + "! is undefined because " + n + " is negative");
+        } else if n == 0 {
+            1
+        } else {
+            n * factorial(n - 1)
+        }
+    }
+
+    printFactorial(n: int) {
+        System.out.println(n + "! = " + factorial(n));
+    }
+}
