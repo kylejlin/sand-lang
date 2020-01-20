@@ -1,17 +1,10 @@
-import { LabelingResult } from "../labeler";
 import * as lst from "../lst";
-import { NodeType } from "../lst";
+import { LabelingResult, NodeType } from "../lst";
 import * as pbt from "../pbt";
-import { Ref } from "../pbt";
+import { BindingResult, Ref } from "../pbt";
 import { TextPosition } from "../textPosition";
 import nullishMap from "../utils/nullishMap";
 import { all as globallyAvailableReferenceNames } from "./globallyAvailableReferences";
-
-export interface BindingResult {
-  fileNodes: pbt.FileNode[];
-  nodeIdReferents: pbt.Node[];
-  refs: Ref[];
-}
 
 export function bindFileNodes(labeled: LabelingResult): BindingResult {
   return getBinder().bindFileNodes(labeled);

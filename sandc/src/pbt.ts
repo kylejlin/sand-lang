@@ -2,6 +2,12 @@ import * as lst from "./lst";
 import { NodeId } from "./lst";
 import { TextRange } from "./textPosition";
 
+export interface BindingResult {
+  fileNodes: FileNode[];
+  nodeIdReferents: Node[];
+  refs: Ref[];
+}
+
 export interface Ref {
   refId: number;
   name: string;

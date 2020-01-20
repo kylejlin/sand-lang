@@ -1,11 +1,7 @@
 import * as ast from "./ast";
 import * as lst from "./lst";
+import { LabelingResult } from "./lst";
 import nullishMap from "./utils/nullishMap";
-
-export interface LabelingResult {
-  fileNodes: lst.FileNode[];
-  nodeIdReferents: lst.Node[];
-}
 
 export function labelFileNodes(nodes: ast.FileNode[]): LabelingResult {
   return getLabeler().labelFileNodes(nodes);

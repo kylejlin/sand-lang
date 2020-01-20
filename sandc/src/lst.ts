@@ -1,6 +1,11 @@
 import * as ast from "./ast";
 import { TextRange } from "./textPosition";
 
+export interface LabelingResult {
+  fileNodes: FileNode[];
+  nodeIdReferents: Node[];
+}
+
 export interface NodeId<T extends NodeType> {
   nodeType: T;
   rawValue: number;
