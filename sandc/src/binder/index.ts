@@ -1,10 +1,15 @@
 import * as lst from "../lst";
 import { LabelingResult, NodeType } from "../lst";
 import * as pbt from "../pbt";
-import { BindingResult, Ref } from "../pbt";
+import {
+  BindingResult,
+  getLanguageDefinedRefsFromMap,
+  LanguageDefinedRefMap,
+  Ref,
+} from "../pbt";
 import { TextPosition } from "../textPosition";
 import nullishMap from "../utils/nullishMap";
-import { all as globallyAvailableReferenceNames } from "./globallyAvailableReferences";
+import { createLanguageDefinedRefs } from "./languageDefinedRefs";
 
 export function bindFileNodes(labeled: LabelingResult): BindingResult {
   return getBinder().bindFileNodes(labeled);
@@ -35,7 +40,8 @@ function getBinder(): Binder {
   function bindFileNodes(labeled: LabelingResult): BindingResult {
     const withPubClassOutBound = labeled.fileNodes.map(outBindFileNodePubClass);
 
-    pushLanguageDefinedGlobalRefs();
+    const languageDefinedRefMap = createLanguageDefinedRefs(createRef);
+    pushLanguageDefinedGlobalRefs(languageDefinedRefMap);
     pushLeftmostPartsOfPackageNames();
     pushRefsDefinedInUnnamedPackage();
 
@@ -43,7 +49,12 @@ function getBinder(): Binder {
 
     validateNodeIdReferents(labeled.nodeIdReferents);
 
-    return { fileNodes: inBound, nodeIdReferents, refs: allRefs };
+    return {
+      fileNodes: inBound,
+      nodeIdReferents,
+      refs: allRefs,
+      languageDefinedRefMap,
+    };
   }
 
   function outBindFileNodePubClass(
@@ -58,8 +69,10 @@ function getBinder(): Binder {
     return { ...node, pubClass };
   }
 
-  function pushLanguageDefinedGlobalRefs(): void {
-    globallyAvailableReferenceNames.forEach(createAndPushRef);
+  function pushLanguageDefinedGlobalRefs(map: LanguageDefinedRefMap): void {
+    getLanguageDefinedRefsFromMap(map).forEach(ref => {
+      refStack.push(ref);
+    });
   }
 
   function pushLeftmostPartsOfPackageNames(): void {

@@ -6,6 +6,101 @@ export interface BindingResult {
   fileNodes: FileNode[];
   nodeIdReferents: Node[];
   refs: Ref[];
+  languageDefinedRefMap: LanguageDefinedRefMap;
+}
+
+export interface LanguageDefinedRefMap {
+  null: Ref;
+  true: Ref;
+  false: Ref;
+  this: Ref;
+  super: Ref;
+
+  int: Ref;
+  byte: Ref;
+  short: Ref;
+  long: Ref;
+  char: Ref;
+  double: Ref;
+  float: Ref;
+  boolean: Ref;
+
+  void: Ref;
+  never: Ref;
+
+  sequence: Ref;
+  array: Ref;
+  rlist: Ref;
+
+  nullable: Ref;
+
+  java: Ref;
+  sand: Ref;
+
+  Comparable: Ref;
+  Iterable: Ref;
+  Boolean: Ref;
+  Byte: Ref;
+  Character: Ref;
+  Class: Ref;
+  Double: Ref;
+  Float: Ref;
+  Integer: Ref;
+  Long: Ref;
+  Math: Ref;
+  Number: Ref;
+  Object: Ref;
+  Short: Ref;
+  String: Ref;
+  System: Ref;
+  Throwable: Ref;
+  Void: Ref;
+}
+
+export function getLanguageDefinedRefsFromMap(
+  map: LanguageDefinedRefMap,
+): Ref[] {
+  return [
+    map.null,
+    map.true,
+    map.false,
+    map.this,
+    map.super,
+    map.int,
+    map.byte,
+    map.short,
+    map.long,
+    map.char,
+    map.double,
+    map.float,
+    map.boolean,
+    map.void,
+    map.never,
+    map.sequence,
+    map.array,
+    map.rlist,
+    map.nullable,
+    map.java,
+    map.sand,
+    map.Comparable,
+    map.Iterable,
+    map.Boolean,
+    map.Byte,
+    map.Character,
+    map.Class,
+    map.Double,
+    map.Float,
+    map.Integer,
+    map.Long,
+    map.Math,
+    map.Number,
+    map.Object,
+    map.Short,
+    map.String,
+    map.System,
+    map.Throwable,
+    map.Void,
+  ];
 }
 
 export interface Ref {
