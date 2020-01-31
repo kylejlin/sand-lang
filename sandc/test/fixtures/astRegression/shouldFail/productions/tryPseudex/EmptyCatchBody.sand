@@ -1,0 +1,11 @@
+pub class EmptyCatchBody {
+    foo() {
+        let a = try {
+            b
+        } catch e: Foo {
+            b
+        } catch e: Foo {
+            
+        };
+    }
+}

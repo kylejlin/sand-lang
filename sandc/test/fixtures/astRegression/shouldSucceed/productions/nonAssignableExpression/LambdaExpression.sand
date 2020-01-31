@@ -1,0 +1,30 @@
+pub class LambdaExpression {
+    foo() {
+        [
+            \a -> x(),
+            \a, b -> x(),
+            \a, b, c -> x(),
+
+            \a -> {
+                x();
+            },
+            \a -> {
+                x();
+                x
+            },
+            \a, b, c -> {
+                x();
+                x
+            },
+            \a, b, c -> {
+                x();
+                if cond {
+                    x();
+                    x
+                } else {
+                    x
+                }
+            },
+        ]
+    }
+}

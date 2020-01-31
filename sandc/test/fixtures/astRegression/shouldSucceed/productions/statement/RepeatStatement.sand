@@ -1,0 +1,11 @@
+pub class RepeatStatement {
+    foo() {
+        repeat n {
+
+        }
+
+        repeat n {
+            a = b;
+        }
+    }
+}

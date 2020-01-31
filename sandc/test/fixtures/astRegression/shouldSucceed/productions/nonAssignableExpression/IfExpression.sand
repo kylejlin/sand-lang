@@ -1,0 +1,29 @@
+pub class IfExpression {
+    foo() {
+        [
+            if cond {
+                a
+            } else {
+                a
+            },
+
+            if cond {
+                a
+            } else if cond {
+                a
+            } else {
+                a
+            },
+
+            if cond {
+                a
+            } else if cond {
+                a
+            } else if cond {
+                a
+            } else {
+                a
+            },
+        ]
+    }
+}

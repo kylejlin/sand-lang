@@ -1,0 +1,9 @@
+pub class EmptyTryBody {
+    foo() {
+        let a = try {
+            
+        } catch e: Foo {
+            b
+        };
+    }
+}

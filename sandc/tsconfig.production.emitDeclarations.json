@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "allowJs": false,
+    "emitDeclarationOnly": true
+  },
+  "extends": "./tsconfig",
+  "include": ["src"]
+}

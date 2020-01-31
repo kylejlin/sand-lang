@@ -1,0 +1,11 @@
+use foo.bar as explicitAlias;
+use shadow foo.bar as explicitAlias;
+
+use foo.bar;
+use shadow foo.bar;
+
+use star.*;
+
+pub class UseStatements {
+    
+}

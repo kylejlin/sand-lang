@@ -1,0 +1,9 @@
+pub class EmptyElseBody {
+    foo() {
+        let a = if let b = c {
+            c
+        } else {
+            
+        };
+    }
+}

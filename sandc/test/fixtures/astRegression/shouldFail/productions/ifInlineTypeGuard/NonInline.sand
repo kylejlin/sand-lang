@@ -1,0 +1,11 @@
+pub class NonInline {
+    foo() {
+        (
+            if let a = b() {
+                c()
+            } else {
+                c()
+            }
+        )
+    }
+}

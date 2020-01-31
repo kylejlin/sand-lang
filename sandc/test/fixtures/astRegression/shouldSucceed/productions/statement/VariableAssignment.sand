@@ -1,0 +1,22 @@
+pub class VariableAssignment {
+    assignmentType() {
+        a = b;
+
+        a **= b;
+        a *= b;
+        a /= b;
+        a %= b;
+        a += b;
+        a -= b;
+    }
+
+    righthand() {
+        a = b;
+        a = if cond {
+            foo();
+            b
+        } else {
+            c
+        };
+    }
+}

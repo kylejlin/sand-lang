@@ -1,0 +1,11 @@
+pub class MissingElse {
+    foo() {
+        (
+            switch val {
+                case a {
+                    b()
+                }
+            }
+        )
+    }
+}

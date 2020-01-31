@@ -1,0 +1,15 @@
+pub class InstanceofExpression {
+    foo() {
+        [
+            x() instanceof Foo,
+            x() instanceof Foo[],
+            x() instanceof Foo[][],
+            x() instanceof Foo[][][],
+
+            x() instanceof Foo?,
+            x() instanceof Foo[]?,
+            x() instanceof Foo[][]?,
+            x() instanceof Foo[][][]?,
+        ]
+    }
+}

@@ -1,24 +1,160 @@
-import { Scanner, JisonNodeLocation } from "../../../jison";
-import isThereUpcomingTypeArgListAndFunctionCallLeftParen from "./isThereUpcomingTypeArgListAndFunctionCallLeftParen";
-import getUpcomingCastType from "./getUpcomingCastType";
-import getUpcomingObjectLiteralType from "./getUpcomingObjectLiteralType";
-
-const EOF = "EOF";
-const INVALID = "INVALID";
+import { JisonSymbolLocation, Scanner } from "../../../jison";
+import {
+  EOF,
+  GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET,
+  INVALID,
+  STRING_LITERAL,
+  TokenType,
+} from "../../../types/tokens";
+import Comment from "./comments";
+import { SAND_TOKENIZATION_RULES, TokenizationRule } from "./tokens";
 
 const MAX_DEBUG_LENGTH = 20;
 const ELLIPSIS = "...";
 
 export default class SandScanner implements Scanner<TokenType> {
+  private scanner: FirstPassScanner;
+  private tokenIndex: number;
+  private genericMethodTypeParamLeftAngleIndices: number[];
+
+  constructor() {
+    this.scanner = new FirstPassScanner();
+    this.tokenIndex = 0;
+    this.genericMethodTypeParamLeftAngleIndices = [];
+  }
+
+  public setInput(input: string): void {
+    this.scanner = new FirstPassScanner();
+    this.scanner.setInput(input);
+    this.tokenIndex = 0;
+    this.genericMethodTypeParamLeftAngleIndices = getGenericMethodTypeParamLeftAngleIndices(
+      input,
+    );
+  }
+
+  public lex(): TokenType {
+    const tokenType = this.scanner.lex();
+
+    const tokenIndex = this.tokenIndex;
+    this.tokenIndex++;
+
+    const isTokenTypeGenericMethodParamLeftAngle =
+      tokenType === "<" &&
+      this.genericMethodTypeParamLeftAngleIndices.includes(tokenIndex);
+
+    if (isTokenTypeGenericMethodParamLeftAngle) {
+      return GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET;
+    } else {
+      return tokenType;
+    }
+  }
+
+  public get yytext(): string {
+    return this.scanner.yytext;
+  }
+
+  public get yyleng(): number {
+    return this.scanner.yyleng;
+  }
+
+  public get yylloc(): JisonSymbolLocation {
+    return this.scanner.yylloc;
+  }
+
+  public get yylineno(): number {
+    return this.scanner.yylineno;
+  }
+
+  public pastInput(): string {
+    return this.scanner.pastInput();
+  }
+
+  public upcomingInput(): string {
+    return this.scanner.upcomingInput();
+  }
+
+  public input(): void {
+    this.scanner.input();
+  }
+
+  public showPosition(): string {
+    return this.scanner.showPosition();
+  }
+
+  getComments(): Comment[] {
+    return this.scanner.comments;
+  }
+}
+
+function getGenericMethodTypeParamLeftAngleIndices(input: string): number[] {
+  const tokenTypes = getFirstPassTokenTypes(input);
+  const indices: number[] = [];
+
+  let i = tokenTypes.length - 1;
+  while (i >= 1) {
+    const tokenType = tokenTypes[i];
+    const prevTokenType = tokenTypes[i - 1];
+
+    if (prevTokenType === ">" && tokenType === "(") {
+      i -= 2;
+
+      let angleCount = 1;
+      while (i >= 0) {
+        const tokenType = tokenTypes[i];
+
+        if (tokenType === "<") {
+          angleCount--;
+        }
+
+        if (angleCount === 0) {
+          indices.push(i);
+
+          i--;
+          break;
+        }
+
+        if (tokenType === ">") {
+          angleCount++;
+        }
+
+        i--;
+      }
+    } else {
+      i--;
+    }
+  }
+
+  return indices;
+}
+
+function getFirstPassTokenTypes(input: string): TokenType[] {
+  const scanner = new FirstPassScanner();
+  scanner.setInput(input);
+
+  const tokenTypes: TokenType[] = [];
+
+  while (true) {
+    const tokenType = scanner.lex();
+    tokenTypes.push(tokenType);
+
+    if (tokenType === EOF || tokenType === INVALID) {
+      break;
+    }
+  }
+
+  return tokenTypes;
+}
+
+class FirstPassScanner implements Scanner<TokenType> {
   public yytext: string;
-  public yylloc: JisonNodeLocation;
+  public yylloc: JisonSymbolLocation;
+
+  public readonly comments: Comment[];
 
   private rules: TokenizationRule[];
   private input_: string;
   private pastInput_: string;
   private location: PointLocation;
-
-  private braceRelativeLocationStack: BraceRelativeLocation[];
 
   constructor() {
     this.yytext = "";
@@ -29,12 +165,12 @@ export default class SandScanner implements Scanner<TokenType> {
       last_column: 0,
     };
 
-    this.rules = getRules();
+    this.comments = [];
+
+    this.rules = SAND_TOKENIZATION_RULES;
     this.input_ = "";
     this.pastInput_ = "";
     this.location = { line: 1, column: 0 };
-
-    this.braceRelativeLocationStack = [];
   }
 
   public setInput(input: string) {
@@ -65,6 +201,18 @@ export default class SandScanner implements Scanner<TokenType> {
       return this.lex();
     }
 
+    if (/^"/.test(this.input_)) {
+      return this.lexStringLiteral();
+    }
+
+    if (/^\/\//.test(this.input_)) {
+      return this.recordSingleLineCommentAndLexNextToken();
+    }
+
+    if (/^\/\*/.test(this.input_)) {
+      return this.recordMultiLineCommentAndLexNextToken();
+    }
+
     const ruleToUse = this.rules.find(([regex]) => regex.test(this.input_));
 
     if (ruleToUse === undefined) {
@@ -73,11 +221,9 @@ export default class SandScanner implements Scanner<TokenType> {
       return INVALID;
     }
 
-    const [regex, getTokenType] = ruleToUse;
+    const [regex, tokenType] = ruleToUse;
     this.yytext = this.input_.match(regex)![0];
     this.input_ = this.input_.slice(this.yytext.length);
-
-    const tokenType = getTokenType(this);
 
     this.pastInput_ += this.yytext;
     this.advanceCursorAndUpdateYyloc();
@@ -89,6 +235,137 @@ export default class SandScanner implements Scanner<TokenType> {
     const endLocation = getEndLocation(this.yytext, startLocation);
     this.yylloc = mergePointLocations(startLocation, endLocation);
     this.location = endLocation;
+  }
+
+  private lexStringLiteral(): typeof STRING_LITERAL | typeof INVALID {
+    let curlyCount = 0;
+    let i = 1;
+    let token = '"';
+    while (true) {
+      if (i >= this.input_.length) {
+        this.yytext = this.input_;
+
+        this.pastInput_ += this.yytext;
+        this.advanceCursorAndUpdateYyloc();
+        return INVALID;
+      }
+
+      const char = this.input_.charAt(i);
+
+      if (char === "\\") {
+        const escapeSequence = this.input_
+          .slice(i)
+          .match(/^\\(?:[\\"nrvft{}]|u[\dA-F]{4,5})/)?.[0];
+
+        if (escapeSequence === undefined) {
+          token += char;
+          this.yytext = token;
+          this.input_ = this.input_.slice(this.yytext.length);
+
+          this.pastInput_ += this.yytext;
+          this.advanceCursorAndUpdateYyloc();
+          return INVALID;
+        }
+
+        token += escapeSequence;
+        i += escapeSequence.length;
+        continue;
+      }
+
+      if (/^[\n\r\v\f\u0085\u2028\u2029]$/.test(char)) {
+        token += char;
+        this.yytext = token;
+        this.input_ = this.input_.slice(this.yytext.length);
+
+        this.pastInput_ += this.yytext;
+        this.advanceCursorAndUpdateYyloc();
+        return INVALID;
+      }
+
+      token += char;
+
+      if (char === '"' && curlyCount === 0) {
+        break;
+      }
+
+      if (char === "{") {
+        curlyCount++;
+      }
+
+      if (char === "}") {
+        curlyCount--;
+      }
+
+      i++;
+    }
+
+    this.yytext = token;
+    this.input_ = this.input_.slice(this.yytext.length);
+
+    this.pastInput_ += this.yytext;
+    this.advanceCursorAndUpdateYyloc();
+    return STRING_LITERAL;
+  }
+
+  private recordSingleLineCommentAndLexNextToken(): TokenType {
+    let i = 2;
+    let token = "//";
+    while (true) {
+      const char = this.input_.charAt(i);
+
+      if (
+        /^[\n\r\v\f\u0085\u2028\u2029]$/.test(char) ||
+        i >= this.input_.length
+      ) {
+        break;
+      }
+
+      token += char;
+
+      i++;
+    }
+
+    this.yytext = token;
+    this.input_ = this.input_.slice(this.yytext.length);
+    this.pastInput_ += this.yytext;
+    this.advanceCursorAndUpdateYyloc();
+
+    this.comments.push({ source: token, location: this.location });
+
+    return this.lex();
+  }
+
+  private recordMultiLineCommentAndLexNextToken(): TokenType {
+    let i = 2;
+    let token = "/*";
+    while (true) {
+      if (i >= this.input_.length) {
+        this.yytext = this.input_;
+
+        this.pastInput_ += this.yytext;
+        this.advanceCursorAndUpdateYyloc();
+        return INVALID;
+      }
+
+      if ("*/" === this.input_.slice(i, i + 2)) {
+        token += "*/";
+        break;
+      }
+
+      const char = this.input_.charAt(i);
+      token += char;
+
+      i++;
+    }
+
+    this.yytext = token;
+    this.input_ = this.input_.slice(this.yytext.length);
+    this.pastInput_ += this.yytext;
+    this.advanceCursorAndUpdateYyloc();
+
+    this.comments.push({ source: token, location: this.location });
+
+    return this.lex();
   }
 
   public pastInput() {
@@ -145,683 +422,11 @@ export default class SandScanner implements Scanner<TokenType> {
       );
     }
   }
-
-  onLeftCurlyEncountered(): void {
-    if (this.braceRelativeLocationStack.length === 0) {
-      return;
-    }
-
-    const top = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-
-    if (top === BraceRelativeLocation.BetweenFirstTokenAndStartOfCompoundNode) {
-      this.braceRelativeLocationStack.pop();
-      this.braceRelativeLocationStack.push(
-        BraceRelativeLocation.InCompoundNode,
-      );
-    } else if (
-      top === BraceRelativeLocation.BetweenObjectLiteralTypeAndStartOfBody
-    ) {
-      this.braceRelativeLocationStack.pop();
-      this.braceRelativeLocationStack.push(
-        BraceRelativeLocation.InObjectLiteralBody,
-      );
-    } else if (
-      top === BraceRelativeLocation.BetweenClassKeywordAndStartOfClassBody
-    ) {
-      this.braceRelativeLocationStack.pop();
-      this.braceRelativeLocationStack.push(BraceRelativeLocation.InClassBody);
-    } else if (
-      top ===
-      BraceRelativeLocation.BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody
-    ) {
-      this.braceRelativeLocationStack.pop();
-      this.braceRelativeLocationStack.push(BraceRelativeLocation.InMethodBody);
-    } else {
-      throw new Error(
-        "Attempted to record the start of an object body or compound node when the top of the stack was " +
-          BraceRelativeLocation[top],
-      );
-    }
-  }
-
-  onRightCurlyEncountered(): void {
-    if (this.braceRelativeLocationStack.length === 0) {
-      return;
-    }
-
-    const top = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-
-    if (
-      top === BraceRelativeLocation.InCompoundNode ||
-      top === BraceRelativeLocation.InObjectLiteralBody ||
-      top === BraceRelativeLocation.InClassBody ||
-      top === BraceRelativeLocation.InMethodBody
-    ) {
-      this.braceRelativeLocationStack.pop();
-    } else {
-      throw new Error(
-        "Encountered a right curly brace when the top of the braceRelativeLocationStack was " +
-          BraceRelativeLocation[top],
-      );
-    }
-  }
-
-  onRightParenEncountered(): void {
-    const top = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-
-    if (top === BraceRelativeLocation.InClassBody) {
-      this.braceRelativeLocationStack.push(
-        BraceRelativeLocation.BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody,
-      );
-    }
-  }
-
-  onSemicolonEncountered(): void {
-    const top = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-
-    if (
-      top ===
-        BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon ||
-      top === BraceRelativeLocation.BetweenCopyKeywordAndSemicolon
-    ) {
-      this.braceRelativeLocationStack.pop();
-    }
-  }
-
-  onClassKeywordEncountered(): void {
-    this.braceRelativeLocationStack.push(
-      BraceRelativeLocation.BetweenClassKeywordAndStartOfClassBody,
-    );
-  }
-
-  onAbstractKeywordEncountered(): void {
-    const top = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-
-    if (top === BraceRelativeLocation.InClassBody) {
-      this.braceRelativeLocationStack.push(
-        BraceRelativeLocation.BetweenAbstractMethodDeclarationAndSemicolon,
-      );
-    }
-  }
-
-  onCopyKeywordEncountered(): void {
-    const top = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-
-    if (top === BraceRelativeLocation.InClassBody) {
-      this.braceRelativeLocationStack.push(
-        BraceRelativeLocation.BetweenCopyKeywordAndSemicolon,
-      );
-    }
-  }
-
-  onStatementWithCompoundNodeStart(): void {
-    this.braceRelativeLocationStack.push(
-      BraceRelativeLocation.BetweenFirstTokenAndStartOfCompoundNode,
-    );
-  }
-
-  onObjectLiteralStart(): void {
-    this.braceRelativeLocationStack.push(
-      BraceRelativeLocation.BetweenObjectLiteralTypeAndStartOfBody,
-    );
-  }
-
-  isExpectingCompoundNode(): boolean {
-    const last = this.braceRelativeLocationStack[
-      this.braceRelativeLocationStack.length - 1
-    ];
-    return (
-      last === BraceRelativeLocation.BetweenFirstTokenAndStartOfCompoundNode
-    );
-  }
 }
-
-enum BraceRelativeLocation {
-  BetweenClassKeywordAndStartOfClassBody = "BetweenClassKeywordAndStartOfClassBody",
-  InClassBody = "InClassBody",
-  BetweenAbstractMethodDeclarationAndSemicolon = "BetweenAbstractMethodDeclarationAndSemicolon",
-  BetweenCopyKeywordAndSemicolon = "BetweenCopyKeywordAndSemicolon",
-  BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody = "BetweenConcreteMethodDeclarationRightParenAndStartOfMethodBody",
-  InMethodBody = "InMethodBody",
-  BetweenFirstTokenAndStartOfCompoundNode = "BetweenFirstTokenAndStartOfCompoundNode",
-  InCompoundNode = "InCompoundNode",
-  BetweenObjectLiteralTypeAndStartOfBody = "BetweenObjectLiteralTypeAndStartOfBody",
-  InObjectLiteralBody = "InObjectLiteralBody",
-}
-
-export type TokenType =
-  | "pub"
-  | "prot"
-  | "priv"
-  | "static"
-  | "inline"
-  | "open"
-  | "abstract"
-  | "override"
-  | "final"
-  | "magic"
-  | "class"
-  | "extends"
-  | "interface"
-  | "enum"
-  | "implements"
-  | "inst"
-  | "new"
-  | "if"
-  | "else"
-  | "switch"
-  | "case"
-  | "match"
-  | "default"
-  | "while"
-  | "loop"
-  | "repeat"
-  | "for"
-  | "in"
-  | "do"
-  | "continue"
-  | "break"
-  | "return_"
-  | "let!"
-  | "let"
-  | "re!"
-  | "re"
-  | "var"
-  | "const"
-  | "try"
-  | "catch"
-  | "finally"
-  | "throw"
-  | "throws"
-  | "use!"
-  | "use"
-  | "import"
-  | "copy"
-  | "PUB_COPY"
-  | "PROT_COPY"
-  | "as!"
-  | "as"
-  | "package"
-  | "mod"
-  | "instanceof"
-  | "_"
-  | "assert"
-  | "goto"
-  | "native"
-  | "private"
-  | "protected"
-  | "public"
-  | "strictfp"
-  | "synchronized"
-  | "transient"
-  | "volatile"
-  | "module"
-  | "requires"
-  | "exports"
-  | "this"
-  | "super"
-  | "NUMBER"
-  | "STRING"
-  | "CHARACTER"
-  | "NON_RESERVED_IDENTIFIER"
-  | "OBJECT_LITERAL_TYPE"
-  | "CAST_EXPRESSION_TARGET_TYPE"
-  | "\\"
-  | "->"
-  | "**"
-  | "*"
-  | "/"
-  | "%"
-  | "-"
-  | "+"
-  | "~="
-  | "~<="
-  | "~<"
-  | "~>="
-  | "~>"
-  | "~"
-  | "=="
-  | "!="
-  | "<"
-  | "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET"
-  | "<="
-  | ">"
-  | ">="
-  | "!"
-  | "&&"
-  | "||"
-  | "?"
-  | "|"
-  | "..."
-  | "..="
-  | ".."
-  | "."
-  | "["
-  | "]"
-  | "="
-  | "**="
-  | "*="
-  | "/="
-  | "%="
-  | "+="
-  | "-="
-  | "("
-  | ")"
-  | "{"
-  | "}"
-  | ":"
-  | ","
-  | ";"
-  | typeof EOF
-  | typeof INVALID;
-
-const TOKEN_TYPES: TokenType[] = [
-  "pub",
-  "prot",
-  "priv",
-  "static",
-  "inline",
-  "open",
-  "abstract",
-  "override",
-  "final",
-  "magic",
-  "class",
-  "extends",
-  "interface",
-  "enum",
-  "implements",
-  "inst",
-  "new",
-  "if",
-  "else",
-  "switch",
-  "case",
-  "match",
-  "default",
-  "while",
-  "loop",
-  "repeat",
-  "for",
-  "in",
-  "do",
-  "continue",
-  "break",
-  "return_",
-  "let!",
-  "let",
-  "re!",
-  "re",
-  "var",
-  "const",
-  "try",
-  "catch",
-  "finally",
-  "throw",
-  "throws",
-  "use!",
-  "use",
-  "import",
-  "copy",
-  "PUB_COPY",
-  "PROT_COPY",
-  "as!",
-  "as",
-  "package",
-  "mod",
-  "instanceof",
-  "_",
-  "assert",
-  "goto",
-  "native",
-  "private",
-  "protected",
-  "public",
-  "strictfp",
-  "synchronized",
-  "transient",
-  "volatile",
-  "module",
-  "requires",
-  "exports",
-  "this",
-  "super",
-  "NUMBER",
-  "STRING",
-  "CHARACTER",
-  "NON_RESERVED_IDENTIFIER",
-  "OBJECT_LITERAL_TYPE",
-  "CAST_EXPRESSION_TARGET_TYPE",
-  "\\",
-  "->",
-  "**",
-  "*",
-  "/",
-  "%",
-  "-",
-  "+",
-  "~=",
-  "~<=",
-  "~<",
-  "~>=",
-  "~>",
-  "~",
-  "==",
-  "!=",
-  "<",
-  "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET",
-  "<=",
-  ">",
-  ">=",
-  "!",
-  "&&",
-  "||",
-  "?",
-  "|",
-  "...",
-  "..=",
-  "..",
-  ".",
-  "[",
-  "]",
-  "=",
-  "**=",
-  "*=",
-  "/=",
-  "%=",
-  "+=",
-  "-=",
-  "(",
-  ")",
-  "{",
-  "}",
-  ":",
-  ",",
-  ";",
-  EOF,
-  INVALID,
-];
-
-type TokenizationRule = [RegExp, (scanner: SandScanner) => TokenType];
-
-type ShorthandTokenizationRule =
-  | TokenType
-  | [string, TokenType]
-  | [RegExp, (scanner: SandScanner) => TokenType];
-
-const SAND_TOKENIZATION_RULES: ShorthandTokenizationRule[] = [
-  [/pub\s+copy\b/, () => "PUB_COPY"],
-  [/prot\s+copy\b/, () => "PROT_COPY"],
-  "pub",
-  "prot",
-  "priv",
-  "static",
-  "inline",
-  "open",
-  [
-    /abstract\b/,
-    (scanner: SandScanner) => {
-      scanner.onAbstractKeywordEncountered();
-      return "abstract";
-    },
-  ],
-  "override",
-  "final",
-  [
-    /class\b/,
-    (scanner: SandScanner) => {
-      scanner.onClassKeywordEncountered();
-      return "class";
-    },
-  ],
-  "extends",
-  "interface",
-  "enum",
-  "implements",
-  "inst",
-  "new",
-  [
-    /if\b/,
-    (scanner: SandScanner) => {
-      if (!isUpcomingIfTheIfInElseIf(scanner)) {
-        scanner.onStatementWithCompoundNodeStart();
-      }
-
-      return "if";
-    },
-  ],
-  startOfStatementWithCompoundNode("else"),
-  startOfStatementWithCompoundNode("switch"),
-  startOfStatementWithCompoundNode("case"),
-  "match",
-  "default",
-  startOfStatementWithCompoundNode("while"),
-  startOfStatementWithCompoundNode("loop"),
-  startOfStatementWithCompoundNode("repeat"),
-  startOfStatementWithCompoundNode("for"),
-  "in",
-  startOfStatementWithCompoundNode("do"),
-  "continue",
-  "break",
-  ["return", "return_"],
-  "let!",
-  "let",
-  "re!",
-  "re",
-  "var",
-  "const",
-  startOfStatementWithCompoundNode("try"),
-  startOfStatementWithCompoundNode("catch"),
-  startOfStatementWithCompoundNode("finally"),
-  "throw",
-  "throws",
-  "use!",
-  "use",
-  "import",
-  [
-    /copy\b/,
-    (scanner: SandScanner) => {
-      scanner.onCopyKeywordEncountered();
-      return "copy";
-    },
-  ],
-  "as!",
-  "as",
-  "package",
-  "mod",
-  "instanceof",
-  "_",
-  "assert",
-  "goto",
-  "native",
-  "private",
-  "protected",
-  "public",
-  "strictfp",
-  "synchronized",
-  "transient",
-  "volatile",
-  "module",
-  "requires",
-  "exports",
-  "this",
-  "super",
-  [
-    /-?\d+(\.\d+)?(e-?[1-9]\d*)?(int|long|short|char|byte|float|double)?\b/,
-    () => "NUMBER",
-  ],
-  [/"(\\(u[0-9a-fA-F]{4}|[\\"nt])|[^\\"\n])*\"/, () => "STRING"],
-  [/'([^\\'\n]|\\[\\'nt])\'/, () => "CHARACTER"],
-  [
-    /[_a-zA-Z]\w*/,
-    (scanner: SandScanner) => {
-      const upcoming = scanner.upcomingInput();
-      const past = scanner.pastInput();
-      const objLitType = getUpcomingObjectLiteralType(upcoming, past, scanner);
-      if (objLitType !== null) {
-        let i = Math.max(0, objLitType.length - scanner.yytext.length);
-        while (i--) {
-          scanner.input();
-        }
-        scanner.onObjectLiteralStart();
-        return "OBJECT_LITERAL_TYPE";
-      } else {
-        var castType = getUpcomingCastType(upcoming, past);
-        if (castType !== null) {
-          let i = Math.max(0, castType.length - scanner.yytext.length);
-          while (i--) {
-            scanner.input();
-          }
-          return "CAST_EXPRESSION_TARGET_TYPE";
-        } else {
-          return "NON_RESERVED_IDENTIFIER";
-        }
-      }
-    },
-  ],
-  "**=",
-  "*=",
-  "/=",
-  "%=",
-  "+=",
-  "-=",
-  "\\",
-  [
-    /->/,
-    (scanner: SandScanner) => {
-      if (doesUpcomingArrowPointToACompoundNode(scanner)) {
-        scanner.onStatementWithCompoundNodeStart();
-      }
-
-      return "->";
-    },
-  ],
-  "**",
-  "*",
-  "/",
-  "%",
-  "-",
-  "+",
-  "~=",
-  "~<=",
-  "~<",
-  "~>=",
-  "~>",
-  "~",
-  "==",
-  "!=",
-  "<=",
-  [
-    /</,
-    (scanner: SandScanner): TokenType => {
-      const upcoming = scanner.upcomingInput();
-      const past = scanner.pastInput();
-      if (isThereUpcomingTypeArgListAndFunctionCallLeftParen(upcoming, past)) {
-        return "FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET";
-      } else {
-        return "<";
-      }
-    },
-  ],
-  ">=",
-  ">",
-  "!",
-  "&&",
-  "||",
-  "?",
-  "|",
-  "...",
-  "..=",
-  "..",
-  ".",
-  "[",
-  "]",
-  "=",
-  "(",
-  [
-    /\)/,
-    (scanner: SandScanner) => {
-      scanner.onRightParenEncountered();
-      return ")";
-    },
-  ],
-  [
-    /\{/,
-    (scanner: SandScanner) => {
-      scanner.onLeftCurlyEncountered();
-      return "{";
-    },
-  ],
-  [
-    /\}/,
-    (scanner: SandScanner) => {
-      scanner.onRightCurlyEncountered();
-      return "}";
-    },
-  ],
-  ":",
-  ",",
-  [
-    /;/,
-    (scanner: SandScanner) => {
-      scanner.onSemicolonEncountered();
-      return ";";
-    },
-  ],
-];
 
 interface PointLocation {
   line: number;
   column: number;
-}
-
-function getRules(): TokenizationRule[] {
-  return compileShorthand(SAND_TOKENIZATION_RULES);
-}
-
-function compileShorthand(
-  rules: ShorthandTokenizationRule[],
-): TokenizationRule[] {
-  return rules.map(rule => {
-    if (isTokenType(rule)) {
-      const regex = /^\w+$/.test(rule)
-        ? new RegExp("^" + rule + "\\b")
-        : new RegExp("^" + escapeRegexCharacters(rule));
-      const getTokenType = () => rule;
-      return [regex, getTokenType];
-    } else if ("string" === typeof rule[0]) {
-      const tokenType = rule[1] as TokenType;
-      const regex = new RegExp("^" + rule[0] + "\\b");
-      const getTokenType = () => tokenType;
-      return [regex, getTokenType];
-    } else {
-      const [regex, getTokenType] = rule as TokenizationRule;
-      const anchored = regex.source.startsWith("^")
-        ? regex
-        : new RegExp("^" + regex.source);
-      return [anchored, getTokenType];
-    }
-  });
-}
-
-function isTokenType(x: unknown): x is TokenType {
-  return "string" === typeof x && (TOKEN_TYPES as string[]).includes(x);
-}
-
-function escapeRegexCharacters(unescaped: string): string {
-  return unescaped.replace(/[.*+?^${}()|[\]\\\/,]/g, "\\$&");
 }
 
 function getEndLocation(str: string, start: PointLocation): PointLocation {
@@ -843,37 +448,11 @@ function getEndLocation(str: string, start: PointLocation): PointLocation {
 function mergePointLocations(
   start: PointLocation,
   end: PointLocation,
-): JisonNodeLocation {
+): JisonSymbolLocation {
   return {
     first_line: start.line,
     first_column: start.column,
     last_line: end.line,
     last_column: end.column,
   };
-}
-
-function startOfStatementWithCompoundNode(token: TokenType): TokenizationRule {
-  if (!/^\w+$/.test(token)) {
-    throw new Error("Illegally formatted token.");
-  }
-
-  const regex = new RegExp("^" + token + "\\b");
-
-  return [
-    regex,
-    (scanner: SandScanner) => {
-      scanner.onStatementWithCompoundNodeStart();
-      return token;
-    },
-  ];
-}
-
-function isUpcomingIfTheIfInElseIf(scanner: SandScanner): boolean {
-  const past = scanner.pastInput();
-  return /else\s*$/.test(past);
-}
-
-function doesUpcomingArrowPointToACompoundNode(scanner: SandScanner): boolean {
-  const upcoming = scanner.upcomingInput();
-  return /^\s*->\s*\{/.test(upcoming);
 }

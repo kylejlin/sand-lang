@@ -1,5 +1,0 @@
-pub class NoArgs {
-    noArgs() {
-        foo<>()
-    }
-}

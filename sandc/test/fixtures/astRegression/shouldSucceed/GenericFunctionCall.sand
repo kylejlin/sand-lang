@@ -1,9 +1,0 @@
-pub class GenericFunctionCall {
-    single() {
-        foo<int>()
-    }
-
-    multiple() {
-        foo<int, String, char[+]>()
-    }
-}

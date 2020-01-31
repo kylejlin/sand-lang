@@ -1,0 +1,11 @@
+pub class DoWhileStatement {
+    foo() {
+        do {
+
+        } while cond;
+        
+        do {
+            foo();
+        } while cond;
+    }
+}

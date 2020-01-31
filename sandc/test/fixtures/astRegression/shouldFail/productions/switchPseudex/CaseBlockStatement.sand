@@ -1,0 +1,13 @@
+pub class CaseBlockStatement {
+    foo() {
+        let a = switch val {
+            case c {
+                foo();
+            }
+
+            else {
+                d
+            }
+        };
+    }
+}

@@ -1,0 +1,53 @@
+pub class SwitchExpression {
+    foo() {
+        [
+            switch val {
+                else {
+                    b()
+                }
+            },
+
+            switch val {
+                case a {
+                    b()
+                }
+
+                else {
+                    b()
+                }
+            },
+
+            switch val {
+                case a | a | a {
+                    b()
+                }
+                
+                else {
+                    b()
+                }
+            },
+
+            switch val {
+                case a {
+                    b()
+                }
+
+                case a | a | a {
+                    b()
+                }
+
+                case a | a {
+                    b()
+                }
+
+                case a {
+                    b()
+                }
+                
+                else {
+                    b()
+                }
+            },
+        ]
+    }
+}

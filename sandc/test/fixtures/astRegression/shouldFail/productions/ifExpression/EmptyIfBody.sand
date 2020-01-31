@@ -1,0 +1,11 @@
+pub class EmptyIfBody {
+    foo() {
+        (
+            if cond {
+                
+            } else {
+                x
+            }
+        )
+    }
+}

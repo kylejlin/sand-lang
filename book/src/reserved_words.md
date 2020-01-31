@@ -1,137 +1,91 @@
 # Reserved words
 
-The following words cannot be used as identifier names.
+## Keywords reserved by Java
 
-## Keywords
-
-### Modifiers
-
-- `pub`
-- `prot`
-- `priv` <sup>\*</sup>
-- `static`
-- `inline` <sup>\*</sup>
-- `open`
 - `abstract`
-- `final` <sup>\*</sup>
-- `magic`
-
-### Declaring classes, interfaces, enums
-
-- `class`
-- `extends`
-- `interface` <sup>\*</sup>
-- `enum` <sup>\*</sup>
-- `implements` <sup>\*</sup>
-
-### Instantiating
-
-- `inst`
-- `new` <sup>\*</sup>
-
-### Selection
-
-- `if`
-- `else`
-- `switch` <sup>\*</sup>
-- `case` <sup>\*</sup>
-- `match` <sup>\*</sup>
-- `default` <sup>\*</sup>
-
-### Iteration
-
-- `while`
-- `loop`
-- `repeat`
-- `for`
-- `in`
-- `do` <sup>\*</sup>
-
-### Continuation
-
-- `continue`
-- `break`
-- `return`
-
-### Local variables
-
-- `let`
-- `re`
-- `var` <sup>\*</sup>
-- `const` <sup>\*</sup>
-
-### Error handling
-
-- `try` <sup>\*</sup>
-- `catch` <sup>\*</sup>
-- `finally` <sup>\*</sup>
-- `throw` <sup>\*</sup>
-- `throws` <sup>\*</sup>
-
-### Aliases
-
-- `use`
-- `import`
-- `copy`
-- `as`
-
-### Organization
-
-- `package`
-- `mod` <sup>\*</sup>
-
-### Miscellaneous
-
-- `instanceof` <sup>\*</sup>
-- `_` (underscore) <sup>\*</sup>
-
-### Java
-
 - `assert`
+- `boolean`
+- `break`
+- `byte`
+- `case`
+- `catch`
+- `char`
+- `class`
+- `const`
+- `continue`
+- `default`
+- `do`
+- `double`
+- `else`
+- `enum`
+- `extends`
+- `final`
+- `finally`
+- `float`
+- `for`
 - `goto`
+- `if`
+- `implements`
+- `import`
+- `instanceof`
+- `int`
+- `interface`
+- `long`
 - `native`
+- `new`
+- `package`
 - `private`
 - `protected`
 - `public`
-- `strictfp`
-- `synchronized`
-- `transient`
-- `volatile`
-- `module`
-- `requires`
-- `exports`
-
-## Types
-
-### Primitives
-
-- `int`
-- `long`
+- `return`
 - `short`
-- `char`
-- `byte` <sup>\*</sup>
-- `float`
-- `double`
-- `boolean`
-
-### Parameterized
-
-- `nullable`
-- `sequence`
-- `array`
-- `rlist`
-
-### Valueless
-
-- `void`
-- `never` <sup>\*</sup>
-
-## Values
-
-- `null`
-- `true`
-- `false`
+- `static`
+- `strictfp`
+- `super`
+- `switch`
+- `synchronized`
 - `this`
-- `super` <sup>\*</sup>
+- `throw`
+- `throws`
+- `transient`
+- `try`
+- `void`
+- `volatile`
+- `while`
 
-<sup>\*</sup> Reserved for future use
+## Keywords reserved by Sand
+
+- `_`
+- `as`
+- `copy`
+- `downto`
+- `downuntil`
+- `false`
+- `in`
+- `inline`
+- `let`
+- `loop`
+- `never`
+- `notinstanceof`
+- `null`
+- `open`
+- `override`
+- `prot`
+- `pub`
+- `repeat`
+- `shadow`
+- `true`
+- `tryorthrow`
+- `upto`
+- `upuntil`
+- `use`
+- `var`
+
+## Keywords _not_ reserved by Sand
+
+The following keywords have special meanings in certain contexts, but they are not reserved (i.e., you can still use them as identifier names):
+
+- `get`
+- `intenc`
+- `set`
+- `priv`

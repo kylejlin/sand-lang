@@ -1,8 +1,8 @@
-import { FileNode } from "../ast";
-import { Parser } from "../jison";
+import { FileNode } from "../types/ast";
+import { ParserGeneratedByJison } from "../jison";
 
-export declare const parser: SandParser;
+export declare const parser: SandParserGeneratedByJison;
 
-export interface SandParser extends Parser {
+export interface SandParserGeneratedByJison extends ParserGeneratedByJison {
   parse(src: string): FileNode;
 }

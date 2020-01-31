@@ -1,0 +1,5 @@
+pub class MethodInvocationTypeParamsTrailingComma {
+    foo() {
+        foo<T,>()
+    }
+}

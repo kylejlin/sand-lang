@@ -1,0 +1,11 @@
+pub class IfTypeGuardStatementWithEmptyBody {
+    foo() {
+        (
+            if let inline a = b() {
+                
+            } else {
+                
+            }
+        )
+    }
+}

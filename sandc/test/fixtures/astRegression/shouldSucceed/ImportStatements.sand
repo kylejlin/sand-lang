@@ -1,6 +1,0 @@
-import java.util.ArrayList;
-
-pub class ImportStatements {
-    pub list: ArrayList<String>;
-    pub inst;
-}

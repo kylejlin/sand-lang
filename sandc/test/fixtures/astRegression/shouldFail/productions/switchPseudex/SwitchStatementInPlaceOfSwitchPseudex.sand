@@ -1,0 +1,13 @@
+pub class SwitchStatementInPlaceOfSwitchPseudex {
+    foo() {
+        let a = switch val {
+            case c {
+                foo();
+            }
+
+            else {
+                foo();
+            }
+        };
+    }
+}

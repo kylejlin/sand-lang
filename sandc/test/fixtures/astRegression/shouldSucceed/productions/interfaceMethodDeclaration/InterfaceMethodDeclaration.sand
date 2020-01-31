@@ -1,0 +1,11 @@
+pub interface InterfaceMethodDeclaration {
+    foo();
+    foo<T, U extends Foo & Bar, R super S>(arg: int): boolean throws FooException, BarException;
+
+    default foo() {
+
+    }
+    default foo(arg: int): boolean throws R {
+        
+    }
+}

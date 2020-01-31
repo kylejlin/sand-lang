@@ -1,0 +1,19 @@
+pub class PrivClassesAndInterfaces {
+
+}
+
+class PrivClass1 {
+
+}
+
+interface PrivInterface1 {
+
+}
+
+interface PrivInterface2 {
+
+}
+
+class PrivClass2 {
+
+}

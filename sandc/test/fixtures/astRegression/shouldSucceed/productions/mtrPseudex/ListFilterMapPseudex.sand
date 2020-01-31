@@ -1,0 +1,8 @@
+pub class ListFilterMapPseudex {
+    foo() {
+        let a = +[n * n for n in arr if n > 0];
+        let a = +[if cond { x(); x } else { x } for n in arr if n > 0];
+        let a = +[f(i, v) for @i, v in arr if v > 0];
+        let grid = +[f(r, c, v) for @r, @c, v in arr if r == c];
+    }
+}

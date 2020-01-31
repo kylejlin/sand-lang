@@ -1,0 +1,94 @@
+pub class SwitchPseudex {
+    foo() {
+        return switch b {
+            else {
+                foo();
+                d
+            }
+        };
+
+        return switch b {
+            case c {
+                foo();
+                d
+            }
+
+            else {
+                d
+            }
+        };
+
+        return switch b {
+            case c {
+                d
+            }
+
+            else {
+                foo();
+                d
+            }
+        };
+
+        return switch b {
+            case c {
+                foo();
+                d
+            }
+
+            case c | c {
+                d
+            }
+
+            else {
+                d
+            }
+        };
+
+        return switch b {
+            case c {
+                d
+            }
+
+            case c | c {
+                foo();
+                d
+            }
+
+            else {
+                d
+            }
+        };
+
+        return switch b {
+            case c {
+                d
+            }
+
+            case c | c {
+                d
+            }
+
+            else {
+                foo();
+                d
+            }
+        };
+
+        return switch b {
+            case c {
+                foo();
+                d
+            }
+
+            case c | c {
+                foo();
+                d
+            }
+
+            else {
+                foo();
+                d
+            }
+        };
+    }
+}

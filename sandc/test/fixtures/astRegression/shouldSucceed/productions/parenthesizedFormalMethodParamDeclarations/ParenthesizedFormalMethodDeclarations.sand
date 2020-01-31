@@ -1,0 +1,13 @@
+pub class ParenthesizedFormalMethodDeclarations {
+    pub empty() {
+
+    }
+
+    pub args(a: int, b: Foo) {
+
+    }
+
+    pub trailingComma(a: int, b: Foo,) {
+        
+    }
+}

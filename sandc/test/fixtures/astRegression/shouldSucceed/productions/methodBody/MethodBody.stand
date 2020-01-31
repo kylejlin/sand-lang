@@ -1,0 +1,99 @@
+pub class MethodBody {
+    empty() {
+
+    }
+
+    useStatements() {
+        use foo.foo;
+        use bar.bar;
+    }
+
+    statements() {
+        a += 2;
+        b();
+    }
+
+    useStatementsAndStatements() {
+        use foo.foo;
+        use bar.bar;
+
+        a += 2;
+        b();
+    }
+
+    expression() {
+        foo
+    }
+
+    useStatementsAndExpression() {
+        use foo.foo;
+        use bar.bar;
+
+        foo
+    }
+
+    pseudex() {
+        if cond {
+            System.out.println("cond is true");
+            a
+        } else {
+            b
+        }
+    }
+
+    useStatementsAndPseudex() {
+        use foo.foo;
+        use bar.bar;
+
+        if cond {
+            System.out.println("cond is true");
+            a
+        } else {
+            b
+        }
+    }
+
+    statementsAndExpression() {
+        a += 2;
+        b();
+
+        foo
+    }
+
+    useStatementsAndStatementsAndExpression() {
+        use foo.foo;
+        use bar.bar;
+
+        a += 2;
+        b();
+
+        foo
+    }
+
+    statementsAndPseudex() {
+        a += 2;
+        b();
+
+        if cond {
+            System.out.println("cond is true");
+            a
+        } else {
+            b
+        }
+    }
+
+    useStatementsAndStatementsAndPseudex() {
+        use foo.foo;
+        use bar.bar;
+
+        a += 2;
+        b();
+
+        if cond {
+            System.out.println("cond is true");
+            a
+        } else {
+            b
+        }
+    }
+}

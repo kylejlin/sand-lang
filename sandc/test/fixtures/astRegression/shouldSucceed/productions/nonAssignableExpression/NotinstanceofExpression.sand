@@ -1,0 +1,15 @@
+pub class NotinstanceofExpression {
+    foo() {
+        [
+            x() notinstanceof Foo,
+            x() notinstanceof Foo[],
+            x() notinstanceof Foo[][],
+            x() notinstanceof Foo[][][],
+
+            x() notinstanceof Foo?,
+            x() notinstanceof Foo[]?,
+            x() notinstanceof Foo[][]?,
+            x() notinstanceof Foo[][][]?,
+        ]
+    }
+}

@@ -11,754 +11,2141 @@
 %left "||"
 %left "&&"
 
-%left "==" "!=" "~="
-%left "<" "<=" ">" ">=" "~<" "~<=" "~>" "~>="
+%left "==" "!=" "~=" "!~="
+%left "<" "<=" ">" ">=" "~<" "~<=" "~>" "~>=" "instanceof" "notinstanceof"
 
-%nonassoc "..=" ".."
+%left "as"
 
-%left "as!"
+%nonassoc "in" "..." "..=" "=.." "=.="
 
 %left "+" "-"
 %left "*" "/" "%"
 %right "**"
 
-%nonassoc "~"
-
 %nonassoc "!"
+%nonassoc "?"
 
-%nonassoc UMINUS
+%nonassoc PREFIX
+%nonassoc POSTFIX
+%nonassoc ANGLE_BRACKETLESS_TYPE
+%nonassoc GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET
 
 %nonassoc "["
 %nonassoc "("
-%nonassoc TYPE
 
 %left "."
+%left "#"
 
 %start file
 
-%% /* language grammar */
+%% /* Sand grammar */
 
 file
-    : optPackage optImports optUseStatements pubClass optPrivClasses EOF
-        { return { type: yy.NodeType.File, packageName: $1, imports: $2, useStatements: $3, pubClass: $4, privClasses: $5, location: yy.convertToRange(@$) }; }
+    : beginningOfFile optPackageStatement optImportStatements optUseStatements pubClassOrInterfaceDeclaration optPrivClassOrInterfaceDeclarations EOF
+        { return yy.createNode(yy.NodeType.FileNode, @$, { packageStatement: $2, importStatements: $3, useStatements: $4, pubClassOrInterfaceDeclaration: $5, privClassOrInterfaceDeclarations: $6 }); }
     ;
 
-optPackage
+beginningOfFile
     : %empty
-        { $$ = null; }
-    | "package" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $2.map(ident => ident.name).join("."); }
+        { yy.resetNodeIdCounter(); $$ = undefined; }
     ;
 
-optImports
+optPackageStatement
+    : %empty
+        { $$ = yy.option.none(); }
+    | packageStatement
+        { $$ = yy.option.some($1); }
+    ;
+
+packageStatement
+    : "package" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.PackageStatement, @$, { identifiers: $2 }); }
+    ;
+
+oneOrMoreDotSeparatedIdentifiers
+    : identifier
+        { $$ = [$1]; }
+    | oneOrMoreDotSeparatedIdentifiers "." identifier
+        { $$ = $1.concat([$3]); }
+    ;
+
+identifier
+    : UNRESERVED_IDENTIFIER
+        { $$ = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 }); }
+    | ESCAPED_IDENTIFIER
+        { $$ = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 }); }
+    | "get"
+        { $$ = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 }); }
+    | "set"
+        { $$ = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 }); }
+    | "intenc"
+        { $$ = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 }); }
+    | "priv"
+        { $$ = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 }); }
+    ;
+
+optImportStatements
     : %empty
         { $$ = []; }
-    | optImports "import" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Import, name: $3.map(ident => ident.name).join("."), alias: null, location: yy.merge(@2, @4) }]); }
+    | optImportStatements importStatement
+        { $$ = $1.concat([$2]); }
+    ;
+
+importStatement
+    : "import" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.SingleItemImportStatement, @$, { doesShadow: false, isStatic: false, identifiers: $2 }); }
+    | "import" "shadow" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.SingleItemImportStatement, @$, { doesShadow: true, isStatic: false, identifiers: $3 }); }
+    | "import" oneOrMoreDotSeparatedIdentifiers "." "*" ";"
+        { $$ = yy.createNode(yy.NodeType.ImportAllStatement, @$, { isStatic: false, identifiers: $2 }); }
+
+    | "import" "static" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.SingleItemImportStatement, @$, { doesShadow: false, isStatic: true, identifiers: $3 }); }
+    | "import" "static" "shadow" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.SingleItemImportStatement, @$, { doesShadow: true, isStatic: true, identifiers: $4 }); }
+    | "import" "static" oneOrMoreDotSeparatedIdentifiers "." "*" ";"
+        { $$ = yy.createNode(yy.NodeType.ImportAllStatement, @$, { isStatic: true, identifiers: $3 }); }
     ;
 
 optUseStatements
     : %empty
         { $$ = []; }
-    | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, doesShadow: false, location: yy.merge(@2, @6) }]); }
-    | optUseStatements "use" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: null, doesShadow: false, location: yy.merge(@2, @4) }]); }
-    | optUseStatements "use!" oneOrMoreDotSeparatedIdentifiers "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: $5, doesShadow: true, location: yy.merge(@2, @6) }]); }
-    | optUseStatements "use!" oneOrMoreDotSeparatedIdentifiers ";"
-        { $$ = $1.concat([{ type: yy.NodeType.Use, name: $3.map(ident => ident.name).join("."), alias: null, doesShadow: true, location: yy.merge(@2, @4) }]); }
+    | oneOrMoreUseStatements
     ;
 
-optCopyStatements
-    : %empty
-        { $$ = []; }
-
-    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers optCopySignature "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: null, name: $3.map(ident => ident.name).join("."), signature: $4, alias: $6, location: yy.merge(@2, @7) }]); }
-    | optCopyStatements "copy" oneOrMoreDotSeparatedIdentifiers optCopySignature ";"
-        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: null, name: $3.map(ident => ident.name).join("."), signature: $4, alias: null, location: yy.merge(@2, @5) }]); }
-
-    | optCopyStatements PUB_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "pub", name: $3.map(ident => ident.name).join("."), signature: $4, alias: $6, location: yy.merge(@2, @7) }]); }
-    | optCopyStatements PUB_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature ";"
-        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "pub", name: $3.map(ident => ident.name).join("."), signature: $4, alias: null, location: yy.merge(@2, @5) }]); }
-
-    | optCopyStatements PROT_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature "as" NON_RESERVED_IDENTIFIER ";"
-        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "prot", name: $3.map(ident => ident.name).join("."), signature: $4, alias: $6, location: yy.merge(@2, @7) }]); }
-    | optCopyStatements PROT_COPY oneOrMoreDotSeparatedIdentifiers optCopySignature ";"
-        { $$ = $1.concat([{ type: yy.NodeType.StaticMethodCopy, accessModifier: "prot", name: $3.map(ident => ident.name).join("."), signature: $4, alias: null, location: yy.merge(@2, @5) }]); }
-    ;
-
-optCopySignature
-    : %empty
-        { $$ = null; }
-    | "(" ")"
-        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: [], location: yy.convertToRange(@$) }; }
-    | "(" typeArgs ")"
-        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: [], argTypes: $2, location: yy.convertToRange(@$) }; }
-    | "<" typeArgDefs ">" "(" ")"
-        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $2, argTypes: [], location: yy.convertToRange(@$) }; }
-    | "<" typeArgDefs ">" "(" typeArgs ")"
-        { $$ = { type: yy.NodeType.StaticMethodCopySignature, typeArgs: $2, argTypes: $5, location: yy.convertToRange(@$) }; }
-    ;
-
-pubClass
-    : "pub" privClass
-        { $$ = { ...$2, isPub: true, location: yy.convertToRange(@$) }; }
-    ;
-
-optAngleEnclosedTypeArgDefs
-    : %empty
-        { $$ = []; }
-    | "<" typeArgDefs ">"
-        { $$ = $2; }
-    ;
-
-typeArgDefs
-    : NON_RESERVED_IDENTIFIER
-        { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(@$) }]; }
-    | NON_RESERVED_IDENTIFIER "extends" type
-        { $$ = [{ type: yy.NodeType.TypeArgDef, name: $1, constraint: { constraintType: yy.ConstraintType.Extends, superType: $3 }, location: yy.convertToRange(@$) }]; }
-    | typeArgDefs "," NON_RESERVED_IDENTIFIER
-        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.None }, location: yy.convertToRange(@3) }]); }
-    | typeArgDefs "," NON_RESERVED_IDENTIFIER "extends" type
-        { $$ = $1.concat([{ type: yy.NodeType.TypeArgDef, name: $3, constraint: { constraintType: yy.ConstraintType.Extends, superType: $5 }, location: yy.merge(@3, @5) }]); }
-    ;
-
-optPrivClasses
-    : %empty
-        { $$ = []; }
-    | optPrivClasses privClass
+oneOrMoreUseStatements
+    : useStatement
+        { $$ = [$1]; }
+    | oneOrMoreUseStatements useStatement
         { $$ = $1.concat([$2]); }
     ;
 
-privClass
-    : optOpenOrAbstract "class" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs optExtension "{" optCopyStatements optUseStatements optClassItems "}"
-        { $$ = { type: yy.NodeType.Class, isPub: false, overridability: $1, name: $3, typeArgDefs: $4, superClass: $5, copies: $7, useStatements: $8, items: $9, location: yy.convertToRange(@$) }; }
+useStatement
+    : useStatementWithExplicitAlias
+    | useStatementWithImplicitAlias
+    | useAllStatement
     ;
 
-optOpenOrAbstract
-    : %empty
-        { $$ = yy.Overridability.Final; }
-    | "open"
-        { $$ = yy.Overridability.Open; }
+useStatementWithExplicitAlias
+    : "use" oneOrMoreDotSeparatedIdentifiers "as" identifier ";"
+        { $$ = yy.createNode(yy.NodeType.UseSingleItemStatement, @$, { doesShadow: false, referentIdentifiers: $2, alias: yy.option.some($4) }); }
+    | "use" "shadow" oneOrMoreDotSeparatedIdentifiers "as" identifier ";"
+        { $$ = yy.createNode(yy.NodeType.UseSingleItemStatement, @$, { doesShadow: true, referentIdentifiers: $3, alias: yy.option.some($5) }); }
+    ;
+
+useStatementWithImplicitAlias
+    : "use" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.UseSingleItemStatement, @$, { doesShadow: false, referentIdentifiers: $2, alias: yy.option.none() }); }
+    | "use" "shadow" oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.UseSingleItemStatement, @$, { doesShadow: true, referentIdentifiers: $3, alias: yy.option.none() }); }
+    ;
+
+useAllStatement
+    : "use" oneOrMoreDotSeparatedIdentifiers "." "*" ";"
+        { $$ = yy.createNode(yy.NodeType.UseAllStatement, @$, { identifiers: $2 }); }
+    ;
+
+pubClassOrInterfaceDeclaration
+    : pubClassDeclaration
+    | pubInterfaceDeclaration
+    ;
+
+pubClassDeclaration
+    : "pub" classDeclaration
+        { $$ = yy.merge($2, { isPub: true }); }
+    ;
+
+classDeclaration
+    : extensibleClassDeclaration
+    | finalClassDeclaration
+    ;
+
+extensibleClassDeclaration
+    : extensibilityModifier finalClassDeclaration
+        { $$ = yy.merge($2, { extensibility: $1 }); }
+    ;
+
+extensibilityModifier
+    : "open"
+        { $$ = yy.ExtensibilityLevel.Open; }
     | "abstract"
-        { $$ = yy.Overridability.Abstract; }
+        { $$ = yy.ExtensibilityLevel.Abstract; }
     ;
 
-optExtension
+finalClassDeclaration
+    : "class" optShadowKeyword identifier optBracketedFormalTypeParams optClassExtensionClause optImplementsClause curlyBraceEnclosedClassBody
+        { $$ = yy.createNode(yy.NodeType.ClassDeclaration, @$, { isPub: false, extensibility: yy.ExtensibilityLevel.Final, doesShadow: $2.isSome(), name: $3, typeParams: $4, superClass: $5, implementedInterfaces: $6, methodCopyStatements: $7.methodCopyStatements, useStatements: $7.useStatements, items: $7.items }); }
+    ;
+
+optShadowKeyword
     : %empty
-        { $$ = null; }
-    | "extends" type
+        { $$ = yy.option.none(); }
+    | "shadow"
+        { $$ = yy.option.some($1); }
+    ;
+
+optBracketedFormalTypeParams
+    : %empty
+        { $$ = []; }
+    | "<" oneOrMoreFormalTypeParams ">"
         { $$ = $2; }
     ;
 
-type
-    : nullableType
-    | nonNullableType
-    ;
-
-nullableType
-    : nonNullableType "?"
-        { $$ = { type: yy.NodeType.Type, name: "nullable", args: [$1], location: yy.convertToRange(@$) }; }
-    ;
-
-nonNullableType
-    : oneOrMoreDotSeparatedIdentifiers "<" typeArgs ">" %prec TYPE
-        { $$ = { type: yy.NodeType.Type, name: $1.map(ident => ident.name).join('.'), args: $3, location: yy.convertToRange(@$) }; }
-    | oneOrMoreDotSeparatedIdentifiers
-        { $$ = { type: yy.NodeType.Type, name: $1.map(ident => ident.name).join('.'), args: [], location: yy.convertToRange(@$) }; }
-    | type "[" "]"
-        { $$ = { type: yy.NodeType.Type, name: "array", args: [$1], location: yy.convertToRange(@$) }; }
-    | type "[" "+" "]"
-        { $$ = { type: yy.NodeType.Type, name: "rlist", args: [yy.wrapPrimitiveIfNeeded($1)], location: yy.convertToRange(@$) }; }
-    ;
-
-typeArgs
-    : type
+oneOrMoreFormalTypeParams
+    : formalTypeParam
         { $$ = [$1]; }
-    | typeArgs "," type
+    | oneOrMoreFormalTypeParams "," formalTypeParam
         { $$ = $1.concat([$3]); }
     ;
 
-optClassItems
+formalTypeParam
+    : optShadowKeyword identifier optTypeConstraint
+        { $$ = yy.createNode(yy.NodeType.FormalTypeParamDeclaration, @$, { name: $2, constraint: $3 }); }
+    ;
+
+optTypeConstraint
+    : %empty
+        { $$ = yy.option.none(); }
+    | typeConstraint
+        { $$ = yy.option.some($1); }
+    ;
+
+typeConstraint
+    : extendsConstraint
+    | superConstraint
+    ;
+
+extendsConstraint
+    : "extends" oneOrMoreAmpersandSeparatedTypes
+        { $$ = yy.createNode(yy.NodeType.TypeParamExtendsConstraint, @$, { superTypes: $2 }); }
+    ;
+
+oneOrMoreAmpersandSeparatedTypes
+    : type
+        { $$ = [$1]; }
+    | oneOrMoreAmpersandSeparatedTypes "&" type
+        { $$ = $1.concat([$3]); }
+    ;
+
+type
+    : oneOrMoreDotSeparatedIdentifiers optBracketedActualTypeParams
+        {
+            var niladic = yy.createNode(yy.NodeType.NiladicType, @1, { identifiers: $1 });
+            if ($2.length === 0) {
+                $$ = niladic;
+            } else {
+                $$ = yy.createNode(yy.NodeType.InstantiatedGenericType, @$, { baseType: niladic, actualParams: $2 });
+            }
+        }
+    | primitiveTypeLiteral
+        {
+            var identifier = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 });
+            $$ = yy.createNode(yy.NodeType.NiladicType, @$, { identifiers: [identifier] });
+        }
+    | type "?"
+        { $$ = yy.createNode(yy.NodeType.NullableType, @$, { baseType: $1 }); }
+    | type "[" "]"
+        { $$ = yy.createNode(yy.NodeType.ArrayType, @$, { baseType: $1 }); }
+    | type "[" "+" "]"
+        { $$ = yy.createNode(yy.NodeType.ListType, @$, { baseType: $1 }); }
+    ;
+
+optBracketedActualTypeParams
     : %empty
         { $$ = []; }
-    | optClassItems classItem
+    | "<" oneOrMoreCommaSeparatedTypes ">"
+        { $$ = $2; }
+    ;
+
+oneOrMoreCommaSeparatedTypes
+    : type
+        { $$ = [$1]; }
+    | oneOrMoreCommaSeparatedTypes "," type
+        { $$ = $1.concat([$3]); }
+    ;
+
+primitiveTypeLiteral
+    : "int"
+    | "short"
+    | "long"
+    | "byte"
+    | "char"
+    | "float"
+    | "double"
+    | "boolean"
+    | "void"
+    | "never"
+    ;
+
+superConstraint
+    : "super" type
+        { $$ = yy.createNode(yy.NodeType.TypeParamSuperConstraint, @$, { subType: $2 }); }
+    ;
+
+optClassExtensionClause
+    : %empty
+        { $$ = yy.option.none(); }
+    | classExtensionClause
+        { $$ = yy.option.some($1); }
+    ;
+
+classExtensionClause
+    : "extends" type
+        { $$ = $2; }
+    ;
+
+optImplementsClause
+    : %empty
+        { $$ = []; }
+    | implementsClause
+    ;
+
+implementsClause
+    : "implements" oneOrMoreCommaSeparatedTypes
+        { $$ = $2; }
+    ;
+
+curlyBraceEnclosedClassBody
+    : "{" "}"
+        { $$ = { methodCopyStatements: [], useStatements: [], items: [] }; }
+    | "{" oneOrMoreMethodCopyStatements "}"
+        { $$ = { methodCopyStatements: $2, useStatements: [], items: [] }; }
+    | "{" oneOrMoreUseStatements "}"
+        { $$ = { methodCopyStatements: [], useStatements: $2, items: [] }; }
+    | "{" oneOrMoreMethodCopyStatements oneOrMoreUseStatements "}"
+        { $$ = { methodCopyStatements: $2, useStatements: $3, items: [] }; }
+    | "{" oneOrMoreClassItems "}"
+        { $$ = { methodCopyStatements: [], useStatements: [], items: $2 }; }
+    | "{" oneOrMoreMethodCopyStatements oneOrMoreClassItems "}"
+        { $$ = { methodCopyStatements: $2, useStatements: [], items: $3 }; }
+    | "{" oneOrMoreUseStatements oneOrMoreClassItems "}"
+        { $$ = { methodCopyStatements: [], useStatements: $2, items: $3 }; }
+    | "{" oneOrMoreMethodCopyStatements oneOrMoreUseStatements oneOrMoreClassItems "}"
+        { $$ = { methodCopyStatements: $2, useStatements: $3, items: $4 }; }
+    ;
+
+oneOrMoreMethodCopyStatements
+    : methodCopyStatement
+        { $$ = [$1]; }
+    | oneOrMoreMethodCopyStatements methodCopyStatement
+        { $$ = $1.concat([$2]); }
+    ;
+
+methodCopyStatement
+    : "copy" optShadowKeyword oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.MethodCopyStatement, @$, { visibility: yy.VisibilityLevel.Private, doesShadow: $2.isSome(), identifiers: $3 }); }
+    | "pub" "copy" optShadowKeyword oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.MethodCopyStatement, @$, { visibility: yy.VisibilityLevel.Public, doesShadow: $3.isSome(), identifiers: $4 }); }
+    | "prot" "copy" optShadowKeyword oneOrMoreDotSeparatedIdentifiers ";"
+        { $$ = yy.createNode(yy.NodeType.MethodCopyStatement, @$, { visibility: yy.VisibilityLevel.Protected, doesShadow: $3.isSome(), identifiers: $4 }); }
+    ;
+
+oneOrMoreClassItems
+    : classItem
+        { $$ = [$1]; }
+    | oneOrMoreClassItems classItem
         { $$ = $1.concat([$2]); }
     ;
 
 classItem
-    : optAccessModifier NON_RESERVED_IDENTIFIER ":" type ";"
-        { $$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $1, isReassignable: false, name: $2, valueType: $4, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "re" NON_RESERVED_IDENTIFIER ":" type ";"
-        { $$ = { type: yy.NodeType.InstancePropertyDeclaration, accessModifier: $1, isReassignable: true, name: $3, valueType: $5, location: yy.convertToRange(@$) }; }
-
-    | optAccessModifier "static" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: $5, initialValue: $7, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: $6, initialValue: $8, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "static" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: $5, initialValue: $7, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: $6, initialValue: $8, location: yy.convertToRange(@$) }; }
-    
-    | optAccessModifier "static" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: null, initialValue: $5, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "static" NON_RESERVED_IDENTIFIER "=" ifNode ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: false, name: $3, valueType: null, initialValue: $5, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "static" "re" NON_RESERVED_IDENTIFIER "=" ifNode ";"
-        { $$ = { type: yy.NodeType.StaticPropertyDeclaration, accessModifier: $1, isReassignable: true, name: $4, valueType: null, initialValue: $6, location: yy.convertToRange(@$) }; }
-
-    | "pub" "inst" ";"
-        { $$ = { type: yy.NodeType.InstantiationRestriction, level: "pub", location: yy.convertToRange(@$) }; }
-    | "prot" "inst" ";"
-        { $$ = { type: yy.NodeType.InstantiationRestriction, level: "prot", location: yy.convertToRange(@$) }; }
-
-    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" optArgDefs ")" ":" type compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: true, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $5, returnType: $8, body: $9, location: yy.convertToRange(@$) }; }
-    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" optArgDefs ")" compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: true, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $5, returnType: null, body: $7, location: yy.convertToRange(@$) }; }
-
-    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $6, returnType: $9, body: $10, location: yy.convertToRange(@$) }; }
-    | optAccessModifier NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: false, name: $2, typeArgs: $3, args: $6, returnType: null, body: $8, location: yy.convertToRange(@$) }; }
-
-    | optAccessModifier "open" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: false, name: $3, typeArgs: $4, args: $7, returnType: $10, body: $11, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "open" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: false, name: $3, typeArgs: $4, args: $7, returnType: null, body: $9, location: yy.convertToRange(@$) }; }
-
-    | optAccessModifier "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: true, name: $3, typeArgs: $4, args: $7, returnType: $10, body: $11, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: false, isOverride: true, name: $3, typeArgs: $4, args: $7, returnType: null, body: $9, location: yy.convertToRange(@$) }; }
-    
-    | optAccessModifier "open" "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: true, name: $4, typeArgs: $5, args: $8, returnType: $11, body: $12, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "open" "override" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" compoundNode
-        { $$ = { type: yy.NodeType.ConcreteMethodDeclaration, accessModifier: $1, isStatic: false, isOpen: true, isOverride: true, name: $4, typeArgs: $5, args: $8, returnType: null, body: $10, location: yy.convertToRange(@$) }; }
-
-    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ":" type ";"
-        { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: false, name: $3, typeArgs: $4, args: $7, returnType: $10, location: yy.convertToRange(@$) }; }
-    | optAccessModifier "abstract" NON_RESERVED_IDENTIFIER optAngleEnclosedTypeArgDefs "(" "this" optCommaAndArgDefs ")" ";"
-        { $$ = { type: yy.NodeType.AbstractMethodDeclaration, accessModifier: $1, isStatic: false, name: $3, typeArgs: $4, args: $7, returnType: null, location: yy.convertToRange(@$) }; }
+    : classConstructorDeclaration
+    | classDefaultConstructorDeclaration
+    | classStaticPropertyDeclaration
+    | classStaticMethodDeclaration
+    | classInstancePropertyDeclaration
+    | classInstanceMethodDeclaration
+    | classInnerClassDeclaration
+    | classInnerInterfaceDeclaration
     ;
 
-optAccessModifier
+classConstructorDeclaration
+    : optVisibilityModifier "new" parenthesizedFormalMethodParamDeclarations optThrowsClause methodBody
+        { $$ = yy.createNode(yy.NodeType.ClassConstructorDeclaration, @$, { visibility: $1.unwrapOr(yy.VisibilityLevel.Private), typeParams: [], params: $3, thrownExceptions: $4, body: $5 }); }
+    | optVisibilityModifier "new" angleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optThrowsClause methodBody
+        { $$ = yy.createNode(yy.NodeType.ClassConstructorDeclaration, @$, { visibility: $1.unwrapOr(yy.VisibilityLevel.Private), typeParams: $3, params: $4, thrownExceptions: $5, body: $6 }); }
+    ;
+
+optVisibilityModifier
     : %empty
-        { $$ = null; }
-    | "pub"
-        { $$ = "pub"; }
+        { $$ = yy.option.none(); }
+    | visibilityModifier
+        { $$ = yy.option.some($1); }
+    ;
+
+visibilityModifier
+    : "pub"
+        { $$ = yy.VisibilityLevel.Public; }
     | "prot"
-        { $$ = "prot"; }
+        { $$ = yy.VisibilityLevel.Protected; }
     ;
 
-optArgDefs
-    : %empty
-        { $$ = []; }
-    | argDefs
+classDefaultConstructorDeclaration
+    : optVisibilityModifier "default" "new" ";"
+        { $$ = yy.createNode(yy.NodeType.ClassDefaultConstructorDeclaration, @$, { visibility: $1.unwrapOr(yy.VisibilityLevel.Private) }); }
     ;
 
-optCommaAndArgDefs
-    : %empty
+parenthesizedFormalMethodParamDeclarations
+    : "(" ")"
         { $$ = []; }
-    | "," argDefs
+    | "(" oneOrMoreFormalMethodParamDeclarations optTrailingComma ")"
         { $$ = $2; }
     ;
 
-argDefs
-    : NON_RESERVED_IDENTIFIER ":" type
-        { $$ = [{ type: yy.NodeType.TypedArgDef, name: $1, valueType: $3, location: yy.convertToRange(@$) }]; }
-    | argDefs "," NON_RESERVED_IDENTIFIER ":" type
-        { $$ = $1.concat([{ type: yy.NodeType.TypedArgDef, name: $3, valueType: $5, location: yy.merge(@3, @5) }]); }
+optTrailingComma
+    : %empty
+        { $$ = undefined; }
+    | ","
     ;
 
-compoundNode
+oneOrMoreFormalMethodParamDeclarations
+    : formalMethodParamDeclaration
+        { $$ = [$1]; }
+    | oneOrMoreFormalMethodParamDeclarations "," formalMethodParamDeclaration
+        { $$ = $1.concat([$3]); }
+    ;
+
+formalMethodParamDeclaration
+    : optShadowKeyword identifier ":" type
+        { $$ = yy.createNode(yy.NodeType.FormalMethodParamDeclaration, @$, { isReassignable: false, doesShadow: $1.isSome(), name: $2, annotatedType: $4 }); }
+    | "var" optShadowKeyword identifier ":" type
+        { $$ = yy.createNode(yy.NodeType.FormalMethodParamDeclaration, @$, { isReassignable: true, doesShadow: $2.isSome(), name: $3, annotatedType: $5 }); }
+    ;
+
+methodBody
     : "{" optUseStatements "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [], definitelyDoesNotEndWithSemicolon: false, location: yy.convertToRange(@$) }; }
-    | "{" optUseStatements simpleExpression "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: [$3], definitelyDoesNotEndWithSemicolon: true, location: yy.convertToRange(@$) }; }
-    | "{" optUseStatements nodeSequence "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: $3, definitelyDoesNotEndWithSemicolon: false, location: yy.convertToRange(@$) }; }
-    | "{" optUseStatements nodeSequence simpleExpression "}"
-        { $$ = { type: yy.NodeType.CompoundNode, useStatements: $2, nodes: $3.concat([$4]), definitelyDoesNotEndWithSemicolon: true, location: yy.convertToRange(@$) }; }
+        { $$ = yy.createNode(yy.NodeType.MethodBody, @$, { useStatements: $2, statements: [], conclusion: yy.option.none() }); }
+    | "{" optUseStatements oneOrMoreStatements "}"
+        { $$ = yy.createNode(yy.NodeType.MethodBody, @$, { useStatements: $2, statements: $3, conclusion: yy.option.none() }); }
+    | "{" optUseStatements oneOrMoreStatements expression "}"
+        { $$ = yy.createNode(yy.NodeType.MethodBody, @$, { useStatements: $2, statements: $3, conclusion: yy.option.some($4) }); }
+    | "{" optUseStatements oneOrMoreStatements returnablePseudex "}"
+        { $$ = yy.createNode(yy.NodeType.MethodBody, @$, { useStatements: $2, statements: $3, conclusion: yy.option.some($4) }); }
+    | "{" optUseStatements expression "}"
+        { $$ = yy.createNode(yy.NodeType.MethodBody, @$, { useStatements: $2, statements: [], conclusion: yy.option.some($3) }); }
+    | "{" optUseStatements returnablePseudex "}"
+        { $$ = yy.createNode(yy.NodeType.MethodBody, @$, { useStatements: $2, statements: [], conclusion: yy.option.some($3) }); }
     ;
 
-nodeSequence
-    : simpleExpression ";"
+oneOrMoreStatements
+    : statement
         { $$ = [$1]; }
-    | rightDelimitedStatement
-        { $$ = [$1]; }
-    | nodeSequence simpleExpression ";"
-        { $$ = $1.concat([$2]); }
-    | nodeSequence rightDelimitedStatement
+    | oneOrMoreStatements statement
         { $$ = $1.concat([$2]); }
     ;
 
-rightDelimitedStatement
-    : ifNode
-    | doNode
+classStaticPropertyDeclaration
+    : optVisibilityModifier "static" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $3,
+                annotatedType: $4,
+                initialValue: $6,
+            });
+        }
+    | optVisibilityModifier "static" "var" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $4,
+                annotatedType: $5,
+                initialValue: $7,
+            });
+        }
+
+    | optVisibilityModifier "static" "shadow" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $4,
+                annotatedType: $5,
+                initialValue: $7,
+            });
+        }
+    | optVisibilityModifier "static" "var" "shadow" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $5,
+                annotatedType: $6,
+                initialValue: $8,
+            });
+        }
+
+    | propertyAccessorDeclarations optVisibilityModifier "static" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($2),
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $4,
+                annotatedType: $5,
+                initialValue: $7,
+            });
+        }
+    | propertyAccessorDeclarations optVisibilityModifier "static" "var" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($2),
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $5,
+                annotatedType: $6,
+                initialValue: $8,
+            });
+        }
+
+    | propertyAccessorDeclarations optVisibilityModifier "static" "shadow" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($2),
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $5,
+                annotatedType: $6,
+                initialValue: $8,
+            });
+        }
+    | propertyAccessorDeclarations optVisibilityModifier "static" "var" "shadow" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($2),
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $6,
+                annotatedType: $7,
+                initialValue: $9,
+            });
+        }
+
+    | propertyAccessorDeclarations "intenc" "static" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $4,
+                annotatedType: $5,
+                initialValue: $7,
+            });
+        }
+    | propertyAccessorDeclarations "intenc" "static" "var" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $5,
+                annotatedType: $6,
+                initialValue: $8,
+            });
+        }
+
+    | propertyAccessorDeclarations "intenc" "static" "shadow" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $5,
+                annotatedType: $6,
+                initialValue: $8,
+            });
+        }
+    | propertyAccessorDeclarations "intenc" "static" "var" "shadow" identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticPropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $6,
+                annotatedType: $7,
+                initialValue: $9,
+            });
+        }
+    ;
+
+propertyAccessorDeclarations
+    : "(" pubPropertyAccessorDeclarations optProtPropertyAccessorDeclarations optPrivPropertyAccessorDeclarations ")"
+        { $$ = yy.mergePropertyAccessorDeclarations(@$, $2, $3, $4); }
+    | "(" protPropertyAccessorDeclarations optPrivPropertyAccessorDeclarations ")"
+        { $$ = yy.mergePropertyAccessorDeclarations(@$, [], $2, $3); }
+    | "(" privPropertyAccessorDeclarations ")"
+        { $$ = yy.mergePropertyAccessorDeclarations(@$, [], [], $2); }
+    ;
+
+pubPropertyAccessorDeclarations
+    : "pub"
+        { $$ = [yy.createNode(yy.NodeType.PropertyGetterDeclaration, @$, { visibility: yy.VisibilityLevel.Public }), yy.createNode(yy.NodeType.PropertySetterDeclaration, @$, { visibility: yy.VisibilityLevel.Public })]; }
+    | "pub" "get"
+        { $$ = [yy.createNode(yy.NodeType.PropertyGetterDeclaration, @$, { visibility: yy.VisibilityLevel.Public })]; }
+    | "pub" "set"
+        { $$ = [yy.createNode(yy.NodeType.PropertySetterDeclaration, @$, { visibility: yy.VisibilityLevel.Public })]; }
+    ;
+
+optProtPropertyAccessorDeclarations
+    : %empty
+        { $$ = []; }
+    | protPropertyAccessorDeclarations
+    ;
+
+protPropertyAccessorDeclarations
+    : "prot"
+        { $$ = [yy.createNode(yy.NodeType.PropertyGetterDeclaration, @$, { visibility: yy.VisibilityLevel.Protected }), yy.createNode(yy.NodeType.PropertySetterDeclaration, @$, { visibility: yy.VisibilityLevel.Protected })]; }
+    | "prot" "get"
+        { $$ = [yy.createNode(yy.NodeType.PropertyGetterDeclaration, @$, { visibility: yy.VisibilityLevel.Protected })]; }
+    | "prot" "set"
+        { $$ = [yy.createNode(yy.NodeType.PropertySetterDeclaration, @$, { visibility: yy.VisibilityLevel.Protected })]; }
+    ;
+
+optPrivPropertyAccessorDeclarations
+    : %empty
+        { $$ = []; }
+    | privPropertyAccessorDeclarations
+    ;
+
+privPropertyAccessorDeclarations
+    : "priv"
+        { $$ = [yy.createNode(yy.NodeType.PropertyGetterDeclaration, @$, { visibility: yy.VisibilityLevel.Private }), yy.createNode(yy.NodeType.PropertySetterDeclaration, @$, { visibility: yy.VisibilityLevel.Private })]; }
+    | "priv" "get"
+        { $$ = [yy.createNode(yy.NodeType.PropertyGetterDeclaration, @$, { visibility: yy.VisibilityLevel.Private })]; }
+    | "priv" "set"
+        { $$ = [yy.createNode(yy.NodeType.PropertySetterDeclaration, @$, { visibility: yy.VisibilityLevel.Private })]; }
+    ;
+
+optVariableTypeAnnotation
+    : %empty
+        { $$ = yy.option.none(); }
+    | variableTypeAnnotation
+        { $$ = yy.option.some($1); }
+    ;
+
+variableTypeAnnotation
+    : ":" type
+        { $$ = $2; }
+    ;
+
+classStaticMethodDeclaration
+    : optVisibilityModifier "static" identifier parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticMethodDeclaration, @$, {
+                visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
+                doesShadow: false,
+
+                name: $3,
+                typeParams: [],
+                params: $4,
+                returnAnnotation: $5,
+                thrownExceptions: $6,
+                body: $7,
+            });
+        }
+    | optVisibilityModifier "static" "shadow" identifier parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticMethodDeclaration, @$, {
+                visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
+                doesShadow: true,
+
+                name: $4,
+                typeParams: [],
+                params: $5,
+                returnAnnotation: $6,
+                thrownExceptions: $7,
+                body: $8,
+            });
+        }
+
+    | optVisibilityModifier "static" identifier angleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticMethodDeclaration, @$, {
+                visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
+                doesShadow: false,
+
+                name: $3,
+                typeParams: $4,
+                params: $5,
+                returnAnnotation: $6,
+                thrownExceptions: $7,
+                body: $8,
+            });
+        }
+    | optVisibilityModifier "static" "shadow" identifier angleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassStaticMethodDeclaration, @$, {
+                visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
+                doesShadow: true,
+
+                name: $4,
+                typeParams: $5,
+                params: $6,
+                returnAnnotation: $7,
+                thrownExceptions: $8,
+                body: $9,
+            });
+        }
+    ;
+
+optReturnTypeAnnotation
+    : %empty
+        { $$ = yy.option.none(); }
+    | returnTypeAnnotation
+        { $$ = yy.option.some($1); }
+    ;
+
+returnTypeAnnotation
+    : ":" type
+        { $$ = $2; }
+    ;
+
+optThrowsClause
+    : %empty
+        { $$ = []; }
+    | throwsClause
+    ;
+
+throwsClause
+    : "throws" oneOrMoreCommaSeparatedTypes
+        { $$ = $2; }
+    ;
+
+angleBracketEnclosedGenericMethodFormalTypeParams
+    : GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET oneOrMoreFormalTypeParams ">"
+        { $$ = $2; }
+    ;
+
+classInstancePropertyDeclaration
+    : optVisibilityModifier identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $2,
+                annotatedType: $3,
+            });
+        }
+    | optVisibilityModifier "var" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $3,
+                annotatedType: $4,
+            });
+        }
+
+    | optVisibilityModifier "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $3,
+                annotatedType: $4,
+            });
+        }
+    | optVisibilityModifier "var" "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel($1),
+                accessors: yy.option.none(),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $4,
+                annotatedType: $5,
+            });
+        }
+
+    | propertyAccessorDeclarations identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.Private,
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $2,
+                annotatedType: $3,
+            });
+        }
+    | propertyAccessorDeclarations "var" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.Private,
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $3,
+                annotatedType: $4,
+            });
+        }
+
+    | propertyAccessorDeclarations "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.Private,
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $3,
+                annotatedType: $4,
+            });
+        }
+    | propertyAccessorDeclarations "var" "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.Private,
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $4,
+                annotatedType: $5,
+            });
+        }
+
+    | propertyAccessorDeclarations visibilityModifier identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $3,
+                annotatedType: $4,
+            });
+        }
+    | propertyAccessorDeclarations visibilityModifier "var" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $4,
+                annotatedType: $5,
+            });
+        }
+
+    | propertyAccessorDeclarations visibilityModifier "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $4,
+                annotatedType: $5,
+            });
+        }
+    | propertyAccessorDeclarations visibilityModifier "var" "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $5,
+                annotatedType: $6,
+            });
+        }
+
+    | propertyAccessorDeclarations "intenc" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: false,
+
+                name: $3,
+                annotatedType: $4,
+            });
+        }
+    | propertyAccessorDeclarations "intenc" "var" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: false,
+
+                name: $4,
+                annotatedType: $5,
+            });
+        }
+
+    | propertyAccessorDeclarations "intenc" "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: false,
+                doesShadow: true,
+
+                name: $4,
+                annotatedType: $5,
+            });
+        }
+    | propertyAccessorDeclarations "intenc" "var" "shadow" identifier variableTypeAnnotation ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstancePropertyDeclaration, @$, {
+                visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+                accessors: yy.option.some($1),
+                isReassignable: true,
+                doesShadow: true,
+
+                name: $5,
+                annotatedType: $6,
+            });
+        }
+    ;
+
+classInstanceMethodDeclaration
+    : classFinalNonOverrideInstanceMethodDeclaration
+    | classFinalOverrideInstanceMethodDeclaration
+    | classOpenInstanceMethodDeclaration
+    | classAbstractInstanceMethodDeclaration
+    ;
+
+classFinalNonOverrideInstanceMethodDeclaration
+    : optVisibilityModifier identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Final,
+                doesOverride: false,
+
+                visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
+
+                name: $2,
+                typeParams: $3,
+                params: $4,
+                returnAnnotation: $5,
+                thrownExceptions: $6,
+                body: $7,
+            });
+        }
+    ;
+
+classFinalOverrideInstanceMethodDeclaration
+    : "override" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Final,
+                doesOverride: true,
+
+                visibility: yy.VisibilityLevel.Protected,
+
+                name: $2,
+                typeParams: $3,
+                params: $4,
+                returnAnnotation: $5,
+                thrownExceptions: $6,
+                body: $7,
+            });
+        }
+    | "pub" "override" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Final,
+                doesOverride: true,
+
+                visibility: yy.VisibilityLevel.Public,
+
+                name: $3,
+                typeParams: $4,
+                params: $5,
+                returnAnnotation: $6,
+                thrownExceptions: $7,
+                body: $8,
+            });
+        }
+    ;
+
+classOpenInstanceMethodDeclaration
+    : "open" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Open,
+                doesOverride: false,
+
+                visibility: yy.VisibilityLevel.Protected,
+
+                name: $2,
+                typeParams: $3,
+                params: $4,
+                returnAnnotation: $5,
+                thrownExceptions: $6,
+                body: $7,
+            });
+        }
+    | "open" "override" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Open,
+                doesOverride: true,
+
+                visibility: yy.VisibilityLevel.Protected,
+
+                name: $3,
+                typeParams: $4,
+                params: $5,
+                returnAnnotation: $6,
+                thrownExceptions: $7,
+                body: $8,
+            });
+        }
+    | "pub" "open" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Open,
+                doesOverride: false,
+
+                visibility: yy.VisibilityLevel.Public,
+
+                name: $3,
+                typeParams: $4,
+                params: $5,
+                returnAnnotation: $6,
+                thrownExceptions: $7,
+                body: $8,
+            });
+        }
+    | "pub" "open" "override" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Open,
+                doesOverride: true,
+
+                visibility: yy.VisibilityLevel.Public,
+
+                name: $4,
+                typeParams: $5,
+                params: $6,
+                returnAnnotation: $7,
+                thrownExceptions: $8,
+                body: $9,
+            });
+        }
+    ;
+
+classAbstractInstanceMethodDeclaration
+    : "abstract" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Abstract,
+
+                visibility: yy.VisibilityLevel.Protected,
+
+                name: $2,
+                typeParams: $3,
+                params: $4,
+                returnAnnotation: $5,
+                thrownExceptions: $6,
+            });
+        }
+    | "pub" "abstract" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause ";"
+        {
+            $$ = yy.createNode(yy.NodeType.ClassInstanceMethodDeclaration, @$, {
+                extensibility: yy.ExtensibilityLevel.Abstract,
+
+                visibility: yy.VisibilityLevel.Public,
+
+                name: $3,
+                typeParams: $4,
+                params: $5,
+                returnAnnotation: $6,
+                thrownExceptions: $7,
+            });
+        }
+    ;
+
+optAngleBracketEnclosedGenericMethodFormalTypeParams
+    : %empty
+        { $$ = []; }
+    | angleBracketEnclosedGenericMethodFormalTypeParams
+    ;
+
+classInnerClassDeclaration
+    : optVisibilityModifier finalClassDeclaration
+        { $$ = yy.createNode(yy.NodeType.ClassInnerClassDeclaration, @$, { visibility: $1.unwrapOr(yy.VisibilityLevel.Private), classDeclaration: $2 }); }
+    | extensibleClassDeclaration
+        { $$ = yy.createNode(yy.NodeType.ClassInnerClassDeclaration, @$, { visibility: yy.VisibilityLevel.Private, classDeclaration: $1 }); }
+    | "prot" extensibleClassDeclaration
+        { $$ = yy.createNode(yy.NodeType.ClassInnerClassDeclaration, @$, { visibility: yy.VisibilityLevel.Protected, classDeclaration: $2 }); }
+    | "pub" extensibleClassDeclaration
+        { $$ = yy.createNode(yy.NodeType.ClassInnerClassDeclaration, @$, { visibility: yy.VisibilityLevel.Public, classDeclaration: $2 }); }
+    ;
+
+classInnerInterfaceDeclaration
+    : optVisibilityModifier interfaceDeclaration
+        { $$ = yy.createNode(yy.NodeType.ClassInnerInterfaceDeclaration, @$, { visibility: $1.unwrapOr(yy.VisibilityLevel.Private), interfaceDeclaration: $2 }); }
+    ;
+
+pubInterfaceDeclaration
+    : "pub" interfaceDeclaration
+        { $$ = yy.merge($2, { isPub: true }); }
+    ;
+
+interfaceDeclaration
+    : "interface" optShadowKeyword identifier optBracketedFormalTypeParams optInterfaceExtensionClause "{" optUseStatements optInterfaceMethodDeclarations "}"
+        { $$ = yy.createNode(yy.NodeType.InterfaceDeclaration, @$, { isPub: false, doesShadow: $2.isSome(), name: $3, typeParams: $4, superInterfaces: $5, useStatements: $7, methods: $8 }); }
+    ;
+
+optInterfaceExtensionClause
+    : %empty
+        { $$ = []; }
+    | interfaceExtensionClause
+    ;
+
+interfaceExtensionClause
+    : "extends" oneOrMoreCommaSeparatedTypes
+        { $$ = $2; }
+    ;
+
+optInterfaceMethodDeclarations
+    : %empty
+        { $$ = []; }
+    | optInterfaceMethodDeclarations interfaceMethodDeclaration
+        { $$ = $1.concat([$2]); }
+    ;
+
+interfaceMethodDeclaration
+    : identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause ";"
+        { $$ = yy.createNode(yy.NodeType.InterfaceAbstractMethodDeclaration, @$, { name: $1, typeParams: $2, params: $3, returnAnnotation: $4, thrownExceptions: $5 }); }
+    | "default" identifier optAngleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        { $$ = yy.createNode(yy.NodeType.InterfaceDefaultMethodDeclaration, @$, { name: $2, typeParams: $3, params: $4, returnAnnotation: $5, thrownExceptions: $6, body: $7 }); }
+    ;
+
+optPrivClassOrInterfaceDeclarations
+    : %empty
+        { $$ = []; }
+    | optPrivClassOrInterfaceDeclarations classDeclaration
+        { $$ = $1.concat([$2]); }
+    | optPrivClassOrInterfaceDeclarations interfaceDeclaration
+        { $$ = $1.concat([$2]); }
+    ;
+
+statement
+    : expression ";"
+        { $$ = yy.createNode(yy.NodeType.StatementExpression, @$, { expression: $1 }); }
+    | blockStatement
+    | ifStatement
+    | switchStatement
     | returnStatement
     | breakStatement
     | continueStatement
-    | localVarDeclaration
-    | assignment
+    | variableDeclaration
+    | variableAssignment
     | throwStatement
     | whileStatement
+    | doWhileStatement
     | loopStatement
     | repeatStatement
     | forStatement
     | tryStatement
+    | ifTypeGuardStatement
+    | whileTypeGuardStatement
     ;
 
-ifNode
-    : "if" simpleExpression compoundNode optIfAlternatives
-        { $$ = { type: yy.NodeType.If, condition: $2, body: $3, alternatives: $4, location: yy.convertToRange(@$) }; }
+blockStatement
+    : "{" optUseStatements "}"
+        { $$ = yy.createNode(yy.NodeType.BlockStatement, @$, { useStatements: $2, statements: [] }); }
+    | "{" optUseStatements oneOrMoreStatements "}"
+        { $$ = yy.createNode(yy.NodeType.BlockStatement, @$, { useStatements: $2, statements: $3 }); }
     ;
 
-optIfAlternatives
+ifStatement
+    : "if" expression blockStatement optStatementElseIfClauses
+        { $$ = yy.createNode(yy.NodeType.IfStatement, @$, { condition: $2, body: $3, elseIfClauses: $4, elseBody: yy.option.none() }); }
+    | "if" expression blockStatement optStatementElseIfClauses statementElseClause
+        { $$ = yy.createNode(yy.NodeType.IfStatement, @$, { condition: $2, body: $3, elseIfClauses: $4, elseBody: yy.option.some($5) }); }
+    ;
+
+optStatementElseIfClauses
     : %empty
         { $$ = []; }
-    | ifAlternatives
+    | optStatementElseIfClauses statementElseIfClause
+        { $$ = $1.concat([$2]); }
     ;
 
-ifAlternatives
-    : "else" compoundNode
-        { $$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $2, location: yy.convertToRange(@$) }]; }
-    | elseIfs
-    | elseIfs "else" compoundNode
-        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.Else, body: $3, location: yy.merge(@2, @3) }]); }
+statementElseIfClause
+    : "else" "if" expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.StatementElseIfClause, @$, { condition: $3, body: $4 }); }
     ;
 
-elseIfs
-    : "else" "if" simpleExpression compoundNode
-        { $$ = [{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $3, body: $4, location: yy.convertToRange(@$) }]; }
-    | elseIfs "else" "if" simpleExpression compoundNode
-        { $$ = $1.concat([{ type: yy.NodeType.IfAlternative, alternativeType: yy.IfAlternativeType.ElseIf, condition: $4, body: $5, location: yy.merge(@2, @5) }]); }
+statementElseClause
+    : "else" blockStatement
+        { $$ = $2; }
     ;
 
-doNode
-    : "do" compoundNode
-        { $$ = { type: yy.NodeType.Do, body: $2, location: yy.convertToRange(@$) }; }
+switchStatement
+    : "switch" expression "{" oneOrMoreStatementCaseClauses "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchStatement, @$, { comparedExpression: $2, caseClauses: $4, elseBody: yy.option.none() }); }
+    | "switch" expression "{" statementElseClause "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchStatement, @$, { comparedExpression: $2, caseClauses: [], elseBody: yy.option.some($4) }); }
+    | "switch" expression "{" oneOrMoreStatementCaseClauses statementElseClause "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchStatement, @$, { comparedExpression: $2, caseClauses: $4, elseBody: yy.option.some($5) }); }
+    ;
+
+oneOrMoreStatementCaseClauses
+    : statementCaseClause
+        { $$ = [$1]; }
+    | oneOrMoreStatementCaseClauses statementCaseClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+statementCaseClause
+    : "case" oneOrMorePipeSeparatedExpressions blockStatement
+        { $$ = yy.createNode(yy.NodeType.StatementCaseClause, @$, { matches: $2, body: $3 }); }
+    ;
+
+oneOrMorePipeSeparatedExpressions
+    : expression
+        { $$ = [$1]; }
+    | oneOrMorePipeSeparatedExpressions "|" expression
+        { $$ = $1.concat([$3]); }
     ;
 
 returnStatement
-    : "return_" simpleExpression ";"
-        { $$ = { type: yy.NodeType.Return, value: $2, location: yy.convertToRange(@$) }; }
-    | "return_" ifNode ";"
-        { $$ = { type: yy.NodeType.Return, value: $2, location: yy.convertToRange(@$) }; }
-    | "return_" doNode ";"
-        { $$ = { type: yy.NodeType.Return, value: $2, location: yy.convertToRange(@$) }; }
-    | "return_" ";"
-        { $$ = { type: yy.NodeType.Return, value: null, location: yy.convertToRange(@$) }; }
-    ; 
+    : "return_" ";"
+        { $$ = yy.createNode(yy.NodeType.ReturnStatement, @$, { returnedValue: yy.option.none() }); }
+    | "return_" expression ";"
+        { $$ = yy.createNode(yy.NodeType.ReturnStatement, @$, { returnedValue: yy.option.some($2) }); }
+    | "return_" returnablePseudex ";"
+        { $$ = yy.createNode(yy.NodeType.ReturnStatement, @$, { returnedValue: yy.option.some($2) }); }
+    ;
 
 breakStatement
     : "break" ";"
-        { $$ = { type: yy.NodeType.Break, value: null, location: yy.convertToRange(@$) }; }
+        { $$ = yy.createNode(yy.NodeType.BreakStatement, @$, {}); }
     ;
 
 continueStatement
     : "continue" ";"
-        { $$ = { type: yy.NodeType.Continue, location: yy.convertToRange(@$) }; }
+        { $$ = yy.createNode(yy.NodeType.ContinueStatement, @$, {}); }
     ;
 
-localVarDeclaration
-    : "let" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "let!" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "re" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "re!" NON_RESERVED_IDENTIFIER "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-
-    | "let" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "let!" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "re" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "re!" NON_RESERVED_IDENTIFIER ":" type "=" simpleExpression ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-
-    | "let" NON_RESERVED_IDENTIFIER "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "let!" NON_RESERVED_IDENTIFIER "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "re" NON_RESERVED_IDENTIFIER "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "re!" NON_RESERVED_IDENTIFIER "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-
-    | "let" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "let!" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "re" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "re!" NON_RESERVED_IDENTIFIER ":" type "=" ifNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-
-    | "let" NON_RESERVED_IDENTIFIER "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "let!" NON_RESERVED_IDENTIFIER "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "re" NON_RESERVED_IDENTIFIER "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-    | "re!" NON_RESERVED_IDENTIFIER "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $4, valueType: null, location: yy.convertToRange(@$) }; }
-
-    | "let" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "let!" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: false, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "re" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: false, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
-    | "re!" NON_RESERVED_IDENTIFIER ":" type "=" doNode ";"
-        { $$ = { type: yy.NodeType.LocalVariableDeclaration, isReassignable: true, doesShadow: true, name: $2, initialValue: $6, valueType: $4, location: yy.convertToRange(@$) }; }
+variableDeclaration
+    : variableDeclarationKeyword optShadowKeyword identifier optVariableTypeAnnotation "=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableDeclaration, @$, { isReassignable: $1 === "var", doesShadow: $2.isSome(), name: $3, annotatedType: $4, initialValue: $6 }); }
     ;
 
-assignment
-    : simpleExpression assignmentOperation simpleExpression ";"
-        { $$ = { type: yy.NodeType.Assignment, assignee: $1, assignmentType: $2, value: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression assignmentOperation ifNode ";"
-        { $$ = { type: yy.NodeType.Assignment, assignee: $1, assignmentType: $2, value: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression assignmentOperation doNode ";"
-        { $$ = { type: yy.NodeType.Assignment, assignee: $1, assignmentType: $2, value: $3, location: yy.convertToRange(@$) }; }
+expressionOrAssignmentPseudex
+    : expression
+    | assignmentPseudex
     ;
 
-assignmentOperation
-    : "="
-    | "**="
-    | "*="
-    | "/="
-    | "%="
-    | "+="
-    | "-="
+variableDeclarationKeyword
+    : "let"
+    | "var"
     ;
 
-throwStatement
-    : "throw" simpleExpression ";"
-        { $$ = { type: yy.NodeType.Throw, value: $2, location: yy.convertToRange(@$) }; }
-    | "throw" ifNode ";"
-        { $$ = { type: yy.NodeType.Throw, value: $2, location: yy.convertToRange(@$) }; }
-    | "throw" doNode ";"
-        { $$ = { type: yy.NodeType.Throw, value: $2, location: yy.convertToRange(@$) }; }
+assignmentPseudex
+    : returnablePseudex
+    | nonReturnablePseudex
+    | blockPseudex
     ;
 
-whileStatement
-    : "while" simpleExpression compoundNode
-        { $$ = { type: yy.NodeType.While, condition: $2, body: $3, location: yy.convertToRange(@$) }; }
+nonReturnablePseudex
+    : repeatingArrayFillPseudex
+    | repeatingListFillPseudex
+    | sequentialListFillPseudex
+    | arrayMapPseudex
+    | listMapPseudex
+    | listFilterMapPseudex
     ;
 
-loopStatement
-    : "loop" compoundNode
-        { $$ = { type: yy.NodeType.Loop, body: $2, location: yy.convertToRange(@$) }; }
+repeatingArrayFillPseudex
+    : "[" expression ";" oneOrMoreCommaSeparatedExpressions "]"
+        { $$ = yy.createNode(yy.NodeType.RepeatingArrayFillPseudex, @$, { fillExpression: $2, dimensions: $4 }); }
     ;
 
-repeatStatement
-    : "repeat" simpleExpression compoundNode
-        { $$ = { type: yy.NodeType.Repeat, repetitions: $2, body: $3, location: yy.convertToRange(@$) }; }
+repeatingListFillPseudex
+    : "+" "[" expression ";" oneOrMoreCommaSeparatedExpressions "]"
+        { $$ = yy.createNode(yy.NodeType.RepeatingListFillPseudex, @$, { fillExpression: $3, dimensions: $5 }); }
     ;
 
-forStatement
-    : "for" binding "in" simpleExpression compoundNode
-        { $$ = { type: yy.NodeType.For, binding: $2, iteratee: $4, body: $5, location: yy.convertToRange(@$) }; }
-    ;
-
-binding
-    : singleBinding
-    | flatTupleBinding
-    ;
-
-singleBinding
-    : NON_RESERVED_IDENTIFIER
-        { $$ = { type: yy.NodeType.SingleBinding, name: $1, location: yy.convertToRange(@$) }; }
-    ;
-
-flatTupleBinding
-    : "(" singleBindings ")"
-        { $$ = { type: yy.NodeType.FlatTupleBinding, bindings: $2, location: yy.convertToRange(@$) }; }
-    ;
-
-singleBindings
-    : singleBinding
+oneOrMoreCommaSeparatedExpressions
+    : expression
         { $$ = [$1]; }
-    | singleBindings "," singleBinding
-        { $$ = $1.concat($3); }
-    ;
-
-tryStatement
-    : "try" compoundNode catchClauses
-        { $$ = { type: yy.NodeType.Try, body: $2, catches: $3, finallyNode: null, location: yy.convertToRange(@$) }; }
-    ;
-
-catchClauses
-    : catchClause
-        { $$ = [$1]; }
-    | catchClauses catchClause
-        { $$ = $1.concat([$2]); }
-    ;
-
-catchClause
-    : "catch" NON_RESERVED_IDENTIFIER ":" type compoundNode
-        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.BoundCatch, arg: { type: yy.NodeType.TypedArgDef, name: $2, valueType: $4, location: yy.merge(@2, @4) }, body: $5, location: yy.convertToRange(@$) }; }
-    | "catch" ":" unionOfOneOrMoreCatchTypes compoundNode
-        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.RestrictedBindinglessCatch, caughtTypes: $3, body: $4, location: yy.convertToRange(@$) }; }
-    | "catch" compoundNode
-        { $$ = { type: yy.NodeType.Catch, catchType: yy.CatchType.CatchAll, body: $2, location: yy.convertToRange(@$) }; }
-    ;
-
-unionOfOneOrMoreCatchTypes
-    : type
-        { $$ = [$1]; }
-    | unionOfOneOrMoreCatchTypes "|" type
+    | oneOrMoreCommaSeparatedExpressions "," expression
         { $$ = $1.concat([$3]); }
     ;
 
-simpleExpression
-    : NUMBER
-        { $$ = { type: yy.NodeType.NumberLiteral, value: $1, location: yy.convertToRange(@$) }; }
-    | STRING
-        { $$ = { type: yy.NodeType.StringLiteral, value: $1, location: yy.convertToRange(@$) }; }
-    | CHARACTER
-        { $$ = { type: yy.NodeType.CharacterLiteral, value: $1, location: yy.convertToRange(@$) }; }
+sequentialListFillPseudex
+    : "+" "[" "]"
+        { $$ = yy.createNode(yy.NodeType.SequentialListFillPseudex, @$, { elements: [] }); }
+    | "+" "[" "oneOrMoreCommaSeparatedExpressions" optTrailingComma "]"
+        { $$ = yy.createNode(yy.NodeType.SequentialListFillPseudex, @$, { elements: $3 }); }
+    ;
 
-    | callableExpression
-    | functionCall
-    | indexExpression
-    
-    | "-" simpleExpression %prec UMINUS
-        { $$ = { type: yy.NodeType.PrefixExpr, operation: $1, right: $2, location: yy.convertToRange(@$) }; }
-    | "!" simpleExpression
-        { $$ = { type: yy.NodeType.PrefixExpr, operation: $1, right: $2, location: yy.convertToRange(@$) }; }
-    | "~" simpleExpression
-        { $$ = { type: yy.NodeType.PrefixExpr, operation: $1, right: $2, location: yy.convertToRange(@$) }; }
+arrayMapPseudex
+    : "[" expression "for" oneOrMoreForBindings "in" expression "]"
+        { $$ = yy.createNode(yy.NodeType.ArrayMapPseudex, @$, { output: $2, bindings: $4, iteratee: $6 }); }
+    | "[" assignmentPseudex "for" oneOrMoreForBindings "in" expression "]"
+        { $$ = yy.createNode(yy.NodeType.ArrayMapPseudex, @$, { output: $2, bindings: $4, iteratee: $6 }); }
+    ;
 
-    | simpleExpression "**" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "*" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "/" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "%" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "+" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "-" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "<" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "<=" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression ">" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression ">=" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "~<" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "~<=" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "~>" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "~>=" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "==" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "!=" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "~=" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "&&" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "||" simpleExpression
-        { $$ = { type: yy.NodeType.InfixExpr, operation: $2, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    
-    | typedObjectLiteral
+oneOrMoreForBindings
+    : forBinding
+        { $$ = [$1]; }
+    | oneOrMoreForBindings "," forBinding
+        { $$ = $1.concat([$3]); }
+    ;
 
-    | arrayLiteral
+forBinding
+    : forValueBinding
+    | forIndexBinding
+    ;
 
-    | range
+forValueBinding
+    : optShadowKeyword identifier
+        { $$ = yy.createNode(yy.NodeType.ForBinding, @$, { bindingType: yy.ForBindingType.ValueBinding, doesShadow: $1.isSome(), name: $2 }); }
+    ;
 
-    | magicFunctionLiteral
+forIndexBinding
+    : optShadowKeyword "@" identifier
+        { $$ = yy.createNode(yy.NodeType.ForBinding, @$, { bindingType: yy.ForBindingType.IndexBinding, doesShadow: $1.isSome(), name: $3 }); }
+    ;
+
+listMapPseudex
+    : "+" "[" expression "for" oneOrMoreForBindings "in" expression "]"
+        { $$ = yy.createNode(yy.NodeType.ListMapPseudex, @$, { output: $3, bindings: $5, iteratee: $7 }); }
+    | "+" "[" assignmentPseudex "for" oneOrMoreForBindings "in" expression "]"
+        { $$ = yy.createNode(yy.NodeType.ListMapPseudex, @$, { output: $3, bindings: $5, iteratee: $7 }); }
+    ;
+
+listFilterMapPseudex
+    : "+" "[" expression "for" oneOrMoreForBindings "in" expression "if" expression "]"
+        { $$ = yy.createNode(yy.NodeType.ListFilterMapPseudex, @$, { output: $3, bindings: $5, iteratee: $7, predicate: $9 }); }
+    | "+" "[" assignmentPseudex "for" oneOrMoreForBindings "in" expression "if" expression "]"
+        { $$ = yy.createNode(yy.NodeType.ListFilterMapPseudex, @$, { output: $3, bindings: $5, iteratee: $7, predicate: $9 }); }
+    ;
+
+returnablePseudex
+    : ifPseudex
+    | switchPseudex
+    | tryPseudex
+    | tryOrThrowPseudex
+    | throwPseudex
+    | ifTypeGuardPseudex
+    ;
+
+ifPseudex
+    : ifPseudexWithIfBodyPseudex
+    | ifPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause
+    | ifPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses
+    ;
+
+ifPseudexWithIfBodyPseudex
+    : "if" expression blockPseudex "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, condition: $2, body: $3, elseIfClauses: [], elseBody: $5 }); }
+    | "if" expression blockPseudex oneOrMoreExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, condition: $2, body: $3, elseIfClauses: $4, elseBody: $6 }); }
+    | "if" expression blockPseudex oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, condition: $2, body: $3, elseIfClauses: $4, elseBody: $6 }); }
+    ;
+
+ifPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause
+    : "if" expression blockExpression oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndAtLeastOnePseudexElseIfClause, condition: $2, body: $3, elseIfClauses: $4, elseBody: $6 }); }
+    ;
+
+ifPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses
+    : "if" expression blockExpression "else" blockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses, condition: $2, body: $3, elseIfClauses: [], elseBody: $5 }); }
+    | "if" expression blockExpression oneOrMoreExpressionElseIfClauses "else" blockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses, condition: $2, body: $3, elseIfClauses: $4, elseBody: $6 }); }
+    ;
+
+blockPseudex
+    : "{" optUseStatements oneOrMoreStatements expression "}"
+        { $$ = yy.createNode(yy.NodeType.BlockPseudex, @$, { useStatements: $2, statements: $3, conclusion: $4 }); }
+    | "{" optUseStatements returnablePseudex "}"
+        { $$ = yy.createNode(yy.NodeType.BlockPseudex, @$, { useStatements: $2, statements: [], conclusion: $3 }); }
+    | "{" optUseStatements oneOrMoreStatements returnablePseudex "}"
+        { $$ = yy.createNode(yy.NodeType.BlockPseudex, @$, { useStatements: $2, statements: $3, conclusion: $4 }); }
+    ;
+
+oneOrMoreExpressionElseIfClauses
+    : expressionElseIfClause
+        { $$ = [$1]; }
+    | oneOrMoreExpressionElseIfClauses expressionElseIfClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+expressionElseIfClause
+    : "else" "if" expression blockExpression
+        { $$ = yy.createNode(yy.NodeType.ExpressionElseIfClause, @$, { condition: $3, body: $4 }); }
+    ;
+
+oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses
+    : pseudexElseIfClause
+        { $$ = [$1]; }
+    | oneOrMoreExpressionElseIfClauses pseudexElseIfClause
+        { $$ = yy.concat($1, [$2]); }
+    | oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses expressionElseIfClause
+        { $$ = $1.concat([$2]); }
+    | oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses pseudexElseIfClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+pseudexElseIfClause
+    : "else" "if" expression blockPseudex
+        { $$ = yy.createNode(yy.NodeType.PseudexElseIfClause, @$, { condition: $3, body: $4 }); }
+    ;
+
+switchPseudex
+    : switchPseudexWithAtLeastOnePseudexCaseClause
+    | switchPseudexWithOneOrMoreExpressionCaseClauses
+    | switchPseudexWithNoCaseClauses
+    ;
+
+switchPseudexWithAtLeastOnePseudexCaseClause
+    : "switch" expression "{" oneOrMorePseudexCaseClausesAndOptExpressionCaseClauses "else" blockExpressionOrBlockPseudex "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchPseudex, @$, { pseudexType: yy.SwitchPseudexType.WithAtLeastOnePseudexCaseClause, comparedExpression: $2, caseClauses: $4, elseBody: $6 }); }
+    ;
+
+switchPseudexWithOneOrMoreExpressionCaseClauses
+    : "switch" expression "{" oneOrMoreExpressionCaseClauses "else" blockPseudex "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchPseudex, @$, { pseudexType: yy.SwitchPseudexType.WithOneOrMoreExpressionCaseClauses, comparedExpression: $2, caseClauses: $4, elseBody: $6 }); }
+    ;
+
+switchPseudexWithNoCaseClauses
+    : "switch" expression "{" "else" blockPseudex "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchPseudex, @$, { pseudexType: yy.SwitchPseudexType.WithNoCaseClauses, comparedExpression: $2, caseClauses: [], elseBody: $5 }); }
+    ;
+
+oneOrMorePseudexCaseClausesAndOptExpressionCaseClauses
+    : pseudexCaseClause
+        { $$ = [$1]; }
+    | oneOrMoreExpressionCaseClauses pseudexCaseClause
+        { $$ = yy.concat($1, [$2]); }
+    | oneOrMorePseudexCaseClausesAndOptExpressionCaseClauses expressionCaseClause
+        { $$ = $1.concat([$2]); }
+    | oneOrMorePseudexCaseClausesAndOptExpressionCaseClauses pseudexCaseClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+pseudexCaseClause
+    : "case" oneOrMorePipeSeparatedExpressions blockPseudex
+        { $$ = yy.createNode(yy.NodeType.PseudexCaseClause, @$, { matches: $2, body: $3 }); }
+    ;
+
+oneOrMoreExpressionCaseClauses
+    : expressionCaseClause
+        { $$ = [$1]; }
+    | oneOrMoreExpressionCaseClauses expressionCaseClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+expressionCaseClause
+    : "case" oneOrMorePipeSeparatedExpressions blockExpression
+        { $$ = yy.createNode(yy.NodeType.ExpressionCaseClause, @$, { matches: $2, body: $3 }); }
+    ;
+
+blockExpressionOrBlockPseudex
+    : blockExpression
+    | blockPseudex
+    ;
+
+tryPseudex
+    : "try" blockExpressionOrBlockPseudex oneOrMoreExpressionOrPseudexCatchClauses
+        { $$ = yy.createNode(yy.NodeType.TryPseudex, @$, { body: $2, catchClauses: $3 }); }
+    ;
+
+oneOrMoreExpressionOrPseudexCatchClauses
+    : expressionOrPseudexCatchClause
+        { $$ = [$1]; }
+    | oneOrMoreExpressionOrPseudexCatchClauses expressionOrPseudexCatchClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+expressionOrPseudexCatchClause
+    : "catch" identifier ":" oneOrMorePipeSeparatedTypes blockExpressionOrBlockPseudex
+        {
+            if ($5.nodeType === yy.NodeType.BlockExpression) {
+                $$ = yy.createNode(yy.NodeType.ExpressionCatchClause, @$, { exceptionName: $2, exceptionTypes: $4, body: $5 });
+            } else {
+                $$ = yy.createNode(yy.NodeType.PseudexCatchClause, @$, { exceptionName: $2, exceptionTypes: $4, body: $5 });
+            }
+        }
+    ;
+
+tryOrThrowPseudex
+    : "tryorthrow" expression
+        { $$ = yy.createNode(yy.NodeType.TryOrThrowPseudex, @$, { expression: $2 }); }
+    ;
+
+throwPseudex
+    : "throw" expression
+        { $$ = yy.createNode(yy.NodeType.ThrowPseudex, @$, { thrownValue: $2 }); }
+    | "throw" returnablePseudex
+        { $$ = yy.createNode(yy.NodeType.ThrowPseudex, @$, { thrownValue: $2 }); }
+    ;
+
+ifTypeGuardPseudex
+    : ifTypeGuardPseudexWithIfBodyPseudex
+    | ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause
+    | ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses
+    ;
+
+ifTypeGuardPseudexWithIfBodyPseudex
+    : "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockPseudex "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, declarations: $3, body: $5, elseIfClauses: [], elseBody: $7 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockPseudex oneOrMoreExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockPseudex oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockPseudex "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, declarations: $3, body: $5, elseIfClauses: [], elseBody: $7 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockPseudex oneOrMoreExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockPseudex oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyPseudex, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    ;
+
+ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause
+    : "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockExpression oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndAtLeastOnePseudexElseIfClause, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses "else" blockExpressionOrBlockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndAtLeastOnePseudexElseIfClause, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    ;
+
+ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses
+    : "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockExpression "else" blockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses, declarations: $3, body: $5, elseIfClauses: [], elseBody: $7 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockExpression oneOrMoreExpressionElseIfClauses "else" blockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression "else" blockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses, declarations: $3, body: $5, elseIfClauses: [], elseBody: $7 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression oneOrMoreExpressionElseIfClauses "else" blockPseudex
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, @$, { pseudexType: yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses, declarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    ;
+
+variableAssignment
+    : assignableExpression "=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+
+    | assignableExpression "**=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+    | assignableExpression "*=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+    | assignableExpression "/=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+    | assignableExpression "%=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+    | assignableExpression "+=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+    | assignableExpression "-=" expressionOrAssignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.VariableAssignment, @$, { assignee: $1, assignmentType: $2, assignment: $3 }); }
+    ;
+
+throwStatement
+    : throwPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.ThrowStatement, @$, { thrownValue: $1.thrownValue }); }
+    ;
+
+whileStatement
+    : "while" expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.WhileStatement, @$, { condition: $2, body: $3 }); }
+    ;
+
+doWhileStatement
+    : "do" blockStatement "while" expression ";"
+        { $$ = yy.createNode(yy.NodeType.DoWhileStatement, @$, { body: $2, condition: $4 }); }
+    ;
+
+loopStatement
+    : "loop" blockStatement
+        { $$ = yy.createNode(yy.NodeType.LoopStatement, @$, { body: $2 }); }
+    ;
+
+repeatStatement
+    : "repeat" expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.RepeatStatement, @$, { repetitionQuantity: $2, body: $3 }); }
+    ;
+
+forStatement
+    : cStyleForStatement
+    | collectionIterationForStatement
+    | rangeForStatement
+    ;
+
+cStyleForStatement
+    : "for" "(" statement expression ";" statement ")" blockStatement
+        { $$ = yy.createNode(yy.NodeType.CStyleForStatement, @$, { initialStatement: $3, condition: $4, afterthought: $6, body: $8 }); }
+    ;
+
+collectionIterationForStatement
+    : "for" forValueBinding "in" expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.CollectionIterationForStatement, @$, { bindings: [$2], iteratee: $4, body: $5 }); }
+    | "for" forIndexBinding "in" expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.CollectionIterationForStatement, @$, { bindings: [$2], iteratee: $4, body: $5 }); }
+    | "for" twoOrMoreForBindings "in" expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.CollectionIterationForStatement, @$, { bindings: $2, iteratee: $4, body: $5 }); }
+    ;
+
+twoOrMoreForBindings
+    : forBinding "," forBinding
+        { $$ = [$1, $3]; }
+    | twoOrMoreForBindings "," forBinding
+        { $$ = $1.concat([$3]); }
+    ;
+
+rangeForStatement
+    : "for" forValueBinding "in" expression forRangeKeyword expression blockStatement
+        { $$ = yy.createNode(yy.NodeType.RangeForStatement, @$, { binding: $2, start: $4, rangeType: $5, end: $6, body: $7 }); }
+    ;
+
+forRangeKeyword
+    : "upuntil"
+        { $$ = yy.ForStatementRangeType.UpUntil; }
+    | "upto"
+        { $$ = yy.ForStatementRangeType.UpTo; }
+    | "downuntil"
+        { $$ = yy.ForStatementRangeType.DownUntil; }
+    | "downto"
+        { $$ = yy.ForStatementRangeType.DownTo; }
+    ;
+
+tryStatement
+    : "try" blockStatement oneOrMoreStatementCatchClauses
+        { $$ = yy.createNode(yy.NodeType.TryStatement, @$, { body: $2, catchClauses: $3 }); }
+    ;
+
+oneOrMoreStatementCatchClauses
+    : statementCatchClause
+        { $$ = [$1]; }
+    | oneOrMoreStatementCatchClauses statementCatchClause
+        { $$ = $1.concat([$2]); }
+    ;
+
+statementCatchClause
+    : "catch" identifier ":" oneOrMorePipeSeparatedTypes blockStatement
+        { $$ = yy.createNode(yy.NodeType.StatementCatchClause, @$, { exceptionName: $2, exceptionTypes: $4, body: $5 }); }
+    ;
+
+oneOrMorePipeSeparatedTypes
+    : type
+        { $$ = [$1]; }
+    | oneOrMorePipeSeparatedTypes "|" type
+        { $$ = $1.concat([$3]); }
+    ;
+
+ifTypeGuardStatement
+    : "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockStatement optStatementElseIfClauses
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, @$, { declarations: $3, body: $5, elseIfClauses: $6, elseBody: yy.option.none() }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockStatement optStatementElseIfClauses statementElseClause
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, @$, { declarations: $3, body: $5, elseIfClauses: $6, elseBody: yy.option.some($7) }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockStatement optStatementElseIfClauses
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, @$, { declarations: $3, body: $5, elseIfClauses: $6, elseBody: yy.option.none() }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockStatement optStatementElseIfClauses statementElseClause
+        { $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, @$, { declarations: $3, body: $5, elseIfClauses: $6, elseBody: yy.option.some($7) }); }
+    ;
+
+oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration
+    : nonInlineTypeGuardVariableDeclaration
+        { $$ = [$1]; }
+    | oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations "," nonInlineTypeGuardVariableDeclaration
+        { $$ = yy.concat($1, [$3]); }
+    | oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration "," inlineTypeGuardVariableDeclaration
+        { $$ = $1.concat([$3]); }
+    | oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration "," nonInlineTypeGuardVariableDeclaration
+        { $$ = $1.concat([$3]); }
+    ;
+
+nonInlineTypeGuardVariableDeclaration
+    : nonInlineNullGuardVariableDeclaration
+    | nonInlineInstanceofGuardVariableDeclaration
+    ;
+
+nonInlineNullGuardVariableDeclaration
+    : identifier "=" expressionOrAssignmentPseudex
+        { $$ = yy.createNode(yy.NodeType.NullGuardVariableDeclaration, @$, { isInline: false, name: $1, assignment: $3 }); }
+    ;
+
+nonInlineInstanceofGuardVariableDeclaration
+    : identifier ":" angleBracketlessType "=" expressionOrAssignmentPseudex
+        { $$ = yy.createNode(yy.NodeType.InstanceofGuardVariableDeclaration, @$, { name: $1, annotatedType: $3, assignment: $5 }); }
+    ;
+
+oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations
+    : inlineNullGuardVariableDeclaration
+        { $$ = [$1]; }
+    | oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations "," inlineNullGuardVariableDeclaration
+        { $$ = $1.concat($3); }
+    ;
+
+inlineTypeGuardVariableDeclaration
+    : inlineNullGuardVariableDeclaration
+    ;
+
+inlineNullGuardVariableDeclaration
+    : "inline" identifier "=" expressionOrAssignmentPseudex
+        { $$ = yy.createNode(yy.NodeType.NullGuardVariableDeclaration, @$, { isInline: true, name: $2, assignment: $4 }); }
+    ;
+
+whileTypeGuardStatement
+    : "while" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockStatement
+        { $$ = yy.createNode(yy.NodeType.WhileTypeGuardStatement, @$, { declarations: $3, body: $5 }); }
+    | "while" "let" oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockStatement
+        { $$ = yy.createNode(yy.NodeType.WhileTypeGuardStatement, @$, { declarations: $3, body: $5 }); }
+    ;
+
+expression
+    : assignableExpression
+    | nonassignableExpression
+    ;
+
+assignableExpression
+    : identifier
+    | "#" identifier
+        { $$ = yy.createNode(yy.NodeType.ThisHashExpression, @$, { right: $2 }); }
+    | expression "." identifier
+        { $$ = yy.createNode(yy.NodeType.DotExpression, @$, { left: $1, right: $3 }); }
+    | expression "#" identifier
+        { $$ = yy.createNode(yy.NodeType.HashExpression, @$, { left: $1, right: $3 }); }
+    | expression "[" expression "]"
+        { $$ = yy.createNode(yy.NodeType.IndexExpression, @$, { collection: $1, index: $3 }); }
+    ;
+
+nonassignableExpression
+    : literalExpression
+    | methodInvocationExpression
 
     | castExpression
+    | anonymousInnerClassInstantiationExpression
+
+    | lambdaExpression
+
+    | rangeCheckExpression
+    | instanceofExpression
+    | notinstanceofExpression
+
+    | postfixExpression
+    | prefixExpression
+    | infixExpression
+
+    | ifExpression
+    | switchExpression
+
+    | ifInlineTypeGuardExpression
 
     | parenthesizedExpression
     ;
 
-parenthesizedExpression
-    : "(" simpleExpression ")"
-        { $$ = $2; }
-    | "(" ifNode ")"
-        { $$ = $2; }
-    | "(" doNode ")"
-        { $$ = $2; }
+literalExpression
+    : nullLiteral
+    | trueLiteral
+    | falseLiteral
+    | numberLiteral
+    | charLiteral
+    | stringLiteral
+    | arrayLiteral
     ;
 
-indexExpression
-    : simpleExpression "[" simpleExpression "]"
-        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "[" ifNode "]"
-        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | simpleExpression "[" doNode "]"
-        { $$ = { type: yy.NodeType.IndexExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
+nullLiteral
+    : "null"
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Null }); }
     ;
 
-callableExpression
-    : identifier
-        { $$ = yy.identifier($1, @1); }
-    | callableExpression "." NON_RESERVED_IDENTIFIER
-        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | functionCall "." NON_RESERVED_IDENTIFIER
-        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | indexExpression "." NON_RESERVED_IDENTIFIER
-        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
-    | parenthesizedExpression "." NON_RESERVED_IDENTIFIER
-        { $$ = { type: yy.NodeType.DotExpr, left: $1, right: $3, location: yy.convertToRange(@$) }; }
+trueLiteral
+    : "true"
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Boolean, value: true }); }
     ;
 
-functionCall
-    : callableExpression optFunctionCallTypeArgs "(" ")"
-        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, typeArgs: $2, args: [], location: yy.convertToRange(@$) }; }
-    | callableExpression optFunctionCallTypeArgs "(" expressions ")"
-        { $$ = { type: yy.NodeType.FunctionCall, callee: $1, typeArgs: $2, args: $4, location: yy.convertToRange(@$) }; }
+falseLiteral
+    : "false"
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Boolean, value: false }); }
     ;
 
-optFunctionCallTypeArgs
-    : %empty
-        { $$ = []; }
-    | FUNCTION_CALL_TYPE_ARG_LEFT_ANGLE_BRACKET typeArgs ">"
-        { $$ = $2; }
+numberLiteral
+    : NUMBER_LITERAL
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Number, source: $1 }); }
     ;
 
-oneOrMoreDotSeparatedIdentifiers
-    : identifier
-        { $$ = [yy.identifier($1, @1)]; }
-    | oneOrMoreDotSeparatedIdentifiers "." NON_RESERVED_IDENTIFIER
-        { $$ = $1.concat([yy.identifier($3, @3)]); }
+charLiteral
+    : CHAR_LITERAL
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Character, source: $1 }); }
     ;
 
-typedObjectLiteral
-    : OBJECT_LITERAL_TYPE "{" "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: [], entries: [], location: yy.convertToRange(@$) }; }
-    | OBJECT_LITERAL_TYPE "{" objectEntries "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: [], entries: $3, location: yy.convertToRange(@$) }; }
-    | OBJECT_LITERAL_TYPE "{" objectEntries "," "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: [], entries: $3, location: yy.convertToRange(@$) }; }
-
-    | OBJECT_LITERAL_TYPE "{" objectCopies "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: [], location: yy.convertToRange(@$) }; }
-    | OBJECT_LITERAL_TYPE "{" objectCopies "," "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: [], location: yy.convertToRange(@$) }; }
-    | OBJECT_LITERAL_TYPE "{" objectCopies "," objectEntries "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: $5, location: yy.convertToRange(@$) }; }
-    | OBJECT_LITERAL_TYPE "{" objectCopies "," objectEntries "," "}"
-        { $$ = { type: yy.NodeType.TypedObjectLiteral, valueType: yy.parseType($1, @1), copies: $3, entries: $5, location: yy.convertToRange(@$) }; }
-    ;
-
-objectCopies
-    : "..." simpleExpression
-        { $$ = [{ type: yy.NodeType.ObjectCopy, source: $2, location: yy.convertToRange(@$) }]; }
-    | objectCopies "," "..." simpleExpression
-        { $$ = $1.concat([{ type: yy.NodeType.ObjectCopy, source: $4, location: yy.merge(@3, @4) }]); }
-    ;
-
-objectEntries
-    : NON_RESERVED_IDENTIFIER ":" simpleExpression
-        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.convertToRange(@$) }]; }
-    | NON_RESERVED_IDENTIFIER ":" ifNode
-        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.convertToRange(@$) }]; }
-    | NON_RESERVED_IDENTIFIER ":" doNode
-        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: $3, location: yy.convertToRange(@$) }]; }
-    | NON_RESERVED_IDENTIFIER
-        { $$ = [{ type: yy.NodeType.ObjectEntry, key: $1, value: null, location: yy.convertToRange(@$) }]; }
-    | objectEntries "," NON_RESERVED_IDENTIFIER ":" simpleExpression
-        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
-    | objectEntries "," NON_RESERVED_IDENTIFIER ":" ifNode
-        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
-    | objectEntries "," NON_RESERVED_IDENTIFIER ":" doNode
-        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: $5, location: yy.merge(@3, @5) }]); }
-    | objectEntries "," NON_RESERVED_IDENTIFIER
-        { $$ = $1.concat([{ type: yy.NodeType.ObjectEntry, key: $3, value: null, location: yy.convertToRange(@3) }]); }
+stringLiteral
+    : STRING_LITERAL
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.String, source: $1 }); }
     ;
 
 arrayLiteral
+    : sequentialArrayLiteral
+    | defaultValueArrayLiteral
+    | repeatingArrayLiteral
+    ;
+
+sequentialArrayLiteral
     : "[" "]"
-        { $$ = { type: yy.NodeType.ArrayLiteral, elements: [], location: yy.convertToRange(@$) }; }
-    | "[" expressions "]"
-        { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.convertToRange(@$) }; }
-    | "[" expressions "," "]"
-        { $$ = { type: yy.NodeType.ArrayLiteral, elements: $2, location: yy.convertToRange(@$) }; }
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Array, arrayType: yy.ArrayLiteralType.Sequential, elements: [] }); }
+    | "[" oneOrMoreCommaSeparatedExpressions optTrailingComma "]"
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Array, arrayType: yy.ArrayLiteralType.Sequential, elements: $2 }); }
     ;
 
-expressions
-    : simpleExpression
+defaultValueArrayLiteral
+    : "[" "static" defaultArrayValue ";" oneOrMoreCommaSeparatedExpressions "]"
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Array, arrayType: yy.ArrayLiteralType.Default, fill: $3, dimensions: $5 }); }
+    ;
+
+defaultArrayValue
+    : numberLiteral
+    | falseLiteral
+    | nullLiteral
+    ;
+
+repeatingArrayLiteral
+    : "[" expression ";" "static" oneOrMoreCommaSeparatedNumberLiterals "]"
+        { $$ = yy.createNode(yy.NodeType.LiteralExpression, @$, { literalType: yy.LiteralType.Array, arrayType: yy.ArrayLiteralType.Repeating, fill: $2, dimensions: $5 }); }
+    ;
+
+oneOrMoreCommaSeparatedNumberLiterals
+    : numberLiteral
         { $$ = [$1]; }
-    | ifNode
+    | oneOrMoreCommaSeparatedNumberLiterals "," numberLiteral
+        { $$ = $1.concat([$3]); }
+    ;
+
+methodInvocationExpression
+    : methodInvocationExpressionWithUnlabeledActualParams
+    | methodInvocationExpressionWithLabeledActualParams
+    ;
+
+methodInvocationExpressionWithUnlabeledActualParams
+    : expression "(" ")"
+        { $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, @$, { isLabeled: false, callee: $1, typeParams: [], params: [] }); }
+    | expression "(" oneOrMoreCommaSeparatedExpressions optTrailingComma ")"
+        { $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, @$, { isLabeled: false, callee: $1, typeParams: [], params: $3 }); }
+    | expression angleBracketEnclosedGenericMethodActualTypeParams "(" ")"
+        { $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, @$, { isLabeled: false, callee: $1, typeParams: $2, params: [] }); }
+    | expression angleBracketEnclosedGenericMethodActualTypeParams "(" oneOrMoreCommaSeparatedExpressions optTrailingComma ")"
+        { $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, @$, { isLabeled: false, callee: $1, typeParams: $2, params: $4 }); }
+    ;
+
+methodInvocationExpressionWithLabeledActualParams
+    : expression "(" oneOrMoreLabeledActualMethodParams optTrailingComma ")"
+        { $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, @$, { isLabeled: true, callee: $1, typeParams: [], params: $3 }); }
+    | expression angleBracketEnclosedGenericMethodActualTypeParams "(" oneOrMoreLabeledActualMethodParams optTrailingComma ")"
+        { $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, @$, { isLabeled: true, callee: $1, typeParams: $2, params: $4 }); }
+    ;
+
+angleBracketEnclosedGenericMethodActualTypeParams
+    : GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET oneOrMoreCommaSeparatedTypes ">"
+        { $$ = $2; }
+    ;
+
+oneOrMoreLabeledActualMethodParams
+    : labeledActualMethodParam
         { $$ = [$1]; }
-    | doNode
-        { $$ = [$1]; }
-    | expressions "," simpleExpression
-        { $$ = $1.concat([$3]); }
-    | expressions "," ifNode
-        { $$ = $1.concat([$3]); }
-    | expressions "," doNode
+    | oneOrMoreLabeledActualMethodParams "," labeledActualMethodParam
         { $$ = $1.concat([$3]); }
     ;
 
-range
-    : endInclusiveRange
-    | endExclusiveRange
-    ;
-
-endInclusiveRange
-    : simpleExpression "..=" simpleExpression
-        { $$ = { type: yy.NodeType.RangeLiteral, start: $1, end: $3, includesEnd: true, location: yy.convertToRange(@$) }; }
-    ;
-
-endExclusiveRange
-    : simpleExpression ".." simpleExpression
-        { $$ = { type: yy.NodeType.RangeLiteral, start: $1, end: $3, includesEnd: false, location: yy.convertToRange(@$) }; }
-    ;
-
-magicFunctionLiteral
-    : "\" optUntypedArgDefs "->" simpleExpression
-        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.convertToRange(@$) }; }
-    | "\" optUntypedArgDefs "->" ifNode
-        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.convertToRange(@$) }; }
-    | "\" optUntypedArgDefs "->" doNode
-        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.convertToRange(@$) }; }
-    | "\" optUntypedArgDefs "->" compoundNode
-        { $$ = { type: yy.NodeType.MagicFunctionLiteral, args: $2, body: $4, location: yy.convertToRange(@$) }; }
-    ;
-
-optUntypedArgDefs
-    : %empty
-        { $$ = []; }
-    | untypedArgDefs
-    ;
-
-untypedArgDefs
-    : NON_RESERVED_IDENTIFIER
-        { $$ = [{ type: yy.NodeType.UntypedArgDef, name: $1, location: yy.convertToRange(@$) }]; }
-    | untypedArgDefs "," NON_RESERVED_IDENTIFIER
-        { $$ = $1.concat([{ type: yy.NodeType.UntypedArgDef, name: $3, location: yy.convertToRange(@3) }]); }
+labeledActualMethodParam
+    : identifier ":" expression
+        { $$ = yy.createNode(yy.NodeType.LabeledActualParam, @$, { label: $1, value: $3 }); }
     ;
 
 castExpression
-    : simpleExpression "as!" CAST_EXPRESSION_TARGET_TYPE
-        { $$ = { type: yy.NodeType.CastExpr, value: $1, targetType: yy.parseType($3, @3), location: yy.convertToRange(@$) }; }
+    : expression "as" angleBracketlessType
+        { $$ = yy.createNode(yy.NodeType.CastExpression, @$, { castee: $1, targetType: $3 }); }
     ;
 
-identifier
-    : NON_RESERVED_IDENTIFIER
-    | "this"
-    | "super"
+angleBracketlessType
+    : primitiveTypeLiteral
+        {
+            var identifier = yy.createNode(yy.NodeType.Identifier, @$, { source: $1 });
+            $$ = yy.createNode(yy.NodeType.NiladicType, @$, { identifiers: [identifier] });
+        }
+    | oneOrMoreDotSeparatedIdentifiers %prec ANGLE_BRACKETLESS_TYPE
+        { $$ = yy.createNode(yy.NodeType.NiladicType, @$, { identifiers: $1 }); }
+    | angleBracketlessType "?"
+        { $$ = yy.createNode(yy.NodeType.NullableType, @$, { baseType: $1 }); }
+    | angleBracketlessType "[" "]"
+        { $$ = yy.createNode(yy.NodeType.ArrayType, @$, { baseType: $1 }); }
+    ;
+
+anonymousInnerClassInstantiationExpression
+    : "new" anonymousInnerClassInstantiationType anonymousInnerClassBody
+        { $$ = yy.createNode(yy.NodeType.AnonymousInnerClassInstantiationExpression, @$, { instantiationType: $2, useStatements: $3.useStatements, items: $3.items }); }
+    ;
+
+anonymousInnerClassInstantiationType
+    : oneOrMoreDotSeparatedIdentifiers optBracketedActualTypeParams
+        {
+            var niladic = yy.createNode(yy.NodeType.NiladicType, @1, { identifiers: $1 });
+            if ($2.length === 0) {
+                $$ = niladic;
+            } else {
+                $$ = yy.createNode(yy.NodeType.InstantiatedGenericType, @$, { baseType: niladic, actualParams: $2 });
+            }
+        }
+    | oneOrMoreDotSeparatedIdentifiers optBracketedActualTypeParams "?"
+        {
+            var niladic = yy.createNode(yy.NodeType.NiladicType, @1, { identifiers: $1 });
+            var nullBase = $2.length === 0
+                ? niladic
+                : yy.createNode(yy.NodeType.InstantiatedGenericType, yy.mergeLocations(@1, @2), { baseType: niladic, actualParams: $2 });
+            $$ = yy.createNode(yy.NodeType.NullableType, @$, { baseType: nullBase });
+        }
+    ;
+
+anonymousInnerClassBody
+    : "{" optUseStatements optAnonymousInnerClassItems "}"
+        { $$ = { useStatements: $2, items: $3 }; }
+    ;
+
+optAnonymousInnerClassItems
+    : %empty
+        { $$ = []; }
+    | optAnonymousInnerClassItems anonymousInnerClassItem
+        { $$ = $1.concat([$2]); }
+    ;
+
+anonymousInnerClassItem
+    : identifier optVariableTypeAnnotation "=" expression ";"
+        { $$ = yy.createNode(yy.NodeType.AnonymousInnerClassPropertyDeclaration, @$, { name: $1, annotatedType: $2, initialValue: $4 }); }
+    | identifier optVariableTypeAnnotation "=" assignmentPseudex ";"
+        { $$ = yy.createNode(yy.NodeType.AnonymousInnerClassPropertyDeclaration, @$, { name: $1, annotatedType: $2, initialValue: $4 }); }
+    
+    | blockStatement
+
+    | identifier parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.AnonymousInnerClassMethodDeclaration, @$, {
+                doesOverride: false,
+                name: $1,
+                typeParams: [],
+                params: $2,
+                returnAnnotation: $3,
+                thrownExceptions: $4,
+                body: $5,
+            });
+        }
+    | identifier angleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.AnonymousInnerClassMethodDeclaration, @$, {
+                doesOverride: false,
+                name: $1,
+                typeParams: $2,
+                params: $3,
+                returnAnnotation: $4,
+                thrownExceptions: $5,
+                body: $6,
+            });
+        }
+    
+    | "override" identifier parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.AnonymousInnerClassMethodDeclaration, @$, {
+                doesOverride: true,
+                name: $2,
+                typeParams: [],
+                params: $3,
+                returnAnnotation: $4,
+                thrownExceptions: $5,
+                body: $6,
+            });
+        }
+    | "override" identifier angleBracketEnclosedGenericMethodFormalTypeParams parenthesizedFormalMethodParamDeclarations optReturnTypeAnnotation optThrowsClause methodBody
+        {
+            $$ = yy.createNode(yy.NodeType.AnonymousInnerClassMethodDeclaration, @$, {
+                doesOverride: true,
+                name: $2,
+                typeParams: $3,
+                params: $4,
+                returnAnnotation: $5,
+                thrownExceptions: $6,
+                body: $7,
+            });
+        }
+    ;
+
+lambdaExpression
+    : "\" oneOrMoreCommaSeparatedIdentifiers "->" expression
+        { $$ = yy.createNode(yy.NodeType.LambdaExpression, @$, { params: $2, body: $4 }); }
+    | "\" oneOrMoreCommaSeparatedIdentifiers "->" methodBody
+        { $$ = yy.createNode(yy.NodeType.LambdaExpression, @$, { params: $2, body: $4 }); }
+    ;
+
+oneOrMoreCommaSeparatedIdentifiers
+    : identifier
+        { $$ = [$1]; }
+    | oneOrMoreCommaSeparatedIdentifiers "," identifier
+        { $$ = $1.concat([$3]); }
+    ;
+
+rangeCheckExpression
+    : expression "in" expression "..." expression
+        { $$ = yy.createNode(yy.NodeType.RangeCheckExpression, @$, { left: $1, lowerBound: $3, rangeType: yy.RangeCheckRangeType[$4], upperBound: $5 }); }
+    | expression "in" expression "..=" expression
+        { $$ = yy.createNode(yy.NodeType.RangeCheckExpression, @$, { left: $1, lowerBound: $3, rangeType: yy.RangeCheckRangeType[$4], upperBound: $5 }); }
+    | expression "in" expression "=.." expression
+        { $$ = yy.createNode(yy.NodeType.RangeCheckExpression, @$, { left: $1, lowerBound: $3, rangeType: yy.RangeCheckRangeType[$4], upperBound: $5 }); }
+    | expression "in" expression "=.=" expression
+        { $$ = yy.createNode(yy.NodeType.RangeCheckExpression, @$, { left: $1, lowerBound: $3, rangeType: yy.RangeCheckRangeType[$4], upperBound: $5 }); }
+    ;
+
+instanceofExpression
+    : expression "instanceof" angleBracketlessType
+        { $$ = yy.createNode(yy.NodeType.InstanceofExpression, @$, { value: $1, comparedType: $3 }); }
+    ;
+
+oneOrMoreSquareBracketPairs
+    : "[" "]"
+        { $$ = { pairCount: 1 }; }
+    | oneOrMoreSquareBracketPairs "[" "]"
+        { $$ = { pairCount: $1.pairCount + 1 }; }
+    ;
+
+notinstanceofExpression
+    : expression "notinstanceof" angleBracketlessType
+        { $$ = yy.createNode(yy.NodeType.NotinstanceofExpression, @$, { value: $1, comparedType: $3 }); }
+    ;
+
+postfixExpression
+    : expression "!" %prec POSTFIX
+        { $$ = yy.createNode(yy.NodeType.PostfixExpression, @$, { left: $1, operator: yy.PostfixOperatorType[$2] }); }
+    | expression "?" %prec POSTFIX
+        { $$ = yy.createNode(yy.NodeType.PostfixExpression, @$, { left: $1, operator: yy.PostfixOperatorType[$2] }); }
+    ;
+
+prefixExpression
+    : "!" expression %prec PREFIX
+        { $$ = yy.createNode(yy.NodeType.PrefixExpression, @$, { operator: yy.PrefixOperatorType[$1], right: $2 }); }
+    | "-" expression %prec PREFIX
+        { $$ = yy.createNode(yy.NodeType.PrefixExpression, @$, { operator: yy.PrefixOperatorType[$1], right: $2 }); }
+    ;
+
+infixExpression
+    : expression "**" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+
+    | expression "*" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "/" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "%" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+
+    | expression "+" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "-" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+
+    | expression "<" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "<=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression ">" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression ">=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "~<" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "~<=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "~>" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "~>=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+
+    | expression "==" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "!=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "~=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "!~=" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+
+    | expression "&&" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    | expression "||" expression
+        { $$ = yy.createNode(yy.NodeType.InfixExpression, @$, { left: $1, operator: yy.InfixOperatorType[$2], right: $3 }); }
+    ;
+
+blockExpression
+    : "{" optUseStatements expression "}"
+        { $$ = yy.createNode(yy.NodeType.BlockExpression, @$, { useStatements: $2, conclusion: $3 }); }
+    ;
+
+ifExpression
+    : "if" expression blockExpression "else" blockExpression
+        { $$ = yy.createNode(yy.NodeType.IfExpression, @$, { condition: $2, body: $3, elseIfClauses: [], elseBody: $5 }); }
+    | "if" expression blockExpression oneOrMoreExpressionElseIfClauses "else" blockExpression
+        { $$ = yy.createNode(yy.NodeType.IfExpression, @$, { condition: $2, body: $3, elseIfClauses: $4, elseBody: $6 }); }
+    ;
+
+switchExpression
+    : "switch" expression "{" "else" blockExpression "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchExpression, @$, { comparedExpression: $2, caseClauses: [], elseBody: $5 }); }
+    | "switch" expression "{" oneOrMoreExpressionCaseClauses "else" blockExpression "}"
+        { $$ = yy.createNode(yy.NodeType.SwitchExpression, @$, { comparedExpression: $2, caseClauses: $4, elseBody: $6 }); }
+    ;
+
+ifInlineTypeGuardExpression
+    : "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression "else" blockExpression
+        { $$ = yy.createNode(yy.NodeType.IfInlineTypeGuardExpression, @$, { variableDeclarations: $3, body: $5, elseIfClauses: [], elseBody: $7 }); }
+    | "if" "let" oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression oneOrMoreExpressionElseIfClauses "else" blockExpression
+        { $$ = yy.createNode(yy.NodeType.IfInlineTypeGuardExpression, @$, { variableDeclarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 }); }
+    ;
+
+parenthesizedExpression
+    : "(" expression ")"
+        { $$ = yy.createNode(yy.NodeType.ParenthesizedExpression, @$, { innerValue: $2 }); }
     ;

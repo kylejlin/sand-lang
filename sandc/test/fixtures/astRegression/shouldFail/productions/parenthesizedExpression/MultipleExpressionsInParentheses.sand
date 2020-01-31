@@ -1,0 +1,5 @@
+pub class MultipleExpressionsInParentheses {
+    foo() {
+        (a, b)
+    }
+}

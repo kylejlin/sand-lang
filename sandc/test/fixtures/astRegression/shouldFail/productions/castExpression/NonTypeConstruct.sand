@@ -1,0 +1,5 @@
+pub class NonTypeConstruct {
+    foo() {
+        a as "foo"
+    }
+}

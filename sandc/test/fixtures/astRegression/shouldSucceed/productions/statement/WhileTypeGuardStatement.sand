@@ -1,0 +1,57 @@
+pub class WhileTypeGuardStatement {
+    nullGuard() {
+        while let a = b {
+
+        }
+
+        while let a = b {
+            foo();
+        }
+    }
+
+    instanceofGuard() {
+        while let a: Foo = b {
+            
+        }
+
+        while let a: Foo = b {
+            foo();
+        }
+    }
+
+    multipleGuards() {
+        while let a = b, a = b {
+
+        }
+        
+        while let a = b, a = b {
+            foo();
+        }
+
+        while let a: Foo = b, a: Foo = b {
+
+        }
+
+        while let a: Foo = b, a: Foo = b {
+            foo();
+        }
+
+        while let a = b, a: Foo = b, a: Foo = b, a = b {
+
+        }
+
+        while let a = b, a: Foo = b, a: Foo = b, a = b {
+            foo();
+        }
+    }
+
+    multipleGuardsTrailingComma() {
+        while let a = b, a: Foo = b, a: Foo = b, a = b, {
+
+        }
+
+        while let a = b, a: Foo = b, a: Foo = b, a = b, {
+            foo();
+        }
+    }
+}

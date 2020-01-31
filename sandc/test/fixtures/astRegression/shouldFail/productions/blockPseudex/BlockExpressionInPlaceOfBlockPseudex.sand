@@ -1,0 +1,7 @@
+pub class BlockExpressionInPlaceOfBlockPseudex {
+    foo() {
+        let a = {
+            b
+        };
+    }
+}

@@ -1,0 +1,5 @@
+pub class ClassDefaultConstructorDeclaration {
+    default new;
+    pub default new;
+    prot default new;
+}

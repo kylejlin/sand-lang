@@ -1,0 +1,11 @@
+pub class WhileStatement {
+    foo() {
+        while cond {
+
+        }
+
+        while cond {
+            foo();
+        }
+    }
+}

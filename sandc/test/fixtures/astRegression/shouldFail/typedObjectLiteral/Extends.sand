@@ -1,7 +1,0 @@
-pub class Extends {
-    illegalExtends() {
-        Foo<T extends ArrayList> {
-            foo: 8
-        }
-    }
-}

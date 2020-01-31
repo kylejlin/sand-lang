@@ -1,0 +1,6 @@
+package stmt1;
+package stmt2;
+
+pub class TwoPackageStatements {
+    
+}

@@ -1,0 +1,6 @@
+pub class NewlineInString {
+    foo() {
+        "
+        "
+    }
+}

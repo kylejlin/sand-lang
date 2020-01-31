@@ -1,0 +1,17 @@
+pub class ClassInnerInterfaceDeclaration {
+    interface Inner {
+
+    }
+
+    pub interface Inner {
+
+    }
+
+    interface Inner<T, U extends Foo & Bar, R super S> {
+
+    }
+
+    interface Inner extends Foo, Bar<Baz> {
+        
+    }
+}

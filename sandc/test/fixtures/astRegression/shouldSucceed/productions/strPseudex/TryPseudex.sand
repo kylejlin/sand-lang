@@ -1,0 +1,57 @@
+pub class TryPseudex {
+    foo() {
+        return try {
+            b
+        } catch e: Foo {
+            b
+        };
+
+        return try {
+            foo();
+            b
+        } catch e: Foo {
+            b
+        };
+
+        return try {
+            b
+        } catch e: Foo {
+            foo();
+            b
+        };
+
+        return try {
+            foo();
+            b
+        } catch e: Foo {
+            foo();
+            b
+        };
+
+        return try {
+            b
+        } catch e: Foo {
+            b
+        } catch e: Bar | Baz {
+            b
+        };
+
+        return try {
+            b
+        } catch e: Foo {
+            foo();
+            b
+        } catch e: Bar | Baz {
+            b
+        };
+
+        return try {
+            b
+        } catch e: Foo {
+            b
+        } catch e: Bar | Baz {
+            foo();
+            b
+        };
+    }
+}

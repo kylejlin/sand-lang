@@ -1,0 +1,11 @@
+pub class InlineInstanceof {
+    foo() {
+        (
+            if let inline a: Foo = b() {
+                c()
+            } else {
+                c()
+            }
+        )
+    }
+}

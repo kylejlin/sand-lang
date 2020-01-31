@@ -1,0 +1,7 @@
+class PrivClass {
+
+}
+
+pub class PubClass {
+    
+}

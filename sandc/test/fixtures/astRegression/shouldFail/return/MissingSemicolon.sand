@@ -1,5 +1,0 @@
-pub class MissingSemicolon {
-    missingSemi() {
-        return 8
-    }
-}

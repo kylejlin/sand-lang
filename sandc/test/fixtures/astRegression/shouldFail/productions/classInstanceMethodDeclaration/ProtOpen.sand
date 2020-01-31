@@ -1,0 +1,5 @@
+pub class ProtOpen {
+    prot open foo() {
+        
+    }
+}

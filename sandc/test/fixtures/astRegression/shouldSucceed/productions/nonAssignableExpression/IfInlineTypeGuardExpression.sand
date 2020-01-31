@@ -1,0 +1,41 @@
+pub class IfInlineTypeGuardExpression {
+    foo() {
+        [
+            if let inline a = b() {
+                c()
+            } else {
+                c()
+            },
+
+            if let inline a = b(), {
+                c()
+            } else {
+                c()
+            },
+
+            if let inline a = b() {
+                c()
+            } else if cond {
+                c()
+            } else {
+                c()
+            },
+
+            if let inline a = b(), inline a = b() {
+                c()
+            } else if cond {
+                c()
+            } else {
+                c()
+            },
+
+            if let inline a = b(), inline a = b(), {
+                c()
+            } else if cond {
+                c()
+            } else {
+                c()
+            },
+        ]
+    }
+}

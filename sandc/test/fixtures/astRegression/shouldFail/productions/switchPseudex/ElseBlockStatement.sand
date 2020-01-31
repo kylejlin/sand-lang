@@ -1,0 +1,13 @@
+pub class ElseBlockStatement {
+    foo() {
+        let a = switch val {
+            case c {
+                d
+            }
+
+            else {
+                foo();
+            }
+        };
+    }
+}

@@ -1,0 +1,55 @@
+pub class IfStatement {
+    empty() {
+        if cond {
+
+        }
+
+        if cond {
+
+        } else {
+
+        }
+
+        if cond {
+
+        } else if cond {
+
+        } else {
+
+        }
+    }
+
+    nonEmpty() {
+        if cond {
+            a = b;
+        }
+
+        if cond {
+            a = b;
+        } else {
+            a = b;
+        }
+
+        if cond {
+            a = b;
+        } else if cond {
+            a = b;
+        } else {
+            a = b;
+        }
+    }
+
+    mixed() {
+        if cond {
+            a = b;
+        } else {
+
+        }
+
+        if cond {
+
+        } else {
+            a = b;
+        }
+    }
+}

@@ -1,5 +1,0 @@
-pub class DeclarationExpression {
-    foo() {
-        x(let foo = 3;)
-    }
-}

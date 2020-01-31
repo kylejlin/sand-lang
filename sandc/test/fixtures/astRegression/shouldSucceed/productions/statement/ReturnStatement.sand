@@ -1,0 +1,14 @@
+pub class ReturnStatement {
+    method() {
+        return;
+
+        return exp;
+
+        return if cond {
+            a = b;
+            c
+        } else {
+            d
+        };
+    }
+}

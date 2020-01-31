@@ -11,12 +11,14 @@
   "scripts": {
     "start": "nodemon",
     "prepublishOnly": "npm run build && npm test",
-    "build": "tsc",
+    "typecheck": "tsc --project ./tsconfig.checkOnly.json",
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.production.emitDeclarations.json && tsc --project ./tsconfig.production.emitJs.json",
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "doc": "typedoc --out docs src && cd docs && echo \"\" > .nojekyll",
-    "jison": "jison grammar/sand.jison --outfile src/parser/parser.generated.js && jison grammar/type.jison --outfile src/parser/subparsers/type/parser.generated.js && npm run fix-jison-error-report-line-numbers",
-    "fix-jison-error-report-line-numbers": "ts-node ./bin/fixJisonErrorReportLineNumbers.ts"
+    "jison": "jison grammar/sand.jison --outfile src/parser/parser.generated.js && npm run fix-jison-error-report-line-numbers && npm run tyson",
+    "fix-jison-error-report-line-numbers": "ts-node ./bin/fixJisonErrorReportLineNumbers.ts",
+    "tyson": "tyson grammar/sand.jison src/types/tysonTypeDict.ts --type-dict-interface TysonTypeDict --out src/parser/verification/semanticActions.generated.ts"
   },
   "repository": {
     "type": "git",
@@ -42,11 +44,13 @@
     "prettier": "^1.19.1",
     "promise.allsettled": "^1.0.2",
     "recursive-readdir": "^2.2.2",
+    "replace-in-file": "^5.0.2",
     "ts-jest": "^24.1.0",
     "ts-node": "^8.5.4",
-    "typescript": "^3.7.2"
+    "typescript": "^3.7.2",
+    "tyson": "^1.6.0"
   },
   "dependencies": {
-    "replace-in-file": "^5.0.2"
+    "rusty-ts": "^1.1.0"
   }
 }

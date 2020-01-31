@@ -1,0 +1,69 @@
+pub class TryStatement {
+    empty() {
+        try {
+
+        } catch e: Foo {
+
+        }
+
+        try {
+            
+        } catch e: Foo {
+
+        } catch e: Foo {
+
+        }
+
+        try {
+
+        } catch e: Foo | Bar {
+
+        }
+
+        try {
+
+        } catch e: Foo {
+
+        } catch e: Foo | Bar {
+
+        } catch e: Foo | Bar {
+ 
+        } catch e: Foo {
+
+        }
+    }
+
+    nonEmpty() {
+        try {
+            foo();
+        } catch e: Foo {
+            foo();
+        }
+
+        try {
+            foo();
+        } catch e: Foo {
+            foo();
+        } catch e: Foo {
+            foo();
+        }
+
+        try {
+            foo();
+        } catch e: Foo | Bar {
+            foo();
+        }
+
+        try {
+            foo();
+        } catch e: Foo {
+            foo();
+        } catch e: Foo | Bar {
+            foo();
+        } catch e: Foo | Bar {
+            foo();
+        } catch e: Foo {
+            foo();
+        }
+    }
+}

@@ -1,0 +1,8 @@
+pub class WhilePseudex {
+    foo() {
+        while cond {
+            foo();
+            a
+        }
+    }
+}

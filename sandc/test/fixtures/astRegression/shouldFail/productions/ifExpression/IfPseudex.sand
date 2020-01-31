@@ -1,0 +1,12 @@
+pub class IfPseudex {
+    foo() {
+        (
+            if cond {
+                x();
+                x
+            } else {
+                x
+            }
+        )
+    }
+}

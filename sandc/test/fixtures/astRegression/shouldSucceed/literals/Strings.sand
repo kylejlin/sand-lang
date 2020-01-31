@@ -1,6 +1,0 @@
-pub class Strings {
-    static greeting = "Hello world";
-    static multiline = "Hey\nlook\na\nmultiline\nstring!";
-    static escapes = "This is a quote: \". This is a backslash \\";
-    static oneCharLongButStillAString = "x";
-}

@@ -1,0 +1,3 @@
+pub class TypeParamsClass<T, U extends T, R extends A & B, S super Q> {
+    
+}

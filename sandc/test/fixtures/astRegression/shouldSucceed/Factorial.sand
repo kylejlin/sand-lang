@@ -1,9 +1,0 @@
-pub class Factorial {
-    pub factorialRecursive(n: int): int {
-        if n == 0 {
-            1
-        } else {
-            n * factorialRecursive(n - 1)
-        }
-    }
-}

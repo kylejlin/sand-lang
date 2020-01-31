@@ -1,0 +1,9 @@
+pub class IfStatementInPlaceOfIfPseudex {
+    foo() {
+        let a = if cond {
+            foo();
+        } else {
+            foo();
+        };
+    }
+}

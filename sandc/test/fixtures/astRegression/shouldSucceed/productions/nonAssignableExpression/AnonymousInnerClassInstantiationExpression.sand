@@ -1,0 +1,244 @@
+pub class AnonymousInnerClassInstantiationExpression {
+    foo() {
+        [
+            new Foo {
+
+            },
+
+            new Foo<A> {
+
+            },
+
+            new Foo<A, B, C> {
+
+            },
+
+            new Foo<A?> {
+
+            },
+
+            new Foo<A[]> {
+
+            },
+
+            new Foo<A[+]> {
+
+            },
+
+            new Foo<A, B[], C?, D[+], E<F[], G?>[+], H> {
+
+            },
+
+            new Foo<A, B[], C?, D[+], E<F[], G?>[+], H> {
+                a = b;
+                a = if cond {
+                    foo();
+                    b
+                } else {
+                    b
+                };
+
+                a: Foo = b;
+                a: Foo = if cond {
+                    foo();
+                    b
+                } else {
+                    b
+                };
+
+                {
+                    a.add("foo");
+                }
+
+                foo() {
+                    
+                }
+
+                foo() {
+                    a
+                }
+
+                foo() {
+                    if cond {
+                        foo();
+                        a
+                    } else {
+                        a
+                    }
+                }
+
+                foo(a: Foo) {
+
+                }
+
+                foo(a: Foo): Foo {
+
+                }
+
+                foo(a: Foo) throws Foo, Bar {
+
+                }
+
+                foo(a: Foo): Foo throws Foo, Bar {
+
+                }
+
+                foo(a: Foo, b: Bar<A, B>, c: Foo) {
+
+                }
+
+                foo(a: Foo, b: Bar<A, B>, c: Foo,) {
+
+                }
+
+                foo(a: Foo, b: Bar<A, B>, c: Foo): Foo {
+
+                }
+
+                foo(a: Foo, b: Bar<A, B>, c: Foo) throws Foo, Bar {
+
+                }
+
+                foo(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+
+                }
+
+                foo(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+                    foo();
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo) {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo): Foo {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo) throws Foo, Bar {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo): Foo throws Foo, Bar {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo) {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo,) {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo): Foo {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo) throws Foo, Bar {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+
+                }
+
+                foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+                    foo();
+                }
+
+                override foo(a: Foo) {
+
+                }
+
+                override foo(a: Foo): Foo {
+
+                }
+
+                override foo(a: Foo) throws Foo, Bar {
+
+                }
+
+                override foo(a: Foo): Foo throws Foo, Bar {
+
+                }
+
+                override foo(a: Foo, b: Bar<A, B>, c: Foo) {
+
+                }
+
+                override foo(a: Foo, b: Bar<A, B>, c: Foo,) {
+
+                }
+
+                override foo(a: Foo, b: Bar<A, B>, c: Foo): Foo {
+
+                }
+
+                override foo(a: Foo, b: Bar<A, B>, c: Foo) throws Foo, Bar {
+
+                }
+
+                override foo(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+
+                }
+
+                override foo(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+                    foo();
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo) {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo): Foo {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo) throws Foo, Bar {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo): Foo throws Foo, Bar {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo) {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo,) {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo): Foo {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo) throws Foo, Bar {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+
+                }
+
+                override foo<T, U extends Foo<A> & B, R super S>(a: Foo, b: Bar<A, B>, c: Foo): Foo throws Foo, Bar {
+                    foo();
+                }
+            },
+        ]
+    }
+
+    nullable() {
+        [
+            new Foo? {
+
+            },
+
+            new Foo<A, B[], C?, D[+], E<F[], G?>[+], H>? {
+
+            },
+        ]
+    }
+}

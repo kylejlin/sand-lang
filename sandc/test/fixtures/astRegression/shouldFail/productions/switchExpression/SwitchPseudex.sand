@@ -1,0 +1,12 @@
+pub class SwitchPseudex {
+    foo() {
+        (
+            switch val {
+                else {
+                    b();
+                    b()
+                }
+            }
+        )
+    }
+}

@@ -1,5 +1,0 @@
-pub class MissingSemicolonNoVal {
-    noVal() {
-        return
-    }
-}

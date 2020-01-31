@@ -1,0 +1,13 @@
+pub class ClassInnerClassDeclaration {
+    class Inner {
+
+    }
+
+    pub class Inner {
+
+    }
+
+    abstract class Inner<T> extends Foo implements Baz, Bar<Qux> {
+
+    }
+}

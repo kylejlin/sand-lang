@@ -1,0 +1,12 @@
+pub class ThrowStatement {
+    foo() {
+        throw a;
+
+        throw if cond {
+            foo();
+            a
+        } else {
+            b
+        };
+    }
+}

@@ -1,0 +1,13 @@
+pub class PrefixExpression {
+    foo() {
+        [
+            !x(),
+            -x(),
+
+            !!x(),
+            --x(),
+            -!x(),
+            !-x(),
+        ]
+    }
+}

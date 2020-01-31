@@ -1,0 +1,7 @@
+use java.util.ArrayList;
+
+import java.util.List;
+
+pub class UseBeforeImport {
+    
+}

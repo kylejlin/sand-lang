@@ -1,5 +1,0 @@
-pub class AssignmentExpression {
-    assExpr() {
-        x(a = b;)
-    }
-}

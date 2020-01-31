@@ -1,0 +1,5 @@
+pub class ListGenericInstantiation {
+    foo(): T[+]<A> {
+        
+    }
+}

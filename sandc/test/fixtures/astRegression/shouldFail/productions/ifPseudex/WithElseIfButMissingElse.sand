@@ -1,0 +1,9 @@
+pub class WithElseIfButMissingElse {
+    foo() {
+        let a = if cond {
+            b
+        } else if cond {
+            b
+        };
+    }
+}

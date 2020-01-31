@@ -1,0 +1,10 @@
+pub class ParenthesizedExpression {
+    foo() {
+        [
+            (a),
+            (a + b),
+            (a()),
+            ("foo"),
+        ]
+    }
+}

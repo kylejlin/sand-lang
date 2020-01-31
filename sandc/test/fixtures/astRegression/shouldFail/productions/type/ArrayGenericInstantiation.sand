@@ -1,0 +1,5 @@
+pub class ArrayGenericInstantiation {
+    foo(): T[]<A> {
+        
+    }
+}

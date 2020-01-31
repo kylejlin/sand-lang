@@ -1,0 +1,11 @@
+pub class ElseIfBlockStatement {
+    foo() {
+        let a = if cond {
+            b
+        } else if cond {
+            foo();
+        } else {
+            b
+        };
+    }
+}

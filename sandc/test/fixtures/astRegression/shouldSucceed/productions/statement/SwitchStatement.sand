@@ -1,0 +1,61 @@
+pub class SwitchStatement {
+    empty() {
+        switch val {
+            else {
+                
+            }
+        }
+
+        switch val {
+            case a {
+
+            }
+
+            case b | c {
+
+            }
+
+            else {
+
+            }
+        }
+    }
+
+    nonEmpty() {
+        switch val {
+            else {
+                a = b;
+            }
+        }
+
+        switch val {
+            case a {
+                a = b;
+            }
+
+            case b | c {
+                a = b;
+            }
+
+            else {
+                a = b;
+            }
+        }
+    }
+
+    mixed() {
+        switch val {
+            case a {
+                a = b;
+            }
+
+            case b | c {
+                
+            }
+
+            else {
+                a = b;
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+pub class BlockPseudex {
+    foo() {
+        let a = {
+            let b = c;
+            b
+        };
+
+        let a = {
+            use foo.foo;
+            use bar.bar;
+
+            let b = c;
+            b
+        };
+
+        let a = {
+            if cond {
+                foo();
+                d
+            } else {
+                d
+            }
+        };
+
+        let a = {
+            use foo.foo;
+            use bar.bar;
+
+            if cond {
+                foo();
+                d
+            } else {
+                d
+            }
+        };
+
+        let a = {
+            foo();
+
+            if cond {
+                foo();
+                d
+            } else {
+                d
+            }
+        };
+
+        let a = {
+            use foo.foo;
+            use bar.bar;
+            
+            foo();
+
+            if cond {
+                foo();
+                d
+            } else {
+                d
+            }
+        };
+    }
+}

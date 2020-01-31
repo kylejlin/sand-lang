@@ -1,0 +1,11 @@
+pub class InlineThenNonInline {
+    foo() {
+        (
+            if let inline a = b(), a = b() {
+                c()
+            } else {
+                c()
+            }
+        )
+    }
+}

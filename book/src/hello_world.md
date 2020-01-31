@@ -2,11 +2,13 @@
 
 Let's get started by printing "Hello world!" to the console.
 
+Create a file called `HelloWorld.sand`:
+
 ```sand
 pub class HelloWorld {
     use System.out.println;
 
-    pub main(args: String[]) {
+    pub static main(args: String[]) {
         println("Hello world!");
     }
 }
@@ -44,9 +46,9 @@ pub class HelloWorld {
 ```
 
 `re` is short for "reassignable."
-By default, variables in Sand are non-reassignable, so you have to explicitly use the `re` keyword if you want to make a variable reassignable.
+By default, variables in Sand are final (non-reassignable), so you have to explicitly use the `re` keyword if you want to make a variable reassignable.
 
-Sand does not support increment or decrement operators, so you must forgo `n--` in favor of `n -= 1`.
+Sand does not support increment or decrement operators, so you must write `n -= 1` instead of `n--`.
 
 ## Expressions and statements
 
@@ -55,10 +57,10 @@ The difference between the two is that expressions have a value, while statement
 
 For example, a `return` node is a statement, because it does not have a value. To illustrate this, consider the following question: If you wrote `let x = return 8;;`, would be the value of `x`? The question doesn't make sense, because `return 8;` does not have a value.
 
-On the other hand, an addition node is an expression, because it does have value. If you wrote `let x = 2 + 2;`, what would be the value of `x`? `4`. The addition node does have a value, so it is therefore an expression.
+On the other hand, an addition node is an expression, because it does have value. If you wrote `let x = 2 + 2;`, what would be the value of `x`? `4`. The node `2 + 2` does have a value, so it is therefore an expression.
 
 Some nodes can be expressions in some circumstances and statements in others.
-For example, in the following, `foo();` has no value, so it is a statement.
+One example of this is the function call node, in the following, `foo();` has no value, so it is a statement.
 
 ```sand
 example() {
@@ -76,27 +78,36 @@ example() {
 
 Generally, statements end with semicolons and expressions do not.
 
-The exception is nodes with blocks (curly braces enclosing a sequence of nodes), such as `if`, `while`, and method declarations.
-These nodes are expressions if their last node is an expression, and a statement if their last node is a statement.
+There are two exceptions:
+
+1. `if-else` nodes
+2. Method bodies.
+   The exception is nodes method declarations.
+   These nodes are expressions if their last node is an expression, and a statement if their last node is a statement.
 
 For instance, the `if` in the following code is a statement:
 
 ```sand
-foo(baz: boolean): int {
-    if baz {
-        return 0;
+reportWeather(raining: boolean) {
+    re message = "";
+
+    if raining {
+        message = "It's raining.";
     } else {
-        return 1;
+        message = "It's sunny.";
     }
+
+    myLogger.log(message);
+    System.out.println(message);
 }
 ```
 
-The `if`'s body ends with a `return`, which is a statement, so it is therefore a statement.
+The `if`'s body ends with an assignment (`message = "It's raining";`), which is a statement, so it is therefore a statement itself.
 
 On the other hand:
 
 ```sand
-foo(baz: boolean) {
+sign(n: int) {
     let x = if baz {
         0
     } else {

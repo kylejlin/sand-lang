@@ -1,0 +1,9 @@
+pub class EmptySwitchBody {
+    foo() {
+        (
+            switch val {
+                
+            }
+        )
+    }
+}

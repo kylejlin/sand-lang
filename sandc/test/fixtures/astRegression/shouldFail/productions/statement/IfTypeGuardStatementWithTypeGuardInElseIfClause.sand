@@ -1,0 +1,11 @@
+pub class IfTypeGuardStatementWithTypeGuardInElseIfClause {
+    foo() {
+        if let a = b {
+
+        } else if let a = b {
+
+        } else {
+            
+        }
+    }
+}

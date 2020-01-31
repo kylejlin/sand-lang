@@ -1,0 +1,11 @@
+pub class EmptyElseIfBlock {
+    foo() {
+        let a = if cond {
+            b
+        } else if cond {
+            
+        } else {
+            b
+        };
+    }
+}

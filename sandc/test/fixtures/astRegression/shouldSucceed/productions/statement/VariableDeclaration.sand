@@ -1,0 +1,24 @@
+pub class VariableDeclaration {
+    keywords() {
+        let a = b;
+        let shadow a = b;
+        let a: Foo = b;
+        let shadow a: Foo = b;
+
+        var a = b;
+        var shadow a = b;
+        var a: Foo = b;
+        var shadow a: Foo = b;
+    }
+
+    righthand() {
+        a = b;
+
+        a = if cond {
+            foo();
+            b
+        } else {
+            c
+        };
+    }
+}

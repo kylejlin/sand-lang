@@ -1,0 +1,3 @@
+pub class ClassImplements implements Foo, Bar<Baz>, Qux {
+
+}

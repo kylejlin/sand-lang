@@ -1,0 +1,17 @@
+pub class ClassConstructorDeclaration {
+    new() {
+
+    }
+
+    pub new() {
+
+    }
+
+    prot new() {
+
+    }
+
+    new(arg1: int, arg2: Foo) {
+        
+    }
+}

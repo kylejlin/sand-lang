@@ -1,0 +1,5 @@
+pub class NullableGenericInstantiation {
+    foo(): T?<A> {
+        
+    }
+}

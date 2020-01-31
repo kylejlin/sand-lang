@@ -1,0 +1,19 @@
+pub class EmptyCaseBody {
+    foo() {
+        (
+            switch val {
+                case a {
+                    b()
+                }
+
+                case a {
+
+                }
+
+                else {
+                    b()
+                }
+            }
+        )
+    }
+}

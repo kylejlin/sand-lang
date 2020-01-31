@@ -1,0 +1,13 @@
+pub class PostfixExpression {
+    foo() {
+        [
+            x()!,
+            x()?,
+
+            x()!!,
+            x()??,
+            x()!?,
+            x()?!,
+        ]
+    }
+}

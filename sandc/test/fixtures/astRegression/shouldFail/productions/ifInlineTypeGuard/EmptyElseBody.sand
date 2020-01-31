@@ -1,0 +1,11 @@
+pub class EmptyElseBody {
+    foo() {
+        (
+            if let inline a = b() {
+                c()
+            } else {
+                
+            }
+        )
+    }
+}

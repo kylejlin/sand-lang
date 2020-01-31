@@ -1,0 +1,13 @@
+pub class EmptyElseIfBody {
+    foo() {
+        (
+            if let inline a = b() {
+                c()
+            } else if {
+                
+            } else {
+                c()
+            }
+        )
+    }
+}

@@ -1,0 +1,49 @@
+//
+/**/
+
+// blah
+/* blah */
+/* blah
+blah
+*/
+
+package/* blah */foo/*
+*/. /* blah */ foo; // blah
+
+import foo.foo;
+import foo.foo;
+
+use foo.foo;
+use foo.foo;
+
+pub class Foo {
+    use/* blah */foo/*
+*/. /* blah */ foo; // blah
+
+    use/* blah */foo/*
+*/. /* blah */ * /* blah */; /* blah
+blah */
+
+    // blah
+    foo(/* blah */ x: int, /* blah */x: int, x:/* blah */int/* blah */) throws /* blah */ Foo { // blah
+        // blah
+        x += /* blah */ y/*blah*/; // blah
+    }
+
+    /**
+      * blah
+      *
+      * @param x blah
+      * @param x blah
+      *
+      * @return blah
+      *
+      * @throws blah
+      * @throws blah
+      *
+      * blah
+      */
+    foo() {
+        
+    }
+}

@@ -1,0 +1,26 @@
+pub class AssignableExpression {
+    foo() {
+        x = y;
+
+        x.x = y;
+        x.x.x = y;
+
+        x[x] = y;
+        x[x][x] = y;
+
+        x#x = y;
+        x#x#x = y;
+
+        #x = y;
+        #x.x = y;
+        #x[x] = y;
+        #x#x = y;
+        #x()#x = y;
+
+        x().x = y;
+        x()[x] = y;
+        x()#x = y;
+
+        x.x()[x].x()#x = y;
+    }
+}

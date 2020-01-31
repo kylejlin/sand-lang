@@ -1,0 +1,79 @@
+pub class ForStatement {
+    cStyle() {
+        for (var i = 0int; i < len; i += 1;) {
+
+        }
+
+        for (var i = 0int; i < len; i += 1;) {
+            a = b;
+        }
+    }
+
+    collectionIteration() {
+        for v in arr {
+
+        }
+        for v in arr {
+            a = b;
+        }
+
+        for @i in arr {
+
+        }
+        for @i in arr {
+            a = b;
+        }
+
+        for @i, v in arr {
+
+        }
+        for @i, v in arr {
+            a = b;
+        }
+
+        for @r, @c, v in grid {
+
+        }
+        for @r, @c, v in grid {
+            a = b;
+        }
+
+        for v in getArr() {
+            a = b;
+        }
+    }
+
+    range() {
+        for i in low upuntil high {
+
+        }
+        for i in low upuntil high {
+            a = b;
+        }
+
+        for i in low upto high {
+            
+        }
+        for i in low upto high {
+            a = b;
+        }
+
+        for i in high downuntil low {
+            
+        }
+        for i in high downuntil low {
+            a = b;
+        }
+
+        for i in high downto low {
+            
+        }
+        for i in high downto low {
+            a = b;
+        }
+
+        for i in getLow() upuntil getHigh() {
+            a = b;
+        }
+    }
+}

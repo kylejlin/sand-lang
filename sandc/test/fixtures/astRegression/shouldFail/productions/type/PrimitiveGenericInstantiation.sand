@@ -1,0 +1,5 @@
+pub class PrimitiveGenericInstantiation {
+    foo(): int<A> {
+        
+    }
+}

@@ -1,0 +1,7 @@
+import java.util.ArrayList;
+
+package foo;
+
+pub class ImportBeforePackage {
+    
+}

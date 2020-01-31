@@ -1,0 +1,9 @@
+pub class TryStatementInPlaceOfTryPseudex {
+    foo() {
+        let a = try {
+            foo();
+        } catch e: Foo {
+            foo();
+        };
+    }
+}

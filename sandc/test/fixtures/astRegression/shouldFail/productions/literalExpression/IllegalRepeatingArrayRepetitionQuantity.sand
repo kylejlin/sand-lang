@@ -1,0 +1,5 @@
+pub class IllegalRepeatingArrayRepetitionQuantity {
+    foo() {
+        ["foo"; static n]
+    }
+}

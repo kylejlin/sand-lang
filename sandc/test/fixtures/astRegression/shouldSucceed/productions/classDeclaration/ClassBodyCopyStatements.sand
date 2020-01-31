@@ -1,0 +1,5 @@
+pub class ClassBodyCopyStatements {
+    copy OtherClass1.staticMethod1;
+    pub copy OtherClass2.staticMethod2;
+    prot copy OtherClass3.staticMethod3;
+}

@@ -1,0 +1,5 @@
+package my.awesome.packagename;
+
+pub class PackageStatement {
+    
+}

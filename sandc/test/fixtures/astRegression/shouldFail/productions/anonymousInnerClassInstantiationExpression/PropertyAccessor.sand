@@ -1,0 +1,7 @@
+pub class PropertyAccessor {
+    foo() {
+        new Foo {
+            (pub) x = y;
+        }
+    }
+}

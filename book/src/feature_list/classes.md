@@ -2,10 +2,10 @@
 
 ## Public class
 
-Each file has exactly one public class with the same name as the file.
-For example, `HelloWorld.sand` must contain a public class called `HelloWorld`.
+Each file has exactly one _public item_ (which can either be a [class](./classes.md) or an [interface](./interfaces.md)).
+The public item must have the same name as the file (without the `.sand` part).
 
-Syntax:
+To declare a public class, write `pub class`. For example, in the file `HelloWorld.sand`, you would write:
 
 ```sand
 pub class HelloWorld {
@@ -16,8 +16,7 @@ pub class HelloWorld {
 ## Private classes
 
 Each file can also have zero or more private classes.
-
-Syntax:
+To make a class private, simply omit the `pub`.
 
 ```sand
 class YourPrivateClass {
@@ -25,7 +24,171 @@ class YourPrivateClass {
 }
 ```
 
-Notice the lack of `pub` - classes are private by default.
+## Instance properties
+
+```sand
+class Dog {
+    // Each class can declare zero or more instance properties.
+    // Each property must have a data type
+
+    // Creates a property `name` with type `String`.
+    name: String;
+
+    // Properties are private by default.
+    // You can use `pub` or `prot` to make them public or protected.
+    pub age: int;
+
+    // Properties are final (non-assignable except in constructors) by default.
+    // You can use `re` to make them reassignable.
+    re barkCount: int;
+}
+```
+
+## Instance methods
+
+```sand
+class Dog {
+    // Each class can declare zero or more instance methods.
+    // Each method has a return type, which is implicitly `void`.
+
+    // Creates a method `bark` that has a return type of `void`.
+    bark() {
+        System.out.println("Woof");
+    }
+
+    // Creates a method `getName` that returns an `int`.
+    getAge(): int {
+        return age;
+    }
+
+    // Methods can take arguments
+    isOlderThan(other: Dog): boolean {
+        return age > other.age;
+    }
+
+    // Like properties, methods are private by default.
+    // You can use `pub` or `prot` to make them public or protected.
+    pub getName(): String {
+        return name;
+    }
+}
+```
+
+## Static properties
+
+To declare a static property, write `static` in the declaration before the property name:
+
+```sand
+class Dog {
+    pub static SPECIES = "Canis lupus familiaris";
+
+    // Use `re` to make a property reassignable.
+    static re dogsCreated = 0int;
+}
+```
+
+Static properties must be initialized.
+
+```sand
+class Dog {
+    // Illegal - missing initial value
+    static re dogsCreated: int;
+}
+```
+
+## Static methods
+
+To declare a static method, write `static` in the declaration before the method name.
+Static methods cannot access `this` or `super`.
+
+```sand
+class Dog {
+    pub static fromName(name: String) {
+        return Dog(name);
+    }
+}
+```
+
+## Method overloading
+
+You can have multiple methods with the same name if they have different argument types.
+Each method may have a different accessiblity level and/or different return type.
+These rules apply to both static and instance methods.
+
+```sand
+class Foo {
+    bar() {
+
+    }
+
+    bar(x: int): int {
+
+    }
+
+    pub bar(x: String): boolean {
+
+    }
+}
+```
+
+## Constructors
+
+Use `new` to declare constructors:
+
+```sand
+class Dog {
+    pub new(name: String) {
+        this.name = name;
+    }
+}
+```
+
+Constructors cannot return a value.
+
+```sand
+class Dog {
+    // Illegal
+    pub new(name: String): Dog {
+        this.name = name;
+        return this;
+    }
+}
+```
+
+## Constructing instances of class
+
+Unlike Java, you do not use the `new` keyword to construct instances of a class.
+
+Instead, to construct an instance of class `T`, simply write `T(arg1, arg2, argN)`.
+
+```sand
+pub class App {
+    pub static main(args: String[]) {
+        let x = Dog("Spot");
+    }
+}
+```
+
+You can also use named arguments (`T(arg1Name: arg1Val, arg2Name: arg2Val, argNName: argNVal)`)).
+
+```sand
+pub class App {
+    pub static main(args: String[]) {
+        let x = Dog(name: "Spot");
+        let y = Leash(leashLength: 8);
+    }
+}
+
+class Leash {
+    pub new(leashLength: int) {
+        // ...
+    }
+}
+```
+
+## Extending classes
+
+See [inheritance](./inheritance/classes.md).
 
 ## Open classes
 

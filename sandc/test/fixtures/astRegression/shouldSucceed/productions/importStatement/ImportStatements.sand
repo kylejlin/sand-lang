@@ -1,0 +1,11 @@
+import dot.separated.idents;
+import shadow dot.separated.idents;
+import star.*;
+
+import static dot.separated.idents;
+import static shadow dot.separated.idents;
+import static star.*;
+
+pub class ImportStatements {
+    
+}

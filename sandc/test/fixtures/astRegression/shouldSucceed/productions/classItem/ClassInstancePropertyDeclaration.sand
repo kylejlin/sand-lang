@@ -1,0 +1,25 @@
+pub class ClassInstancePropertyDeclaration {
+    foo: int;
+    foo: Foo;
+
+    var foo: Foo;
+    shadow foo: Foo;
+
+    pub foo: Foo;
+    pub var foo: Foo;
+    pub shadow foo: Foo;
+
+    (pub get prot set) foo: Foo;
+    (pub get) prot foo: Foo;
+    (pub) intenc foo: Foo;
+    (priv) foo: Foo;
+    (priv) intenc foo: Foo;
+
+    priv: Foo;
+    (pub) priv: Foo;
+    (priv) priv: Foo;
+
+    intenc: Foo;
+    (pub) intenc: Foo;
+    (pub) intenc intenc: Foo;
+}

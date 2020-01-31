@@ -1,0 +1,9 @@
+pub class TryBlockStatement {
+    foo() {
+        let a = try {
+            foo();
+        } catch e: Foo {
+            b
+        };
+    }
+}

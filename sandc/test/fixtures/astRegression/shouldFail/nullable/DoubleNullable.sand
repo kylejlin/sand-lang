@@ -1,5 +1,0 @@
-pub class DoubleNullable {
-    foo(): String?? {
-        
-    }
-}

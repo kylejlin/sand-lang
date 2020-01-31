@@ -1,0 +1,11 @@
+pub class ThrowPseudex {
+    foo() {
+        return throw b;
+
+        return if cond {
+            throw b
+        } else {
+            b
+        };
+    }
+}

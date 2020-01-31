@@ -1,0 +1,9 @@
+pub class PubMethod {
+    foo() {
+        new Foo {
+            pub foo() {
+                
+            }
+        }
+    }
+}

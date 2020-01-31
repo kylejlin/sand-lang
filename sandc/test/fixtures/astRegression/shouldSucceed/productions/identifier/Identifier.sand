@@ -1,0 +1,15 @@
+pub class Identifier {
+    unsreserved: Foo;
+
+    ~use: Foo;
+
+    get: Foo;
+
+    set: Foo;
+
+    intenc: Foo;
+
+    (pub) intenc: Foo;
+    
+    (pub) intenc intenc: Foo;
+}

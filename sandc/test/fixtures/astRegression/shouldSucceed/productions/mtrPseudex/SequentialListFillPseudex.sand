@@ -1,0 +1,5 @@
+pub class SequentialListFillPseudex {
+    foo() {
+        let a = +["hello", "big", "big", "world"];
+    }
+}

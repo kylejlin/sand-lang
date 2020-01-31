@@ -1,0 +1,6 @@
+pub interface InterfaceUseStatements {
+    use foo.foo;
+    use bar.bar;
+
+    foo(arg: boolean): int;
+}

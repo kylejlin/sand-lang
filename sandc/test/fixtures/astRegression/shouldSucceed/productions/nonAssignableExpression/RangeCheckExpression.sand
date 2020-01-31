@@ -1,0 +1,10 @@
+pub class RangeCheckExpression {
+    foo() {
+        [
+            i() in low() ... high(),
+            i() in low() ..= high(),
+            i() in low() =.. high(),
+            i() in low() =.= high(),
+        ]
+    }
+}

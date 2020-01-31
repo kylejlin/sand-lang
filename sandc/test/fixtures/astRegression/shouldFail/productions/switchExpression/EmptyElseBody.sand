@@ -1,0 +1,15 @@
+pub class EmptyElseBody {
+    foo() {
+        (
+            switch val {
+                case a {
+                    b()
+                }
+                
+                else {
+
+                }
+            }
+        )
+    }
+}

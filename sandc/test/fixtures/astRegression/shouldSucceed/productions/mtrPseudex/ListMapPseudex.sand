@@ -1,0 +1,8 @@
+pub class ListMapPseudex {
+    foo() {
+        let a = +[n * n for n in arr];
+        let a = +[if cond { x(); x } else { x } for n in arr];
+        let a = +[f(i, v) for @i, v in arr];
+        let grid = +[f(r, c, v) for @r, @c, v in arr];
+    }
+}

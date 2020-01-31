@@ -1,0 +1,27 @@
+pub class Type {
+    primitive: int;
+    primitive: void;
+    primitive: never;
+
+    reference: String;
+
+    nullable: String?;
+    nullable: int?;
+
+    array: String[];
+    array: int[];
+
+    list: String[+];
+    list: int[+];
+
+    mixed: int?[+]?[];
+
+    generic: T<A>;
+    generic: T<A, B>;
+    generic: T<A?>;
+    generic: T<A?, B[], C[+]>;
+
+    generic: T<A>?;
+    generic: T<A>[];
+    generic: T<A>[+];
+}

@@ -1,0 +1,80 @@
+pub class IfPseudex {
+    foo() {
+        return if cond {
+            foo();
+            b
+        } else {
+            b
+        };
+
+        return if cond {
+            foo();
+            b
+        } else if cond {
+            b
+        } else {
+            b
+        };
+
+        return if cond {
+            b
+        } else {
+            foo();
+            b
+        };
+
+        return if cond {
+            b
+        } else if cond {
+            b
+        } else {
+            foo();
+            b
+        };
+
+        return if cond {
+            b
+        } else if cond {
+            foo();
+            b
+        } else {
+            b
+        };
+
+        return if cond {
+            b
+        } else if cond {
+            foo();
+            b
+        } else if cond {
+            b
+        } else {
+            b
+        };
+
+        return if cond {
+            b
+        } else if cond {
+            b
+        } else if cond {
+            foo();
+            b
+        } else {
+            b
+        };
+
+        return if cond {
+            foo();
+            b
+        } else if cond {
+            foo();
+            b
+        } else if cond {
+            foo();
+            b
+        } else {
+            foo();
+            b
+        };
+    }
+}

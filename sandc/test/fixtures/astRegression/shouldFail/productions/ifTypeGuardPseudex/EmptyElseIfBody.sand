@@ -1,0 +1,11 @@
+pub class EmptyElseIfBody {
+    foo() {
+        let a = if let b = c {
+            c
+        } else if cond {
+            
+        } else {
+            c
+        };
+    }
+}

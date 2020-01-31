@@ -1,0 +1,9 @@
+pub class EmptyIfBlock {
+    foo() {
+        let a = if cond {
+            
+        } else {
+            b
+        };
+    }
+}

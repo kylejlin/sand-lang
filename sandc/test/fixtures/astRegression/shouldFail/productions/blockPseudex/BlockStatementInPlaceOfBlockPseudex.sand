@@ -1,0 +1,7 @@
+pub class BlockStatementInPlaceOfBlockPseudex {
+    foo() {
+        let a = {
+
+        };
+    }
+}

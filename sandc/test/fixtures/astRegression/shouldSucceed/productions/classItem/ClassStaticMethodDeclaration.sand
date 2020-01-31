@@ -1,0 +1,21 @@
+pub class ClassStaticMethodDeclaration {
+    static foo() {
+
+    }
+
+    pub static foo() {
+
+    }
+
+    static shadow foo() {
+
+    }
+
+    params(arg1: int, arg2: Foo): boolean {
+
+    }
+
+    typeParams<T, U extends Foo & Baz, R super S>(a: S): R {
+
+    }
+}

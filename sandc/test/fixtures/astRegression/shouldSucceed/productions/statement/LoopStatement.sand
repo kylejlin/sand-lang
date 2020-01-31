@@ -1,0 +1,11 @@
+pub class LoopStatement {
+    foo() {
+        loop {
+            
+        }
+
+        loop {
+            foo();
+        }
+    }
+}

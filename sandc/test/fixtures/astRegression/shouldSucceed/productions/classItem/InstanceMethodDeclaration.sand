@@ -1,0 +1,41 @@
+pub class ClassInstanceMethodDeclaration {
+    foo(arg1: int, arg2: Foo): boolean {
+
+    }
+
+    foo<T, U extends Foo & Baz, R super S>(a: S): R {
+
+    }
+
+    open foo() {
+
+    }
+
+    pub open foo() {
+
+    }
+
+    override foo() {
+
+    }
+
+    pub override foo() {
+
+    }
+
+    open override foo() {
+
+    }
+
+    pub open override overridenMethod() {
+
+    }
+
+    abstract foo();
+
+    abstract foo<T extends U>(): Foo throws Foo, Bar;
+
+    pub abstract foo();
+
+    pub abstract foo<T extends U>(): Foo throws Foo, Bar;
+}

@@ -1,0 +1,23 @@
+pub class BlockStatement {
+    method() {
+        {
+
+        }
+
+        {
+            use foo.foo;
+            use bar.bar;
+        }
+
+        {
+            a = b;
+        }
+
+        {
+            use foo.foo;
+            use bar.bar;
+
+            a = b;
+        }
+    }
+}

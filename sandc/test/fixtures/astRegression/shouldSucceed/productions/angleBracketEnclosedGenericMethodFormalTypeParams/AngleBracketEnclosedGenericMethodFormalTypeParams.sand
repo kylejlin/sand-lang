@@ -1,0 +1,5 @@
+pub class AngleBracketEnclosedGenericMethodFormalTypeParams {
+    foo<T, U extends Foo & Bar, R super S>() {
+        
+    }
+}

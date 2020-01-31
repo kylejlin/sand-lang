@@ -1,0 +1,25 @@
+pub class CastExpression {
+    foo() {
+        [
+            a as int,
+            a as void,
+            a as never,
+
+            a as int?,
+            a as void?,
+            a as never?,
+
+            a as int[],
+            a as void[],
+            a as never[],
+
+            a as Foo,
+            a as Foo[],
+
+            a as Foo?,
+            a as Foo[]?,
+            a as Foo?[],
+            a as Foo?[]?,
+        ]
+    }
+}

@@ -1,5 +1,0 @@
-pub class Extends {
-    foo() {
-        bar<T extends String>()
-    }
-}

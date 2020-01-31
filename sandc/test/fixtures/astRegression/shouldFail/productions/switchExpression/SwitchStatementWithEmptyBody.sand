@@ -1,0 +1,11 @@
+pub class SwitchStatementWithEmptyBody {
+    foo() {
+        (
+            switch val {
+                else {
+                    
+                }
+            }
+        )
+    }
+}

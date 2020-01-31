@@ -1,0 +1,7 @@
+pub class EmptySwitchBody {
+    foo() {
+        let a = switch val {
+
+        };
+    }
+}

@@ -1,0 +1,5 @@
+pub class ClassBodyUseStatements {
+    use foo as bar;
+    use bar.qux;
+    use all.*;
+}

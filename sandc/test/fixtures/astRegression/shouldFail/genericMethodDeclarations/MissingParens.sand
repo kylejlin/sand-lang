@@ -1,5 +1,0 @@
-pub class MissingParens {
-    MissingParens<T> {
-
-    }
-}

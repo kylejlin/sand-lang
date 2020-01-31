@@ -1,0 +1,11 @@
+pub class MissingElse {
+    foo() {
+        (
+            if let inline a = b() {
+                c()
+            } else if cond {
+                c()
+            }
+        )
+    }
+}

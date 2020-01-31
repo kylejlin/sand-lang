@@ -1,0 +1,9 @@
+pub class IfBlockStatement {
+    foo() {
+        let a = if cond {
+            foo();
+        } else {
+            b
+        };
+    }
+}

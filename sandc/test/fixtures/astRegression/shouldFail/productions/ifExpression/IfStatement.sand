@@ -1,0 +1,11 @@
+pub class IfStatement {
+    foo() {
+        (
+            if cond {
+                x();
+            } else {
+                x();
+            }
+        )
+    }
+}

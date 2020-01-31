@@ -1,0 +1,5 @@
+pub class TryOrThrowPseudex {
+    foo() {
+        return tryorthrow b;
+    }
+}
