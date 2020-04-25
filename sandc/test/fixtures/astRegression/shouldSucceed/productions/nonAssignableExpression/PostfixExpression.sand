@@ -8,6 +8,9 @@ pub class PostfixExpression {
             x()??,
             x()!?,
             x()?!,
+
+            x()!<Foo>,
+            x()!<Foo<Bar?, Baz, Qux[]>[+]>,
         ]
     }
 }

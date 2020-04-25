@@ -1,0 +1,11 @@
+pub class PropertyHasBeenInitializedAssertion {
+    foo() {
+        a hasbeeninitialized;
+    }
+
+    foo() {
+        a hasbeeninitialized;
+        b hasbeeninitialized;
+        c hasbeeninitialized;
+    }
+}

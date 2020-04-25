@@ -1,0 +1,5 @@
+pub class PropertyHasBeenInitializedAssertionWithNonIdentifier {
+    foo() {
+        this.a hasbeeninitialized;
+    }
+}

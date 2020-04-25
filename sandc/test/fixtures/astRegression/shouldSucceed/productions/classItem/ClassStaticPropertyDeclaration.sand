@@ -11,17 +11,7 @@ pub class ClassStaticPropertyDeclaration {
 
     (pub get prot set) static foo = "blah";
     (pub get) prot static foo = "blah";
-    (pub) intenc static foo = "blah";
-    (priv) static foo = "blah";
-    (priv) intenc static foo = "blah";
-
-    static priv = "blah";
-    (pub) static priv = "blah";
-    (priv) static priv = "blah";
-
-    static intenc = "blah";
-    (pub) static intenc = "blah";
-    (pub) intenc static intenc = "blah";
+    (priv get priv set) static foo = "blah";
 
     static foo = if cond {
         x();
@@ -29,4 +19,7 @@ pub class ClassStaticPropertyDeclaration {
     } else {
         x
     };
+
+    (pub get customGetterName pub set customSetterName) static foo = "blah";
+    (pub get customGetterName pub set customSetterName) static foo: Foo = "blah";
 }

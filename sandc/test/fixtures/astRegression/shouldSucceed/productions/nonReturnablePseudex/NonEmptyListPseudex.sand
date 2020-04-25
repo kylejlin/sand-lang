@@ -1,0 +1,9 @@
+pub class NonEmptyListPseudex {
+    noTrailingComma() {
+        let foo = +["hi", if bar() { bar() } else { bar }, "hi"];
+    }
+
+    trailingComma() {
+        let foo = +["hi", if bar() { bar() } else { bar }, "hi",];
+    }
+}

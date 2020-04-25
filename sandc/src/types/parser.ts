@@ -7,9 +7,7 @@ export interface SandParser {
   parse(input: string): Result<ast.FileNode, ParseError>;
 }
 
-export type ParseError =
-  | UnexpectedTokenError
-  | DuplicatePropertyAccessorDeclarationsError;
+export type ParseError = UnexpectedTokenError;
 
 export enum ParseErrorType {
   UnexpectedToken,
@@ -22,11 +20,4 @@ export interface UnexpectedTokenError {
   text: Option<string>;
   location: TextRange;
   expected: TokenType[];
-}
-
-export interface DuplicatePropertyAccessorDeclarationsError {
-  errorType: ParseErrorType.DuplicatePropertyAccessorDeclarations;
-  readonly declarations:
-    | [ast.PropertyGetterDeclaration, ast.PropertyGetterDeclaration]
-    | [ast.PropertySetterDeclaration, ast.PropertySetterDeclaration];
 }

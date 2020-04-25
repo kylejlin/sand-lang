@@ -1,0 +1,15 @@
+pub class IsExpression {
+    foo() {
+        [
+            x() is Foo,
+            x() is Foo[],
+            x() is Foo[][],
+            x() is Foo[][][],
+
+            x() is Foo?,
+            x() is Foo[]?,
+            x() is Foo[][]?,
+            x() is Foo[][][]?,
+        ]
+    }
+}

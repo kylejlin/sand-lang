@@ -3,11 +3,31 @@ pub class ParenthesizedFormalMethodDeclarations {
 
     }
 
+    pub arg(a: int) {
+
+    }
+
     pub args(a: int, b: Foo) {
 
     }
 
     pub trailingComma(a: int, b: Foo,) {
         
+    }
+
+    pub labels(_ a: int, b: Foo, customLabel c: Foo) {
+
+    }
+
+    pub labelsAndModifiers(_ var a: int, shadow b: Foo, customLabel var shadow c: Foo) {
+
+    }
+
+    pub propertySetters(_ this.a: Foo, this.b: Foo, customLabel this.c: Foo) {
+
+    }
+
+    pub labelsAndModifiersAndPropertySetters(_ var a: int, shadow b: Foo, this.c: Foo, customLabel var shadow d: Foo) {
+
     }
 }

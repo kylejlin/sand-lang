@@ -58,6 +58,11 @@ pub class LiteralExpression {
             "Hello {"{}" + if cond { a } else { b }} \{\}\"",
             "\{",
             "\}",
+
+            "3 * 3 = #{3 * 3}",
+            "Hello #{"{}" + if cond { a } else { b }} \{\}\"",
+            "\{",
+            "\}",
         ]
     }
 
@@ -84,10 +89,9 @@ pub class LiteralExpression {
         ]
     }
 
-    repeatingArray() {
+    emptyList() {
         [
-            ["foo"; static 42],
-            ["foo"; static 6, 7],
+            +[],
         ]
     }
 }

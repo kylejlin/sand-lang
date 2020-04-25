@@ -80,11 +80,11 @@ interface SandReservedWordTypeDict {
   downuntil: "downuntil";
   false: "false";
   in: "in";
-  inline: "inline";
+  is: "is";
   let: "let";
   loop: "loop";
   never: "never";
-  notinstanceof: "notinstanceof";
+  isnot: "isnot";
   null: "null";
   open: "open";
   override: "override";
@@ -98,13 +98,18 @@ interface SandReservedWordTypeDict {
   upuntil: "upuntil";
   use: "use";
   var: "var";
+  yield: "yield";
+  yieldall: "yieldall";
 }
 
 interface SandTokenWithSpecialMeaningInCertainContextsTypeDict {
+  every: "every";
   get: "get";
-  intenc: "intenc";
-  set: "set";
+  hasbeeninitialized: "hasbeeninitialized";
   priv: "priv";
+  set: "set";
+  some: "some";
+  step: "step";
 }
 
 interface NonwordTokenTypeDict {
@@ -136,6 +141,8 @@ interface NonwordTokenTypeDict {
   "!=": "!=";
   "~=": "~=";
   "!~=": "!~=";
+  "===": "===";
+  "!==": "!==";
   "<": "<";
   GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET: "GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET";
   "<=": "<=";
@@ -156,6 +163,7 @@ interface NonwordTokenTypeDict {
   "%": "%";
   "**": "**";
   "!": "!";
+  "!<": "!<";
   "?": "?";
   "@": "@";
 }
@@ -259,6 +267,7 @@ interface NodeTypeDict {
     | ast.VisibilityLevel.Public;
   oneOrMoreFormalMethodParamDeclarations: ast.FormalMethodParamDeclaration[];
   formalMethodParamDeclaration: ast.FormalMethodParamDeclaration;
+  oneOrMoreFormalMethodParamModifiers: FormalMethodParamModifiers;
   oneOrMoreStatements: ast.Statement[];
   expression: ast.Expression;
   returnablePseudex: ast.ReturnablePseudex;
@@ -266,11 +275,8 @@ interface NodeTypeDict {
   optVariableTypeAnnotation: Option<ast.Type>;
   expressionOrAssignmentPseudex: ast.Expression | ast.AssignmentPseudex;
   propertyAccessorDeclarations: ast.PropertyAccessorDeclarations;
-  pubPropertyAccessorDeclarations: PropertyAccessorDeclarationTuple;
-  optProtPropertyAccessorDeclarations: [] | PropertyAccessorDeclarationTuple;
-  optPrivPropertyAccessorDeclarations: [] | PropertyAccessorDeclarationTuple;
-  protPropertyAccessorDeclarations: PropertyAccessorDeclarationTuple;
-  privPropertyAccessorDeclarations: PropertyAccessorDeclarationTuple;
+  propertyGetterDeclaration: ast.PropertyGetterDeclaration;
+  propertySetterDeclaration: ast.PropertySetterDeclaration;
   variableTypeAnnotation: ast.Type;
   optReturnTypeAnnotation: Option<ast.Type>;
   optThrowsClause: ast.Type[];
@@ -283,6 +289,7 @@ interface NodeTypeDict {
   optInterfaceMethodDeclarations: ast.InterfaceMethodDeclaration[];
   interfaceExtensionClause: ast.Type[];
   interfaceMethodDeclaration: ast.InterfaceMethodDeclaration;
+  propertyHasBeenInitializedAssertion: ast.PropertyHasBeenInitializedAssertion;
   blockStatement: ast.BlockStatement;
   ifStatement: ast.IfStatement;
   switchStatement: ast.SwitchStatement;
@@ -295,11 +302,8 @@ interface NodeTypeDict {
   whileStatement: ast.WhileStatement;
   doWhileStatement: ast.DoWhileStatement;
   loopStatement: ast.LoopStatement;
-  repeatStatement: ast.RepeatStatement;
   forStatement: ast.ForStatement;
   tryStatement: ast.TryStatement;
-  ifTypeGuardStatement: ast.IfTypeGuardStatement;
-  whileTypeGuardStatement: ast.WhileTypeGuardStatement;
   optStatementElseIfClauses: ast.StatementElseIfClause[];
   statementElseClause: ast.BlockStatement;
   statementElseIfClause: ast.StatementElseIfClause;
@@ -310,17 +314,30 @@ interface NodeTypeDict {
   assignmentPseudex: ast.AssignmentPseudex;
   nonReturnablePseudex: ast.NonReturnablePseudex;
   blockPseudex: ast.BlockPseudex;
-  repeatingArrayFillPseudex: ast.RepeatingArrayFillPseudex;
-  repeatingListFillPseudex: ast.RepeatingListFillPseudex;
-  sequentialListFillPseudex: ast.SequentialListFillPseudex;
-  arrayMapPseudex: ast.ArrayMapPseudex;
-  listMapPseudex: ast.ListMapPseudex;
-  listFilterMapPseudex: ast.ListFilterMapPseudex;
+  sequentialListFillPseudex: ast.NonEmptyListPseudex;
+  nonEmptyListPseudex: ast.NonEmptyListPseudex;
+  collectionIterationForPseudex: ast.CollectionIterationForPseudex & {
+    outType: ast.ForPseudexOutType.Array;
+  };
+  rangeForPseudex: ast.RangeForPseudex & {
+    outType: ast.ForPseudexOutType.Array;
+  };
+  optStepClause: Option<ast.Expression>;
+  blockYield: ast.BlockYield;
+  yieldOrYieldAllKeyword: "yield" | "yieldall";
+  expressionOrReturnablePseudex: ast.Expression | ast.ReturnablePseudex;
+  arrayForPseudex: ast.ForPseudex & { outType: ast.ForPseudexOutType.Array };
+  listForPseudex: ast.ForPseudex & { outType: ast.ForPseudexOutType.List };
+  listForIfPseudex: ast.ForIfPseudex;
+  collectionIterationForIfPseudex: ast.CollectionIterationForIfPseudex;
+  forIfPseudexBody: ForIfPseudexBody;
+  rangeForIfPseudex: ast.RangeForIfPseudex;
   oneOrMoreCommaSeparatedExpressions: ast.Expression[];
   oneOrMoreForBindings: ast.ForBinding[];
   forBinding: ast.ForBinding;
-  forValueBinding: ast.ForValueBinding;
+  forValueBinding: ast.ForBinding;
   forIndexBinding: ast.ForBinding;
+  quantifierPseudex: ast.QuantifierPseudex;
   ifPseudex: ast.IfPseudex;
   ifPseudexWithIfBodyPseudex: ast.IfPseudexWithIfBodyPseudex;
   ifPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause: ast.IfPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause;
@@ -332,10 +349,6 @@ interface NodeTypeDict {
   tryPseudex: ast.TryPseudex;
   tryOrThrowPseudex: ast.TryOrThrowPseudex;
   throwPseudex: ast.ThrowPseudex;
-  ifTypeGuardPseudex: ast.IfTypeGuardPseudex;
-  ifTypeGuardPseudexWithIfBodyPseudex: ast.IfTypeGuardPseudexWithIfBodyPseudex;
-  ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause: ast.IfTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause;
-  ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses: ast.IfTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses;
   blockExpressionOrBlockPseudex: ast.BlockExpression | ast.BlockPseudex;
   oneOrMoreExpressionElseIfClauses: ast.ExpressionElseIfClause[];
   oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses: (
@@ -360,22 +373,13 @@ interface NodeTypeDict {
     | ast.ExpressionCatchClause
     | ast.PseudexCatchClause;
   oneOrMorePipeSeparatedTypes: ast.Type[];
-  oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration: ast.TypeGuardVariableDeclaration[];
-  oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations: ast.InlineTypeGuardVariableDeclaration[];
   assignableExpression: ast.AssignableExpression;
-  cStyleForStatement: ast.CStyleForStatement;
   collectionIterationForStatement: ast.CollectionIterationForStatement;
   rangeForStatement: ast.RangeForStatement;
-  twoOrMoreForBindings: ast.ForBinding[];
   forRangeKeyword: ast.ForStatementRangeType;
   oneOrMoreStatementCatchClauses: ast.StatementCatchClause[];
   statementCatchClause: ast.StatementCatchClause;
-  nonInlineTypeGuardVariableDeclaration: ast.TypeGuardVariableDeclaration;
-  inlineTypeGuardVariableDeclaration: ast.InlineTypeGuardVariableDeclaration;
-  nonInlineNullGuardVariableDeclaration: ast.NullGuardVariableDeclaration;
-  nonInlineInstanceofGuardVariableDeclaration: ast.InstanceofGuardVariableDeclaration;
   angleBracketlessType: ast.AngleBracketlessType;
-  inlineNullGuardVariableDeclaration: ast.InlineTypeGuardVariableDeclaration;
   nonassignableExpression: ast.NonAssignableExpression;
   literalExpression: ast.LiteralExpression;
   nullLiteral: ast.NullLiteral;
@@ -387,34 +391,34 @@ interface NodeTypeDict {
   arrayLiteral: ast.ArrayLiteral;
   sequentialArrayLiteral: ast.SequentialArrayLiteral;
   defaultValueArrayLiteral: ast.DefaultValueArrayLiteral;
-  repeatingArrayLiteral: ast.RepeatingArrayLiteral;
   defaultArrayValue: ast.NumberLiteral | ast.FalseLiteral | ast.NullLiteral;
-  oneOrMoreCommaSeparatedNumberLiterals: ast.NumberLiteral[];
+  emptyListLiteral: ast.EmptyListLiteral;
   methodInvocationExpression: ast.MethodInvocationExpression;
-  methodInvocationExpressionWithUnlabeledActualParams: ast.MethodInvocationExpressionWithUnlabeledActualParams;
-  methodInvocationExpressionWithLabeledActualParams: ast.MethodInvocationExpressionWithLabeledActualParams;
+  parenthesizedActualMethodParams: ast.ActualMethodParam[];
+  oneOrMoreCommaSeparatedActualMethodParams: ast.ActualMethodParam[];
+  actualMethodParam: ast.ActualMethodParam;
+  unlabeledActualMethodParam: ast.UnlabeledActualMethodParam;
+  labeledActualMethodParam: ast.LabeledActualMethodParam;
   castExpression: ast.CastExpression;
   anonymousInnerClassInstantiationExpression: ast.AnonymousInnerClassInstantiationExpression;
   lambdaExpression: ast.LambdaExpression;
   rangeCheckExpression: ast.RangeCheckExpression;
-  instanceofExpression: ast.InstanceofExpression;
-  notinstanceofExpression: ast.NotinstanceofExpression;
+  isExpression: ast.IsExpression;
+  isnotExpression: ast.IsnotExpression;
   postfixExpression: ast.PostfixExpression;
+  nonNullAssertionExpression: ast.NonNullAssertionExpression;
+  nullableChainingExpression: ast.NullableChainingExpression;
   prefixExpression: ast.PrefixExpression;
   infixExpression: ast.InfixExpression;
   ifExpression: ast.IfExpression;
   switchExpression: ast.SwitchExpression;
-  ifInlineTypeGuardExpression: ast.IfInlineTypeGuardExpression;
   parenthesizedExpression: ast.ParenthesizedExpression;
-  oneOrMoreLabeledActualMethodParams: ast.LabeledActualParam[];
-  labeledActualMethodParam: ast.LabeledActualParam;
   angleBracketEnclosedGenericMethodActualTypeParams: ast.Type[];
   anonymousInnerClassInstantiationType: ast.AnonymousInnerClassInstantiationType;
   anonymousInnerClassBody: AnonymousInnerClassBody;
   optAnonymousInnerClassItems: ast.AnonymousInnerClassItem[];
   anonymousInnerClassItem: ast.AnonymousInnerClassItem;
   oneOrMoreCommaSeparatedIdentifiers: ast.Identifier[];
-  oneOrMoreSquareBracketPairs: { pairCount: number };
 }
 
 interface ClassBody {
@@ -423,11 +427,15 @@ interface ClassBody {
   items: ast.ClassItem[];
 }
 
-export type PropertyAccessorDeclarationTuple =
-  | [ast.PropertyGetterDeclaration]
-  | [ast.PropertySetterDeclaration]
-  | [ast.PropertyGetterDeclaration, ast.PropertySetterDeclaration];
+interface FormalMethodParamModifiers {
+  isReassignable: boolean;
+  doesShadow: boolean;
+}
 
+interface ForIfPseudexBody {
+  condition: ast.Expression;
+  body: ast.BlockYield;
+}
 interface AnonymousInnerClassBody {
   useStatements: ast.UseStatement[];
   items: ast.AnonymousInnerClassItem[];

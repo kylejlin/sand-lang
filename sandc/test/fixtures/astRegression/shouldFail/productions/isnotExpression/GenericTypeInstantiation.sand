@@ -1,0 +1,5 @@
+pub class GenericTypeInstantiation {
+    foo() {
+        x() isnot Foo<Bar>
+    }
+}

@@ -1,0 +1,5 @@
+pub class VarPropertySetter {
+    foo(var this.foo: int) {
+        
+    }
+}

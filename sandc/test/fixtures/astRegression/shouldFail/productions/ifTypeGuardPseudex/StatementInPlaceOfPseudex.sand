@@ -1,9 +1,0 @@
-pub class StatementInPlaceOfPseudex {
-    foo() {
-        let a = if let b = c {
-            foo();
-        } else {
-            foo();
-        };
-    }
-}

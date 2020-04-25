@@ -1,7 +1,0 @@
-pub class ForRangeIndexBinding {
-    foo() {
-        for @i in low upuntil high {
-            
-        }
-    }
-}

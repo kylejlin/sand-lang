@@ -1,0 +1,49 @@
+pub class ArrayForPseudex {
+    yieldOne() {
+        let a = for n in arr {
+            yield if n {
+                n * n
+            } else {
+                x();
+                x
+            };
+        };
+        let a = for @r, @c, val in grid {
+            yield f(r, c, val);
+        };
+
+        let a = for n in low upto getHigh() {
+            yield n * n;
+        };
+        let a = for x, y, z in low upto getHigh() {
+            yield f(x, y, z);
+        };
+        let a = for x, y, z in low upto getHigh() step step {
+            yield f(x, y, z);
+        };
+    }
+
+    yieldAll() {
+        let a = for n in arr {
+            yieldall if n {
+                n * n
+            } else {
+                x();
+                x
+            };
+        };
+        let a = for @r, @c, val in grid {
+            yieldall f(r, c, val);
+        };
+
+        let a = for n in low upto getHigh() {
+            yieldall n * n;
+        };
+        let a = for x, y, z in low upto getHigh() {
+            yieldall f(x, y, z);
+        };
+        let a = for x, y, z in low upto getHigh() step step {
+            yieldall f(x, y, z);
+        };
+    }
+}

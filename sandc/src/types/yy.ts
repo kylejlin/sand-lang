@@ -6,6 +6,7 @@ import {
   ArrayLiteralType,
   ExtensibilityLevel,
   ForBindingType,
+  ForPseudexOutType,
   ForStatementRangeType,
   IfPseudexType,
   InfixOperatorType,
@@ -15,21 +16,17 @@ import {
   Node,
   NodeType,
   NullableType,
-  PostfixOperatorType,
   PrefixOperatorType,
-  PropertyAccessorDeclarations,
-  PropertyVisibilityLevel,
+  QuantifierType,
   RangeCheckRangeType,
   SwitchPseudexType,
   VisibilityLevel,
 } from "./ast";
-import { PropertyAccessorDeclarationTuple } from "./tysonTypeDict";
 
 export interface Yy {
   NodeType: typeof NodeType;
   ExtensibilityLevel: typeof ExtensibilityLevel;
   VisibilityLevel: typeof VisibilityLevel;
-  PropertyVisibilityLevel: typeof PropertyVisibilityLevel;
   ForBindingType: typeof ForBindingType;
   IfPseudexType: typeof IfPseudexType;
   SwitchPseudexType: typeof SwitchPseudexType;
@@ -37,9 +34,10 @@ export interface Yy {
   LiteralType: typeof LiteralType;
   ArrayLiteralType: typeof ArrayLiteralType;
   RangeCheckRangeType: typeof RangeCheckRangeType;
-  PostfixOperatorType: typeof PostfixOperatorType;
   PrefixOperatorType: typeof PrefixOperatorType;
   InfixOperatorType: typeof InfixOperatorType;
+  ForPseudexOutType: typeof ForPseudexOutType;
+  QuantifierType: typeof QuantifierType;
 
   option: OptionFactory;
 
@@ -71,17 +69,6 @@ export interface Yy {
    * Equivalent at runtime to `{ ...a, ...b }`.
    */
   merge<A, B>(a: A, b: B): Merge<A, B>;
-
-  convertToPropertyVisibilityLevel(
-    level: Option<VisibilityLevel>,
-  ): PropertyVisibilityLevel;
-
-  mergePropertyAccessorDeclarations(
-    location: JisonSymbolLocation,
-    pubAccessors: [] | PropertyAccessorDeclarationTuple,
-    protAccessors: [] | PropertyAccessorDeclarationTuple,
-    privAccessors: [] | PropertyAccessorDeclarationTuple,
-  ): PropertyAccessorDeclarations;
 
   /**
    * Equivalent at runtime to `a.concat(b)`, but

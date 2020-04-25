@@ -60,7 +60,7 @@ export function testParserParsesCorrectly({
             "Expected a parse error when parsing " +
               fileName +
               " but successfully parsed.\nHere's the AST:\n\n" +
-              stringifyAst(ast),
+              /* stringifyAst(ast)*/ "TODO",
           );
         },
       });

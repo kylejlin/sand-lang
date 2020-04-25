@@ -1,5 +1,0 @@
-pub class RepeatingListFillPseudex {
-    foo() {
-        let a = +["foo"; n];
-    }
-}

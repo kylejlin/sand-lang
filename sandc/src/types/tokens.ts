@@ -67,30 +67,34 @@ export type SandReservedWord =
   | "downuntil"
   | "false"
   | "in"
-  | "inline"
+  | "is"
+  | "isnot"
   | "let"
   | "loop"
   | "never"
-  | "notinstanceof"
   | "null"
   | "open"
   | "override"
+  | "priv"
   | "prot"
   | "pub"
-  | "repeat"
   | "shadow"
   | "true"
   | "tryorthrow"
   | "upto"
   | "upuntil"
   | "use"
-  | "var";
+  | "var"
+  | "yield"
+  | "yieldall";
 
 export type SandTokenWithSpecialMeaningInCertainContexts =
+  | "every"
   | "get"
-  | "intenc"
+  | "hasbeeninitialized"
   | "set"
-  | "priv";
+  | "some"
+  | "step";
 
 export type NonwordToken =
   | "("
@@ -124,6 +128,8 @@ export type NonwordToken =
   | "!="
   | "~="
   | "!~="
+  | "==="
+  | "!=="
   | "<"
   | "<="
   | ">"
@@ -143,8 +149,10 @@ export type NonwordToken =
   | "%"
   | "**"
   | "!"
+  | "!<"
   | "?"
-  | "@";
+  | "@"
+  | "''";
 
 export type NonConstantLiteralToken =
   | typeof UNRESERVED_IDENTIFIER

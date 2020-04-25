@@ -1,0 +1,5 @@
+pub class UnsyntacticYield {
+    foo() {
+        yield bar;
+    }
+}

@@ -1,97 +1,30 @@
 pub class MethodInvocationExpression {
-    noTypeParams() {
+    foo() {
         [
             foo(),
+            foo(a(), b, c),
 
-            foo("a"),
-            foo("a",),
-            foo("a", b, c),
-            foo("a", b, c,),
-
-            foo(unreserved: "a"),
-            foo(unreserved: "a",),
-            foo(a: "a", ~copy: b, ~use: c, d: d),
-            foo(a: "a", ~copy: b, ~use: c, d: d,),
-        ]
-    }
-
-    oneTypeParam() {
-        [
             foo<T>(),
-
-            foo<T>("a"),
-            foo<T>("a",),
-            foo<T>("a", b, c),
-            foo<T>("a", b, c,),
-
-            foo<T>(unreserved: "a"),
-            foo<T>(unreserved: "a",),
-            foo<T>(a: "a", ~copy: b, ~use: c, d: d),
-            foo<T>(a: "a", ~copy: b, ~use: c, d: d,),
+            foo<T>(a(), b, c),
 
             foo<T<A, B>>(),
+            foo<T<A, B>>(a(), b, c),
 
-            foo<T<A, B>>("a"),
-            foo<T<A, B>>("a",),
-            foo<T<A, B>>("a", b, c),
-            foo<T<A, B>>("a", b, c,),
-
-            foo<T<A, B>>(unreserved: "a"),
-            foo<T<A, B>>(unreserved: "a",),
-            foo<T<A, B>>(a: "a", ~copy: b, ~use: c, d: d),
-            foo<T<A, B>>(a: "a", ~copy: b, ~use: c, d: d,),
+            foo<T<!>>(),
+            foo<T<!>>(a(), b, c),
 
             foo<T?>(),
-
-            foo<T?>("a"),
-            foo<T?>("a",),
-            foo<T?>("a", b, c),
-            foo<T?>("a", b, c,),
-
-            foo<T?>(unreserved: "a"),
-            foo<T?>(unreserved: "a",),
-            foo<T?>(a: "a", ~copy: b, ~use: c, d: d),
-            foo<T?>(a: "a", ~copy: b, ~use: c, d: d,),
-
+            foo<T?>(a(), b, c),
             foo<T[]>(),
-
-            foo<T[]>("a"),
-            foo<T[]>("a",),
-            foo<T[]>("a", b, c),
-            foo<T[]>("a", b, c,),
-
-            foo<T[]>(unreserved: "a"),
-            foo<T[]>(unreserved: "a",),
-            foo<T[]>(a: "a", ~copy: b, ~use: c, d: d),
-            foo<T[]>(a: "a", ~copy: b, ~use: c, d: d,),
-
+            foo<T[]>(a(), b, c),
             foo<T[+]>(),
+            foo<T[+]>(a(), b, c),
 
-            foo<T[+]>("a"),
-            foo<T[+]>("a",),
-            foo<T[+]>("a", b, c),
-            foo<T[+]>("a", b, c,),
-
-            foo<T[+]>(unreserved: "a"),
-            foo<T[+]>(unreserved: "a",),
-            foo<T[+]>(a: "a", ~copy: b, ~use: c, d: d),
-            foo<T[+]>(a: "a", ~copy: b, ~use: c, d: d,),
-        ]
-    }
-
-    multipleTypeParams() {
-        [
             foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>(),
+            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>(a(), b, c),
 
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>("a"),
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>("a",),
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>("a", b, c),
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>("a", b, c,),
-
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>(unreserved: "a"),
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>(unreserved: "a",),
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>(a: "a", ~copy: b, ~use: c, d: d),
-            foo<T, U<T>, U<A, B?, C[+], D>[], U<T>, T>(a: "a", ~copy: b, ~use: c, d: d,),
+            Foo<!>(),
+            Foo<!>(a, b, c),
         ]
     }
 }

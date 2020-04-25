@@ -24,4 +24,12 @@ pub class Type {
     generic: T<A>?;
     generic: T<A>[];
     generic: T<A>[+];
+
+    raw: T<!>;
+    nullableRaw: T<!>;
+    rawArr: T<!>[];
+    rawList: T<!>[];
+    rawActualParam: Foo<T<!>, U>;
+
+    qualified: some.~package.Type;
 }

@@ -1,5 +1,0 @@
-pub class List {
-    foo() {
-        x() notinstanceof Foo[+]
-    }
-}

@@ -2,12 +2,7 @@ import { option, Result, result } from "rusty-ts";
 import { JisonUnexpectedTokenError } from "../jison";
 import { convertToTextRange } from "../textRange";
 import * as ast from "../types/ast";
-import {
-  DuplicatePropertyAccessorDeclarationsError,
-  ParseError,
-  ParseErrorType,
-  SandParser,
-} from "../types/parser";
+import { ParseError, ParseErrorType, SandParser } from "../types/parser";
 import { TokenType } from "../types/tokens";
 import addApi from "./addApi";
 import {
@@ -33,13 +28,6 @@ function wrapGeneratedParser(
           throw new Error("Unhandled error: " + e);
         }
 
-        if (e.name === "ErrorWrapper") {
-          const raw = e.raw;
-          if (isDuplicatePropertyAccessorDeclarationsError(raw)) {
-            return result.err(raw);
-          }
-        }
-
         if ("object" === typeof e.hash) {
           const {
             hash: { token, text, loc, expected },
@@ -57,15 +45,4 @@ function wrapGeneratedParser(
       }
     },
   };
-}
-
-function isDuplicatePropertyAccessorDeclarationsError(
-  x: unknown,
-): x is DuplicatePropertyAccessorDeclarationsError {
-  return (
-    "object" === typeof x &&
-    x !== null &&
-    (x as any).errorType ===
-      ParseErrorType.DuplicatePropertyAccessorDeclarations
-  );
 }

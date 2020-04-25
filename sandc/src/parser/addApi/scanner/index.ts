@@ -95,6 +95,17 @@ function getGenericMethodTypeParamLeftAngleIndices(input: string): number[] {
     const tokenType = tokenTypes[i];
     const prevTokenType = tokenTypes[i - 1];
 
+    if (
+      i >= 3 &&
+      tokenTypes[i - 3] === "<" &&
+      tokenTypes[i - 2] === "!" &&
+      prevTokenType === ">" &&
+      tokenType === "("
+    ) {
+      i -= 4;
+      continue;
+    }
+
     if (prevTokenType === ">" && tokenType === "(") {
       i -= 2;
 

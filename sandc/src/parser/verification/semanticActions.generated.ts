@@ -118,20 +118,60 @@ const semanticActions = {
     return $$;
   },
 
-  "identifier -> intenc"(
+  "identifier -> step"(
     yylstack: { "@$": TokenLocation },
 
-    $1: TysonTypeDict["intenc"],
+    $1: TysonTypeDict["step"],
   ): TysonTypeDict["identifier"] {
     let $$: TysonTypeDict["identifier"];
     $$ = yy.createNode(yy.NodeType.Identifier, yylstack["@$"], { source: $1 });
     return $$;
   },
 
-  "identifier -> priv"(
+  "identifier -> every"(
     yylstack: { "@$": TokenLocation },
 
-    $1: TysonTypeDict["priv"],
+    $1: TysonTypeDict["every"],
+  ): TysonTypeDict["identifier"] {
+    let $$: TysonTypeDict["identifier"];
+    $$ = yy.createNode(yy.NodeType.Identifier, yylstack["@$"], { source: $1 });
+    return $$;
+  },
+
+  "identifier -> some"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["some"],
+  ): TysonTypeDict["identifier"] {
+    let $$: TysonTypeDict["identifier"];
+    $$ = yy.createNode(yy.NodeType.Identifier, yylstack["@$"], { source: $1 });
+    return $$;
+  },
+
+  "identifier -> hasbeeninitialized"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["hasbeeninitialized"],
+  ): TysonTypeDict["identifier"] {
+    let $$: TysonTypeDict["identifier"];
+    $$ = yy.createNode(yy.NodeType.Identifier, yylstack["@$"], { source: $1 });
+    return $$;
+  },
+
+  "identifier -> this"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["this"],
+  ): TysonTypeDict["identifier"] {
+    let $$: TysonTypeDict["identifier"];
+    $$ = yy.createNode(yy.NodeType.Identifier, yylstack["@$"], { source: $1 });
+    return $$;
+  },
+
+  "identifier -> super"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["super"],
   ): TysonTypeDict["identifier"] {
     let $$: TysonTypeDict["identifier"];
     $$ = yy.createNode(yy.NodeType.Identifier, yylstack["@$"], { source: $1 });
@@ -565,24 +605,46 @@ const semanticActions = {
     return $$;
   },
 
-  "type -> oneOrMoreDotSeparatedIdentifiers optBracketedActualTypeParams"(
+  "type -> oneOrMoreDotSeparatedIdentifiers"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["oneOrMoreDotSeparatedIdentifiers"],
+  ): TysonTypeDict["type"] {
+    let $$: TysonTypeDict["type"];
+    $$ = yy.createNode(yy.NodeType.NiladicType, yylstack["@$"], {
+      identifiers: $1,
+    });
+    return $$;
+  },
+
+  "type -> oneOrMoreDotSeparatedIdentifiers < oneOrMoreCommaSeparatedTypes >"(
     yylstack: { "@$": TokenLocation; "@1": TokenLocation },
 
     $1: TysonTypeDict["oneOrMoreDotSeparatedIdentifiers"],
-    $2: TysonTypeDict["optBracketedActualTypeParams"],
+    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypes"],
   ): TysonTypeDict["type"] {
     let $$: TysonTypeDict["type"];
-    var niladic = yy.createNode(yy.NodeType.NiladicType, yylstack["@1"], {
-      identifiers: $1,
+    $$ = yy.createNode(yy.NodeType.InstantiatedGenericType, yylstack["@$"], {
+      baseType: yy.createNode(yy.NodeType.NiladicType, yylstack["@1"], {
+        identifiers: $1,
+      }),
+      actualParams: $3,
     });
-    if ($2.length === 0) {
-      $$ = niladic;
-    } else {
-      $$ = yy.createNode(yy.NodeType.InstantiatedGenericType, yylstack["@$"], {
-        baseType: niladic,
-        actualParams: $2,
-      });
-    }
+
+    return $$;
+  },
+
+  "type -> oneOrMoreDotSeparatedIdentifiers < ! >"(
+    yylstack: { "@$": TokenLocation; "@1": TokenLocation },
+
+    $1: TysonTypeDict["oneOrMoreDotSeparatedIdentifiers"],
+  ): TysonTypeDict["type"] {
+    let $$: TysonTypeDict["type"];
+    $$ = yy.createNode(yy.NodeType.RawType, yylstack["@$"], {
+      baseType: yy.createNode(yy.NodeType.NiladicType, yylstack["@1"], {
+        identifiers: $1,
+      }),
+    });
 
     return $$;
   },
@@ -1144,10 +1206,31 @@ const semanticActions = {
     return $$;
   },
 
-  "formalMethodParamDeclaration -> optShadowKeyword identifier : type"(
+  "formalMethodParamDeclaration -> identifier : type"(
     yylstack: { "@$": TokenLocation },
 
-    $1: TysonTypeDict["optShadowKeyword"],
+    $1: TysonTypeDict["identifier"],
+    $3: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.some($1),
+        isReassignable: false,
+        doesShadow: false,
+        doesSetProperty: false,
+        name: $1,
+        annotatedType: $3,
+      },
+    );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> _ identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
     $2: TysonTypeDict["identifier"],
     $4: TysonTypeDict["type"],
   ): TysonTypeDict["formalMethodParamDeclaration"] {
@@ -1156,8 +1239,10 @@ const semanticActions = {
       yy.NodeType.FormalMethodParamDeclaration,
       yylstack["@$"],
       {
+        label: yy.option.none(),
         isReassignable: false,
-        doesShadow: $1.isSome(),
+        doesShadow: false,
+        doesSetProperty: false,
         name: $2,
         annotatedType: $4,
       },
@@ -1165,10 +1250,56 @@ const semanticActions = {
     return $$;
   },
 
-  "formalMethodParamDeclaration -> var optShadowKeyword identifier : type"(
+  "formalMethodParamDeclaration -> identifier identifier : type"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optShadowKeyword"],
+    $1: TysonTypeDict["identifier"],
+    $2: TysonTypeDict["identifier"],
+    $4: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.some($1),
+        isReassignable: false,
+        doesShadow: false,
+        doesSetProperty: false,
+        name: $2,
+        annotatedType: $4,
+      },
+    );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> oneOrMoreFormalMethodParamModifiers identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["oneOrMoreFormalMethodParamModifiers"],
+    $2: TysonTypeDict["identifier"],
+    $4: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.some($2),
+        isReassignable: $1.isReassignable,
+        doesShadow: $1.doesShadow,
+        doesSetProperty: false,
+        name: $2,
+        annotatedType: $4,
+      },
+    );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> _ oneOrMoreFormalMethodParamModifiers identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreFormalMethodParamModifiers"],
     $3: TysonTypeDict["identifier"],
     $5: TysonTypeDict["type"],
   ): TysonTypeDict["formalMethodParamDeclaration"] {
@@ -1177,12 +1308,123 @@ const semanticActions = {
       yy.NodeType.FormalMethodParamDeclaration,
       yylstack["@$"],
       {
-        isReassignable: true,
-        doesShadow: $2.isSome(),
+        label: yy.option.none(),
+        isReassignable: $2.isReassignable,
+        doesShadow: $2.doesShadow,
+        doesSetProperty: false,
         name: $3,
         annotatedType: $5,
       },
     );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> identifier oneOrMoreFormalMethodParamModifiers identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["identifier"],
+    $2: TysonTypeDict["oneOrMoreFormalMethodParamModifiers"],
+    $3: TysonTypeDict["identifier"],
+    $5: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.some($1),
+        isReassignable: $2.isReassignable,
+        doesShadow: $2.doesShadow,
+        doesSetProperty: false,
+        name: $3,
+        annotatedType: $5,
+      },
+    );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> this . identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["identifier"],
+    $5: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.some($3),
+        isReassignable: false,
+        doesShadow: false,
+        doesSetProperty: true,
+        name: $3,
+        annotatedType: $5,
+      },
+    );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> _ this . identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
+    $4: TysonTypeDict["identifier"],
+    $6: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.none(),
+        isReassignable: false,
+        doesShadow: false,
+        doesSetProperty: true,
+        name: $4,
+        annotatedType: $6,
+      },
+    );
+    return $$;
+  },
+
+  "formalMethodParamDeclaration -> identifier this . identifier : type"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["identifier"],
+    $4: TysonTypeDict["identifier"],
+    $6: TysonTypeDict["type"],
+  ): TysonTypeDict["formalMethodParamDeclaration"] {
+    let $$: TysonTypeDict["formalMethodParamDeclaration"];
+    $$ = yy.createNode(
+      yy.NodeType.FormalMethodParamDeclaration,
+      yylstack["@$"],
+      {
+        label: yy.option.some($1),
+        isReassignable: false,
+        doesShadow: false,
+        doesSetProperty: true,
+        name: $4,
+        annotatedType: $6,
+      },
+    );
+    return $$;
+  },
+
+  "oneOrMoreFormalMethodParamModifiers -> shadow"(): TysonTypeDict["oneOrMoreFormalMethodParamModifiers"] {
+    let $$: TysonTypeDict["oneOrMoreFormalMethodParamModifiers"];
+    $$ = { isReassignable: false, doesShadow: true };
+    return $$;
+  },
+
+  "oneOrMoreFormalMethodParamModifiers -> var"(): TysonTypeDict["oneOrMoreFormalMethodParamModifiers"] {
+    let $$: TysonTypeDict["oneOrMoreFormalMethodParamModifiers"];
+    $$ = { isReassignable: true, doesShadow: false };
+    return $$;
+  },
+
+  "oneOrMoreFormalMethodParamModifiers -> var shadow"(): TysonTypeDict["oneOrMoreFormalMethodParamModifiers"] {
+    let $$: TysonTypeDict["oneOrMoreFormalMethodParamModifiers"];
+    $$ = { isReassignable: true, doesShadow: true };
     return $$;
   },
 
@@ -1307,7 +1549,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: false,
         doesShadow: false,
@@ -1334,7 +1576,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: true,
         doesShadow: false,
@@ -1361,7 +1603,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: false,
         doesShadow: true,
@@ -1388,7 +1630,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: true,
         doesShadow: true,
@@ -1416,7 +1658,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($2),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: false,
         doesShadow: false,
@@ -1444,7 +1686,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($2),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: true,
         doesShadow: false,
@@ -1472,7 +1714,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($2),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: false,
         doesShadow: true,
@@ -1500,7 +1742,7 @@ const semanticActions = {
       yy.NodeType.ClassStaticPropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($2),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: true,
         doesShadow: true,
@@ -1514,289 +1756,190 @@ const semanticActions = {
     return $$;
   },
 
-  "classStaticPropertyDeclaration -> propertyAccessorDeclarations intenc static identifier optVariableTypeAnnotation = expressionOrAssignmentPseudex ;"(
+  "propertyAccessorDeclarations -> ( propertyGetterDeclaration )"(
     yylstack: { "@$": TokenLocation },
 
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $4: TysonTypeDict["identifier"],
-    $5: TysonTypeDict["optVariableTypeAnnotation"],
-    $7: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["classStaticPropertyDeclaration"] {
-    let $$: TysonTypeDict["classStaticPropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassStaticPropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: false,
-        doesShadow: false,
-
-        name: $4,
-        annotatedType: $5,
-        initialValue: $7,
-      },
-    );
-
-    return $$;
-  },
-
-  "classStaticPropertyDeclaration -> propertyAccessorDeclarations intenc static var identifier optVariableTypeAnnotation = expressionOrAssignmentPseudex ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $5: TysonTypeDict["identifier"],
-    $6: TysonTypeDict["optVariableTypeAnnotation"],
-    $8: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["classStaticPropertyDeclaration"] {
-    let $$: TysonTypeDict["classStaticPropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassStaticPropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: true,
-        doesShadow: false,
-
-        name: $5,
-        annotatedType: $6,
-        initialValue: $8,
-      },
-    );
-
-    return $$;
-  },
-
-  "classStaticPropertyDeclaration -> propertyAccessorDeclarations intenc static shadow identifier optVariableTypeAnnotation = expressionOrAssignmentPseudex ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $5: TysonTypeDict["identifier"],
-    $6: TysonTypeDict["optVariableTypeAnnotation"],
-    $8: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["classStaticPropertyDeclaration"] {
-    let $$: TysonTypeDict["classStaticPropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassStaticPropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: false,
-        doesShadow: true,
-
-        name: $5,
-        annotatedType: $6,
-        initialValue: $8,
-      },
-    );
-
-    return $$;
-  },
-
-  "classStaticPropertyDeclaration -> propertyAccessorDeclarations intenc static var shadow identifier optVariableTypeAnnotation = expressionOrAssignmentPseudex ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $6: TysonTypeDict["identifier"],
-    $7: TysonTypeDict["optVariableTypeAnnotation"],
-    $9: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["classStaticPropertyDeclaration"] {
-    let $$: TysonTypeDict["classStaticPropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassStaticPropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: true,
-        doesShadow: true,
-
-        name: $6,
-        annotatedType: $7,
-        initialValue: $9,
-      },
-    );
-
-    return $$;
-  },
-
-  "propertyAccessorDeclarations -> ( pubPropertyAccessorDeclarations optProtPropertyAccessorDeclarations optPrivPropertyAccessorDeclarations )"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["pubPropertyAccessorDeclarations"],
-    $3: TysonTypeDict["optProtPropertyAccessorDeclarations"],
-    $4: TysonTypeDict["optPrivPropertyAccessorDeclarations"],
+    $2: TysonTypeDict["propertyGetterDeclaration"],
   ): TysonTypeDict["propertyAccessorDeclarations"] {
     let $$: TysonTypeDict["propertyAccessorDeclarations"];
-    $$ = yy.mergePropertyAccessorDeclarations(yylstack["@$"], $2, $3, $4);
+    $$ = yy.createNode(
+      yy.NodeType.PropertyAccessorDeclarations,
+      yylstack["@$"],
+      { getter: yy.option.some($2), setter: yy.option.none() },
+    );
     return $$;
   },
 
-  "propertyAccessorDeclarations -> ( protPropertyAccessorDeclarations optPrivPropertyAccessorDeclarations )"(
+  "propertyAccessorDeclarations -> ( propertySetterDeclaration )"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["protPropertyAccessorDeclarations"],
-    $3: TysonTypeDict["optPrivPropertyAccessorDeclarations"],
+    $2: TysonTypeDict["propertySetterDeclaration"],
   ): TysonTypeDict["propertyAccessorDeclarations"] {
     let $$: TysonTypeDict["propertyAccessorDeclarations"];
-    $$ = yy.mergePropertyAccessorDeclarations(yylstack["@$"], [], $2, $3);
+    $$ = yy.createNode(
+      yy.NodeType.PropertyAccessorDeclarations,
+      yylstack["@$"],
+      { getter: yy.option.none(), setter: yy.option.some($2) },
+    );
     return $$;
   },
 
-  "propertyAccessorDeclarations -> ( privPropertyAccessorDeclarations )"(
+  "propertyAccessorDeclarations -> ( propertyGetterDeclaration propertySetterDeclaration )"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["privPropertyAccessorDeclarations"],
+    $2: TysonTypeDict["propertyGetterDeclaration"],
+    $3: TysonTypeDict["propertySetterDeclaration"],
   ): TysonTypeDict["propertyAccessorDeclarations"] {
     let $$: TysonTypeDict["propertyAccessorDeclarations"];
-    $$ = yy.mergePropertyAccessorDeclarations(yylstack["@$"], [], [], $2);
+    $$ = yy.createNode(
+      yy.NodeType.PropertyAccessorDeclarations,
+      yylstack["@$"],
+      { getter: yy.option.some($2), setter: yy.option.some($3) },
+    );
     return $$;
   },
 
-  "pubPropertyAccessorDeclarations -> pub"(yylstack: {
+  "propertyGetterDeclaration -> pub get"(yylstack: {
     "@$": TokenLocation;
-  }): TysonTypeDict["pubPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["pubPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Public,
-      }),
-      yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Public,
-      }),
-    ];
+  }): TysonTypeDict["propertyGetterDeclaration"] {
+    let $$: TysonTypeDict["propertyGetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Public,
+      customName: yy.option.none(),
+    });
     return $$;
   },
 
-  "pubPropertyAccessorDeclarations -> pub get"(yylstack: {
+  "propertyGetterDeclaration -> prot get"(yylstack: {
     "@$": TokenLocation;
-  }): TysonTypeDict["pubPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["pubPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Public,
-      }),
-    ];
+  }): TysonTypeDict["propertyGetterDeclaration"] {
+    let $$: TysonTypeDict["propertyGetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Protected,
+      customName: yy.option.none(),
+    });
     return $$;
   },
 
-  "pubPropertyAccessorDeclarations -> pub set"(yylstack: {
+  "propertyGetterDeclaration -> priv get"(yylstack: {
     "@$": TokenLocation;
-  }): TysonTypeDict["pubPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["pubPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Public,
-      }),
-    ];
+  }): TysonTypeDict["propertyGetterDeclaration"] {
+    let $$: TysonTypeDict["propertyGetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Private,
+      customName: yy.option.none(),
+    });
     return $$;
   },
 
-  "optProtPropertyAccessorDeclarations -> "(): TysonTypeDict["optProtPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["optProtPropertyAccessorDeclarations"];
-    $$ = [];
+  "propertyGetterDeclaration -> pub get identifier"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertyGetterDeclaration"] {
+    let $$: TysonTypeDict["propertyGetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Public,
+      customName: yy.option.some($3),
+    });
     return $$;
   },
 
-  "optProtPropertyAccessorDeclarations -> protPropertyAccessorDeclarations"(
-    $1: TysonTypeDict["protPropertyAccessorDeclarations"],
-  ): TysonTypeDict["optProtPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["optProtPropertyAccessorDeclarations"];
-    $$ = $1;
+  "propertyGetterDeclaration -> prot get identifier"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertyGetterDeclaration"] {
+    let $$: TysonTypeDict["propertyGetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Protected,
+      customName: yy.option.some($3),
+    });
     return $$;
   },
 
-  "protPropertyAccessorDeclarations -> prot"(yylstack: {
+  "propertyGetterDeclaration -> priv get identifier"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertyGetterDeclaration"] {
+    let $$: TysonTypeDict["propertyGetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Private,
+      customName: yy.option.some($3),
+    });
+    return $$;
+  },
+
+  "propertySetterDeclaration -> pub set"(yylstack: {
     "@$": TokenLocation;
-  }): TysonTypeDict["protPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["protPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Protected,
-      }),
-      yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Protected,
-      }),
-    ];
+  }): TysonTypeDict["propertySetterDeclaration"] {
+    let $$: TysonTypeDict["propertySetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Public,
+      customName: yy.option.none(),
+    });
     return $$;
   },
 
-  "protPropertyAccessorDeclarations -> prot get"(yylstack: {
+  "propertySetterDeclaration -> prot set"(yylstack: {
     "@$": TokenLocation;
-  }): TysonTypeDict["protPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["protPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Protected,
-      }),
-    ];
+  }): TysonTypeDict["propertySetterDeclaration"] {
+    let $$: TysonTypeDict["propertySetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Protected,
+      customName: yy.option.none(),
+    });
     return $$;
   },
 
-  "protPropertyAccessorDeclarations -> prot set"(yylstack: {
+  "propertySetterDeclaration -> priv set"(yylstack: {
     "@$": TokenLocation;
-  }): TysonTypeDict["protPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["protPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Protected,
-      }),
-    ];
+  }): TysonTypeDict["propertySetterDeclaration"] {
+    let $$: TysonTypeDict["propertySetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Private,
+      customName: yy.option.none(),
+    });
     return $$;
   },
 
-  "optPrivPropertyAccessorDeclarations -> "(): TysonTypeDict["optPrivPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["optPrivPropertyAccessorDeclarations"];
-    $$ = [];
+  "propertySetterDeclaration -> pub set identifier"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertySetterDeclaration"] {
+    let $$: TysonTypeDict["propertySetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Public,
+      customName: yy.option.some($3),
+    });
     return $$;
   },
 
-  "optPrivPropertyAccessorDeclarations -> privPropertyAccessorDeclarations"(
-    $1: TysonTypeDict["privPropertyAccessorDeclarations"],
-  ): TysonTypeDict["optPrivPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["optPrivPropertyAccessorDeclarations"];
-    $$ = $1;
+  "propertySetterDeclaration -> prot set identifier"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertySetterDeclaration"] {
+    let $$: TysonTypeDict["propertySetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Protected,
+      customName: yy.option.some($3),
+    });
     return $$;
   },
 
-  "privPropertyAccessorDeclarations -> priv"(yylstack: {
-    "@$": TokenLocation;
-  }): TysonTypeDict["privPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["privPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Private,
-      }),
-      yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Private,
-      }),
-    ];
-    return $$;
-  },
+  "propertySetterDeclaration -> priv set identifier"(
+    yylstack: { "@$": TokenLocation },
 
-  "privPropertyAccessorDeclarations -> priv get"(yylstack: {
-    "@$": TokenLocation;
-  }): TysonTypeDict["privPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["privPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertyGetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Private,
-      }),
-    ];
-    return $$;
-  },
-
-  "privPropertyAccessorDeclarations -> priv set"(yylstack: {
-    "@$": TokenLocation;
-  }): TysonTypeDict["privPropertyAccessorDeclarations"] {
-    let $$: TysonTypeDict["privPropertyAccessorDeclarations"];
-    $$ = [
-      yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
-        visibility: yy.VisibilityLevel.Private,
-      }),
-    ];
+    $3: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertySetterDeclaration"] {
+    let $$: TysonTypeDict["propertySetterDeclaration"];
+    $$ = yy.createNode(yy.NodeType.PropertySetterDeclaration, yylstack["@$"], {
+      visibility: yy.VisibilityLevel.Private,
+      customName: yy.option.some($3),
+    });
     return $$;
   },
 
@@ -2008,7 +2151,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: false,
         doesShadow: false,
@@ -2033,7 +2176,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: true,
         doesShadow: false,
@@ -2058,7 +2201,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: false,
         doesShadow: true,
@@ -2083,7 +2226,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel($1),
+        visibility: $1.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.none(),
         isReassignable: true,
         doesShadow: true,
@@ -2096,35 +2239,11 @@ const semanticActions = {
     return $$;
   },
 
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations identifier variableTypeAnnotation ;"(
+  "classInstancePropertyDeclaration -> propertyAccessorDeclarations optVisibilityModifier identifier variableTypeAnnotation ;"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $2: TysonTypeDict["identifier"],
-    $3: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.Private,
-        accessors: yy.option.some($1),
-        isReassignable: false,
-        doesShadow: false,
-
-        name: $2,
-        annotatedType: $3,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations var identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
+    $2: TysonTypeDict["optVisibilityModifier"],
     $3: TysonTypeDict["identifier"],
     $4: TysonTypeDict["variableTypeAnnotation"],
   ): TysonTypeDict["classInstancePropertyDeclaration"] {
@@ -2133,83 +2252,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.PropertyVisibilityLevel.Private,
-        accessors: yy.option.some($1),
-        isReassignable: true,
-        doesShadow: false,
-
-        name: $3,
-        annotatedType: $4,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations shadow identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $3: TysonTypeDict["identifier"],
-    $4: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.Private,
-        accessors: yy.option.some($1),
-        isReassignable: false,
-        doesShadow: true,
-
-        name: $3,
-        annotatedType: $4,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations var shadow identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $4: TysonTypeDict["identifier"],
-    $5: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.Private,
-        accessors: yy.option.some($1),
-        isReassignable: true,
-        doesShadow: true,
-
-        name: $4,
-        annotatedType: $5,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations visibilityModifier identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $2: TysonTypeDict["visibilityModifier"],
-    $3: TysonTypeDict["identifier"],
-    $4: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: false,
         doesShadow: false,
@@ -2222,11 +2265,11 @@ const semanticActions = {
     return $$;
   },
 
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations visibilityModifier var identifier variableTypeAnnotation ;"(
+  "classInstancePropertyDeclaration -> propertyAccessorDeclarations optVisibilityModifier var identifier variableTypeAnnotation ;"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $2: TysonTypeDict["visibilityModifier"],
+    $2: TysonTypeDict["optVisibilityModifier"],
     $4: TysonTypeDict["identifier"],
     $5: TysonTypeDict["variableTypeAnnotation"],
   ): TysonTypeDict["classInstancePropertyDeclaration"] {
@@ -2235,7 +2278,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: true,
         doesShadow: false,
@@ -2248,11 +2291,11 @@ const semanticActions = {
     return $$;
   },
 
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations visibilityModifier shadow identifier variableTypeAnnotation ;"(
+  "classInstancePropertyDeclaration -> propertyAccessorDeclarations optVisibilityModifier shadow identifier variableTypeAnnotation ;"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $2: TysonTypeDict["visibilityModifier"],
+    $2: TysonTypeDict["optVisibilityModifier"],
     $4: TysonTypeDict["identifier"],
     $5: TysonTypeDict["variableTypeAnnotation"],
   ): TysonTypeDict["classInstancePropertyDeclaration"] {
@@ -2261,7 +2304,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: false,
         doesShadow: true,
@@ -2274,11 +2317,11 @@ const semanticActions = {
     return $$;
   },
 
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations visibilityModifier var shadow identifier variableTypeAnnotation ;"(
+  "classInstancePropertyDeclaration -> propertyAccessorDeclarations optVisibilityModifier var shadow identifier variableTypeAnnotation ;"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $2: TysonTypeDict["visibilityModifier"],
+    $2: TysonTypeDict["optVisibilityModifier"],
     $5: TysonTypeDict["identifier"],
     $6: TysonTypeDict["variableTypeAnnotation"],
   ): TysonTypeDict["classInstancePropertyDeclaration"] {
@@ -2287,107 +2330,7 @@ const semanticActions = {
       yy.NodeType.ClassInstancePropertyDeclaration,
       yylstack["@$"],
       {
-        visibility: yy.convertToPropertyVisibilityLevel(yy.option.some($2)),
-        accessors: yy.option.some($1),
-        isReassignable: true,
-        doesShadow: true,
-
-        name: $5,
-        annotatedType: $6,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations intenc identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $3: TysonTypeDict["identifier"],
-    $4: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: false,
-        doesShadow: false,
-
-        name: $3,
-        annotatedType: $4,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations intenc var identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $4: TysonTypeDict["identifier"],
-    $5: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: true,
-        doesShadow: false,
-
-        name: $4,
-        annotatedType: $5,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations intenc shadow identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $4: TysonTypeDict["identifier"],
-    $5: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
-        accessors: yy.option.some($1),
-        isReassignable: false,
-        doesShadow: true,
-
-        name: $4,
-        annotatedType: $5,
-      },
-    );
-
-    return $$;
-  },
-
-  "classInstancePropertyDeclaration -> propertyAccessorDeclarations intenc var shadow identifier variableTypeAnnotation ;"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["propertyAccessorDeclarations"],
-    $5: TysonTypeDict["identifier"],
-    $6: TysonTypeDict["variableTypeAnnotation"],
-  ): TysonTypeDict["classInstancePropertyDeclaration"] {
-    let $$: TysonTypeDict["classInstancePropertyDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.ClassInstancePropertyDeclaration,
-      yylstack["@$"],
-      {
-        visibility: yy.PropertyVisibilityLevel.InternallyEncapsulated,
+        visibility: $2.unwrapOr(yy.VisibilityLevel.Private),
         accessors: yy.option.some($1),
         isReassignable: true,
         doesShadow: true,
@@ -2954,6 +2897,14 @@ const semanticActions = {
     return $$;
   },
 
+  "statement -> propertyHasBeenInitializedAssertion"(
+    $1: TysonTypeDict["propertyHasBeenInitializedAssertion"],
+  ): TysonTypeDict["statement"] {
+    let $$: TysonTypeDict["statement"];
+    $$ = $1;
+    return $$;
+  },
+
   "statement -> blockStatement"(
     $1: TysonTypeDict["blockStatement"],
   ): TysonTypeDict["statement"] {
@@ -3050,14 +3001,6 @@ const semanticActions = {
     return $$;
   },
 
-  "statement -> repeatStatement"(
-    $1: TysonTypeDict["repeatStatement"],
-  ): TysonTypeDict["statement"] {
-    let $$: TysonTypeDict["statement"];
-    $$ = $1;
-    return $$;
-  },
-
   "statement -> forStatement"(
     $1: TysonTypeDict["forStatement"],
   ): TysonTypeDict["statement"] {
@@ -3074,26 +3017,48 @@ const semanticActions = {
     return $$;
   },
 
-  "statement -> ifTypeGuardStatement"(
-    $1: TysonTypeDict["ifTypeGuardStatement"],
-  ): TysonTypeDict["statement"] {
-    let $$: TysonTypeDict["statement"];
-    $$ = $1;
-    return $$;
-  },
-
-  "statement -> whileTypeGuardStatement"(
-    $1: TysonTypeDict["whileTypeGuardStatement"],
-  ): TysonTypeDict["statement"] {
-    let $$: TysonTypeDict["statement"];
-    $$ = $1;
-    return $$;
-  },
-
-  "blockStatement -> { optUseStatements }"(
+  "propertyHasBeenInitializedAssertion -> identifier hasbeeninitialized ;"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optUseStatements"],
+    $1: TysonTypeDict["identifier"],
+  ): TysonTypeDict["propertyHasBeenInitializedAssertion"] {
+    let $$: TysonTypeDict["propertyHasBeenInitializedAssertion"];
+    $$ = yy.createNode(
+      yy.NodeType.PropertyHasBeenInitializedAssertion,
+      yylstack["@$"],
+      { property: $1 },
+    );
+    return $$;
+  },
+
+  "blockStatement -> { }"(yylstack: {
+    "@$": TokenLocation;
+  }): TysonTypeDict["blockStatement"] {
+    let $$: TysonTypeDict["blockStatement"];
+    $$ = yy.createNode(yy.NodeType.BlockStatement, yylstack["@$"], {
+      useStatements: [],
+      statements: [],
+    });
+    return $$;
+  },
+
+  "blockStatement -> { oneOrMoreStatements }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreStatements"],
+  ): TysonTypeDict["blockStatement"] {
+    let $$: TysonTypeDict["blockStatement"];
+    $$ = yy.createNode(yy.NodeType.BlockStatement, yylstack["@$"], {
+      useStatements: [],
+      statements: $2,
+    });
+    return $$;
+  },
+
+  "blockStatement -> { oneOrMoreUseStatements }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
   ): TysonTypeDict["blockStatement"] {
     let $$: TysonTypeDict["blockStatement"];
     $$ = yy.createNode(yy.NodeType.BlockStatement, yylstack["@$"], {
@@ -3103,10 +3068,10 @@ const semanticActions = {
     return $$;
   },
 
-  "blockStatement -> { optUseStatements oneOrMoreStatements }"(
+  "blockStatement -> { oneOrMoreUseStatements oneOrMoreStatements }"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optUseStatements"],
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
     $3: TysonTypeDict["oneOrMoreStatements"],
   ): TysonTypeDict["blockStatement"] {
     let $$: TysonTypeDict["blockStatement"];
@@ -3409,79 +3374,35 @@ const semanticActions = {
     return $$;
   },
 
-  "nonReturnablePseudex -> repeatingArrayFillPseudex"(
-    $1: TysonTypeDict["repeatingArrayFillPseudex"],
+  "nonReturnablePseudex -> nonEmptyListPseudex"(
+    $1: TysonTypeDict["nonEmptyListPseudex"],
   ): TysonTypeDict["nonReturnablePseudex"] {
     let $$: TysonTypeDict["nonReturnablePseudex"];
     $$ = $1;
     return $$;
   },
 
-  "nonReturnablePseudex -> repeatingListFillPseudex"(
-    $1: TysonTypeDict["repeatingListFillPseudex"],
+  "nonReturnablePseudex -> arrayForPseudex"(
+    $1: TysonTypeDict["arrayForPseudex"],
   ): TysonTypeDict["nonReturnablePseudex"] {
     let $$: TysonTypeDict["nonReturnablePseudex"];
     $$ = $1;
     return $$;
   },
 
-  "nonReturnablePseudex -> sequentialListFillPseudex"(
-    $1: TysonTypeDict["sequentialListFillPseudex"],
+  "nonReturnablePseudex -> listForPseudex"(
+    $1: TysonTypeDict["listForPseudex"],
   ): TysonTypeDict["nonReturnablePseudex"] {
     let $$: TysonTypeDict["nonReturnablePseudex"];
     $$ = $1;
     return $$;
   },
 
-  "nonReturnablePseudex -> arrayMapPseudex"(
-    $1: TysonTypeDict["arrayMapPseudex"],
+  "nonReturnablePseudex -> listForIfPseudex"(
+    $1: TysonTypeDict["listForIfPseudex"],
   ): TysonTypeDict["nonReturnablePseudex"] {
     let $$: TysonTypeDict["nonReturnablePseudex"];
     $$ = $1;
-    return $$;
-  },
-
-  "nonReturnablePseudex -> listMapPseudex"(
-    $1: TysonTypeDict["listMapPseudex"],
-  ): TysonTypeDict["nonReturnablePseudex"] {
-    let $$: TysonTypeDict["nonReturnablePseudex"];
-    $$ = $1;
-    return $$;
-  },
-
-  "nonReturnablePseudex -> listFilterMapPseudex"(
-    $1: TysonTypeDict["listFilterMapPseudex"],
-  ): TysonTypeDict["nonReturnablePseudex"] {
-    let $$: TysonTypeDict["nonReturnablePseudex"];
-    $$ = $1;
-    return $$;
-  },
-
-  "repeatingArrayFillPseudex -> [ expression ; oneOrMoreCommaSeparatedExpressions ]"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["expression"],
-    $4: TysonTypeDict["oneOrMoreCommaSeparatedExpressions"],
-  ): TysonTypeDict["repeatingArrayFillPseudex"] {
-    let $$: TysonTypeDict["repeatingArrayFillPseudex"];
-    $$ = yy.createNode(yy.NodeType.RepeatingArrayFillPseudex, yylstack["@$"], {
-      fillExpression: $2,
-      dimensions: $4,
-    });
-    return $$;
-  },
-
-  "repeatingListFillPseudex -> + [ expression ; oneOrMoreCommaSeparatedExpressions ]"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["expression"],
-    $5: TysonTypeDict["oneOrMoreCommaSeparatedExpressions"],
-  ): TysonTypeDict["repeatingListFillPseudex"] {
-    let $$: TysonTypeDict["repeatingListFillPseudex"];
-    $$ = yy.createNode(yy.NodeType.RepeatingListFillPseudex, yylstack["@$"], {
-      fillExpression: $3,
-      dimensions: $5,
-    });
     return $$;
   },
 
@@ -3502,57 +3423,152 @@ const semanticActions = {
     return $$;
   },
 
-  "sequentialListFillPseudex -> + [ ]"(yylstack: {
-    "@$": TokenLocation;
-  }): TysonTypeDict["sequentialListFillPseudex"] {
-    let $$: TysonTypeDict["sequentialListFillPseudex"];
-    $$ = yy.createNode(yy.NodeType.SequentialListFillPseudex, yylstack["@$"], {
-      elements: [],
-    });
-    return $$;
-  },
-
-  "sequentialListFillPseudex -> + [ oneOrMoreCommaSeparatedExpressions optTrailingComma ]"(
+  "nonEmptyListPseudex -> + [ oneOrMoreCommaSeparatedExpressions optTrailingComma ]"(
     yylstack: { "@$": TokenLocation },
 
     $3: TysonTypeDict["oneOrMoreCommaSeparatedExpressions"],
-  ): TysonTypeDict["sequentialListFillPseudex"] {
-    let $$: TysonTypeDict["sequentialListFillPseudex"];
-    $$ = yy.createNode(yy.NodeType.SequentialListFillPseudex, yylstack["@$"], {
+  ): TysonTypeDict["nonEmptyListPseudex"] {
+    let $$: TysonTypeDict["nonEmptyListPseudex"];
+    $$ = yy.createNode(yy.NodeType.NonEmptyListPseudex, yylstack["@$"], {
       elements: $3,
     });
     return $$;
   },
 
-  "arrayMapPseudex -> [ expression for oneOrMoreForBindings in expression ]"(
+  "arrayForPseudex -> collectionIterationForPseudex"(
+    $1: TysonTypeDict["collectionIterationForPseudex"],
+  ): TysonTypeDict["arrayForPseudex"] {
+    let $$: TysonTypeDict["arrayForPseudex"];
+    $$ = $1;
+    return $$;
+  },
+
+  "arrayForPseudex -> rangeForPseudex"(
+    $1: TysonTypeDict["rangeForPseudex"],
+  ): TysonTypeDict["arrayForPseudex"] {
+    let $$: TysonTypeDict["arrayForPseudex"];
+    $$ = $1;
+    return $$;
+  },
+
+  "collectionIterationForPseudex -> for oneOrMoreForBindings in expression blockYield"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["expression"],
-    $4: TysonTypeDict["oneOrMoreForBindings"],
-    $6: TysonTypeDict["expression"],
-  ): TysonTypeDict["arrayMapPseudex"] {
-    let $$: TysonTypeDict["arrayMapPseudex"];
-    $$ = yy.createNode(yy.NodeType.ArrayMapPseudex, yylstack["@$"], {
-      output: $2,
-      bindings: $4,
-      iteratee: $6,
+    $2: TysonTypeDict["oneOrMoreForBindings"],
+    $4: TysonTypeDict["expression"],
+    $5: TysonTypeDict["blockYield"],
+  ): TysonTypeDict["collectionIterationForPseudex"] {
+    let $$: TysonTypeDict["collectionIterationForPseudex"];
+    $$ = yy.createNode(
+      yy.NodeType.CollectionIterationForPseudex,
+      yylstack["@$"],
+      {
+        outType: yy.ForPseudexOutType.Array,
+        bindings: $2,
+        iteratee: $4,
+        body: $5,
+      },
+    );
+    return $$;
+  },
+
+  "blockYield -> { yieldOrYieldAllKeyword expressionOrReturnablePseudex ; }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["yieldOrYieldAllKeyword"],
+    $3: TysonTypeDict["expressionOrReturnablePseudex"],
+  ): TysonTypeDict["blockYield"] {
+    let $$: TysonTypeDict["blockYield"];
+    $$ = yy.createNode(yy.NodeType.BlockYield, yylstack["@$"], {
+      useStatements: [],
+      statements: [],
+      yieldAll: $2 === "yieldall",
+      yieldedValue: $3,
     });
     return $$;
   },
 
-  "arrayMapPseudex -> [ assignmentPseudex for oneOrMoreForBindings in expression ]"(
+  "blockYield -> { oneOrMoreStatements yieldOrYieldAllKeyword expressionOrReturnablePseudex ; }"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["assignmentPseudex"],
-    $4: TysonTypeDict["oneOrMoreForBindings"],
-    $6: TysonTypeDict["expression"],
-  ): TysonTypeDict["arrayMapPseudex"] {
-    let $$: TysonTypeDict["arrayMapPseudex"];
-    $$ = yy.createNode(yy.NodeType.ArrayMapPseudex, yylstack["@$"], {
-      output: $2,
-      bindings: $4,
-      iteratee: $6,
+    $2: TysonTypeDict["oneOrMoreStatements"],
+    $3: TysonTypeDict["yieldOrYieldAllKeyword"],
+    $4: TysonTypeDict["expressionOrReturnablePseudex"],
+  ): TysonTypeDict["blockYield"] {
+    let $$: TysonTypeDict["blockYield"];
+    $$ = yy.createNode(yy.NodeType.BlockYield, yylstack["@$"], {
+      useStatements: [],
+      statements: $2,
+      yieldAll: $3 === "yieldall",
+      yieldedValue: $4,
     });
+    return $$;
+  },
+
+  "blockYield -> { oneOrMoreUseStatements yieldOrYieldAllKeyword expressionOrReturnablePseudex ; }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
+    $3: TysonTypeDict["yieldOrYieldAllKeyword"],
+    $4: TysonTypeDict["expressionOrReturnablePseudex"],
+  ): TysonTypeDict["blockYield"] {
+    let $$: TysonTypeDict["blockYield"];
+    $$ = yy.createNode(yy.NodeType.BlockYield, yylstack["@$"], {
+      useStatements: $2,
+      statements: [],
+      yieldAll: $3 === "yieldall",
+      yieldedValue: $4,
+    });
+    return $$;
+  },
+
+  "blockYield -> { oneOrMoreUseStatements oneOrMoreStatements yieldOrYieldAllKeyword expressionOrReturnablePseudex ; }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
+    $3: TysonTypeDict["oneOrMoreStatements"],
+    $4: TysonTypeDict["yieldOrYieldAllKeyword"],
+    $5: TysonTypeDict["expressionOrReturnablePseudex"],
+  ): TysonTypeDict["blockYield"] {
+    let $$: TysonTypeDict["blockYield"];
+    $$ = yy.createNode(yy.NodeType.BlockYield, yylstack["@$"], {
+      useStatements: $2,
+      statements: $3,
+      yieldAll: $4 === "yieldall",
+      yieldedValue: $5,
+    });
+    return $$;
+  },
+
+  "yieldOrYieldAllKeyword -> yield"(
+    $1: TysonTypeDict["yield"],
+  ): TysonTypeDict["yieldOrYieldAllKeyword"] {
+    let $$: TysonTypeDict["yieldOrYieldAllKeyword"];
+    $$ = $1;
+    return $$;
+  },
+
+  "yieldOrYieldAllKeyword -> yieldall"(
+    $1: TysonTypeDict["yieldall"],
+  ): TysonTypeDict["yieldOrYieldAllKeyword"] {
+    let $$: TysonTypeDict["yieldOrYieldAllKeyword"];
+    $$ = $1;
+    return $$;
+  },
+
+  "expressionOrReturnablePseudex -> expression"(
+    $1: TysonTypeDict["expression"],
+  ): TysonTypeDict["expressionOrReturnablePseudex"] {
+    let $$: TysonTypeDict["expressionOrReturnablePseudex"];
+    $$ = $1;
+    return $$;
+  },
+
+  "expressionOrReturnablePseudex -> returnablePseudex"(
+    $1: TysonTypeDict["returnablePseudex"],
+  ): TysonTypeDict["expressionOrReturnablePseudex"] {
+    let $$: TysonTypeDict["expressionOrReturnablePseudex"];
+    $$ = $1;
     return $$;
   },
 
@@ -3589,100 +3605,161 @@ const semanticActions = {
     return $$;
   },
 
-  "forValueBinding -> optShadowKeyword identifier"(
+  "forValueBinding -> identifier"(
     yylstack: { "@$": TokenLocation },
 
-    $1: TysonTypeDict["optShadowKeyword"],
+    $1: TysonTypeDict["identifier"],
+  ): TysonTypeDict["forValueBinding"] {
+    let $$: TysonTypeDict["forValueBinding"];
+    $$ = yy.createNode(yy.NodeType.ForBinding, yylstack["@$"], {
+      bindingType: yy.ForBindingType.ValueBinding,
+      doesShadow: false,
+      name: $1,
+    });
+    return $$;
+  },
+
+  "forValueBinding -> shadow identifier"(
+    yylstack: { "@$": TokenLocation },
+
     $2: TysonTypeDict["identifier"],
   ): TysonTypeDict["forValueBinding"] {
     let $$: TysonTypeDict["forValueBinding"];
     $$ = yy.createNode(yy.NodeType.ForBinding, yylstack["@$"], {
       bindingType: yy.ForBindingType.ValueBinding,
-      doesShadow: $1.isSome(),
+      doesShadow: true,
       name: $2,
     });
     return $$;
   },
 
-  "forIndexBinding -> optShadowKeyword @ identifier"(
+  "forIndexBinding -> @ identifier"(
     yylstack: { "@$": TokenLocation },
 
-    $1: TysonTypeDict["optShadowKeyword"],
+    $2: TysonTypeDict["identifier"],
+  ): TysonTypeDict["forIndexBinding"] {
+    let $$: TysonTypeDict["forIndexBinding"];
+    $$ = yy.createNode(yy.NodeType.ForBinding, yylstack["@$"], {
+      bindingType: yy.ForBindingType.IndexBinding,
+      doesShadow: false,
+      name: $2,
+    });
+    return $$;
+  },
+
+  "forIndexBinding -> shadow @ identifier"(
+    yylstack: { "@$": TokenLocation },
+
     $3: TysonTypeDict["identifier"],
   ): TysonTypeDict["forIndexBinding"] {
     let $$: TysonTypeDict["forIndexBinding"];
     $$ = yy.createNode(yy.NodeType.ForBinding, yylstack["@$"], {
       bindingType: yy.ForBindingType.IndexBinding,
-      doesShadow: $1.isSome(),
+      doesShadow: true,
       name: $3,
     });
     return $$;
   },
 
-  "listMapPseudex -> + [ expression for oneOrMoreForBindings in expression ]"(
+  "rangeForPseudex -> for oneOrMoreForBindings in expression forRangeKeyword expression optStepClause blockYield"(
     yylstack: { "@$": TokenLocation },
 
+    $2: TysonTypeDict["oneOrMoreForBindings"],
+    $4: TysonTypeDict["expression"],
+    $5: TysonTypeDict["forRangeKeyword"],
+    $6: TysonTypeDict["expression"],
+    $7: TysonTypeDict["optStepClause"],
+    $8: TysonTypeDict["blockYield"],
+  ): TysonTypeDict["rangeForPseudex"] {
+    let $$: TysonTypeDict["rangeForPseudex"];
+    $$ = yy.createNode(yy.NodeType.RangeForPseudex, yylstack["@$"], {
+      outType: yy.ForPseudexOutType.Array,
+      bindings: $2,
+      start: $4,
+      rangeType: $5,
+      end: $6,
+      customStep: $7,
+      body: $8,
+    });
+    return $$;
+  },
+
+  "listForPseudex -> + collectionIterationForPseudex"(
+    $2: TysonTypeDict["collectionIterationForPseudex"],
+  ): TysonTypeDict["listForPseudex"] {
+    let $$: TysonTypeDict["listForPseudex"];
+    $$ = yy.merge($2, { outType: yy.ForPseudexOutType.List });
+    return $$;
+  },
+
+  "listForPseudex -> + rangeForPseudex"(
+    $2: TysonTypeDict["rangeForPseudex"],
+  ): TysonTypeDict["listForPseudex"] {
+    let $$: TysonTypeDict["listForPseudex"];
+    $$ = yy.merge($2, { outType: yy.ForPseudexOutType.List });
+    return $$;
+  },
+
+  "listForIfPseudex -> + collectionIterationForIfPseudex"(
+    $2: TysonTypeDict["collectionIterationForIfPseudex"],
+  ): TysonTypeDict["listForIfPseudex"] {
+    let $$: TysonTypeDict["listForIfPseudex"];
+    $$ = $2;
+    return $$;
+  },
+
+  "listForIfPseudex -> + rangeForIfPseudex"(
+    $2: TysonTypeDict["rangeForIfPseudex"],
+  ): TysonTypeDict["listForIfPseudex"] {
+    let $$: TysonTypeDict["listForIfPseudex"];
+    $$ = $2;
+    return $$;
+  },
+
+  "collectionIterationForIfPseudex -> for oneOrMoreForBindings in expression forIfPseudexBody"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreForBindings"],
+    $4: TysonTypeDict["expression"],
+    $5: TysonTypeDict["forIfPseudexBody"],
+  ): TysonTypeDict["collectionIterationForIfPseudex"] {
+    let $$: TysonTypeDict["collectionIterationForIfPseudex"];
+    $$ = yy.createNode(
+      yy.NodeType.CollectionIterationForIfPseudex,
+      yylstack["@$"],
+      { bindings: $2, iteratee: $4, condition: $5.condition, body: $5.body },
+    );
+    return $$;
+  },
+
+  "forIfPseudexBody -> { if expression blockYield }"(
     $3: TysonTypeDict["expression"],
-    $5: TysonTypeDict["oneOrMoreForBindings"],
-    $7: TysonTypeDict["expression"],
-  ): TysonTypeDict["listMapPseudex"] {
-    let $$: TysonTypeDict["listMapPseudex"];
-    $$ = yy.createNode(yy.NodeType.ListMapPseudex, yylstack["@$"], {
-      output: $3,
-      bindings: $5,
-      iteratee: $7,
-    });
+    $4: TysonTypeDict["blockYield"],
+  ): TysonTypeDict["forIfPseudexBody"] {
+    let $$: TysonTypeDict["forIfPseudexBody"];
+    $$ = { condition: $3, body: $4 };
     return $$;
   },
 
-  "listMapPseudex -> + [ assignmentPseudex for oneOrMoreForBindings in expression ]"(
+  "rangeForIfPseudex -> for oneOrMoreForBindings in expression forRangeKeyword expression optStepClause forIfPseudexBody"(
     yylstack: { "@$": TokenLocation },
 
-    $3: TysonTypeDict["assignmentPseudex"],
-    $5: TysonTypeDict["oneOrMoreForBindings"],
-    $7: TysonTypeDict["expression"],
-  ): TysonTypeDict["listMapPseudex"] {
-    let $$: TysonTypeDict["listMapPseudex"];
-    $$ = yy.createNode(yy.NodeType.ListMapPseudex, yylstack["@$"], {
-      output: $3,
-      bindings: $5,
-      iteratee: $7,
-    });
-    return $$;
-  },
-
-  "listFilterMapPseudex -> + [ expression for oneOrMoreForBindings in expression if expression ]"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["expression"],
-    $5: TysonTypeDict["oneOrMoreForBindings"],
-    $7: TysonTypeDict["expression"],
-    $9: TysonTypeDict["expression"],
-  ): TysonTypeDict["listFilterMapPseudex"] {
-    let $$: TysonTypeDict["listFilterMapPseudex"];
-    $$ = yy.createNode(yy.NodeType.ListFilterMapPseudex, yylstack["@$"], {
-      output: $3,
-      bindings: $5,
-      iteratee: $7,
-      predicate: $9,
-    });
-    return $$;
-  },
-
-  "listFilterMapPseudex -> + [ assignmentPseudex for oneOrMoreForBindings in expression if expression ]"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["assignmentPseudex"],
-    $5: TysonTypeDict["oneOrMoreForBindings"],
-    $7: TysonTypeDict["expression"],
-    $9: TysonTypeDict["expression"],
-  ): TysonTypeDict["listFilterMapPseudex"] {
-    let $$: TysonTypeDict["listFilterMapPseudex"];
-    $$ = yy.createNode(yy.NodeType.ListFilterMapPseudex, yylstack["@$"], {
-      output: $3,
-      bindings: $5,
-      iteratee: $7,
-      predicate: $9,
+    $2: TysonTypeDict["oneOrMoreForBindings"],
+    $4: TysonTypeDict["expression"],
+    $5: TysonTypeDict["forRangeKeyword"],
+    $6: TysonTypeDict["expression"],
+    $7: TysonTypeDict["optStepClause"],
+    $8: TysonTypeDict["forIfPseudexBody"],
+  ): TysonTypeDict["rangeForIfPseudex"] {
+    let $$: TysonTypeDict["rangeForIfPseudex"];
+    $$ = yy.createNode(yy.NodeType.RangeForIfPseudex, yylstack["@$"], {
+      bindings: $2,
+      start: $4,
+      rangeType: $5,
+      end: $6,
+      customStep: $7,
+      condition: $8.condition,
+      body: $8.body,
     });
     return $$;
   },
@@ -3727,8 +3804,8 @@ const semanticActions = {
     return $$;
   },
 
-  "returnablePseudex -> ifTypeGuardPseudex"(
-    $1: TysonTypeDict["ifTypeGuardPseudex"],
+  "returnablePseudex -> quantifierPseudex"(
+    $1: TysonTypeDict["quantifierPseudex"],
   ): TysonTypeDict["returnablePseudex"] {
     let $$: TysonTypeDict["returnablePseudex"];
     $$ = $1;
@@ -3874,10 +3951,54 @@ const semanticActions = {
     return $$;
   },
 
-  "blockPseudex -> { optUseStatements oneOrMoreStatements expression }"(
+  "blockPseudex -> { oneOrMoreStatements expression }"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optUseStatements"],
+    $2: TysonTypeDict["oneOrMoreStatements"],
+    $3: TysonTypeDict["expression"],
+  ): TysonTypeDict["blockPseudex"] {
+    let $$: TysonTypeDict["blockPseudex"];
+    $$ = yy.createNode(yy.NodeType.BlockPseudex, yylstack["@$"], {
+      useStatements: [],
+      statements: $2,
+      conclusion: $3,
+    });
+    return $$;
+  },
+
+  "blockPseudex -> { returnablePseudex }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["returnablePseudex"],
+  ): TysonTypeDict["blockPseudex"] {
+    let $$: TysonTypeDict["blockPseudex"];
+    $$ = yy.createNode(yy.NodeType.BlockPseudex, yylstack["@$"], {
+      useStatements: [],
+      statements: [],
+      conclusion: $2,
+    });
+    return $$;
+  },
+
+  "blockPseudex -> { oneOrMoreStatements returnablePseudex }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreStatements"],
+    $3: TysonTypeDict["returnablePseudex"],
+  ): TysonTypeDict["blockPseudex"] {
+    let $$: TysonTypeDict["blockPseudex"];
+    $$ = yy.createNode(yy.NodeType.BlockPseudex, yylstack["@$"], {
+      useStatements: [],
+      statements: $2,
+      conclusion: $3,
+    });
+    return $$;
+  },
+
+  "blockPseudex -> { oneOrMoreUseStatements oneOrMoreStatements expression }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
     $3: TysonTypeDict["oneOrMoreStatements"],
     $4: TysonTypeDict["expression"],
   ): TysonTypeDict["blockPseudex"] {
@@ -3890,10 +4011,10 @@ const semanticActions = {
     return $$;
   },
 
-  "blockPseudex -> { optUseStatements returnablePseudex }"(
+  "blockPseudex -> { oneOrMoreUseStatements returnablePseudex }"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optUseStatements"],
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
     $3: TysonTypeDict["returnablePseudex"],
   ): TysonTypeDict["blockPseudex"] {
     let $$: TysonTypeDict["blockPseudex"];
@@ -3905,10 +4026,10 @@ const semanticActions = {
     return $$;
   },
 
-  "blockPseudex -> { optUseStatements oneOrMoreStatements returnablePseudex }"(
+  "blockPseudex -> { oneOrMoreUseStatements oneOrMoreStatements returnablePseudex }"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optUseStatements"],
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
     $3: TysonTypeDict["oneOrMoreStatements"],
     $4: TysonTypeDict["returnablePseudex"],
   ): TysonTypeDict["blockPseudex"] {
@@ -4263,256 +4384,36 @@ const semanticActions = {
     return $$;
   },
 
-  "ifTypeGuardPseudex -> ifTypeGuardPseudexWithIfBodyPseudex"(
-    $1: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudex"];
-    $$ = $1;
-    return $$;
-  },
-
-  "ifTypeGuardPseudex -> ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause"(
-    $1: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause"],
-  ): TysonTypeDict["ifTypeGuardPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudex"];
-    $$ = $1;
-    return $$;
-  },
-
-  "ifTypeGuardPseudex -> ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"(
-    $1: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"],
-  ): TysonTypeDict["ifTypeGuardPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudex"];
-    $$ = $1;
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyPseudex -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockPseudex else blockExpressionOrBlockPseudex"(
+  "quantifierPseudex -> for every oneOrMoreForBindings in expression blockExpressionOrBlockPseudex"(
     yylstack: { "@$": TokenLocation },
 
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockPseudex"],
-    $7: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType: yy.IfPseudexType.WithIfBodyPseudex,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: [],
-      elseBody: $7,
+    $3: TysonTypeDict["oneOrMoreForBindings"],
+    $5: TysonTypeDict["expression"],
+    $6: TysonTypeDict["blockExpressionOrBlockPseudex"],
+  ): TysonTypeDict["quantifierPseudex"] {
+    let $$: TysonTypeDict["quantifierPseudex"];
+    $$ = yy.createNode(yy.NodeType.QuantifierPseudex, yylstack["@$"], {
+      quantifierType: yy.QuantifierType.Universal,
+      bindings: $3,
+      iteratee: $5,
+      body: $6,
     });
     return $$;
   },
 
-  "ifTypeGuardPseudexWithIfBodyPseudex -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockPseudex oneOrMoreExpressionElseIfClauses else blockExpressionOrBlockPseudex"(
+  "quantifierPseudex -> for some oneOrMoreForBindings in expression blockExpressionOrBlockPseudex"(
     yylstack: { "@$": TokenLocation },
 
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockPseudex"],
-    $6: TysonTypeDict["oneOrMoreExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType: yy.IfPseudexType.WithIfBodyPseudex,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyPseudex -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockPseudex oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses else blockExpressionOrBlockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockPseudex"],
-    $6: TysonTypeDict["oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType: yy.IfPseudexType.WithIfBodyPseudex,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyPseudex -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockPseudex else blockExpressionOrBlockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockPseudex"],
-    $7: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType: yy.IfPseudexType.WithIfBodyPseudex,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: [],
-      elseBody: $7,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyPseudex -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockPseudex oneOrMoreExpressionElseIfClauses else blockExpressionOrBlockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockPseudex"],
-    $6: TysonTypeDict["oneOrMoreExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType: yy.IfPseudexType.WithIfBodyPseudex,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyPseudex -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockPseudex oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses else blockExpressionOrBlockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockPseudex"],
-    $6: TysonTypeDict["oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyPseudex"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType: yy.IfPseudexType.WithIfBodyPseudex,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockExpression oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses else blockExpressionOrBlockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockExpression"],
-    $6: TysonTypeDict["oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType:
-        yy.IfPseudexType.WithIfBodyExpressionAndAtLeastOnePseudexElseIfClause,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses else blockExpressionOrBlockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockExpression"],
-    $6: TysonTypeDict["oneOrMorePseudexElseIfClausesAndOptExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpressionOrBlockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType:
-        yy.IfPseudexType.WithIfBodyExpressionAndAtLeastOnePseudexElseIfClause,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockExpression else blockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockExpression"],
-    $7: TysonTypeDict["blockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType:
-        yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: [],
-      elseBody: $7,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockExpression oneOrMoreExpressionElseIfClauses else blockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockExpression"],
-    $6: TysonTypeDict["oneOrMoreExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType:
-        yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression else blockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockExpression"],
-    $7: TysonTypeDict["blockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType:
-        yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: [],
-      elseBody: $7,
-    });
-    return $$;
-  },
-
-  "ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression oneOrMoreExpressionElseIfClauses else blockPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockExpression"],
-    $6: TysonTypeDict["oneOrMoreExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockPseudex"],
-  ): TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"] {
-    let $$: TysonTypeDict["ifTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardPseudex, yylstack["@$"], {
-      pseudexType:
-        yy.IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses,
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: $8,
+    $3: TysonTypeDict["oneOrMoreForBindings"],
+    $5: TysonTypeDict["expression"],
+    $6: TysonTypeDict["blockExpressionOrBlockPseudex"],
+  ): TysonTypeDict["quantifierPseudex"] {
+    let $$: TysonTypeDict["quantifierPseudex"];
+    $$ = yy.createNode(yy.NodeType.QuantifierPseudex, yylstack["@$"], {
+      quantifierType: yy.QuantifierType.Existential,
+      bindings: $3,
+      iteratee: $5,
+      body: $6,
     });
     return $$;
   },
@@ -4679,28 +4580,6 @@ const semanticActions = {
     return $$;
   },
 
-  "repeatStatement -> repeat expression blockStatement"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["expression"],
-    $3: TysonTypeDict["blockStatement"],
-  ): TysonTypeDict["repeatStatement"] {
-    let $$: TysonTypeDict["repeatStatement"];
-    $$ = yy.createNode(yy.NodeType.RepeatStatement, yylstack["@$"], {
-      repetitionQuantity: $2,
-      body: $3,
-    });
-    return $$;
-  },
-
-  "forStatement -> cStyleForStatement"(
-    $1: TysonTypeDict["cStyleForStatement"],
-  ): TysonTypeDict["forStatement"] {
-    let $$: TysonTypeDict["forStatement"];
-    $$ = $1;
-    return $$;
-  },
-
   "forStatement -> collectionIterationForStatement"(
     $1: TysonTypeDict["collectionIterationForStatement"],
   ): TysonTypeDict["forStatement"] {
@@ -4717,60 +4596,10 @@ const semanticActions = {
     return $$;
   },
 
-  "cStyleForStatement -> for ( statement expression ; statement ) blockStatement"(
+  "collectionIterationForStatement -> for oneOrMoreForBindings in expression blockStatement"(
     yylstack: { "@$": TokenLocation },
 
-    $3: TysonTypeDict["statement"],
-    $4: TysonTypeDict["expression"],
-    $6: TysonTypeDict["statement"],
-    $8: TysonTypeDict["blockStatement"],
-  ): TysonTypeDict["cStyleForStatement"] {
-    let $$: TysonTypeDict["cStyleForStatement"];
-    $$ = yy.createNode(yy.NodeType.CStyleForStatement, yylstack["@$"], {
-      initialStatement: $3,
-      condition: $4,
-      afterthought: $6,
-      body: $8,
-    });
-    return $$;
-  },
-
-  "collectionIterationForStatement -> for forValueBinding in expression blockStatement"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["forValueBinding"],
-    $4: TysonTypeDict["expression"],
-    $5: TysonTypeDict["blockStatement"],
-  ): TysonTypeDict["collectionIterationForStatement"] {
-    let $$: TysonTypeDict["collectionIterationForStatement"];
-    $$ = yy.createNode(
-      yy.NodeType.CollectionIterationForStatement,
-      yylstack["@$"],
-      { bindings: [$2], iteratee: $4, body: $5 },
-    );
-    return $$;
-  },
-
-  "collectionIterationForStatement -> for forIndexBinding in expression blockStatement"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["forIndexBinding"],
-    $4: TysonTypeDict["expression"],
-    $5: TysonTypeDict["blockStatement"],
-  ): TysonTypeDict["collectionIterationForStatement"] {
-    let $$: TysonTypeDict["collectionIterationForStatement"];
-    $$ = yy.createNode(
-      yy.NodeType.CollectionIterationForStatement,
-      yylstack["@$"],
-      { bindings: [$2], iteratee: $4, body: $5 },
-    );
-    return $$;
-  },
-
-  "collectionIterationForStatement -> for twoOrMoreForBindings in expression blockStatement"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["twoOrMoreForBindings"],
+    $2: TysonTypeDict["oneOrMoreForBindings"],
     $4: TysonTypeDict["expression"],
     $5: TysonTypeDict["blockStatement"],
   ): TysonTypeDict["collectionIterationForStatement"] {
@@ -4783,40 +4612,24 @@ const semanticActions = {
     return $$;
   },
 
-  "twoOrMoreForBindings -> forBinding , forBinding"(
-    $1: TysonTypeDict["forBinding"],
-    $3: TysonTypeDict["forBinding"],
-  ): TysonTypeDict["twoOrMoreForBindings"] {
-    let $$: TysonTypeDict["twoOrMoreForBindings"];
-    $$ = [$1, $3];
-    return $$;
-  },
-
-  "twoOrMoreForBindings -> twoOrMoreForBindings , forBinding"(
-    $1: TysonTypeDict["twoOrMoreForBindings"],
-    $3: TysonTypeDict["forBinding"],
-  ): TysonTypeDict["twoOrMoreForBindings"] {
-    let $$: TysonTypeDict["twoOrMoreForBindings"];
-    $$ = $1.concat([$3]);
-    return $$;
-  },
-
-  "rangeForStatement -> for forValueBinding in expression forRangeKeyword expression blockStatement"(
+  "rangeForStatement -> for oneOrMoreForBindings in expression forRangeKeyword expression optStepClause blockStatement"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["forValueBinding"],
+    $2: TysonTypeDict["oneOrMoreForBindings"],
     $4: TysonTypeDict["expression"],
     $5: TysonTypeDict["forRangeKeyword"],
     $6: TysonTypeDict["expression"],
-    $7: TysonTypeDict["blockStatement"],
+    $7: TysonTypeDict["optStepClause"],
+    $8: TysonTypeDict["blockStatement"],
   ): TysonTypeDict["rangeForStatement"] {
     let $$: TysonTypeDict["rangeForStatement"];
     $$ = yy.createNode(yy.NodeType.RangeForStatement, yylstack["@$"], {
-      binding: $2,
+      bindings: $2,
       start: $4,
       rangeType: $5,
       end: $6,
-      body: $7,
+      customStep: $7,
+      body: $8,
     });
     return $$;
   },
@@ -4842,6 +4655,20 @@ const semanticActions = {
   "forRangeKeyword -> downto"(): TysonTypeDict["forRangeKeyword"] {
     let $$: TysonTypeDict["forRangeKeyword"];
     $$ = yy.ForStatementRangeType.DownTo;
+    return $$;
+  },
+
+  "optStepClause -> "(): TysonTypeDict["optStepClause"] {
+    let $$: TysonTypeDict["optStepClause"];
+    $$ = yy.option.none();
+    return $$;
+  },
+
+  "optStepClause -> step expression"(
+    $2: TysonTypeDict["expression"],
+  ): TysonTypeDict["optStepClause"] {
+    let $$: TysonTypeDict["optStepClause"];
+    $$ = yy.option.some($2);
     return $$;
   },
 
@@ -4906,226 +4733,6 @@ const semanticActions = {
   ): TysonTypeDict["oneOrMorePipeSeparatedTypes"] {
     let $$: TysonTypeDict["oneOrMorePipeSeparatedTypes"];
     $$ = $1.concat([$3]);
-    return $$;
-  },
-
-  "ifTypeGuardStatement -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockStatement optStatementElseIfClauses"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockStatement"],
-    $6: TysonTypeDict["optStatementElseIfClauses"],
-  ): TysonTypeDict["ifTypeGuardStatement"] {
-    let $$: TysonTypeDict["ifTypeGuardStatement"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, yylstack["@$"], {
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: yy.option.none(),
-    });
-    return $$;
-  },
-
-  "ifTypeGuardStatement -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockStatement optStatementElseIfClauses statementElseClause"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockStatement"],
-    $6: TysonTypeDict["optStatementElseIfClauses"],
-    $7: TysonTypeDict["statementElseClause"],
-  ): TysonTypeDict["ifTypeGuardStatement"] {
-    let $$: TysonTypeDict["ifTypeGuardStatement"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, yylstack["@$"], {
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: yy.option.some($7),
-    });
-    return $$;
-  },
-
-  "ifTypeGuardStatement -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockStatement optStatementElseIfClauses"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockStatement"],
-    $6: TysonTypeDict["optStatementElseIfClauses"],
-  ): TysonTypeDict["ifTypeGuardStatement"] {
-    let $$: TysonTypeDict["ifTypeGuardStatement"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, yylstack["@$"], {
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: yy.option.none(),
-    });
-    return $$;
-  },
-
-  "ifTypeGuardStatement -> if let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockStatement optStatementElseIfClauses statementElseClause"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockStatement"],
-    $6: TysonTypeDict["optStatementElseIfClauses"],
-    $7: TysonTypeDict["statementElseClause"],
-  ): TysonTypeDict["ifTypeGuardStatement"] {
-    let $$: TysonTypeDict["ifTypeGuardStatement"];
-    $$ = yy.createNode(yy.NodeType.IfTypeGuardStatement, yylstack["@$"], {
-      declarations: $3,
-      body: $5,
-      elseIfClauses: $6,
-      elseBody: yy.option.some($7),
-    });
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration -> nonInlineTypeGuardVariableDeclaration"(
-    $1: TysonTypeDict["nonInlineTypeGuardVariableDeclaration"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"];
-    $$ = [$1];
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration -> oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations , nonInlineTypeGuardVariableDeclaration"(
-    $1: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $3: TysonTypeDict["nonInlineTypeGuardVariableDeclaration"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"];
-    $$ = yy.concat($1, [$3]);
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration -> oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration , inlineTypeGuardVariableDeclaration"(
-    $1: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $3: TysonTypeDict["inlineTypeGuardVariableDeclaration"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"];
-    $$ = $1.concat([$3]);
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration -> oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration , nonInlineTypeGuardVariableDeclaration"(
-    $1: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $3: TysonTypeDict["nonInlineTypeGuardVariableDeclaration"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"];
-    $$ = $1.concat([$3]);
-    return $$;
-  },
-
-  "nonInlineTypeGuardVariableDeclaration -> nonInlineNullGuardVariableDeclaration"(
-    $1: TysonTypeDict["nonInlineNullGuardVariableDeclaration"],
-  ): TysonTypeDict["nonInlineTypeGuardVariableDeclaration"] {
-    let $$: TysonTypeDict["nonInlineTypeGuardVariableDeclaration"];
-    $$ = $1;
-    return $$;
-  },
-
-  "nonInlineTypeGuardVariableDeclaration -> nonInlineInstanceofGuardVariableDeclaration"(
-    $1: TysonTypeDict["nonInlineInstanceofGuardVariableDeclaration"],
-  ): TysonTypeDict["nonInlineTypeGuardVariableDeclaration"] {
-    let $$: TysonTypeDict["nonInlineTypeGuardVariableDeclaration"];
-    $$ = $1;
-    return $$;
-  },
-
-  "nonInlineNullGuardVariableDeclaration -> identifier = expressionOrAssignmentPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["identifier"],
-    $3: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["nonInlineNullGuardVariableDeclaration"] {
-    let $$: TysonTypeDict["nonInlineNullGuardVariableDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.NullGuardVariableDeclaration,
-      yylstack["@$"],
-      { isInline: false, name: $1, assignment: $3 },
-    );
-    return $$;
-  },
-
-  "nonInlineInstanceofGuardVariableDeclaration -> identifier : angleBracketlessType = expressionOrAssignmentPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["identifier"],
-    $3: TysonTypeDict["angleBracketlessType"],
-    $5: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["nonInlineInstanceofGuardVariableDeclaration"] {
-    let $$: TysonTypeDict["nonInlineInstanceofGuardVariableDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.InstanceofGuardVariableDeclaration,
-      yylstack["@$"],
-      { name: $1, annotatedType: $3, assignment: $5 },
-    );
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations -> inlineNullGuardVariableDeclaration"(
-    $1: TysonTypeDict["inlineNullGuardVariableDeclaration"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"];
-    $$ = [$1];
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations -> oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations , inlineNullGuardVariableDeclaration"(
-    $1: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $3: TysonTypeDict["inlineNullGuardVariableDeclaration"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"];
-    $$ = $1.concat($3);
-    return $$;
-  },
-
-  "inlineTypeGuardVariableDeclaration -> inlineNullGuardVariableDeclaration"(
-    $1: TysonTypeDict["inlineNullGuardVariableDeclaration"],
-  ): TysonTypeDict["inlineTypeGuardVariableDeclaration"] {
-    let $$: TysonTypeDict["inlineTypeGuardVariableDeclaration"];
-    $$ = $1;
-    return $$;
-  },
-
-  "inlineNullGuardVariableDeclaration -> inline identifier = expressionOrAssignmentPseudex"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["identifier"],
-    $4: TysonTypeDict["expressionOrAssignmentPseudex"],
-  ): TysonTypeDict["inlineNullGuardVariableDeclaration"] {
-    let $$: TysonTypeDict["inlineNullGuardVariableDeclaration"];
-    $$ = yy.createNode(
-      yy.NodeType.NullGuardVariableDeclaration,
-      yylstack["@$"],
-      { isInline: true, name: $2, assignment: $4 },
-    );
-    return $$;
-  },
-
-  "whileTypeGuardStatement -> while let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockStatement"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockStatement"],
-  ): TysonTypeDict["whileTypeGuardStatement"] {
-    let $$: TysonTypeDict["whileTypeGuardStatement"];
-    $$ = yy.createNode(yy.NodeType.WhileTypeGuardStatement, yylstack["@$"], {
-      declarations: $3,
-      body: $5,
-    });
-    return $$;
-  },
-
-  "whileTypeGuardStatement -> while let oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration optTrailingComma blockStatement"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardVariableDeclarationsWithAtLeastOneNonInlineDeclaration"],
-    $5: TysonTypeDict["blockStatement"],
-  ): TysonTypeDict["whileTypeGuardStatement"] {
-    let $$: TysonTypeDict["whileTypeGuardStatement"];
-    $$ = yy.createNode(yy.NodeType.WhileTypeGuardStatement, yylstack["@$"], {
-      declarations: $3,
-      body: $5,
-    });
     return $$;
   },
 
@@ -5255,16 +4862,16 @@ const semanticActions = {
     return $$;
   },
 
-  "nonassignableExpression -> instanceofExpression"(
-    $1: TysonTypeDict["instanceofExpression"],
+  "nonassignableExpression -> isExpression"(
+    $1: TysonTypeDict["isExpression"],
   ): TysonTypeDict["nonassignableExpression"] {
     let $$: TysonTypeDict["nonassignableExpression"];
     $$ = $1;
     return $$;
   },
 
-  "nonassignableExpression -> notinstanceofExpression"(
-    $1: TysonTypeDict["notinstanceofExpression"],
+  "nonassignableExpression -> isnotExpression"(
+    $1: TysonTypeDict["isnotExpression"],
   ): TysonTypeDict["nonassignableExpression"] {
     let $$: TysonTypeDict["nonassignableExpression"];
     $$ = $1;
@@ -5305,14 +4912,6 @@ const semanticActions = {
 
   "nonassignableExpression -> switchExpression"(
     $1: TysonTypeDict["switchExpression"],
-  ): TysonTypeDict["nonassignableExpression"] {
-    let $$: TysonTypeDict["nonassignableExpression"];
-    $$ = $1;
-    return $$;
-  },
-
-  "nonassignableExpression -> ifInlineTypeGuardExpression"(
-    $1: TysonTypeDict["ifInlineTypeGuardExpression"],
   ): TysonTypeDict["nonassignableExpression"] {
     let $$: TysonTypeDict["nonassignableExpression"];
     $$ = $1;
@@ -5377,6 +4976,14 @@ const semanticActions = {
 
   "literalExpression -> arrayLiteral"(
     $1: TysonTypeDict["arrayLiteral"],
+  ): TysonTypeDict["literalExpression"] {
+    let $$: TysonTypeDict["literalExpression"];
+    $$ = $1;
+    return $$;
+  },
+
+  "literalExpression -> emptyListLiteral"(
+    $1: TysonTypeDict["emptyListLiteral"],
   ): TysonTypeDict["literalExpression"] {
     let $$: TysonTypeDict["literalExpression"];
     $$ = $1;
@@ -5470,14 +5077,6 @@ const semanticActions = {
     return $$;
   },
 
-  "arrayLiteral -> repeatingArrayLiteral"(
-    $1: TysonTypeDict["repeatingArrayLiteral"],
-  ): TysonTypeDict["arrayLiteral"] {
-    let $$: TysonTypeDict["arrayLiteral"];
-    $$ = $1;
-    return $$;
-  },
-
   "sequentialArrayLiteral -> [ ]"(yylstack: {
     "@$": TokenLocation;
   }): TysonTypeDict["sequentialArrayLiteral"] {
@@ -5544,174 +5143,122 @@ const semanticActions = {
     return $$;
   },
 
-  "repeatingArrayLiteral -> [ expression ; static oneOrMoreCommaSeparatedNumberLiterals ]"(
-    yylstack: { "@$": TokenLocation },
-
-    $2: TysonTypeDict["expression"],
-    $5: TysonTypeDict["oneOrMoreCommaSeparatedNumberLiterals"],
-  ): TysonTypeDict["repeatingArrayLiteral"] {
-    let $$: TysonTypeDict["repeatingArrayLiteral"];
+  "emptyListLiteral -> + [ ]"(yylstack: {
+    "@$": TokenLocation;
+  }): TysonTypeDict["emptyListLiteral"] {
+    let $$: TysonTypeDict["emptyListLiteral"];
     $$ = yy.createNode(yy.NodeType.LiteralExpression, yylstack["@$"], {
-      literalType: yy.LiteralType.Array,
-      arrayType: yy.ArrayLiteralType.Repeating,
-      fill: $2,
-      dimensions: $5,
+      literalType: yy.LiteralType.EmptyList,
     });
     return $$;
   },
 
-  "oneOrMoreCommaSeparatedNumberLiterals -> numberLiteral"(
-    $1: TysonTypeDict["numberLiteral"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedNumberLiterals"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedNumberLiterals"];
-    $$ = [$1];
-    return $$;
-  },
-
-  "oneOrMoreCommaSeparatedNumberLiterals -> oneOrMoreCommaSeparatedNumberLiterals , numberLiteral"(
-    $1: TysonTypeDict["oneOrMoreCommaSeparatedNumberLiterals"],
-    $3: TysonTypeDict["numberLiteral"],
-  ): TysonTypeDict["oneOrMoreCommaSeparatedNumberLiterals"] {
-    let $$: TysonTypeDict["oneOrMoreCommaSeparatedNumberLiterals"];
-    $$ = $1.concat([$3]);
-    return $$;
-  },
-
-  "methodInvocationExpression -> methodInvocationExpressionWithUnlabeledActualParams"(
-    $1: TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"],
-  ): TysonTypeDict["methodInvocationExpression"] {
-    let $$: TysonTypeDict["methodInvocationExpression"];
-    $$ = $1;
-    return $$;
-  },
-
-  "methodInvocationExpression -> methodInvocationExpressionWithLabeledActualParams"(
-    $1: TysonTypeDict["methodInvocationExpressionWithLabeledActualParams"],
-  ): TysonTypeDict["methodInvocationExpression"] {
-    let $$: TysonTypeDict["methodInvocationExpression"];
-    $$ = $1;
-    return $$;
-  },
-
-  "methodInvocationExpressionWithUnlabeledActualParams -> expression ( )"(
+  "methodInvocationExpression -> expression parenthesizedActualMethodParams"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
-  ): TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"] {
-    let $$: TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"];
+    $2: TysonTypeDict["parenthesizedActualMethodParams"],
+  ): TysonTypeDict["methodInvocationExpression"] {
+    let $$: TysonTypeDict["methodInvocationExpression"];
     $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, yylstack["@$"], {
-      isLabeled: false,
       callee: $1,
+      isRaw: false,
       typeParams: [],
-      params: [],
+      params: $2,
     });
     return $$;
   },
 
-  "methodInvocationExpressionWithUnlabeledActualParams -> expression ( oneOrMoreCommaSeparatedExpressions optTrailingComma )"(
+  "methodInvocationExpression -> expression angleBracketEnclosedGenericMethodActualTypeParams parenthesizedActualMethodParams"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedExpressions"],
-  ): TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"] {
-    let $$: TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"];
+    $2: TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"],
+    $3: TysonTypeDict["parenthesizedActualMethodParams"],
+  ): TysonTypeDict["methodInvocationExpression"] {
+    let $$: TysonTypeDict["methodInvocationExpression"];
     $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, yylstack["@$"], {
-      isLabeled: false,
       callee: $1,
-      typeParams: [],
+      isRaw: false,
+      typeParams: $2,
       params: $3,
     });
     return $$;
   },
 
-  "methodInvocationExpressionWithUnlabeledActualParams -> expression angleBracketEnclosedGenericMethodActualTypeParams ( )"(
+  "methodInvocationExpression -> expression < ! > parenthesizedActualMethodParams"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
-    $2: TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"],
-  ): TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"] {
-    let $$: TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"];
+    $5: TysonTypeDict["parenthesizedActualMethodParams"],
+  ): TysonTypeDict["methodInvocationExpression"] {
+    let $$: TysonTypeDict["methodInvocationExpression"];
     $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, yylstack["@$"], {
-      isLabeled: false,
       callee: $1,
-      typeParams: $2,
-      params: [],
-    });
-    return $$;
-  },
-
-  "methodInvocationExpressionWithUnlabeledActualParams -> expression angleBracketEnclosedGenericMethodActualTypeParams ( oneOrMoreCommaSeparatedExpressions optTrailingComma )"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["expression"],
-    $2: TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"],
-    $4: TysonTypeDict["oneOrMoreCommaSeparatedExpressions"],
-  ): TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"] {
-    let $$: TysonTypeDict["methodInvocationExpressionWithUnlabeledActualParams"];
-    $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, yylstack["@$"], {
-      isLabeled: false,
-      callee: $1,
-      typeParams: $2,
-      params: $4,
-    });
-    return $$;
-  },
-
-  "methodInvocationExpressionWithLabeledActualParams -> expression ( oneOrMoreLabeledActualMethodParams optTrailingComma )"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["expression"],
-    $3: TysonTypeDict["oneOrMoreLabeledActualMethodParams"],
-  ): TysonTypeDict["methodInvocationExpressionWithLabeledActualParams"] {
-    let $$: TysonTypeDict["methodInvocationExpressionWithLabeledActualParams"];
-    $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, yylstack["@$"], {
-      isLabeled: true,
-      callee: $1,
+      isRaw: true,
       typeParams: [],
-      params: $3,
+      params: $5,
     });
     return $$;
   },
 
-  "methodInvocationExpressionWithLabeledActualParams -> expression angleBracketEnclosedGenericMethodActualTypeParams ( oneOrMoreLabeledActualMethodParams optTrailingComma )"(
-    yylstack: { "@$": TokenLocation },
-
-    $1: TysonTypeDict["expression"],
-    $2: TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"],
-    $4: TysonTypeDict["oneOrMoreLabeledActualMethodParams"],
-  ): TysonTypeDict["methodInvocationExpressionWithLabeledActualParams"] {
-    let $$: TysonTypeDict["methodInvocationExpressionWithLabeledActualParams"];
-    $$ = yy.createNode(yy.NodeType.MethodInvocationExpression, yylstack["@$"], {
-      isLabeled: true,
-      callee: $1,
-      typeParams: $2,
-      params: $4,
-    });
+  "parenthesizedActualMethodParams -> ( )"(): TysonTypeDict["parenthesizedActualMethodParams"] {
+    let $$: TysonTypeDict["parenthesizedActualMethodParams"];
+    $$ = [];
     return $$;
   },
 
-  "angleBracketEnclosedGenericMethodActualTypeParams -> GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET oneOrMoreCommaSeparatedTypes >"(
-    $2: TysonTypeDict["oneOrMoreCommaSeparatedTypes"],
-  ): TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"] {
-    let $$: TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"];
+  "parenthesizedActualMethodParams -> ( oneOrMoreCommaSeparatedActualMethodParams optTrailingComma )"(
+    $2: TysonTypeDict["oneOrMoreCommaSeparatedActualMethodParams"],
+  ): TysonTypeDict["parenthesizedActualMethodParams"] {
+    let $$: TysonTypeDict["parenthesizedActualMethodParams"];
     $$ = $2;
     return $$;
   },
 
-  "oneOrMoreLabeledActualMethodParams -> labeledActualMethodParam"(
-    $1: TysonTypeDict["labeledActualMethodParam"],
-  ): TysonTypeDict["oneOrMoreLabeledActualMethodParams"] {
-    let $$: TysonTypeDict["oneOrMoreLabeledActualMethodParams"];
+  "oneOrMoreCommaSeparatedActualMethodParams -> actualMethodParam"(
+    $1: TysonTypeDict["actualMethodParam"],
+  ): TysonTypeDict["oneOrMoreCommaSeparatedActualMethodParams"] {
+    let $$: TysonTypeDict["oneOrMoreCommaSeparatedActualMethodParams"];
     $$ = [$1];
     return $$;
   },
 
-  "oneOrMoreLabeledActualMethodParams -> oneOrMoreLabeledActualMethodParams , labeledActualMethodParam"(
-    $1: TysonTypeDict["oneOrMoreLabeledActualMethodParams"],
-    $3: TysonTypeDict["labeledActualMethodParam"],
-  ): TysonTypeDict["oneOrMoreLabeledActualMethodParams"] {
-    let $$: TysonTypeDict["oneOrMoreLabeledActualMethodParams"];
+  "oneOrMoreCommaSeparatedActualMethodParams -> oneOrMoreCommaSeparatedActualMethodParams , actualMethodParam"(
+    $1: TysonTypeDict["oneOrMoreCommaSeparatedActualMethodParams"],
+    $3: TysonTypeDict["actualMethodParam"],
+  ): TysonTypeDict["oneOrMoreCommaSeparatedActualMethodParams"] {
+    let $$: TysonTypeDict["oneOrMoreCommaSeparatedActualMethodParams"];
     $$ = $1.concat([$3]);
+    return $$;
+  },
+
+  "actualMethodParam -> unlabeledActualMethodParam"(
+    $1: TysonTypeDict["unlabeledActualMethodParam"],
+  ): TysonTypeDict["actualMethodParam"] {
+    let $$: TysonTypeDict["actualMethodParam"];
+    $$ = $1;
+    return $$;
+  },
+
+  "actualMethodParam -> labeledActualMethodParam"(
+    $1: TysonTypeDict["labeledActualMethodParam"],
+  ): TysonTypeDict["actualMethodParam"] {
+    let $$: TysonTypeDict["actualMethodParam"];
+    $$ = $1;
+    return $$;
+  },
+
+  "unlabeledActualMethodParam -> expression"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["expression"],
+  ): TysonTypeDict["unlabeledActualMethodParam"] {
+    let $$: TysonTypeDict["unlabeledActualMethodParam"];
+    $$ = yy.createNode(yy.NodeType.ActualMethodParam, yylstack["@$"], {
+      isLabeled: false,
+      value: $1,
+    });
     return $$;
   },
 
@@ -5722,10 +5269,33 @@ const semanticActions = {
     $3: TysonTypeDict["expression"],
   ): TysonTypeDict["labeledActualMethodParam"] {
     let $$: TysonTypeDict["labeledActualMethodParam"];
-    $$ = yy.createNode(yy.NodeType.LabeledActualParam, yylstack["@$"], {
+    $$ = yy.createNode(yy.NodeType.ActualMethodParam, yylstack["@$"], {
+      isLabeled: true,
       label: $1,
-      value: $3,
+      value: yy.option.some($3),
     });
+    return $$;
+  },
+
+  "labeledActualMethodParam -> identifier : ''"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["identifier"],
+  ): TysonTypeDict["labeledActualMethodParam"] {
+    let $$: TysonTypeDict["labeledActualMethodParam"];
+    $$ = yy.createNode(yy.NodeType.ActualMethodParam, yylstack["@$"], {
+      isLabeled: true,
+      label: $1,
+      value: yy.option.none(),
+    });
+    return $$;
+  },
+
+  "angleBracketEnclosedGenericMethodActualTypeParams -> GENERIC_METHOD_TYPE_PARAM_LIST_LEFT_ANGLE_BRACKET oneOrMoreCommaSeparatedTypes >"(
+    $2: TysonTypeDict["oneOrMoreCommaSeparatedTypes"],
+  ): TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"] {
+    let $$: TysonTypeDict["angleBracketEnclosedGenericMethodActualTypeParams"];
+    $$ = $2;
     return $$;
   },
 
@@ -6150,72 +5720,85 @@ const semanticActions = {
     return $$;
   },
 
-  "instanceofExpression -> expression instanceof angleBracketlessType"(
+  "isExpression -> expression is angleBracketlessType"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
     $3: TysonTypeDict["angleBracketlessType"],
-  ): TysonTypeDict["instanceofExpression"] {
-    let $$: TysonTypeDict["instanceofExpression"];
-    $$ = yy.createNode(yy.NodeType.InstanceofExpression, yylstack["@$"], {
+  ): TysonTypeDict["isExpression"] {
+    let $$: TysonTypeDict["isExpression"];
+    $$ = yy.createNode(yy.NodeType.IsExpression, yylstack["@$"], {
       value: $1,
       comparedType: $3,
     });
     return $$;
   },
 
-  "oneOrMoreSquareBracketPairs -> [ ]"(): TysonTypeDict["oneOrMoreSquareBracketPairs"] {
-    let $$: TysonTypeDict["oneOrMoreSquareBracketPairs"];
-    $$ = { pairCount: 1 };
-    return $$;
-  },
-
-  "oneOrMoreSquareBracketPairs -> oneOrMoreSquareBracketPairs [ ]"(
-    $1: TysonTypeDict["oneOrMoreSquareBracketPairs"],
-  ): TysonTypeDict["oneOrMoreSquareBracketPairs"] {
-    let $$: TysonTypeDict["oneOrMoreSquareBracketPairs"];
-    $$ = { pairCount: $1.pairCount + 1 };
-    return $$;
-  },
-
-  "notinstanceofExpression -> expression notinstanceof angleBracketlessType"(
+  "isnotExpression -> expression isnot angleBracketlessType"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
     $3: TysonTypeDict["angleBracketlessType"],
-  ): TysonTypeDict["notinstanceofExpression"] {
-    let $$: TysonTypeDict["notinstanceofExpression"];
-    $$ = yy.createNode(yy.NodeType.NotinstanceofExpression, yylstack["@$"], {
+  ): TysonTypeDict["isnotExpression"] {
+    let $$: TysonTypeDict["isnotExpression"];
+    $$ = yy.createNode(yy.NodeType.IsnotExpression, yylstack["@$"], {
       value: $1,
       comparedType: $3,
     });
     return $$;
   },
 
-  "postfixExpression -> expression !"(
+  "postfixExpression -> nonNullAssertionExpression"(
+    $1: TysonTypeDict["nonNullAssertionExpression"],
+  ): TysonTypeDict["postfixExpression"] {
+    let $$: TysonTypeDict["postfixExpression"];
+    $$ = $1;
+    return $$;
+  },
+
+  "postfixExpression -> nullableChainingExpression"(
+    $1: TysonTypeDict["nullableChainingExpression"],
+  ): TysonTypeDict["postfixExpression"] {
+    let $$: TysonTypeDict["postfixExpression"];
+    $$ = $1;
+    return $$;
+  },
+
+  "nonNullAssertionExpression -> expression !"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
-    $2: TysonTypeDict["!"],
-  ): TysonTypeDict["postfixExpression"] {
-    let $$: TysonTypeDict["postfixExpression"];
-    $$ = yy.createNode(yy.NodeType.PostfixExpression, yylstack["@$"], {
-      left: $1,
-      operator: yy.PostfixOperatorType[$2],
+  ): TysonTypeDict["nonNullAssertionExpression"] {
+    let $$: TysonTypeDict["nonNullAssertionExpression"];
+    $$ = yy.createNode(yy.NodeType.NonNullAssertionExpression, yylstack["@$"], {
+      value: $1,
+      customType: yy.option.none(),
     });
     return $$;
   },
 
-  "postfixExpression -> expression ?"(
+  "nonNullAssertionExpression -> expression !< type >"(
     yylstack: { "@$": TokenLocation },
 
     $1: TysonTypeDict["expression"],
-    $2: TysonTypeDict["?"],
-  ): TysonTypeDict["postfixExpression"] {
-    let $$: TysonTypeDict["postfixExpression"];
-    $$ = yy.createNode(yy.NodeType.PostfixExpression, yylstack["@$"], {
-      left: $1,
-      operator: yy.PostfixOperatorType[$2],
+    $3: TysonTypeDict["type"],
+  ): TysonTypeDict["nonNullAssertionExpression"] {
+    let $$: TysonTypeDict["nonNullAssertionExpression"];
+    $$ = yy.createNode(yy.NodeType.NonNullAssertionExpression, yylstack["@$"], {
+      value: $1,
+      customType: yy.option.some($3),
+    });
+    return $$;
+  },
+
+  "nullableChainingExpression -> expression ?"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["expression"],
+  ): TysonTypeDict["nullableChainingExpression"] {
+    let $$: TysonTypeDict["nullableChainingExpression"];
+    $$ = yy.createNode(yy.NodeType.NullableChainingExpression, yylstack["@$"], {
+      value: $1,
     });
     return $$;
   },
@@ -6536,6 +6119,38 @@ const semanticActions = {
     return $$;
   },
 
+  "infixExpression -> expression === expression"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["expression"],
+    $2: TysonTypeDict["==="],
+    $3: TysonTypeDict["expression"],
+  ): TysonTypeDict["infixExpression"] {
+    let $$: TysonTypeDict["infixExpression"];
+    $$ = yy.createNode(yy.NodeType.InfixExpression, yylstack["@$"], {
+      left: $1,
+      operator: yy.InfixOperatorType[$2],
+      right: $3,
+    });
+    return $$;
+  },
+
+  "infixExpression -> expression !== expression"(
+    yylstack: { "@$": TokenLocation },
+
+    $1: TysonTypeDict["expression"],
+    $2: TysonTypeDict["!=="],
+    $3: TysonTypeDict["expression"],
+  ): TysonTypeDict["infixExpression"] {
+    let $$: TysonTypeDict["infixExpression"];
+    $$ = yy.createNode(yy.NodeType.InfixExpression, yylstack["@$"], {
+      left: $1,
+      operator: yy.InfixOperatorType[$2],
+      right: $3,
+    });
+    return $$;
+  },
+
   "infixExpression -> expression && expression"(
     yylstack: { "@$": TokenLocation },
 
@@ -6568,10 +6183,23 @@ const semanticActions = {
     return $$;
   },
 
-  "blockExpression -> { optUseStatements expression }"(
+  "blockExpression -> { expression }"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optUseStatements"],
+    $2: TysonTypeDict["expression"],
+  ): TysonTypeDict["blockExpression"] {
+    let $$: TysonTypeDict["blockExpression"];
+    $$ = yy.createNode(yy.NodeType.BlockExpression, yylstack["@$"], {
+      useStatements: [],
+      conclusion: $2,
+    });
+    return $$;
+  },
+
+  "blockExpression -> { oneOrMoreUseStatements expression }"(
+    yylstack: { "@$": TokenLocation },
+
+    $2: TysonTypeDict["oneOrMoreUseStatements"],
     $3: TysonTypeDict["expression"],
   ): TysonTypeDict["blockExpression"] {
     let $$: TysonTypeDict["blockExpression"];
@@ -6645,39 +6273,6 @@ const semanticActions = {
       caseClauses: $4,
       elseBody: $6,
     });
-    return $$;
-  },
-
-  "ifInlineTypeGuardExpression -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression else blockExpression"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockExpression"],
-    $7: TysonTypeDict["blockExpression"],
-  ): TysonTypeDict["ifInlineTypeGuardExpression"] {
-    let $$: TysonTypeDict["ifInlineTypeGuardExpression"];
-    $$ = yy.createNode(
-      yy.NodeType.IfInlineTypeGuardExpression,
-      yylstack["@$"],
-      { variableDeclarations: $3, body: $5, elseIfClauses: [], elseBody: $7 },
-    );
-    return $$;
-  },
-
-  "ifInlineTypeGuardExpression -> if let oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations optTrailingComma blockExpression oneOrMoreExpressionElseIfClauses else blockExpression"(
-    yylstack: { "@$": TokenLocation },
-
-    $3: TysonTypeDict["oneOrMoreCommaSeparatedTypeGuardInlineVariableDeclarations"],
-    $5: TysonTypeDict["blockExpression"],
-    $6: TysonTypeDict["oneOrMoreExpressionElseIfClauses"],
-    $8: TysonTypeDict["blockExpression"],
-  ): TysonTypeDict["ifInlineTypeGuardExpression"] {
-    let $$: TysonTypeDict["ifInlineTypeGuardExpression"];
-    $$ = yy.createNode(
-      yy.NodeType.IfInlineTypeGuardExpression,
-      yylstack["@$"],
-      { variableDeclarations: $3, body: $5, elseIfClauses: $6, elseBody: $8 },
-    );
     return $$;
   },
 

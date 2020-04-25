@@ -1,7 +1,0 @@
-pub class ForRangeMultipleBindings {
-    foo() {
-        for @i, v in low upuntil high {
-            
-        }
-    }
-}

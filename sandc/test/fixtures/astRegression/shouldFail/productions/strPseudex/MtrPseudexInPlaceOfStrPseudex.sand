@@ -1,5 +1,0 @@
-pub class MtrPseudexInPlaceOfStrPseudex {
-    foo() {
-        return ["foo"; 3];
-    }
-}

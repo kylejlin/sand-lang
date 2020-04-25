@@ -1,14 +1,4 @@
 pub class ForStatement {
-    cStyle() {
-        for (var i = 0int; i < len; i += 1;) {
-
-        }
-
-        for (var i = 0int; i < len; i += 1;) {
-            a = b;
-        }
-    }
-
     collectionIteration() {
         for v in arr {
 
@@ -73,6 +63,14 @@ pub class ForStatement {
         }
 
         for i in getLow() upuntil getHigh() {
+            a = b;
+        }
+
+        for row, col in getLow() upuntil getHigh() {
+            a = b;
+        }
+
+        for row, col in getLow() upuntil getHigh() step customStep() {
             a = b;
         }
     }

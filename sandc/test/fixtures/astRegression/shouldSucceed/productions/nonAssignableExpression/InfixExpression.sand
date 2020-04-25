@@ -26,6 +26,9 @@ pub class InfixExpression {
             x() ~= x(),
             x() !~= x(),
 
+            x() === x(),
+            x() !== x(),
+
             x() && x(),
             x() || x(),
         ]

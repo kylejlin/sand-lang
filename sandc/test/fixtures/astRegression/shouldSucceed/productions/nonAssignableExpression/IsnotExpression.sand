@@ -1,0 +1,15 @@
+pub class IsnotExpression {
+    foo() {
+        [
+            x() isnot Foo,
+            x() isnot Foo[],
+            x() isnot Foo[][],
+            x() isnot Foo[][][],
+
+            x() isnot Foo?,
+            x() isnot Foo[]?,
+            x() isnot Foo[][]?,
+            x() isnot Foo[][][]?,
+        ]
+    }
+}

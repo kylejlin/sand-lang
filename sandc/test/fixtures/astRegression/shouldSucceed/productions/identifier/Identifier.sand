@@ -3,13 +3,15 @@ pub class Identifier {
 
     ~use: Foo;
 
+    // Unreserved words that have special meanings in some contexts
+    every: Foo;
     get: Foo;
-
+    hasbeeninitialized: Foo;
     set: Foo;
+    some: Foo;
+    step: Foo;
 
+    // Formerly reserved or contextually special words
+    inline: Foo;
     intenc: Foo;
-
-    (pub) intenc: Foo;
-    
-    (pub) intenc intenc: Foo;
 }

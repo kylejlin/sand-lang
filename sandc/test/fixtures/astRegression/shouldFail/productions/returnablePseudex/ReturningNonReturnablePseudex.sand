@@ -1,0 +1,5 @@
+pub class ReturningNonReturnablePseudex {
+    foo() {
+        return ["foo"; 3];
+    }
+}

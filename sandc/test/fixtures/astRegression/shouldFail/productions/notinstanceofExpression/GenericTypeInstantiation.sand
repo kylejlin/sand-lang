@@ -1,5 +1,0 @@
-pub class GenericTypeInstantiation {
-    foo() {
-        x() notinstanceof Foo<Bar>
-    }
-}

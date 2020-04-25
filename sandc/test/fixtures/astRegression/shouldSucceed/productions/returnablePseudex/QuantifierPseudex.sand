@@ -1,0 +1,39 @@
+pub class QuantifierPseudex {
+    universal() {
+        for every val in arr {
+            foo()
+        }
+    }
+
+    universal() {
+        for every @r, @c, val in grid {
+            foo()
+        }
+    }
+
+    universal() {
+        for every @r, @c, val in grid {
+            statement();
+            foo()
+        }
+    }
+
+    existential() {
+        for some val in arr {
+            foo()
+        }
+    }
+
+    existential() {
+        for some @r, @c, val in grid {
+            foo()
+        }
+    }
+
+    existential() {
+        for some @r, @c, val in grid {
+            statement();
+            foo()
+        }
+    }
+}

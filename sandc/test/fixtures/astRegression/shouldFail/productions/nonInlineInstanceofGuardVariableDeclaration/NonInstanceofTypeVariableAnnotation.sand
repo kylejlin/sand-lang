@@ -1,7 +1,0 @@
-pub class NonInstanceofTypeVariableAnnotation {
-    foo() {
-        if let x: Foo<Bar> = y {
-
-        }
-    }
-}

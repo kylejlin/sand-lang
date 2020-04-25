@@ -1,0 +1,26 @@
+pub class ParenthesizedActualMethodParams {
+    foo() {
+        [
+            foo(),
+
+            foo("a"),
+            foo("a",),
+            foo("a", b, c),
+            foo("a", b, c,),
+
+            foo(unreserved: "a"),
+            foo(unreserved: "a",),
+            foo(a: "a", ~copy: b, ~use: c, d: d),
+            foo(a: "a", ~copy: b, ~use: c, d: d,),
+
+            foo(a: b, c: d, e: f),
+            foo(a: b, c: d, e: f,),
+
+            foo(a, b: c, d: '', e),
+            foo(a, b: c, d: '', e,),
+
+            foo(a: b, c, d, e: '', f: g),
+            foo(a: b, c, d, e: '', f: g,),
+        ]
+    }
+}

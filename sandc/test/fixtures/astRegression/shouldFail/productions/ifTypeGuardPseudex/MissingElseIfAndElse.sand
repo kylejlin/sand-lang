@@ -1,7 +1,0 @@
-pub class MissingElseIfAndElse {
-    foo() {
-        let a = if let b = c {
-            c
-        };
-    }
-}

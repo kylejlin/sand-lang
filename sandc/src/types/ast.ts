@@ -14,6 +14,7 @@ export enum NodeType {
   TypeParamExtendsConstraint,
   NiladicType,
   InstantiatedGenericType,
+  RawType,
   NullableType,
   ArrayType,
   ListType,
@@ -36,6 +37,7 @@ export enum NodeType {
   InterfaceDefaultMethodDeclaration,
   MethodBody,
   StatementExpression,
+  PropertyHasBeenInitializedAssertion,
   BlockStatement,
   IfStatement,
   StatementElseIfClause,
@@ -50,17 +52,11 @@ export enum NodeType {
   WhileStatement,
   DoWhileStatement,
   LoopStatement,
-  RepeatStatement,
-  CStyleForStatement,
   CollectionIterationForStatement,
   ForBinding,
   RangeForStatement,
   TryStatement,
   StatementCatchClause,
-  IfTypeGuardStatement,
-  NullGuardVariableDeclaration,
-  InstanceofGuardVariableDeclaration,
-  WhileTypeGuardStatement,
   IfPseudex,
   BlockPseudex,
   ExpressionElseIfClause,
@@ -74,34 +70,34 @@ export enum NodeType {
   PseudexCatchClause,
   TryOrThrowPseudex,
   ThrowPseudex,
-  IfTypeGuardPseudex,
-  RepeatingArrayFillPseudex,
-  RepeatingListFillPseudex,
-  SequentialListFillPseudex,
-  ArrayMapPseudex,
-  ListMapPseudex,
-  ListFilterMapPseudex,
+  QuantifierPseudex,
+  NonEmptyListPseudex,
+  CollectionIterationForPseudex,
+  BlockYield,
+  RangeForPseudex,
+  CollectionIterationForIfPseudex,
+  RangeForIfPseudex,
   ThisHashExpression,
   DotExpression,
   HashExpression,
   IndexExpression,
   LiteralExpression,
   MethodInvocationExpression,
-  LabeledActualParam,
+  ActualMethodParam,
   CastExpression,
   AnonymousInnerClassInstantiationExpression,
   AnonymousInnerClassPropertyDeclaration,
   AnonymousInnerClassMethodDeclaration,
   LambdaExpression,
   RangeCheckExpression,
-  InstanceofExpression,
-  NotinstanceofExpression,
-  PostfixExpression,
+  IsExpression,
+  IsnotExpression,
+  NonNullAssertionExpression,
+  NullableChainingExpression,
   PrefixExpression,
   InfixExpression,
   IfExpression,
   SwitchExpression,
-  IfInlineTypeGuardExpression,
   ParenthesizedExpression,
 }
 
@@ -120,6 +116,7 @@ interface NodeMap {
   [NodeType.TypeParamExtendsConstraint]: TypeParamExtendsConstraint;
   [NodeType.NiladicType]: NiladicType;
   [NodeType.InstantiatedGenericType]: InstantiatedGenericType;
+  [NodeType.RawType]: RawType;
   [NodeType.NullableType]: NullableType;
   [NodeType.ArrayType]: ArrayType;
   [NodeType.ListType]: ListType;
@@ -142,6 +139,7 @@ interface NodeMap {
   [NodeType.InterfaceDefaultMethodDeclaration]: InterfaceDefaultMethodDeclaration;
   [NodeType.MethodBody]: MethodBody;
   [NodeType.StatementExpression]: StatementExpression;
+  [NodeType.PropertyHasBeenInitializedAssertion]: PropertyHasBeenInitializedAssertion;
   [NodeType.BlockStatement]: BlockStatement;
   [NodeType.IfStatement]: IfStatement;
   [NodeType.StatementElseIfClause]: StatementElseIfClause;
@@ -156,17 +154,11 @@ interface NodeMap {
   [NodeType.WhileStatement]: WhileStatement;
   [NodeType.DoWhileStatement]: DoWhileStatement;
   [NodeType.LoopStatement]: LoopStatement;
-  [NodeType.RepeatStatement]: RepeatStatement;
-  [NodeType.CStyleForStatement]: CStyleForStatement;
   [NodeType.CollectionIterationForStatement]: CollectionIterationForStatement;
   [NodeType.ForBinding]: ForBinding;
   [NodeType.RangeForStatement]: RangeForStatement;
   [NodeType.TryStatement]: TryStatement;
   [NodeType.StatementCatchClause]: StatementCatchClause;
-  [NodeType.IfTypeGuardStatement]: IfTypeGuardStatement;
-  [NodeType.NullGuardVariableDeclaration]: NullGuardVariableDeclaration;
-  [NodeType.InstanceofGuardVariableDeclaration]: InstanceofGuardVariableDeclaration;
-  [NodeType.WhileTypeGuardStatement]: WhileTypeGuardStatement;
   [NodeType.IfPseudex]: IfPseudex;
   [NodeType.BlockPseudex]: BlockPseudex;
   [NodeType.ExpressionElseIfClause]: ExpressionElseIfClause;
@@ -180,34 +172,34 @@ interface NodeMap {
   [NodeType.PseudexCatchClause]: PseudexCatchClause;
   [NodeType.TryOrThrowPseudex]: TryOrThrowPseudex;
   [NodeType.ThrowPseudex]: ThrowPseudex;
-  [NodeType.IfTypeGuardPseudex]: IfTypeGuardPseudex;
-  [NodeType.RepeatingArrayFillPseudex]: RepeatingArrayFillPseudex;
-  [NodeType.RepeatingListFillPseudex]: RepeatingListFillPseudex;
-  [NodeType.SequentialListFillPseudex]: SequentialListFillPseudex;
-  [NodeType.ArrayMapPseudex]: ArrayMapPseudex;
-  [NodeType.ListMapPseudex]: ListMapPseudex;
-  [NodeType.ListFilterMapPseudex]: ListFilterMapPseudex;
+  [NodeType.QuantifierPseudex]: QuantifierPseudex;
+  [NodeType.NonEmptyListPseudex]: NonEmptyListPseudex;
+  [NodeType.CollectionIterationForPseudex]: CollectionIterationForPseudex;
+  [NodeType.BlockYield]: BlockYield;
+  [NodeType.RangeForPseudex]: RangeForPseudex;
+  [NodeType.CollectionIterationForIfPseudex]: CollectionIterationForIfPseudex;
+  [NodeType.RangeForIfPseudex]: RangeForIfPseudex;
   [NodeType.ThisHashExpression]: ThisHashExpression;
   [NodeType.DotExpression]: DotExpression;
   [NodeType.HashExpression]: HashExpression;
   [NodeType.IndexExpression]: IndexExpression;
   [NodeType.LiteralExpression]: LiteralExpression;
   [NodeType.MethodInvocationExpression]: MethodInvocationExpression;
-  [NodeType.LabeledActualParam]: LabeledActualParam;
+  [NodeType.ActualMethodParam]: ActualMethodParam;
   [NodeType.CastExpression]: CastExpression;
   [NodeType.AnonymousInnerClassInstantiationExpression]: AnonymousInnerClassInstantiationExpression;
   [NodeType.AnonymousInnerClassPropertyDeclaration]: AnonymousInnerClassPropertyDeclaration;
   [NodeType.AnonymousInnerClassMethodDeclaration]: AnonymousInnerClassMethodDeclaration;
   [NodeType.LambdaExpression]: LambdaExpression;
   [NodeType.RangeCheckExpression]: RangeCheckExpression;
-  [NodeType.InstanceofExpression]: InstanceofExpression;
-  [NodeType.NotinstanceofExpression]: NotinstanceofExpression;
-  [NodeType.PostfixExpression]: PostfixExpression;
+  [NodeType.IsExpression]: IsExpression;
+  [NodeType.IsnotExpression]: IsnotExpression;
+  [NodeType.NonNullAssertionExpression]: NonNullAssertionExpression;
+  [NodeType.NullableChainingExpression]: NullableChainingExpression;
   [NodeType.PrefixExpression]: PrefixExpression;
   [NodeType.InfixExpression]: InfixExpression;
   [NodeType.IfExpression]: IfExpression;
   [NodeType.SwitchExpression]: SwitchExpression;
-  [NodeType.IfInlineTypeGuardExpression]: IfInlineTypeGuardExpression;
   [NodeType.ParenthesizedExpression]: ParenthesizedExpression;
 }
 
@@ -344,6 +336,7 @@ export interface TypeParamExtendsConstraint {
 export type Type =
   | NiladicType
   | InstantiatedGenericType
+  | RawType
   | NullableType
   | ArrayType
   | ListType;
@@ -362,6 +355,15 @@ export interface InstantiatedGenericType {
 
   baseType: NiladicType;
   actualParams: Type[];
+
+  nodeId: number;
+  location: TextRange;
+}
+
+export interface RawType {
+  nodeType: NodeType.RawType;
+
+  baseType: NiladicType;
 
   nodeId: number;
   location: TextRange;
@@ -447,8 +449,11 @@ export interface ClassConstructorDeclaration {
 export interface FormalMethodParamDeclaration {
   nodeType: NodeType.FormalMethodParamDeclaration;
 
+  label: Option<Identifier>;
+
   isReassignable: boolean;
   doesShadow: boolean;
+  doesSetProperty: boolean;
   name: Identifier;
   annotatedType: Type;
 
@@ -468,7 +473,7 @@ export interface ClassDefaultConstructorDeclaration {
 export interface ClassStaticPropertyDeclaration {
   nodeType: NodeType.ClassStaticPropertyDeclaration;
 
-  visibility: PropertyVisibilityLevel;
+  visibility: VisibilityLevel;
   accessors: Option<PropertyAccessorDeclarations>;
   isReassignable: boolean;
   doesShadow: boolean;
@@ -479,13 +484,6 @@ export interface ClassStaticPropertyDeclaration {
 
   nodeId: number;
   location: TextRange;
-}
-
-export enum PropertyVisibilityLevel {
-  InternallyEncapsulated,
-  Private,
-  Protected,
-  Public,
 }
 
 export interface PropertyAccessorDeclarations {
@@ -502,6 +500,7 @@ export interface PropertyGetterDeclaration {
   nodeType: NodeType.PropertyGetterDeclaration;
 
   visibility: VisibilityLevel;
+  customName: Option<Identifier>;
 
   nodeId: number;
   location: TextRange;
@@ -511,6 +510,7 @@ export interface PropertySetterDeclaration {
   nodeType: NodeType.PropertySetterDeclaration;
 
   visibility: VisibilityLevel;
+  customName: Option<Identifier>;
 
   nodeId: number;
   location: TextRange;
@@ -536,7 +536,7 @@ export interface ClassStaticMethodDeclaration {
 export interface ClassInstancePropertyDeclaration {
   nodeType: NodeType.ClassInstancePropertyDeclaration;
 
-  visibility: PropertyVisibilityLevel;
+  visibility: VisibilityLevel;
   accessors: Option<PropertyAccessorDeclarations>;
   isReassignable: boolean;
   doesShadow: boolean;
@@ -712,6 +712,7 @@ export interface MethodBody {
 
 export type Statement =
   | StatementExpression
+  | PropertyHasBeenInitializedAssertion
   | BlockStatement
   | IfStatement
   | SwitchStatement
@@ -724,16 +725,22 @@ export type Statement =
   | WhileStatement
   | DoWhileStatement
   | LoopStatement
-  | RepeatStatement
   | ForStatement
-  | TryStatement
-  | IfTypeGuardStatement
-  | WhileTypeGuardStatement;
+  | TryStatement;
 
 export interface StatementExpression {
   nodeType: NodeType.StatementExpression;
 
   expression: Expression;
+
+  nodeId: number;
+  location: TextRange;
+}
+
+export interface PropertyHasBeenInitializedAssertion {
+  nodeType: NodeType.PropertyHasBeenInitializedAssertion;
+
+  property: Identifier;
 
   nodeId: number;
   location: TextRange;
@@ -880,32 +887,7 @@ export interface LoopStatement {
   location: TextRange;
 }
 
-export interface RepeatStatement {
-  nodeType: NodeType.RepeatStatement;
-
-  repetitionQuantity: Expression;
-  body: BlockStatement;
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export type ForStatement =
-  | CStyleForStatement
-  | CollectionIterationForStatement
-  | RangeForStatement;
-
-export interface CStyleForStatement {
-  nodeType: NodeType.CStyleForStatement;
-
-  initialStatement: Statement;
-  condition: Expression;
-  afterthought: Statement;
-  body: BlockStatement;
-
-  nodeId: number;
-  location: TextRange;
-}
+export type ForStatement = CollectionIterationForStatement | RangeForStatement;
 
 export interface CollectionIterationForStatement {
   nodeType: NodeType.CollectionIterationForStatement;
@@ -937,18 +919,15 @@ export enum ForBindingType {
 export interface RangeForStatement {
   nodeType: NodeType.RangeForStatement;
 
-  binding: ForValueBinding;
+  bindings: ForBinding[];
   start: Expression;
   rangeType: ForStatementRangeType;
   end: Expression;
+  customStep: Option<Expression>;
   body: BlockStatement;
 
   nodeId: number;
   location: TextRange;
-}
-
-export interface ForValueBinding extends ForBinding {
-  bindingType: ForBindingType.ValueBinding;
 }
 
 export enum ForStatementRangeType {
@@ -979,54 +958,6 @@ export interface StatementCatchClause {
   location: TextRange;
 }
 
-export interface IfTypeGuardStatement {
-  nodeType: NodeType.IfTypeGuardStatement;
-
-  declarations: TypeGuardVariableDeclaration[];
-  body: BlockStatement;
-  elseIfClauses: StatementElseIfClause[];
-  elseBody: Option<BlockStatement>;
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export type TypeGuardVariableDeclaration =
-  | NullGuardVariableDeclaration
-  | InstanceofGuardVariableDeclaration;
-
-export interface NullGuardVariableDeclaration {
-  nodeType: NodeType.NullGuardVariableDeclaration;
-
-  isInline: boolean;
-  name: Identifier;
-  assignment: Expression | AssignmentPseudex;
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface InstanceofGuardVariableDeclaration {
-  nodeType: NodeType.InstanceofGuardVariableDeclaration;
-
-  name: Identifier;
-  annotatedType: AngleBracketlessType;
-  assignment: Expression | AssignmentPseudex;
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface WhileTypeGuardStatement {
-  nodeType: NodeType.WhileTypeGuardStatement;
-
-  declarations: TypeGuardVariableDeclaration[];
-  body: BlockStatement;
-
-  nodeId: number;
-  location: TextRange;
-}
-
 export type AssignmentPseudex =
   | ReturnablePseudex
   | NonReturnablePseudex
@@ -1038,7 +969,7 @@ export type ReturnablePseudex =
   | TryPseudex
   | TryOrThrowPseudex
   | ThrowPseudex
-  | IfTypeGuardPseudex;
+  | QuantifierPseudex;
 
 export type IfPseudex =
   | IfPseudexWithIfBodyPseudex
@@ -1248,80 +1179,30 @@ export interface ThrowPseudex {
   location: TextRange;
 }
 
-export type IfTypeGuardPseudex =
-  | IfTypeGuardPseudexWithIfBodyPseudex
-  | IfTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause
-  | IfTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses;
+export interface QuantifierPseudex {
+  nodeType: NodeType.QuantifierPseudex;
 
-export interface IfTypeGuardPseudexWithIfBodyPseudex {
-  nodeType: NodeType.IfTypeGuardPseudex;
-  pseudexType: IfPseudexType.WithIfBodyPseudex;
-
-  declarations: TypeGuardVariableDeclaration[];
-  body: BlockPseudex;
-  elseIfClauses: (ExpressionElseIfClause | PseudexElseIfClause)[];
-  elseBody: BlockExpression | BlockPseudex;
+  quantifierType: QuantifierType;
+  bindings: ForBinding[];
+  iteratee: Expression;
+  body: BlockExpression | BlockPseudex;
 
   nodeId: number;
   location: TextRange;
 }
 
-export interface IfTypeGuardPseudexWithIfBodyExpressionAndAtLeastOnePseudexElseIfClause {
-  nodeType: NodeType.IfTypeGuardPseudex;
-  pseudexType: IfPseudexType.WithIfBodyExpressionAndAtLeastOnePseudexElseIfClause;
-
-  declarations: TypeGuardVariableDeclaration[];
-  body: BlockExpression;
-  elseIfClauses: (ExpressionElseIfClause | PseudexElseIfClause)[];
-  elseBody: BlockExpression | BlockPseudex;
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface IfTypeGuardPseudexWithIfBodyExpressionAndOnlyExpressionElseIfClauses {
-  nodeType: NodeType.IfTypeGuardPseudex;
-  pseudexType: IfPseudexType.WithIfBodyExpressionAndOnlyExpressionElseIfClauses;
-
-  declarations: TypeGuardVariableDeclaration[];
-  body: BlockExpression;
-  elseIfClauses: ExpressionElseIfClause[];
-  elseBody: BlockPseudex;
-
-  nodeId: number;
-  location: TextRange;
+export enum QuantifierType {
+  Universal,
+  Existential,
 }
 
 export type NonReturnablePseudex =
-  | RepeatingArrayFillPseudex
-  | RepeatingListFillPseudex
-  | SequentialListFillPseudex
-  | ArrayMapPseudex
-  | ListMapPseudex
-  | ListFilterMapPseudex;
+  | NonEmptyListPseudex
+  | ForPseudex
+  | ForIfPseudex;
 
-export interface RepeatingArrayFillPseudex {
-  nodeType: NodeType.RepeatingArrayFillPseudex;
-
-  fillExpression: Expression;
-  dimensions: Expression[];
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface RepeatingListFillPseudex {
-  nodeType: NodeType.RepeatingListFillPseudex;
-
-  fillExpression: Expression;
-  dimensions: Expression[];
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface SequentialListFillPseudex {
-  nodeType: NodeType.SequentialListFillPseudex;
+export interface NonEmptyListPseudex {
+  nodeType: NodeType.NonEmptyListPseudex;
 
   elements: Expression[];
 
@@ -1329,38 +1210,81 @@ export interface SequentialListFillPseudex {
   location: TextRange;
 }
 
-export interface ArrayMapPseudex {
-  nodeType: NodeType.ArrayMapPseudex;
+export type ForPseudex = CollectionIterationForPseudex | RangeForPseudex;
 
-  output: Expression | AssignmentPseudex;
+export interface CollectionIterationForPseudex {
+  nodeType: NodeType.CollectionIterationForPseudex;
+
+  outType: ForPseudexOutType;
+
   bindings: ForBinding[];
   iteratee: Expression;
+  body: BlockYield;
 
   nodeId: number;
   location: TextRange;
 }
 
-export interface ListMapPseudex {
-  nodeType: NodeType.ListMapPseudex;
+export interface BlockYield {
+  nodeType: NodeType.BlockYield;
 
-  output: Expression | AssignmentPseudex;
-  bindings: ForBinding[];
-  iteratee: Expression;
+  useStatements: UseStatement[];
+  statements: Statement[];
+  yieldAll: boolean;
+  yieldedValue: Expression | ReturnablePseudex;
 
   nodeId: number;
   location: TextRange;
 }
 
-export interface ListFilterMapPseudex {
-  nodeType: NodeType.ListFilterMapPseudex;
+export interface RangeForPseudex {
+  nodeType: NodeType.RangeForPseudex;
 
-  output: Expression | AssignmentPseudex;
+  outType: ForPseudexOutType;
+
   bindings: ForBinding[];
-  iteratee: Expression;
-  predicate: Expression;
+  start: Expression;
+  rangeType: ForStatementRangeType;
+  end: Expression;
+  customStep: Option<Expression>;
+  body: BlockYield;
 
   nodeId: number;
   location: TextRange;
+}
+
+export type ForIfPseudex = CollectionIterationForIfPseudex | RangeForIfPseudex;
+
+export interface CollectionIterationForIfPseudex {
+  nodeType: NodeType.CollectionIterationForIfPseudex;
+
+  bindings: ForBinding[];
+  iteratee: Expression;
+  condition: Expression;
+  body: BlockYield;
+
+  nodeId: number;
+  location: TextRange;
+}
+
+export interface RangeForIfPseudex {
+  nodeType: NodeType.RangeForIfPseudex;
+
+  bindings: ForBinding[];
+  start: Expression;
+  rangeType: ForStatementRangeType;
+  end: Expression;
+  customStep: Option<Expression>;
+  condition: Expression;
+  body: BlockYield;
+
+  nodeId: number;
+  location: TextRange;
+}
+
+export enum ForPseudexOutType {
+  Array,
+  List,
 }
 
 export type Expression = AssignableExpression | NonAssignableExpression;
@@ -1418,14 +1342,13 @@ export type NonAssignableExpression =
   | AnonymousInnerClassInstantiationExpression
   | LambdaExpression
   | RangeCheckExpression
-  | InstanceofExpression
-  | NotinstanceofExpression
+  | IsExpression
+  | IsnotExpression
   | PostfixExpression
   | PrefixExpression
   | InfixExpression
   | IfExpression
   | SwitchExpression
-  | IfInlineTypeGuardExpression
   | ParenthesizedExpression;
 
 export type LiteralExpression =
@@ -1434,7 +1357,8 @@ export type LiteralExpression =
   | NumberLiteral
   | CharacterLiteral
   | StringLiteral
-  | ArrayLiteral;
+  | ArrayLiteral
+  | EmptyListLiteral;
 
 export enum LiteralType {
   Null,
@@ -1443,6 +1367,7 @@ export enum LiteralType {
   Character,
   String,
   Array,
+  EmptyList,
 }
 
 export interface NullLiteral {
@@ -1493,15 +1418,11 @@ export interface StringLiteral {
   location: TextRange;
 }
 
-export type ArrayLiteral =
-  | SequentialArrayLiteral
-  | DefaultValueArrayLiteral
-  | RepeatingArrayLiteral;
+export type ArrayLiteral = SequentialArrayLiteral | DefaultValueArrayLiteral;
 
 export enum ArrayLiteralType {
   Sequential,
   Default,
-  Repeating,
 }
 
 export interface SequentialArrayLiteral {
@@ -1531,50 +1452,46 @@ export interface FalseLiteral extends BooleanLiteral {
   value: false;
 }
 
-export interface RepeatingArrayLiteral {
+export interface EmptyListLiteral {
   nodeType: NodeType.LiteralExpression;
-  literalType: LiteralType.Array;
-  arrayType: ArrayLiteralType.Repeating;
-
-  fill: Expression;
-  dimensions: NumberLiteral[];
+  literalType: LiteralType.EmptyList;
 
   nodeId: number;
   location: TextRange;
 }
 
-export type MethodInvocationExpression =
-  | MethodInvocationExpressionWithUnlabeledActualParams
-  | MethodInvocationExpressionWithLabeledActualParams;
-
-export interface MethodInvocationExpressionWithUnlabeledActualParams {
+export interface MethodInvocationExpression {
   nodeType: NodeType.MethodInvocationExpression;
+
+  callee: Expression;
+  isRaw: boolean;
+  typeParams: Type[];
+  params: ActualMethodParam[];
+
+  nodeId: number;
+  location: TextRange;
+}
+
+export type ActualMethodParam =
+  | UnlabeledActualMethodParam
+  | LabeledActualMethodParam;
+
+export interface UnlabeledActualMethodParam {
+  nodeType: NodeType.ActualMethodParam;
   isLabeled: false;
 
-  callee: Expression;
-  typeParams: Type[];
-  params: Expression[];
+  value: Expression;
 
   nodeId: number;
   location: TextRange;
 }
-export interface MethodInvocationExpressionWithLabeledActualParams {
-  nodeType: NodeType.MethodInvocationExpression;
+
+export interface LabeledActualMethodParam {
+  nodeType: NodeType.ActualMethodParam;
   isLabeled: true;
 
-  callee: Expression;
-  typeParams: Type[];
-  params: LabeledActualParam[];
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface LabeledActualParam {
-  nodeType: NodeType.LabeledActualParam;
-
   label: Identifier;
-  value: Expression;
+  value: Option<Expression>;
 
   nodeId: number;
   location: TextRange;
@@ -1673,8 +1590,8 @@ export enum RangeCheckRangeType {
   "=.=",
 }
 
-export interface InstanceofExpression {
-  nodeType: NodeType.InstanceofExpression;
+export interface IsExpression {
+  nodeType: NodeType.IsExpression;
 
   value: Expression;
   comparedType: AngleBracketlessType;
@@ -1683,8 +1600,8 @@ export interface InstanceofExpression {
   location: TextRange;
 }
 
-export interface NotinstanceofExpression {
-  nodeType: NodeType.NotinstanceofExpression;
+export interface IsnotExpression {
+  nodeType: NodeType.IsnotExpression;
 
   value: Expression;
   comparedType: AngleBracketlessType;
@@ -1693,19 +1610,27 @@ export interface NotinstanceofExpression {
   location: TextRange;
 }
 
-export interface PostfixExpression {
-  nodeType: NodeType.PostfixExpression;
+export type PostfixExpression =
+  | NonNullAssertionExpression
+  | NullableChainingExpression;
 
-  left: Expression;
-  operator: PostfixOperatorType;
+export interface NonNullAssertionExpression {
+  nodeType: NodeType.NonNullAssertionExpression;
+
+  value: Expression;
+  customType: Option<Type>;
 
   nodeId: number;
   location: TextRange;
 }
 
-export enum PostfixOperatorType {
-  "!",
-  "?",
+export interface NullableChainingExpression {
+  nodeType: NodeType.NullableChainingExpression;
+
+  value: Expression;
+
+  nodeId: number;
+  location: TextRange;
 }
 
 export interface PrefixExpression {
@@ -1753,6 +1678,8 @@ export enum InfixOperatorType {
   "!=",
   "~=",
   "!~=",
+  "===",
+  "!==",
   "&&",
   "||",
 }
@@ -1778,23 +1705,6 @@ export interface SwitchExpression {
 
   nodeId: number;
   location: TextRange;
-}
-
-export interface IfInlineTypeGuardExpression {
-  nodeType: NodeType.IfInlineTypeGuardExpression;
-
-  variableDeclarations: InlineTypeGuardVariableDeclaration[];
-  body: BlockExpression;
-  elseIfClauses: ExpressionElseIfClause[];
-  elseBody: BlockExpression;
-
-  nodeId: number;
-  location: TextRange;
-}
-
-export interface InlineTypeGuardVariableDeclaration
-  extends NullGuardVariableDeclaration {
-  isInline: true;
 }
 
 export interface ParenthesizedExpression {

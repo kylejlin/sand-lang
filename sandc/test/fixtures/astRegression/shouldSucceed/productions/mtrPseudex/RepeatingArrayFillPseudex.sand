@@ -1,5 +1,0 @@
-pub class RepeatingArrayFill {
-    foo() {
-        let a = ["foo"; n];
-    }
-}

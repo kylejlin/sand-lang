@@ -1,7 +1,0 @@
-pub class RepeatMissingAmount {
-    foo() {
-        repeat {
-            
-        }
-    }
-}

@@ -1,9 +1,0 @@
-pub class WithElseIfButMissingElse {
-    foo() {
-        let a = if let b = c {
-            c
-        } else if cond {
-            c
-        };
-    }
-}

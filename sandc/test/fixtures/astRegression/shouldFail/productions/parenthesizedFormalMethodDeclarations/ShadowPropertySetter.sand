@@ -1,0 +1,5 @@
+pub class ShadowPropertySetter {
+    foo(shadow this.foo: int) {
+        
+    }
+}

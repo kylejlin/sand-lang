@@ -11,15 +11,7 @@ pub class ClassInstancePropertyDeclaration {
 
     (pub get prot set) foo: Foo;
     (pub get) prot foo: Foo;
-    (pub) intenc foo: Foo;
-    (priv) foo: Foo;
-    (priv) intenc foo: Foo;
+    (priv get priv set) foo: Foo;
 
-    priv: Foo;
-    (pub) priv: Foo;
-    (priv) priv: Foo;
-
-    intenc: Foo;
-    (pub) intenc: Foo;
-    (pub) intenc intenc: Foo;
+    (pub get customGetterName pub set customSetterName) foo: Foo;
 }
