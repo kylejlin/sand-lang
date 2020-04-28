@@ -43471,14 +43471,14 @@ Object {
   "location": Object {
     "end": Object {
       "column": 1,
-      "line": 30,
+      "line": 34,
     },
     "start": Object {
       "column": 0,
       "line": 1,
     },
   },
-  "nodeId": 60,
+  "nodeId": 68,
   "nodeType": 0,
   "packageStatement": OptionImpl {
     "isNone_": true,
@@ -43503,37 +43503,37 @@ Object {
                     "callee": Object {
                       "location": Object {
                         "end": Object {
-                          "column": 19,
-                          "line": 4,
-                        },
-                        "start": Object {
                           "column": 18,
                           "line": 4,
                         },
+                        "start": Object {
+                          "column": 17,
+                          "line": 4,
+                        },
                       },
-                      "nodeId": 3,
+                      "nodeId": 2,
                       "nodeType": 2,
                       "source": "x",
                     },
                     "isRaw": false,
                     "location": Object {
                       "end": Object {
-                        "column": 21,
+                        "column": 20,
                         "line": 4,
                       },
                       "start": Object {
-                        "column": 18,
+                        "column": 17,
                         "line": 4,
                       },
                     },
-                    "nodeId": 4,
+                    "nodeId": 3,
                     "nodeType": 80,
                     "params": Array [],
                     "typeParams": Array [],
                   },
                   "location": Object {
                     "end": Object {
-                      "column": 21,
+                      "column": 20,
                       "line": 4,
                     },
                     "start": Object {
@@ -43541,21 +43541,68 @@ Object {
                       "line": 4,
                     },
                   },
-                  "nodeId": 5,
+                  "nodeId": 4,
+                  "nodeType": 86,
+                  "params": Array [],
+                },
+                Object {
+                  "body": Object {
+                    "callee": Object {
+                      "location": Object {
+                        "end": Object {
+                          "column": 19,
+                          "line": 5,
+                        },
+                        "start": Object {
+                          "column": 18,
+                          "line": 5,
+                        },
+                      },
+                      "nodeId": 6,
+                      "nodeType": 2,
+                      "source": "x",
+                    },
+                    "isRaw": false,
+                    "location": Object {
+                      "end": Object {
+                        "column": 21,
+                        "line": 5,
+                      },
+                      "start": Object {
+                        "column": 18,
+                        "line": 5,
+                      },
+                    },
+                    "nodeId": 7,
+                    "nodeType": 80,
+                    "params": Array [],
+                    "typeParams": Array [],
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 21,
+                      "line": 5,
+                    },
+                    "start": Object {
+                      "column": 12,
+                      "line": 5,
+                    },
+                  },
+                  "nodeId": 8,
                   "nodeType": 86,
                   "params": Array [
                     Object {
                       "location": Object {
                         "end": Object {
                           "column": 14,
-                          "line": 4,
+                          "line": 5,
                         },
                         "start": Object {
                           "column": 13,
-                          "line": 4,
+                          "line": 5,
                         },
                       },
-                      "nodeId": 2,
+                      "nodeId": 5,
                       "nodeType": 2,
                       "source": "a",
                     },
@@ -43567,14 +43614,14 @@ Object {
                       "location": Object {
                         "end": Object {
                           "column": 22,
-                          "line": 5,
+                          "line": 6,
                         },
                         "start": Object {
                           "column": 21,
-                          "line": 5,
+                          "line": 6,
                         },
                       },
-                      "nodeId": 8,
+                      "nodeId": 11,
                       "nodeType": 2,
                       "source": "x",
                     },
@@ -43582,14 +43629,14 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 24,
-                        "line": 5,
+                        "line": 6,
                       },
                       "start": Object {
                         "column": 21,
-                        "line": 5,
+                        "line": 6,
                       },
                     },
-                    "nodeId": 9,
+                    "nodeId": 12,
                     "nodeType": 80,
                     "params": Array [],
                     "typeParams": Array [],
@@ -43597,28 +43644,28 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 24,
-                      "line": 5,
+                      "line": 6,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 5,
+                      "line": 6,
                     },
                   },
-                  "nodeId": 10,
+                  "nodeId": 13,
                   "nodeType": 86,
                   "params": Array [
                     Object {
                       "location": Object {
                         "end": Object {
                           "column": 14,
-                          "line": 5,
+                          "line": 6,
                         },
                         "start": Object {
                           "column": 13,
-                          "line": 5,
+                          "line": 6,
                         },
                       },
-                      "nodeId": 6,
+                      "nodeId": 9,
                       "nodeType": 2,
                       "source": "a",
                     },
@@ -43626,14 +43673,14 @@ Object {
                       "location": Object {
                         "end": Object {
                           "column": 17,
-                          "line": 5,
+                          "line": 6,
                         },
                         "start": Object {
                           "column": 16,
-                          "line": 5,
+                          "line": 6,
                         },
                       },
-                      "nodeId": 7,
+                      "nodeId": 10,
                       "nodeType": 2,
                       "source": "b",
                     },
@@ -43645,14 +43692,14 @@ Object {
                       "location": Object {
                         "end": Object {
                           "column": 25,
-                          "line": 6,
+                          "line": 7,
                         },
                         "start": Object {
                           "column": 24,
-                          "line": 6,
+                          "line": 7,
                         },
                       },
-                      "nodeId": 14,
+                      "nodeId": 17,
                       "nodeType": 2,
                       "source": "x",
                     },
@@ -43660,14 +43707,14 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 27,
-                        "line": 6,
+                        "line": 7,
                       },
                       "start": Object {
                         "column": 24,
-                        "line": 6,
+                        "line": 7,
                       },
                     },
-                    "nodeId": 15,
+                    "nodeId": 18,
                     "nodeType": 80,
                     "params": Array [],
                     "typeParams": Array [],
@@ -43675,28 +43722,28 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 27,
-                      "line": 6,
+                      "line": 7,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 6,
+                      "line": 7,
                     },
                   },
-                  "nodeId": 16,
+                  "nodeId": 19,
                   "nodeType": 86,
                   "params": Array [
                     Object {
                       "location": Object {
                         "end": Object {
                           "column": 14,
-                          "line": 6,
+                          "line": 7,
                         },
                         "start": Object {
                           "column": 13,
-                          "line": 6,
+                          "line": 7,
                         },
                       },
-                      "nodeId": 11,
+                      "nodeId": 14,
                       "nodeType": 2,
                       "source": "a",
                     },
@@ -43704,14 +43751,14 @@ Object {
                       "location": Object {
                         "end": Object {
                           "column": 17,
-                          "line": 6,
+                          "line": 7,
                         },
                         "start": Object {
                           "column": 16,
-                          "line": 6,
+                          "line": 7,
                         },
                       },
-                      "nodeId": 12,
+                      "nodeId": 15,
                       "nodeType": 2,
                       "source": "b",
                     },
@@ -43719,14 +43766,14 @@ Object {
                       "location": Object {
                         "end": Object {
                           "column": 20,
-                          "line": 6,
+                          "line": 7,
                         },
                         "start": Object {
                           "column": 19,
-                          "line": 6,
+                          "line": 7,
                         },
                       },
-                      "nodeId": 13,
+                      "nodeId": 16,
                       "nodeType": 2,
                       "source": "c",
                     },
@@ -43741,14 +43788,14 @@ Object {
                     "location": Object {
                       "end": Object {
                         "column": 13,
-                        "line": 10,
+                        "line": 11,
                       },
                       "start": Object {
-                        "column": 18,
-                        "line": 8,
+                        "column": 17,
+                        "line": 9,
                       },
                     },
-                    "nodeId": 21,
+                    "nodeId": 23,
                     "nodeType": 33,
                     "statements": Array [
                       Object {
@@ -43757,14 +43804,14 @@ Object {
                             "location": Object {
                               "end": Object {
                                 "column": 17,
-                                "line": 9,
+                                "line": 10,
                               },
                               "start": Object {
                                 "column": 16,
-                                "line": 9,
+                                "line": 10,
                               },
                             },
-                            "nodeId": 18,
+                            "nodeId": 20,
                             "nodeType": 2,
                             "source": "x",
                           },
@@ -43772,14 +43819,14 @@ Object {
                           "location": Object {
                             "end": Object {
                               "column": 19,
-                              "line": 9,
+                              "line": 10,
                             },
                             "start": Object {
                               "column": 16,
-                              "line": 9,
+                              "line": 10,
                             },
                           },
-                          "nodeId": 19,
+                          "nodeId": 21,
                           "nodeType": 80,
                           "params": Array [],
                           "typeParams": Array [],
@@ -43787,14 +43834,14 @@ Object {
                         "location": Object {
                           "end": Object {
                             "column": 20,
-                            "line": 9,
+                            "line": 10,
                           },
                           "start": Object {
                             "column": 16,
-                            "line": 9,
+                            "line": 10,
                           },
                         },
-                        "nodeId": 20,
+                        "nodeId": 22,
                         "nodeType": 34,
                       },
                     ],
@@ -43803,52 +43850,22 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 13,
-                      "line": 10,
+                      "line": 11,
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 8,
+                      "line": 9,
                     },
                   },
-                  "nodeId": 22,
+                  "nodeId": 24,
                   "nodeType": 86,
-                  "params": Array [
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 14,
-                          "line": 8,
-                        },
-                        "start": Object {
-                          "column": 13,
-                          "line": 8,
-                        },
-                      },
-                      "nodeId": 17,
-                      "nodeType": 2,
-                      "source": "a",
-                    },
-                  ],
+                  "params": Array [],
                 },
                 Object {
                   "body": Object {
                     "conclusion": OptionImpl {
-                      "isNone_": false,
-                      "value": Object {
-                        "location": Object {
-                          "end": Object {
-                            "column": 17,
-                            "line": 13,
-                          },
-                          "start": Object {
-                            "column": 16,
-                            "line": 13,
-                          },
-                        },
-                        "nodeId": 27,
-                        "nodeType": 2,
-                        "source": "x",
-                      },
+                      "isNone_": true,
+                      "value": undefined,
                     },
                     "location": Object {
                       "end": Object {
@@ -43857,10 +43874,10 @@ Object {
                       },
                       "start": Object {
                         "column": 18,
-                        "line": 11,
+                        "line": 12,
                       },
                     },
-                    "nodeId": 28,
+                    "nodeId": 29,
                     "nodeType": 33,
                     "statements": Array [
                       Object {
@@ -43869,14 +43886,14 @@ Object {
                             "location": Object {
                               "end": Object {
                                 "column": 17,
-                                "line": 12,
+                                "line": 13,
                               },
                               "start": Object {
                                 "column": 16,
-                                "line": 12,
+                                "line": 13,
                               },
                             },
-                            "nodeId": 24,
+                            "nodeId": 26,
                             "nodeType": 2,
                             "source": "x",
                           },
@@ -43884,14 +43901,14 @@ Object {
                           "location": Object {
                             "end": Object {
                               "column": 19,
-                              "line": 12,
+                              "line": 13,
                             },
                             "start": Object {
                               "column": 16,
-                              "line": 12,
+                              "line": 13,
                             },
                           },
-                          "nodeId": 25,
+                          "nodeId": 27,
                           "nodeType": 80,
                           "params": Array [],
                           "typeParams": Array [],
@@ -43899,14 +43916,14 @@ Object {
                         "location": Object {
                           "end": Object {
                             "column": 20,
-                            "line": 12,
+                            "line": 13,
                           },
                           "start": Object {
                             "column": 16,
-                            "line": 12,
+                            "line": 13,
                           },
                         },
-                        "nodeId": 26,
+                        "nodeId": 28,
                         "nodeType": 34,
                       },
                     ],
@@ -43919,24 +43936,24 @@ Object {
                     },
                     "start": Object {
                       "column": 12,
-                      "line": 11,
+                      "line": 12,
                     },
                   },
-                  "nodeId": 29,
+                  "nodeId": 30,
                   "nodeType": 86,
                   "params": Array [
                     Object {
                       "location": Object {
                         "end": Object {
                           "column": 14,
-                          "line": 11,
+                          "line": 12,
                         },
                         "start": Object {
                           "column": 13,
-                          "line": 11,
+                          "line": 12,
                         },
                       },
-                      "nodeId": 23,
+                      "nodeId": 25,
                       "nodeType": 2,
                       "source": "a",
                     },
@@ -43957,7 +43974,7 @@ Object {
                             "line": 17,
                           },
                         },
-                        "nodeId": 36,
+                        "nodeId": 35,
                         "nodeType": 2,
                         "source": "x",
                       },
@@ -43968,11 +43985,11 @@ Object {
                         "line": 18,
                       },
                       "start": Object {
-                        "column": 24,
+                        "column": 18,
                         "line": 15,
                       },
                     },
-                    "nodeId": 37,
+                    "nodeId": 36,
                     "nodeType": 33,
                     "statements": Array [
                       Object {
@@ -43988,7 +44005,7 @@ Object {
                                 "line": 16,
                               },
                             },
-                            "nodeId": 33,
+                            "nodeId": 32,
                             "nodeType": 2,
                             "source": "x",
                           },
@@ -44003,7 +44020,7 @@ Object {
                               "line": 16,
                             },
                           },
-                          "nodeId": 34,
+                          "nodeId": 33,
                           "nodeType": 80,
                           "params": Array [],
                           "typeParams": Array [],
@@ -44018,7 +44035,7 @@ Object {
                             "line": 16,
                           },
                         },
-                        "nodeId": 35,
+                        "nodeId": 34,
                         "nodeType": 34,
                       },
                     ],
@@ -44034,7 +44051,7 @@ Object {
                       "line": 15,
                     },
                   },
-                  "nodeId": 38,
+                  "nodeId": 37,
                   "nodeType": 86,
                   "params": Array [
                     Object {
@@ -44048,39 +44065,9 @@ Object {
                           "line": 15,
                         },
                       },
-                      "nodeId": 30,
-                      "nodeType": 2,
-                      "source": "a",
-                    },
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 17,
-                          "line": 15,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 15,
-                        },
-                      },
                       "nodeId": 31,
                       "nodeType": 2,
-                      "source": "b",
-                    },
-                    Object {
-                      "location": Object {
-                        "end": Object {
-                          "column": 20,
-                          "line": 15,
-                        },
-                        "start": Object {
-                          "column": 19,
-                          "line": 15,
-                        },
-                      },
-                      "nodeId": 32,
-                      "nodeType": 2,
-                      "source": "c",
+                      "source": "a",
                     },
                   ],
                 },
@@ -44089,156 +44076,32 @@ Object {
                     "conclusion": OptionImpl {
                       "isNone_": false,
                       "value": Object {
-                        "body": Object {
-                          "conclusion": Object {
-                            "location": Object {
-                              "end": Object {
-                                "column": 21,
-                                "line": 23,
-                              },
-                              "start": Object {
-                                "column": 20,
-                                "line": 23,
-                              },
-                            },
-                            "nodeId": 49,
-                            "nodeType": 2,
-                            "source": "x",
-                          },
-                          "location": Object {
-                            "end": Object {
-                              "column": 17,
-                              "line": 24,
-                            },
-                            "start": Object {
-                              "column": 24,
-                              "line": 21,
-                            },
-                          },
-                          "nodeId": 50,
-                          "nodeType": 56,
-                          "statements": Array [
-                            Object {
-                              "expression": Object {
-                                "callee": Object {
-                                  "location": Object {
-                                    "end": Object {
-                                      "column": 21,
-                                      "line": 22,
-                                    },
-                                    "start": Object {
-                                      "column": 20,
-                                      "line": 22,
-                                    },
-                                  },
-                                  "nodeId": 46,
-                                  "nodeType": 2,
-                                  "source": "x",
-                                },
-                                "isRaw": false,
-                                "location": Object {
-                                  "end": Object {
-                                    "column": 23,
-                                    "line": 22,
-                                  },
-                                  "start": Object {
-                                    "column": 20,
-                                    "line": 22,
-                                  },
-                                },
-                                "nodeId": 47,
-                                "nodeType": 80,
-                                "params": Array [],
-                                "typeParams": Array [],
-                              },
-                              "location": Object {
-                                "end": Object {
-                                  "column": 24,
-                                  "line": 22,
-                                },
-                                "start": Object {
-                                  "column": 20,
-                                  "line": 22,
-                                },
-                              },
-                              "nodeId": 48,
-                              "nodeType": 34,
-                            },
-                          ],
-                          "useStatements": Array [],
-                        },
-                        "condition": Object {
-                          "location": Object {
-                            "end": Object {
-                              "column": 23,
-                              "line": 21,
-                            },
-                            "start": Object {
-                              "column": 19,
-                              "line": 21,
-                            },
-                          },
-                          "nodeId": 45,
-                          "nodeType": 2,
-                          "source": "cond",
-                        },
-                        "elseBody": Object {
-                          "conclusion": Object {
-                            "location": Object {
-                              "end": Object {
-                                "column": 21,
-                                "line": 25,
-                              },
-                              "start": Object {
-                                "column": 20,
-                                "line": 25,
-                              },
-                            },
-                            "nodeId": 51,
-                            "nodeType": 2,
-                            "source": "x",
-                          },
-                          "location": Object {
-                            "end": Object {
-                              "column": 17,
-                              "line": 26,
-                            },
-                            "start": Object {
-                              "column": 23,
-                              "line": 24,
-                            },
-                          },
-                          "nodeId": 52,
-                          "nodeType": 58,
-                          "useStatements": Array [],
-                        },
-                        "elseIfClauses": Array [],
                         "location": Object {
                           "end": Object {
                             "column": 17,
-                            "line": 26,
+                            "line": 21,
                           },
                           "start": Object {
                             "column": 16,
                             "line": 21,
                           },
                         },
-                        "nodeId": 53,
-                        "nodeType": 55,
-                        "pseudexType": 0,
+                        "nodeId": 44,
+                        "nodeType": 2,
+                        "source": "x",
                       },
                     },
                     "location": Object {
                       "end": Object {
                         "column": 13,
-                        "line": 27,
+                        "line": 22,
                       },
                       "start": Object {
                         "column": 24,
                         "line": 19,
                       },
                     },
-                    "nodeId": 54,
+                    "nodeId": 45,
                     "nodeType": 33,
                     "statements": Array [
                       Object {
@@ -44254,7 +44117,7 @@ Object {
                                 "line": 20,
                               },
                             },
-                            "nodeId": 42,
+                            "nodeId": 41,
                             "nodeType": 2,
                             "source": "x",
                           },
@@ -44269,7 +44132,7 @@ Object {
                               "line": 20,
                             },
                           },
-                          "nodeId": 43,
+                          "nodeId": 42,
                           "nodeType": 80,
                           "params": Array [],
                           "typeParams": Array [],
@@ -44284,7 +44147,7 @@ Object {
                             "line": 20,
                           },
                         },
-                        "nodeId": 44,
+                        "nodeId": 43,
                         "nodeType": 34,
                       },
                     ],
@@ -44293,14 +44156,14 @@ Object {
                   "location": Object {
                     "end": Object {
                       "column": 13,
-                      "line": 27,
+                      "line": 22,
                     },
                     "start": Object {
                       "column": 12,
                       "line": 19,
                     },
                   },
-                  "nodeId": 55,
+                  "nodeId": 46,
                   "nodeType": 86,
                   "params": Array [
                     Object {
@@ -44314,7 +44177,7 @@ Object {
                           "line": 19,
                         },
                       },
-                      "nodeId": 39,
+                      "nodeId": 38,
                       "nodeType": 2,
                       "source": "a",
                     },
@@ -44329,7 +44192,7 @@ Object {
                           "line": 19,
                         },
                       },
-                      "nodeId": 40,
+                      "nodeId": 39,
                       "nodeType": 2,
                       "source": "b",
                     },
@@ -44344,7 +44207,273 @@ Object {
                           "line": 19,
                         },
                       },
-                      "nodeId": 41,
+                      "nodeId": 40,
+                      "nodeType": 2,
+                      "source": "c",
+                    },
+                  ],
+                },
+                Object {
+                  "body": Object {
+                    "conclusion": OptionImpl {
+                      "isNone_": false,
+                      "value": Object {
+                        "body": Object {
+                          "conclusion": Object {
+                            "location": Object {
+                              "end": Object {
+                                "column": 21,
+                                "line": 27,
+                              },
+                              "start": Object {
+                                "column": 20,
+                                "line": 27,
+                              },
+                            },
+                            "nodeId": 57,
+                            "nodeType": 2,
+                            "source": "x",
+                          },
+                          "location": Object {
+                            "end": Object {
+                              "column": 17,
+                              "line": 28,
+                            },
+                            "start": Object {
+                              "column": 24,
+                              "line": 25,
+                            },
+                          },
+                          "nodeId": 58,
+                          "nodeType": 56,
+                          "statements": Array [
+                            Object {
+                              "expression": Object {
+                                "callee": Object {
+                                  "location": Object {
+                                    "end": Object {
+                                      "column": 21,
+                                      "line": 26,
+                                    },
+                                    "start": Object {
+                                      "column": 20,
+                                      "line": 26,
+                                    },
+                                  },
+                                  "nodeId": 54,
+                                  "nodeType": 2,
+                                  "source": "x",
+                                },
+                                "isRaw": false,
+                                "location": Object {
+                                  "end": Object {
+                                    "column": 23,
+                                    "line": 26,
+                                  },
+                                  "start": Object {
+                                    "column": 20,
+                                    "line": 26,
+                                  },
+                                },
+                                "nodeId": 55,
+                                "nodeType": 80,
+                                "params": Array [],
+                                "typeParams": Array [],
+                              },
+                              "location": Object {
+                                "end": Object {
+                                  "column": 24,
+                                  "line": 26,
+                                },
+                                "start": Object {
+                                  "column": 20,
+                                  "line": 26,
+                                },
+                              },
+                              "nodeId": 56,
+                              "nodeType": 34,
+                            },
+                          ],
+                          "useStatements": Array [],
+                        },
+                        "condition": Object {
+                          "location": Object {
+                            "end": Object {
+                              "column": 23,
+                              "line": 25,
+                            },
+                            "start": Object {
+                              "column": 19,
+                              "line": 25,
+                            },
+                          },
+                          "nodeId": 53,
+                          "nodeType": 2,
+                          "source": "cond",
+                        },
+                        "elseBody": Object {
+                          "conclusion": Object {
+                            "location": Object {
+                              "end": Object {
+                                "column": 21,
+                                "line": 29,
+                              },
+                              "start": Object {
+                                "column": 20,
+                                "line": 29,
+                              },
+                            },
+                            "nodeId": 59,
+                            "nodeType": 2,
+                            "source": "x",
+                          },
+                          "location": Object {
+                            "end": Object {
+                              "column": 17,
+                              "line": 30,
+                            },
+                            "start": Object {
+                              "column": 23,
+                              "line": 28,
+                            },
+                          },
+                          "nodeId": 60,
+                          "nodeType": 58,
+                          "useStatements": Array [],
+                        },
+                        "elseIfClauses": Array [],
+                        "location": Object {
+                          "end": Object {
+                            "column": 17,
+                            "line": 30,
+                          },
+                          "start": Object {
+                            "column": 16,
+                            "line": 25,
+                          },
+                        },
+                        "nodeId": 61,
+                        "nodeType": 55,
+                        "pseudexType": 0,
+                      },
+                    },
+                    "location": Object {
+                      "end": Object {
+                        "column": 13,
+                        "line": 31,
+                      },
+                      "start": Object {
+                        "column": 24,
+                        "line": 23,
+                      },
+                    },
+                    "nodeId": 62,
+                    "nodeType": 33,
+                    "statements": Array [
+                      Object {
+                        "expression": Object {
+                          "callee": Object {
+                            "location": Object {
+                              "end": Object {
+                                "column": 17,
+                                "line": 24,
+                              },
+                              "start": Object {
+                                "column": 16,
+                                "line": 24,
+                              },
+                            },
+                            "nodeId": 50,
+                            "nodeType": 2,
+                            "source": "x",
+                          },
+                          "isRaw": false,
+                          "location": Object {
+                            "end": Object {
+                              "column": 19,
+                              "line": 24,
+                            },
+                            "start": Object {
+                              "column": 16,
+                              "line": 24,
+                            },
+                          },
+                          "nodeId": 51,
+                          "nodeType": 80,
+                          "params": Array [],
+                          "typeParams": Array [],
+                        },
+                        "location": Object {
+                          "end": Object {
+                            "column": 20,
+                            "line": 24,
+                          },
+                          "start": Object {
+                            "column": 16,
+                            "line": 24,
+                          },
+                        },
+                        "nodeId": 52,
+                        "nodeType": 34,
+                      },
+                    ],
+                    "useStatements": Array [],
+                  },
+                  "location": Object {
+                    "end": Object {
+                      "column": 13,
+                      "line": 31,
+                    },
+                    "start": Object {
+                      "column": 12,
+                      "line": 23,
+                    },
+                  },
+                  "nodeId": 63,
+                  "nodeType": 86,
+                  "params": Array [
+                    Object {
+                      "location": Object {
+                        "end": Object {
+                          "column": 14,
+                          "line": 23,
+                        },
+                        "start": Object {
+                          "column": 13,
+                          "line": 23,
+                        },
+                      },
+                      "nodeId": 47,
+                      "nodeType": 2,
+                      "source": "a",
+                    },
+                    Object {
+                      "location": Object {
+                        "end": Object {
+                          "column": 17,
+                          "line": 23,
+                        },
+                        "start": Object {
+                          "column": 16,
+                          "line": 23,
+                        },
+                      },
+                      "nodeId": 48,
+                      "nodeType": 2,
+                      "source": "b",
+                    },
+                    Object {
+                      "location": Object {
+                        "end": Object {
+                          "column": 20,
+                          "line": 23,
+                        },
+                        "start": Object {
+                          "column": 19,
+                          "line": 23,
+                        },
+                      },
+                      "nodeId": 49,
                       "nodeType": 2,
                       "source": "c",
                     },
@@ -44355,28 +44484,28 @@ Object {
               "location": Object {
                 "end": Object {
                   "column": 9,
-                  "line": 28,
+                  "line": 32,
                 },
                 "start": Object {
                   "column": 8,
                   "line": 3,
                 },
               },
-              "nodeId": 56,
+              "nodeId": 64,
               "nodeType": 79,
             },
           },
           "location": Object {
             "end": Object {
               "column": 5,
-              "line": 29,
+              "line": 33,
             },
             "start": Object {
               "column": 10,
               "line": 2,
             },
           },
-          "nodeId": 57,
+          "nodeId": 65,
           "nodeType": 33,
           "statements": Array [],
           "useStatements": Array [],
@@ -44386,7 +44515,7 @@ Object {
         "location": Object {
           "end": Object {
             "column": 5,
-            "line": 29,
+            "line": 33,
           },
           "start": Object {
             "column": 27,
@@ -44408,7 +44537,7 @@ Object {
           "nodeType": 2,
           "source": "foo",
         },
-        "nodeId": 58,
+        "nodeId": 66,
         "nodeType": 27,
         "params": Array [],
         "returnAnnotation": OptionImpl {
@@ -44423,7 +44552,7 @@ Object {
     "location": Object {
       "end": Object {
         "column": 1,
-        "line": 30,
+        "line": 34,
       },
       "start": Object {
         "column": 4,
@@ -44446,7 +44575,7 @@ Object {
       "nodeType": 2,
       "source": "LambdaExpression",
     },
-    "nodeId": 59,
+    "nodeId": 67,
     "nodeType": 7,
     "superClass": OptionImpl {
       "isNone_": true,

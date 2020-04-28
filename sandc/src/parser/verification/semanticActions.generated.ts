@@ -5603,6 +5603,32 @@ const semanticActions = {
     return $$;
   },
 
+  "lambdaExpression -> \\ -> expression"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["expression"],
+  ): TysonTypeDict["lambdaExpression"] {
+    let $$: TysonTypeDict["lambdaExpression"];
+    $$ = yy.createNode(yy.NodeType.LambdaExpression, yylstack["@$"], {
+      params: [],
+      body: $3,
+    });
+    return $$;
+  },
+
+  "lambdaExpression -> \\ -> methodBody"(
+    yylstack: { "@$": TokenLocation },
+
+    $3: TysonTypeDict["methodBody"],
+  ): TysonTypeDict["lambdaExpression"] {
+    let $$: TysonTypeDict["lambdaExpression"];
+    $$ = yy.createNode(yy.NodeType.LambdaExpression, yylstack["@$"], {
+      params: [],
+      body: $3,
+    });
+    return $$;
+  },
+
   "lambdaExpression -> \\ oneOrMoreCommaSeparatedIdentifiers -> expression"(
     yylstack: { "@$": TokenLocation },
 

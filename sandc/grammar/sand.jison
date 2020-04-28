@@ -1832,7 +1832,11 @@ anonymousInnerClassItem
     ;
 
 lambdaExpression
-    : "\" oneOrMoreCommaSeparatedIdentifiers "->" expression
+    : "\" "->" expression
+        { $$ = yy.createNode(yy.NodeType.LambdaExpression, @$, { params: [], body: $3 }); }
+    | "\" "->" methodBody
+        { $$ = yy.createNode(yy.NodeType.LambdaExpression, @$, { params: [], body: $3 }); }
+    | "\" oneOrMoreCommaSeparatedIdentifiers "->" expression
         { $$ = yy.createNode(yy.NodeType.LambdaExpression, @$, { params: $2, body: $4 }); }
     | "\" oneOrMoreCommaSeparatedIdentifiers "->" methodBody
         { $$ = yy.createNode(yy.NodeType.LambdaExpression, @$, { params: $2, body: $4 }); }

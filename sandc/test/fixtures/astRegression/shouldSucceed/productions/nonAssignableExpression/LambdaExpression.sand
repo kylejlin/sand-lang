@@ -1,10 +1,14 @@
 pub class LambdaExpression {
     foo() {
         [
+            \ -> x(),
             \a -> x(),
             \a, b -> x(),
             \a, b, c -> x(),
 
+            \ -> {
+                x();
+            },
             \a -> {
                 x();
             },
