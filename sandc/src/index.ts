@@ -1,4 +1,4 @@
-import parser from "./parser";
+import { parseFiles } from "./parser";
 import SandScanner from "./parser/addApi/scanner";
 import { EOF, INVALID } from "./types/tokens";
 
@@ -8,7 +8,9 @@ const src =
 function parse() {
   console.log("Parsing...");
 
-  parser.parse(src).match({
+  const contentMap = new Map([["src/App.sand", src]]);
+
+  parseFiles(contentMap).match({
     ok: ast => {
       console.log("ast: ", ast);
     },

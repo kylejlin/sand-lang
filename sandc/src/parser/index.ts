@@ -9,18 +9,39 @@ import {
   parser as generatedParser,
   SandParserGeneratedByJison,
 } from "./parser.generated";
+import { Yy } from "../types/yy";
 
 addApi(generatedParser);
 
 const wrappedParser = wrapGeneratedParser(generatedParser);
 
-export default wrappedParser;
+export function parseFiles(
+  fileContentMap: Map<string, string>,
+): Result<ast.Program, ParseError> {
+  const fileNodeMapEntries: [string, ast.SourceFile][] = [];
+  for (const [filePath, fileContent] of fileContentMap.entries()) {
+    const parseResult = wrappedParser.parse(fileContent);
+    if (parseResult.isErr()) {
+      return parseResult;
+    }
+    fileNodeMapEntries.push([filePath, parseResult.unwrap()]);
+  }
+  const fileNodeMap = new Map(fileNodeMapEntries);
+  const program: ast.Program = {
+    nodeType: ast.NodeType.Program,
+    files: fileNodeMap,
+  };
+  return result.ok(program);
+}
 
 function wrapGeneratedParser(
   generated: SandParserGeneratedByJison,
 ): SandParser {
   return {
-    parse(input: string): Result<ast.FileNode, ParseError> {
+    parse(input: string): Result<ast.SourceFile, ParseError> {
+      const yy: Yy = generatedParser.yy;
+      yy.resetNodeIdCounter();
+
       try {
         return result.ok(generated.parse(input));
       } catch (e) {

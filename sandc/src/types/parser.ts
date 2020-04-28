@@ -4,7 +4,7 @@ import * as ast from "./ast";
 import { TokenType } from "./tokens";
 
 export interface SandParser {
-  parse(input: string): Result<ast.FileNode, ParseError>;
+  parse(input: string): Result<ast.SourceFile, ParseError>;
 }
 
 export type ParseError = UnexpectedTokenError;

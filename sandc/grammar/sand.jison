@@ -43,13 +43,8 @@
 %% /* Sand grammar */
 
 file
-    : beginningOfFile optPackageStatement optImportStatements optUseStatements pubClassOrInterfaceDeclaration optPrivClassOrInterfaceDeclarations EOF
-        { return yy.createNode(yy.NodeType.FileNode, @$, { packageStatement: $2, importStatements: $3, useStatements: $4, pubClassOrInterfaceDeclaration: $5, privClassOrInterfaceDeclarations: $6 }); }
-    ;
-
-beginningOfFile
-    : %empty
-        { yy.resetNodeIdCounter(); $$ = undefined; }
+    : optPackageStatement optImportStatements optUseStatements pubClassOrInterfaceDeclaration optPrivClassOrInterfaceDeclarations EOF
+        { return yy.createNode(yy.NodeType.SourceFile, @$, { packageStatement: $1, importStatements: $2, useStatements: $3, pubClassOrInterfaceDeclaration: $4, privClassOrInterfaceDeclarations: $5 }); }
     ;
 
 optPackageStatement

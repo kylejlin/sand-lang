@@ -6,7 +6,6 @@ export declare const yy: Yy;
 
 export interface TysonTypeDict extends TokenTypeDict, NodeTypeDict {
   optTrailingComma: unknown;
-  beginningOfFile: unknown;
 }
 
 interface TokenTypeDict
@@ -187,7 +186,7 @@ interface NodeTypeDict {
     | ast.ClassDeclaration
     | ast.InterfaceDeclaration
   )[];
-  file: ast.FileNode;
+  file: ast.SourceFile;
   packageStatement: ast.PackageStatement;
   oneOrMoreDotSeparatedIdentifiers: ast.Identifier[];
   identifier: ast.Identifier;

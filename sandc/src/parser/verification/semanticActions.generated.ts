@@ -9,30 +9,23 @@ interface TokenLocation {
 }
 
 const semanticActions = {
-  "file -> beginningOfFile optPackageStatement optImportStatements optUseStatements pubClassOrInterfaceDeclaration optPrivClassOrInterfaceDeclarations EOF"(
+  "file -> optPackageStatement optImportStatements optUseStatements pubClassOrInterfaceDeclaration optPrivClassOrInterfaceDeclarations EOF"(
     yylstack: { "@$": TokenLocation },
 
-    $2: TysonTypeDict["optPackageStatement"],
-    $3: TysonTypeDict["optImportStatements"],
-    $4: TysonTypeDict["optUseStatements"],
-    $5: TysonTypeDict["pubClassOrInterfaceDeclaration"],
-    $6: TysonTypeDict["optPrivClassOrInterfaceDeclarations"],
+    $1: TysonTypeDict["optPackageStatement"],
+    $2: TysonTypeDict["optImportStatements"],
+    $3: TysonTypeDict["optUseStatements"],
+    $4: TysonTypeDict["pubClassOrInterfaceDeclaration"],
+    $5: TysonTypeDict["optPrivClassOrInterfaceDeclarations"],
   ): TysonTypeDict["file"] {
     let $$: TysonTypeDict["file"];
-    return yy.createNode(yy.NodeType.FileNode, yylstack["@$"], {
-      packageStatement: $2,
-      importStatements: $3,
-      useStatements: $4,
-      pubClassOrInterfaceDeclaration: $5,
-      privClassOrInterfaceDeclarations: $6,
+    return yy.createNode(yy.NodeType.SourceFile, yylstack["@$"], {
+      packageStatement: $1,
+      importStatements: $2,
+      useStatements: $3,
+      pubClassOrInterfaceDeclaration: $4,
+      privClassOrInterfaceDeclarations: $5,
     });
-  },
-
-  "beginningOfFile -> "(): TysonTypeDict["beginningOfFile"] {
-    let $$: TysonTypeDict["beginningOfFile"];
-    yy.resetNodeIdCounter();
-    $$ = undefined;
-    return $$;
   },
 
   "optPackageStatement -> "(): TysonTypeDict["optPackageStatement"] {

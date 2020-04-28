@@ -2,7 +2,8 @@ import { Option } from "rusty-ts";
 import { TextRange } from ".";
 
 export enum NodeType {
-  FileNode,
+  Program,
+  SourceFile,
   PackageStatement,
   Identifier,
   SingleItemImportStatement,
@@ -104,7 +105,8 @@ export enum NodeType {
 export type Node<T extends NodeType = NodeType> = NodeMap[T];
 
 interface NodeMap {
-  [NodeType.FileNode]: FileNode;
+  [NodeType.Program]: Program;
+  [NodeType.SourceFile]: SourceFile;
   [NodeType.PackageStatement]: PackageStatement;
   [NodeType.Identifier]: Identifier;
   [NodeType.SingleItemImportStatement]: SingleItemImportStatement;
@@ -203,8 +205,14 @@ interface NodeMap {
   [NodeType.ParenthesizedExpression]: ParenthesizedExpression;
 }
 
-export interface FileNode {
-  nodeType: NodeType.FileNode;
+export interface Program {
+  nodeType: NodeType.Program;
+
+  files: Map<string, SourceFile>;
+}
+
+export interface SourceFile {
+  nodeType: NodeType.SourceFile;
 
   packageStatement: Option<PackageStatement>;
   importStatements: ImportStatement[];

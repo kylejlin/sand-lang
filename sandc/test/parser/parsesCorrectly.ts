@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import recursiveReadDir from "recursive-readdir";
-import parser from "../../src/parser";
-import stringifyAst from "../../src/stringifyAst";
+import { parseFiles } from "../../src/parser";
+import stringifyNode from "../../src/stringifyNode";
 
 interface ParsesCorrectlyTesterOptions {
   pathToSuccessCaseDirectory: string;
@@ -25,10 +25,14 @@ export function testParserParsesCorrectly({
     );
 
     for (const [fileName, fileContent] of fileContentMap) {
-      const parseResult = parser.parse(fileContent);
+      const fakePathToFile = path.posix.join("src", fileName);
+      const contentMap = new Map([[fakePathToFile, fileContent]]);
+      const parseResult = parseFiles(contentMap);
       parseResult.match({
-        ok(ast) {
-          expect(ast).toMatchSnapshot(fileName + " AST");
+        ok(program) {
+          expect(program.files.get(fakePathToFile)).toMatchSnapshot(
+            fileName + " AST",
+          );
         },
 
         err(err) {
@@ -49,18 +53,20 @@ export function testParserParsesCorrectly({
     );
 
     for (const [fileName, fileContent] of fileContentMap) {
-      const parseResult = parser.parse(fileContent);
+      const fakePathToFile = path.posix.join("src", fileName);
+      const contentMap = new Map([[fakePathToFile, fileContent]]);
+      const parseResult = parseFiles(contentMap);
       parseResult.match({
         err(err) {
           expect(err).toMatchSnapshot(fileName + " parse error");
         },
 
-        ok(ast) {
+        ok(program) {
           fail(
             "Expected a parse error when parsing " +
               fileName +
               " but successfully parsed.\nHere's the AST:\n\n" +
-              /* stringifyAst(ast)*/ "TODO",
+              stringifyNode(program),
           );
         },
       });
