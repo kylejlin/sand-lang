@@ -1,0 +1,21 @@
+pub primitive Flag extends int {
+    values {
+        NO_FLAG = 0,
+        FLAG,
+        QUESTION,
+    }
+
+    pub toggle(): int {
+        switch this {
+            case NO_FLAG {
+                FLAG
+            }
+            case FLAG {
+                QUESTION
+            }
+            else {
+                NO_FLAG
+            }
+        }
+    }
+}

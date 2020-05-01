@@ -1,0 +1,18 @@
+pub class Symbol {
+    static SYMBOLS = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K"];
+
+    pub static expectValue(_ symbol: String): int throws InvalidMoveException {
+        let upperCase = symbol.toUpperCase();
+        for @i in SYMBOLS {
+            if upperCase ~= SYMBOLS[i] {
+                return i + 1;
+            }
+        }
+
+        throw InvalidMoveException("{symbol} is not a valid card.");
+    }
+
+    pub static symbolOf(_ value: int): String {
+        SYMBOLS[i - 1]
+    }
+}

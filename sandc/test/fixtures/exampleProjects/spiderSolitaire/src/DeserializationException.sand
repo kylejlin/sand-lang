@@ -1,0 +1,5 @@
+pub class DeserializationException extends Exception {
+    pub new() {
+        super("DeserializationException");
+    }
+}

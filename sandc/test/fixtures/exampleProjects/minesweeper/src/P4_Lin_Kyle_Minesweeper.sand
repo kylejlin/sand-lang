@@ -1,0 +1,347 @@
+import javafx.animation.AnimationTimer;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+
+pub class P4_Lin_Kyle_Minesweeper extends Application {
+    pub static VERSION = "v1.0.0";
+
+    static SMILEY = Image(fromUri: "file:images/face_smile.gif");
+    static DEAD = Image(fromUri: "file:images/face_dead.gif");
+    static WIN_FACE = Image(fromUri: "file:images/face_win.gif");
+
+    var model: Model;
+    var view: View;
+
+    var webView: WebView;
+
+    var tutorialScene: Scene;
+
+    var face: ImageView;
+    var timeElapsedLabel: Label;
+    var minesRemainingLabel: Label;
+
+    var newBeginnerGame: MenuItem;
+    var exitGame: MenuItem;
+    var setMineCountButton: MenuItem;
+    var aboutButton: MenuItem;
+    var tutorialButton: MenuItem;
+    var tutorialExitButton: MenuItem;
+
+    var elapsedSecs: double;
+
+    pub static main(args: String[]) {
+        launch(args);
+    }
+
+    pub override start(stage: Stage) throws Exception {
+        initTutorialScene();
+
+        stage#title = "Minesweeper";
+        stage#resizable = false;
+
+        let root = BorderPane();
+        let scene = Scene(root: '', width: 400, height: 400);
+        stage.setScene(scene);
+
+        
+        root#top = createMenuBar();
+        root#center = createCenterBox();
+
+        initEventHandlers(stage: '', primaryScene: scene);
+        initTimer();
+
+        stag.show();
+    }
+
+    initTutorialScene() {
+        webView = WebView();
+        webView#engine.loadContent(Html.TUTORIAL_CONTENT);
+
+        let tutorialRoot = VBox();
+        tutorialRoot#alignment = Pos.CENTER;
+        tutorialScene = Scene(root: tutorialRoot, width: 800, height: 400);
+        tutorialExitButton = Button("Exit tutorial");
+
+        tutorialRoot#children.addAll(webView, tutorialExitButton);
+    }
+
+    createMenuBar(): MenuBar {
+        let menuBar = MenuBar();
+        
+        let gameMenu = Menu("Game");
+        newBeginnerGame = MenuItem("New Beginner Game");
+        exitGame = MenuItem("Exit Game");
+        gameMenu#items.addAll(newBeginnerGame, exitGame);
+
+        let optionsMenu = Menu("Options");
+        setMineCountButton = MenuItem("Set Number of Mines");
+        optionsMenu#items.addAll(setMineCountButton);
+
+        let helpMenu = Menu("Help");
+        tutorialButton = MenuItem("How to Play");
+        aboutButton = MenuItem("About");
+        helpMenu#items.addAll(tutorialButton, aboutButton);
+
+        menuBar.getMenus().addAll(gameMenu, optionsMenu, helpMenu);
+
+        menuBar
+    }
+
+    createCenterBox(): VBox {
+        let center = VBox();
+        center#alignment = Pos.CENTER;
+        root.setCenter(center);
+
+        let statsBox = HBox();
+        statsBox#alignment = Pos.CENTER;
+
+        minesRemainingLabel = Label();
+        face = ImageView(fromImage: SMILEY);
+        timeElapsedLabel = Label("Time elapsed: 0");
+
+        statsBox#children.addAll(minesRemainingLabel, face, timeElapsedLabel);
+
+        model = Model(gridSize: 8, mineCount: 10);
+        view = View(model: '', tileSize: 20.0);
+
+        minesRemainingLabel#text = "Mines remaining: #{model#minesRemaining}";
+
+        let viewBox = VBox();
+        viewBox#alignment = Pos.CENTER;
+        viewBox#children.add(view);
+
+        center#children.addAll(statsBox, viewBox);
+
+        center
+    }
+
+    initEventHandlers(stage: Stage, primaryScene: Scene) {
+        view#onMouseClicked = new EventHandler<MouseEvent> {
+            override handle(event: MouseEvent) {
+                let gridSize = model#gridSize;
+                let tileSize = view#tileSize as int;
+                let col = (event#x / tileSize) as int;
+                let row = (event#y / tileSize) as int;
+                if row in 0 =.. gridSize && col in 0 =..gridSize {
+                    onTileClicked(row: '', col: '', button: event#button);
+                }
+            }
+
+            onTileClicked(row: int, col: int, button: MouseButton) {
+                if button === MouseButton.PRIMARY {
+                    model.initOrRevealIfHidden(row, col);
+                } else if button === MouseButton.SECONDARY {
+                    model.toggleFlagIfLegal(row, col);
+                }
+            }
+        };
+
+        model.addListener(AppMinesweeperListener());
+
+        newBeginnerGame#onAction = \_event -> {
+            model.reset(size: 8, mines: 10);
+        };
+
+        exitGame#onAction = \_event -> {
+            stage.close();
+        };
+
+        setMineCountButton#onAction = \_event -> {
+            onSetMineCountButtonClicked();
+        };
+
+        aboutButton#onAction = \_event -> {
+            alert(title: "About", message: "Minesweeper {VERSION}\n\nCopyright (c) 2020 Kyle Lin");
+        };
+
+        tutorialButton#onAction = \_event -> {
+            stage#scene = tutorialScene;
+            webView#prefWidth = Double.MAX_VALUE;
+            webView#prefHeight = Double.MAX_VALUE;
+            webView.resize(width: stage#width, height: stage#height);
+        };
+
+        tutorialExitButton#onMouseClicked = \_event -> {
+            stage#scene = primaryScene;
+        };
+    }
+
+    initTimer() {
+        let timer = new AnimationTimer {
+            prevTime = -1long;
+
+            override handle(now: long) {
+                if prevTime == -1 {
+                    prevTime = now;
+                } else {
+                    let delta = now - prevTime;
+
+                    if isTimerRunning() {
+                        addTime(nanos: delta);
+                    }
+
+                    prevTime = now;
+                }
+            }
+        };
+        timer.start();
+    }
+
+    onSetMineCountButtonClicked() {
+        let input = TextInputDialog();
+        input#headerText = "Set amount of mines";
+        input#contentText = "How many mines would you like?";
+
+        let cancel = input#dialogPane.lookupButton(ButtonType.CANCEL) as Button;
+        let cancelHandler = CancelHandler();
+        cancel.addEventFilter(ActionEvent.ACTION, cancelHandler);
+
+        input.showAndWait();
+        let answer = input#editor#text;
+
+        if cancelHandler.wasCancelPressed() {
+            return;
+        }
+
+        if answer ~= "" {
+            invalidInputError("Aborting due to lack of input.");
+            return;
+        }
+
+        if !isInt(answer) {
+            invalidInputError(answer + " is not a valid integer.");
+            return;
+        }
+
+        let mineCount = Integer.parseInt(answer);
+        let gridSize = model#gridSize;
+        let maxMines = gridSize * gridSize - 9;
+
+        if mineCount > maxMines {
+            alert("You can only place " + maxMines + " mines.");
+            return;
+        }
+
+        if (mineCount < 1) {
+            invalidInputError("You need to place at least one mine.");
+            return;
+        }
+
+        model = Model(gridSize: '', mineCount: '');
+        view = View(model: '', tileSize: 20.0);
+        handleModelReset();
+    }
+
+    handleModelReset() {
+        let listener = AppMinesweeperListener();
+        listener.handleInit();
+        model.addListener(listener);
+        face#image = SMILEY;
+    }
+
+    isTimerRunning(): boolean {
+        model.isInitialized() && !(model.hasWon() || model.hasLost())
+    }
+
+    addTime(nanos: long) {
+        elapsedSecs += nanos * 1e-9;
+        let rounded = elapsedSecs as int;
+        timeElapsedLabel#text = "Time elapsed: #{rounded}";
+    }
+
+    static isInt(_ s: String?): boolean {
+        if s == null {
+            false
+        } else {
+            try {
+                Integer.parseInt(nonNull);
+                true
+            } catch e: NumberFormatException {
+                false
+            }
+        }
+    }
+
+    static alert(_ message: String) {
+        let a = Alert(AlertType.INFORMATION, message, ButtonType.OK);
+        a.showAndWait();
+    }
+
+    static alert(title: String, message: String) {
+        let a = Alert(AlertType.INFORMATION, message, ButtonType.OK);
+        a#headerText = title;
+        a.showAndWait();
+    }
+
+    static invalidInputError(_ message: String) {
+        let a = Alert(AlertType.ERROR, message, ButtonType.OK);
+        a#headerText = "Invalid input";
+        a.showAndWait();
+    }
+
+    class AppMinesweeperListener implements MinesweeperListener {
+        pub override handleInit(_model: Model) {
+            elapsedSecs = 0;
+            timeElapsedLabel.setText("Time elapsed: 0");
+        }
+
+        pub override handleEnd(model: Model) {
+            if model.hasWon() {
+                handleWin();
+            } else {
+                handleLoss();
+            }
+        }
+
+        handleWin() {
+            face#image = WIN_FACE;
+            alert("Congratulations, you won!");
+        }
+
+        handleLoss() {
+            face#image = DEAD;
+            alert("Sorry, you lost.");
+        }
+
+        pub override handleUpdate(model: Model) {
+            minesRemainingLabel#text = "Mines remaining: #{model#minesRemaining}";
+        }
+    }
+}
+
+class CancelHandler implements EventHandler<ActionEvent> {
+    cancelPressed: boolean;
+
+    pub new() {
+        cancelPressed = false;
+    }
+
+    pub override handle(event: ActionEvent) {
+        cancelPressed = true;
+    }
+
+    pub wasCancelPressed(): boolean {
+        cancelPressed
+    }
+}

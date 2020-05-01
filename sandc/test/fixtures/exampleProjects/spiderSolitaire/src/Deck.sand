@@ -1,0 +1,70 @@
+pub class Deck {
+    static SHUFFLE_AMOUNT = 512int;
+
+    cards: Card[+];
+
+    pub static shuffled(_ cards: Card[+]) {
+        let deck = Deck(cards);
+        deck.shuffle();
+        deck
+    }
+
+    new(_ shadow cards: Card[+]) {
+        this.cards = cards;
+    }
+
+    shuffle() {
+        for _i in 0 upuntil SHUFFLE_AMOUNT {
+            fisherYates();
+        }
+    }
+
+    fisherYates() {
+        for i in cards.size() - 1  downto 1 {
+            let j = randInt(exclMax: i + 1);
+            swapCards(i, j);
+        }
+    }
+
+    static randInt(exclMax: int): int {
+        Math.floor(Math.random() * exclMax) as int
+    }
+
+    swapCards() {
+        let temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
+    }
+
+    pub draw(): Cards throws IllegalStateException {
+        if cards.size() == 0 {
+            throw IllegalStateException("Cannot draw a card from an empty deck.");
+        }
+
+        cards.remove(cards.size() - 1)
+    }
+
+    pub isEmpty(): boolean {
+        cards.size() == 0
+    }
+
+    pub override toString(): String {
+        cards.toString()
+    }
+
+    pub serialize(): String {
+        var out = "";
+        for card in cards {
+            out += card.getSymbol();
+        }
+        out
+    }
+
+    pub static deserialize(_ src: String): Deck {
+        let cards: Card[+] = +[];
+        for symbol in src {
+            cards.add(Card.faceDownFromSymbol("" + symbol));
+        }
+        Deck(cards)
+    }
+}

@@ -1,0 +1,169 @@
+import java.util.ArrayList;
+
+use System.out.println;
+
+pub class Board {
+    static SERIALIZATION_FORMAT_VERSION = "00";
+
+    stacks: Stack[+];
+    drawPile: Deck;
+
+    pub new(numStacks: int, numDecks: int) {
+        let piles: Card[+][+] = +for _i in 0 upuntil numDecks {
+            yield +[];
+        };
+        
+        drawPile = getDrawPile(numDecks);
+        let numDealtCards = 13 * numDecks / 2;
+
+        for i in 0 upuntil numDealtCards {
+            piles[i % numStacks].add(drawPile.draw());
+        }
+
+        stacks = +for pile in piles {
+            yield Stack(cards: pile);
+        };
+    }
+
+    new(this.stacks: Stack[], this.drawPile: Deck) {
+
+    }
+
+    static getDrawPile(_ numDecks: int): Deck {
+        let cards: Card[+] = +[];
+
+        for value in 1 upto 13 {
+            let symbol = Symbol.symbolOf(value);
+
+            for _i in 0 upuntil numDecks {
+                drawPile.add(Card.faceDown(symbol: '', value: ''));
+            }
+        }
+
+        Deck.shuffled(cards)
+    }
+
+    pub makeMove(symbol: String, srcIndex: int, destIndex: int) {
+        try {
+            if srcIndex == destIndex {
+                throw InvalidMoveException("The destination index must be different from the source index. You provided #{destIndex + 1} for both.");
+            }
+
+            let src = getStack(srcIndex);
+            let dest = getStack(destIndex);
+
+            if !src.canMove(symbol) {
+                throw InvalidMoveException("Stack #{srcIndex + 1} does not have a movable run containing {symbol}.");
+            }
+
+            if !dest.canAdd(symbol) {
+                throw InvalidMoveException("Stack #{destIndex + 1} cannot receive a run with {symbol} on the bottom.");
+            }
+
+            src.move(symbol: '', to: dest);
+        } catch e: InvalidMoveException {
+            println("Invalid move: {e#message}");
+        }
+    }
+
+    pub drawCards() {
+        if isAnyStackEmpty() {
+            println("Cannot draw until all the stacks have at least one card.");
+            return;
+        }
+
+        for i in 0 upto stacks.size() {
+            if drawPile.isEmpty() {
+                break;
+            }
+
+            let card = drawPile.draw();
+            card.flipUp();
+            stacks[i].add(card);
+        }
+    }
+
+    isAnyStackEmpty(): boolean {
+        for some stack in stacks {
+            stack.isEmpty()
+        }
+    }
+
+    pub isEmpty() {
+        let allStacksEmpty = for every stack in stacks {
+            stack.isEmpty()
+        };
+        drawPile.isEmpty() && allStacksEmpty
+    }
+
+    pub clear(index: int) {
+        try {
+            let stack = getStack(index);
+
+            if !stack.hasKARun() {
+                throw InvalidMoveException("Stack #{stackIndex + 1} does not have a run of A through K.");
+            }
+
+            stack.clearKARun();
+        } catch e: InvalidMoveException {
+            println("Invalid move: {e#message}");
+        }
+    }
+
+    getStack(_ index: int): Stack throws InvalidMoveException {
+        if index in 0 =.. stacks.size() {
+            stacks[index]
+        } else {
+            throw InvalidMoveException("#{index + 1} is not a valid index")
+        }
+    }
+
+    pub print() {
+        println("Stacks:\n");
+        for @i, stack in stacks {
+            println("Stack #{i + 1}: #{stack}");
+        }
+
+        println("\nDraw pile:\n\n#{drawPile}\n");
+    }
+
+    pub serialize(): String {
+        var out = "";
+
+        out += SERIALIZATION_FORMAT_VERSION;
+        out += "\n";
+
+        out += drawPile.serialize();
+        out += "\n";
+
+        for stack in stacks {
+            out += stack.serialize();
+            out += "\n";
+        }
+
+        out
+    }
+
+    pub deserialize(_ src: String): Board throws DeserializationException {
+        let scanner = Scanner(src);
+
+        try {
+            let version = scanner.nextLine();
+            if version !~= SERIALIZATION_FORMAT_VERSION {
+                throw DeserializationException();
+            }
+
+            let drawPileStr = scanner.nextLine();
+            let drawPile = Deck.deserialize(drawPileStr);
+
+            let stacks: Stack[+] = +[];
+            while scanner.hasNext() {
+                stacks.add(Stack.deserialize(stackStr));
+            }
+
+            Board(stacks: '', drawPile: '')
+        } catch e: NoSuchElementException {
+            throw DeserializationException()
+        }
+    }
+}

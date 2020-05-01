@@ -1,0 +1,7 @@
+pub interface MinesweeperListener {
+    handleUpdate(model: Model);
+
+    handleInit(model: Model);
+
+    handleEnd(model: Model);
+}

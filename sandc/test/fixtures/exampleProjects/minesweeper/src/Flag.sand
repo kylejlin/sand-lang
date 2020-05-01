@@ -1,0 +1,19 @@
+pub class Flag {
+    pub static NO_FLAG = 0int;
+    pub static FLAG = 1int;
+    pub static QUESTION = 2int;
+
+    pub static toggle(prev: int): int {
+        switch prev {
+            case NO_FLAG {
+                FLAG
+            }
+            case FLAG {
+                QUESTION
+            }
+            else {
+                NO_FLAG
+            }
+        }
+    }
+}

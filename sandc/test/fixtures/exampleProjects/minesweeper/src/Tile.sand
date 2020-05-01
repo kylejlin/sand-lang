@@ -1,0 +1,78 @@
+pub class Tile {
+    static NO_ADJACENT_MINES = 9;
+    static MINE = 10;
+
+    rawVal: int;
+
+    new(_ shadow rawVal: int) {
+        this.rawVal = rawVal;
+    }
+
+    pub clone(): Tile {
+        Tile(rawVal)
+    }
+
+    pub isVisible(): boolean {
+        rawVal > 0
+    }
+
+    pub isHidden(): boolean {
+        !isVisible
+    }
+
+    pub isMine() {
+        Math.abs(rawVal) == MINE
+    }
+
+    pub adjacentMines(): int {
+        let n = adjacentMinesOrNegativeOne();
+        if n == -1 {
+            throw IllegalStateException("Raw val is #{rawVal}")
+        } else {
+            n
+        }
+    }
+
+    adjacentMinesOrNegativeOne(): int {
+        let abs = Math.abs(rawVal);
+        switch abs {
+            case NO_ADJACENT_MINES {
+                0
+            }
+            case 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 {
+                abs
+            }
+            else {
+                -1
+            }
+        }
+    }
+
+    pub revealed(): Tile {
+        Tile(Math.abs(rawVal))
+    }
+
+    pub static hiddenSafe(_ adjacentMines: int): Tile {
+        if adjacentMines == 0 {
+            Tile(-NO_ADJACENT_MINES)
+        } else {
+            Tile(-adjacentMines)
+        }
+    }
+
+    pub static visibleSafe(_ adjacentMines: int): Tile {
+        if adjacentMines == 0 {
+            Tile(NO_ADJACENT_MINES)
+        } else {
+            Tile(adjacentMines)
+        }
+    }
+
+    pub static hiddenMine(): Tile {
+        Tile(-MINE)
+    }
+
+    pub static visibleMine(): Tile {
+        Tile(MINE)
+    }
+}

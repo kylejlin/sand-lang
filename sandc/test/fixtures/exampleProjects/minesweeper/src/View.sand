@@ -1,0 +1,191 @@
+import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+pub class View extends Group implements MinesweeperListener {
+    static HIDDEN = Image(fromUri: "file:images/blank.gif");
+    static VISIBLE_SAFE = [
+        Image(fromUri: "file:images/num_0.gif"),
+		Image(fromUri: "file:images/num_1.gif"),
+        Image(fromUri: "file:images/num_2.gif"),
+        Image(fromUri: "file:images/num_3.gif"),
+		Image(fromUri: "file:images/num_4.gif"),
+        Image(fromUri: "file:images/num_5.gif"),
+        Image(fromUri: "file:images/num_6.gif"),
+		Image(fromUri: "file:images/num_7.gif"),
+        Image(fromUri: "file:images/num_8.gif"),
+    ];
+
+    static EXPLODED_MINE = Image(fromUri: "file:images/bomb_death.gif");
+
+	static REVEALED_MINE = Image(fromUri: "file:images/bomb_revealed.gif");
+	static FALSE_ALARM = Image(fromUri: "file:images/bomb_wrong.gif");
+
+	static FLAGS = [
+        null,
+        Image(fromUri: "file:images/bomb_flagged.gif"),
+		Image(fromUri: "file:images/bomb_question.gif"),
+    ];
+
+    model: Model;
+    mineView: ImageView[][];
+    flagView: ImageView[][];
+
+    (pub get) tileSize: double;
+
+    pub new(withModel this.model: Model, this.tileSize: double) {
+        render();
+
+        mineView = for row, col in 0 upuntil model#gridSize {
+            let view = ImageView();
+            view#preserveRatio = true;
+            view#fitWidth = tileSize;
+            view#translateX = col * tileSize;
+            view#translateY = row * tileSize;
+
+            #children.add(view);
+
+            yield view;
+        };
+        flagView = for row, col in 0 upuntil model#gridSize {
+            let view = ImageView();
+            view#preserveRatio = true;
+            view#fitWidth = tileSize;
+            view#translateX = col * tileSize;
+            view#translateY = row * tileSize;
+
+            #children.add(view);
+            
+            yield view;
+        };
+
+        model.addListener(this);
+    }
+
+    render() {
+        if !model.isInitialized() {
+            renderStartingGrid();
+            return;
+        }
+
+        if model.hasWon() {
+            renderWin();
+            return;
+        }
+
+        if model.hasLost() {
+            renderLoss();
+            return;
+        }
+
+        renderMineFieldAndFlags();
+    }
+
+    renderStartingGrid() {
+        for @_row, @_col, imageView in mineView {
+            imageView#image = HIDDEN;
+        }
+
+        for @_row, @_col, imageView in flagView {
+            imageView#image = null;
+        }
+    }
+
+    renderWin() {
+        let mines = model#mineField;
+
+        for @row, @col, imageView in mineView {
+            let tile = mines[row][col];
+            let image = if tile.isMine() {
+                REVEALED_MINE
+            } else {
+                getImageForTile(tile)
+            };
+            imageView#image = image;
+        }
+
+        for @_row, @_col, imageView in flagView {
+            imageView#image = null;
+        }
+    }
+
+    static getImageForTile(_ tile: Tile): Image {
+        if tile.isHidden() {
+            HIDDEN
+        } else if tile.isMine() {
+            EXPLODED_MINE
+        } else {
+            VISIBLE_SAFE[tile.adjacentMines()]
+        }
+    }
+
+    renderLoss() {
+        let mines = model#mineField;
+        let flags = model#flags;
+
+        for @row, @col, imageView in mineView {
+            let tile = mines[row][col];
+            let flag = flags[row][col];
+
+            let image = if flag == Flag.FLAG {
+                if tile.isMine() {
+                    REVEALED_MINE
+                } else {
+                    FALSE_ALARM
+                }
+            } else {
+                if tile.isMine() {
+                    EXPLODED_MINE
+                } else {
+                    getImageForTile(tile)
+                }
+            };
+            imageView#image = image;
+        }
+
+        for @_row, @_col, imageView in flagView {
+            imageView#image = null;
+        }
+    }
+
+    renderMineFieldAndFlags() {
+        let mines = model#mineField;
+        let flags = model#flags;
+
+        for @row, @col, imageView in mineView {
+            let tile = mines[row][col];
+            let image = getImageForTile(tile);
+            imageView#image = image;
+        }
+
+        for @row, @col, imageView in flagView {
+            let flag = flags[row][col];
+            let image = getImageForFlag(flag);
+            imageView#image = image;
+        }
+    }
+
+    static getImageForFlag(_ flag: int): Image? {
+        FLAGS[flag]
+    }
+
+    pub override handleUpdate(_model: Model) {
+        update();
+    }
+
+    pub override handleReset(_model: Model) {
+
+    }
+
+    pub override handleInit(_model: Model) {
+
+    }
+
+    pub override handleEnd(_model: Model) {
+        
+    }
+
+    update() {
+        render();
+    }
+}

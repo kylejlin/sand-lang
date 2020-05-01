@@ -1,0 +1,51 @@
+pub class Card implements Comparable<Card> {
+    pub static FACE_DOWN_SYMBOL = "X";
+
+    (pub get) symbol: String;
+    (pub get) value: int;
+    (pub get isFaceUp) var faceUp: boolean;
+
+    pub static faceUp(symbol: String, value: int): Card {
+        Card(symbol, value, true)
+    }
+
+    pub static faceDown(symbol: String, value: int): Card {
+        Card(symbol, value, false)
+    }
+
+    new(_ this.symbol: String, _ this.value: int, _ this.faceUp: boolean) {
+        
+    }
+
+    pub static faceDownFromSymbol(_ symbol: String): Card {
+        Card(symbol, Symbol.expectValue(symbol), false)
+    }
+
+    pub isFaceDown(): boolean {
+        !isFaceUp()
+    }
+
+    pub flipUp() {
+        faceUp = true;
+    }
+
+    pub flipDown() {
+        faceUp = false;
+    }
+
+    pub equals(_ other: Card): boolean {
+        compareTo(other) == 0
+    }
+
+    pub override compareTo(_ other: Card): boolean {
+        value - other.value
+    }
+
+    pub override toString(): String {
+        if faceUp {
+            symbol
+        } else {
+            FACE_DOWN_SYMBOL
+        }
+    }
+}

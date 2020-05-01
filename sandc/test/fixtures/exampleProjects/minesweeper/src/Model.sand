@@ -1,0 +1,278 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+pub class Model {
+    (pub get) mineField: Tile[][]?;
+    (pub get) flags: int[][]?;
+
+    (pub get isInitialized) initialized: boolean;
+    (pub get) gridSize: int;
+    mineCount: int;
+
+    listeners: MinesweeperListener[+];
+
+    pub new(shadow gridSize: int, shadow mineCount: int) {
+        mineField = null;
+        flags = null;
+            
+        initialized = false;
+        this.gridSize = gridSize;
+        this.mineCount = mineCount;
+
+        listeners = +[];
+    }
+
+    initAt(row: int, col: int) {
+        if initialized {
+            throw IllegalStateException("Grid has already been initialized");
+        }
+
+        let shadow mineField: Tile?[][] = [static null; gridSize, gridSize];
+        flags = [static 0; gridSize, gridSize];
+
+        this.mineField = placeMinesExceptAt(row, col, mineField: '', mineCount: '');
+
+        initialized = true;
+
+        revealIfHidden(row, col);
+
+        triggerInitEvent();
+
+        if hasWon() {
+            triggerEndEvent();
+        }
+    }
+
+    static placeMinesExceptAt(_ safeRow: int, _ safeCol: int, mineField emptyMineField: Tile?[][], mineCount: int): Tile[][] {
+        let random = Random();
+        let gridSize = mineField.length;
+
+        let mineField = fillWithSafeZeros(emptyMineField: '');
+
+        var minesPlaced = 0int;
+        while minesPlaced < mineCount {
+            let row = random.nextInt(gridSize);
+            let col = random.nextInt(gridSize);
+
+            if row in (safeRow - 1) =.= (safeRow + 1) || col in (safeCol - 1) =.= (safeCol + 1) {
+                continue;
+            }
+
+            if mineField[row][col].isMine() {
+                continue;
+            }
+
+            placeMine(row: '', col: '', mineField: '');
+            minesPlaced += 1;
+        }
+
+        mineField
+    }
+
+    static fillWithSafeZeros(emptyMineField: Tile?[][]): Tile[][] {
+        let gridSize = emptyMineField.length;
+        for @row, @col in emptyMineField {
+            emptyMineField[row][col] = Tile.hiddenSafe(0);
+        }
+        emptyMineField!<Tile[][]>
+    }
+
+    static placeMine(row: int, col: int, mineField: Tile[][]) {
+        mineField[row][col] = Tile.hiddenMine();
+
+        incrementAdjacentMineCountIfTileExists(row, col + 1, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row - 1, col + 1, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row - 1, col, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row - 1, col - 1, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row, col - 1, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row + 1, col - 1, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row + 1, col, mineField: '');
+        incrementAdjacentMineCountIfTileExists(row + 1, col + 1, mineField: '');
+    }
+
+    static incrementAdjacentMineCountIfTileExists(_ row: int, _ col: int, mineField: Tile[][]) {
+        let gridSize = mineField.length;
+        if !(row in 0 =.. gridSize && col in 0 =.. gridSize) {
+            return;
+        }
+
+        let prevTile = mineField![row][col];
+
+        if prevTile.isMine() {
+            return;
+        }
+
+        mineField[row][col] = Tile.hiddenSafe(prevTile.adjacentMines() + 1);
+    }
+
+    pub initOrRevealIfHidden(_ row: int, _ col: int) {
+        if !initialized {
+            initAt(row, col);
+            return;
+        }
+
+        if flags[row][col] != Flag.NO_FLAG {
+            return;
+        }
+
+        if hasWon() || hasLost() {
+            return;
+        }
+
+        revealIfHidden(row, col);
+
+        if hasWon() || hasLost() {
+            triggerEndEvent();
+        }
+    }
+
+    revealIfHidden(_ row: int, _ col: int) {
+        let tile = mineField![row][col];
+
+        if tile.isVisible() {
+            return;
+        }
+
+        if tile.isMine() {
+            mineField![row][col] = Tile.visibleMine();
+            triggerUpdateEvent();
+            return;
+        }
+
+        if tile.adjacentMines() > 0 {
+            mineField![row][col] = tile.revealed();
+            triggerUpdateEvent();
+            return;
+        }
+
+        floodRevealIfHiddenAndInBounds(row, col);
+        triggerUpdateEvent();
+    }
+
+    floodRevealIfHiddenAndInBounds(_ row: int, _ col: int) {
+        if !(row in 0 =.. gridSize && col in 0 =.. gridSize) {
+            return;
+        }
+
+        let tile = mineField![row][col];
+
+        if tile.isVisible() {
+            return;
+        }
+
+        if tile.isMine() {
+            return;
+        }
+
+        mineField![row][col] = tile.revealed();
+
+        if tile.adjacentMines() > 0 {
+            return;
+        }
+
+        floodRevealIfHiddenAndInBounds(row, col + 1);
+        floodRevealIfHiddenAndInBounds(row - 1, col + 1);
+        floodRevealIfHiddenAndInBounds(row - 1, col);
+        floodRevealIfHiddenAndInBounds(row - 1, col - 1);
+        floodRevealIfHiddenAndInBounds(row, col - 1);
+        floodRevealIfHiddenAndInBounds(row + 1, col - 1);
+        floodRevealIfHiddenAndInBounds(row + 1, col);
+        floodRevealIfHiddenAndInBounds(row + 1, col + 1);
+    }
+
+    pub addListener(_ listener: MinesweeperListener) {
+        listeners.add(listener);
+    }
+
+    triggerUpdateEvent() {
+        for listener in listeners {
+            listener.handleUpdate(model: this);
+        }
+    }
+
+    triggerInitEvent() {
+        for listener in listeners {
+            listener.handleInit(model: this);
+        }
+    }
+
+    triggerEndEvent() {
+        for listener in listeners {
+            listener.handleEnd(model: this);
+        }
+    }
+
+    pub toggleFlagIfLegal(_ row: int, _ col: int) {
+        if !initialized {
+            return;
+        }
+
+        if mineField![row][col].isVisible() {
+            return;
+        }
+
+        if hasWon() || hasLost() {
+            return;
+        }
+
+        flags![row][col] = Flag.toggle(prev: flags![row][col]);
+
+        triggerUpdateEvent();
+    }
+
+    pub hasWon(): boolean {
+        #winLossStatus == Status.WIN
+    }
+
+    pub hasLost(): boolean {
+        #winLossStatus == Status.LOSS
+    }
+
+    getWinLossStatus(): int {
+        if !initialized {
+            return Status.INCONCLUSIVE;
+        }
+
+        var isThereAHiddenSafeTile = false;
+
+        for @row, @col, tile in mineField! {
+            if tile.isHidden() && !t.isMine() {
+                isThereAHiddenSafeTile = true;
+            }
+
+            if tile.isVisible() && t.isMine() {
+                return Status.LOSS;
+            }
+        }
+
+        if isThereAHiddenSafeTile {
+            Status.INCONCLUSIVE
+        } else {
+            Status.WIN
+        }
+    }
+
+    pub getMinesRemaining(): int {
+        if !initialized {
+            mineCount
+        } else {
+            mineCount - countFlags()
+        }
+    }
+
+    countFlags(): int {
+        var count = 0int;
+        for @row, @col, flag in flags! {
+            if flag == Flag.FLAG {
+                count += 1;
+            }
+        }
+        count
+    }
+}
+
+class Status {
+    pub static WIN = 0int;
+    pub static LOSS = 1int;
+    pub static INCONCLUSIVE = 2int;
+}

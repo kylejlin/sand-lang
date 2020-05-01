@@ -1,0 +1,133 @@
+import java.util.ArrayList;
+
+pub class Stack {
+    copy sand.methods.String.leftpad;
+
+    static NUMBER_OF_CARDS_HIDDEN_STR_LEN = 4int;
+
+    cards: Card[+];
+    var numberOfCardsHidden: int;
+
+    pub new(this.cards: Card[+]) {
+        numberOfCardsHidden = if cards.isEmpty() {
+            0
+        } else {
+            cards.size() - 1
+        };
+    }
+
+    new(this.cards: Cards[+], this.numberOfCardsHidden: int) {
+        
+    }
+
+    pub override toString(): String {
+        let cardStrings = +for @i, card in cards {
+            yield if i >= numberOfCardsHidden {
+                card#symbol
+            } else {
+                Card.FACE_DOWN_SYMBOL
+            };
+        };
+
+        cardStrings().toString()
+    }
+
+    pub serialize(): String {
+        var out = "";
+        out += leftpad(numberOfCardsHidden, minWidth: NUMBER_OF_CARDS_HIDDEN_STR_LEN, filler: '0');
+        
+        for card in cards {
+            out += cards#symbol;
+        }
+
+        out
+    }
+
+    pub static deserialize(_ src: string): Stack throws DeserializationException {
+        let numberOfCardsHidden = Integer.parseInt(src.substring(0, NUMBER_OF_CARDS_HIDDEN_STR_LEN));
+        let symbols = src.substring(NUMBER_OF_CARDS_HIDDEN_STR_LEN);
+        let cards = +for symbol in symbols {
+            yield Card.faceDownFromSymbol(symbol);
+        };
+        Card(cards: '', numberOfCardsHidden: '')
+    }
+
+    pub canMove(_ symbol: String): boolean {
+        let card = Card.faceDownFromSymbol(symbol);
+        let lastIndex = cards.lastIndexOf(card);
+
+        if lastIndex == -1 {
+            false
+        } else {
+            let possibleRun = cards.subList(lastIndex, cards.size());
+            isRun(possibleRun)
+        }
+    }
+
+    static isRun(_ cards: Card[+]): boolean {
+        for every @i in cards {
+            i == 0 || cards[i]#value == cards[i - 1]#value - 1
+        }
+    }
+
+    pub canAdd(_ symbol: String): boolean {
+        let card = Card.faceDownFromSymbol(symbol);
+        isEmpty() || card#value == cards[cards.size() - 1]#value - 1
+    }
+
+    pub move(symbol: String, to dest: Stack) {
+        let srcCard = Card.faceDownFromSymbol(symbol);
+        let lastIndexOfSrcCard = cards.lastIndexOf(srcCard);
+        let run = cards.subList(lastIndexOfSrcCard, cards.size() - 1);
+
+        dest.addAll(run);
+
+        run.clear();
+        flipTopCardUpIfNeeded();
+    }
+
+    flipTopCardUpIfNeeded() {
+        if !isEmpty() && numberOfCardsHidden >= cards.size() {
+            numberOfCardsHidden = cards.size() - 1;
+        }
+    }
+
+    pub isEmpty(): boolean {
+        cards.isEmpty()
+    }
+
+    pub hasKARun(): boolean {
+        indexOfKARun() != -1
+    }
+
+    indexOfKARun(): int {
+        let k = Card.faceDownFromSymbol("K");
+        let kIndex = cards.lastIndexOf(k);
+
+        if kIndex == -1 {
+            return -1;
+        }
+
+        if kIndex + 13 > cards.size() {
+            return -1;
+        }
+
+        let possibleRun = cards.subList(kIndex, kIndex + 13);
+        
+        if isRun(possibleRun) {
+            kIndex
+        } else {
+            -1
+        }
+    }
+
+    pub clearKARun() {
+        let kIndex = indexOfKARun();
+        cards.subList(kIndex, kIndex + 13).clear();
+        flipTopCardUpIfNeeded();
+    }
+
+    pub add(_ card: Card) {
+        cards.add(card);
+    }
+}

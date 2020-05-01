@@ -1,0 +1,5 @@
+pub class InvalidMoveException extends Exception {
+    pub new(_ message: String) {
+        super(message);
+    }
+}

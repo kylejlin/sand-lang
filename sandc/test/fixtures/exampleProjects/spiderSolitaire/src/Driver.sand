@@ -1,0 +1,5 @@
+pub class Driver {
+    pub static main(args: String[]) {
+        SpiderSolitaire().play();
+    }
+}

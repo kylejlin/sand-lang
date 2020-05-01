@@ -1,0 +1,193 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import java.awt.EventQueue;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.lang.reflect.InvocationTargetException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+use System.out.println;
+use System.out.print;
+
+pub class SpiderSolitaire {
+    pub static NUM_STACKS = 7int;
+    pub static NUM_DECKS = 4int;
+
+    var board: Board;
+    input: Scanner;
+
+    pub new() {
+        board = Board(numStacks: NUM_STACKS, numDecks: NUM_DECKS);
+        input = Scanner(System.~in);
+    }
+
+    pub play() {
+        board.print();
+
+        loop {
+            printCommandHelp();
+
+            let command = input.next();
+            switch command {
+                case "move" {
+                   handleMoveCommand();
+                }
+
+                case "draw" {
+                    board.drawCards();
+                }
+
+                case "clear" {
+                    handleClearCommand();
+                }
+
+                case "restart" {
+                    board = Board(numStacks: NUM_STACKS, numDecks: NUM_DECKS);
+                }
+
+                case "save" {
+                    save();
+                }
+
+                case "load" {
+                    load();
+                }
+
+                case "quit" {
+                    println("Goodbye!");
+                    System.exit(0);
+                }
+
+                else {
+                    println("Invalid command");
+                }
+            }
+
+            if (board.isEmpty()) {
+                break;
+            }
+        }
+
+        println("Congratulations! You win!");
+    }
+
+    printCommandHelp() {
+        println("\nCommands:");
+        println("   move [card] [source_stack] [destination_stack]");
+        println("   draw");
+        println("   clear [source_stack]");
+        println("   restart");
+        println("   save");
+        println("   load");
+        println("   quit");
+        print(">");
+    }
+
+    handleMoveCommand() {
+         try {
+            let symbol = input.next();
+            let srcIndex = input.nextInt();
+            let destIndex = input.nextInt();
+            board.makeMove(symbol: '', srcIndex: destIndex - 1, destIndex: destIndex - 1);
+        } catch _e: InputMismatchException {
+            printCommandSyntaxError();
+        }
+    }
+
+    handleClearCommand() {
+        try {
+            let index = input.nextInt();
+            board.clear(index: index - 1);
+        } catch _e: InputMismatchException {
+            printCommandSyntaxError();
+        }
+    }
+
+    printCommandSyntaxError() {
+        println("Invalid command syntax. Please consult the Commands list for help.");
+        input.nextLine();
+    }
+
+    save() {
+        try {
+            EventQueue.invokeAndWait(\ -> {
+                let chooser = JFileChooser();
+
+                let filter = FileNameExtensionFilter("Spider solitaire files", "solitaire");
+                chooser.setFileFilter(filter);
+                chooser.setAcceptAllFileFilterUsed(false);
+
+                chooser.showSaveDialog(null);
+
+                let file = chooser.getSelectedFile();
+
+                var path = file.getAbsolutePath();
+                if !path.endsWith(".solitaire") {
+                    path += ".solitaire";
+                }
+
+                let boardStr = board.serialize();
+
+                try {
+                    let writer = FileWriter(path);
+                    writer.write(boardStr);
+                    writer.close();
+
+                    println("Successfully saved game to {path}");
+                } catch e: IOException {
+                    println("Unknown file error: {e#message}");
+                }
+            });
+        } catch e: InterruptedException {
+            println("Unknown file error: {e#message}");
+        } catch e: InvocationTargetException {
+            println("Unknown file error: {e#message}");
+        }
+    }
+
+    load() {
+        try {
+            EventQueue.invokeAndWait(\ -> {
+                let chooser = JFileChooser();
+
+                let filter = FileNameExtensionFilter("Spider solitaire files", "solitaire");
+                chooser.setFileFilter(filter);
+                chooser.setAcceptAllFileFilterUsed(false);
+
+                chooser.showOpenDialog(null);
+
+                let file = chooser.getSelectedFile();
+
+                var path = file.getAbsolutePath();
+
+                if (!path.endsWith(".solitaire")) {
+                    println("Invalid file. Please choose a .solitaire file.");
+                    return;
+                }
+
+                try {
+                    let scanner = Scanner(file);
+                    // Force scanner.next() to give us the whole file (\Z matches end of input)
+                    scanner.useDelimiter("\\Z");
+                    let boardStr = scanner.next();
+                    board = Board.deserialize(boardStr);
+                    scanner.close();
+
+                    println("\nSucessfully loaded {path}\n");
+                } catch e: IOException {
+                    println("Unknown file error: {e#message}");
+                } catch e: DeserializationException {
+                    println("Could not accept {path} because it was either malformatted or it used an unsupported format.");
+                }
+            });
+        } catch e: InterruptedException {
+            println("Unknown file error: {e#message}");
+        } catch e: InvocationTargetException {
+            println("Unknown file error: {e#message}");
+        }
+    }
+}
