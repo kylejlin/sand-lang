@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 pub class Stack {
     copy sand.methods.String.leftpad;
 
@@ -34,10 +32,10 @@ pub class Stack {
 
     pub serialize(): String {
         var out = "";
-        out += leftpad(numberOfCardsHidden, minWidth: NUMBER_OF_CARDS_HIDDEN_STR_LEN, filler: '0');
+        out += leftpad("" + numberOfCardsHidden, minWidth: NUMBER_OF_CARDS_HIDDEN_STR_LEN, filler: '0');
         
         for card in cards {
-            out += cards#symbol;
+            out += card#symbol;
         }
 
         out
@@ -47,9 +45,9 @@ pub class Stack {
         let numberOfCardsHidden = Integer.parseInt(src.substring(0, NUMBER_OF_CARDS_HIDDEN_STR_LEN));
         let symbols = src.substring(NUMBER_OF_CARDS_HIDDEN_STR_LEN);
         let cards = +for symbol in symbols {
-            yield Card.faceDownFromSymbol(symbol);
+            yield Card.faceDownFromSymbol("" + symbol);
         };
-        Card(cards: '', numberOfCardsHidden: '')
+        Stack(cards: '', numberOfCardsHidden: '')
     }
 
     pub canMove(_ symbol: String): boolean {
@@ -80,7 +78,7 @@ pub class Stack {
         let lastIndexOfSrcCard = cards.lastIndexOf(srcCard);
         let run = cards.subList(lastIndexOfSrcCard, cards.size() - 1);
 
-        dest.addAll(run);
+        dest.cards.addAll(run);
 
         run.clear();
         flipTopCardUpIfNeeded();

@@ -37,7 +37,7 @@ pub class Card implements Comparable<Card> {
         compareTo(other) == 0
     }
 
-    pub override compareTo(_ other: Card): boolean {
+    pub override compareTo(_ other: Card): int {
         value - other.value
     }
 
